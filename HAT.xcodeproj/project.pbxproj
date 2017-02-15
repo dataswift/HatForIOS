@@ -7,9 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		379C91CDBA516AF1B61C086D /* Pods_HATTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276A84838AF114846AA6C978 /* Pods_HATTests.framework */; };
+		601691031E4B391200505E8D /* TwitterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691021E4B391200505E8D /* TwitterService.swift */; };
+		601691051E4B3EC800505E8D /* HATAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691041E4B3EC800505E8D /* HATAccountService.swift */; };
+		601691071E4B4AFB00505E8D /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691061E4B4AFB00505E8D /* NetworkHelper.swift */; };
+		601691141E4B4D8200505E8D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691131E4B4D8200505E8D /* Constants.swift */; };
+		601691161E4B55D500505E8D /* SocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691151E4B55D500505E8D /* SocialFeedObject.swift */; };
+		6016911B1E4B55FC00505E8D /* TwitterDataSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691171E4B55FC00505E8D /* TwitterDataSocialFeedObject.swift */; };
+		6016911C1E4B55FC00505E8D /* TwitterDataTweetsSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691181E4B55FC00505E8D /* TwitterDataTweetsSocialFeedObject.swift */; };
+		6016911D1E4B55FC00505E8D /* TwitterDataTweetsUsersSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691191E4B55FC00505E8D /* TwitterDataTweetsUsersSocialFeedObject.swift */; };
+		6016911E1E4B55FC00505E8D /* TwitterSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016911A1E4B55FC00505E8D /* TwitterSocialFeedObject.swift */; };
+		601691201E4B56B400505E8D /* FormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016911F1E4B56B400505E8D /* FormatterHelper.swift */; };
+		601691221E4B5A6500505E8D /* HATService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691211E4B5A6500505E8D /* HATService.swift */; };
+		601691261E4B6AF600505E8D /* FacebookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691251E4B6AF600505E8D /* FacebookService.swift */; };
+		6016912D1E4B6B1F00505E8D /* FacebookDataPostsApplicationSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691271E4B6B1F00505E8D /* FacebookDataPostsApplicationSocialFeedObject.swift */; };
+		6016912E1E4B6B1F00505E8D /* FacebookDataPostsFromSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691281E4B6B1F00505E8D /* FacebookDataPostsFromSocialFeedObject.swift */; };
+		6016912F1E4B6B1F00505E8D /* FacebookDataPostsPrivacySocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691291E4B6B1F00505E8D /* FacebookDataPostsPrivacySocialFeedObject.swift */; };
+		601691301E4B6B1F00505E8D /* FacebookDataPostsSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016912A1E4B6B1F00505E8D /* FacebookDataPostsSocialFeedObject.swift */; };
+		601691311E4B6B1F00505E8D /* FacebookDataSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016912B1E4B6B1F00505E8D /* FacebookDataSocialFeedObject.swift */; };
+		601691321E4B6B1F00505E8D /* FacebookSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016912C1E4B6B1F00505E8D /* FacebookSocialFeedObject.swift */; };
+		601691341E4B752F00505E8D /* NotableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691331E4B752F00505E8D /* NotableService.swift */; };
+		6016913B1E4B768800505E8D /* AuthorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691361E4B768800505E8D /* AuthorData.swift */; };
+		6016913C1E4B768800505E8D /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691371E4B768800505E8D /* LocationData.swift */; };
+		6016913D1E4B768800505E8D /* NotablesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691381E4B768800505E8D /* NotablesData.swift */; };
+		6016913E1E4B768800505E8D /* NotesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691391E4B768800505E8D /* NotesData.swift */; };
+		6016913F1E4B768800505E8D /* PhotoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016913A1E4B768800505E8D /* PhotoData.swift */; };
+		601691411E4B86E000505E8D /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691401E4B86E000505E8D /* LoginService.swift */; };
+		6020A7011E525BF600D7DC04 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7001E525BF500D7DC04 /* LocationService.swift */; };
+		6020A7031E526BBF00D7DC04 /* LocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7021E526BBF00D7DC04 /* LocationServiceTests.swift */; };
+		6020A7041E52734300D7DC04 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7001E525BF500D7DC04 /* LocationService.swift */; };
+		6020A7061E52749700D7DC04 /* HATServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7051E52749700D7DC04 /* HATServiceTests.swift */; };
+		6020A7081E52803800D7DC04 /* HATAccountServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7071E52803800D7DC04 /* HATAccountServiceTests.swift */; };
+		602E1A2C1E4E2EAC001D65AD /* AuthorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691361E4B768800505E8D /* AuthorData.swift */; };
+		602E1A2D1E4E2EAC001D65AD /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691371E4B768800505E8D /* LocationData.swift */; };
+		602E1A2E1E4E2EAC001D65AD /* NotablesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691381E4B768800505E8D /* NotablesData.swift */; };
+		602E1A2F1E4E2EAC001D65AD /* NotesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691391E4B768800505E8D /* NotesData.swift */; };
+		602E1A301E4E2EAC001D65AD /* PhotoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016913A1E4B768800505E8D /* PhotoData.swift */; };
+		602E1A311E4E2EC1001D65AD /* FacebookDataPostsApplicationSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691271E4B6B1F00505E8D /* FacebookDataPostsApplicationSocialFeedObject.swift */; };
+		602E1A321E4E2EC1001D65AD /* FacebookDataPostsFromSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691281E4B6B1F00505E8D /* FacebookDataPostsFromSocialFeedObject.swift */; };
+		602E1A331E4E2EC1001D65AD /* FacebookDataPostsPrivacySocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691291E4B6B1F00505E8D /* FacebookDataPostsPrivacySocialFeedObject.swift */; };
+		602E1A341E4E2EC1001D65AD /* FacebookDataPostsSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016912A1E4B6B1F00505E8D /* FacebookDataPostsSocialFeedObject.swift */; };
+		602E1A351E4E2EC1001D65AD /* FacebookDataSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016912B1E4B6B1F00505E8D /* FacebookDataSocialFeedObject.swift */; };
+		602E1A361E4E2EC1001D65AD /* FacebookSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016912C1E4B6B1F00505E8D /* FacebookSocialFeedObject.swift */; };
+		602E1A371E4E2EC5001D65AD /* TwitterDataSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691171E4B55FC00505E8D /* TwitterDataSocialFeedObject.swift */; };
+		602E1A381E4E2EC5001D65AD /* TwitterDataTweetsSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691181E4B55FC00505E8D /* TwitterDataTweetsSocialFeedObject.swift */; };
+		602E1A391E4E2EC5001D65AD /* TwitterDataTweetsUsersSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691191E4B55FC00505E8D /* TwitterDataTweetsUsersSocialFeedObject.swift */; };
+		602E1A3A1E4E2EC5001D65AD /* TwitterSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016911A1E4B55FC00505E8D /* TwitterSocialFeedObject.swift */; };
+		602E1A3B1E4E2EC5001D65AD /* SocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691151E4B55D500505E8D /* SocialFeedObject.swift */; };
+		602E1A3C1E4E2EC8001D65AD /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691061E4B4AFB00505E8D /* NetworkHelper.swift */; };
+		602E1A3D1E4E2EC8001D65AD /* FormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016911F1E4B56B400505E8D /* FormatterHelper.swift */; };
+		602E1A3E1E4E2EC8001D65AD /* ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603EEE661E4DF54B008FF9D3 /* ErrorHelper.swift */; };
+		602E1A3F1E4E2ECC001D65AD /* TwitterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691021E4B391200505E8D /* TwitterService.swift */; };
+		602E1A401E4E2ECC001D65AD /* FacebookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691251E4B6AF600505E8D /* FacebookService.swift */; };
+		602E1A411E4E2ECC001D65AD /* NotableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691331E4B752F00505E8D /* NotableService.swift */; };
+		602E1A421E4E2ECC001D65AD /* HATAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691041E4B3EC800505E8D /* HATAccountService.swift */; };
+		602E1A431E4E2ECC001D65AD /* HATService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691211E4B5A6500505E8D /* HATService.swift */; };
+		602E1A441E4E2ECC001D65AD /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691401E4B86E000505E8D /* LoginService.swift */; };
+		602E1A451E4E2ECF001D65AD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601691131E4B4D8200505E8D /* Constants.swift */; };
+		603EEE671E4DF54C008FF9D3 /* ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603EEE661E4DF54B008FF9D3 /* ErrorHelper.swift */; };
 		60444EE71E4B27C5005E4433 /* HAT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60444EDD1E4B27C4005E4433 /* HAT.framework */; };
-		60444EEC1E4B27C5005E4433 /* HATTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60444EEB1E4B27C5005E4433 /* HATTests.swift */; };
+		60444EEC1E4B27C5005E4433 /* LoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60444EEB1E4B27C5005E4433 /* LoginServiceTests.swift */; };
 		60444EEE1E4B27C5005E4433 /* HAT.h in Headers */ = {isa = PBXBuildFile; fileRef = 60444EE01E4B27C4005E4433 /* HAT.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		606375A71E534C2400F0D1B1 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606375A61E534C2400F0D1B1 /* Structures.swift */; };
+		606375A91E53613D00F0D1B1 /* FacebookServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606375A81E53613D00F0D1B1 /* FacebookServiceTests.swift */; };
+		606375AB1E536B1500F0D1B1 /* TwitterServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606375AA1E536B1500F0D1B1 /* TwitterServiceTests.swift */; };
+		606375AD1E536DA300F0D1B1 /* NotableServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606375AC1E536DA200F0D1B1 /* NotableServiceTests.swift */; };
+		606375AF1E537C7300F0D1B1 /* FormatterHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606375AE1E537C7300F0D1B1 /* FormatterHelperTests.swift */; };
+		DAE77631B5EE973DB860751E /* Pods_HAT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E8BDF19F0511F88B218311 /* Pods_HAT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +87,53 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F217E04F6A43CBD1160A765 /* Pods-HAT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HAT.release.xcconfig"; path = "Pods/Target Support Files/Pods-HAT/Pods-HAT.release.xcconfig"; sourceTree = "<group>"; };
+		276A84838AF114846AA6C978 /* Pods_HATTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HATTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E35995A09FA50E6E5A67F12 /* Pods-HATTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HATTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HATTests/Pods-HATTests.release.xcconfig"; sourceTree = "<group>"; };
+		2E6B981390ACA28160998321 /* Pods-HATTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HATTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HATTests/Pods-HATTests.debug.xcconfig"; sourceTree = "<group>"; };
+		601691021E4B391200505E8D /* TwitterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterService.swift; path = Services/TwitterService.swift; sourceTree = "<group>"; };
+		601691041E4B3EC800505E8D /* HATAccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HATAccountService.swift; path = Services/HATAccountService.swift; sourceTree = "<group>"; };
+		601691061E4B4AFB00505E8D /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkHelper.swift; path = Helpers/NetworkHelper.swift; sourceTree = "<group>"; };
+		601691131E4B4D8200505E8D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		601691151E4B55D500505E8D /* SocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SocialFeedObject.swift; path = Objects/SocialFeedObject.swift; sourceTree = "<group>"; };
+		601691171E4B55FC00505E8D /* TwitterDataSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterDataSocialFeedObject.swift; path = Objects/TwitterDataSocialFeedObject.swift; sourceTree = "<group>"; };
+		601691181E4B55FC00505E8D /* TwitterDataTweetsSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterDataTweetsSocialFeedObject.swift; path = Objects/TwitterDataTweetsSocialFeedObject.swift; sourceTree = "<group>"; };
+		601691191E4B55FC00505E8D /* TwitterDataTweetsUsersSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterDataTweetsUsersSocialFeedObject.swift; path = Objects/TwitterDataTweetsUsersSocialFeedObject.swift; sourceTree = "<group>"; };
+		6016911A1E4B55FC00505E8D /* TwitterSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterSocialFeedObject.swift; path = Objects/TwitterSocialFeedObject.swift; sourceTree = "<group>"; };
+		6016911F1E4B56B400505E8D /* FormatterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormatterHelper.swift; path = Helpers/FormatterHelper.swift; sourceTree = "<group>"; };
+		601691211E4B5A6500505E8D /* HATService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HATService.swift; path = Services/HATService.swift; sourceTree = "<group>"; };
+		601691251E4B6AF600505E8D /* FacebookService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookService.swift; path = Services/FacebookService.swift; sourceTree = "<group>"; };
+		601691271E4B6B1F00505E8D /* FacebookDataPostsApplicationSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookDataPostsApplicationSocialFeedObject.swift; sourceTree = "<group>"; };
+		601691281E4B6B1F00505E8D /* FacebookDataPostsFromSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookDataPostsFromSocialFeedObject.swift; sourceTree = "<group>"; };
+		601691291E4B6B1F00505E8D /* FacebookDataPostsPrivacySocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookDataPostsPrivacySocialFeedObject.swift; sourceTree = "<group>"; };
+		6016912A1E4B6B1F00505E8D /* FacebookDataPostsSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookDataPostsSocialFeedObject.swift; sourceTree = "<group>"; };
+		6016912B1E4B6B1F00505E8D /* FacebookDataSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookDataSocialFeedObject.swift; sourceTree = "<group>"; };
+		6016912C1E4B6B1F00505E8D /* FacebookSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookSocialFeedObject.swift; sourceTree = "<group>"; };
+		601691331E4B752F00505E8D /* NotableService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotableService.swift; path = Services/NotableService.swift; sourceTree = "<group>"; };
+		601691361E4B768800505E8D /* AuthorData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorData.swift; sourceTree = "<group>"; };
+		601691371E4B768800505E8D /* LocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
+		601691381E4B768800505E8D /* NotablesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotablesData.swift; sourceTree = "<group>"; };
+		601691391E4B768800505E8D /* NotesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesData.swift; sourceTree = "<group>"; };
+		6016913A1E4B768800505E8D /* PhotoData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoData.swift; sourceTree = "<group>"; };
+		601691401E4B86E000505E8D /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginService.swift; path = Services/LoginService.swift; sourceTree = "<group>"; };
+		6020A7001E525BF500D7DC04 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationService.swift; path = Services/LocationService.swift; sourceTree = "<group>"; };
+		6020A7021E526BBF00D7DC04 /* LocationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServiceTests.swift; sourceTree = "<group>"; };
+		6020A7051E52749700D7DC04 /* HATServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATServiceTests.swift; sourceTree = "<group>"; };
+		6020A7071E52803800D7DC04 /* HATAccountServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATAccountServiceTests.swift; sourceTree = "<group>"; };
+		603EEE661E4DF54B008FF9D3 /* ErrorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHelper.swift; sourceTree = "<group>"; };
 		60444EDD1E4B27C4005E4433 /* HAT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HAT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60444EE01E4B27C4005E4433 /* HAT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAT.h; sourceTree = "<group>"; };
 		60444EE11E4B27C4005E4433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60444EE61E4B27C5005E4433 /* HATTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HATTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		60444EEB1E4B27C5005E4433 /* HATTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATTests.swift; sourceTree = "<group>"; };
+		60444EEB1E4B27C5005E4433 /* LoginServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServiceTests.swift; sourceTree = "<group>"; };
 		60444EED1E4B27C5005E4433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		606375A61E534C2400F0D1B1 /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
+		606375A81E53613D00F0D1B1 /* FacebookServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookServiceTests.swift; sourceTree = "<group>"; };
+		606375AA1E536B1500F0D1B1 /* TwitterServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterServiceTests.swift; sourceTree = "<group>"; };
+		606375AC1E536DA200F0D1B1 /* NotableServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotableServiceTests.swift; sourceTree = "<group>"; };
+		606375AE1E537C7300F0D1B1 /* FormatterHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatterHelperTests.swift; sourceTree = "<group>"; };
+		EA7AEE7D6190163453BCF60C /* Pods-HAT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HAT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HAT/Pods-HAT.debug.xcconfig"; sourceTree = "<group>"; };
+		F5E8BDF19F0511F88B218311 /* Pods_HAT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HAT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAE77631B5EE973DB860751E /* Pods_HAT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,18 +150,100 @@
 			buildActionMask = 2147483647;
 			files = (
 				60444EE71E4B27C5005E4433 /* HAT.framework in Frameworks */,
+				379C91CDBA516AF1B61C086D /* Pods_HATTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5AE59415FC61321AE461CBEB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F5E8BDF19F0511F88B218311 /* Pods_HAT.framework */,
+				276A84838AF114846AA6C978 /* Pods_HATTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		601691081E4B4B7C00505E8D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				601691041E4B3EC800505E8D /* HATAccountService.swift */,
+				601691211E4B5A6500505E8D /* HATService.swift */,
+				601691251E4B6AF600505E8D /* FacebookService.swift */,
+				6020A7001E525BF500D7DC04 /* LocationService.swift */,
+				601691401E4B86E000505E8D /* LoginService.swift */,
+				601691331E4B752F00505E8D /* NotableService.swift */,
+				601691021E4B391200505E8D /* TwitterService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		601691091E4B4B8400505E8D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				603EEE661E4DF54B008FF9D3 /* ErrorHelper.swift */,
+				6016911F1E4B56B400505E8D /* FormatterHelper.swift */,
+				601691061E4B4AFB00505E8D /* NetworkHelper.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		6016910A1E4B4B8900505E8D /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				601691241E4B6AE600505E8D /* Facebook */,
+				601691351E4B766100505E8D /* Notes */,
+				601691231E4B6AD300505E8D /* Twitter */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		601691231E4B6AD300505E8D /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				601691171E4B55FC00505E8D /* TwitterDataSocialFeedObject.swift */,
+				601691181E4B55FC00505E8D /* TwitterDataTweetsSocialFeedObject.swift */,
+				601691191E4B55FC00505E8D /* TwitterDataTweetsUsersSocialFeedObject.swift */,
+				6016911A1E4B55FC00505E8D /* TwitterSocialFeedObject.swift */,
+			);
+			name = Twitter;
+			sourceTree = "<group>";
+		};
+		601691241E4B6AE600505E8D /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				601691271E4B6B1F00505E8D /* FacebookDataPostsApplicationSocialFeedObject.swift */,
+				601691281E4B6B1F00505E8D /* FacebookDataPostsFromSocialFeedObject.swift */,
+				601691291E4B6B1F00505E8D /* FacebookDataPostsPrivacySocialFeedObject.swift */,
+				6016912A1E4B6B1F00505E8D /* FacebookDataPostsSocialFeedObject.swift */,
+				6016912B1E4B6B1F00505E8D /* FacebookDataSocialFeedObject.swift */,
+				6016912C1E4B6B1F00505E8D /* FacebookSocialFeedObject.swift */,
+			);
+			name = Facebook;
+			sourceTree = "<group>";
+		};
+		601691351E4B766100505E8D /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				601691361E4B768800505E8D /* AuthorData.swift */,
+				601691371E4B768800505E8D /* LocationData.swift */,
+				601691381E4B768800505E8D /* NotablesData.swift */,
+				601691391E4B768800505E8D /* NotesData.swift */,
+				6016913A1E4B768800505E8D /* PhotoData.swift */,
+			);
+			name = Notes;
+			sourceTree = "<group>";
+		};
 		60444ED31E4B27C4005E4433 = {
 			isa = PBXGroup;
 			children = (
 				60444EDF1E4B27C4005E4433 /* HAT */,
 				60444EEA1E4B27C5005E4433 /* HATTests */,
 				60444EDE1E4B27C4005E4433 /* Products */,
+				816EE3D833FB170DB1D6AA4E /* Pods */,
+				5AE59415FC61321AE461CBEB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,8 +259,13 @@
 		60444EDF1E4B27C4005E4433 /* HAT */ = {
 			isa = PBXGroup;
 			children = (
+				6016910A1E4B4B8900505E8D /* Objects */,
+				601691151E4B55D500505E8D /* SocialFeedObject.swift */,
+				601691091E4B4B8400505E8D /* Helpers */,
+				601691081E4B4B7C00505E8D /* Services */,
 				60444EE01E4B27C4005E4433 /* HAT.h */,
 				60444EE11E4B27C4005E4433 /* Info.plist */,
+				601691131E4B4D8200505E8D /* Constants.swift */,
 			);
 			path = HAT;
 			sourceTree = "<group>";
@@ -80,10 +273,29 @@
 		60444EEA1E4B27C5005E4433 /* HATTests */ = {
 			isa = PBXGroup;
 			children = (
-				60444EEB1E4B27C5005E4433 /* HATTests.swift */,
+				606375A81E53613D00F0D1B1 /* FacebookServiceTests.swift */,
+				606375AE1E537C7300F0D1B1 /* FormatterHelperTests.swift */,
+				6020A7071E52803800D7DC04 /* HATAccountServiceTests.swift */,
+				6020A7051E52749700D7DC04 /* HATServiceTests.swift */,
+				6020A7021E526BBF00D7DC04 /* LocationServiceTests.swift */,
+				60444EEB1E4B27C5005E4433 /* LoginServiceTests.swift */,
+				606375AC1E536DA200F0D1B1 /* NotableServiceTests.swift */,
+				606375A61E534C2400F0D1B1 /* Structures.swift */,
+				606375AA1E536B1500F0D1B1 /* TwitterServiceTests.swift */,
 				60444EED1E4B27C5005E4433 /* Info.plist */,
 			);
 			path = HATTests;
+			sourceTree = "<group>";
+		};
+		816EE3D833FB170DB1D6AA4E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EA7AEE7D6190163453BCF60C /* Pods-HAT.debug.xcconfig */,
+				0F217E04F6A43CBD1160A765 /* Pods-HAT.release.xcconfig */,
+				2E6B981390ACA28160998321 /* Pods-HATTests.debug.xcconfig */,
+				2E35995A09FA50E6E5A67F12 /* Pods-HATTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,10 +316,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60444EF11E4B27C5005E4433 /* Build configuration list for PBXNativeTarget "HAT" */;
 			buildPhases = (
+				98B979C718B084FEAF2FC42D /* [CP] Check Pods Manifest.lock */,
 				60444ED81E4B27C4005E4433 /* Sources */,
 				60444ED91E4B27C4005E4433 /* Frameworks */,
 				60444EDA1E4B27C4005E4433 /* Headers */,
 				60444EDB1E4B27C4005E4433 /* Resources */,
+				54E8888CF1957371297870C3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -122,9 +336,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60444EF41E4B27C5005E4433 /* Build configuration list for PBXNativeTarget "HATTests" */;
 			buildPhases = (
+				503EF065F8BC5E0DAB569384 /* [CP] Check Pods Manifest.lock */,
 				60444EE21E4B27C5005E4433 /* Sources */,
 				60444EE31E4B27C5005E4433 /* Frameworks */,
 				60444EE41E4B27C5005E4433 /* Resources */,
+				01241C9A8F2E45643A1C5833 /* [CP] Embed Pods Frameworks */,
+				DB6AF063E9360F8795F60D57 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -144,11 +361,12 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = "Marios-Andreas Tsekis";
+				ORGANIZATIONNAME = HATDeX;
 				TargetAttributes = {
 					60444EDC1E4B27C4005E4433 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = FG275HQ3SR;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					60444EE51E4B27C5005E4433 = {
@@ -193,11 +411,116 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		01241C9A8F2E45643A1C5833 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HATTests/Pods-HATTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		503EF065F8BC5E0DAB569384 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		54E8888CF1957371297870C3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HAT/Pods-HAT-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98B979C718B084FEAF2FC42D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DB6AF063E9360F8795F60D57 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HATTests/Pods-HATTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		60444ED81E4B27C4005E4433 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				601691221E4B5A6500505E8D /* HATService.swift in Sources */,
+				601691341E4B752F00505E8D /* NotableService.swift in Sources */,
+				601691031E4B391200505E8D /* TwitterService.swift in Sources */,
+				601691311E4B6B1F00505E8D /* FacebookDataSocialFeedObject.swift in Sources */,
+				601691161E4B55D500505E8D /* SocialFeedObject.swift in Sources */,
+				6016911C1E4B55FC00505E8D /* TwitterDataTweetsSocialFeedObject.swift in Sources */,
+				6016911D1E4B55FC00505E8D /* TwitterDataTweetsUsersSocialFeedObject.swift in Sources */,
+				6020A7011E525BF600D7DC04 /* LocationService.swift in Sources */,
+				601691301E4B6B1F00505E8D /* FacebookDataPostsSocialFeedObject.swift in Sources */,
+				6016913B1E4B768800505E8D /* AuthorData.swift in Sources */,
+				6016912F1E4B6B1F00505E8D /* FacebookDataPostsPrivacySocialFeedObject.swift in Sources */,
+				6016913E1E4B768800505E8D /* NotesData.swift in Sources */,
+				6016912E1E4B6B1F00505E8D /* FacebookDataPostsFromSocialFeedObject.swift in Sources */,
+				603EEE671E4DF54C008FF9D3 /* ErrorHelper.swift in Sources */,
+				601691071E4B4AFB00505E8D /* NetworkHelper.swift in Sources */,
+				6016912D1E4B6B1F00505E8D /* FacebookDataPostsApplicationSocialFeedObject.swift in Sources */,
+				6016913F1E4B768800505E8D /* PhotoData.swift in Sources */,
+				6016913D1E4B768800505E8D /* NotablesData.swift in Sources */,
+				6016911B1E4B55FC00505E8D /* TwitterDataSocialFeedObject.swift in Sources */,
+				601691261E4B6AF600505E8D /* FacebookService.swift in Sources */,
+				601691141E4B4D8200505E8D /* Constants.swift in Sources */,
+				6016911E1E4B55FC00505E8D /* TwitterSocialFeedObject.swift in Sources */,
+				601691321E4B6B1F00505E8D /* FacebookSocialFeedObject.swift in Sources */,
+				6016913C1E4B768800505E8D /* LocationData.swift in Sources */,
+				601691411E4B86E000505E8D /* LoginService.swift in Sources */,
+				601691201E4B56B400505E8D /* FormatterHelper.swift in Sources */,
+				601691051E4B3EC800505E8D /* HATAccountService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +528,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60444EEC1E4B27C5005E4433 /* HATTests.swift in Sources */,
+				602E1A431E4E2ECC001D65AD /* HATService.swift in Sources */,
+				602E1A441E4E2ECC001D65AD /* LoginService.swift in Sources */,
+				6020A7031E526BBF00D7DC04 /* LocationServiceTests.swift in Sources */,
+				602E1A351E4E2EC1001D65AD /* FacebookDataSocialFeedObject.swift in Sources */,
+				602E1A3D1E4E2EC8001D65AD /* FormatterHelper.swift in Sources */,
+				602E1A3E1E4E2EC8001D65AD /* ErrorHelper.swift in Sources */,
+				606375A91E53613D00F0D1B1 /* FacebookServiceTests.swift in Sources */,
+				606375AD1E536DA300F0D1B1 /* NotableServiceTests.swift in Sources */,
+				602E1A3A1E4E2EC5001D65AD /* TwitterSocialFeedObject.swift in Sources */,
+				606375A71E534C2400F0D1B1 /* Structures.swift in Sources */,
+				606375AB1E536B1500F0D1B1 /* TwitterServiceTests.swift in Sources */,
+				602E1A3B1E4E2EC5001D65AD /* SocialFeedObject.swift in Sources */,
+				6020A7081E52803800D7DC04 /* HATAccountServiceTests.swift in Sources */,
+				602E1A391E4E2EC5001D65AD /* TwitterDataTweetsUsersSocialFeedObject.swift in Sources */,
+				602E1A311E4E2EC1001D65AD /* FacebookDataPostsApplicationSocialFeedObject.swift in Sources */,
+				602E1A2D1E4E2EAC001D65AD /* LocationData.swift in Sources */,
+				602E1A3F1E4E2ECC001D65AD /* TwitterService.swift in Sources */,
+				602E1A401E4E2ECC001D65AD /* FacebookService.swift in Sources */,
+				602E1A371E4E2EC5001D65AD /* TwitterDataSocialFeedObject.swift in Sources */,
+				602E1A331E4E2EC1001D65AD /* FacebookDataPostsPrivacySocialFeedObject.swift in Sources */,
+				6020A7061E52749700D7DC04 /* HATServiceTests.swift in Sources */,
+				602E1A2C1E4E2EAC001D65AD /* AuthorData.swift in Sources */,
+				602E1A421E4E2ECC001D65AD /* HATAccountService.swift in Sources */,
+				602E1A301E4E2EAC001D65AD /* PhotoData.swift in Sources */,
+				602E1A3C1E4E2EC8001D65AD /* NetworkHelper.swift in Sources */,
+				602E1A341E4E2EC1001D65AD /* FacebookDataPostsSocialFeedObject.swift in Sources */,
+				60444EEC1E4B27C5005E4433 /* LoginServiceTests.swift in Sources */,
+				602E1A321E4E2EC1001D65AD /* FacebookDataPostsFromSocialFeedObject.swift in Sources */,
+				606375AF1E537C7300F0D1B1 /* FormatterHelperTests.swift in Sources */,
+				602E1A361E4E2EC1001D65AD /* FacebookSocialFeedObject.swift in Sources */,
+				602E1A2E1E4E2EAC001D65AD /* NotablesData.swift in Sources */,
+				602E1A411E4E2ECC001D65AD /* NotableService.swift in Sources */,
+				6020A7041E52734300D7DC04 /* LocationService.swift in Sources */,
+				602E1A2F1E4E2EAC001D65AD /* NotesData.swift in Sources */,
+				602E1A381E4E2EC5001D65AD /* TwitterDataTweetsSocialFeedObject.swift in Sources */,
+				602E1A451E4E2ECF001D65AD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +679,10 @@
 		};
 		60444EF21E4B27C5005E4433 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA7AEE7D6190163453BCF60C /* Pods-HAT.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = FG275HQ3SR;
@@ -330,17 +691,22 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = HAT/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hatdex.HAT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		60444EF31E4B27C5005E4433 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F217E04F6A43CBD1160A765 /* Pods-HAT.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = FG275HQ3SR;
@@ -349,6 +715,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = HAT/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hatdex.HAT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -359,7 +726,9 @@
 		};
 		60444EF51E4B27C5005E4433 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E6B981390ACA28160998321 /* Pods-HATTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = FG275HQ3SR;
 				INFOPLIST_FILE = HATTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -371,7 +740,9 @@
 		};
 		60444EF61E4B27C5005E4433 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E35995A09FA50E6E5A67F12 /* Pods-HATTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = FG275HQ3SR;
 				INFOPLIST_FILE = HATTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -400,6 +771,7 @@
 				60444EF31E4B27C5005E4433 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		60444EF41E4B27C5005E4433 /* Build configuration list for PBXNativeTarget "HATTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +780,7 @@
 				60444EF61E4B27C5005E4433 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

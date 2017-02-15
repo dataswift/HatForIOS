@@ -10,12 +10,15 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-#import <UIKit/UIKit.h>
+import UIKit
 
-//! Project version number for HAT.
-FOUNDATION_EXPORT double HATVersionNumber;
+// MARK: Protocol
 
-//! Project version string for HAT.
-FOUNDATION_EXPORT const unsigned char HATVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <HAT/PublicHeader.h>
+/// This protocol is used to compare the facebook and twitter objects for social feed
+protocol SocialFeedObject {
+    
+    // MARK: - Variable
+    
+    /// The last date updated of the record
+    var protocolLastUpdate: Date? {get set}
+}
