@@ -14,8 +14,8 @@ import SwiftyJSON
 
 // MARK: Struct
 
-/// A struct representing the author table received from JSON
-struct AuthorData: Comparable {
+/// A struct representing the data plug owner from data plug JSON file
+struct DataPlugOwnerObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,9 +27,9 @@ struct AuthorData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: AuthorData, rhs: AuthorData) -> Bool {
+    public static func ==(lhs: DataPlugOwnerObject, rhs: DataPlugOwnerObject) -> Bool {
         
-        return (lhs.nickName == rhs.nickName && lhs.name == rhs.name && lhs.photoURL == rhs.photoURL && lhs.phata == rhs.phata && lhs.id == rhs.id)
+        return (lhs.id == rhs.id && lhs.email == rhs.email && lhs.nick == rhs.nick && lhs.firstName == rhs.firstName && lhs.lastName == rhs.lastName)
     }
     
     /// Returns a Boolean value indicating whether the value of the first
@@ -42,38 +42,36 @@ struct AuthorData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: AuthorData, rhs: AuthorData) -> Bool {
+    public static func <(lhs: DataPlugOwnerObject, rhs: DataPlugOwnerObject) -> Bool {
         
-        return lhs.name < rhs.name
+        return lhs.lastName < rhs.lastName
     }
-
     
     // MARK: - Variables
+
+    /// The id of the owner
+    var id: String = ""
+    /// The email of the owner
+    var email: String = ""
+    /// The nickname of the owner
+    var nick: String = ""
+    /// The first name of the owner
+    var firstName: String = ""
+    /// The last name of the owner
+    var lastName: String = ""
     
-    /// the nickname of the author
-    var nickName: String
-    /// the name of the author
-    var name: String
-    /// the photo url of the author
-    var photoURL: String
-    /// the phata of the author. Required
-    var phata: String
-    
-    /// the id of the author
-    var id: Int
-    
-    // MARK: - Initialisers
+    // MARK: - Initializers
     
     /**
      The default initialiser. Initialises everything to default values.
      */
     init() {
         
-        nickName = ""
-        name = ""
-        photoURL = ""
-        id = 0
-        phata = ""
+        id = ""
+        email = ""
+        nick = ""
+        firstName = ""
+        lastName = ""
     }
     
     /**
@@ -81,41 +79,27 @@ struct AuthorData: Comparable {
      */
     init(dict: Dictionary<String, JSON>) {
         
-        // init optional JSON fields to default values
         self.init()
         
-        // this field will always have a value no need to use if let
-        if let tempPHATA = dict["phata"]?.string {
+        if let tempID = (dict["id"]?.stringValue) {
             
-            phata = tempPHATA
+            id = tempID
         }
-
-        // check optional fields for value, if found assign it to the correct variable
-        if let tempID = dict["id"]?.stringValue {
+        if let tempEmail = (dict["email"]?.stringValue) {
             
-            // check if string is "" as well
-            if tempID != ""{
-                
-                if let intTempID = Int(tempID) {
-                    
-                    id = intTempID
-                }
-            }
+            email = tempEmail
         }
-        
-        if let tempNickName = dict["nick"]?.string {
+        if let tempNick = (dict["nick"]?.stringValue) {
             
-            nickName = tempNickName
+            nick = tempNick
         }
-        
-        if let tempName = dict["name"]?.string {
+        if let tempFirstName = (dict["firstName"]?.stringValue) {
             
-            name = tempName
+            firstName = tempFirstName
         }
-        
-        if let tempPhotoURL = dict["photo_url"]?.string {
+        if let tempLastName = (dict["lastName"]?.stringValue) {
             
-            photoURL = tempPhotoURL
+            lastName = tempLastName
         }
     }
 }

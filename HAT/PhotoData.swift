@@ -15,6 +15,8 @@
 /// A struct representing the location table received from JSON
 struct PhotoData: Comparable {
     
+    // MARK: - Comparable protocol
+    
     /// Returns a Boolean value indicating whether two values are equal.
     ///
     /// Equality is the inverse of inequality. For any values `a` and `b`,

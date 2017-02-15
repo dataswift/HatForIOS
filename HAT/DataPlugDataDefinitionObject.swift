@@ -12,10 +12,10 @@
 
 import SwiftyJSON
 
-// MARK: Class
+// MARK: Struct
 
-/// A class representing the data of the tweet
-public class TwitterDataSocialFeedObject: Comparable {
+/// A struct representing the data plug data definition from data plug JSON file
+struct DataPlugDataDefinitionObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,9 +27,9 @@ public class TwitterDataSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: TwitterDataSocialFeedObject, rhs: TwitterDataSocialFeedObject) -> Bool {
+    public static func ==(lhs: DataPlugDataDefinitionObject, rhs: DataPlugDataDefinitionObject) -> Bool {
         
-        return (lhs.tweets == rhs.tweets)
+        return (lhs.source == rhs.source && lhs.dataSets == rhs.dataSets)
     }
     
     /// Returns a Boolean value indicating whether the value of the first
@@ -42,36 +42,46 @@ public class TwitterDataSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: TwitterDataSocialFeedObject, rhs: TwitterDataSocialFeedObject) -> Bool {
+    public static func <(lhs: DataPlugDataDefinitionObject, rhs: DataPlugDataDefinitionObject) -> Bool {
         
-        return lhs.tweets < rhs.tweets
+        return lhs.source < rhs.source
     }
     
     // MARK: - Variables
 
-    /// The tweet data
-    var tweets: TwitterDataTweetsSocialFeedObject = TwitterDataTweetsSocialFeedObject()
+    /// The source of the data definition
+    var source: String = ""
     
-    // MARK: - Initialisers
+    /// The data sets for this data definition object
+    var dataSets: [DataPlugDataSetObject] = []
     
     /**
      The default initialiser. Initialises everything to default values.
      */
     init() {
         
-        tweets = TwitterDataTweetsSocialFeedObject()
+        source = ""
+        
+        dataSets = []
     }
+    
+    // MARK: - Initializers
     
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    convenience init(from dictionary: Dictionary<String, JSON>) {
+    init(dict: Dictionary<String, JSON>) {
         
         self.init()
         
-        if let tempTweets = dictionary["tweets"]?.dictionaryValue {
+        if let tempSource = (dict["source"]?.stringValue) {
             
-            tweets = TwitterDataTweetsSocialFeedObject(from: tempTweets)
+            source = tempSource
+        }
+        
+        if let tempDataSets = (dict["datasets"]?.dictionary) {
+            
+            dataSets = [DataPlugDataSetObject(dict: tempDataSets)]
         }
     }
 }

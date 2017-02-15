@@ -73,6 +73,13 @@
 		606375AB1E536B1500F0D1B1 /* TwitterServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606375AA1E536B1500F0D1B1 /* TwitterServiceTests.swift */; };
 		606375AD1E536DA300F0D1B1 /* NotableServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606375AC1E536DA200F0D1B1 /* NotableServiceTests.swift */; };
 		606375AF1E537C7300F0D1B1 /* FormatterHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606375AE1E537C7300F0D1B1 /* FormatterHelperTests.swift */; };
+		606BBA2E1E5453C200ECBA6B /* DataPlugsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606BBA2D1E5453C200ECBA6B /* DataPlugsService.swift */; };
+		606BBA351E54549600ECBA6B /* DataPlugDataDefinitionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606BBA301E54549600ECBA6B /* DataPlugDataDefinitionObject.swift */; };
+		606BBA361E54549600ECBA6B /* DataPlugDataSetObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606BBA311E54549600ECBA6B /* DataPlugDataSetObject.swift */; };
+		606BBA371E54549600ECBA6B /* DataPlugObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606BBA321E54549600ECBA6B /* DataPlugObject.swift */; };
+		606BBA381E54549600ECBA6B /* DataPlugOwnerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606BBA331E54549600ECBA6B /* DataPlugOwnerObject.swift */; };
+		606BBA391E54549600ECBA6B /* DataPlugRatingObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606BBA341E54549600ECBA6B /* DataPlugRatingObject.swift */; };
+		606BBA3B1E546DF000ECBA6B /* DataPlugsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606BBA3A1E546DF000ECBA6B /* DataPlugsServiceTests.swift */; };
 		DAE77631B5EE973DB860751E /* Pods_HAT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E8BDF19F0511F88B218311 /* Pods_HAT.framework */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +139,13 @@
 		606375AA1E536B1500F0D1B1 /* TwitterServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterServiceTests.swift; sourceTree = "<group>"; };
 		606375AC1E536DA200F0D1B1 /* NotableServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotableServiceTests.swift; sourceTree = "<group>"; };
 		606375AE1E537C7300F0D1B1 /* FormatterHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatterHelperTests.swift; sourceTree = "<group>"; };
+		606BBA2D1E5453C200ECBA6B /* DataPlugsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataPlugsService.swift; path = Services/DataPlugsService.swift; sourceTree = "<group>"; };
+		606BBA301E54549600ECBA6B /* DataPlugDataDefinitionObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPlugDataDefinitionObject.swift; sourceTree = "<group>"; };
+		606BBA311E54549600ECBA6B /* DataPlugDataSetObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPlugDataSetObject.swift; sourceTree = "<group>"; };
+		606BBA321E54549600ECBA6B /* DataPlugObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPlugObject.swift; sourceTree = "<group>"; };
+		606BBA331E54549600ECBA6B /* DataPlugOwnerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPlugOwnerObject.swift; sourceTree = "<group>"; };
+		606BBA341E54549600ECBA6B /* DataPlugRatingObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPlugRatingObject.swift; sourceTree = "<group>"; };
+		606BBA3A1E546DF000ECBA6B /* DataPlugsServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPlugsServiceTests.swift; sourceTree = "<group>"; };
 		EA7AEE7D6190163453BCF60C /* Pods-HAT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HAT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HAT/Pods-HAT.debug.xcconfig"; sourceTree = "<group>"; };
 		F5E8BDF19F0511F88B218311 /* Pods_HAT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HAT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -169,9 +183,10 @@
 		601691081E4B4B7C00505E8D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				606BBA2D1E5453C200ECBA6B /* DataPlugsService.swift */,
+				601691251E4B6AF600505E8D /* FacebookService.swift */,
 				601691041E4B3EC800505E8D /* HATAccountService.swift */,
 				601691211E4B5A6500505E8D /* HATService.swift */,
-				601691251E4B6AF600505E8D /* FacebookService.swift */,
 				6020A7001E525BF500D7DC04 /* LocationService.swift */,
 				601691401E4B86E000505E8D /* LoginService.swift */,
 				601691331E4B752F00505E8D /* NotableService.swift */,
@@ -193,9 +208,11 @@
 		6016910A1E4B4B8900505E8D /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				606BBA2F1E54546700ECBA6B /* Data Plugs */,
 				601691241E4B6AE600505E8D /* Facebook */,
 				601691351E4B766100505E8D /* Notes */,
 				601691231E4B6AD300505E8D /* Twitter */,
+				601691151E4B55D500505E8D /* SocialFeedObject.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -260,7 +277,6 @@
 			isa = PBXGroup;
 			children = (
 				6016910A1E4B4B8900505E8D /* Objects */,
-				601691151E4B55D500505E8D /* SocialFeedObject.swift */,
 				601691091E4B4B8400505E8D /* Helpers */,
 				601691081E4B4B7C00505E8D /* Services */,
 				60444EE01E4B27C4005E4433 /* HAT.h */,
@@ -273,6 +289,7 @@
 		60444EEA1E4B27C5005E4433 /* HATTests */ = {
 			isa = PBXGroup;
 			children = (
+				606BBA3A1E546DF000ECBA6B /* DataPlugsServiceTests.swift */,
 				606375A81E53613D00F0D1B1 /* FacebookServiceTests.swift */,
 				606375AE1E537C7300F0D1B1 /* FormatterHelperTests.swift */,
 				6020A7071E52803800D7DC04 /* HATAccountServiceTests.swift */,
@@ -285,6 +302,18 @@
 				60444EED1E4B27C5005E4433 /* Info.plist */,
 			);
 			path = HATTests;
+			sourceTree = "<group>";
+		};
+		606BBA2F1E54546700ECBA6B /* Data Plugs */ = {
+			isa = PBXGroup;
+			children = (
+				606BBA301E54549600ECBA6B /* DataPlugDataDefinitionObject.swift */,
+				606BBA311E54549600ECBA6B /* DataPlugDataSetObject.swift */,
+				606BBA321E54549600ECBA6B /* DataPlugObject.swift */,
+				606BBA331E54549600ECBA6B /* DataPlugOwnerObject.swift */,
+				606BBA341E54549600ECBA6B /* DataPlugRatingObject.swift */,
+			);
+			name = "Data Plugs";
 			sourceTree = "<group>";
 		};
 		816EE3D833FB170DB1D6AA4E /* Pods */ = {
@@ -502,14 +531,19 @@
 				6016911C1E4B55FC00505E8D /* TwitterDataTweetsSocialFeedObject.swift in Sources */,
 				6016911D1E4B55FC00505E8D /* TwitterDataTweetsUsersSocialFeedObject.swift in Sources */,
 				6020A7011E525BF600D7DC04 /* LocationService.swift in Sources */,
+				606BBA381E54549600ECBA6B /* DataPlugOwnerObject.swift in Sources */,
 				601691301E4B6B1F00505E8D /* FacebookDataPostsSocialFeedObject.swift in Sources */,
 				6016913B1E4B768800505E8D /* AuthorData.swift in Sources */,
+				606BBA391E54549600ECBA6B /* DataPlugRatingObject.swift in Sources */,
 				6016912F1E4B6B1F00505E8D /* FacebookDataPostsPrivacySocialFeedObject.swift in Sources */,
+				606BBA2E1E5453C200ECBA6B /* DataPlugsService.swift in Sources */,
 				6016913E1E4B768800505E8D /* NotesData.swift in Sources */,
 				6016912E1E4B6B1F00505E8D /* FacebookDataPostsFromSocialFeedObject.swift in Sources */,
+				606BBA371E54549600ECBA6B /* DataPlugObject.swift in Sources */,
 				603EEE671E4DF54C008FF9D3 /* ErrorHelper.swift in Sources */,
 				601691071E4B4AFB00505E8D /* NetworkHelper.swift in Sources */,
 				6016912D1E4B6B1F00505E8D /* FacebookDataPostsApplicationSocialFeedObject.swift in Sources */,
+				606BBA361E54549600ECBA6B /* DataPlugDataSetObject.swift in Sources */,
 				6016913F1E4B768800505E8D /* PhotoData.swift in Sources */,
 				6016913D1E4B768800505E8D /* NotablesData.swift in Sources */,
 				6016911B1E4B55FC00505E8D /* TwitterDataSocialFeedObject.swift in Sources */,
@@ -521,6 +555,7 @@
 				601691411E4B86E000505E8D /* LoginService.swift in Sources */,
 				601691201E4B56B400505E8D /* FormatterHelper.swift in Sources */,
 				601691051E4B3EC800505E8D /* HATAccountService.swift in Sources */,
+				606BBA351E54549600ECBA6B /* DataPlugDataDefinitionObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +592,7 @@
 				60444EEC1E4B27C5005E4433 /* LoginServiceTests.swift in Sources */,
 				602E1A321E4E2EC1001D65AD /* FacebookDataPostsFromSocialFeedObject.swift in Sources */,
 				606375AF1E537C7300F0D1B1 /* FormatterHelperTests.swift in Sources */,
+				606BBA3B1E546DF000ECBA6B /* DataPlugsServiceTests.swift in Sources */,
 				602E1A361E4E2EC1001D65AD /* FacebookSocialFeedObject.swift in Sources */,
 				602E1A2E1E4E2EAC001D65AD /* NotablesData.swift in Sources */,
 				602E1A411E4E2ECC001D65AD /* NotableService.swift in Sources */,

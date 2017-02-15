@@ -17,6 +17,8 @@ import SwiftyJSON
 /// A struct representing the outer notes JSON format
 struct NotesData: Comparable {
     
+    // MARK: - Comparable protocol
+    
     /// Returns a Boolean value indicating whether the value of the first
     /// argument is less than that of the second argument.
     ///

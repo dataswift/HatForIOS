@@ -12,10 +12,10 @@
 
 import SwiftyJSON
 
-// MARK: Class
+// MARK: Struct
 
-/// A class representing the data of the tweet
-public class TwitterDataSocialFeedObject: Comparable {
+/// A struct representing the data plug rating from data plug JSON file
+struct DataPlugRatingObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,9 +27,9 @@ public class TwitterDataSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: TwitterDataSocialFeedObject, rhs: TwitterDataSocialFeedObject) -> Bool {
+    public static func ==(lhs: DataPlugRatingObject, rhs: DataPlugRatingObject) -> Bool {
         
-        return (lhs.tweets == rhs.tweets)
+        return (lhs.up == rhs.up && lhs.down == rhs.down)
     }
     
     /// Returns a Boolean value indicating whether the value of the first
@@ -42,36 +42,43 @@ public class TwitterDataSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: TwitterDataSocialFeedObject, rhs: TwitterDataSocialFeedObject) -> Bool {
+    public static func <(lhs: DataPlugRatingObject, rhs: DataPlugRatingObject) -> Bool {
         
-        return lhs.tweets < rhs.tweets
+        return lhs.up < rhs.up
     }
     
     // MARK: - Variables
 
-    /// The tweet data
-    var tweets: TwitterDataTweetsSocialFeedObject = TwitterDataTweetsSocialFeedObject()
+    /// The number of the upvotes
+    var up: Int = -1
+    /// The number of the downvotes
+    var down: Int = -1
     
-    // MARK: - Initialisers
+    // MARK: - Initializers
     
     /**
      The default initialiser. Initialises everything to default values.
      */
     init() {
         
-        tweets = TwitterDataTweetsSocialFeedObject()
+        up = -1
+        down = -1
     }
     
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    convenience init(from dictionary: Dictionary<String, JSON>) {
+    init(dict: Dictionary<String, JSON>) {
         
         self.init()
         
-        if let tempTweets = dictionary["tweets"]?.dictionaryValue {
+        if let tempUp = (dict["up"]?.intValue) {
             
-            tweets = TwitterDataTweetsSocialFeedObject(from: tempTweets)
+            up = tempUp
+        }
+        if let tempDown = (dict["down"]?.intValue) {
+            
+            down = tempDown
         }
     }
 }

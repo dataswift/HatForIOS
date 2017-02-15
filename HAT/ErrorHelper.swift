@@ -45,3 +45,9 @@ public enum TwitterError: Error {
     
     case generalError(String, Int?, Error?)
 }
+
+public enum DataPlugError: Error {
+    
+    case generalError(String, Int?, Error?)
+    case noValueFound
+}

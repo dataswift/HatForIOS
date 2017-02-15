@@ -17,6 +17,8 @@ import SwiftyJSON
 /// A class representing the facebook social feed object
 class FacebookSocialFeedObject: SocialFeedObject, Comparable {
     
+    // MARK: - Comparable protocol
+    
     /// Returns a Boolean value indicating whether two values are equal.
     ///
     /// Equality is the inverse of inequality. For any values `a` and `b`,

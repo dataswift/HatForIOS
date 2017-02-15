@@ -17,6 +17,8 @@ import SwiftyJSON
 /// A class representing the user's info of a tweet
 public class TwitterDataTweetsUsersSocialFeedObject: Comparable {
     
+    // MARK: - Comparable protocol
+    
     /// Returns a Boolean value indicating whether two values are equal.
     ///
     /// Equality is the inverse of inequality. For any values `a` and `b`,

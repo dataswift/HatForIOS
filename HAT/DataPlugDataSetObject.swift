@@ -14,8 +14,8 @@ import SwiftyJSON
 
 // MARK: Struct
 
-/// A struct representing the author table received from JSON
-struct AuthorData: Comparable {
+/// A struct representing the data plug dataset from data plug JSON file
+struct DataPlugDataSetObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,9 +27,9 @@ struct AuthorData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: AuthorData, rhs: AuthorData) -> Bool {
+    public static func ==(lhs: DataPlugDataSetObject, rhs: DataPlugDataSetObject) -> Bool {
         
-        return (lhs.nickName == rhs.nickName && lhs.name == rhs.name && lhs.photoURL == rhs.photoURL && lhs.phata == rhs.phata && lhs.id == rhs.id)
+        return (lhs.name == rhs.name && lhs.description == rhs.description && lhs.fields == rhs.fields)
     }
     
     /// Returns a Boolean value indicating whether the value of the first
@@ -42,38 +42,31 @@ struct AuthorData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: AuthorData, rhs: AuthorData) -> Bool {
+    public static func <(lhs: DataPlugDataSetObject, rhs: DataPlugDataSetObject) -> Bool {
         
         return lhs.name < rhs.name
     }
-
     
     // MARK: - Variables
+
+    /// The name of the dataset
+    var name: String = ""
+    /// The description of the dataset
+    var description: String = ""
     
-    /// the nickname of the author
-    var nickName: String
-    /// the name of the author
-    var name: String
-    /// the photo url of the author
-    var photoURL: String
-    /// the phata of the author. Required
-    var phata: String
+    /// The fields of the dataset
+    var fields: [DataPlugDataSetObject] = []
     
-    /// the id of the author
-    var id: Int
-    
-    // MARK: - Initialisers
+    // MARK: - Initialiazers
     
     /**
      The default initialiser. Initialises everything to default values.
      */
     init() {
         
-        nickName = ""
         name = ""
-        photoURL = ""
-        id = 0
-        phata = ""
+        description = ""
+        fields = []
     }
     
     /**
@@ -81,41 +74,19 @@ struct AuthorData: Comparable {
      */
     init(dict: Dictionary<String, JSON>) {
         
-        // init optional JSON fields to default values
         self.init()
         
-        // this field will always have a value no need to use if let
-        if let tempPHATA = dict["phata"]?.string {
-            
-            phata = tempPHATA
-        }
-
-        // check optional fields for value, if found assign it to the correct variable
-        if let tempID = dict["id"]?.stringValue {
-            
-            // check if string is "" as well
-            if tempID != ""{
-                
-                if let intTempID = Int(tempID) {
-                    
-                    id = intTempID
-                }
-            }
-        }
-        
-        if let tempNickName = dict["nick"]?.string {
-            
-            nickName = tempNickName
-        }
-        
-        if let tempName = dict["name"]?.string {
+        if let tempName = (dict["name"]?.stringValue) {
             
             name = tempName
         }
-        
-        if let tempPhotoURL = dict["photo_url"]?.string {
+        if let tempDescription = (dict["description"]?.stringValue) {
             
-            photoURL = tempPhotoURL
+            description = tempDescription
+        }
+        if let tempFields = (dict["fields"]?.dictionaryValue) {
+            
+            fields = [DataPlugDataSetObject(dict: tempFields)]
         }
     }
 }

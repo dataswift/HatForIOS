@@ -193,16 +193,6 @@ public class HATAccountService: NSObject {
         // make the request
         NetworkHelper.AsynchronousRequest(url, method: .delete, encoding: Alamofire.URLEncoding.default, contentType: ContentType.Text, parameters: parameters, headers: headers, completion: { (r: NetworkHelper.ResultType) -> Void in
 
-            Alamofire.request(url, method: .delete, parameters: parameters, encoding: Alamofire.URLEncoding.default, headers: headers).responseString{ response in
-                print(response.request)  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
-                
-                if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
-                }
-            }
             // handle result
             switch r {
                 
