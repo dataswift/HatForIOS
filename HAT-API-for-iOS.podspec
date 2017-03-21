@@ -15,12 +15,11 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/whiteshadow-gr/HAT-API-for-iOS"
 
   s.license      = "MPL 2.0"
-  # s.license      = { :type => "MPL 2.0", :file => "FILE_LICENSE" }
 
-  s.author             = { “"Marios Andreas Tsekis" => "tsekis.marios@gmail.com" }
+  s.author       = { "Marios Andreas Tsekis" => "tsekis.marios@gmail.com" }
   s.platform     = :ios, "9.0"
 
-  s.source = { :git => "https://github.com/whiteshadow-gr/HAT-API-for-iOS", :tag => "#{s.version}" }
+  s.source = { :git => "https://github.com/whiteshadow-gr/HAT-API-for-iOS.git", :tag => "#{s.version}" }
 
     s.dependency 'Alamofire'
     s.dependency 'SwiftyJSON'
