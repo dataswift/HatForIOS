@@ -10,15 +10,15 @@ Pod::Spec.new do |s|
 
   s.name         = "HAT-API-for-iOS"
   s.version      = "0.0.1"
-  s.summary      = “The API to connect and exchange data with the HAT”
-  s.description  = “Contains the basic tools to connect and talk to HAT”
+  s.summary      = â€œThe API to connect and exchange data with the HATâ€
+  s.description  = â€œContains the basic tools to connect and talk to HATâ€
   s.homepage     = "https://github.com/whiteshadow-gr/HAT-API-for-iOS"
 
-  s.license      = “MPL 2.0”
+  s.license      = â€œMPL 2.0â€
   # s.license      = { :type => "MPL 2.0", :file => "FILE_LICENSE" }
 
-  s.author             = { “Marios Andreas Tsekis“ => “tsekis.marios@gmail.com” }
-  s.platform     = :ios, “9.0”
+  s.author             = { â€œMarios Andreas Tsekisâ€œ => â€œtsekis.marios@gmail.comâ€ }
+  s.platform     = :ios, â€œ9.0â€
 
   s.source = { :git => "https://github.com/whiteshadow-gr/HAT-API-for-iOS", :tag => "#{s.version}" }
 
