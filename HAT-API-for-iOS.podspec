@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = "HAT-API-for-iOS"
+  s.name         = "HatForIOS"
   s.version      = "0.0.1"
   s.summary      = "The API to connect & exchange data with the HAT"
   s.description  = "Contains the basic tools to connect and talk to HAT"
@@ -20,6 +20,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "9.0"
 
   s.source = { :git => "https://github.com/whiteshadow-gr/HAT-API-for-iOS.git", :tag => "#{s.version}" }
+  spec.source_files = "HAT/**/*.{h,swift}"
 
     s.dependency 'Alamofire'
     s.dependency 'SwiftyJSON'
