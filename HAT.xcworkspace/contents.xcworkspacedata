@@ -5,6 +5,9 @@
       location = "group:HAT.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:HAT.podspec">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
