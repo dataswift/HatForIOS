@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the outer notes JSON format
-struct NotesData: Comparable {
+class NotesData: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -77,7 +77,7 @@ struct NotesData: Comparable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    init(dict: Dictionary<String, JSON>) {
+    convenience init(dict: Dictionary<String, JSON>) {
 
         self.init()
         

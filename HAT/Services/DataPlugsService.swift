@@ -70,7 +70,7 @@ class DataPlugsService: NSObject {
     class func checkIfOfferIsClaimed(offerID: String, appToken: String, succesfulCallBack: @escaping (String) -> Void, failCallBack: @escaping (DataPlugError) -> Void) ->  Void {
         
         // setup parameters and headers
-        let parameters = ["" : ""]
+        let parameters: Dictionary<String, String> = [:]
         let headers = ["X-Auth-Token": appToken]
         
         // contruct the url
@@ -132,7 +132,7 @@ class DataPlugsService: NSObject {
     class func claimOfferWithOfferID(_ offerID: String, appToken: String, succesfulCallBack: @escaping (String) -> Void, failCallBack: @escaping (DataPlugError) -> Void) ->  Void {
         
         // setup parameters and headers
-        let parameters = ["" : ""]
+        let parameters: Dictionary<String, String> = [:]
         let headers = ["X-Auth-Token": appToken]
         
         // contruct the url
@@ -182,7 +182,7 @@ class DataPlugsService: NSObject {
     class func approveDataDebit(_ dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (String) -> Void, failCallBack: @escaping (DataPlugError) -> Void) ->  Void {
         
         // setup parameters and headers
-        let parameters = ["" : ""]
+        let parameters: Dictionary<String, String> = [:]
         let headers = ["X-Auth-Token": userToken]
         
         // contruct the url
@@ -223,7 +223,7 @@ class DataPlugsService: NSObject {
     class func checkDataDebit(_ dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (String) -> Void, failCallBack: @escaping (DataPlugError) -> Void) ->  Void {
         
         // setup parameters and headers
-        let parameters = ["" : ""]
+        let parameters: Dictionary<String, String> = [:]
         let headers = ["X-Auth-Token": userToken]
         
         // contruct the url
@@ -280,7 +280,7 @@ class DataPlugsService: NSObject {
         return { (appToken: String) in
             
             // setup parameters and headers
-            let parameters = ["" : ""]
+            let parameters: Dictionary<String, String> = [:]
             let headers = ["X-Auth-Token": appToken]
             
             // contruct the url

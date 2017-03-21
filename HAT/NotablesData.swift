@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the notables table received from JSON
-struct NotablesData: Comparable {
+class NotablesData: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -100,7 +100,7 @@ struct NotablesData: Comparable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    init(dict: Dictionary<String, JSON>) {
+    convenience init(dict: Dictionary<String, JSON>) {
 
         // the tables are optional fields in the json so init them and check if they exist in our json
         self.init()

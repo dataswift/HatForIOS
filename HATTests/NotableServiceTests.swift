@@ -43,7 +43,7 @@ class NotableServiceTests: XCTestCase {
     func testRemoveDuplicates() {
         
         let note1 = NotesData()
-        let note2 = NotesData()
+        let note2 = note1
         
         var array = [note1, note2]
         

@@ -10,10 +10,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
+import SwiftyJSON
+
 // MARK: Struct
 
-/// A struct representing the location table received from JSON
-class PhotoData: Comparable {
+/// A class representing the hat provider kind object
+class HATProviderKindObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -25,9 +27,9 @@ class PhotoData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: PhotoData, rhs: PhotoData) -> Bool {
+    public static func ==(lhs: HATProviderKindObject, rhs: HATProviderKindObject) -> Bool {
         
-        return (lhs.link == rhs.link && lhs.source == rhs.source && lhs.caption == rhs.caption && lhs.shared == rhs.shared)
+        return (lhs.kind == rhs.kind && lhs.domain == rhs.domain && lhs.country == rhs.country && lhs.link == rhs.link)
     }
     
     /// Returns a Boolean value indicating whether the value of the first
@@ -40,22 +42,21 @@ class PhotoData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: PhotoData, rhs: PhotoData) -> Bool {
+    public static func <(lhs: HATProviderKindObject, rhs: HATProviderKindObject) -> Bool {
         
-        return lhs.source < rhs.source
+        return lhs.kind < rhs.kind
     }
     
     // MARK: - Variables
-
-    /// the link to the photo
-    var link: String
-    /// the source of the photo
-    var source: String
-    /// the caption of the photo
-    var caption: String
     
-    /// if photo is shared
-    var shared: Bool
+    /// The hat provider's kind type
+    var kind: String = ""
+    /// The hat provider's kind domain
+    var domain: String = ""
+    /// The hat provider's kind country
+    var country: String = ""
+    /// The hat provider's kind link
+    var link: String = ""
     
     // MARK: - Initialisers
     
@@ -64,41 +65,34 @@ class PhotoData: Comparable {
      */
     init() {
         
+        kind = ""
+        domain = ""
+        country = ""
         link = ""
-        source = ""
-        caption = ""
-        shared = false
     }
     
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    convenience init(dict: Dictionary<String, String>) {
+    convenience init(from dictionary: Dictionary<String, JSON>) {
         
         self.init()
         
-        // check if shared exists and if is empty
-        if let tempShared = dict["shared"] {
+        if let tempKind = dictionary["kind"]?.stringValue {
             
-            if tempShared != "" {
-                
-                shared = true
-            }
+            kind = tempKind
         }
-        
-        if let tempLink = dict["link"] {
+        if let tempDomain = dictionary["domain"]?.stringValue {
+            
+            domain = tempDomain
+        }
+        if let tempCountry = dictionary["country"]?.stringValue {
+            
+            country = tempCountry
+        }
+        if let tempLink = dictionary["link"]?.stringValue {
             
             link = tempLink
-        }
-        
-        if let tempSource = dict["source"] {
-            
-            source = tempSource
-        }
-        
-        if let tempCaption = dict["caption"] {
-            
-            caption = tempCaption
         }
     }
 }

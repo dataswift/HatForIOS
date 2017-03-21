@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the location table received from JSON
-struct LocationData: Comparable {
+class LocationData: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -89,7 +89,7 @@ struct LocationData: Comparable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    init(dict: Dictionary<String, JSON>) {
+    convenience init(dict: Dictionary<String, JSON>) {
         
         // init values first
         self.init()

@@ -57,4 +57,85 @@ class HATService: NSObject {
         })
     }
     
+    // MARK: - Get available HAT providers
+    
+    /**
+     Fetches the available HAT providers
+     */
+    static func getAvailableHATProviders(succesfulCallBack: @escaping ([HATProviderObject]) -> Void, failCallBack: @escaping (JSONParsingError) -> Void) {
+        
+        let url = "https://hatters.hubofallthings.com/api/products/hat"
+        
+        NetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: [:], headers: [:], completion: {(r: NetworkHelper.ResultType) -> Void in
+            
+            switch r {
+                
+            // in case of error call the failCallBack
+            case .error(let error, let statusCode):
+                
+                let message = NSLocalizedString("Server returned error", comment: "")
+                failCallBack(.generalError(message, statusCode, error))
+            // in case of success call the succesfulCallBack
+            case .isSuccess(let isSuccess, let statusCode, let result):
+                
+                if isSuccess {
+                    
+                    let resultArray = result.arrayValue
+                    var arrayToSendBack: [HATProviderObject] = []
+                    for item in resultArray {
+                        
+                        arrayToSendBack.append(HATProviderObject(from: item.dictionaryValue))
+                    }
+                    
+                    succesfulCallBack(arrayToSendBack)
+                } else {
+                    
+                    let message = NSLocalizedString("Server response was unexpected", comment: "")
+                    failCallBack(.generalError(message, statusCode, nil))
+                }
+            }
+        })
+    }
+    
+    // MARK: - Get system status
+    
+    /**
+     Fetches the available HAT providers
+     */
+    static func getSystemStatus(userDomain: String, authToken: String, completion: @escaping ([SystemStatusObject]) -> Void, failCallBack: @escaping (JSONParsingError) -> Void) {
+        
+        let url = "https://" + userDomain + "/api/v2/system/status"
+        let headers = ["X-Auth-Token" : authToken]
+        
+        NetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: [:], headers: headers, completion: {(r: NetworkHelper.ResultType) -> Void in
+            
+            switch r {
+                
+            // in case of error call the failCallBack
+            case .error(let error, let statusCode):
+                
+                let message = NSLocalizedString("Server returned error", comment: "")
+                failCallBack(.generalError(message, statusCode, error))
+            // in case of success call the succesfulCallBack
+            case .isSuccess(let isSuccess, let statusCode, let result):
+                
+                if isSuccess {
+                    
+                    let resultArray = result.arrayValue
+                    var arrayToSendBack: [SystemStatusObject] = []
+                    for item in resultArray {
+                        
+                        arrayToSendBack.append(SystemStatusObject(from: item.dictionaryValue))
+                    }
+                    
+                    completion(arrayToSendBack)
+                } else {
+                    
+                    let message = NSLocalizedString("Server response was unexpected", comment: "")
+                    failCallBack(.generalError(message, statusCode, nil))
+                }
+            }
+        })
+    }
+    
 }

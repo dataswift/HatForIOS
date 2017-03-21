@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the author table received from JSON
-struct AuthorData: Comparable {
+class AuthorData: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -79,7 +79,7 @@ struct AuthorData: Comparable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    init(dict: Dictionary<String, JSON>) {
+    convenience init(dict: Dictionary<String, JSON>) {
         
         // init optional JSON fields to default values
         self.init()

@@ -10,10 +10,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
+import SwiftyJSON
+
 // MARK: Struct
 
-/// A struct representing the location table received from JSON
-class PhotoData: Comparable {
+/// A class representing the hat provider payment object
+class HATProviderPaymentObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -25,9 +27,9 @@ class PhotoData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: PhotoData, rhs: PhotoData) -> Bool {
+    public static func ==(lhs: HATProviderPaymentObject, rhs: HATProviderPaymentObject) -> Bool {
         
-        return (lhs.link == rhs.link && lhs.source == rhs.source && lhs.caption == rhs.caption && lhs.shared == rhs.shared)
+        return lhs.subscription == rhs.subscription
     }
     
     /// Returns a Boolean value indicating whether the value of the first
@@ -40,22 +42,15 @@ class PhotoData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: PhotoData, rhs: PhotoData) -> Bool {
+    public static func <(lhs: HATProviderPaymentObject, rhs: HATProviderPaymentObject) -> Bool {
         
-        return lhs.source < rhs.source
+        return lhs.subscription["period"]! < rhs.subscription["period"]!
     }
     
     // MARK: - Variables
 
-    /// the link to the photo
-    var link: String
-    /// the source of the photo
-    var source: String
-    /// the caption of the photo
-    var caption: String
-    
-    /// if photo is shared
-    var shared: Bool
+    /// The subscription type, Monthly , yearly
+    var subscription: Dictionary = ["period" : ""]
     
     // MARK: - Initialisers
     
@@ -64,41 +59,22 @@ class PhotoData: Comparable {
      */
     init() {
         
-        link = ""
-        source = ""
-        caption = ""
-        shared = false
+        subscription = ["period" : ""]
     }
     
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    convenience init(dict: Dictionary<String, String>) {
+    convenience init(from dictionary: Dictionary<String, JSON>) {
         
         self.init()
         
-        // check if shared exists and if is empty
-        if let tempShared = dict["shared"] {
+        if let tempSubscription = dictionary["Subscription"]?.dictionaryValue {
             
-            if tempShared != "" {
+            if let value = tempSubscription["period"]?.stringValue {
                 
-                shared = true
+                subscription = ["period" : value]
             }
-        }
-        
-        if let tempLink = dict["link"] {
-            
-            link = tempLink
-        }
-        
-        if let tempSource = dict["source"] {
-            
-            source = tempSource
-        }
-        
-        if let tempCaption = dict["caption"] {
-            
-            caption = tempCaption
         }
     }
 }

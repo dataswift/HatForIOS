@@ -10,10 +10,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
+import SwiftyJSON
+
 // MARK: Struct
 
-/// A struct representing the location table received from JSON
-class PhotoData: Comparable {
+/// A class representing the hat provider category object
+class HATProviderCategoryObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -25,9 +27,9 @@ class PhotoData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: PhotoData, rhs: PhotoData) -> Bool {
+    public static func ==(lhs: HATProviderCategoryObject, rhs: HATProviderCategoryObject) -> Bool {
         
-        return (lhs.link == rhs.link && lhs.source == rhs.source && lhs.caption == rhs.caption && lhs.shared == rhs.shared)
+        return (lhs.categoryId == rhs.categoryId && lhs.title == rhs.title && lhs.description == rhs.description && lhs.illustration == rhs.illustration)
     }
     
     /// Returns a Boolean value indicating whether the value of the first
@@ -40,65 +42,60 @@ class PhotoData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: PhotoData, rhs: PhotoData) -> Bool {
+    public static func <(lhs: HATProviderCategoryObject, rhs: HATProviderCategoryObject) -> Bool {
         
-        return lhs.source < rhs.source
+        return lhs.title < rhs.title
     }
     
-    // MARK: - Variables
+    /// MARK: - Variables
 
-    /// the link to the photo
-    var link: String
-    /// the source of the photo
-    var source: String
-    /// the caption of the photo
-    var caption: String
+    /// The hat provider's category id
+    var categoryId: Int = 0
     
-    /// if photo is shared
-    var shared: Bool
+    /// The hat provider's category title
+    var title: String = ""
+    /// The hat provider's category description
+    var description: String = ""
+    /// The hat provider's category illustration url
+    var illustration: String = ""
     
-    // MARK: - Initialisers
+    /// MARK: - Initialisers
     
     /**
      The default initialiser. Initialises everything to default values.
      */
     init() {
         
-        link = ""
-        source = ""
-        caption = ""
-        shared = false
+        categoryId = 0
+        
+        title = ""
+        description = ""
+        illustration = ""
     }
     
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    convenience init(dict: Dictionary<String, String>) {
+    convenience init(from dictionary: Dictionary<String, JSON>) {
         
         self.init()
         
-        // check if shared exists and if is empty
-        if let tempShared = dict["shared"] {
+        if let tempCategoryId = dictionary["categoryId"]?.intValue {
             
-            if tempShared != "" {
-                
-                shared = true
-            }
+            categoryId = tempCategoryId
         }
         
-        if let tempLink = dict["link"] {
+        if let tempTitle = dictionary["title"]?.stringValue {
             
-            link = tempLink
+            title = tempTitle
         }
-        
-        if let tempSource = dict["source"] {
+        if let tempDescription = dictionary["description"]?.stringValue {
             
-            source = tempSource
+            description = tempDescription
         }
-        
-        if let tempCaption = dict["caption"] {
+        if let tempIllustration = dictionary["illustration"]?.stringValue {
             
-            caption = tempCaption
+            illustration = tempIllustration
         }
     }
 }

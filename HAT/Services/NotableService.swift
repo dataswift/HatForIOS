@@ -120,6 +120,8 @@ public class NotablesService: NSObject {
                         
                         // reload table
                         successCallBack()
+                        
+                        HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: {()})
                     }
                     
                 case .error(let error, _):
@@ -155,7 +157,7 @@ public class NotablesService: NSObject {
             // check if the arrayToReturn it contains that value and if not add it
             let result = arrayToReturn.contains(where: {(note2: NotesData) -> Bool in
                 
-                if note.id == note2.id {
+                if (note.data.createdTime == note2.data.createdTime) && (note.data.message == note2.data.message) {
                     
                     return true
                 }
@@ -166,6 +168,29 @@ public class NotablesService: NSObject {
             if !result {
                 
                 arrayToReturn.append(note)
+            }
+        }
+        
+        for (outterIndex, note) in arrayToReturn.enumerated().reversed() {
+            
+            for (innerIndex, innerNote) in arrayToReturn.enumerated().reversed() {
+                
+                if outterIndex != innerIndex {
+                    
+                    if innerNote.data.createdTime == note.data.createdTime {
+                        
+                        if innerNote.lastUpdated != note.lastUpdated {
+                            
+                            if innerNote.lastUpdated > note.lastUpdated {
+                                
+                                arrayToReturn.remove(at: outterIndex)
+                            } else {
+                                
+                                arrayToReturn.remove(at: innerIndex)
+                            }
+                        }
+                    }
+                }
             }
         }
         
@@ -182,11 +207,6 @@ public class NotablesService: NSObject {
      */
     class func sortNotables(notes: [NotesData]) -> [NotesData] {
         
-        func sorting(a: NotesData, b: NotesData) -> Bool {
-            
-            return a.data.updatedTime < b.data.updatedTime
-        }
-        
-        return notes.sorted(by: sorting)
+        return notes.sorted{ $0.data.updatedTime > $1.data.updatedTime }
     }
 }
