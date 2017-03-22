@@ -25,7 +25,7 @@ public class HATFormatterHelper: NSObject {
      - parameter string: The string to format to a Date
      - returns: Date
      */
-    static func formatStringToDate(string: String) -> Date? {
+    public class func formatStringToDate(string: String) -> Date? {
         
         // check if the string to format is empty
         if string == "" {
@@ -64,7 +64,7 @@ public class HATFormatterHelper: NSObject {
      
      returns: A Base64 String
      */
-    static func fromBase64URLToBase64(s: String) -> String {
+    public class func fromBase64URLToBase64(s: String) -> String {
         
         var s = s;
         if (s.characters.count % 4 == 2 ) {
