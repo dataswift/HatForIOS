@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   	s.platform     = :ios, "9.0"
 	
   	s.source = { :git => "https://github.com/whiteshadow-gr/HatForIOS.git", :tag => "#{s.version}" }
-  	s.source_files = "${POD_NAME}/**/*"
+  	s.source_files = "HAT/**/*.{h,swift}"
 	
 	s.dependency 'Alamofire'
     s.dependency 'SwiftyJSON'
