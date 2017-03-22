@@ -16,7 +16,7 @@ import Alamofire
 // MARK: Class
 
 /// A class about the methods concerning the Notables service
-public class NotablesService: NSObject {
+public class HATNotablesService: NSObject {
 
     // MARK: - Get Notes
     
@@ -197,7 +197,7 @@ public class NotablesService: NSObject {
             }
         }
         
-        return NotablesService.sortNotables(notes: arrayToReturn)
+        return HATNotablesService.sortNotables(notes: arrayToReturn)
     }
     
     // MARK: - Sort notables

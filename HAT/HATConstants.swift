@@ -12,6 +12,15 @@
 
 import Foundation
 
+/**
+ The strings needed for communicating with twitter data plug
+ 
+ - statusURL: No token detected
+ - dataPlugURL: No issuer of the token detected. Includes a description(String)
+ - tableName: General error. Includes a description(String), the statusCode(Int?) and the error(Error?)
+ - sourceName: Cannot decode token. Includes a description(String)
+ - serviceName: Cannot split token. Includes a description(String)
+ */
 enum Twitter {
     
     static let statusURL = "https://twitter-plug.hubofallthings.com/api/status"
@@ -21,6 +30,15 @@ enum Twitter {
     static let serviceName = "Twitter"
 }
 
+/**
+ The strings needed for communicating with facebook data plug
+ 
+ - statusURL: No token detected
+ - dataPlugURL: No issuer of the token detected. Includes a description(String)
+ - tableName: General error. Includes a description(String), the statusCode(Int?) and the error(Error?)
+ - sourceName: Cannot decode token. Includes a description(String)
+ - serviceName: Cannot split token. Includes a description(String)
+ */
 enum Facebook {
     
     static let statusURL = "https://social-plug.hubofallthings.com/api/user/token/status"
@@ -30,17 +48,34 @@ enum Facebook {
     static let serviceName = "Facebook"
 }
 
+/**
+ The strings needed for communicating with notables service
+ 
+ - tableName: No token detected
+ - sourceName: No issuer of the token detected. Includes a description(String)
+ */
 enum Notables {
     
     static let tableName = "notablesv1"
     static let sourceName = "rumpel"
 }
 
+/**
+The request headers
+ 
+ - xAuthToken: No token detected
+ */
 enum RequestHeaders {
     
     static let xAuthToken = "X-Auth-Token"
 }
 
+/**
+ The content type
+ 
+ - JSON: No token detected
+ - Text: No issuer of the token detected. Includes a description(String)
+ */
 enum ContentType {
     
     static let JSON = "application/json"
@@ -48,7 +83,13 @@ enum ContentType {
 }
 
 /**
- Authentication struct
+ The authentication used for sending locations to HAT
+ 
+ - URLScheme: No token detected
+ - ServiceName: No issuer of the token detected. Includes a description(String)
+ - LocalAuthHost: General error. Includes a description(String), the statusCode(Int?) and the error(Error?)
+ - NotificationHandlerName: Cannot decode token. Includes a description(String)
+ - TokenParamName: Cannot split token. Includes a description(String)
  */
 enum Auth {
     
@@ -65,7 +106,12 @@ enum Auth {
 }
 
 /**
- HAT credintials for location tracking
+ The authentication data used by location service
+ 
+ - HAT_Username: No token detected
+ - HAT_Password: No issuer of the token detected. Includes a description(String)
+ - Market_DataPlugID: General error. Includes a description(String), the statusCode(Int?) and the error(Error?)
+ - Market_AccessToken: Cannot decode token. Includes a description(String)
  */
 enum HATDataPlugCredentials {
     

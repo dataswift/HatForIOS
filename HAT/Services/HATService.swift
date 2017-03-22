@@ -12,6 +12,9 @@
 
 import Alamofire
 
+// MARK: Class
+
+/// A class about the methods concerning the HAT
 class HATService: NSObject {
     
     // MARK: - Application Token
@@ -34,7 +37,7 @@ class HATService: NSObject {
         let url = "https://" + userDomain + "/users/application_token?"
         
         // async request
-        NetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: { (r: NetworkHelper.ResultType) -> Void in
+        ΗΑΤNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: { (r: ΗΑΤNetworkHelper.ResultType) -> Void in
             
             switch r {
                 
@@ -66,7 +69,7 @@ class HATService: NSObject {
         
         let url = "https://hatters.hubofallthings.com/api/products/hat"
         
-        NetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: [:], headers: [:], completion: {(r: NetworkHelper.ResultType) -> Void in
+        ΗΑΤNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: [:], headers: [:], completion: {(r: ΗΑΤNetworkHelper.ResultType) -> Void in
             
             switch r {
                 
@@ -107,7 +110,7 @@ class HATService: NSObject {
         let url = "https://" + userDomain + "/api/v2/system/status"
         let headers = ["X-Auth-Token" : authToken]
         
-        NetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: [:], headers: headers, completion: {(r: NetworkHelper.ResultType) -> Void in
+        ΗΑΤNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: [:], headers: headers, completion: {(r: ΗΑΤNetworkHelper.ResultType) -> Void in
             
             switch r {
                 

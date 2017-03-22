@@ -13,7 +13,7 @@
 // MARK: Struct
 
 /// A struct representing the location table received from JSON
-class PhotoData: Comparable {
+class HATNotesPhotoData: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -25,7 +25,7 @@ class PhotoData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: PhotoData, rhs: PhotoData) -> Bool {
+    public static func ==(lhs: HATNotesPhotoData, rhs: HATNotesPhotoData) -> Bool {
         
         return (lhs.link == rhs.link && lhs.source == rhs.source && lhs.caption == rhs.caption && lhs.shared == rhs.shared)
     }
@@ -40,7 +40,7 @@ class PhotoData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: PhotoData, rhs: PhotoData) -> Bool {
+    public static func <(lhs: HATNotesPhotoData, rhs: HATNotesPhotoData) -> Bool {
         
         return lhs.source < rhs.source
     }

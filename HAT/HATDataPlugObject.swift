@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the outer data plug JSON format
-struct DataPlugObject: Comparable {
+struct HATDataPlugObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ struct DataPlugObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: DataPlugObject, rhs: DataPlugObject) -> Bool {
+    public static func ==(lhs: HATDataPlugObject, rhs: HATDataPlugObject) -> Bool {
         
         return (lhs.uuid == rhs.uuid && lhs.name == rhs.name && lhs.description == rhs.description && lhs.url == rhs.url && lhs.illustrationUrl == rhs.illustrationUrl && lhs.showCheckMark == rhs.showCheckMark && lhs.owner == rhs.owner && lhs.dataDefinition == rhs.dataDefinition && lhs.rating == rhs.rating && lhs.created == rhs.created && lhs.approved == rhs.approved && lhs.users == rhs.users)
     }
@@ -42,7 +42,7 @@ struct DataPlugObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: DataPlugObject, rhs: DataPlugObject) -> Bool {
+    public static func <(lhs: HATDataPlugObject, rhs: HATDataPlugObject) -> Bool {
         
         if lhs.created != nil && rhs.created != nil {
             
@@ -72,11 +72,11 @@ struct DataPlugObject: Comparable {
     var showCheckMark: Bool = false
     
     /// The owner object of the data plug
-    var owner: DataPlugOwnerObject = DataPlugOwnerObject()
+    var owner: HATDataPlugOwnerObject = HATDataPlugOwnerObject()
     /// The data definition object of the data plug
-    var dataDefinition: DataPlugDataDefinitionObject = DataPlugDataDefinitionObject()
+    var dataDefinition: HATDataPlugDataDefinitionObject = HATDataPlugDataDefinitionObject()
     /// The rating object of the data plug
-    var rating: DataPlugRatingObject = DataPlugRatingObject()
+    var rating: HATDataPlugRatingObject = HATDataPlugRatingObject()
     
     /// The created date of the data plug
     var created: Date? = nil
@@ -101,9 +101,9 @@ struct DataPlugObject: Comparable {
         illustrationUrl = ""
         showCheckMark = false
         
-        owner = DataPlugOwnerObject()
-        dataDefinition = DataPlugDataDefinitionObject()
-        rating = DataPlugRatingObject()
+        owner = HATDataPlugOwnerObject()
+        dataDefinition = HATDataPlugDataDefinitionObject()
+        rating = HATDataPlugRatingObject()
         
         created = nil
         
@@ -142,15 +142,15 @@ struct DataPlugObject: Comparable {
         
         if let tempOwner = (dict["owner"]?.dictionaryValue) {
             
-            owner = DataPlugOwnerObject(dict: tempOwner)
+            owner = HATDataPlugOwnerObject(dict: tempOwner)
         }
         if let tempDefinition = (dict["dataDefinition"]?.dictionaryValue) {
             
-            dataDefinition = DataPlugDataDefinitionObject(dict: tempDefinition)
+            dataDefinition = HATDataPlugDataDefinitionObject(dict: tempDefinition)
         }
         if let tempRating = (dict["rating"]?.dictionaryValue) {
             
-            rating = DataPlugRatingObject(dict: tempRating)
+            rating = HATDataPlugRatingObject(dict: tempRating)
         }
         
         if let tempApproved = (dict["approved"]?.boolValue) {
@@ -160,7 +160,7 @@ struct DataPlugObject: Comparable {
         
         if let tempCreated = (dict["created"]?.intValue) {
             
-            created = FormatterHelper.formatStringToDate(string: String(tempCreated))
+            created = HATFormatterHelper.formatStringToDate(string: String(tempCreated))
         }
         
         if let tempUsers = (dict["users"]?.intValue) {

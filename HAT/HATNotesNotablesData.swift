@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the notables table received from JSON
-class NotablesData: Comparable {
+class HATNotesNotablesData: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ class NotablesData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: NotablesData, rhs: NotablesData) -> Bool {
+    public static func ==(lhs: HATNotesNotablesData, rhs: HATNotesNotablesData) -> Bool {
         
         return (lhs.authorData == rhs.authorData && lhs.photoData == rhs.photoData && lhs.locationData == rhs.locationData
             && lhs.createdTime == rhs.createdTime && lhs.publicUntil == rhs.publicUntil && lhs.updatedTime == rhs.updatedTime && lhs.shared == rhs.shared && lhs.sharedOn == rhs.sharedOn && lhs.message == rhs.message && lhs.kind == rhs.kind)
@@ -44,7 +44,7 @@ class NotablesData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: NotablesData, rhs: NotablesData) -> Bool {
+    public static func <(lhs: HATNotesNotablesData, rhs: HATNotesNotablesData) -> Bool {
         
         return lhs.updatedTime < rhs.updatedTime
     }
@@ -53,13 +53,13 @@ class NotablesData: Comparable {
     // MARK: - Variables
     
     /// the author data
-    var authorData: AuthorData
+    var authorData: HATNotesAuthorData
     
     /// the photo data
-    var photoData: PhotoData
+    var photoData: HATNotesPhotoData
     
     /// the location data
-    var locationData: LocationData
+    var locationData: HATNotesLocationData
     
     /// creation date
     var createdTime: Date
@@ -85,12 +85,12 @@ class NotablesData: Comparable {
      */
     init() {
         
-        authorData = AuthorData.init()
+        authorData = HATNotesAuthorData.init()
         createdTime = Date()
         shared = false
         sharedOn = ""
-        photoData = PhotoData.init()
-        locationData = LocationData.init()
+        photoData = HATNotesPhotoData.init()
+        locationData = HATNotesLocationData.init()
         message = ""
         publicUntil = nil
         updatedTime = Date()
@@ -107,17 +107,17 @@ class NotablesData: Comparable {
         
         if let tempAuthorData = dict["authorv1"]?.dictionary {
             
-             authorData = AuthorData.init(dict: tempAuthorData)
+             authorData = HATNotesAuthorData.init(dict: tempAuthorData)
         }
         
         if let tempPhotoData = dict["photov1"]?.dictionaryObject {
             
-            photoData = PhotoData.init(dict: tempPhotoData as! Dictionary<String, String>)
+            photoData = HATNotesPhotoData.init(dict: tempPhotoData as! Dictionary<String, String>)
         }
         
         if let tempLocationData = dict["locationv1"]?.dictionary {
             
-            locationData = LocationData.init(dict: tempLocationData)
+            locationData = HATNotesLocationData.init(dict: tempLocationData)
         }
         
         if let tempSharedOn = dict["shared_on"]?.string {
@@ -127,12 +127,12 @@ class NotablesData: Comparable {
         
         if let tempPublicUntil = dict["public_until"]?.string {
             
-            publicUntil = FormatterHelper.formatStringToDate(string: tempPublicUntil)
+            publicUntil = HATFormatterHelper.formatStringToDate(string: tempPublicUntil)
         }
         
         if let tempCreatedTime = dict["created_time"]?.string {
             
-            let returnedDate = FormatterHelper.formatStringToDate(string: tempCreatedTime)
+            let returnedDate = HATFormatterHelper.formatStringToDate(string: tempCreatedTime)
             if returnedDate != nil {
                 
                 createdTime = returnedDate!

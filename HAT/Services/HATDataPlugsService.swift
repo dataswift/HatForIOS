@@ -15,7 +15,7 @@ import Alamofire
 // MARK: Class
 
 /// The data plugs service class
-class DataPlugsService: NSObject {
+class HATDataPlugsService: NSObject {
     
     // MARK: - Get available data plugs
     

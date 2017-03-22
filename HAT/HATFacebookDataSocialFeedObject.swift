@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the data of facebook
-class FacebookDataSocialFeedObject: Comparable {
+class HATFacebookDataSocialFeedObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ class FacebookDataSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: FacebookDataSocialFeedObject, rhs: FacebookDataSocialFeedObject) -> Bool {
+    public static func ==(lhs: HATFacebookDataSocialFeedObject, rhs: HATFacebookDataSocialFeedObject) -> Bool {
         
         return (lhs.posts == rhs.posts)
     }
@@ -42,7 +42,7 @@ class FacebookDataSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: FacebookDataSocialFeedObject, rhs: FacebookDataSocialFeedObject) -> Bool {
+    public static func <(lhs: HATFacebookDataSocialFeedObject, rhs: HATFacebookDataSocialFeedObject) -> Bool {
         
         return lhs.posts < rhs.posts
     }
@@ -50,7 +50,7 @@ class FacebookDataSocialFeedObject: Comparable {
     // MARK: - Variables
 
     /// The post data
-    var posts: FacebookDataPostsSocialFeedObject = FacebookDataPostsSocialFeedObject()
+    var posts: HATFacebookDataPostsSocialFeedObject = HATFacebookDataPostsSocialFeedObject()
     
     // MARK: - Initialisers
     
@@ -59,7 +59,7 @@ class FacebookDataSocialFeedObject: Comparable {
      */
     init() {
         
-        posts = FacebookDataPostsSocialFeedObject()
+        posts = HATFacebookDataPostsSocialFeedObject()
     }
     
     /**
@@ -69,7 +69,7 @@ class FacebookDataSocialFeedObject: Comparable {
         
         if let tempPosts = dictionary["posts"]?.dictionaryValue {
             
-            posts = FacebookDataPostsSocialFeedObject(from: tempPosts)
+            posts = HATFacebookDataPostsSocialFeedObject(from: tempPosts)
         }
     }
 }

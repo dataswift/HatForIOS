@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the outer notes JSON format
-class NotesData: Comparable {
+class HATNotesData: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -29,7 +29,7 @@ class NotesData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: NotesData, rhs: NotesData) -> Bool {
+    public static func <(lhs: HATNotesData, rhs: HATNotesData) -> Bool {
         
         return lhs.data.updatedTime < rhs.data.updatedTime
     }
@@ -42,7 +42,7 @@ class NotesData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: NotesData, rhs: NotesData) -> Bool {
+    public static func ==(lhs: HATNotesData, rhs: HATNotesData) -> Bool {
         
         return lhs.data == lhs.data
     }
@@ -59,7 +59,7 @@ class NotesData: Comparable {
     var lastUpdated: Date
     
     /// the data of the note, such as tables about the author, location, photo etc
-    var data: NotablesData
+    var data: HATNotesNotablesData
     
     // MARK: - Initialisers
     
@@ -71,7 +71,7 @@ class NotesData: Comparable {
         id = 0
         name = ""
         lastUpdated = Date()
-        data = NotablesData.init()
+        data = HATNotesNotablesData.init()
     }
     
     /**
@@ -91,11 +91,11 @@ class NotesData: Comparable {
         }
         if let tempLastUpdated = dict["lastUpdated"]?.string {
             
-            lastUpdated = FormatterHelper.formatStringToDate(string: tempLastUpdated)!
+            lastUpdated = HATFormatterHelper.formatStringToDate(string: tempLastUpdated)!
         }
         if let tempData = dict["data"]?["notablesv1"].dictionary {
             
-            data = NotablesData.init(dict: tempData)
+            data = HATNotesNotablesData.init(dict: tempData)
         }
     }
 }

@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the actual data of the post
-class FacebookDataPostsSocialFeedObject: Comparable {
+class HATFacebookDataPostsSocialFeedObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ class FacebookDataPostsSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: FacebookDataPostsSocialFeedObject, rhs: FacebookDataPostsSocialFeedObject) -> Bool {
+    public static func ==(lhs: HATFacebookDataPostsSocialFeedObject, rhs: HATFacebookDataPostsSocialFeedObject) -> Bool {
         
         return (lhs.from == rhs.from && lhs.privacy == rhs.privacy && lhs.updatedTime == rhs.updatedTime && lhs.createdTime == rhs.createdTime && lhs.id == rhs.id && lhs.message == rhs.message && lhs.statusType == rhs.statusType && lhs.type == rhs.type && lhs.fullPicture == rhs.fullPicture && lhs.link == rhs.link && lhs.picture == rhs.picture && lhs.story == rhs.story && lhs.name == rhs.name && lhs.description == rhs.description && lhs.objectID == rhs.objectID && lhs.caption == rhs.caption && lhs.application == rhs.application)
     }
@@ -42,7 +42,7 @@ class FacebookDataPostsSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: FacebookDataPostsSocialFeedObject, rhs: FacebookDataPostsSocialFeedObject) -> Bool {
+    public static func <(lhs: HATFacebookDataPostsSocialFeedObject, rhs: HATFacebookDataPostsSocialFeedObject) -> Bool {
         
         if lhs.updatedTime != nil && rhs.updatedTime != nil {
             
@@ -59,10 +59,10 @@ class FacebookDataPostsSocialFeedObject: Comparable {
     // MARK: - Variables
 
     /// The user that made the post
-    var from: FacebookDataPostsFromSocialFeedObject = FacebookDataPostsFromSocialFeedObject()
+    var from: HATFacebookDataPostsFromSocialFeedObject = HATFacebookDataPostsFromSocialFeedObject()
 
     /// The privacy settings for the post
-    var privacy: FacebookDataPostsPrivacySocialFeedObject = FacebookDataPostsPrivacySocialFeedObject()
+    var privacy: HATFacebookDataPostsPrivacySocialFeedObject = HATFacebookDataPostsPrivacySocialFeedObject()
     
     /// The updated time of the post
     var updatedTime: Date? = nil
@@ -96,7 +96,7 @@ class FacebookDataPostsSocialFeedObject: Comparable {
     var caption: String = ""
     
     /// The application details of the post
-    var application: FacebookDataPostsApplicationSocialFeedObject = FacebookDataPostsApplicationSocialFeedObject()
+    var application: HATFacebookDataPostsApplicationSocialFeedObject = HATFacebookDataPostsApplicationSocialFeedObject()
     
     // MARK: - Initialisers
     
@@ -105,10 +105,10 @@ class FacebookDataPostsSocialFeedObject: Comparable {
      */
     init() {
         
-        from = FacebookDataPostsFromSocialFeedObject()
+        from = HATFacebookDataPostsFromSocialFeedObject()
         id = ""
         statusType = ""
-        privacy = FacebookDataPostsPrivacySocialFeedObject()
+        privacy = HATFacebookDataPostsPrivacySocialFeedObject()
         updatedTime = nil
         type = ""
         createdTime = nil
@@ -121,7 +121,7 @@ class FacebookDataPostsSocialFeedObject: Comparable {
         name = ""
         description = ""
         objectID = ""
-        application = FacebookDataPostsApplicationSocialFeedObject()
+        application = HATFacebookDataPostsApplicationSocialFeedObject()
         caption = ""
     }
     
@@ -134,7 +134,7 @@ class FacebookDataPostsSocialFeedObject: Comparable {
         
         if let tempFrom = dictionary["from"]?.dictionaryValue {
             
-            from = FacebookDataPostsFromSocialFeedObject(from: tempFrom)
+            from = HATFacebookDataPostsFromSocialFeedObject(from: tempFrom)
         }
         if let tempID = dictionary["id"]?.stringValue {
             
@@ -146,11 +146,11 @@ class FacebookDataPostsSocialFeedObject: Comparable {
         }
         if let tempPrivacy = dictionary["privacy"]?.dictionaryValue {
             
-            privacy = FacebookDataPostsPrivacySocialFeedObject(from: tempPrivacy)
+            privacy = HATFacebookDataPostsPrivacySocialFeedObject(from: tempPrivacy)
         }
         if let tempUpdateTime = dictionary["updated_time"]?.stringValue {
             
-            updatedTime = FormatterHelper.formatStringToDate(string: tempUpdateTime)
+            updatedTime = HATFormatterHelper.formatStringToDate(string: tempUpdateTime)
         }
         if let tempType = dictionary["type"]?.stringValue {
             
@@ -158,7 +158,7 @@ class FacebookDataPostsSocialFeedObject: Comparable {
         }
         if let tempCreatedTime = dictionary["created_time"]?.stringValue {
             
-            createdTime = FormatterHelper.formatStringToDate(string: tempCreatedTime)
+            createdTime = HATFormatterHelper.formatStringToDate(string: tempCreatedTime)
         }
         if let tempMessage = dictionary["message"]?.stringValue {
             
@@ -191,7 +191,7 @@ class FacebookDataPostsSocialFeedObject: Comparable {
         }
         if let tempApplication = dictionary["application"]?.dictionaryValue {
             
-            application = FacebookDataPostsApplicationSocialFeedObject(from: tempApplication)
+            application = HATFacebookDataPostsApplicationSocialFeedObject(from: tempApplication)
         }
         if let tempCaption = dictionary["caption"]?.stringValue {
             

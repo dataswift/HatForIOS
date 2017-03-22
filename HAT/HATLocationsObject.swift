@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the locations received from server
-class LocationsObject: NSObject {
+class HATLocationsObject: NSObject {
     
     // MARK: - Variables
     
@@ -26,7 +26,7 @@ class LocationsObject: NSObject {
     /// The name of the record
     var name: String = ""
     /// The data of the location object
-    var data: LocationsDataObject = LocationsDataObject()
+    var data: HATLocationsDataObject = HATLocationsDataObject()
     
     // MARK: - Initialisers
     
@@ -38,7 +38,7 @@ class LocationsObject: NSObject {
         id = 0
         lastUpdate = nil
         name = ""
-        data = LocationsDataObject()
+        data = HATLocationsDataObject()
     }
     
     /**
@@ -57,7 +57,7 @@ class LocationsObject: NSObject {
         
         if let tempUpdatedTime = dict["lastUpdated"]?.string {
             
-            lastUpdate = FormatterHelper.formatStringToDate(string: tempUpdatedTime)
+            lastUpdate = HATFormatterHelper.formatStringToDate(string: tempUpdatedTime)
         }
         
         if let tempName = dict["name"]?.string {
@@ -67,7 +67,7 @@ class LocationsObject: NSObject {
         
         if let tempTables = dict["data"]?.dictionaryValue {
             
-            data = LocationsDataObject(dict: tempTables)
+            data = HATLocationsDataObject(dict: tempTables)
         }
     }
 }

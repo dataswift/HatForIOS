@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the data plug owner from data plug JSON file
-struct DataPlugOwnerObject: Comparable {
+struct HATDataPlugOwnerObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ struct DataPlugOwnerObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: DataPlugOwnerObject, rhs: DataPlugOwnerObject) -> Bool {
+    public static func ==(lhs: HATDataPlugOwnerObject, rhs: HATDataPlugOwnerObject) -> Bool {
         
         return (lhs.id == rhs.id && lhs.email == rhs.email && lhs.nick == rhs.nick && lhs.firstName == rhs.firstName && lhs.lastName == rhs.lastName)
     }
@@ -42,7 +42,7 @@ struct DataPlugOwnerObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: DataPlugOwnerObject, rhs: DataPlugOwnerObject) -> Bool {
+    public static func <(lhs: HATDataPlugOwnerObject, rhs: HATDataPlugOwnerObject) -> Bool {
         
         return lhs.lastName < rhs.lastName
     }

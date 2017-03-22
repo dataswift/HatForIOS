@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the locations actual data
-class LocationsDataLocationsObject: NSObject {
+class HATLocationsDataLocationsObject: NSObject {
     
     // MARK: - Variables
 
@@ -66,7 +66,7 @@ class LocationsDataLocationsObject: NSObject {
         
         if let tempTimeStamp = dict["timestamp"]?.stringValue {
             
-            timeStamp = FormatterHelper.formatStringToDate(string: tempTimeStamp)
+            timeStamp = HATFormatterHelper.formatStringToDate(string: tempTimeStamp)
         }
     }
 }

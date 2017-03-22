@@ -16,7 +16,7 @@ import Alamofire
 // MARK: Class
 
 /// The twitter data plug service class
-public class TwitterService: NSObject {
+public class HATTwitterService: NSObject {
     
     // MARK: - Check twitter plug
     

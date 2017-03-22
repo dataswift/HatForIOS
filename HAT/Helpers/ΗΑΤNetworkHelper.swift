@@ -13,7 +13,10 @@
 import Alamofire
 import SwiftyJSON
 
-class NetworkHelper: NSObject {
+// MARK: Class
+
+/// All network related methods
+class ΗΑΤNetworkHelper: NSObject {
     
     // MARK: - Enums
     
@@ -67,7 +70,7 @@ class NetworkHelper: NSObject {
         contentType: String,
         parameters: Dictionary<String, Any>,
         headers: Dictionary<String, String>,
-        completion: @escaping (_ r: NetworkHelper.ResultType) -> Void) -> Void {
+        completion: @escaping (_ r: ΗΑΤNetworkHelper.ResultType) -> Void) -> Void {
         
         // do a post
         Alamofire.request(
@@ -90,11 +93,11 @@ class NetworkHelper: NSObject {
                     if let value = response.result.value {
                         
                         let json = JSON(value)
-                        completion(NetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: json))
+                        completion(ΗΑΤNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: json))
                         // else return isSuccess: false and nil for value
                     } else {
                         
-                        completion(NetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: ""))
+                        completion(ΗΑΤNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: ""))
                     }
                     
                 // in case of failure return the error but check for internet connection or unauthorised status and let the user know
@@ -108,7 +111,7 @@ class NetworkHelper: NSObject {
                         
                     }
                     
-                    completion(NetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode))
+                    completion(ΗΑΤNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode))
                 }
         }
     }
@@ -133,7 +136,7 @@ class NetworkHelper: NSObject {
         contentType: String,
         parameters: Dictionary<String, Any>,
         headers: Dictionary<String, String>,
-        completion: @escaping (_ r: NetworkHelper.ResultTypeString) -> Void) -> Void {
+        completion: @escaping (_ r: ΗΑΤNetworkHelper.ResultTypeString) -> Void) -> Void {
         
         // do a post
         Alamofire.request(
@@ -157,16 +160,16 @@ class NetworkHelper: NSObject {
                     // check if we have a value and return it
                     if let value = response.result.value {
                         
-                        completion(NetworkHelper.ResultTypeString.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: value))
+                        completion(ΗΑΤNetworkHelper.ResultTypeString.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: value))
                         // else return isSuccess: false and nil for value
                     } else {
                         
-                        completion(NetworkHelper.ResultTypeString.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: ""))
+                        completion(ΗΑΤNetworkHelper.ResultTypeString.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: ""))
                     }
                 // return the error
                 case .failure(let error):
                     
-                    completion(NetworkHelper.ResultTypeString.error(error: error, statusCode: response.response?.statusCode))
+                    completion(ΗΑΤNetworkHelper.ResultTypeString.error(error: error, statusCode: response.response?.statusCode))
                 }
         }
     }

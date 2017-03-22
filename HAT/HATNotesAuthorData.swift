@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the author table received from JSON
-class AuthorData: Comparable {
+class HATNotesAuthorData: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ class AuthorData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: AuthorData, rhs: AuthorData) -> Bool {
+    public static func ==(lhs: HATNotesAuthorData, rhs: HATNotesAuthorData) -> Bool {
         
         return (lhs.nickName == rhs.nickName && lhs.name == rhs.name && lhs.photoURL == rhs.photoURL && lhs.phata == rhs.phata && lhs.id == rhs.id)
     }
@@ -42,7 +42,7 @@ class AuthorData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: AuthorData, rhs: AuthorData) -> Bool {
+    public static func <(lhs: HATNotesAuthorData, rhs: HATNotesAuthorData) -> Bool {
         
         return lhs.name < rhs.name
     }

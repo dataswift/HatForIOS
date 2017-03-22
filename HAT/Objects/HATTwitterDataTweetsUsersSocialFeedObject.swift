@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the user's info of a tweet
-public class TwitterDataTweetsUsersSocialFeedObject: Comparable {
+public class HATTwitterDataTweetsUsersSocialFeedObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ public class TwitterDataTweetsUsersSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: TwitterDataTweetsUsersSocialFeedObject, rhs: TwitterDataTweetsUsersSocialFeedObject) -> Bool {
+    public static func ==(lhs: HATTwitterDataTweetsUsersSocialFeedObject, rhs: HATTwitterDataTweetsUsersSocialFeedObject) -> Bool {
         
         return (lhs.friendsCount == rhs.friendsCount && lhs.id == rhs.id && lhs.lang == rhs.lang
             && lhs.listedCount == rhs.listedCount && lhs.favouritesCount == rhs.favouritesCount && lhs.statusesCount == rhs.statusesCount && lhs.screenName == rhs.screenName && lhs.name == rhs.name && lhs.followersCount == rhs.followersCount)
@@ -43,7 +43,7 @@ public class TwitterDataTweetsUsersSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: TwitterDataTweetsUsersSocialFeedObject, rhs: TwitterDataTweetsUsersSocialFeedObject) -> Bool {
+    public static func <(lhs: HATTwitterDataTweetsUsersSocialFeedObject, rhs: HATTwitterDataTweetsUsersSocialFeedObject) -> Bool {
         
         return lhs.name < rhs.name
     }

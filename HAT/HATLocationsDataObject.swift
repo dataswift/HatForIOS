@@ -13,10 +13,10 @@
 import SwiftyJSON
 
 /// A class representing the data of the locations object
-class LocationsDataObject: NSObject {
+class HATLocationsDataObject: NSObject {
 
     /// The locations
-    var locations: LocationsDataLocationsObject = LocationsDataLocationsObject()
+    var locations: HATLocationsDataLocationsObject = HATLocationsDataLocationsObject()
         
     // MARK: - Initialisers
     
@@ -25,7 +25,7 @@ class LocationsDataObject: NSObject {
      */
     override init() {
     
-        locations = LocationsDataLocationsObject()
+        locations = HATLocationsDataLocationsObject()
     }
     
     /**
@@ -38,7 +38,7 @@ class LocationsDataObject: NSObject {
         
         if let tempFields = dict["locations"]?.dictionaryValue {
             
-            locations = LocationsDataLocationsObject(dict: tempFields)
+            locations = HATLocationsDataLocationsObject(dict: tempFields)
         }
     }
 }

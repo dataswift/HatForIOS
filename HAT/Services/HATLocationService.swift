@@ -15,7 +15,7 @@ import Alamofire
 // MARK: Class
 
 /// The location data plug service class
-class LocationService: NSObject {
+class HATLocationService: NSObject {
     
     // MARK: - Create location plug URL
     
@@ -57,7 +57,7 @@ class LocationService: NSObject {
                                           "Content-Type": ContentType.JSON,
                                           RequestHeaders.xAuthToken: HATDataPlugCredentials.Market_AccessToken]
         // construct url
-        let url = LocationService.locationDataPlugURL(userDomain, dataPlugID: HATDataPlugCredentials.Market_DataPlugID)
+        let url = HATLocationService.locationDataPlugURL(userDomain, dataPlugID: HATDataPlugCredentials.Market_DataPlugID)
         
         // make asynchronous call
         ΗΑΤNetworkHelper.AsynchronousRequest(url, method: HTTPMethod.get, encoding: Alamofire.URLEncoding.default, contentType: "application/json", parameters: parameters, headers: headers) { (r: ΗΑΤNetworkHelper.ResultType) -> Void in

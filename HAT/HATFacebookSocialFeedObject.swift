@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the facebook social feed object
-class FacebookSocialFeedObject: HATSocialFeedObject, Comparable {
+class HATFacebookSocialFeedObject: HATSocialFeedObject, Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ class FacebookSocialFeedObject: HATSocialFeedObject, Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: FacebookSocialFeedObject, rhs: FacebookSocialFeedObject) -> Bool {
+    public static func ==(lhs: HATFacebookSocialFeedObject, rhs: HATFacebookSocialFeedObject) -> Bool {
         
         return (lhs.name == rhs.name && lhs.id == rhs.id && lhs.data == rhs.data && lhs.lastUpdated == rhs.lastUpdated)
     }
@@ -42,7 +42,7 @@ class FacebookSocialFeedObject: HATSocialFeedObject, Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: FacebookSocialFeedObject, rhs: FacebookSocialFeedObject) -> Bool {
+    public static func <(lhs: HATFacebookSocialFeedObject, rhs: HATFacebookSocialFeedObject) -> Bool {
         
         if lhs.lastUpdated != nil && rhs.lastUpdated != nil {
             
@@ -66,7 +66,7 @@ class FacebookSocialFeedObject: HATSocialFeedObject, Comparable {
     var name: String = ""
     
     /// The actual data of the record
-    var data: FacebookDataSocialFeedObject = FacebookDataSocialFeedObject()
+    var data: HATFacebookDataSocialFeedObject = HATFacebookDataSocialFeedObject()
     
     /// The id of the record
     var id: Int = -1
@@ -82,7 +82,7 @@ class FacebookSocialFeedObject: HATSocialFeedObject, Comparable {
     init() {
         
         name = ""
-        data = FacebookDataSocialFeedObject()
+        data = HATFacebookDataSocialFeedObject()
         id = -1
         lastUpdated = nil
     }
@@ -100,7 +100,7 @@ class FacebookSocialFeedObject: HATSocialFeedObject, Comparable {
         }
         if let tempData = dict["data"]?.dictionaryValue {
             
-            data = FacebookDataSocialFeedObject(from: tempData)
+            data = HATFacebookDataSocialFeedObject(from: tempData)
         }
         if let tempID = dict["id"]?.intValue {
             
@@ -108,7 +108,7 @@ class FacebookSocialFeedObject: HATSocialFeedObject, Comparable {
         }
         if let tempLastUpdated = dict["lastUpdated"]?.stringValue {
             
-            lastUpdated = FormatterHelper.formatStringToDate(string: tempLastUpdated)
+            lastUpdated = HATFormatterHelper.formatStringToDate(string: tempLastUpdated)
             protocolLastUpdate = lastUpdated
         }
     }

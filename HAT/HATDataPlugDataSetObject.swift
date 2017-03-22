@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the data plug dataset from data plug JSON file
-struct DataPlugDataSetObject: Comparable {
+struct HATDataPlugDataSetObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ struct DataPlugDataSetObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: DataPlugDataSetObject, rhs: DataPlugDataSetObject) -> Bool {
+    public static func ==(lhs: HATDataPlugDataSetObject, rhs: HATDataPlugDataSetObject) -> Bool {
         
         return (lhs.name == rhs.name && lhs.description == rhs.description && lhs.fields == rhs.fields)
     }
@@ -42,7 +42,7 @@ struct DataPlugDataSetObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: DataPlugDataSetObject, rhs: DataPlugDataSetObject) -> Bool {
+    public static func <(lhs: HATDataPlugDataSetObject, rhs: HATDataPlugDataSetObject) -> Bool {
         
         return lhs.name < rhs.name
     }
@@ -55,7 +55,7 @@ struct DataPlugDataSetObject: Comparable {
     var description: String = ""
     
     /// The fields of the dataset
-    var fields: [DataPlugDataSetObject] = []
+    var fields: [HATDataPlugDataSetObject] = []
     
     // MARK: - Initialiazers
     
@@ -86,7 +86,7 @@ struct DataPlugDataSetObject: Comparable {
         }
         if let tempFields = (dict["fields"]?.dictionaryValue) {
             
-            fields = [DataPlugDataSetObject(dict: tempFields)]
+            fields = [HATDataPlugDataSetObject(dict: tempFields)]
         }
     }
 }

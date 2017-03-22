@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the actual data of the tweet
-public class TwitterDataTweetsSocialFeedObject: Comparable {
+public class HATTwitterDataTweetsSocialFeedObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ public class TwitterDataTweetsSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: TwitterDataTweetsSocialFeedObject, rhs: TwitterDataTweetsSocialFeedObject) -> Bool {
+    public static func ==(lhs: HATTwitterDataTweetsSocialFeedObject, rhs: HATTwitterDataTweetsSocialFeedObject) -> Bool {
         
         return (lhs.source == rhs.source && lhs.truncated == rhs.truncated && lhs.retweetCount == rhs.retweetCount
             && lhs.retweeted == rhs.retweeted && lhs.favoriteCount == rhs.favoriteCount && lhs.id == rhs.id && lhs.text == rhs.text && lhs.favorited == rhs.favorited && lhs.lang == rhs.lang)
@@ -43,7 +43,7 @@ public class TwitterDataTweetsSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: TwitterDataTweetsSocialFeedObject, rhs: TwitterDataTweetsSocialFeedObject) -> Bool {
+    public static func <(lhs: HATTwitterDataTweetsSocialFeedObject, rhs: HATTwitterDataTweetsSocialFeedObject) -> Bool {
         
         if lhs.createdAt != nil && rhs.createdAt != nil {
             
@@ -82,7 +82,7 @@ public class TwitterDataTweetsSocialFeedObject: Comparable {
     var createdAt: Date? = nil
 
     /// Shows the user's info
-    var user: TwitterDataTweetsUsersSocialFeedObject = TwitterDataTweetsUsersSocialFeedObject()
+    var user: HATTwitterDataTweetsUsersSocialFeedObject = HATTwitterDataTweetsUsersSocialFeedObject()
     
     // MARK: - Initialisers
     
@@ -101,7 +101,7 @@ public class TwitterDataTweetsSocialFeedObject: Comparable {
         createdAt = nil
         favorited = ""
         lang = ""
-        user = TwitterDataTweetsUsersSocialFeedObject()
+        user = HATTwitterDataTweetsUsersSocialFeedObject()
     }
     
     /**
@@ -141,7 +141,7 @@ public class TwitterDataTweetsSocialFeedObject: Comparable {
         }
         if let tempCreatedAt = dictionary["created_at"]?.stringValue {
             
-            createdAt = FormatterHelper.formatStringToDate(string: tempCreatedAt)
+            createdAt = HATFormatterHelper.formatStringToDate(string: tempCreatedAt)
         }
         if let tempFavorited = dictionary["favorited"]?.stringValue {
             
@@ -153,7 +153,7 @@ public class TwitterDataTweetsSocialFeedObject: Comparable {
         }
         if let tempUser = dictionary["user"]?.dictionaryValue {
             
-            user = TwitterDataTweetsUsersSocialFeedObject(from: tempUser)
+            user = HATTwitterDataTweetsUsersSocialFeedObject(from: tempUser)
         }
     }
 }

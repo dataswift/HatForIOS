@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the data plug rating from data plug JSON file
-struct DataPlugRatingObject: Comparable {
+struct HATDataPlugRatingObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ struct DataPlugRatingObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: DataPlugRatingObject, rhs: DataPlugRatingObject) -> Bool {
+    public static func ==(lhs: HATDataPlugRatingObject, rhs: HATDataPlugRatingObject) -> Bool {
         
         return (lhs.up == rhs.up && lhs.down == rhs.down)
     }
@@ -42,7 +42,7 @@ struct DataPlugRatingObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: DataPlugRatingObject, rhs: DataPlugRatingObject) -> Bool {
+    public static func <(lhs: HATDataPlugRatingObject, rhs: HATDataPlugRatingObject) -> Bool {
         
         return lhs.up < rhs.up
     }

@@ -12,7 +12,10 @@
 
 import Foundation
 
-class FormatterHelper: NSObject {
+// MARK: Class
+
+/// A struct for everything that formats something
+class HATFormatterHelper: NSObject {
     
     // MARK: - String to Date formaters
     

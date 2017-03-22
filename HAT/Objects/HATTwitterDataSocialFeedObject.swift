@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the data of the tweet
-public class TwitterDataSocialFeedObject: Comparable {
+public class HATTwitterDataSocialFeedObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ public class TwitterDataSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: TwitterDataSocialFeedObject, rhs: TwitterDataSocialFeedObject) -> Bool {
+    public static func ==(lhs: HATTwitterDataSocialFeedObject, rhs: HATTwitterDataSocialFeedObject) -> Bool {
         
         return (lhs.tweets == rhs.tweets)
     }
@@ -42,7 +42,7 @@ public class TwitterDataSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: TwitterDataSocialFeedObject, rhs: TwitterDataSocialFeedObject) -> Bool {
+    public static func <(lhs: HATTwitterDataSocialFeedObject, rhs: HATTwitterDataSocialFeedObject) -> Bool {
         
         return lhs.tweets < rhs.tweets
     }
@@ -50,7 +50,7 @@ public class TwitterDataSocialFeedObject: Comparable {
     // MARK: - Variables
 
     /// The tweet data
-    var tweets: TwitterDataTweetsSocialFeedObject = TwitterDataTweetsSocialFeedObject()
+    var tweets: HATTwitterDataTweetsSocialFeedObject = HATTwitterDataTweetsSocialFeedObject()
     
     // MARK: - Initialisers
     
@@ -59,7 +59,7 @@ public class TwitterDataSocialFeedObject: Comparable {
      */
     init() {
         
-        tweets = TwitterDataTweetsSocialFeedObject()
+        tweets = HATTwitterDataTweetsSocialFeedObject()
     }
     
     /**
@@ -71,7 +71,7 @@ public class TwitterDataSocialFeedObject: Comparable {
         
         if let tempTweets = dictionary["tweets"]?.dictionaryValue {
             
-            tweets = TwitterDataTweetsSocialFeedObject(from: tempTweets)
+            tweets = HATTwitterDataTweetsSocialFeedObject(from: tempTweets)
         }
     }
 }

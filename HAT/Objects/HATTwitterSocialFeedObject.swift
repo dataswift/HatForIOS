@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the twitter social feed object
-public class TwitterSocialFeedObject: HATSocialFeedObject, Comparable {
+public class HATTwitterSocialFeedObject: HATSocialFeedObject, Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ public class TwitterSocialFeedObject: HATSocialFeedObject, Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: TwitterSocialFeedObject, rhs: TwitterSocialFeedObject) -> Bool {
+    public static func ==(lhs: HATTwitterSocialFeedObject, rhs: HATTwitterSocialFeedObject) -> Bool {
         
         return (lhs.name == rhs.name && lhs.id == rhs.id && lhs.data == rhs.data && lhs.lastUpdated == rhs.lastUpdated)
     }
@@ -42,7 +42,7 @@ public class TwitterSocialFeedObject: HATSocialFeedObject, Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: TwitterSocialFeedObject, rhs: TwitterSocialFeedObject) -> Bool {
+    public static func <(lhs: HATTwitterSocialFeedObject, rhs: HATTwitterSocialFeedObject) -> Bool {
         
         if lhs.lastUpdated != nil && rhs.lastUpdated != nil {
             
@@ -68,7 +68,7 @@ public class TwitterSocialFeedObject: HATSocialFeedObject, Comparable {
     var id: String = ""
     
     /// The actual data of the record
-    var data: TwitterDataSocialFeedObject = TwitterDataSocialFeedObject()
+    var data: HATTwitterDataSocialFeedObject = HATTwitterDataSocialFeedObject()
     
     /// The last updated field of the record
     var lastUpdated: Date? = nil
@@ -81,7 +81,7 @@ public class TwitterSocialFeedObject: HATSocialFeedObject, Comparable {
     init() {
         
         name = ""
-        data = TwitterDataSocialFeedObject()
+        data = HATTwitterDataSocialFeedObject()
         id = ""
         lastUpdated = nil
     }
@@ -99,7 +99,7 @@ public class TwitterSocialFeedObject: HATSocialFeedObject, Comparable {
         }
         if let tempData = dictionary["data"]?.dictionaryValue {
             
-            data = TwitterDataSocialFeedObject(from: tempData)
+            data = HATTwitterDataSocialFeedObject(from: tempData)
         }
         if let tempID = dictionary["id"]?.stringValue {
             
@@ -107,7 +107,7 @@ public class TwitterSocialFeedObject: HATSocialFeedObject, Comparable {
         }
         if let tempLastUpdated = dictionary["lastUpdated"]?.stringValue {
             
-            lastUpdated = FormatterHelper.formatStringToDate(string: tempLastUpdated)
+            lastUpdated = HATFormatterHelper.formatStringToDate(string: tempLastUpdated)
             protocolLastUpdate = lastUpdated
         }
     }

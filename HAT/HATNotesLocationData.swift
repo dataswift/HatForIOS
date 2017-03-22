@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the location table received from JSON
-class LocationData: Comparable {
+class HATNotesLocationData: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ class LocationData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: LocationData, rhs: LocationData) -> Bool {
+    public static func ==(lhs: HATNotesLocationData, rhs: HATNotesLocationData) -> Bool {
         
         return (lhs.altitude == rhs.altitude && lhs.altitudeAccuracy == rhs.altitudeAccuracy && lhs.latitude == rhs.latitude
             && lhs.accuracy == rhs.accuracy && lhs.longitude == rhs.longitude && lhs.speed == rhs.speed && lhs.heading == rhs.heading && lhs.shared == rhs.shared)
@@ -43,7 +43,7 @@ class LocationData: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: LocationData, rhs: LocationData) -> Bool {
+    public static func <(lhs: HATNotesLocationData, rhs: HATNotesLocationData) -> Bool {
         
         return (lhs.latitude < rhs.latitude && lhs.longitude < rhs.longitude)
     }

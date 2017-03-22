@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the application that this post came from
-class FacebookDataPostsApplicationSocialFeedObject: Comparable {
+class HATFacebookDataPostsApplicationSocialFeedObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ class FacebookDataPostsApplicationSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: FacebookDataPostsApplicationSocialFeedObject, rhs: FacebookDataPostsApplicationSocialFeedObject) -> Bool {
+    public static func ==(lhs: HATFacebookDataPostsApplicationSocialFeedObject, rhs: HATFacebookDataPostsApplicationSocialFeedObject) -> Bool {
         
         return (lhs.id == rhs.id && lhs.namespace == rhs.namespace && lhs.name == rhs.name && lhs.category == rhs.category && lhs.link == rhs.link)
     }
@@ -42,7 +42,7 @@ class FacebookDataPostsApplicationSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: FacebookDataPostsApplicationSocialFeedObject, rhs: FacebookDataPostsApplicationSocialFeedObject) -> Bool {
+    public static func <(lhs: HATFacebookDataPostsApplicationSocialFeedObject, rhs: HATFacebookDataPostsApplicationSocialFeedObject) -> Bool {
         
         return lhs.name < rhs.name
     }

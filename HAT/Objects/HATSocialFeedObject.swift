@@ -15,7 +15,7 @@ import UIKit
 // MARK: Protocol
 
 /// This protocol is used to compare the facebook and twitter objects for social feed
-protocol SocialFeedObject {
+protocol HATSocialFeedObject {
     
     // MARK: - Variable
     

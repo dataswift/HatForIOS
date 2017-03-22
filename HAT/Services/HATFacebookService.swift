@@ -16,7 +16,7 @@ import Alamofire
 // MARK: Class
 
 /// The facebook data plug service class
-public class FacebookService: NSObject {
+public class HATFacebookService: NSObject {
     
     // MARK: - Check facebook plug
     

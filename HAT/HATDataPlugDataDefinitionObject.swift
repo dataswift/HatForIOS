@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the data plug data definition from data plug JSON file
-struct DataPlugDataDefinitionObject: Comparable {
+struct HATDataPlugDataDefinitionObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ struct DataPlugDataDefinitionObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: DataPlugDataDefinitionObject, rhs: DataPlugDataDefinitionObject) -> Bool {
+    public static func ==(lhs: HATDataPlugDataDefinitionObject, rhs: HATDataPlugDataDefinitionObject) -> Bool {
         
         return (lhs.source == rhs.source && lhs.dataSets == rhs.dataSets)
     }
@@ -42,7 +42,7 @@ struct DataPlugDataDefinitionObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: DataPlugDataDefinitionObject, rhs: DataPlugDataDefinitionObject) -> Bool {
+    public static func <(lhs: HATDataPlugDataDefinitionObject, rhs: HATDataPlugDataDefinitionObject) -> Bool {
         
         return lhs.source < rhs.source
     }
@@ -53,7 +53,7 @@ struct DataPlugDataDefinitionObject: Comparable {
     var source: String = ""
     
     /// The data sets for this data definition object
-    var dataSets: [DataPlugDataSetObject] = []
+    var dataSets: [HATDataPlugDataSetObject] = []
     
     /**
      The default initialiser. Initialises everything to default values.
@@ -81,7 +81,7 @@ struct DataPlugDataDefinitionObject: Comparable {
         
         if let tempDataSets = (dict["datasets"]?.dictionary) {
             
-            dataSets = [DataPlugDataSetObject(dict: tempDataSets)]
+            dataSets = [HATDataPlugDataSetObject(dict: tempDataSets)]
         }
     }
 }

@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the privacy settings of the post
-class FacebookDataPostsPrivacySocialFeedObject: Comparable {
+class HATFacebookDataPostsPrivacySocialFeedObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -27,7 +27,7 @@ class FacebookDataPostsPrivacySocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: FacebookDataPostsPrivacySocialFeedObject, rhs: FacebookDataPostsPrivacySocialFeedObject) -> Bool {
+    public static func ==(lhs: HATFacebookDataPostsPrivacySocialFeedObject, rhs: HATFacebookDataPostsPrivacySocialFeedObject) -> Bool {
         
         return (lhs.friends == rhs.friends && lhs.value == rhs.value && lhs.deny == rhs.deny && lhs.description == rhs.description && lhs.allow == rhs.allow)
     }
@@ -42,7 +42,7 @@ class FacebookDataPostsPrivacySocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: FacebookDataPostsPrivacySocialFeedObject, rhs: FacebookDataPostsPrivacySocialFeedObject) -> Bool {
+    public static func <(lhs: HATFacebookDataPostsPrivacySocialFeedObject, rhs: HATFacebookDataPostsPrivacySocialFeedObject) -> Bool {
         
         return lhs.description < rhs.description
     }

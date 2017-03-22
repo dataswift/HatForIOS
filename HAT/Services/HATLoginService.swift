@@ -17,7 +17,7 @@ import SwiftyRSA
 // MARK: Class
 
 /// The login service class
-public class LoginService: NSObject {
+public class HATLoginService: NSObject {
     
     // MARK: - Verify domain
     
@@ -65,7 +65,7 @@ public class LoginService: NSObject {
         }
         
         // verify if the domain is what we want
-        if LoginService.verifyDomain(domain) {
+        if HATLoginService.verifyDomain(domain) {
             
             // domain accepted
             successfulVerification(userHATDomain)
