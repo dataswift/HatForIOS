@@ -105,7 +105,7 @@ class HATService: NSObject {
     /**
      Fetches the available HAT providers
      */
-    static func getSystemStatus(userDomain: String, authToken: String, completion: @escaping ([SystemStatusObject]) -> Void, failCallBack: @escaping (JSONParsingError) -> Void) {
+    static func getSystemStatus(userDomain: String, authToken: String, completion: @escaping ([HATSystemStatusObject]) -> Void, failCallBack: @escaping (JSONParsingError) -> Void) {
         
         let url = "https://" + userDomain + "/api/v2/system/status"
         let headers = ["X-Auth-Token" : authToken]
@@ -125,10 +125,10 @@ class HATService: NSObject {
                 if isSuccess {
                     
                     let resultArray = result.arrayValue
-                    var arrayToSendBack: [SystemStatusObject] = []
+                    var arrayToSendBack: [HATSystemStatusObject] = []
                     for item in resultArray {
                         
-                        arrayToSendBack.append(SystemStatusObject(from: item.dictionaryValue))
+                        arrayToSendBack.append(HATSystemStatusObject(from: item.dictionaryValue))
                     }
                     
                     completion(arrayToSendBack)

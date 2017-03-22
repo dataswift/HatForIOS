@@ -38,8 +38,8 @@
 		6020A7041E52734300D7DC04 /* HATLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7001E525BF500D7DC04 /* HATLocationService.swift */; };
 		6020A7061E52749700D7DC04 /* HATServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7051E52749700D7DC04 /* HATServiceTests.swift */; };
 		6020A7081E52803800D7DC04 /* HATAccountServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7071E52803800D7DC04 /* HATAccountServiceTests.swift */; };
-		60275BA41E6ECC090098B66C /* SystemStatusKindObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60275BA21E6ECC090098B66C /* SystemStatusKindObject.swift */; };
-		60275BA51E6ECC090098B66C /* SystemStatusObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60275BA31E6ECC090098B66C /* SystemStatusObject.swift */; };
+		60275BA41E6ECC090098B66C /* HATSystemStatusKindObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60275BA21E6ECC090098B66C /* HATSystemStatusKindObject.swift */; };
+		60275BA51E6ECC090098B66C /* HATSystemStatusObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60275BA31E6ECC090098B66C /* HATSystemStatusObject.swift */; };
 		60275BAA1E6ECC1C0098B66C /* HATLocationsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60275BA71E6ECC1C0098B66C /* HATLocationsObject.swift */; };
 		60275BAB1E6ECC1C0098B66C /* HATLocationsDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60275BA81E6ECC1C0098B66C /* HATLocationsDataObject.swift */; };
 		60275BAC1E6ECC1C0098B66C /* HATLocationsDataLocationsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60275BA91E6ECC1C0098B66C /* HATLocationsDataLocationsObject.swift */; };
@@ -146,8 +146,8 @@
 		6020A7021E526BBF00D7DC04 /* LocationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServiceTests.swift; sourceTree = "<group>"; };
 		6020A7051E52749700D7DC04 /* HATServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATServiceTests.swift; sourceTree = "<group>"; };
 		6020A7071E52803800D7DC04 /* HATAccountServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATAccountServiceTests.swift; sourceTree = "<group>"; };
-		60275BA21E6ECC090098B66C /* SystemStatusKindObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemStatusKindObject.swift; sourceTree = "<group>"; };
-		60275BA31E6ECC090098B66C /* SystemStatusObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemStatusObject.swift; sourceTree = "<group>"; };
+		60275BA21E6ECC090098B66C /* HATSystemStatusKindObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATSystemStatusKindObject.swift; sourceTree = "<group>"; };
+		60275BA31E6ECC090098B66C /* HATSystemStatusObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATSystemStatusObject.swift; sourceTree = "<group>"; };
 		60275BA71E6ECC1C0098B66C /* HATLocationsObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATLocationsObject.swift; sourceTree = "<group>"; };
 		60275BA81E6ECC1C0098B66C /* HATLocationsDataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATLocationsDataObject.swift; sourceTree = "<group>"; };
 		60275BA91E6ECC1C0098B66C /* HATLocationsDataLocationsObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATLocationsDataLocationsObject.swift; sourceTree = "<group>"; };
@@ -287,8 +287,8 @@
 		60275BA11E6ECBF70098B66C /* SystemStatus */ = {
 			isa = PBXGroup;
 			children = (
-				60275BA21E6ECC090098B66C /* SystemStatusKindObject.swift */,
-				60275BA31E6ECC090098B66C /* SystemStatusObject.swift */,
+				60275BA21E6ECC090098B66C /* HATSystemStatusKindObject.swift */,
+				60275BA31E6ECC090098B66C /* HATSystemStatusObject.swift */,
 			);
 			name = SystemStatus;
 			sourceTree = "<group>";
@@ -584,7 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60275BA51E6ECC090098B66C /* SystemStatusObject.swift in Sources */,
+				60275BA51E6ECC090098B66C /* HATSystemStatusObject.swift in Sources */,
 				601691221E4B5A6500505E8D /* HATService.swift in Sources */,
 				601691341E4B752F00505E8D /* HATNotableService.swift in Sources */,
 				601691031E4B391200505E8D /* HATTwitterService.swift in Sources */,
@@ -600,7 +600,7 @@
 				606BBA391E54549600ECBA6B /* HATDataPlugRatingObject.swift in Sources */,
 				60E267991E54ADE100B6D626 /* HATProviderObject.swift in Sources */,
 				6016912F1E4B6B1F00505E8D /* HATFacebookDataPostsPrivacySocialFeedObject.swift in Sources */,
-				60275BA41E6ECC090098B66C /* SystemStatusKindObject.swift in Sources */,
+				60275BA41E6ECC090098B66C /* HATSystemStatusKindObject.swift in Sources */,
 				606BBA2E1E5453C200ECBA6B /* HATDataPlugsService.swift in Sources */,
 				6016913E1E4B768800505E8D /* HATNotesData.swift in Sources */,
 				6016912E1E4B6B1F00505E8D /* HATFacebookDataPostsFromSocialFeedObject.swift in Sources */,

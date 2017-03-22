@@ -15,14 +15,14 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the system status object
-class SystemStatusObject: NSObject {
+class HATSystemStatusObject: NSObject {
     
     // MARK: - Variables
     
     /// The title of the object
     var title: String = ""
     /// The kind object holding the values
-    var kind: SystemStatusKindObject = SystemStatusKindObject()
+    var kind: HATSystemStatusKindObject = HATSystemStatusKindObject()
     
     // MARK: - Initialisers
     
@@ -32,7 +32,7 @@ class SystemStatusObject: NSObject {
     override init() {
         
         title = ""
-        kind = SystemStatusKindObject()
+        kind = HATSystemStatusKindObject()
     }
     
     /**
@@ -48,7 +48,7 @@ class SystemStatusObject: NSObject {
         }
         if let tempKind = dictionary["kind"]?.dictionaryValue {
             
-            kind = SystemStatusKindObject(from: tempKind)
+            kind = HATSystemStatusKindObject(from: tempKind)
         }
     }
 }
