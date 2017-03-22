@@ -13,7 +13,12 @@
 import SwiftyJSON
 import Alamofire
 
+// MARK: Class
+
+/// The twitter data plug service class
 public class TwitterService: NSObject {
+    
+    // MARK: - Check twitter plug
     
     /**
      Fetched the user's posts from twitter
@@ -47,7 +52,7 @@ public class TwitterService: NSObject {
         let headers = [RequestHeaders.xAuthToken : token]
         
         // make the request
-        NetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: {(r : NetworkHelper.ResultType) -> Void in
+        ΗΑΤNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: {(r : ΗΑΤNetworkHelper.ResultType) -> Void in
             
             // act upon response
             switch r {
@@ -109,19 +114,19 @@ public class TwitterService: NSObject {
      - parameter array: The JSON array
      - returns: An array of TwitterSocialFeedObject
      */
-    public class func removeDuplicatesFrom(array: [JSON]) -> [TwitterSocialFeedObject] {
+    public class func removeDuplicatesFrom(array: [JSON]) -> [HATTwitterSocialFeedObject] {
         
         // the array to return
-        var arrayToReturn: [TwitterSocialFeedObject] = []
+        var arrayToReturn: [HATTwitterSocialFeedObject] = []
         
         // go through each dictionary object in the array
         for dictionary in array {
             
             // transform it to an TwitterSocialFeedObject
-            let object = TwitterSocialFeedObject(from: dictionary.dictionaryValue)
+            let object = HATTwitterSocialFeedObject(from: dictionary.dictionaryValue)
             
             // check if the arrayToReturn it contains that value and if not add it
-            let result = arrayToReturn.contains(where: {(tweet: TwitterSocialFeedObject) -> Bool in
+            let result = arrayToReturn.contains(where: {(tweet: HATTwitterSocialFeedObject) -> Bool in
                 
                 if object.data.tweets.id == tweet.data.tweets.id {
                     
@@ -146,16 +151,16 @@ public class TwitterService: NSObject {
      - parameter array: The FacebookSocialFeedObject array
      - returns: An array of FacebookSocialFeedObject
      */
-    public class func removeDuplicatesFrom(array: [TwitterSocialFeedObject]) -> [TwitterSocialFeedObject] {
+    public class func removeDuplicatesFrom(array: [HATTwitterSocialFeedObject]) -> [HATTwitterSocialFeedObject] {
         
         // the array to return
-        var arrayToReturn: [TwitterSocialFeedObject] = []
+        var arrayToReturn: [HATTwitterSocialFeedObject] = []
         
         // go through each tweet object in the array
         for tweet in array {
             
             // check if the arrayToReturn it contains that value and if not add it
-            let result = arrayToReturn.contains(where: {(tweeter: TwitterSocialFeedObject) -> Bool in
+            let result = arrayToReturn.contains(where: {(tweeter: HATTwitterSocialFeedObject) -> Bool in
                 
                 if tweet.data.tweets.id == tweeter.data.tweets.id {
                     

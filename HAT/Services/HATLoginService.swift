@@ -14,6 +14,9 @@ import Alamofire
 import JWTDecode
 import SwiftyRSA
 
+// MARK: Class
+
+/// The login service class
 public class LoginService: NSObject {
     
     // MARK: - Verify domain
@@ -84,7 +87,7 @@ public class LoginService: NSObject {
     public class func loginToHATAuthorization(userDomain: String, url: NSURL, success: @escaping (Bool) -> Void, failed: @escaping (AuthenicationError) -> Void) {
         
         // get token out
-        if let token = NetworkHelper.GetQueryStringParameter(url: url.absoluteString, param: Auth.TokenParamName) {
+        if let token = ΗΑΤNetworkHelper.GetQueryStringParameter(url: url.absoluteString, param: Auth.TokenParamName) {
                 
             // make asynchronous call
             // parameters..
@@ -95,7 +98,7 @@ public class LoginService: NSObject {
             if let url = HATAccountService.TheUserHATDomainPublicKeyURL(userDomain) {
                 
                 //. application/json
-                NetworkHelper.AsynchronousStringRequest(url, method: HTTPMethod.get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.Text, parameters: parameters as Dictionary<String, AnyObject>, headers: headers) { (r: NetworkHelper.ResultTypeString) -> Void in
+                ΗΑΤNetworkHelper.AsynchronousStringRequest(url, method: HTTPMethod.get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.Text, parameters: parameters as Dictionary<String, AnyObject>, headers: headers) { (r: ΗΑΤNetworkHelper.ResultTypeString) -> Void in
                     
                     switch r {
                     case .isSuccess(let isSuccess, let statusCode, let result):
@@ -136,7 +139,7 @@ public class LoginService: NSObject {
                             let signature: String = tokenAttr[2]
                             
                             // decode signature from baseUrl64 to base64
-                            let decodedSig = FormatterHelper.fromBase64URLToBase64(s: signature)
+                            let decodedSig = HATFormatterHelper.fromBase64URLToBase64(s: signature)
                             
                             // data to be verified header.payload
                             let headerAndPayload = header + "." + payload

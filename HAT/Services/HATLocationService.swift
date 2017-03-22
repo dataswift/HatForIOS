@@ -12,7 +12,12 @@
 
 import Alamofire
 
+// MARK: Class
+
+/// The location data plug service class
 class LocationService: NSObject {
+    
+    // MARK: - Create location plug URL
     
     /**
      Register with HAT url
@@ -32,6 +37,8 @@ class LocationService: NSObject {
         
         return ""
     }
+    
+    // MARK: - Enable locations
     
     /**
      Registers app to write on HAT
@@ -53,7 +60,7 @@ class LocationService: NSObject {
         let url = LocationService.locationDataPlugURL(userDomain, dataPlugID: HATDataPlugCredentials.Market_DataPlugID)
         
         // make asynchronous call
-        NetworkHelper.AsynchronousRequest(url, method: HTTPMethod.get, encoding: Alamofire.URLEncoding.default, contentType: "application/json", parameters: parameters, headers: headers) { (r: NetworkHelper.ResultType) -> Void in
+        ΗΑΤNetworkHelper.AsynchronousRequest(url, method: HTTPMethod.get, encoding: Alamofire.URLEncoding.default, contentType: "application/json", parameters: parameters, headers: headers) { (r: ΗΑΤNetworkHelper.ResultType) -> Void in
             
             switch r {
             case .isSuccess(let isSuccess, let statusCode, let result):

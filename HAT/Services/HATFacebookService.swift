@@ -13,7 +13,12 @@
 import SwiftyJSON
 import Alamofire
 
+// MARK: Class
+
+/// The facebook data plug service class
 public class FacebookService: NSObject {
+    
+    // MARK: - Check facebook plug
     
     /**
      Fetches the facebook profile image of the user
@@ -66,7 +71,7 @@ public class FacebookService: NSObject {
         let headers = [RequestHeaders.xAuthToken : token]
         
         // make the request
-        NetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: {(r : NetworkHelper.ResultType) -> Void in
+        ΗΑΤNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: {(r : ΗΑΤNetworkHelper.ResultType) -> Void in
             
             // act upon response
             switch r {
@@ -128,19 +133,19 @@ public class FacebookService: NSObject {
      - parameter array: The JSON array
      - returns: An array of FacebookSocialFeedObject
      */
-    class func removeDuplicatesFrom(array: [JSON]) -> [FacebookSocialFeedObject] {
+    class func removeDuplicatesFrom(array: [JSON]) -> [HATFacebookSocialFeedObject] {
         
         // the array to return
-        var arrayToReturn: [FacebookSocialFeedObject] = []
+        var arrayToReturn: [HATFacebookSocialFeedObject] = []
         
         // go through each dictionary object in the array
         for dictionary in array {
             
             // transform it to an FacebookSocialFeedObject
-            let object = FacebookSocialFeedObject(from: dictionary.dictionaryValue)
+            let object = HATFacebookSocialFeedObject(from: dictionary.dictionaryValue)
             
             // check if the arrayToReturn it contains that value and if not add it
-            let result = arrayToReturn.contains(where: {(post: FacebookSocialFeedObject) -> Bool in
+            let result = arrayToReturn.contains(where: {(post: HATFacebookSocialFeedObject) -> Bool in
                 
                 if object.data.posts.id == post.data.posts.id {
                     
@@ -165,16 +170,16 @@ public class FacebookService: NSObject {
      - parameter array: The FacebookSocialFeedObject array
      - returns: An array of FacebookSocialFeedObject
      */
-    class func removeDuplicatesFrom(array: [FacebookSocialFeedObject]) -> [FacebookSocialFeedObject] {
+    class func removeDuplicatesFrom(array: [HATFacebookSocialFeedObject]) -> [HATFacebookSocialFeedObject] {
         
         // the array to return
-        var arrayToReturn: [FacebookSocialFeedObject] = []
+        var arrayToReturn: [HATFacebookSocialFeedObject] = []
         
         // go through each post object in the array
         for facebookPost in array {
             
             // check if the arrayToReturn it contains that value and if not add it
-            let result = arrayToReturn.contains(where: {(post: FacebookSocialFeedObject) -> Bool in
+            let result = arrayToReturn.contains(where: {(post: HATFacebookSocialFeedObject) -> Bool in
                 
                 if facebookPost.data.posts.id == post.data.posts.id {
                     

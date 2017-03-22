@@ -13,6 +13,9 @@
 import SwiftyJSON
 import Alamofire
 
+// MARK: Class
+
+/// A class about the methods concerning the Notables service
 public class NotablesService: NSObject {
 
     // MARK: - Get Notes
@@ -109,7 +112,7 @@ public class NotablesService: NSObject {
                            "X-Auth-Token": userToken]
             
             // make async request
-            NetworkHelper.AsynchronousRequest("https://" + userDomain + "/data/record/values", method: HTTPMethod.post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: noteAsJSON, headers: headers, completion: { (r: NetworkHelper.ResultType) -> Void in
+            ΗΑΤNetworkHelper.AsynchronousRequest("https://" + userDomain + "/data/record/values", method: HTTPMethod.post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: noteAsJSON, headers: headers, completion: { (r: ΗΑΤNetworkHelper.ResultType) -> Void in
                 
                 // handle result
                 switch r {
@@ -146,16 +149,16 @@ public class NotablesService: NSObject {
      - parameter array: The NotesData array
      - returns: An array of NotesData
      */
-    class func removeDuplicatesFrom(array: [NotesData]) -> [NotesData] {
+    class func removeDuplicatesFrom(array: [HATNotesData]) -> [HATNotesData] {
         
         // the array to return
-        var arrayToReturn: [NotesData] = []
+        var arrayToReturn: [HATNotesData] = []
         
         // go through each tweet object in the array
         for note in array {
             
             // check if the arrayToReturn it contains that value and if not add it
-            let result = arrayToReturn.contains(where: {(note2: NotesData) -> Bool in
+            let result = arrayToReturn.contains(where: {(note2: HATNotesData) -> Bool in
                 
                 if (note.data.createdTime == note2.data.createdTime) && (note.data.message == note2.data.message) {
                     
@@ -205,7 +208,7 @@ public class NotablesService: NSObject {
      - parameter notes: The NotesData array
      - returns: An array of NotesData
      */
-    class func sortNotables(notes: [NotesData]) -> [NotesData] {
+    class func sortNotables(notes: [HATNotesData]) -> [HATNotesData] {
         
         return notes.sorted{ $0.data.updatedTime > $1.data.updatedTime }
     }

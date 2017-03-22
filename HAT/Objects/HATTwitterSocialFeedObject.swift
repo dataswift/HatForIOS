@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the twitter social feed object
-public class TwitterSocialFeedObject: SocialFeedObject, Comparable {
+public class TwitterSocialFeedObject: HATSocialFeedObject, Comparable {
     
     // MARK: - Comparable protocol
     

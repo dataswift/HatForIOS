@@ -12,6 +12,9 @@
 
 import Alamofire
 
+// MARK: Class
+
+/// The data plugs service class
 class DataPlugsService: NSObject {
     
     // MARK: - Get available data plugs
@@ -19,14 +22,14 @@ class DataPlugsService: NSObject {
     /**
      Gets the available data plugs for the user to enable
      
-     - parameter succesfulCallBack: A function of type ([DataPlugObject]) -> Void, executed on a successful result
+     - parameter succesfulCallBack: A function of type ([HATDataPlugObject]) -> Void, executed on a successful result
      - parameter failCallBack: A function of type (Void) -> Void, executed on an unsuccessful result
      */
-    class func getAvailableDataPlugs(succesfulCallBack: @escaping ([DataPlugObject]) -> Void, failCallBack: @escaping (DataPlugError) -> Void) -> Void {
+    class func getAvailableDataPlugs(succesfulCallBack: @escaping ([HATDataPlugObject]) -> Void, failCallBack: @escaping (DataPlugError) -> Void) -> Void {
         
         let url: String = "https://marketsquare.hubofallthings.com/api/dataplugs"
         
-        NetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: [:], headers: [:], completion: { (r: NetworkHelper.ResultType) -> Void in
+        ΗΑΤNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: [:], headers: [:], completion: { (r: ΗΑΤNetworkHelper.ResultType) -> Void in
             
             switch r {
                 
@@ -40,11 +43,11 @@ class DataPlugsService: NSObject {
                 
                 if isSuccess {
                     
-                    var returnValue: [DataPlugObject] = []
+                    var returnValue: [HATDataPlugObject] = []
                     
                     for item in result.arrayValue {
                         
-                        returnValue.append(DataPlugObject(dict: item.dictionaryValue))
+                        returnValue.append(HATDataPlugObject(dict: item.dictionaryValue))
                     }
                     
                     succesfulCallBack(returnValue)
@@ -77,7 +80,7 @@ class DataPlugsService: NSObject {
         let url = "https://marketsquare.hubofallthings.com/api/offer/" + offerID + "/userClaim"
         
         // make async request
-        NetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: { (r: NetworkHelper.ResultType) -> Void in
+        ΗΑΤNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: { (r: ΗΑΤNetworkHelper.ResultType) -> Void in
             
             switch r {
                 
@@ -139,7 +142,7 @@ class DataPlugsService: NSObject {
         let url = "https://marketsquare.hubofallthings.com/api/offer/" + offerID + "/claim"
         
         // make async request
-        NetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: { (r: NetworkHelper.ResultType) -> Void in
+        ΗΑΤNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: { (r: ΗΑΤNetworkHelper.ResultType) -> Void in
             
             switch r {
                 
@@ -189,7 +192,7 @@ class DataPlugsService: NSObject {
         let url = "https://" + userDomain + "/dataDebit/" + dataDebitID + "/enable"
         
         // make async request
-        NetworkHelper.AsynchronousRequest(url, method: .put, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: { (r: NetworkHelper.ResultType) -> Void in
+        ΗΑΤNetworkHelper.AsynchronousRequest(url, method: .put, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: { (r: ΗΑΤNetworkHelper.ResultType) -> Void in
             
             switch r {
                 
@@ -230,7 +233,7 @@ class DataPlugsService: NSObject {
         let url = "https://" + userDomain + "/dataDebit/" + dataDebitID
         
         // make async request
-        NetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: { (r: NetworkHelper.ResultType) -> Void in
+        ΗΑΤNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: { (r: ΗΑΤNetworkHelper.ResultType) -> Void in
             
             switch r {
                 
@@ -287,7 +290,7 @@ class DataPlugsService: NSObject {
             let url = "https://social-plug.hubofallthings.com/api/user/token/status"
             
             // make async request
-            NetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: { (r: NetworkHelper.ResultType) -> Void in
+            ΗΑΤNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: { (r: ΗΑΤNetworkHelper.ResultType) -> Void in
                 
                 switch r {
                     
