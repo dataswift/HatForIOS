@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A class representing the hat provider payment object
-class HATProviderPaymentObject: Comparable {
+public class HATProviderPaymentObject: Comparable {
     
     // MARK: - Comparable protocol
     

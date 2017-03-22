@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the notables table received from JSON
-class HATNotesNotablesData: Comparable {
+public class HATNotesNotablesData: Comparable {
     
     // MARK: - Comparable protocol
     

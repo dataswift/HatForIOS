@@ -30,7 +30,7 @@ class FormatterHelperTests: XCTestCase {
         
         let stringDate = "2017-02-14T18:07:33.000Z"
         
-        let result = FormatterHelper.formatStringToDate(string: stringDate)
+        let result = HATFormatterHelper.formatStringToDate(string: stringDate)
         
         let calendar = Calendar.current
         let day = calendar.component(.day, from: result!)
@@ -55,7 +55,7 @@ class FormatterHelperTests: XCTestCase {
         
         let base64URLString = "eyAibXNnX2VuIjogIkhlbGxvIiwKICAibXNnX2pwIjogIuOBk-OCk-OBq-OBoeOBryIsCiAgIm1zZ19jbiI6ICLkvaDlpb0iLAogICJtc2dfa3IiOiAi7JWI64WV7ZWY7IS47JqUIiwKICAibXNnX3J1IjogItCX0LTRgNCw0LLRgdGC0LLRg9C50YLQtSEiLAogICJtc2dfZGUiOiAiR3LDvMOfIEdvdHQiIH0"
         
-        let base64String = FormatterHelper.fromBase64URLToBase64(s: base64URLString)
+        let base64String = HATFormatterHelper.fromBase64URLToBase64(s: base64URLString)
         
         XCTAssertTrue(base64String == "eyAibXNnX2VuIjogIkhlbGxvIiwKICAibXNnX2pwIjogIuOBk+OCk+OBq+OBoeOBryIsCiAgIm1zZ19jbiI6ICLkvaDlpb0iLAogICJtc2dfa3IiOiAi7JWI64WV7ZWY7IS47JqUIiwKICAibXNnX3J1IjogItCX0LTRgNCw0LLRgdGC0LLRg9C50YLQtSEiLAogICJtc2dfZGUiOiAiR3LDvMOfIEdvdHQiIH0=")
     }

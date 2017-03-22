@@ -14,8 +14,8 @@ import SwiftyJSON
 
 // MARK: Struct
 
-/// A struct representing the data plug data definition from data plug JSON file
-struct HATDataPlugDataDefinitionObject: Comparable {
+/// A class representing the data plug data definition from data plug JSON file
+public class HATDataPlugDataDefinitionObject: Comparable {
     
     // MARK: - Comparable protocol
     
@@ -70,7 +70,7 @@ struct HATDataPlugDataDefinitionObject: Comparable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    init(dict: Dictionary<String, JSON>) {
+    convenience init(dict: Dictionary<String, JSON>) {
         
         self.init()
         

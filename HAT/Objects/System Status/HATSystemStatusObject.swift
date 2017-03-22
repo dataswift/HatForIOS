@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the system status object
-class HATSystemStatusObject: NSObject {
+public class HATSystemStatusObject: NSObject {
     
     // MARK: - Variables
     

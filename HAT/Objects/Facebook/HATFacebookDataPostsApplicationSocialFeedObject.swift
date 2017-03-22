@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the application that this post came from
-class HATFacebookDataPostsApplicationSocialFeedObject: Comparable {
+public class HATFacebookDataPostsApplicationSocialFeedObject: Comparable {
     
     // MARK: - Comparable protocol
     

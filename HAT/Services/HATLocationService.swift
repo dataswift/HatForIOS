@@ -15,7 +15,7 @@ import Alamofire
 // MARK: Class
 
 /// The location data plug service class
-class HATLocationService: NSObject {
+public class HATLocationService: NSObject {
     
     // MARK: - Create location plug URL
     

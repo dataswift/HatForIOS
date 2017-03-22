@@ -40,7 +40,7 @@ class DataPlugsServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
-        func success(objects: [DataPlugObject]) {
+        func success(objects: [HATDataPlugObject]) {
             
             XCTAssertTrue(objects.count == 2)
             expectationTest.fulfill()
@@ -51,7 +51,7 @@ class DataPlugsServiceTests: XCTestCase {
             
         }
         
-        DataPlugsService.getAvailableDataPlugs(succesfulCallBack: success,  failCallBack: fail)
+        HATDataPlugsService.getAvailableDataPlugs(succesfulCallBack: success,  failCallBack: fail)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -88,7 +88,7 @@ class DataPlugsServiceTests: XCTestCase {
             
         }
         
-        DataPlugsService.checkIfOfferIsClaimed(offerID: offerID, appToken: appToken, succesfulCallBack: success, failCallBack: fail)
+        HATDataPlugsService.checkIfOfferIsClaimed(offerID: offerID, appToken: appToken, succesfulCallBack: success, failCallBack: fail)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -125,7 +125,7 @@ class DataPlugsServiceTests: XCTestCase {
             
         }
         
-        DataPlugsService.claimOfferWithOfferID(offerID, appToken: appToken, succesfulCallBack: success, failCallBack: fail)
+        HATDataPlugsService.claimOfferWithOfferID(offerID, appToken: appToken, succesfulCallBack: success, failCallBack: fail)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -163,7 +163,7 @@ class DataPlugsServiceTests: XCTestCase {
             
         }
         
-        DataPlugsService.approveDataDebit(dataDebitID, userToken: appToken, userDomain: userDomain, succesfulCallBack: success, failCallBack: fail)
+        HATDataPlugsService.approveDataDebit(dataDebitID, userToken: appToken, userDomain: userDomain, succesfulCallBack: success, failCallBack: fail)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -200,7 +200,7 @@ class DataPlugsServiceTests: XCTestCase {
             
         }
         
-        DataPlugsService.checkDataDebit(dataDebitID, userToken: appToken, userDomain: userDomain, succesfulCallBack: success, failCallBack: fail)
+        HATDataPlugsService.checkDataDebit(dataDebitID, userToken: appToken, userDomain: userDomain, succesfulCallBack: success, failCallBack: fail)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -234,7 +234,7 @@ class DataPlugsServiceTests: XCTestCase {
             
         }
         
-        let test = DataPlugsService.checkSocialPlugAvailability(succesfulCallBack: success, failCallBack: fail)
+        let test = HATDataPlugsService.checkSocialPlugAvailability(succesfulCallBack: success, failCallBack: fail)
         test("")
         
         waitForExpectations(timeout: 10) { error in

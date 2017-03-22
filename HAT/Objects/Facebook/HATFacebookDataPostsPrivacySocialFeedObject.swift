@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the privacy settings of the post
-class HATFacebookDataPostsPrivacySocialFeedObject: Comparable {
+public class HATFacebookDataPostsPrivacySocialFeedObject: Comparable {
     
     // MARK: - Comparable protocol
     

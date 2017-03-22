@@ -50,7 +50,7 @@ class TwitterServiceTests: XCTestCase {
             
         }
         
-        TwitterService.isTwitterDataPlugActive(token: token, successful: completion, failed: failed)
+        HATTwitterService.isTwitterDataPlugActive(token: token, successful: completion, failed: failed)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -62,12 +62,12 @@ class TwitterServiceTests: XCTestCase {
     
     func testRemoveDuplicatesFromObjects() {
         
-        let obj1 = TwitterSocialFeedObject()
-        let obj2 = TwitterSocialFeedObject()
+        let obj1 = HATTwitterSocialFeedObject()
+        let obj2 = HATTwitterSocialFeedObject()
         
         var array = [obj1, obj2]
         
-        array = TwitterService.removeDuplicatesFrom(array: array)
+        array = HATTwitterService.removeDuplicatesFrom(array: array)
         
         XCTAssertTrue(array.count == 1)
     }
@@ -137,7 +137,7 @@ class TwitterServiceTests: XCTestCase {
         
         let array = [obj1, obj2]
         
-        let result = TwitterService.removeDuplicatesFrom(array: array)
+        let result = HATTwitterService.removeDuplicatesFrom(array: array)
         
         XCTAssertTrue(result.count == 1)
     }

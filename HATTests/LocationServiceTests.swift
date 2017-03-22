@@ -46,7 +46,7 @@ class LocationServiceTests: XCTestCase {
 
         }
         
-        LocationService.enableLocationDataPlug(userDomain, userDomain, success: completion, failed: failed)
+        HATLocationService.enableLocationDataPlug(userDomain, userDomain, success: completion, failed: failed)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -61,7 +61,7 @@ class LocationServiceTests: XCTestCase {
         let url = "https://marketsquare.hubofallthings.com/api/dataplugs/c532e122-db4a-44b8-9eaf-18989f214262/connect?hat=mariostsekis.hubofallthings.net"
         let userDomain = "mariostsekis.hubofallthings.net"
         
-        let formattedURL = LocationService.locationDataPlugURL(userDomain, dataPlugID: HATDataPlugCredentials.Market_DataPlugID)
+        let formattedURL = HATLocationService.locationDataPlugURL(userDomain, dataPlugID: HATDataPlugCredentials.Market_DataPlugID)
         
         XCTAssert(url == formattedURL)
     }

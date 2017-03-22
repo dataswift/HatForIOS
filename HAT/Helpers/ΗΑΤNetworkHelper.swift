@@ -16,7 +16,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// All network related methods
-class ΗΑΤNetworkHelper: NSObject {
+public class ΗΑΤNetworkHelper: NSObject {
     
     // MARK: - Enums
     

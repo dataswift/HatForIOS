@@ -47,7 +47,7 @@ class LoginServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        LoginService.logOnToHAT(userHATDomain: userDomain, successfulVerification: success, failedVerification: failed)
+        HATLoginService.logOnToHAT(userHATDomain: userDomain, successfulVerification: success, failedVerification: failed)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -98,7 +98,7 @@ class LoginServiceTests: XCTestCase {
             
             let urlToConnect = "rumpellocationtrackerapp://rumpellocationtrackerapphost?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaWJXRnlhVzl6ZEhObGEybHpMbWgxWW05bVlXeHNkR2hwYm1kekxtNWxkQ0lzSW5CeWIzWnBaR1Z5UzJWNUlqb2liV0Z5YVc5emRITmxhMmx6SW4wPSIsInJlc291cmNlIjoibWFyaW9zdHNla2lzLmh1Ym9mYWxsdGhpbmdzLm5ldCIsImFjY2Vzc1Njb3BlIjoib3duZXIiLCJpc3MiOiJtYXJpb3N0c2VraXMuaHVib2ZhbGx0aGluZ3MubmV0IiwiZXhwIjoxNDg3MjUzMTMxLCJpYXQiOjE0ODY5OTM5MzEsImp0aSI6ImRlNjM5YmVjZWYxY2RhYmY0Mjk2YTQzOTBjMThjZjQ3NTZmNGJhNzcwMDRjODg1YzBjOWE2YmZmMGZmZTY3NDVjYmFjYTUzZGQ2M2VlN2MzMzUxNWRjNzgyMDg4Yzc2MzdiMGE1YjVhMmVjN2ZjZGYwN2NkYTdjYjJjYTg5N2Q4MTFjNGY3YWIyYmRhNjVmMmI5ZTgzYTgyNzgzMzlmNTYwOTVhNTM4NzBiYzA0MWY0YmY5YzRmMTNhZDg2N2Y3ZTJkYjM4ZmE3NmZkNmU2ZTAyMWVjZjRiZjlmMThkNzUyYWVlMWZkMmI2M2RlODNhNTY0MmFlNWNkYzIwMzFhN2IifQ.Q3MdMggMpPWqPl1XMLm740WAaHw3oxLqMSiDT16tt4V4Q3WFrsH-geLva6m7fosjDg5r0L3MkpB-yqnOPeLc-YcWFLBYZOgnfyMEN0Q5o0vZ6_2m5JgOPGvLIJ3CEec8Dh3rf7p0Ua69oU0woCwBFjkuTosNfnTStbHisVg26JywGprK7jjve_W1zwAKr20GcCoMC5ulsP3nWCTZVLy2V6IRBUBPR8lXwmEz_PY27ayAqiGBXKz6lXJEkzxbwRrTYF3pO3s8E6oJYI1547rAteaIQDYbD7kisqAccHIvxyTz3AGjiAPPthlPf41pgHK4KuER91uKEBOul59A76vYAQ"
             
-            LoginService.loginToHATAuthorization(userDomain: userDomain, url: NSURL(string: urlToConnect)!, success: completion, failed: failed)
+            HATLoginService.loginToHATAuthorization(userDomain: userDomain, url: NSURL(string: urlToConnect)!, success: completion, failed: failed)
             
             waitForExpectations(timeout: 10) { error in
                 
@@ -113,7 +113,7 @@ class LoginServiceTests: XCTestCase {
         
         let domain = "hubofallthings.net"
         
-        XCTAssert(LoginService.verifyDomain(domain))
+        XCTAssert(HATLoginService.verifyDomain(domain))
     }
     
 }

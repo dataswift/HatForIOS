@@ -28,26 +28,26 @@ class NotableServiceTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let note1 = NotesData()
-        var note2 = NotesData()
+        let note1 = HATNotesData()
+        let note2 = HATNotesData()
         
         note2.lastUpdated = note2.lastUpdated.addingTimeInterval(100)
         
         var array = [note1, note2]
         
-        array = NotablesService.sortNotables(notes: array)
+        array = HATNotablesService.sortNotables(notes: array)
         
         XCTAssertTrue(array[0] == note2)
     }
     
     func testRemoveDuplicates() {
         
-        let note1 = NotesData()
+        let note1 = HATNotesData()
         let note2 = note1
         
         var array = [note1, note2]
         
-        array = NotablesService.removeDuplicatesFrom(array: array)
+        array = HATNotablesService.removeDuplicatesFrom(array: array)
         
         XCTAssertTrue(array.count == 1)
     }

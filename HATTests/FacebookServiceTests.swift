@@ -50,7 +50,7 @@ class FacebookServiceTests: XCTestCase {
             
         }
         
-        FacebookService.isFacebookDataPlugActive(token: token, successful: completion, failed: failed)
+        HATFacebookService.isFacebookDataPlugActive(token: token, successful: completion, failed: failed)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -62,12 +62,12 @@ class FacebookServiceTests: XCTestCase {
     
     func testRemoveDuplicatesFromObjects() {
         
-        let obj1 = FacebookSocialFeedObject()
-        let obj2 = FacebookSocialFeedObject()
+        let obj1 = HATFacebookSocialFeedObject()
+        let obj2 = HATFacebookSocialFeedObject()
         
         var array = [obj1, obj2]
         
-        array = FacebookService.removeDuplicatesFrom(array: array)
+        array = HATFacebookService.removeDuplicatesFrom(array: array)
         
         XCTAssertTrue(array.count == 1)
     }
@@ -139,7 +139,7 @@ class FacebookServiceTests: XCTestCase {
         
         let array = [obj1, obj2]
         
-        let result = FacebookService.removeDuplicatesFrom(array: array)
+        let result = HATFacebookService.removeDuplicatesFrom(array: array)
         
         XCTAssertTrue(result.count == 1)
     }

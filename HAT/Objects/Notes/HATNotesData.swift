@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the outer notes JSON format
-class HATNotesData: Comparable {
+public class HATNotesData: Comparable {
     
     // MARK: - Comparable protocol
     

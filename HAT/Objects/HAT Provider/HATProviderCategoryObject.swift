@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A class representing the hat provider category object
-class HATProviderCategoryObject: Comparable {
+public class HATProviderCategoryObject: Comparable {
     
     // MARK: - Comparable protocol
     

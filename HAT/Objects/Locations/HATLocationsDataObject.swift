@@ -13,7 +13,7 @@
 import SwiftyJSON
 
 /// A class representing the data of the locations object
-class HATLocationsDataObject: NSObject {
+public class HATLocationsDataObject: NSObject {
 
     /// The locations
     var locations: HATLocationsDataLocationsObject = HATLocationsDataLocationsObject()

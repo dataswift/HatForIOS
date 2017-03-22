@@ -15,7 +15,7 @@ import Alamofire
 // MARK: Class
 
 /// A class about the methods concerning the HAT
-class HATService: NSObject {
+public class HATService: NSObject {
     
     // MARK: - Application Token
     

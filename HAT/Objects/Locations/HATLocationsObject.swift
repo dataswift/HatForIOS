@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the locations received from server
-class HATLocationsObject: NSObject {
+public class HATLocationsObject: NSObject {
     
     // MARK: - Variables
     
