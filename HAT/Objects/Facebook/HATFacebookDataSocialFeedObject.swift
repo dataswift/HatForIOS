@@ -50,7 +50,7 @@ public class HATFacebookDataSocialFeedObject: Comparable {
     // MARK: - Variables
 
     /// The post data
-    var posts: HATFacebookDataPostsSocialFeedObject = HATFacebookDataPostsSocialFeedObject()
+    public var posts: HATFacebookDataPostsSocialFeedObject = HATFacebookDataPostsSocialFeedObject()
     
     // MARK: - Initialisers
     

@@ -50,15 +50,15 @@ public class HATDataPlugOwnerObject: Comparable {
     // MARK: - Variables
 
     /// The id of the owner
-    var id: String = ""
+    public var id: String = ""
     /// The email of the owner
-    var email: String = ""
+    public var email: String = ""
     /// The nickname of the owner
-    var nick: String = ""
+    public var nick: String = ""
     /// The first name of the owner
-    var firstName: String = ""
+    public var firstName: String = ""
     /// The last name of the owner
-    var lastName: String = ""
+    public var lastName: String = ""
     
     // MARK: - Initializers
     

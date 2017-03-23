@@ -50,9 +50,9 @@ public class HATDataPlugRatingObject: Comparable {
     // MARK: - Variables
 
     /// The number of the upvotes
-    var up: Int = -1
+    public var up: Int = -1
     /// The number of the downvotes
-    var down: Int = -1
+    public var down: Int = -1
     
     // MARK: - Initializers
     

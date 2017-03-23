@@ -46,21 +46,20 @@ public class HATNotesAuthorData: Comparable {
         
         return lhs.name < rhs.name
     }
-
     
     // MARK: - Variables
     
     /// the nickname of the author
-    var nickName: String
+    public var nickName: String
     /// the name of the author
-    var name: String
+    public var name: String
     /// the photo url of the author
-    var photoURL: String
+    public var photoURL: String
     /// the phata of the author. Required
-    var phata: String
+    public var phata: String
     
     /// the id of the author
-    var id: Int
+    public var id: Int
     
     // MARK: - Initialisers
     

@@ -50,12 +50,12 @@ public class HATDataPlugDataSetObject: Comparable {
     // MARK: - Variables
 
     /// The name of the dataset
-    var name: String = ""
+    public var name: String = ""
     /// The description of the dataset
-    var description: String = ""
+    public var description: String = ""
     
     /// The fields of the dataset
-    var fields: [HATDataPlugDataSetObject] = []
+    public var fields: [HATDataPlugDataSetObject] = []
     
     // MARK: - Initialiazers
     

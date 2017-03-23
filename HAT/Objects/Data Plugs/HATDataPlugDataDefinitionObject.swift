@@ -50,10 +50,10 @@ public class HATDataPlugDataDefinitionObject: Comparable {
     // MARK: - Variables
 
     /// The source of the data definition
-    var source: String = ""
+    public var source: String = ""
     
     /// The data sets for this data definition object
-    var dataSets: [HATDataPlugDataSetObject] = []
+    public var dataSets: [HATDataPlugDataSetObject] = []
     
     /**
      The default initialiser. Initialises everything to default values.

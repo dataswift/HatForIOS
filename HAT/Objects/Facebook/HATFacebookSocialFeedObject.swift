@@ -58,21 +58,21 @@ public class HATFacebookSocialFeedObject: HATSocialFeedObject, Comparable {
     
     // MARK: - Protocol's variables
     
-    internal var protocolLastUpdate: Date?
+    public  var protocolLastUpdate: Date?
     
     // MARK: - Class' variables
 
     /// The name of the record in database
-    var name: String = ""
+    public var name: String = ""
     
     /// The actual data of the record
-    var data: HATFacebookDataSocialFeedObject = HATFacebookDataSocialFeedObject()
+    public var data: HATFacebookDataSocialFeedObject = HATFacebookDataSocialFeedObject()
     
     /// The id of the record
-    var id: Int = -1
+    public var id: Int = -1
     
     /// The last updated field of the record
-    var lastUpdated: Date? = nil
+    public var lastUpdated: Date? = nil
     
     // MARK: - Initialisers
     

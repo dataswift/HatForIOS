@@ -50,7 +50,7 @@ public class HATProviderPaymentObject: Comparable {
     // MARK: - Variables
 
     /// The subscription type, Monthly , yearly
-    var subscription: Dictionary = ["period" : ""]
+    public var subscription: Dictionary = ["period" : ""]
     
     // MARK: - Initialisers
     

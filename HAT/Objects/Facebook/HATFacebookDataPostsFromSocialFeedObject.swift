@@ -50,9 +50,9 @@ public class HATFacebookDataPostsFromSocialFeedObject: Comparable {
     // MARK: - Variables
 
     /// The user's name
-    var name: String = ""
+    public var name: String = ""
     /// The user's id
-    var id: String = ""
+    public var id: String = ""
     
     // MARK: - Initialisers
     
