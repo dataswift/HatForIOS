@@ -26,6 +26,5 @@ Pod::Spec.new do |s|
     s.dependency 'SwiftyJSON'
     s.dependency 'JWTDecode'
     s.dependency 'SwiftyRSA'
-    s.dependency 'Mockingjay'
 
 end
