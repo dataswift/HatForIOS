@@ -84,7 +84,7 @@ public class HATLoginService: NSObject {
      - parameter url: The url to connect
      - parameter selfViewController: The UIViewController that calls this method
      */
-    public class func loginToHATAuthorization(userDomain: String, url: NSURL, success: @escaping (Bool) -> Void, failed: ((AuthenicationError) -> Void)?) {
+    public class func loginToHATAuthorization(userDomain: String, url: NSURL, success: @escaping (String?) -> Void, failed: ((AuthenicationError) -> Void)?) {
         
         // get token out
         if let token = ΗΑΤNetworkHelper.GetQueryStringParameter(url: url.absoluteString, param: Auth.TokenParamName) {
@@ -162,7 +162,7 @@ public class HATLoginService: NSObject {
                                 
                                 if (isSuccessful.isSuccessful) {
                                     
-                                    success(true)
+                                    success(token)
                                 } else {
                                     
                                     if failed != nil {
