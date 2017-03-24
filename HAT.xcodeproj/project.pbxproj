@@ -247,7 +247,6 @@
 				602D16DE1E82B1F600C53A5E /* HATSocialFeedObject.swift */,
 				606BBA2F1E54546700ECBA6B /* Data Plugs */,
 				601691241E4B6AE600505E8D /* Facebook */,
-				602D16EF1E82B20900C53A5E /* HATFacebookSocialFeedObject.swift */,
 				60E267921E54ADCD00B6D626 /* HAT Provider */,
 				60275BA61E6ECC0D0098B66C /* Locations */,
 				601691351E4B766100505E8D /* Notes */,
@@ -276,6 +275,7 @@
 				602D16EC1E82B20900C53A5E /* HATFacebookDataPostsPrivacySocialFeedObject.swift */,
 				602D16ED1E82B20900C53A5E /* HATFacebookDataPostsSocialFeedObject.swift */,
 				602D16EE1E82B20900C53A5E /* HATFacebookDataSocialFeedObject.swift */,
+				602D16EF1E82B20900C53A5E /* HATFacebookSocialFeedObject.swift */,
 			);
 			name = Facebook;
 			sourceTree = "<group>";
