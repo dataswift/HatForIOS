@@ -27,20 +27,6 @@ public class HATNotablesService: NSObject {
      */
     public class func fetchNotables(userDomain: String, authToken: String, structure: Dictionary<String, Any>, parameters: Dictionary<String, String>, success: @escaping (_ array: [JSON]) -> Void, failure: @escaping (HATTableError) -> Void ) -> Void {
         
-//        func createNotablesTables(error: HATTableError) {
-//            
-//            switch error {
-//            case .tableDoesNotExist:
-//                
-//                HATAccountService.createHatTable(userDomain: userDomain, token: authToken, notablesTableStructure: structure, failed: {(error: HATTableError) -> Void in return})()
-//                
-//                failure()
-//            default:
-//                
-//                break
-//            }
-//        }
-        
         HATAccountService.checkHatTableExists(userDomain: userDomain, tableName: "notablesv1",
             sourceName: "rumpel",
             authToken: authToken,
@@ -54,7 +40,7 @@ public class HATNotablesService: NSObject {
      - parameter token: The user's token
      - parameter tableID: The table id of the notes
      */
-    private class func getNotes (userDomain: String, token: String, parameters: Dictionary<String, String>, success: @escaping (_ array: [JSON]) -> Void) -> (_ tableID: NSNumber) -> Void {
+    private class func getNotes(userDomain: String, token: String, parameters: Dictionary<String, String>, success: @escaping (_ array: [JSON]) -> Void) -> (_ tableID: NSNumber) -> Void {
         
         return { (tableID: NSNumber) -> Void in
             
@@ -78,20 +64,9 @@ public class HATNotablesService: NSObject {
      - parameter id: the id of the note to delete
      - parameter tkn: the user's token as a string
      */
-    public class func deleteNoteWithKeychain(id: Int, tkn: String, userDomain: String) -> Void {
+    public class func deleteNote(id: Int, tkn: String, userDomain: String) -> Void {
         
-        HATAccountService.deleteHatRecord(userDomain: userDomain, token: tkn, recordId: id, success: self.completionDeleteNotesFunction, failed: {(HATTableError) -> Void in return})
-    }
-    
-    /**
-     Delete notes completion function
-     
-     - parameter token: The user's token as a string
-     - returns: (_ r: Helper.ResultType) -> Void
-     */
-    public class func completionDeleteNotesFunction(token: String) -> Void {
-        
-        print(token)
+        HATAccountService.deleteHatRecord(userDomain: userDomain, token: tkn, recordId: id, success: {_ in}, failed: {(HATTableError) -> Void in return})
     }
     
     // MARK: - Post note
@@ -102,7 +77,7 @@ public class HATNotablesService: NSObject {
      - parameter token: The token returned from the hat
      - parameter json: The json file as a Dictionary<String, Any>
      */
-    public class func postNote(userDomain: String, userToken: String, appToken: String, noteAsJSON: Dictionary<String, Any>, successCallBack: @escaping () -> Void) -> Void {
+    public class func postNote(userDomain: String, userToken: String, note: HATNotesData, successCallBack: @escaping () -> Void) -> Void {
         
         func posting(resultJSON: Dictionary<String, Any>) {
             
@@ -111,8 +86,13 @@ public class HATNotablesService: NSObject {
                            "Content-Type": ContentType.JSON,
                            "X-Auth-Token": userToken]
             
+            // create JSON file for posting with default values
+            let hatDataStructure = HATJSONHelper.createJSONForPostingOnNotables(hatTableStructure: resultJSON)
+            // update JSON file with the values needed
+            let hatData = HATJSONHelper.updateJSONFile(file: hatDataStructure, noteFile: note, userDomain: userDomain)
+            
             // make async request
-            ΗΑΤNetworkHelper.AsynchronousRequest("https://" + userDomain + "/data/record/values", method: HTTPMethod.post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: noteAsJSON, headers: headers, completion: { (r: ΗΑΤNetworkHelper.ResultType) -> Void in
+            ΗΑΤNetworkHelper.AsynchronousRequest("https://" + userDomain + "/data/record/values", method: HTTPMethod.post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: hatData, headers: headers, completion: { (r: ΗΑΤNetworkHelper.ResultType) -> Void in
                 
                 // handle result
                 switch r {
