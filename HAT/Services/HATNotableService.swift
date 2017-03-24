@@ -25,27 +25,27 @@ public class HATNotablesService: NSObject {
      
      - parameter authToken: The auth token from hat
      */
-    public class func fetchNotables(userDomain: String, authToken: String, structure: Dictionary<String, Any>, parameters: Dictionary<String, String>, success: @escaping (_ array: [JSON]) -> Void, failure: @escaping () -> Void ) -> Void {
+    public class func fetchNotables(userDomain: String, authToken: String, structure: Dictionary<String, Any>, parameters: Dictionary<String, String>, success: @escaping (_ array: [JSON]) -> Void, failure: @escaping (HATTableError) -> Void ) -> Void {
         
-        func createNotablesTables(error: HATTableError) {
-            
-            switch error {
-            case .tableDoesNotExist:
-                
-                HATAccountService.createHatTable(userDomain: userDomain, token: authToken, notablesTableStructure: structure, failed: {(error: HATTableError) -> Void in return})()
-                
-                failure()
-            default:
-                
-                break
-            }
-        }
+//        func createNotablesTables(error: HATTableError) {
+//            
+//            switch error {
+//            case .tableDoesNotExist:
+//                
+//                HATAccountService.createHatTable(userDomain: userDomain, token: authToken, notablesTableStructure: structure, failed: {(error: HATTableError) -> Void in return})()
+//                
+//                failure()
+//            default:
+//                
+//                break
+//            }
+//        }
         
         HATAccountService.checkHatTableExists(userDomain: userDomain, tableName: "notablesv1",
             sourceName: "rumpel",
             authToken: authToken,
             successCallback: getNotes(userDomain: userDomain, token: authToken, parameters: parameters, success: success),
-            errorCallback: createNotablesTables)
+            errorCallback: failure)
     }
     
     /**
