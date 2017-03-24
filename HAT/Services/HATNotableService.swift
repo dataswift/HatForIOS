@@ -190,6 +190,6 @@ public class HATNotablesService: NSObject {
      */
     public class func sortNotables(notes: [HATNotesData]) -> [HATNotesData] {
         
-        return notes.sorted{ $0.data.updatedTime > $1.data.updatedTime }
+        return notes.sorted{ $0.data.updatedTime < $1.data.updatedTime }
     }
 }
