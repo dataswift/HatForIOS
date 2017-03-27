@@ -124,6 +124,10 @@ public class HATAccountService: NSObject {
                         } else if statusCode == 404 {
                             
                             errorCallback(.tableDoesNotExist)
+                        } else {
+                            
+                            let message = NSLocalizedString("Server responded with error", comment: "")
+                            errorCallback(.generalError(message, statusCode, nil))
                         }
                     }
                 }
