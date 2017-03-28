@@ -368,6 +368,59 @@ public class HATAccountService: NSObject {
     }
     
     /**
+     Completes an upload of a file to hat
+     
+     - parameter fileID: The fileID of the file uploaded to hat
+     - parameter token: The owner's token
+     - parameter userDomain: The user hat domain
+     - parameter completion: A function to execute on success, returning the object returned from the server
+     - parameter errorCallback: A function to execute on failure, returning an error
+     */
+    class func completeUploadFileToHAT(fileID: String, token: String, userDomain: String, completion: @escaping (FileUploadObject) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+        
+        // create the url
+        let uploadURL = "https://" + userDomain + "/api/v2/files/file/" + fileID + "/complete"
+        
+        // create parameters and headers
+        let header = ["X-Auth-Token" : token]
+        
+        // make async request
+        ΗΑΤNetworkHelper.AsynchronousRequest(
+            uploadURL,
+            method: HTTPMethod.put,
+            encoding: Alamofire.JSONEncoding.default,
+            contentType: "application/json",
+            parameters: [:],
+            headers: header,
+            completion: {(r: ΗΑΤNetworkHelper.ResultType) -> Void in
+                
+                switch r {
+                    
+                case .error(let error, let statusCode):
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    errorCallback(.generalError(message, statusCode, error))
+                case .isSuccess(let isSuccess, let statusCode, let result):
+                    
+                    if isSuccess {
+                        
+                        let fileUploadJSON = FileUploadObject(from: result.dictionaryValue)
+                        
+                        //table found
+                        if statusCode == 200 {
+                            
+                            completion(fileUploadJSON)
+                        } else {
+                            
+                            let message = NSLocalizedString("Server responded with error", comment: "")
+                            errorCallback(.generalError(message, statusCode, nil))
+                        }
+                    }
+                }
+        })
+    }
+    
+    /**
      Constructs URL to get the public key
      
      - parameter userHATDomain: The user's HAT domain

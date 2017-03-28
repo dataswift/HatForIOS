@@ -184,8 +184,10 @@ public class ΗΑΤNetworkHelper: NSObject {
      - parameter completion: A function to execute if everything is ok
      */
     public class func uploadFile(filePath: String, url: String, completion: @escaping (_ r: ΗΑΤNetworkHelper.ResultType) -> Void) {
-    
-        Alamofire.upload(URL(string: filePath)!, to: url).responseJSON { response in
+        
+        let headers = ["x-amz-server-side-encryption" : "AES256"]
+        
+        Alamofire.upload(URL(string: filePath)!, to: URL(string: url)!, method: .post, headers: headers).responseJSON { response in
             
             switch response.result {
             case .success(_):
