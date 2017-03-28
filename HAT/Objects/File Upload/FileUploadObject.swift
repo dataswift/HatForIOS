@@ -59,7 +59,7 @@ public class FileUploadObject: NSObject {
         
         self.init()
         
-        if let tempFileID = dict["fileID"]?.stringValue {
+        if let tempFileID = dict["fileId"]?.stringValue {
             
             fileID = tempFileID
         }
