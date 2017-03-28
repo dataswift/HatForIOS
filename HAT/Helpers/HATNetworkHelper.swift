@@ -86,6 +86,8 @@ public class ΗΑΤNetworkHelper: NSObject {
                 //print(response.data)     // server data
                 //print(response.result)   // result of response serialization
                 
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
                 switch response.result {
                 case .success(_):
                     
@@ -113,6 +115,8 @@ public class ΗΑΤNetworkHelper: NSObject {
                     
                     completion(ΗΑΤNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode))
                 }
+                
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
     
@@ -138,6 +142,8 @@ public class ΗΑΤNetworkHelper: NSObject {
         headers: Dictionary<String, String>,
         completion: @escaping (_ r: ΗΑΤNetworkHelper.ResultTypeString) -> Void) -> Void {
         
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
         // do a post
         Alamofire.request(
             url, /* request url */
@@ -171,6 +177,8 @@ public class ΗΑΤNetworkHelper: NSObject {
                     
                     completion(ΗΑΤNetworkHelper.ResultTypeString.error(error: error, statusCode: response.response?.statusCode))
                 }
+                
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
     
@@ -185,9 +193,14 @@ public class ΗΑΤNetworkHelper: NSObject {
      */
     public class func uploadFile(image: Data, url: String, completion: @escaping (_ r: ΗΑΤNetworkHelper.ResultType) -> Void) {
         
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
         let headers = ["x-amz-server-side-encryption" : "AES256"]
         
-        Alamofire.upload(image, to: URL(string: url)!, method: .put, headers: headers).responseString(completionHandler: {(response) in
+        Alamofire.upload(image, to: URL(string: url)!, method: .put, headers: headers).uploadProgress(closure: {(progress) -> Void in
+        
+            print(progress.fractionCompleted)
+        }).responseString(completionHandler: {(response) in
         
             switch response.result {
             case .success(_):
@@ -206,29 +219,9 @@ public class ΗΑΤNetworkHelper: NSObject {
                 
                 completion(ΗΑΤNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode))
             }
-        
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         })
-        
-//        Alamofire.upload(URL(string: filePath)!, to: URL(string: url)!, method: .post, headers: headers).responseJSON { response in
-//            
-//            switch response.result {
-//            case .success(_):
-//                
-//                // check if we have a value and return it
-//                if let value = response.result.value {
-//                    
-//                    completion(ΗΑΤNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: JSON(value)))
-//                    // else return isSuccess: false and nil for value
-//                } else {
-//                    
-//                    completion(ΗΑΤNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: ""))
-//                }
-//            // return the error
-//            case .failure(let error):
-//                
-//                completion(ΗΑΤNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode))
-//            }
-//        }
     }
     
     // MARK: - Query from string
