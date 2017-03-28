@@ -191,7 +191,7 @@ public class ΗΑΤNetworkHelper: NSObject {
      - parameter url: The url to upload the file to
      - parameter completion: A function to execute if everything is ok
      */
-    public class func uploadFile(image: Data, url: String, completion: @escaping (_ r: ΗΑΤNetworkHelper.ResultType) -> Void) {
+    public class func uploadFile(image: Data, url: String, progressUpdateHandler: ((Double) -> Void)?, completion: @escaping (_ r: ΗΑΤNetworkHelper.ResultType) -> Void) {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
@@ -199,7 +199,10 @@ public class ΗΑΤNetworkHelper: NSObject {
         
         Alamofire.upload(image, to: URL(string: url)!, method: .put, headers: headers).uploadProgress(closure: {(progress) -> Void in
         
-            print(progress.fractionCompleted)
+            if let updateFunc = progressUpdateHandler {
+                
+                updateFunc(progress.fractionCompleted)
+            }
         }).responseString(completionHandler: {(response) in
         
             switch response.result {
