@@ -183,12 +183,12 @@ public class ΗΑΤNetworkHelper: NSObject {
      - parameter url: The url to upload the file to
      - parameter completion: A function to execute if everything is ok
      */
-    public class func uploadFile(filePath: String, url: String, completion: @escaping (_ r: ΗΑΤNetworkHelper.ResultType) -> Void) {
+    public class func uploadFile(image: Data, url: String, completion: @escaping (_ r: ΗΑΤNetworkHelper.ResultType) -> Void) {
         
         let headers = ["x-amz-server-side-encryption" : "AES256"]
         
-        Alamofire.upload(URL(string: filePath)!, to: URL(string: url)!, method: .post, headers: headers).responseJSON { response in
-            
+        Alamofire.upload(image, to: URL(string: url)!, method: .put, headers: headers).responseString(completionHandler: {(response) in
+        
             switch response.result {
             case .success(_):
                 
@@ -206,7 +206,29 @@ public class ΗΑΤNetworkHelper: NSObject {
                 
                 completion(ΗΑΤNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode))
             }
-        }
+        
+        })
+        
+//        Alamofire.upload(URL(string: filePath)!, to: URL(string: url)!, method: .post, headers: headers).responseJSON { response in
+//            
+//            switch response.result {
+//            case .success(_):
+//                
+//                // check if we have a value and return it
+//                if let value = response.result.value {
+//                    
+//                    completion(ΗΑΤNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: JSON(value)))
+//                    // else return isSuccess: false and nil for value
+//                } else {
+//                    
+//                    completion(ΗΑΤNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: ""))
+//                }
+//            // return the error
+//            case .failure(let error):
+//                
+//                completion(ΗΑΤNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode))
+//            }
+//        }
     }
     
     // MARK: - Query from string
