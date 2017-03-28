@@ -322,7 +322,7 @@ public class HATAccountService: NSObject {
      - parameter completion: A function to execute on success, returning the object returned from the server
      - parameter errorCallback: A function to execute on failure, returning an error
      */
-    class func uploadFileToHAT(fileName: String, token: String, userDomain: String, completion: @escaping (FileUploadObject) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public class func uploadFileToHAT(fileName: String, token: String, userDomain: String, completion: @escaping (FileUploadObject) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let uploadURL = "https://" + userDomain + "/api/v2/files/upload"
@@ -376,7 +376,7 @@ public class HATAccountService: NSObject {
      - parameter completion: A function to execute on success, returning the object returned from the server
      - parameter errorCallback: A function to execute on failure, returning an error
      */
-    class func completeUploadFileToHAT(fileID: String, token: String, userDomain: String, completion: @escaping (FileUploadObject) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public class func completeUploadFileToHAT(fileID: String, token: String, userDomain: String, completion: @escaping (FileUploadObject) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let uploadURL = "https://" + userDomain + "/api/v2/files/file/" + fileID + "/complete"
