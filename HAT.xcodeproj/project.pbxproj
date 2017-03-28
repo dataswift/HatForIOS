@@ -20,7 +20,7 @@
 		602D16D51E82B1D700C53A5E /* HATNotableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16CD1E82B1D700C53A5E /* HATNotableService.swift */; };
 		602D16D61E82B1D700C53A5E /* HATService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16CE1E82B1D700C53A5E /* HATService.swift */; };
 		602D16D71E82B1D700C53A5E /* HATTwitterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16CF1E82B1D700C53A5E /* HATTwitterService.swift */; };
-		602D16DB1E82B1E700C53A5E /* ΗΑΤNetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16D81E82B1E700C53A5E /* ΗΑΤNetworkHelper.swift */; };
+		602D16DB1E82B1E700C53A5E /* HATNetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16D81E82B1E700C53A5E /* HATNetworkHelper.swift */; };
 		602D16DC1E82B1E700C53A5E /* HATErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16D91E82B1E700C53A5E /* HATErrorHelper.swift */; };
 		602D16DD1E82B1E700C53A5E /* HATFormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16DA1E82B1E700C53A5E /* HATFormatterHelper.swift */; };
 		602D16DF1E82B1F600C53A5E /* HATSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16DE1E82B1F600C53A5E /* HATSocialFeedObject.swift */; };
@@ -74,7 +74,7 @@
 		60DDBB101E82F528007CDAFB /* HATNotableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16CD1E82B1D700C53A5E /* HATNotableService.swift */; };
 		60DDBB111E82F528007CDAFB /* HATService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16CE1E82B1D700C53A5E /* HATService.swift */; };
 		60DDBB121E82F528007CDAFB /* HATTwitterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16CF1E82B1D700C53A5E /* HATTwitterService.swift */; };
-		60DDBB131E82F52D007CDAFB /* ΗΑΤNetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16D81E82B1E700C53A5E /* ΗΑΤNetworkHelper.swift */; };
+		60DDBB131E82F52D007CDAFB /* HATNetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16D81E82B1E700C53A5E /* HATNetworkHelper.swift */; };
 		60DDBB141E82F52D007CDAFB /* HATErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16D91E82B1E700C53A5E /* HATErrorHelper.swift */; };
 		60DDBB151E82F52D007CDAFB /* HATFormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16DA1E82B1E700C53A5E /* HATFormatterHelper.swift */; };
 		60DDBB161E82F530007CDAFB /* HATTwitterDataSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D17121E82B23900C53A5E /* HATTwitterDataSocialFeedObject.swift */; };
@@ -138,7 +138,7 @@
 		602D16CD1E82B1D700C53A5E /* HATNotableService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HATNotableService.swift; path = Services/HATNotableService.swift; sourceTree = "<group>"; };
 		602D16CE1E82B1D700C53A5E /* HATService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HATService.swift; path = Services/HATService.swift; sourceTree = "<group>"; };
 		602D16CF1E82B1D700C53A5E /* HATTwitterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HATTwitterService.swift; path = Services/HATTwitterService.swift; sourceTree = "<group>"; };
-		602D16D81E82B1E700C53A5E /* ΗΑΤNetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ΗΑΤNetworkHelper.swift"; path = "Helpers/ΗΑΤNetworkHelper.swift"; sourceTree = "<group>"; };
+		602D16D81E82B1E700C53A5E /* HATNetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HATNetworkHelper.swift; path = Helpers/HATNetworkHelper.swift; sourceTree = "<group>"; };
 		602D16D91E82B1E700C53A5E /* HATErrorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HATErrorHelper.swift; path = Helpers/HATErrorHelper.swift; sourceTree = "<group>"; };
 		602D16DA1E82B1E700C53A5E /* HATFormatterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HATFormatterHelper.swift; path = Helpers/HATFormatterHelper.swift; sourceTree = "<group>"; };
 		602D16DE1E82B1F600C53A5E /* HATSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HATSocialFeedObject.swift; path = Objects/HATSocialFeedObject.swift; sourceTree = "<group>"; };
@@ -239,10 +239,10 @@
 		601691091E4B4B8400505E8D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				602D16D81E82B1E700C53A5E /* ΗΑΤNetworkHelper.swift */,
 				602D16D91E82B1E700C53A5E /* HATErrorHelper.swift */,
-				60E41DD31E853C1D00E3DF60 /* HATJSONHelper.swift */,
 				602D16DA1E82B1E700C53A5E /* HATFormatterHelper.swift */,
+				60E41DD31E853C1D00E3DF60 /* HATJSONHelper.swift */,
+				602D16D81E82B1E700C53A5E /* HATNetworkHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -619,7 +619,7 @@
 				602D16D21E82B1D700C53A5E /* HATFacebookService.swift in Sources */,
 				602D16F31E82B20900C53A5E /* HATFacebookDataPostsSocialFeedObject.swift in Sources */,
 				602D16DC1E82B1E700C53A5E /* HATErrorHelper.swift in Sources */,
-				602D16DB1E82B1E700C53A5E /* ΗΑΤNetworkHelper.swift in Sources */,
+				602D16DB1E82B1E700C53A5E /* HATNetworkHelper.swift in Sources */,
 				602D16E91E82B20000C53A5E /* HATDataPlugRatingObject.swift in Sources */,
 				602D16D71E82B1D700C53A5E /* HATTwitterService.swift in Sources */,
 				60BA45E91E8A7C5700ABB758 /* FileUploadObjectPermissions.swift in Sources */,
@@ -666,7 +666,7 @@
 				60DDBB241E82F544007CDAFB /* HATProviderCategoryObject.swift in Sources */,
 				606375A91E53613D00F0D1B1 /* FacebookServiceTests.swift in Sources */,
 				606375AD1E536DA300F0D1B1 /* NotableServiceTests.swift in Sources */,
-				60DDBB131E82F52D007CDAFB /* ΗΑΤNetworkHelper.swift in Sources */,
+				60DDBB131E82F52D007CDAFB /* HATNetworkHelper.swift in Sources */,
 				60DDBB2F1E82F54C007CDAFB /* HATDataPlugDataSetObject.swift in Sources */,
 				60DDBB251E82F544007CDAFB /* HATProviderKindObject.swift in Sources */,
 				60DDBB2C1E82F548007CDAFB /* HATFacebookDataSocialFeedObject.swift in Sources */,

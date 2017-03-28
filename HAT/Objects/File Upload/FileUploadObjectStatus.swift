@@ -18,7 +18,8 @@ public class FileUploadObjectStatus: NSObject {
 
     // MARK: - Variables
     
-    public var status: String
+    public var status: String = ""
+    public var size: Int?
     
     // MARK: - Initialisers
     
@@ -28,6 +29,7 @@ public class FileUploadObjectStatus: NSObject {
     public override init() {
         
         status = ""
+        size = nil
     }
     
     /**
@@ -40,6 +42,10 @@ public class FileUploadObjectStatus: NSObject {
         if let tempStatus = dict["status"]?.stringValue {
             
             status = tempStatus
+        }
+        if let tempSize = dict["size"]?.intValue {
+            
+            size = tempSize
         }
     }
 }
