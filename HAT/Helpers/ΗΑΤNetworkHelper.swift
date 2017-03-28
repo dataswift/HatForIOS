@@ -174,6 +174,39 @@ public class ΗΑΤNetworkHelper: NSObject {
         }
     }
     
+    // MARK: - Upload file
+    
+    /**
+     Uploads a specified file to the url provided
+     
+     - parameter filePath: A String representing the file path
+     - parameter url: The url to upload the file to
+     - parameter completion: A function to execute if everything is ok
+     */
+    public class func uploadFile(filePath: String, url: String, completion: @escaping (_ r: ΗΑΤNetworkHelper.ResultType) -> Void) {
+    
+        Alamofire.upload(URL(string: filePath)!, to: url).responseJSON { response in
+            
+            switch response.result {
+            case .success(_):
+                
+                // check if we have a value and return it
+                if let value = response.result.value {
+                    
+                    completion(ΗΑΤNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: JSON(value)))
+                    // else return isSuccess: false and nil for value
+                } else {
+                    
+                    completion(ΗΑΤNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: ""))
+                }
+            // return the error
+            case .failure(let error):
+                
+                completion(ΗΑΤNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode))
+            }
+        }
+    }
+    
     // MARK: - Query from string
     
     /**

@@ -442,4 +442,24 @@ public struct HATJSONHelper {
         return jsonFile.dictionaryObject!
     }
     
+    // MARK: - Create JSON for file uploading
+    
+    /**
+     Creates the json file to purchase a HAT
+     
+     - parameter purchaseModel: The purchase model with all the necessary values
+     - returns: A Dictionary <String, Any>
+     */
+    static func createFileUploadingJSONFrom(fileName: String) -> Dictionary <String, Any> {
+        
+        // the final JSON file to be returned
+        let json: Dictionary = [
+            
+            "name" : fileName,
+            "source" : "iPhone"
+            ] as [String : Any]
+        
+        return json
+    }
+    
 }
