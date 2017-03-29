@@ -892,7 +892,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2E6B981390ACA28160998321 /* Pods-HATTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = FG275HQ3SR;
 				INFOPLIST_FILE = HATTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -906,7 +906,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2E35995A09FA50E6E5A67F12 /* Pods-HATTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = FG275HQ3SR;
 				INFOPLIST_FILE = HATTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
