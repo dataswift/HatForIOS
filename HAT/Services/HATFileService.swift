@@ -24,7 +24,7 @@ public class HATFileService: NSObject {
      - parameter <#Parameter#>: <#Parameter description#>
      - returns: <#Returns#>
      */
-    public func searchFiles(userDomain: String, token: String, successCallback: @escaping ([FileUploadObject]) -> Void, errorCallBack: @escaping (HATError) -> Void) {
+    public class func searchFiles(userDomain: String, token: String, successCallback: @escaping ([FileUploadObject]) -> Void, errorCallBack: @escaping (HATError) -> Void) {
         
         let url: String = "https://" + userDomain + "/api/v2/files/search"
         let headers = ["X-Auth-Token" : token]
