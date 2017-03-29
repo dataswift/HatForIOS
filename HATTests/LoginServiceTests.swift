@@ -85,9 +85,15 @@ class LoginServiceTests: XCTestCase {
             
             MockingjayProtocol.addStub(matcher: http(.get, uri: url), builder: string(body) )
             
-            func completion(result: Bool) {
+            func completion(result: String?) {
                 
-                XCTAssert(result)
+                if result != nil {
+                    
+                    XCTAssert(true)
+                } else {
+                    
+                    XCTAssert(false)
+                }
                 expectationTest.fulfill()
             }
             
