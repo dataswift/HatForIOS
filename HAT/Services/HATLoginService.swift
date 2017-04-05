@@ -47,8 +47,7 @@ public class HATLoginService: NSObject {
     public class func formatAndVerifyDomain(userHATDomain: String, successfulVerification: @escaping (String) -> Void, failedVerification: @escaping (String) -> Void) {
         
         // trim values
-        let characterSet = CharacterSet.init(charactersIn: " ")
-        let hatDomain = userHATDomain.trimmingCharacters(in: characterSet)
+        let hatDomain = userHATDomain.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         // split text field text by .
         var array = hatDomain.components(separatedBy: ".")
