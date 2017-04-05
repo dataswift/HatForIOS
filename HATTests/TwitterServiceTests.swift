@@ -46,7 +46,7 @@ class TwitterServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: TwitterError) {
+        func failed(error: DataPlugError) {
             
         }
         

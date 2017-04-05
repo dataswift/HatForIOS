@@ -46,7 +46,7 @@ class FacebookServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: FacebookError) {
+        func failed(error: DataPlugError) {
             
         }
         
