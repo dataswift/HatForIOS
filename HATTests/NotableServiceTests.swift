@@ -29,7 +29,7 @@ class NotableServiceTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         let note1 = HATNotesData()
-        let note2 = HATNotesData()
+        var note2 = HATNotesData()
         
         note2.lastUpdated = note2.lastUpdated.addingTimeInterval(100)
         
