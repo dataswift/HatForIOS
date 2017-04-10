@@ -10,7 +10,7 @@ PODS:
     - Mockingjay/Core
   - SwiftyJSON (3.1.4)
   - SwiftyRSA (1.0.0)
-  - URITemplate (2.0.0)
+  - URITemplate (2.0.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -25,8 +25,8 @@ SPEC CHECKSUMS:
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyRSA: 3ec69b6a1bd2edf2b8fcb2fcdfd63e00b971e5eb
-  URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
+  URITemplate: 720b8a56a281494d7c2d31ee33183986eaed2c67
 
 PODFILE CHECKSUM: e63cebd266405cccb7e3e4637600947fc27ba843
 
-COCOAPODS: 1.2.1.beta.1
+COCOAPODS: 1.2.1.rc.1
