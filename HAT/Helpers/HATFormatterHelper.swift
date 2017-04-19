@@ -70,9 +70,10 @@ public class HATFormatterHelper: NSObject {
         // if date is nil try a different format, unix time stamp
         if date == nil {
             
+            // timestamp is in milliseconds
             if let timeStamp = Double(string) {
                 
-                date = Date(timeIntervalSince1970: TimeInterval(timeStamp))
+                date = Date(timeIntervalSince1970: TimeInterval(timeStamp / 1000))
             }
         }
         
