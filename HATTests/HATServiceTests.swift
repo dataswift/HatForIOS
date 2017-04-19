@@ -41,7 +41,7 @@ class HATServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
-        func completion(appToken: String) {
+        func completion(appToken: String, userToken: String?) {
             
             XCTAssertEqual(appToken, body["accessToken"])
             expectationTest.fulfill()

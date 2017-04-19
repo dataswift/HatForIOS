@@ -26,7 +26,7 @@ public class HATFileService: NSObject {
      - parameter successCallback: An @escaping ([FileUploadObject]) -> Void function to execute when the server has returned the files we were looking for
      - parameter errorCallBack: An @escaping (HATError) -> Void to execute when something went wrong
      */
-    public class func searchFiles(userDomain: String, token: String, successCallback: @escaping ([FileUploadObject]) -> Void, errorCallBack: @escaping (HATError) -> Void) {
+    public class func searchFiles(userDomain: String, token: String, successCallback: @escaping ([FileUploadObject], String?) -> Void, errorCallBack: @escaping (HATError) -> Void) {
         
         let url: String = "https://" + userDomain + "/api/v2/files/search"
         let headers = ["X-Auth-Token" : token]
@@ -34,7 +34,7 @@ public class HATFileService: NSObject {
             // handle result
             switch r {
                 
-            case .isSuccess(let isSuccess, let statusCode, let result):
+            case .isSuccess(let isSuccess, let statusCode, let result, let token):
                 
                 if isSuccess {
                     
@@ -45,7 +45,7 @@ public class HATFileService: NSObject {
                         images.append(FileUploadObject(from: image.dictionaryValue))
                     }
                     
-                    successCallback(images)
+                    successCallback(images, token)
                 } else {
                     
                     let message = "Server returned unexpected respone"
@@ -69,7 +69,7 @@ public class HATFileService: NSObject {
      - parameter successCallback: An @escaping (Bool) -> Void function to execute when the file has been deleted
      - parameter errorCallBack: An @escaping (HATError) -> Void to execute when something went wrong
      */
-    public class func deleteFile(fileID: String, token: String, userDomain: String, successCallback: @escaping (Bool) -> Void, errorCallBack: @escaping (HATError) -> Void) {
+    public class func deleteFile(fileID: String, token: String, userDomain: String, successCallback: @escaping (Bool, String?) -> Void, errorCallBack: @escaping (HATError) -> Void) {
         
         let url: String = "https://" + userDomain + "/api/v2/files/file/" + fileID
         let headers = ["X-Auth-Token" : token]
@@ -78,13 +78,13 @@ public class HATFileService: NSObject {
             // handle result
             switch r {
                 
-            case .isSuccess(let isSuccess, let statusCode, _):
+            case .isSuccess(let isSuccess, let statusCode, _, let token):
                 
                 if isSuccess {
                     
                     if statusCode == 200 {
                         
-                        successCallback(true)
+                        successCallback(true, token)
                     } else {
                         
                         let message = "Server returned unexpected respone"
@@ -122,7 +122,7 @@ public class HATFileService: NSObject {
             // handle result
             switch r {
                 
-            case .isSuccess(let isSuccess, let statusCode, _):
+            case .isSuccess(let isSuccess, let statusCode, _, _):
                 
                 if isSuccess {
                     
@@ -166,7 +166,7 @@ public class HATFileService: NSObject {
             // handle result
             switch r {
                 
-            case .isSuccess(let isSuccess, let statusCode, _):
+            case .isSuccess(let isSuccess, let statusCode, _, _):
                 
                 if isSuccess {
                     

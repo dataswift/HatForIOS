@@ -104,7 +104,7 @@ public class HATLoginService: NSObject {
                 HATNetworkHelper.AsynchronousStringRequest(url, method: HTTPMethod.get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.Text, parameters: parameters as Dictionary<String, AnyObject>, headers: headers) { (r: HATNetworkHelper.ResultTypeString) -> Void in
                     
                     switch r {
-                    case .isSuccess(let isSuccess, let statusCode, let result):
+                    case .isSuccess(let isSuccess, let statusCode, let result, _):
                         
                         if isSuccess {
                             

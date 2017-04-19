@@ -63,7 +63,7 @@ class HATAccountServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
-        func completion(json: [JSON]) {
+        func completion(json: [JSON], userToken: String?) {
             
             XCTAssertNotNil(json)
             expectationTest.fulfill()
@@ -303,7 +303,7 @@ class HATAccountServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
-        func completion(tableID: NSNumber) {
+        func completion(tableID: NSNumber, userToken: String?) {
             
             XCTAssertNotNil(json)
             expectationTest.fulfill()
@@ -886,7 +886,7 @@ class HATAccountServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
-        func completion(dictionary: Dictionary<String, Any>) {
+        func completion(dictionary: Dictionary<String, Any>, userToken: String?) {
             
             //XCTAssertNotNil(json)
             expectationTest.fulfill()

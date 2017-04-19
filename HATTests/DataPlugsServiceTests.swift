@@ -40,7 +40,7 @@ class DataPlugsServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
-        func success(objects: [HATDataPlugObject]) {
+        func success(objects: [HATDataPlugObject], userToken: String?) {
             
             XCTAssertTrue(objects.count == 2)
             expectationTest.fulfill()
