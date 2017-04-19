@@ -71,7 +71,7 @@ public class HATFileService: NSObject {
      */
     public class func deleteFile(fileID: String, token: String, userDomain: String, successCallback: @escaping (Bool) -> Void, errorCallBack: @escaping (HATError) -> Void) {
         
-        let url: String = "https://" + userDomain + "/api/v2/files/" + fileID
+        let url: String = "https://" + userDomain + "/api/v2/files/filei" + fileID
         let headers = ["X-Auth-Token" : token]
 
         HATNetworkHelper.AsynchronousRequest(url, method: .delete, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: [:], headers: headers, completion: { (r) -> Void in

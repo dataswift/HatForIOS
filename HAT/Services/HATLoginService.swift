@@ -29,7 +29,7 @@ public class HATLoginService: NSObject {
      */
     public class func verifyDomain(_ domain: String) -> Bool {
         
-        if domain == "hubofallthings.net" || domain == "warwickhat.net" || domain == "hubat.net" {
+        if domain == "hubofallthings.net" || domain == "bheard.org" || domain == "hubat.net" {
             
             return true
         }
