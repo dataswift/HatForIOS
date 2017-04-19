@@ -67,6 +67,15 @@ public class HATFormatterHelper: NSObject {
             date = dateFormatter.date(from: string)
         }
         
+        // if date is nil try a different format, unix time stamp
+        if date == nil {
+            
+            if let timeStamp = Double(string) {
+                
+                date = Date(timeIntervalSince1970: TimeInterval(timeStamp))
+            }
+        }
+        
         return date
     }
     
