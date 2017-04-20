@@ -493,7 +493,10 @@ public struct HATJSONHelper {
         //update image file
         jsonFile = HATJSONHelper.updatePhotosOfNoteOnJSON(file: jsonFile, photoURL: noteFile.data.photoData.link)
         //update location
-        jsonFile = HATJSONHelper.updateLocationsOfNoteOnJSON(file: jsonFile, latitude: noteFile.data.locationData.latitude, longitude: noteFile.data.locationData.longitude, accuracy: noteFile.data.locationData.accuracy)
+        if let latitude = noteFile.data.locationData.latitude, let longitude = noteFile.data.locationData.longitude {
+            
+            jsonFile = HATJSONHelper.updateLocationsOfNoteOnJSON(file: jsonFile, latitude: latitude, longitude: longitude, accuracy: noteFile.data.locationData.accuracy)
+        }
         
         return jsonFile.dictionaryObject!
     }
