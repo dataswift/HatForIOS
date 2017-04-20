@@ -31,7 +31,7 @@ public class HATFileService: NSObject {
         
         let url: String = "https://" + userDomain + "/api/v2/files/search"
         let headers = ["X-Auth-Token" : token]
-        HATNetworkHelper.AsynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: ["source" : "iPhone", "name": "", "status" : ["status" : status, "size" : "0"]], headers: headers, completion: { (r) -> Void in
+        HATNetworkHelper.AsynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: ["source" : "iPhone", "name": "", "status" : ["status" : status!, "size" : 0]], headers: headers, completion: { (r) -> Void in
             // handle result
             switch r {
                 
