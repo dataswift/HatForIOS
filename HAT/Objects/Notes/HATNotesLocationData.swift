@@ -83,11 +83,11 @@ public struct HATNotesLocationData: Comparable {
         
         altitude = 0
         altitudeAccuracy = 0
-        latitude = 0
+        latitude = nil
         heading = ""
         shared = false
         accuracy = 0
-        longitude = 0
+        longitude = nil
         speed = 0
     }
     
