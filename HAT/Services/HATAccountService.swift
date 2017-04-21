@@ -438,4 +438,27 @@ public class HATAccountService: NSObject {
         
         return nil
     }
+    
+    /**
+     Searches for profile table and fetches the entries
+     
+     - parameter userDomain: The user's HAT domain
+     - parameter userToken: The user's token
+     - parameter successCallback: A function to call on success
+     - parameter failCallback: A fuction to call on fail
+     */
+    public class func getProfileFromHAT(userDomain: String, userToken: String, successCallback: @escaping (HATProfileObject) -> Void, failCallback: @escaping (HATTableError) -> Void) -> Void {
+        
+        func tableFound (tableID: NSNumber, userToken: String?) {
+            
+            func profileEntries(json: [JSON], userToken: String?) {
+                
+                let array = HATProfileObject(from: json[0].dictionaryValue)
+                successCallback(array)
+            }
+            HATAccountService.getHatTableValues(token: userToken!, userDomain: userDomain, tableID: tableID, parameters: [:], successCallback: profileEntries, errorCallback: failCallback)
+        }
+        
+        HATAccountService.checkHatTableExists(userDomain: userDomain, tableName: "profile", sourceName: "rumpel", authToken: userToken, successCallback: tableFound, errorCallback: failCallback)
+    }
 }
