@@ -134,7 +134,7 @@ public class HATNotablesService: NSObject {
         // the array to return
         var arrayToReturn: [HATNotesData] = []
         
-        // go through each tweet object in the array
+        // go through each note object in the array
         for note in array {
             
             // check if the arrayToReturn it contains that value and if not add it
@@ -177,7 +177,7 @@ public class HATNotablesService: NSObject {
             }
         }
         
-        return HATNotablesService.sortNotables(notes: arrayToReturn)
+        return arrayToReturn
     }
     
     // MARK: - Sort notables
