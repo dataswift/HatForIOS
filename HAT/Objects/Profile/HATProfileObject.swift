@@ -61,7 +61,7 @@ public struct HATProfileObject: Comparable {
     /// The last updated date
     public var lastUpdate: Date? = nil
     /// The actual data of the record
-    public var data: HATProfileDataObject = HATProfileDataObject()
+    public var data: HATProfileDataProfileObject = HATProfileDataProfileObject()
     
     // MARK: - Initialisers
     
@@ -73,7 +73,7 @@ public struct HATProfileObject: Comparable {
         id = 0
         name = ""
         lastUpdate = nil
-        data = HATProfileDataObject()
+        data = HATProfileDataProfileObject()
     }
     
     /**
@@ -97,9 +97,9 @@ public struct HATProfileObject: Comparable {
             
             lastUpdate = HATFormatterHelper.formatStringToDate(string: String(tempLastUpdated))
         }
-        if let tempData = (dict["data"]?.dictionaryValue) {
+        if let tempData = (dict["tables"]?.dictionaryValue) {
             
-            data = HATProfileDataObject(from: tempData)
+            data = HATProfileDataProfileObject(from: tempData)
         }
     }
 }

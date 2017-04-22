@@ -114,13 +114,15 @@ public struct HATJSONHelper {
         return JSON
     }
     
+    
+    
     /**
      Creates the json file to update a note
      
      - parameter hatTableStructure: Dictionary<String, Any>
      - returns: Dictionary<String, Any>
      */
-    public static func createJSONForPostingOnNotables(hatTableStructure: Dictionary<String, Any>) -> Dictionary<String, Any> {
+    public static func createJSONForPosting(hatTableStructure: Dictionary<String, Any>) -> Dictionary<String, Any> {
         
         // init array
         var valuesArray: [Dictionary<String, Any>] = []
@@ -153,7 +155,7 @@ public struct HATJSONHelper {
                     let messageFieldDictionary: Dictionary = [
                         
                         "id": Int(dict.dictionary!["id"]!.number!),
-                        "name":dict.dictionary!["name"]!.string!
+                        "name": dict.dictionary!["name"]!.string!
                         ] as [String : Any]
                     
                     // create the message table
@@ -187,8 +189,8 @@ public struct HATJSONHelper {
                         // create the message field
                         let messageFieldDictionary: Dictionary = [
                             
-                            "id":Int(field.dictionary!["id"]!.number!),
-                            "name":field.dictionary!["name"]!.string!
+                            "id": Int(field.dictionary!["id"]!.number!),
+                            "name": field.dictionary!["name"]!.string!
                             ] as [String : Any]
                         
                         // create the message table
@@ -207,8 +209,8 @@ public struct HATJSONHelper {
         // add everything in a dictionary
         let arrayDictionary: Dictionary = [
             
-            "record":recordDictionary,
-            "values":valuesArray
+            "record": recordDictionary,
+            "values": valuesArray
             ] as [String : Any]
         
         // return the dictionary
@@ -470,7 +472,7 @@ public struct HATJSONHelper {
      - parameter file: The JSON file in a Dictionary<String, Any>
      - returns: Dictionary<String, Any>
      */
-    public static func updateJSONFile(file: Dictionary<String, Any>, noteFile: HATNotesData, userDomain: String) -> Dictionary<String, Any> {
+    public static func updateNotesJSONFile(file: Dictionary<String, Any>, noteFile: HATNotesData, userDomain: String) -> Dictionary<String, Any> {
         
         var jsonFile = JSON(file)
         
@@ -499,6 +501,113 @@ public struct HATJSONHelper {
         }
         
         return jsonFile.dictionaryObject!
+    }
+    
+    /**
+     Adds all the info about the profile we want to add to the JSON file
+     
+     - parameter file: The JSON file in a Dictionary<String, Any>
+     - returns: Dictionary<String, Any>
+     */
+    public static func updateProfileJSONFile(file: Dictionary<String, Any>, profileFile: HATProfileObject) -> Dictionary<String, Any> {
+        
+        var jsonFile = JSON(file)
+        
+        //jsonFile = HATJSONHelper.updateFirstNameOfProfileOnJSON(file: jsonFile, firstName: profileFile.data.profile.personal.firstName)
+        //jsonFile = HATJSONHelper.updateLastNameOfProfileOnJSON(file: jsonFile, lastName: profileFile.data.profile.personal.firstName)
+        return jsonFile.dictionaryObject!
+    }
+    
+    /**
+     Updates the photo of the note json file
+     
+     - parameter file: The json file to update
+     - parameter firstName: The first name entered in profile
+     
+     - returns: JSON
+     */
+    public static func updateFirstNameOfProfileOnJSON(file: JSON, firstName: String) -> JSON {
+        
+        var jsonFile = file
+        
+        for itemNumber in 0...jsonFile["values"].count {
+            
+            if jsonFile["values"][itemNumber]["field"]["name"] == "first_name" {
+                
+                jsonFile["values"][itemNumber]["value"] = JSON(firstName)
+            }
+        }
+        
+        return jsonFile
+    }
+    
+    /**
+     Updates the photo of the note json file
+     
+     - parameter file: The json file to update
+     - parameter lastName: The last name entered in profile
+     
+     - returns: JSON
+     */
+    public static func updateLastNameOfProfileOnJSON(file: JSON, lastName: String) -> JSON {
+        
+        var jsonFile = file
+        
+        for itemNumber in 0...jsonFile["values"].count {
+            
+            if jsonFile["values"][itemNumber]["field"]["name"] == "last_name" {
+                
+                jsonFile["values"][itemNumber]["value"] = JSON(lastName)
+            }
+        }
+        
+        return jsonFile
+    }
+    
+    /**
+     Updates the photo of the note json file
+     
+     - parameter file: The json file to update
+     - parameter middleName: The middle name entered in profile
+     
+     - returns: JSON
+     */
+    public static func updateMiddleNameOfProfileOnJSON(file: JSON, middleName: String) -> JSON {
+        
+        var jsonFile = file
+        
+        for itemNumber in 0...jsonFile["values"].count {
+            
+            if jsonFile["values"][itemNumber]["field"]["name"] == "middle_name" {
+                
+                jsonFile["values"][itemNumber]["value"] = JSON(middleName)
+            }
+        }
+        
+        return jsonFile
+    }
+    
+    /**
+     Updates the photo of the note json file
+     
+     - parameter file: The json file to update
+     - parameter titleInName: The title in name, Mr. Mrs. etc, entered in profile
+     
+     - returns: JSON
+     */
+    public static func updateTittleInNameOfProfileOnJSON(file: JSON, titleInName: String) -> JSON {
+        
+        var jsonFile = file
+        
+        for itemNumber in 0...jsonFile["values"].count {
+            
+            if jsonFile["values"][itemNumber]["field"]["name"] == "title" {
+                
+                jsonFile["values"][itemNumber]["value"] = JSON(titleInName)
+            }
+        }
+        
+        return jsonFile
     }
     
     // MARK: - Create JSON for file uploading

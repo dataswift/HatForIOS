@@ -51,6 +51,7 @@ public struct HATProfileDataProfileObject: Comparable {
 
     /// Indicates if the object, HATProfileDataProfileObject, is private
     public var isPrivate: Bool = true
+    var isPrivateTuple: (Bool, Int)? = nil
     
     /// The website object of user's profile
     public var website: HATProfileDataProfileWebsiteObject = HATProfileDataProfileWebsiteObject()
@@ -103,6 +104,8 @@ public struct HATProfileDataProfileObject: Comparable {
     public init() {
         
         isPrivate = true
+        isPrivateTuple = nil
+        
         website = HATProfileDataProfileWebsiteObject()
         nick = HATProfileDataProfileNickObject()
         primaryEmail = HATProfileDataProfilePrimaryEmailObject()
@@ -131,11 +134,12 @@ public struct HATProfileDataProfileObject: Comparable {
      */
     public init(from dict: Dictionary<String, JSON>) {
         
-        if let tempPrivate = (dict["private"]?.stringValue) {
+        if let tempFieldsDictionary = (dict["fields"]?.dictionaryValue) {
             
-            if let unwrappedTempPrivate = Bool(tempPrivate) {
+            if let tempPrivateValue = tempFieldsDictionary["values"]?[0]["value"].stringValue {
                 
-                isPrivate = unwrappedTempPrivate
+                isPrivate = Bool(tempPrivateValue)!
+                isPrivateTuple = (isPrivate, (tempFieldsDictionary["id"]?.intValue)!)
             }
         }
         

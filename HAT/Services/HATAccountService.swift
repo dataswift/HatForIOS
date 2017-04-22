@@ -64,6 +64,49 @@ public class HATAccountService: NSObject {
     }
     
     /**
+     Gets values from a particular table
+    
+    - parameter token: The token in String format
+    - parameter tableID: The table id as NSNumber
+    - parameter parameters: The parameters to pass to the request, e.g. startime, endtime, limit
+    - parameter successCallback: A callback called when successful of type @escaping ([JSON]) -> Void
+    - parameter errorCallback: A callback called when failed of type @escaping (Void) -> Void)
+    */
+    public class func getHatTableValuesWithOutPretty(token: String, userDomain: String, tableID: NSNumber, parameters: Dictionary<String, String>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+        
+        // form the url
+        let url = "https://" + userDomain + "/data/table/" + tableID.stringValue + "/values"
+        
+        // create parameters and headers
+        let headers = [RequestHeaders.xAuthToken : token]
+        
+        // make the request
+        HATNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion:
+            { (r: HATNetworkHelper.ResultType) -> Void in
+                
+                switch r {
+                    
+                case .error(let error, let statusCode):
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    errorCallback(.generalError(message, statusCode, error))
+                case .isSuccess(let isSuccess, _, let result, let token):
+                    
+                    if isSuccess {
+                        
+                        guard let array = result.array else {
+                            
+                            errorCallback(.noValuesFound)
+                            return
+                        }
+                        
+                        successCallback(array, token)
+                    }
+                }
+        })
+    }
+    
+    /**
      Checks if a table exists
      
      - parameter tableName: The table we are looking as String

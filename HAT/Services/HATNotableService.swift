@@ -87,9 +87,9 @@ public class HATNotablesService: NSObject {
                            "X-Auth-Token": userToken]
             
             // create JSON file for posting with default values
-            let hatDataStructure = HATJSONHelper.createJSONForPostingOnNotables(hatTableStructure: resultJSON)
+            let hatDataStructure = HATJSONHelper.createJSONForPosting(hatTableStructure: resultJSON)
             // update JSON file with the values needed
-            let hatData = HATJSONHelper.updateJSONFile(file: hatDataStructure, noteFile: note, userDomain: userDomain)
+            let hatData = HATJSONHelper.updateNotesJSONFile(file: hatDataStructure, noteFile: note, userDomain: userDomain)
             
             // make async request
             HATNetworkHelper.AsynchronousRequest("https://" + userDomain + "/data/record/values", method: HTTPMethod.post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: hatData, headers: headers, completion: { (r: HATNetworkHelper.ResultType) -> Void in
