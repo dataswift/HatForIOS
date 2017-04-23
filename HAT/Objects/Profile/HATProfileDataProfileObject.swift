@@ -134,7 +134,7 @@ public struct HATProfileDataProfileObject: Comparable {
      */
     public init(from dict: Dictionary<String, JSON>) {
         
-        if let tempFieldsDictionary = (dict["fields"]?.dictionaryValue) {
+        if let tempFieldsDictionary = (dict["fields"]?.arrayValue[0].dictionaryValue) {
             
             if let tempPrivateValue = tempFieldsDictionary["values"]?[0]["value"].stringValue {
                 
@@ -143,10 +143,23 @@ public struct HATProfileDataProfileObject: Comparable {
             }
         }
         
-        if let tempWebsite = (dict["website"]?.dictionaryValue) {
+        if let tempSubTables = (dict["subtables"]?.arrayValue) {
             
-            website = HATProfileDataProfileWebsiteObject(from: tempWebsite)
+            for subtable in tempSubTables {
+                
+                let tempName = (subtable["name"].stringValue)
+                    
+                if tempName == "website" {
+                    
+                    website = HATProfileDataProfileWebsiteObject(from: (subtable["fields"].arrayValue))
+                }
+            }
         }
+        
+//        if let tempWebsite = (dict["website"]?.dictionaryValue) {
+//            
+//            website = HATProfileDataProfileWebsiteObject(from: tempWebsite)
+//        }
         
         if let tempNick = (dict["nick"]?.dictionaryValue) {
             

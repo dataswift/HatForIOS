@@ -97,9 +97,10 @@ public struct HATProfileObject: Comparable {
             
             lastUpdate = HATFormatterHelper.formatStringToDate(string: String(tempLastUpdated))
         }
-        if let tempData = (dict["tables"]?.dictionaryValue) {
+        if let tempData = (dict["tables"]?.arrayValue) {
             
-            data = HATProfileDataProfileObject(from: tempData)
+            let tempData2 = tempData[0].dictionaryValue
+            data = HATProfileDataProfileObject(from: tempData2)
         }
     }
 }
