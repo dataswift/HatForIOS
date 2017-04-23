@@ -143,7 +143,7 @@ public struct HATProfileDataProfileObject: Comparable {
             }
         }
         
-        if let tempSubTables = (dict["subtables"]?.arrayValue) {
+        if let tempSubTables = (dict["subTables"]?.arrayValue) {
             
             for subtable in tempSubTables {
                 
