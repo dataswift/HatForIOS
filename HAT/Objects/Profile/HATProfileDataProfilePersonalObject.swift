@@ -53,7 +53,13 @@ public struct HATProfileDataProfilePersonalObject: Comparable {
     public var isPrivate: Bool = true
     
     /// User's first name
-    public var firstName: String = ""
+    public var firstName: String = "" {
+        
+        didSet{
+            
+            firstNameTuple = (firstName, firstNameTuple!.1)
+        }
+    }
     /// User's last name
     public var lastName: String = ""
     /// User's middle name
