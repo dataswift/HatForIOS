@@ -513,7 +513,7 @@ public struct HATJSONHelper {
         
         var jsonFile = JSON(file)
         
-        //jsonFile = HATJSONHelper.updateFirstNameOfProfileOnJSON(file: jsonFile, firstName: profileFile.data.profile.personal.firstName)
+        jsonFile = HATJSONHelper.updateFirstNameOfProfileOnJSON(file: jsonFile, firstName: profileFile.data.personal.firstNameTuple!)
         //jsonFile = HATJSONHelper.updateLastNameOfProfileOnJSON(file: jsonFile, lastName: profileFile.data.profile.personal.firstName)
         return jsonFile.dictionaryObject!
     }
@@ -526,15 +526,15 @@ public struct HATJSONHelper {
      
      - returns: JSON
      */
-    public static func updateFirstNameOfProfileOnJSON(file: JSON, firstName: String) -> JSON {
+    public static func updateFirstNameOfProfileOnJSON(file: JSON, firstName: (String, Int)) -> JSON {
         
         var jsonFile = file
         
         for itemNumber in 0...jsonFile["values"].count {
             
-            if jsonFile["values"][itemNumber]["field"]["name"] == "first_name" {
+            if jsonFile["values"][itemNumber]["field"]["id"].stringValue == String(describing: firstName.1) {
                 
-                jsonFile["values"][itemNumber]["value"] = JSON(firstName)
+                jsonFile["values"][itemNumber]["value"] = JSON(firstName.0)
             }
         }
         
