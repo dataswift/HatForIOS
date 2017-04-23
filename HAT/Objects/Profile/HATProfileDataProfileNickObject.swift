@@ -55,6 +55,12 @@ public struct HATProfileDataProfileNickObject: Comparable {
     /// The user's nickname
     public var name: String = ""
     
+    /// A tuple containing the isPrivate and the ID of the value
+    var isPrivateTuple: (Bool, Int)? = nil
+    
+    /// A tuple containing the value and the ID of the value
+    var nameTuple: (String, Int)? = nil
+    
     // MARK: - Initialisers
     
     /**
@@ -69,19 +75,32 @@ public struct HATProfileDataProfileNickObject: Comparable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    public init(from dict: Dictionary<String, JSON>) {
+    public init(from array: [JSON]) {
         
-        if let tempPrivate = (dict["private"]?.stringValue) {
+        for json in array {
             
-            if let unwrappedTempPrivate = Bool(tempPrivate) {
+            let dict = json.dictionaryValue
+            
+            if let tempName = (dict["name"]?.stringValue) {
                 
-                isPrivate = unwrappedTempPrivate
+                if tempName == "private" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        isPrivate = Bool((tempValues[0].dictionaryValue["value"]?.stringValue)!)!
+                        isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                    }
+                }
+                
+                if tempName == "name" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        name = (tempValues[0].dictionaryValue["value"]?.stringValue)!
+                        nameTuple = (name, (dict["id"]?.intValue)!)
+                    }
+                }
             }
-        }
-        
-        if let tempName = (dict["name"]?.stringValue) {
-            
-            name = tempName
         }
     }
 }

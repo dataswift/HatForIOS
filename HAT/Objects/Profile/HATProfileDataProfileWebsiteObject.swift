@@ -55,7 +55,10 @@ public struct HATProfileDataProfileWebsiteObject: Comparable {
     /// Link to user's website
     public var link: String = ""
     
+    /// A tuple containing the isPrivate and the ID of the value
     var isPrivateTuple: (Bool, Int)? = nil
+    
+    /// A tuple containing the value and the ID of the value
     var linkTuple: (String, Int)? = nil
     
     // MARK: - Initialisers

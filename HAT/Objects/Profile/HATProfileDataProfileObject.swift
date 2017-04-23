@@ -153,112 +153,107 @@ public struct HATProfileDataProfileObject: Comparable {
                     
                     website = HATProfileDataProfileWebsiteObject(from: (subtable["fields"].arrayValue))
                 }
+                
+                if tempName == "nick" {
+                    
+                    nick = HATProfileDataProfileNickObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "primary_email" {
+                    
+                    primaryEmail = HATProfileDataProfilePrimaryEmailObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "youtube" {
+                    
+                    youtube = HATProfileDataProfileYoutubeObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "address_global" {
+                    
+                    addressGlobal = HATProfileDataProfileAddressGlobalObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "linkedin" {
+                    
+                    linkedIn = HATProfileDataProfileLinkedInObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "birth" {
+                    
+                    birth = HATProfileDataProfileBirthObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "home_phone" {
+                    
+                    youtube = HATProfileDataProfileYoutubeObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "google" {
+                    
+                    google = HATProfileDataProfileGoogleObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "age" {
+                    
+                    age = HATProfileDataProfileAgeObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "personal" {
+                    
+                    personal = HATProfileDataProfilePersonalObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "blog" {
+                    
+                    blog = HATProfileDataProfileBlogObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "facebook" {
+                    
+                    facebook = HATProfileDataProfileFacebookObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "address_details" {
+                    
+                    addressDetails = HATProfileDataProfileAddressDetailObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "emergency_contact" {
+                    
+                    emergencyContact = HATProfileDataProfileEmergencyContactObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "alternative_email" {
+                    
+                    alternativeEmail = HATProfileDataProfileAlternativeEmailObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "fb_profile_photo" {
+                    
+                    facebookProfilePhoto = HATProfileDataProfileFacebookProfilePhotoObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "twitter" {
+                    
+                    twitter = HATProfileDataProfileTwitterObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "about" {
+                    
+                    about = HATProfileDataProfileAboutObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "mobile" {
+                    
+                    mobile = HATProfileDataProfileMobileObject(from: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "gender" {
+                    
+                    gender = HATProfileDataProfileGenderObject(from: (subtable["fields"].arrayValue))
+                }
             }
-        }
-        
-//        if let tempWebsite = (dict["website"]?.dictionaryValue) {
-//            
-//            website = HATProfileDataProfileWebsiteObject(from: tempWebsite)
-//        }
-        
-        if let tempNick = (dict["nick"]?.dictionaryValue) {
-            
-            nick = HATProfileDataProfileNickObject(from: tempNick)
-        }
-        
-        if let tempPrimaryEmail = (dict["primary_email"]?.dictionaryValue) {
-            
-            primaryEmail = HATProfileDataProfilePrimaryEmailObject(from: tempPrimaryEmail)
-        }
-        
-        if let tempYoutube = (dict["youtube"]?.dictionaryValue) {
-            
-            youtube = HATProfileDataProfileYoutubeObject(from: tempYoutube)
-        }
-        
-        if let tempAddressGlobal = (dict["address_global"]?.dictionaryValue) {
-            
-            addressGlobal = HATProfileDataProfileAddressGlobalObject(from: tempAddressGlobal)
-        }
-        
-        if let tempLinkedIn = (dict["linkedin"]?.dictionaryValue) {
-            
-            linkedIn = HATProfileDataProfileLinkedInObject(from: tempLinkedIn)
-        }
-        
-        if let tempBirth = (dict["birth"]?.dictionaryValue) {
-            
-            birth = HATProfileDataProfileBirthObject(from: tempBirth)
-        }
-        
-        if let tempHomePhone = (dict["home_phone"]?.dictionaryValue) {
-            
-            homePhone = HATProfileDataProfileHomePhoneObject(from: tempHomePhone)
-        }
-        
-        if let tempGoogle = (dict["google"]?.dictionaryValue) {
-            
-            google = HATProfileDataProfileGoogleObject(from: tempGoogle)
-        }
-        
-        if let tempAge = (dict["age"]?.dictionaryValue) {
-            
-            age = HATProfileDataProfileAgeObject(from: tempAge)
-        }
-        
-        if let tempPersonal = (dict["personal"]?.dictionaryValue) {
-            
-            personal = HATProfileDataProfilePersonalObject(from: tempPersonal)
-        }
-        
-        if let tempBlog = (dict["blog"]?.dictionaryValue) {
-            
-            blog = HATProfileDataProfileBlogObject(from: tempBlog)
-        }
-        
-        if let tempFacebook = (dict["facebook"]?.dictionaryValue) {
-            
-            facebook = HATProfileDataProfileFacebookObject(from: tempFacebook)
-        }
-        
-        if let tempHomeAddressDetails = (dict["address_details"]?.dictionaryValue) {
-            
-            addressDetails = HATProfileDataProfileAddressDetailObject(from: tempHomeAddressDetails)
-        }
-        
-        if let tempEmergencyContact = (dict["emergency_contact"]?.dictionaryValue) {
-            
-            emergencyContact = HATProfileDataProfileEmergencyContactObject(from: tempEmergencyContact)
-        }
-        
-        if let tempAlternativeEmail = (dict["alternative_email"]?.dictionaryValue) {
-            
-            alternativeEmail = HATProfileDataProfileAlternativeEmailObject(from: tempAlternativeEmail)
-        }
-        
-        if let tempFacebookProfilePhoto = (dict["fb_profile_photo"]?.dictionaryValue) {
-            
-            facebookProfilePhoto = HATProfileDataProfileFacebookProfilePhotoObject(from: tempFacebookProfilePhoto)
-        }
-        
-        if let tempTwitter = (dict["twitter"]?.dictionaryValue) {
-            
-            twitter = HATProfileDataProfileTwitterObject(from: tempTwitter)
-        }
-        
-        if let tempAbout = (dict["about"]?.dictionaryValue) {
-            
-            about = HATProfileDataProfileAboutObject(from: tempAbout)
-        }
-        
-        if let tempMobile = (dict["mobile"]?.dictionaryValue) {
-            
-            mobile = HATProfileDataProfileMobileObject(from: tempMobile)
-        }
-        
-        if let tempGender = (dict["gender"]?.dictionaryValue) {
-            
-            gender = HATProfileDataProfileGenderObject(from: tempGender)
         }
     }
     

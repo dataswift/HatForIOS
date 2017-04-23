@@ -57,6 +57,15 @@ public struct HATProfileDataProfileAboutObject: Comparable {
     /// The body of the about section
     public var body: String = ""
     
+    /// A tuple containing the isPrivate and the ID of the value
+    var isPrivateTuple: (Bool, Int)? = nil
+    
+    /// A tuple containing the value and the ID of the value
+    var titleTuple: (String, Int)? = nil
+    
+    /// A tuple containing the value and the ID of the value
+    var bodyTuple: (String, Int)? = nil
+    
     // MARK: - Initialisers
     
     /**
@@ -72,24 +81,41 @@ public struct HATProfileDataProfileAboutObject: Comparable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    public init(from dict: Dictionary<String, JSON>) {
+    public init(from array: [JSON]) {
         
-        if let tempPrivate = (dict["private"]?.stringValue) {
+        for json in array {
             
-            if let unwrappedTempPrivate = Bool(tempPrivate) {
+            let dict = json.dictionaryValue
+            
+            if let tempName = (dict["name"]?.stringValue) {
                 
-                isPrivate = unwrappedTempPrivate
+                if tempName == "private" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        isPrivate = Bool((tempValues[0].dictionaryValue["value"]?.stringValue)!)!
+                        isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                    }
+                }
+                
+                if tempName == "title" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        title = (tempValues[0].dictionaryValue["value"]?.stringValue)!
+                        titleTuple = (title, (dict["id"]?.intValue)!)
+                    }
+                }
+                
+                if tempName == "body" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        body = (tempValues[0].dictionaryValue["value"]?.stringValue)!
+                        bodyTuple = (body, (dict["id"]?.intValue)!)
+                    }
+                }
             }
-        }
-        
-        if let tempTitle = (dict["title"]?.stringValue) {
-            
-            title = tempTitle
-        }
-        
-        if let tempBody = (dict["body"]?.stringValue) {
-            
-            body = tempBody
         }
     }
     

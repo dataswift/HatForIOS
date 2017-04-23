@@ -55,6 +55,12 @@ public struct HATProfileDataProfileGoogleObject: Comparable {
     /// The link to user's google profile
     public var link: String = ""
     
+    /// A tuple containing the isPrivate and the ID of the value
+    var isPrivateTuple: (Bool, Int)? = nil
+    
+    /// A tuple containing the value and the ID of the value
+    var linkTuple: (String, Int)? = nil
+    
     // MARK: - Initialisers
     
     /**
@@ -69,19 +75,32 @@ public struct HATProfileDataProfileGoogleObject: Comparable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    public init(from dict: Dictionary<String, JSON>) {
+    public init(from array: [JSON]) {
         
-        if let tempPrivate = (dict["private"]?.stringValue) {
+        for json in array {
             
-            if let unwrappedTempPrivate = Bool(tempPrivate) {
+            let dict = json.dictionaryValue
+            
+            if let tempName = (dict["name"]?.stringValue) {
                 
-                isPrivate = unwrappedTempPrivate
+                if tempName == "private" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        isPrivate = Bool((tempValues[0].dictionaryValue["value"]?.stringValue)!)!
+                        isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                    }
+                }
+                
+                if tempName == "link" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        link = (tempValues[0].dictionaryValue["value"]?.stringValue)!
+                        linkTuple = (link, (dict["id"]?.intValue)!)
+                    }
+                }
             }
-        }
-        
-        if let tempLink = (dict["link"]?.stringValue) {
-            
-            link = tempLink
         }
     }
     

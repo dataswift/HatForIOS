@@ -60,6 +60,12 @@ public struct HATProfileDataProfileBirthObject: Comparable {
     /// User's date of birth
     public var date: Date? = nil
     
+    /// A tuple containing the isPrivate and the ID of the value
+    var isPrivateTuple: (Bool, Int)? = nil
+    
+    /// A tuple containing the value and the ID of the value
+    var dateTuple: (Date?, Int)? = nil
+    
     // MARK: - Initialisers
     
     /**
@@ -74,19 +80,33 @@ public struct HATProfileDataProfileBirthObject: Comparable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    public init(from dict: Dictionary<String, JSON>) {
+    public init(from array: [JSON]) {
         
-        if let tempPrivate = (dict["private"]?.stringValue) {
+        for json in array {
             
-            if let unwrappedTempPrivate = Bool(tempPrivate) {
+            let dict = json.dictionaryValue
+            
+            if let tempName = (dict["name"]?.stringValue) {
                 
-                isPrivate = unwrappedTempPrivate
+                if tempName == "private" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        isPrivate = Bool((tempValues[0].dictionaryValue["value"]?.stringValue)!)!
+                        isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                    }
+                }
+                
+                if tempName == "date" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        let tempDate = (tempValues[0].dictionaryValue["value"]?.stringValue)!
+                        date = HATFormatterHelper.formatStringToDate(string: String(tempDate))
+                        dateTuple = (date, (dict["id"]?.intValue)!)
+                    }
+                }
             }
-        }
-        
-        if let tempDate = (dict["date"]?.stringValue) {
-            
-            date = HATFormatterHelper.formatStringToDate(string: String(tempDate))
         }
     }
     

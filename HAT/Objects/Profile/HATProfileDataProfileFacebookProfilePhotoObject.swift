@@ -37,6 +37,9 @@ public struct HATProfileDataProfileFacebookProfilePhotoObject: Equatable {
     /// Indicates if the object, HATProfileDataProfileFacebookProfilePhotoObject, is private
     public var isPrivate: Bool = true
     
+    /// A tuple containing the isPrivate and the ID of the value
+    var isPrivateTuple: (Bool, Int)? = nil
+    
     // MARK: - Initialisers
     
     /**
@@ -50,13 +53,22 @@ public struct HATProfileDataProfileFacebookProfilePhotoObject: Equatable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    public init(from dict: Dictionary<String, JSON>) {
+    public init(from array: [JSON]) {
         
-        if let tempPrivate = (dict["private"]?.stringValue) {
+        for json in array {
             
-            if let unwrappedTempPrivate = Bool(tempPrivate) {
+            let dict = json.dictionaryValue
+            
+            if let tempName = (dict["name"]?.stringValue) {
                 
-                isPrivate = unwrappedTempPrivate
+                if tempName == "private" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        isPrivate = Bool((tempValues[0].dictionaryValue["value"]?.stringValue)!)!
+                        isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                    }
+                }
             }
         }
     }

@@ -61,6 +61,21 @@ public struct HATProfileDataProfileEmergencyContactObject: Comparable {
     /// The mobile number of the user's emergency contact
     public var mobile: String = ""
     
+    /// A tuple containing the isPrivate and the ID of the value
+    var isPrivateTuple: (Bool, Int)? = nil
+    
+    /// A tuple containing the value and the ID of the value
+    var firstNameTuple: (String, Int)? = nil
+    
+    /// A tuple containing the value and the ID of the value
+    var lastNameTuple: (String, Int)? = nil
+    
+    /// A tuple containing the value and the ID of the value
+    var relationshipTuple: (String, Int)? = nil
+    
+    /// A tuple containing the value and the ID of the value
+    var mobileTuple: (String, Int)? = nil
+    
     // MARK: - Initialisers
     
     /**
@@ -78,34 +93,59 @@ public struct HATProfileDataProfileEmergencyContactObject: Comparable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    public init(from dict: Dictionary<String, JSON>) {
+    public init(from array: [JSON]) {
         
-        if let tempPrivate = (dict["private"]?.stringValue) {
+        for json in array {
             
-            if let unwrappedTempPrivate = Bool(tempPrivate) {
+            let dict = json.dictionaryValue
+            
+            if let tempName = (dict["name"]?.stringValue) {
                 
-                isPrivate = unwrappedTempPrivate
+                if tempName == "private" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        isPrivate = Bool((tempValues[0].dictionaryValue["value"]?.stringValue)!)!
+                        isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                    }
+                }
+                
+                if tempName == "first_name" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        firstName = (tempValues[0].dictionaryValue["value"]?.stringValue)!
+                        firstNameTuple = (firstName, (dict["id"]?.intValue)!)
+                    }
+                }
+                
+                if tempName == "last_name" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        lastName = (tempValues[0].dictionaryValue["value"]?.stringValue)!
+                        lastNameTuple = (lastName, (dict["id"]?.intValue)!)
+                    }
+                }
+                
+                if tempName == "relationship" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        relationship = (tempValues[0].dictionaryValue["value"]?.stringValue)!
+                        relationshipTuple = (relationship, (dict["id"]?.intValue)!)
+                    }
+                }
+                
+                if tempName == "mobile" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        mobile = (tempValues[0].dictionaryValue["value"]?.stringValue)!
+                        mobileTuple = (mobile, (dict["id"]?.intValue)!)
+                    }
+                }
             }
-        }
-        
-        if let tempFirstName = (dict["first_name"]?.stringValue) {
-            
-            firstName = tempFirstName
-        }
-        
-        if let tempLastName = (dict["last_name"]?.stringValue) {
-            
-            lastName = tempLastName
-        }
-        
-        if let tempRelationship = (dict["relationship"]?.stringValue) {
-            
-            relationship = tempRelationship
-        }
-        
-        if let tempMobile = (dict["mobile"]?.stringValue) {
-            
-            mobile = tempMobile
         }
     }
     

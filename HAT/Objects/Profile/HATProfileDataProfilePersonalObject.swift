@@ -63,6 +63,24 @@ public struct HATProfileDataProfilePersonalObject: Comparable {
     /// User's title
     public var title: String = ""
     
+    /// A tuple containing the value and the ID of the value
+    var isPrivateTuple: (Bool, Int)? = nil
+    
+    /// A tuple containing the isPrivate and the ID of the value
+    var firstNameTuple: (String, Int)? = nil
+    
+    /// A tuple containing the value and the ID of the value
+    var lastNameTuple: (String, Int)? = nil
+    
+    /// A tuple containing the isPrivate and the ID of the value
+    var middleNameTuple: (String, Int)? = nil
+    
+    /// A tuple containing the value and the ID of the value
+    var prefferedNameTuple: (String, Int)? = nil
+    
+    /// A tuple containing the value and the ID of the value
+    var titleTuple: (String, Int)? = nil
+    
     // MARK: - Initialisers
     
     /**
@@ -81,39 +99,59 @@ public struct HATProfileDataProfilePersonalObject: Comparable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    public init(from dict: Dictionary<String, JSON>) {
+    public init(from array: [JSON]) {
         
-        if let tempPrivate = (dict["private"]?.stringValue) {
+        for json in array {
             
-            if let unwrappedTempPrivate = Bool(tempPrivate) {
+            let dict = json.dictionaryValue
+            
+            if let tempName = (dict["name"]?.stringValue) {
                 
-                isPrivate = unwrappedTempPrivate
+                if tempName == "private" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        isPrivate = Bool((tempValues[0].dictionaryValue["value"]?.stringValue)!)!
+                        isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                    }
+                }
+                
+                if tempName == "first_name" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        firstName = (tempValues[0].dictionaryValue["value"]?.stringValue)!
+                        firstNameTuple = (firstName, (dict["id"]?.intValue)!)
+                    }
+                }
+                
+                if tempName == "preferred_name" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        lastName = (tempValues[0].dictionaryValue["value"]?.stringValue)!
+                        lastNameTuple = (lastName, (dict["id"]?.intValue)!)
+                    }
+                }
+                
+                if tempName == "middle_name" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        middleName = (tempValues[0].dictionaryValue["value"]?.stringValue)!
+                        middleNameTuple = (middleName, (dict["id"]?.intValue)!)
+                    }
+                }
+                
+                if tempName == "title" {
+                    
+                    if let tempValues = dict["values"]?.arrayValue {
+                        
+                        title = (tempValues[0].dictionaryValue["value"]?.stringValue)!
+                        titleTuple = (title, (dict["id"]?.intValue)!)
+                    }
+                }
             }
-        }
-        
-        if let tempFirstName = (dict["first_name"]?.stringValue) {
-            
-            firstName = tempFirstName
-        }
-        
-        if let tempLastName = (dict["last_name"]?.stringValue) {
-            
-            lastName = tempLastName
-        }
-        
-        if let tempPrefferedName = (dict["preferred_name"]?.stringValue) {
-            
-            prefferedName = tempPrefferedName
-        }
-        
-        if let tempMiddleName = (dict["middle_name"]?.stringValue) {
-            
-            middleName = tempMiddleName
-        }
-        
-        if let tempTitle = (dict["title"]?.stringValue) {
-            
-            title = tempTitle
         }
     }
     
