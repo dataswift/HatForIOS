@@ -504,7 +504,13 @@ public class HATAccountService: NSObject {
                     successCallback(array)
                 } else {
                     
-                    failCallback(HATTableError.noValuesFound)
+                    HATAccountService.checkHatTableExistsForUploading(userDomain: userDomain, tableName: "profile", sourceName: "rumpel", authToken: userToken, successCallback: {(dict) in
+                    
+                        print(dict)
+                    }, errorCallback: {(error) in
+                    
+                        failCallback(HATTableError.noValuesFound)
+                    })
                 }
             }
             
