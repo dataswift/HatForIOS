@@ -50,16 +50,28 @@ public struct HATProfileDataProfilePrimaryEmailObject: Comparable {
     // MARK: - Variables
     
     /// Indicates if the object, HATProfileDataProfilePrimaryEmailObject, is private
-    public var isPrivate: Bool = true
+    public var isPrivate: Bool = true {
+        
+        didSet {
+            
+            isPrivateTuple = (isPrivate, isPrivateTuple.1)
+        }
+    }
     
     /// User's primary email address
-    public var value: String = ""
+    public var value: String = "" {
+        
+        didSet {
+            
+            valueTuple = (value, valueTuple.1)
+        }
+    }
     
     /// A tuple containing the isPrivate and the ID of the value
-    var isPrivateTuple: (Bool, Int)? = nil
+    var isPrivateTuple: (Bool, Int) = (true, 0)
     
     /// A tuple containing the value and the ID of the value
-    var linkTuple: (String, Int)? = nil
+    var valueTuple: (String, Int) = ("", 0)
     
     // MARK: - Initialisers
     
@@ -71,8 +83,8 @@ public struct HATProfileDataProfilePrimaryEmailObject: Comparable {
         isPrivate = true
         value = ""
         
-        isPrivateTuple = nil
-        linkTuple = nil
+        isPrivateTuple = (true, 0)
+        valueTuple = ("", 0)
     }
     
     /**
@@ -100,7 +112,7 @@ public struct HATProfileDataProfilePrimaryEmailObject: Comparable {
                     if let tempValues = dict["values"]?.arrayValue {
                         
                         value = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        linkTuple = (value, (dict["id"]?.intValue)!)
+                        valueTuple = (value, (dict["id"]?.intValue)!)
                     }
                 }
             }

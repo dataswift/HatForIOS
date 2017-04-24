@@ -50,16 +50,28 @@ public struct HATProfileDataProfileAlternativeEmailObject: Comparable {
     // MARK: - Variables
 
     /// Indicates if the object, HATProfileDataProfileAlternativeEmailObject, is private
-    public var isPrivate: Bool = true
+    public var isPrivate: Bool = true {
+        
+        didSet {
+            
+            isPrivateTuple = (isPrivate, isPrivateTuple.1)
+        }
+    }
     
     /// The user's alternative email address
-    public var value: String = ""
+    public var value: String = "" {
+        
+        didSet {
+            
+            valueTuple = (value, valueTuple.1)
+        }
+    }
     
     /// A tuple containing the isPrivate and the ID of the value
-    var isPrivateTuple: (Bool, Int)? = nil
+    var isPrivateTuple: (Bool, Int) = (true, 0)
     
     /// A tuple containing the value and the ID of the value
-    var valueTuple: (String, Int)? = nil
+    var valueTuple: (String, Int) = ("", 0)
     
     // MARK: - Initialisers
     
@@ -70,6 +82,9 @@ public struct HATProfileDataProfileAlternativeEmailObject: Comparable {
         
         isPrivate = true
         value = ""
+        
+        isPrivateTuple = (true, 0)
+        valueTuple = ("", 0)
     }
     
     /**

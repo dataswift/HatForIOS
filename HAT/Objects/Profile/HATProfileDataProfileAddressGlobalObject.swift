@@ -50,26 +50,50 @@ public struct HATProfileDataProfileAddressGlobalObject: Comparable {
     // MARK: - Variables
 
     /// Indicates if the object, HATProfileDataProfileAddressGlobalObject, is private
-    public var isPrivate: Bool = true
+    public var isPrivate: Bool = true {
+        
+        didSet {
+            
+            isPrivateTuple = (isPrivate, isPrivateTuple.1)
+        }
+    }
     
     /// User's City
-    public var city: String = ""
+    public var city: String = "" {
+        
+        didSet {
+            
+            cityTuple = (city, cityTuple.1)
+        }
+    }
     /// User's Country
-    public var country: String = ""
+    public var country: String = "" {
+        
+        didSet {
+            
+            countryTuple = (country, countryTuple.1)
+        }
+    }
     /// User's County
-    public var county: String = ""
+    public var county: String = "" {
+        
+        didSet {
+            
+            countyTuple = (county, countyTuple.1)
+        }
+    }
     
     /// A tuple containing the isPrivate and the ID of the value
-    var isPrivateTuple: (Bool, Int)? = nil
+    var isPrivateTuple: (Bool, Int) = (true, 0)
     
     /// A tuple containing the value and the ID of the value
-    var cityTuple: (String, Int)? = nil
+    var cityTuple: (String, Int) = ("", 0)
     
     /// A tuple containing the isPrivate and the ID of the value
-    var countryTuple: (String, Int)? = nil
+    var countryTuple: (String, Int) = ("", 0)
     
     /// A tuple containing the value and the ID of the value
-    var countyTuple: (String, Int)? = nil
+    var countyTuple: (String, Int) = ("", 0)
     
     // MARK: - Initialisers
     
@@ -82,6 +106,11 @@ public struct HATProfileDataProfileAddressGlobalObject: Comparable {
         city = ""
         county = ""
         country = ""
+        
+        isPrivateTuple = (true, 0)
+        cityTuple = ("", 0)
+        countyTuple = ("", 0)
+        countryTuple = ("", 0)
     }
     
     /**

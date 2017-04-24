@@ -35,10 +35,16 @@ public struct HATProfileDataProfileFacebookProfilePhotoObject: Equatable {
     // MARK: -  Variables
 
     /// Indicates if the object, HATProfileDataProfileFacebookProfilePhotoObject, is private
-    public var isPrivate: Bool = true
+    public var isPrivate: Bool = true {
+        
+        didSet {
+            
+            isPrivateTuple = (isPrivate, isPrivateTuple.1)
+        }
+    }
     
     /// A tuple containing the isPrivate and the ID of the value
-    var isPrivateTuple: (Bool, Int)? = nil
+    var isPrivateTuple: (Bool, Int) = (true, 0)
     
     // MARK: - Initialisers
     
@@ -48,6 +54,8 @@ public struct HATProfileDataProfileFacebookProfilePhotoObject: Equatable {
     public init() {
         
         isPrivate = true
+        
+        isPrivateTuple = (true, 0)
     }
     
     /**

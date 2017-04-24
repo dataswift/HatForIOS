@@ -50,21 +50,40 @@ public struct HATProfileDataProfileAboutObject: Comparable {
     // MARK: - Variables
 
     /// Indicates if the object, HATProfileDataProfileAboutObject, is private
-    public var isPrivate: Bool = true
+    public var isPrivate: Bool = true {
+        
+        didSet {
+            
+            isPrivateTuple = (isPrivate, isPrivateTuple.1)
+        }
+    }
     
     /// The title of the about section
-    public var title: String = ""
+    public var title: String = "" {
+        
+        didSet {
+            
+            titleTuple = (title, titleTuple.1)
+        }
+    }
+    
     /// The body of the about section
-    public var body: String = ""
+    public var body: String = "" {
+        
+        didSet {
+            
+            bodyTuple = (body, bodyTuple.1)
+        }
+    }
     
     /// A tuple containing the isPrivate and the ID of the value
-    var isPrivateTuple: (Bool, Int)? = nil
+    var isPrivateTuple: (Bool, Int) = (true, 0)
     
     /// A tuple containing the value and the ID of the value
-    var titleTuple: (String, Int)? = nil
+    var titleTuple: (String, Int) = ("", 0)
     
     /// A tuple containing the value and the ID of the value
-    var bodyTuple: (String, Int)? = nil
+    var bodyTuple: (String, Int) = ("", 0)
     
     // MARK: - Initialisers
     
@@ -76,6 +95,10 @@ public struct HATProfileDataProfileAboutObject: Comparable {
         isPrivate = true
         title = ""
         body = ""
+        
+        isPrivateTuple = (true, 0)
+        titleTuple = ("", 0)
+        bodyTuple = ("", 0)
     }
     
     /**

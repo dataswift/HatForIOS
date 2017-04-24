@@ -50,16 +50,28 @@ public struct HATProfileDataProfileAgeObject: Comparable {
     // MARK: - Variables
 
     /// Indicates if the object, HATProfileDataProfileAgeObject, is private
-    public var isPrivate: Bool = true
+    public var isPrivate: Bool = true {
+        
+        didSet {
+            
+            isPrivateTuple = (isPrivate, isPrivateTuple.1)
+        }
+    }
     
     // The user's age
-    public var group: String = ""
+    public var group: String = "" {
+        
+        didSet {
+            
+            groupTuple = (group, groupTuple.1)
+        }
+    }
     
     /// A tuple containing the isPrivate and the ID of the value
-    var isPrivateTuple: (Bool, Int)? = nil
+    var isPrivateTuple: (Bool, Int) = (true, 0)
     
     /// A tuple containing the value and the ID of the value
-    var groupTuple: (String, Int)? = nil
+    var groupTuple: (String, Int) = ("", 0)
     
     // MARK: - Initialisers
     
@@ -70,6 +82,9 @@ public struct HATProfileDataProfileAgeObject: Comparable {
         
         isPrivate = true
         group = ""
+        
+        isPrivateTuple = (true, 0)
+        groupTuple = ("", 0)
     }
     
     /**

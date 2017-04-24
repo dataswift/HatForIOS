@@ -50,26 +50,50 @@ public struct HATProfileDataProfileAddressDetailObject: Comparable {
     // MARK: - Variables
     
     /// Indicates if the object, HATProfileDataProfileAddressDetailObject, is private
-    public var isPrivate: Bool = true
+    public var isPrivate: Bool = true {
+        
+        didSet {
+            
+            isPrivateTuple = (isPrivate, isPrivateTuple.1)
+        }
+    }
     
     /// User's street address number
-    public var number: String = ""
+    public var number: String = "" {
+        
+        didSet {
+            
+            numberTuple = (number, numberTuple.1)
+        }
+    }
     /// User's street name
-    public var street: String = ""
+    public var street: String = "" {
+        
+        didSet {
+            
+            streetTuple = (street, streetTuple.1)
+        }
+    }
     /// User's post code
-    public var postCode: String = ""
+    public var postCode: String = "" {
+        
+        didSet {
+            
+            postCodeTuple = (postCode, postCodeTuple.1)
+        }
+    }
     
     /// A tuple containing the isPrivate and the ID of the value
-    var isPrivateTuple: (Bool, Int)? = nil
+    var isPrivateTuple: (Bool, Int) = (true, 0)
     
     /// A tuple containing the value and the ID of the value
-    var numberTuple: (String, Int)? = nil
+    var numberTuple: (String, Int) = ("", 0)
     
     /// A tuple containing the value and the ID of the value
-    var streetTuple: (String, Int)? = nil
+    var streetTuple: (String, Int) = ("", 0)
     
     /// A tuple containing the value and the ID of the value
-    var postCodeTuple: (String, Int)? = nil
+    var postCodeTuple: (String, Int) = ("", 0)
     
     // MARK: - Initialisers
     
@@ -82,6 +106,11 @@ public struct HATProfileDataProfileAddressDetailObject: Comparable {
         number = ""
         street = ""
         postCode = ""
+        
+        isPrivateTuple = (true, 0)
+        numberTuple = ("", 0)
+        streetTuple = ("", 0)
+        postCodeTuple = ("", 0)
     }
     
     /**

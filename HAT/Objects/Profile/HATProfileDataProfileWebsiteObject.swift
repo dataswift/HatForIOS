@@ -50,16 +50,28 @@ public struct HATProfileDataProfileWebsiteObject: Comparable {
     // MARK: - Variables
 
     /// Indicates if the object, HATProfileDataProfileWebsiteObject, is private
-    public var isPrivate: Bool = true
+    public var isPrivate: Bool = true {
+        
+        didSet {
+            
+            isPrivateTuple = (isPrivate, isPrivateTuple.1)
+        }
+    }
     
     /// Link to user's website
-    public var link: String = ""
+    public var link: String = "" {
+        
+        didSet {
+            
+            linkTuple = (link, linkTuple.1)
+        }
+    }
     
     /// A tuple containing the isPrivate and the ID of the value
-    var isPrivateTuple: (Bool, Int)? = nil
+    var isPrivateTuple: (Bool, Int) = (true, 0)
     
-    /// A tuple containing the value and the ID of the value
-    var linkTuple: (String, Int)? = nil
+    /// A tuple containing the link and the ID of the value
+    var linkTuple: (String, Int) = ("", 0)
     
     // MARK: - Initialisers
     
@@ -71,8 +83,8 @@ public struct HATProfileDataProfileWebsiteObject: Comparable {
         isPrivate = true
         link = ""
         
-        isPrivateTuple = nil
-        linkTuple = nil
+        isPrivateTuple = (true, 0)
+        linkTuple = ("", 0)
     }
     
     /**

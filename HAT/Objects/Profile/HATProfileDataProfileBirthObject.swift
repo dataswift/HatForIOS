@@ -55,16 +55,28 @@ public struct HATProfileDataProfileBirthObject: Comparable {
     // MARK: - Variables
 
     /// Indicates if the object, HATProfileDataProfileBirthObject, is private
-    public var isPrivate: Bool = true
+    public var isPrivate: Bool = true {
+        
+        didSet {
+            
+            isPrivateTuple = (isPrivate, isPrivateTuple.1)
+        }
+    }
     
     /// User's date of birth
-    public var date: Date? = nil
+    public var date: Date? = nil {
+        
+        didSet {
+            
+            dateTuple = (date, dateTuple.1)
+        }
+    }
     
     /// A tuple containing the isPrivate and the ID of the value
-    var isPrivateTuple: (Bool, Int)? = nil
+    var isPrivateTuple: (Bool, Int) = (true, 0)
     
     /// A tuple containing the value and the ID of the value
-    var dateTuple: (Date?, Int)? = nil
+    var dateTuple: (Date?, Int) = (nil, 0)
     
     // MARK: - Initialisers
     
@@ -75,6 +87,9 @@ public struct HATProfileDataProfileBirthObject: Comparable {
         
         isPrivate = true
         date = nil
+        
+        isPrivateTuple = (true, 0)
+        dateTuple = (nil, 0)
     }
     
     /**

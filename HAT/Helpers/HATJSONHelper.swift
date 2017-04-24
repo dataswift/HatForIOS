@@ -513,8 +513,72 @@ public struct HATJSONHelper {
         
         var jsonFile = JSON(file)
         
-        jsonFile = HATJSONHelper.updateFirstNameOfProfileOnJSON(file: jsonFile, firstName: profileFile.data.personal.firstNameTuple!)
-        //jsonFile = HATJSONHelper.updateLastNameOfProfileOnJSON(file: jsonFile, lastName: profileFile.data.profile.personal.firstName)
+        // update name
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.personal.firstNameTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.personal.lastNameTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.personal.middleNameTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.personal.prefferedNameTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.personal.titleTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.personal.isPrivateTuple)
+        
+        // update email addresses
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.primaryEmail.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.primaryEmail.valueTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.alternativeEmail.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.alternativeEmail.valueTuple)
+        
+        // update address
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.addressDetails.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.addressDetails.numberTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.addressDetails.postCodeTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.addressDetails.streetTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.addressGlobal.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.addressGlobal.cityTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.addressGlobal.countyTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.addressGlobal.countryTuple)
+        
+        // update phone number
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.homePhone.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.homePhone.numberTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.mobile.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.mobile.numberTuple)
+        
+        // update profile info
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.age.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.age.groupTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.gender.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.gender.typeTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.birth.dateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.birth.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.nick.nameTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.nick.isPrivateTuple)
+        
+        // update emergency contact
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.emergencyContact.firstNameTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.emergencyContact.lastNameTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.emergencyContact.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.emergencyContact.mobileTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.emergencyContact.relationshipTuple)
+        
+        // update social networks and websites
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.facebook.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.facebook.linkTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.twitter.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.twitter.linkTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.linkedIn.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.linkedIn.linkTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.google.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.google.linkTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.blog.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.blog.linkTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.website.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.website.linkTuple)
+        
+        // update about info
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.about.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.about.bodyTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.about.titleTuple)
+        
         return jsonFile.dictionaryObject!
     }
     
@@ -526,15 +590,15 @@ public struct HATJSONHelper {
      
      - returns: JSON
      */
-    public static func updateFirstNameOfProfileOnJSON(file: JSON, firstName: (String, Int)) -> JSON {
+    public static func updateFieldOnJSON(_ file: JSON, field: (String, Int)) -> JSON {
         
         var jsonFile = file
         
         for itemNumber in 0...jsonFile["values"].count {
             
-            if jsonFile["values"][itemNumber]["field"]["id"].stringValue == String(describing: firstName.1) {
+            if jsonFile["values"][itemNumber]["field"]["id"].stringValue == String(describing: field.1) {
                 
-                jsonFile["values"][itemNumber]["value"] = JSON(firstName.0)
+                jsonFile["values"][itemNumber]["value"] = JSON(field.0)
             }
         }
         
@@ -545,19 +609,19 @@ public struct HATJSONHelper {
      Updates the photo of the note json file
      
      - parameter file: The json file to update
-     - parameter lastName: The last name entered in profile
+     - parameter firstName: The first name entered in profile
      
      - returns: JSON
      */
-    public static func updateLastNameOfProfileOnJSON(file: JSON, lastName: String) -> JSON {
+    public static func updateFieldOnJSON(_ file: JSON, field: (Date?, Int)) -> JSON {
         
         var jsonFile = file
         
         for itemNumber in 0...jsonFile["values"].count {
             
-            if jsonFile["values"][itemNumber]["field"]["name"] == "last_name" {
+            if jsonFile["values"][itemNumber]["field"]["id"].stringValue == String(describing: field.1) {
                 
-                jsonFile["values"][itemNumber]["value"] = JSON(lastName)
+                jsonFile["values"][itemNumber]["value"] = JSON(HATFormatterHelper.formatDateToISO(date: field.0!))
             }
         }
         
@@ -568,42 +632,19 @@ public struct HATJSONHelper {
      Updates the photo of the note json file
      
      - parameter file: The json file to update
-     - parameter middleName: The middle name entered in profile
+     - parameter firstName: The first name entered in profile
      
      - returns: JSON
      */
-    public static func updateMiddleNameOfProfileOnJSON(file: JSON, middleName: String) -> JSON {
+    public static func updateFieldOnJSON(_ file: JSON, field: (Bool, Int)) -> JSON {
         
         var jsonFile = file
         
         for itemNumber in 0...jsonFile["values"].count {
             
-            if jsonFile["values"][itemNumber]["field"]["name"] == "middle_name" {
+            if jsonFile["values"][itemNumber]["field"]["id"].stringValue == String(describing: field.1) {
                 
-                jsonFile["values"][itemNumber]["value"] = JSON(middleName)
-            }
-        }
-        
-        return jsonFile
-    }
-    
-    /**
-     Updates the photo of the note json file
-     
-     - parameter file: The json file to update
-     - parameter titleInName: The title in name, Mr. Mrs. etc, entered in profile
-     
-     - returns: JSON
-     */
-    public static func updateTittleInNameOfProfileOnJSON(file: JSON, titleInName: String) -> JSON {
-        
-        var jsonFile = file
-        
-        for itemNumber in 0...jsonFile["values"].count {
-            
-            if jsonFile["values"][itemNumber]["field"]["name"] == "title" {
-                
-                jsonFile["values"][itemNumber]["value"] = JSON(titleInName)
+                jsonFile["values"][itemNumber]["value"] = JSON(String(describing: field.0))
             }
         }
         

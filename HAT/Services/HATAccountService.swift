@@ -499,6 +499,7 @@ public class HATAccountService: NSObject {
                 let array = HATProfileObject(from: json[0].dictionaryValue)
                 successCallback(array)
             }
+            
             HATAccountService.getHatTableValuesWithOutPretty(token: userToken!, userDomain: userDomain, tableID: tableID, parameters: [:], successCallback: profileEntries, errorCallback: failCallback)
         }
         

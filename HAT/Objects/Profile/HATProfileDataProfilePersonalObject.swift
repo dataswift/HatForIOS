@@ -50,42 +50,72 @@ public struct HATProfileDataProfilePersonalObject: Comparable {
     // MARK: - Variables
 
     /// Indicates if the object, HATProfileDataProfilePersonalObject, is private
-    public var isPrivate: Bool = true
+    public var isPrivate: Bool = true {
+        
+        didSet {
+            
+            isPrivateTuple = (isPrivate, isPrivateTuple.1)
+        }
+    }
     
     /// User's first name
     public var firstName: String = "" {
         
-        didSet{
+        didSet {
             
-            firstNameTuple = (firstName, firstNameTuple!.1)
+            firstNameTuple = (firstName, firstNameTuple.1)
         }
     }
     /// User's last name
-    public var lastName: String = ""
+    public var lastName: String = "" {
+        
+        didSet {
+            
+            lastNameTuple = (lastName, lastNameTuple.1)
+        }
+    }
     /// User's middle name
-    public var middleName: String = ""
+    public var middleName: String = "" {
+        
+        didSet {
+            
+            middleNameTuple = (middleName, middleNameTuple.1)
+        }
+    }
     /// User's preffered name
-    public var prefferedName: String = ""
+    public var prefferedName: String = "" {
+        
+        didSet {
+            
+            prefferedNameTuple = (prefferedName, prefferedNameTuple.1)
+        }
+    }
     /// User's title
-    public var title: String = ""
-    
-    /// A tuple containing the value and the ID of the value
-    var isPrivateTuple: (Bool, Int)? = nil
-    
-    /// A tuple containing the isPrivate and the ID of the value
-    var firstNameTuple: (String, Int)? = nil
-    
-    /// A tuple containing the value and the ID of the value
-    var lastNameTuple: (String, Int)? = nil
+    public var title: String = "" {
+        
+        didSet {
+            
+            titleTuple = (title, titleTuple.1)
+        }
+    }
     
     /// A tuple containing the isPrivate and the ID of the value
-    var middleNameTuple: (String, Int)? = nil
+    var isPrivateTuple: (Bool, Int) = (true, 0)
     
-    /// A tuple containing the value and the ID of the value
-    var prefferedNameTuple: (String, Int)? = nil
+    /// A tuple containing the firstName and the ID of the value
+    var firstNameTuple: (String, Int) = ("", 0)
     
-    /// A tuple containing the value and the ID of the value
-    var titleTuple: (String, Int)? = nil
+    /// A tuple containing the lastName and the ID of the value
+    var lastNameTuple: (String, Int) = ("", 0)
+    
+    /// A tuple containing the middleName and the ID of the value
+    var middleNameTuple: (String, Int) = ("", 0)
+    
+    /// A tuple containing the prefferedName and the ID of the value
+    var prefferedNameTuple: (String, Int) = ("", 0)
+    
+    /// A tuple containing the title and the ID of the value
+    var titleTuple: (String, Int) = ("", 0)
     
     // MARK: - Initialisers
     
@@ -100,6 +130,13 @@ public struct HATProfileDataProfilePersonalObject: Comparable {
         middleName = ""
         prefferedName = ""
         title = ""
+        
+        isPrivateTuple = (true, 0)
+        firstNameTuple = ("", 0)
+        lastNameTuple = ("", 0)
+        middleNameTuple = ("", 0)
+        prefferedNameTuple = ("", 0)
+        titleTuple = ("", 0)
     }
     
     /**

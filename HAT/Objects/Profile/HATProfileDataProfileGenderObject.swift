@@ -50,16 +50,28 @@ public struct HATProfileDataProfileGenderObject: Comparable {
     // MARK: - Variables
 
     /// Indicates if the object, HATProfileDataProfileGenderObject, is private
-    public var isPrivate: Bool = true
+    public var isPrivate: Bool = true {
+        
+        didSet {
+            
+            isPrivateTuple = (isPrivate, isPrivateTuple.1)
+        }
+    }
     
     /// The user's gender
-    public var type: String = ""
+    public var type: String = "" {
+        
+        didSet {
+            
+            typeTuple = (type, typeTuple.1)
+        }
+    }
     
     /// A tuple containing the isPrivate and the ID of the value
-    var isPrivateTuple: (Bool, Int)? = nil
+    var isPrivateTuple: (Bool, Int) = (true, 0)
     
     /// A tuple containing the value and the ID of the value
-    var typeTuple: (String, Int)? = nil
+    var typeTuple: (String, Int) = ("", 0)
     
     // MARK: - Initialisers
     
@@ -70,6 +82,9 @@ public struct HATProfileDataProfileGenderObject: Comparable {
         
         isPrivate = true
         type = ""
+        
+        isPrivateTuple = (true, 0)
+        typeTuple = ("", 0)
     }
     
     /**

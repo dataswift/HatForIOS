@@ -50,31 +50,61 @@ public struct HATProfileDataProfileEmergencyContactObject: Comparable {
     // MARK: - Variables
 
     /// Indicates if the object, HATProfileDataProfileEmergencyContactObject, is private
-    public var isPrivate: Bool = true
+    public var isPrivate: Bool = true {
+        
+        didSet {
+            
+           isPrivateTuple = (isPrivate, isPrivateTuple.1)
+        }
+    }
     
     /// The first name of the user's emergency contact
-    public var firstName: String = ""
+    public var firstName: String = "" {
+        
+        didSet {
+            
+            firstNameTuple = (firstName, firstNameTuple.1)
+        }
+    }
     /// The last name of the user's emergency contact
-    public var lastName: String = ""
+    public var lastName: String = "" {
+        
+        didSet {
+            
+            lastNameTuple = (lastName, lastNameTuple.1)
+        }
+    }
     /// The user's relationship with the emergency contact
-    public var relationship: String = ""
+    public var relationship: String = "" {
+        
+        didSet {
+            
+            relationshipTuple = (relationship, relationshipTuple.1)
+        }
+    }
     /// The mobile number of the user's emergency contact
-    public var mobile: String = ""
+    public var mobile: String = "" {
+        
+        didSet {
+            
+            mobileTuple = (mobile, mobileTuple.1)
+        }
+    }
     
     /// A tuple containing the isPrivate and the ID of the value
-    var isPrivateTuple: (Bool, Int)? = nil
+    var isPrivateTuple: (Bool, Int) = (true, 0)
     
     /// A tuple containing the value and the ID of the value
-    var firstNameTuple: (String, Int)? = nil
+    var firstNameTuple: (String, Int) = ("", 0)
     
     /// A tuple containing the value and the ID of the value
-    var lastNameTuple: (String, Int)? = nil
+    var lastNameTuple: (String, Int) = ("", 0)
     
     /// A tuple containing the value and the ID of the value
-    var relationshipTuple: (String, Int)? = nil
+    var relationshipTuple: (String, Int) = ("", 0)
     
     /// A tuple containing the value and the ID of the value
-    var mobileTuple: (String, Int)? = nil
+    var mobileTuple: (String, Int) = ("", 0)
     
     // MARK: - Initialisers
     
@@ -88,6 +118,12 @@ public struct HATProfileDataProfileEmergencyContactObject: Comparable {
         lastName = ""
         relationship = ""
         mobile = ""
+        
+        isPrivateTuple = (true, 0)
+        firstNameTuple = ("", 0)
+        lastNameTuple = ("", 0)
+        relationshipTuple = ("", 0)
+        mobileTuple = ("", 0)
     }
     
     /**
