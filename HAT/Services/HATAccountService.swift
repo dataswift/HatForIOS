@@ -482,6 +482,8 @@ public class HATAccountService: NSObject {
         return nil
     }
     
+    // MARK: - Profile
+    
     /**
      Searches for profile table and fetches the entries
      
@@ -496,8 +498,14 @@ public class HATAccountService: NSObject {
             
             func profileEntries(json: [JSON], userToken: String?) {
                 
-                let array = HATProfileObject(from: json[0].dictionaryValue)
-                successCallback(array)
+                if json.count > 0 {
+                    
+                    let array = HATProfileObject(from: json[0].dictionaryValue)
+                    successCallback(array)
+                } else {
+                    
+                    failCallback(HATTableError.noValuesFound)
+                }
             }
             
             HATAccountService.getHatTableValuesWithOutPretty(token: userToken!, userDomain: userDomain, tableID: tableID, parameters: [:], successCallback: profileEntries, errorCallback: failCallback)
