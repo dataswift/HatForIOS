@@ -799,6 +799,9 @@ public struct HATJSONHelper {
         // update profile
         jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.isPrivateTuple)
         
+        // update profile picture
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.facebookProfilePhoto.isPrivateTuple)
+        
         // update name
         jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.personal.firstNameTuple)
         jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.personal.lastNameTuple)
