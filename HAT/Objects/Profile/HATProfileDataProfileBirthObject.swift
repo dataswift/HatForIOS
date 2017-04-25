@@ -125,4 +125,30 @@ public struct HATProfileDataProfileBirthObject: Comparable {
         }
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init(alternativeArray: [JSON]) {
+        
+        for json in alternativeArray {
+            
+            let dict = json.dictionaryValue
+            
+            if let tempName = (dict["name"]?.stringValue) {
+                
+                if tempName == "private" {
+                    
+                    isPrivate = true
+                    isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                }
+                
+                if tempName == "date" {
+                    
+                    date = HATFormatterHelper.formatStringToDate(string: String(describing: Date()))
+                    dateTuple = (date, (dict["id"]?.intValue)!)
+                }
+            }
+        }
+    }
+    
 }

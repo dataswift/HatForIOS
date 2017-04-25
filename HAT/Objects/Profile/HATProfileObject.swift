@@ -60,6 +60,8 @@ public struct HATProfileObject: Comparable {
     public var name: String = ""
     /// The last updated date
     public var lastUpdate: Date? = nil
+    /// The last updated date
+    public var dateCreated: Date? = nil
     /// The actual data of the record
     public var data: HATProfileDataProfileObject = HATProfileDataProfileObject()
     
@@ -73,6 +75,7 @@ public struct HATProfileObject: Comparable {
         id = 0
         name = ""
         lastUpdate = nil
+        dateCreated = nil
         data = HATProfileDataProfileObject()
     }
     
@@ -89,9 +92,9 @@ public struct HATProfileObject: Comparable {
             
             name = tempName
         }
-        if let tempName = (dict["name"]?.stringValue) {
+        if let tempDateCreated = (dict["dateCreated"]?.stringValue) {
             
-            name = tempName
+            dateCreated = HATFormatterHelper.formatStringToDate(string: String(tempDateCreated))
         }
         if let tempLastUpdated = (dict["lastUpdated"]?.stringValue) {
             
@@ -102,5 +105,30 @@ public struct HATProfileObject: Comparable {
             let tempData2 = tempData[0].dictionaryValue
             data = HATProfileDataProfileObject(from: tempData2)
         }
+    }
+    
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init(alternativeDictionary: Dictionary<String, JSON>) {
+        
+        if let tempId = (alternativeDictionary["id"]?.intValue) {
+            
+            id = tempId
+        }
+        if let tempName = (alternativeDictionary["name"]?.stringValue) {
+            
+            name = tempName
+        }
+        if let tempDateCreated = (alternativeDictionary["dateCreated"]?.stringValue) {
+            
+            dateCreated = HATFormatterHelper.formatStringToDate(string: String(tempDateCreated))
+        }
+        if let tempLastUpdated = (alternativeDictionary["lastUpdated"]?.stringValue) {
+            
+            lastUpdate = HATFormatterHelper.formatStringToDate(string: String(tempLastUpdated))
+        }
+        
+        data = HATProfileDataProfileObject(alternativeDictionary: alternativeDictionary)
     }
 }

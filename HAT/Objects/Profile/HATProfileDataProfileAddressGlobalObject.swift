@@ -162,4 +162,43 @@ public struct HATProfileDataProfileAddressGlobalObject: Comparable {
             }
         }
     }
+    
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init(alternativeArray: [JSON]) {
+        
+        for json in alternativeArray {
+            
+            let dict = json.dictionaryValue
+            
+            if let tempName = (dict["name"]?.stringValue) {
+                
+                if tempName == "private" {
+                    
+                    isPrivate = true
+                    isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                }
+                
+                if tempName == "city" {
+                    
+                    city = ""
+                    cityTuple = (city, (dict["id"]?.intValue)!)
+                }
+                
+                if tempName == "county" {
+                    
+                    
+                    county = ""
+                    countyTuple = (county, (dict["id"]?.intValue)!)
+                }
+                
+                if tempName == "country" {
+                    
+                    country = ""
+                    countryTuple = (country, (dict["id"]?.intValue)!)
+                }
+            }
+        }
+    }
 }

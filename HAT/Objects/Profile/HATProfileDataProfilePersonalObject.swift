@@ -198,4 +198,48 @@ public struct HATProfileDataProfilePersonalObject: Comparable {
         }
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init(alternativeArray: [JSON]) {
+        
+        for json in alternativeArray {
+            
+            let dict = json.dictionaryValue
+            
+            if let tempName = (dict["name"]?.stringValue) {
+                
+                if tempName == "private" {
+                    
+                    isPrivate = true
+                    isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                }
+                
+                if tempName == "first_name" {
+                    
+                    firstName = ""
+                    firstNameTuple = (firstName, (dict["id"]?.intValue)!)
+                }
+                
+                if tempName == "preferred_name" {
+                    
+                    lastName = ""
+                    lastNameTuple = (lastName, (dict["id"]?.intValue)!)
+                }
+                
+                if tempName == "middle_name" {
+                    
+                    middleName = ""
+                    middleNameTuple = (middleName, (dict["id"]?.intValue)!)
+                }
+                
+                if tempName == "title" {
+                    
+                    title = ""
+                    titleTuple = (title, (dict["id"]?.intValue)!)
+                }
+            }
+        }
+    }
+    
 }

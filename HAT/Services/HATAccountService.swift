@@ -508,7 +508,7 @@ public class HATAccountService: NSObject {
                     
                     HATAccountService.checkHatTableExistsForUploading(userDomain: userDomain, tableName: "profile", sourceName: "rumpel", authToken: userToken!, successCallback: {(dict) in
                     
-                        let array = HATProfileObject(from: dict.0 as! Dictionary<String, JSON>)
+                        let array = HATProfileObject(alternativeDictionary: dict.0 as! Dictionary<String, JSON>)
                         successCallback(array)
                     }, errorCallback: {(error) in
                     

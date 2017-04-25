@@ -119,4 +119,30 @@ public struct HATProfileDataProfileTwitterObject: Comparable {
         }
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init(alternativeArray: [JSON]) {
+        
+        for json in alternativeArray {
+            
+            let dict = json.dictionaryValue
+            
+            if let tempName = (dict["name"]?.stringValue) {
+                
+                if tempName == "private" {
+                    
+                    isPrivate = true
+                    isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                }
+                
+                if tempName == "link" {
+                    
+                    link = ""
+                    linkTuple = (link, (dict["id"]?.intValue)!)
+                }
+            }
+        }
+    }
+    
 }

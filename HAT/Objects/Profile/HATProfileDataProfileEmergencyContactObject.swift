@@ -185,4 +185,48 @@ public struct HATProfileDataProfileEmergencyContactObject: Comparable {
         }
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init(alternativeArray: [JSON]) {
+        
+        for json in alternativeArray {
+            
+            let dict = json.dictionaryValue
+            
+            if let tempName = (dict["name"]?.stringValue) {
+                
+                if tempName == "private" {
+                    
+                    isPrivate = true
+                    isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                }
+                
+                if tempName == "first_name" {
+                    
+                    firstName = ""
+                    firstNameTuple = (firstName, (dict["id"]?.intValue)!)
+                }
+                
+                if tempName == "last_name" {
+                    
+                    lastName = ""
+                    lastNameTuple = (lastName, (dict["id"]?.intValue)!)
+                }
+                
+                if tempName == "relationship" {
+                    
+                    relationship = ""
+                    relationshipTuple = (relationship, (dict["id"]?.intValue)!)
+                }
+                
+                if tempName == "mobile" {
+                    
+                    mobile = ""
+                    mobileTuple = (mobile, (dict["id"]?.intValue)!)
+                }
+            }
+        }
+    }
+    
 }

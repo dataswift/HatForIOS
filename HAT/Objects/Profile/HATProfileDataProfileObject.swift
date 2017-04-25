@@ -265,4 +265,129 @@ public struct HATProfileDataProfileObject: Comparable {
         }
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init(alternativeDictionary: Dictionary<String, JSON>) {
+        
+        if let tempFieldsDictionary = (alternativeDictionary["fields"]?.arrayValue[0].dictionaryValue) {
+            
+            isPrivate = true
+            isPrivateTuple = (isPrivate, (tempFieldsDictionary["id"]?.intValue)!)
+        }
+        
+        if let tempSubTables = (alternativeDictionary["subTables"]?.arrayValue) {
+            
+            for subtable in tempSubTables {
+                
+                let tempName = (subtable["name"].stringValue)
+                
+                if tempName == "website" {
+                    
+                    website = HATProfileDataProfileWebsiteObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "nick" {
+                    
+                    nick = HATProfileDataProfileNickObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "primary_email" {
+                    
+                    primaryEmail = HATProfileDataProfilePrimaryEmailObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "youtube" {
+                    
+                    youtube = HATProfileDataProfileYoutubeObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "address_global" {
+                    
+                    addressGlobal = HATProfileDataProfileAddressGlobalObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "linkedin" {
+                    
+                    linkedIn = HATProfileDataProfileLinkedInObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "birth" {
+                    
+                    birth = HATProfileDataProfileBirthObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "home_phone" {
+                    
+                    youtube = HATProfileDataProfileYoutubeObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "google" {
+                    
+                    google = HATProfileDataProfileGoogleObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "age" {
+                    
+                    age = HATProfileDataProfileAgeObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "personal" {
+                    
+                    personal = HATProfileDataProfilePersonalObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "blog" {
+                    
+                    blog = HATProfileDataProfileBlogObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "facebook" {
+                    
+                    facebook = HATProfileDataProfileFacebookObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "address_details" {
+                    
+                    addressDetails = HATProfileDataProfileAddressDetailObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "emergency_contact" {
+                    
+                    emergencyContact = HATProfileDataProfileEmergencyContactObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "alternative_email" {
+                    
+                    alternativeEmail = HATProfileDataProfileAlternativeEmailObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "fb_profile_photo" {
+                    
+                    facebookProfilePhoto = HATProfileDataProfileFacebookProfilePhotoObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "twitter" {
+                    
+                    twitter = HATProfileDataProfileTwitterObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "about" {
+                    
+                    about = HATProfileDataProfileAboutObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "mobile" {
+                    
+                    mobile = HATProfileDataProfileMobileObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+                
+                if tempName == "gender" {
+                    
+                    gender = HATProfileDataProfileGenderObject(alternativeArray: (subtable["fields"].arrayValue))
+                }
+            }
+        }
+    }
+    
 }
