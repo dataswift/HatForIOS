@@ -796,6 +796,9 @@ public struct HATJSONHelper {
         
         var jsonFile = JSON(file)
         
+        // update profile
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.isPrivateTuple)
+        
         // update name
         jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.personal.firstNameTuple)
         jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.personal.lastNameTuple)
