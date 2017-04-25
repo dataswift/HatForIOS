@@ -319,7 +319,7 @@ public struct HATProfileDataProfileObject: Comparable {
                 
                 if tempName == "home_phone" {
                     
-                    homePhone = HATProfileDataProfileHomePhoneObject(from: (subtable["fields"].arrayValue))
+                    homePhone = HATProfileDataProfileHomePhoneObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
                 
                 if tempName == "google" {
