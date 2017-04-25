@@ -194,7 +194,7 @@ public struct HATProfileDataProfileObject: Comparable {
                 
                 if tempName == "home_phone" {
                     
-                    youtube = HATProfileDataProfileYoutubeObject(from: (subtable["fields"].arrayValue))
+                    homePhone = HATProfileDataProfileHomePhoneObject(from: (subtable["fields"].arrayValue))
                 }
                 
                 if tempName == "google" {
@@ -319,7 +319,7 @@ public struct HATProfileDataProfileObject: Comparable {
                 
                 if tempName == "home_phone" {
                     
-                    youtube = HATProfileDataProfileYoutubeObject(alternativeArray: (subtable["fields"].arrayValue))
+                    homePhone = HATProfileDataProfileHomePhoneObject(from: (subtable["fields"].arrayValue))
                 }
                 
                 if tempName == "google" {
