@@ -904,7 +904,10 @@ public struct HATJSONHelper {
             
             if jsonFile["values"][itemNumber]["field"]["id"].stringValue == String(describing: field.1) {
                 
-                jsonFile["values"][itemNumber]["value"] = JSON(HATFormatterHelper.formatDateToISO(date: field.0!))
+                if field.0 != nil {
+                    
+                    jsonFile["values"][itemNumber]["value"] = JSON(HATFormatterHelper.formatDateToISO(date: field.0!))
+                }
             }
         }
         
