@@ -551,21 +551,14 @@ public class HATAccountService: NSObject {
                 
                 let message = NSLocalizedString("Server responded with error", comment: "")
                 failCallback(.generalError(message, statusCode, error))
-            case .isSuccess(let isSuccess, let statusCode, let result, let token):
+            case .isSuccess(let isSuccess, _, let result, let token):
                 
                 if isSuccess {
                     
                     //table found
-                    if statusCode == 200 {
-                        
-                        if let message = result.dictionaryValue["message"]?.stringValue {
+                    if let message = result.dictionaryValue["message"]?.stringValue {
                             
-                            successCallback(message, token)
-                        }
-                    } else {
-                        
-                        let message = NSLocalizedString("Server responded with error", comment: "")
-                        failCallback(.generalError(message, statusCode, nil))
+                        successCallback(message, token)
                     }
                 }
             }
