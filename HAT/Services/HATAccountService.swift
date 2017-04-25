@@ -535,7 +535,7 @@ public class HATAccountService: NSObject {
      - parameter successCallback: A function of type (String, String?) to call on success
      - parameter failCallback: A fuction of type (HATError) to call on fail
      */
-    func changePassword(userDomain: String, userToken: String, oldPassword: String, newPassword: String, successCallback: @escaping (String, String?) -> Void, failCallback: @escaping (HATError) -> Void) -> Void {
+    public class func changePassword(userDomain: String, userToken: String, oldPassword: String, newPassword: String, successCallback: @escaping (String, String?) -> Void, failCallback: @escaping (HATError) -> Void) -> Void {
         
         let url = "https://" + userDomain + "/control/v2/auth/password"
         
