@@ -862,6 +862,8 @@ public struct HATJSONHelper {
         jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.blog.linkTuple)
         jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.website.isPrivateTuple)
         jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.website.linkTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.youtube.isPrivateTuple)
+        jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.youtube.linkTuple)
         
         // update about info
         jsonFile = HATJSONHelper.updateFieldOnJSON(jsonFile, field: profileFile.data.about.isPrivateTuple)
