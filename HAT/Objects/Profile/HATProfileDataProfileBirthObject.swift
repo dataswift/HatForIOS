@@ -101,14 +101,20 @@ public struct HATProfileDataProfileBirthObject: Comparable {
             
             let dict = json.dictionaryValue
             
-            if let tempName = (dict["name"]?.stringValue) {
+            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
                 
                 if tempName == "private" {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        isPrivate = Bool((tempValues[0].dictionaryValue["value"]?.stringValue)!)!
-                        isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            if let result = Bool(stringValue) {
+                                
+                                isPrivate = result
+                                isPrivateTuple = (isPrivate, id)
+                            }
+                        }
                     }
                 }
                 
@@ -116,9 +122,11 @@ public struct HATProfileDataProfileBirthObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        let tempDate = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        date = HATFormatterHelper.formatStringToDate(string: String(tempDate))
-                        dateTuple = (date, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            date = HATFormatterHelper.formatStringToDate(string: String(stringValue))
+                            dateTuple = (date, id)
+                        }
                     }
                 }
             }
@@ -134,18 +142,18 @@ public struct HATProfileDataProfileBirthObject: Comparable {
             
             let dict = json.dictionaryValue
             
-            if let tempName = (dict["name"]?.stringValue) {
+            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
                 
                 if tempName == "private" {
                     
                     isPrivate = true
-                    isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                    isPrivateTuple = (isPrivate, id)
                 }
                 
                 if tempName == "date" {
                     
                     date = HATFormatterHelper.formatStringToDate(string: String(describing: Date()))
-                    dateTuple = (date, (dict["id"]?.intValue)!)
+                    dateTuple = (date, id)
                 }
             }
         }

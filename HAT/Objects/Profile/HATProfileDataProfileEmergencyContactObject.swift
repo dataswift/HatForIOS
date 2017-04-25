@@ -135,14 +135,20 @@ public struct HATProfileDataProfileEmergencyContactObject: Comparable {
             
             let dict = json.dictionaryValue
             
-            if let tempName = (dict["name"]?.stringValue) {
+            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
                 
                 if tempName == "private" {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        isPrivate = Bool((tempValues[0].dictionaryValue["value"]?.stringValue)!)!
-                        isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            if let result = Bool(stringValue) {
+                                
+                                isPrivate = result
+                                isPrivateTuple = (isPrivate, id)
+                            }
+                        }
                     }
                 }
                 
@@ -150,8 +156,11 @@ public struct HATProfileDataProfileEmergencyContactObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        firstName = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        firstNameTuple = (firstName, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            firstName = stringValue
+                            firstNameTuple = (firstName, id)
+                        }
                     }
                 }
                 
@@ -159,8 +168,11 @@ public struct HATProfileDataProfileEmergencyContactObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        lastName = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        lastNameTuple = (lastName, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            lastName = stringValue
+                            lastNameTuple = (lastName, id)
+                        }
                     }
                 }
                 
@@ -168,8 +180,11 @@ public struct HATProfileDataProfileEmergencyContactObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        relationship = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        relationshipTuple = (relationship, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            relationship = stringValue
+                            relationshipTuple = (relationship, id)
+                        }
                     }
                 }
                 
@@ -177,8 +192,11 @@ public struct HATProfileDataProfileEmergencyContactObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        mobile = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        mobileTuple = (mobile, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            mobile = stringValue
+                            mobileTuple = (mobile, id)
+                        }
                     }
                 }
             }
@@ -194,36 +212,36 @@ public struct HATProfileDataProfileEmergencyContactObject: Comparable {
             
             let dict = json.dictionaryValue
             
-            if let tempName = (dict["name"]?.stringValue) {
+            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
                 
                 if tempName == "private" {
                     
                     isPrivate = true
-                    isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                    isPrivateTuple = (isPrivate, id)
                 }
                 
                 if tempName == "first_name" {
                     
                     firstName = ""
-                    firstNameTuple = (firstName, (dict["id"]?.intValue)!)
+                    firstNameTuple = (firstName, id)
                 }
                 
                 if tempName == "last_name" {
                     
                     lastName = ""
-                    lastNameTuple = (lastName, (dict["id"]?.intValue)!)
+                    lastNameTuple = (lastName, id)
                 }
                 
                 if tempName == "relationship" {
                     
                     relationship = ""
-                    relationshipTuple = (relationship, (dict["id"]?.intValue)!)
+                    relationshipTuple = (relationship, id)
                 }
                 
                 if tempName == "mobile" {
                     
                     mobile = ""
-                    mobileTuple = (mobile, (dict["id"]?.intValue)!)
+                    mobileTuple = (mobile, id)
                 }
             }
         }

@@ -110,14 +110,20 @@ public struct HATProfileDataProfileAboutObject: Comparable {
             
             let dict = json.dictionaryValue
             
-            if let tempName = (dict["name"]?.stringValue) {
+            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
                 
                 if tempName == "private" {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        isPrivate = Bool((tempValues[0].dictionaryValue["value"]?.stringValue)!)!
-                        isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            if let result = Bool(stringValue) {
+                                
+                                isPrivate = result
+                                isPrivateTuple = (isPrivate, id)
+                            }
+                        }
                     }
                 }
                 
@@ -125,8 +131,11 @@ public struct HATProfileDataProfileAboutObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        title = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        titleTuple = (title, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            title = stringValue
+                            titleTuple = (title, id)
+                        }
                     }
                 }
                 
@@ -134,8 +143,11 @@ public struct HATProfileDataProfileAboutObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        body = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        bodyTuple = (body, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            body = stringValue
+                            bodyTuple = (body, id)
+                        }
                     }
                 }
             }
@@ -151,24 +163,24 @@ public struct HATProfileDataProfileAboutObject: Comparable {
             
             let dict = json.dictionaryValue
             
-            if let tempName = (dict["name"]?.stringValue) {
+            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
                 
                 if tempName == "private" {
                     
                     isPrivate = true
-                    isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                    isPrivateTuple = (isPrivate, id)
                 }
                 
                 if tempName == "title" {
                     
                     title = ""
-                    titleTuple = (title, (dict["id"]?.intValue)!)
+                    titleTuple = (title, id)
                 }
                 
                 if tempName == "body" {
                     
                     body = ""
-                    bodyTuple = (body, (dict["id"]?.intValue)!)
+                    bodyTuple = (body, id)
                 }
             }
         }

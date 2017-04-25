@@ -122,14 +122,20 @@ public struct HATProfileDataProfileAddressDetailObject: Comparable {
             
             let dict = json.dictionaryValue
             
-            if let tempName = (dict["name"]?.stringValue) {
+            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
                 
                 if tempName == "private" {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        isPrivate = Bool((tempValues[0].dictionaryValue["value"]?.stringValue)!)!
-                        isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            if let result = Bool(stringValue) {
+                                
+                                isPrivate = result
+                                isPrivateTuple = (isPrivate, id)
+                            }
+                        }
                     }
                 }
                 
@@ -137,8 +143,11 @@ public struct HATProfileDataProfileAddressDetailObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        number = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        numberTuple = (number, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            number = stringValue
+                            numberTuple = (number, id)
+                        }
                     }
                 }
                 
@@ -146,8 +155,11 @@ public struct HATProfileDataProfileAddressDetailObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        street = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        streetTuple = (street, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            street = stringValue
+                            streetTuple = (street, id)
+                        }
                     }
                 }
                 
@@ -155,8 +167,11 @@ public struct HATProfileDataProfileAddressDetailObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        postCode = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        postCodeTuple = (postCode, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            postCode = stringValue
+                            postCodeTuple = (postCode, id)
+                        }
                     }
                 }
             }
@@ -172,30 +187,30 @@ public struct HATProfileDataProfileAddressDetailObject: Comparable {
             
             let dict = json.dictionaryValue
             
-            if let tempName = (dict["name"]?.stringValue) {
+            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
                 
                 if tempName == "private" {
                     
                     isPrivate = true
-                    isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                    isPrivateTuple = (isPrivate, id)
                 }
                 
                 if tempName == "no" {
                     
                     number = ""
-                    numberTuple = (number, (dict["id"]?.intValue)!)
+                    numberTuple = (number, id)
                 }
                 
                 if tempName == "street" {
                     
                     street = ""
-                    streetTuple = (street, (dict["id"]?.intValue)!)
+                    streetTuple = (street, id)
                 }
                 
                 if tempName == "postcode" {
                     
                     postCode = ""
-                    postCodeTuple = (postCode, (dict["id"]?.intValue)!)
+                    postCodeTuple = (postCode, id)
                 }
             }
         }

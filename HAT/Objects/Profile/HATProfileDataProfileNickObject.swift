@@ -96,14 +96,20 @@ public struct HATProfileDataProfileNickObject: Comparable {
             
             let dict = json.dictionaryValue
             
-            if let tempName = (dict["name"]?.stringValue) {
+            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
                 
                 if tempName == "private" {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        isPrivate = Bool((tempValues[0].dictionaryValue["value"]?.stringValue)!)!
-                        isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            if let result = Bool(stringValue) {
+                                
+                                isPrivate = result
+                                isPrivateTuple = (isPrivate, id)
+                            }
+                        }
                     }
                 }
                 
@@ -111,8 +117,11 @@ public struct HATProfileDataProfileNickObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        name = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        nameTuple = (name, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            name = stringValue
+                            nameTuple = (name, id)
+                        }
                     }
                 }
             }
@@ -128,18 +137,18 @@ public struct HATProfileDataProfileNickObject: Comparable {
             
             let dict = json.dictionaryValue
             
-            if let tempName = (dict["name"]?.stringValue) {
+            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
                 
                 if tempName == "private" {
                     
                     isPrivate = true
-                    isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                    isPrivateTuple = (isPrivate, id)
                 }
                 
                 if tempName == "name" {
                     
                     name = ""
-                    nameTuple = (name, (dict["id"]?.intValue)!)
+                    nameTuple = (name, id)
                 }
             }
         }

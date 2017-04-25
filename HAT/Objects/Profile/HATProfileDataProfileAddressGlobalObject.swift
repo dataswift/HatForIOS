@@ -122,14 +122,20 @@ public struct HATProfileDataProfileAddressGlobalObject: Comparable {
             
             let dict = json.dictionaryValue
             
-            if let tempName = (dict["name"]?.stringValue) {
+            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
                 
                 if tempName == "private" {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        isPrivate = Bool((tempValues[0].dictionaryValue["value"]?.stringValue)!)!
-                        isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            if let boolResult = Bool(stringValue) {
+                                
+                                isPrivate = boolResult
+                                isPrivateTuple = (isPrivate, id)
+                            }
+                        }
                     }
                 }
                 
@@ -137,8 +143,11 @@ public struct HATProfileDataProfileAddressGlobalObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        city = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        cityTuple = (city, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            city = stringValue
+                            cityTuple = (city, id)
+                        }
                     }
                 }
                 
@@ -146,8 +155,11 @@ public struct HATProfileDataProfileAddressGlobalObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        county = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        countyTuple = (county, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            county = stringValue
+                            countyTuple = (county, id)
+                        }
                     }
                 }
                 
@@ -155,8 +167,11 @@ public struct HATProfileDataProfileAddressGlobalObject: Comparable {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
-                        country = (tempValues[0].dictionaryValue["value"]?.stringValue)!
-                        countryTuple = (country, (dict["id"]?.intValue)!)
+                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
+                            
+                            country = stringValue
+                            countryTuple = (country, id)
+                        }
                     }
                 }
             }
@@ -172,31 +187,31 @@ public struct HATProfileDataProfileAddressGlobalObject: Comparable {
             
             let dict = json.dictionaryValue
             
-            if let tempName = (dict["name"]?.stringValue) {
+            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
                 
                 if tempName == "private" {
                     
                     isPrivate = true
-                    isPrivateTuple = (isPrivate, (dict["id"]?.intValue)!)
+                    isPrivateTuple = (isPrivate, id)
                 }
                 
                 if tempName == "city" {
                     
                     city = ""
-                    cityTuple = (city, (dict["id"]?.intValue)!)
+                    cityTuple = (city, id)
                 }
                 
                 if tempName == "county" {
                     
                     
                     county = ""
-                    countyTuple = (county, (dict["id"]?.intValue)!)
+                    countyTuple = (county, id)
                 }
                 
                 if tempName == "country" {
                     
                     country = ""
-                    countryTuple = (country, (dict["id"]?.intValue)!)
+                    countryTuple = (country, id)
                 }
             }
         }
