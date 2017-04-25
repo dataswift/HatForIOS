@@ -498,15 +498,18 @@ public class HATAccountService: NSObject {
             
             func profileEntries(json: [JSON], userToken: String?) {
                 
+                // if we have values return them
                 if json.count > 0 {
                     
                     let array = HATProfileObject(from: json[0].dictionaryValue)
                     successCallback(array)
+                // in case no values have found then that means that the users hasn't entered anything yet so we have to get the structure from the ccheckHatTableExistsForUploading method in order to have the id's
                 } else {
                     
-                    HATAccountService.checkHatTableExistsForUploading(userDomain: userDomain, tableName: "profile", sourceName: "rumpel", authToken: userToken, successCallback: {(dict) in
+                    HATAccountService.checkHatTableExistsForUploading(userDomain: userDomain, tableName: "profile", sourceName: "rumpel", authToken: userToken!, successCallback: {(dict) in
                     
-                        print(dict)
+                        let array = HATProfileObject(from: dict.0 as! Dictionary<String, JSON>)
+                        successCallback(array)
                     }, errorCallback: {(error) in
                     
                         failCallback(HATTableError.noValuesFound)
@@ -518,5 +521,54 @@ public class HATAccountService: NSObject {
         }
         
         HATAccountService.checkHatTableExists(userDomain: userDomain, tableName: "profile", sourceName: "rumpel", authToken: userToken, successCallback: tableFound, errorCallback: failCallback)
+    }
+    
+    // MARK: - Change Password
+    
+    /**
+     Changes the user's password
+     
+     - parameter userDomain: The user's domain
+     - parameter userToken: The user's authentication token
+     - parameter oldPassword: The old password the user entered
+     - parameter newPassword: The new password to change to
+     - parameter successCallback: A function of type (String, String?) to call on success
+     - parameter failCallback: A fuction of type (HATError) to call on fail
+     */
+    func changePassword(userDomain: String, userToken: String, oldPassword: String, newPassword: String, successCallback: @escaping (String, String?) -> Void, failCallback: @escaping (HATError) -> Void) -> Void {
+        
+        let url = "https://" + userDomain + "/control/v2/auth/password"
+        
+        let parameters: Dictionary = ["password" : oldPassword,
+                                      "newPassword" : newPassword]
+        let headers = [RequestHeaders.xAuthToken : userToken]
+        
+        HATNetworkHelper.AsynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: {(r: HATNetworkHelper.ResultType) -> Void in
+            
+            switch r {
+                
+            case .error(let error, let statusCode):
+                
+                let message = NSLocalizedString("Server responded with error", comment: "")
+                failCallback(.generalError(message, statusCode, error))
+            case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                
+                if isSuccess {
+                    
+                    //table found
+                    if statusCode == 200 {
+                        
+                        if let message = result.dictionaryValue["message"]?.stringValue {
+                            
+                            successCallback(message, token)
+                        }
+                    } else {
+                        
+                        let message = NSLocalizedString("Server responded with error", comment: "")
+                        failCallback(.generalError(message, statusCode, nil))
+                    }
+                }
+            }
+        })
     }
 }
