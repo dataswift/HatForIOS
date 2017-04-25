@@ -523,6 +523,60 @@ public class HATAccountService: NSObject {
         HATAccountService.checkHatTableExists(userDomain: userDomain, tableName: "profile", sourceName: "rumpel", authToken: userToken, successCallback: tableFound, errorCallback: failCallback)
     }
     
+    // MARK: - Post note
+    
+    /**
+     Posts the profile record to the hat
+     
+     - parameter userDomain: The user's Domain
+     - parameter userToken: The user's token
+     - parameter profile: The profile to be used to update the JSON send to the hat
+     - parameter successCallBack: A Function to execute
+     */
+    public class func postProfile(userDomain: String, userToken: String, profile: HATProfileObject, successCallBack: @escaping () -> Void) -> Void {
+        
+        func posting(resultJSON: Dictionary<String, Any>, token: String?) {
+            
+            // create the headers
+            let headers = ["Accept": ContentType.JSON,
+                           "Content-Type": ContentType.JSON,
+                           "X-Auth-Token": userToken]
+            
+            // create JSON file for posting with default values
+            let hatDataStructure = HATJSONHelper.createJSONForPosting(hatTableStructure: resultJSON)
+            // update JSON file with the values needed
+            let hatData = HATJSONHelper.updateProfileJSONFile(file: hatDataStructure, profileFile: profile)
+            
+            // make async request
+            HATNetworkHelper.AsynchronousRequest("https://" + userDomain + "/data/record/values", method: HTTPMethod.post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: hatData, headers: headers, completion: { (r: HATNetworkHelper.ResultType) -> Void in
+                
+                // handle result
+                switch r {
+                    
+                case .isSuccess(let isSuccess, _, _, _):
+                    
+                    if isSuccess {
+                        
+                        // reload table
+                        successCallBack()
+                        
+                        HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: {()})
+                    }
+                    
+                case .error(let error, _):
+                    
+                    print("error res: \(error)")
+                }
+            })
+        }
+        
+        func errorCall(error: HATTableError) {
+            
+        }
+        
+        HATAccountService.checkHatTableExistsForUploading(userDomain: userDomain, tableName: "notablesv1", sourceName: "rumpel", authToken: userToken, successCallback: posting, errorCallback: errorCall)
+    }
+    
     // MARK: - Change Password
     
     /**
