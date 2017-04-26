@@ -533,7 +533,7 @@ public class HATAccountService: NSObject {
      - parameter profile: The profile to be used to update the JSON send to the hat
      - parameter successCallBack: A Function to execute
      */
-    public class func postProfile(userDomain: String, userToken: String, profile: HATProfileObject, successCallBack: @escaping () -> Void, errorCallback: @escaping (HATTableError) -> Void) -> Void {
+    public class func postProfile(userDomain: String, userToken: String, hatProfile: HATProfileObject, successCallBack: @escaping () -> Void, errorCallback: @escaping (HATTableError) -> Void) -> Void {
         
         func posting(resultJSON: Dictionary<String, Any>, token: String?) {
             
@@ -545,7 +545,7 @@ public class HATAccountService: NSObject {
             // create JSON file for posting with default values
             let hatDataStructure = HATJSONHelper.createJSONForPosting(hatTableStructure: resultJSON)
             // update JSON file with the values needed
-            let hatData = HATJSONHelper.updateProfileJSONFile(file: hatDataStructure, profileFile: profile)
+            let hatData = HATJSONHelper.updateProfileJSONFile(file: hatDataStructure, profileFile: hatProfile)
             
             // make async request
             HATNetworkHelper.AsynchronousRequest("https://" + userDomain + "/data/record/values", method: HTTPMethod.post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: hatData, headers: headers, completion: { (r: HATNetworkHelper.ResultType) -> Void in

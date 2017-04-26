@@ -113,7 +113,7 @@ public struct HATProfileDataProfilePrimaryEmailObject: Comparable {
                     }
                 }
                 
-                if tempName == "link" {
+                if tempName == "value" {
                     
                     if let tempValues = dict["values"]?.arrayValue {
                         
@@ -145,7 +145,7 @@ public struct HATProfileDataProfilePrimaryEmailObject: Comparable {
                     isPrivateTuple = (isPrivate, id)
                 }
                 
-                if tempName == "link" {
+                if tempName == "value" {
                     
                     value = ""
                     valueTuple = (value, id)
