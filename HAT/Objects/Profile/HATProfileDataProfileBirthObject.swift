@@ -44,12 +44,7 @@ public struct HATProfileDataProfileBirthObject: Comparable {
     ///   - rhs: Another value to compare.
     public static func <(lhs: HATProfileDataProfileBirthObject, rhs: HATProfileDataProfileBirthObject) -> Bool {
         
-        if lhs.date != nil && rhs.date != nil {
-            
-            return lhs.date! < rhs.date!
-        }
-        
-        return false
+        return lhs.date < rhs.date
     }
     
     // MARK: - Variables
@@ -64,7 +59,7 @@ public struct HATProfileDataProfileBirthObject: Comparable {
     }
     
     /// User's date of birth
-    public var date: Date? = nil {
+    public var date: String = "" {
         
         didSet {
             
@@ -76,7 +71,7 @@ public struct HATProfileDataProfileBirthObject: Comparable {
     var isPrivateTuple: (Bool, Int) = (true, 0)
     
     /// A tuple containing the value and the ID of the value
-    var dateTuple: (Date?, Int) = (nil, 0)
+    var dateTuple: (String, Int) = ("", 0)
     
     // MARK: - Initialisers
     
@@ -86,10 +81,10 @@ public struct HATProfileDataProfileBirthObject: Comparable {
     public init() {
         
         isPrivate = true
-        date = nil
+        date = ""
         
         isPrivateTuple = (true, 0)
-        dateTuple = (nil, 0)
+        dateTuple = ("", 0)
     }
     
     /**
@@ -124,7 +119,7 @@ public struct HATProfileDataProfileBirthObject: Comparable {
                         
                         if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
                             
-                            date = HATFormatterHelper.formatStringToDate(string: String(stringValue))
+                            date = stringValue
                             dateTuple = (date, id)
                         }
                     }
@@ -152,7 +147,7 @@ public struct HATProfileDataProfileBirthObject: Comparable {
                 
                 if tempName == "date" {
                     
-                    date = HATFormatterHelper.formatStringToDate(string: String(describing: Date()))
+                    date = ""
                     dateTuple = (date, id)
                 }
             }
