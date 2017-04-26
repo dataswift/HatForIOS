@@ -533,7 +533,7 @@ public class HATAccountService: NSObject {
      - parameter profile: The profile to be used to update the JSON send to the hat
      - parameter successCallBack: A Function to execute
      */
-    public class func postProfile(userDomain: String, userToken: String, profile: HATProfileObject, successCallBack: @escaping () -> Void) -> Void {
+    public class func postProfile(userDomain: String, userToken: String, profile: HATProfileObject, successCallBack: @escaping () -> Void, errorCallback: @escaping (HATTableError) -> Void) -> Void {
         
         func posting(resultJSON: Dictionary<String, Any>, token: String?) {
             
@@ -563,9 +563,10 @@ public class HATAccountService: NSObject {
                         HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: {()})
                     }
                     
-                case .error(let error, _):
+                case .error(let error, let statusCode):
                     
-                    print("error res: \(error)")
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    errorCallback(.generalError(message, statusCode, error))
                 }
             })
         }
