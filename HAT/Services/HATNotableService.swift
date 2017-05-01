@@ -142,7 +142,10 @@ public class HATNotablesService: NSObject {
                 
                 if (note.data.createdTime == note2.data.createdTime) && (note.data.message == note2.data.message) {
                     
-                    return true
+                    if (note.lastUpdated < note2.lastUpdated || (note.id == note2.id) ) {
+                        
+                        return true
+                    }
                 }
                 
                 return false
