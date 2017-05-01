@@ -594,7 +594,7 @@ public class HATAccountService: NSObject {
         
         let url = "https://" + userDomain + "/control/v2/auth/password"
         
-        let parameters: Dictionary = ["password" : oldPassword,
+        let parameters : Dictionary = ["password" : oldPassword,
                                       "newPassword" : newPassword]
         let headers = [RequestHeaders.xAuthToken : userToken]
         
