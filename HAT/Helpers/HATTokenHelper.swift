@@ -31,7 +31,7 @@ class HATTokenHelper: NSObject {
             do {
                 
                 let jwt = try decode(jwt: unwrappedToken)
-                let scope = jwt.claim(name: "scope")
+                let scope = jwt.claim(name: "accessScope")
                 
                 if scope.string == "owner" {
                     
