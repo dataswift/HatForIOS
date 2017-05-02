@@ -62,6 +62,7 @@
 		60444EE71E4B27C5005E4433 /* HAT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60444EDD1E4B27C4005E4433 /* HAT.framework */; };
 		60444EEC1E4B27C5005E4433 /* LoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60444EEB1E4B27C5005E4433 /* LoginServiceTests.swift */; };
 		60444EEE1E4B27C5005E4433 /* HAT.h in Headers */ = {isa = PBXBuildFile; fileRef = 60444EE01E4B27C4005E4433 /* HAT.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		604EAC0F1EB886EE0084EEC8 /* HATTokenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EAC0E1EB886EE0084EEC8 /* HATTokenHelper.swift */; };
 		606375A71E534C2400F0D1B1 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606375A61E534C2400F0D1B1 /* Structures.swift */; };
 		606375A91E53613D00F0D1B1 /* FacebookServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606375A81E53613D00F0D1B1 /* FacebookServiceTests.swift */; };
 		606375AB1E536B1500F0D1B1 /* TwitterServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606375AA1E536B1500F0D1B1 /* TwitterServiceTests.swift */; };
@@ -230,6 +231,7 @@
 		60444EE61E4B27C5005E4433 /* HATTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HATTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60444EEB1E4B27C5005E4433 /* LoginServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServiceTests.swift; sourceTree = "<group>"; };
 		60444EED1E4B27C5005E4433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		604EAC0E1EB886EE0084EEC8 /* HATTokenHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HATTokenHelper.swift; path = Helpers/HATTokenHelper.swift; sourceTree = "<group>"; };
 		606375A61E534C2400F0D1B1 /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		606375A81E53613D00F0D1B1 /* FacebookServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookServiceTests.swift; sourceTree = "<group>"; };
 		606375AA1E536B1500F0D1B1 /* TwitterServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterServiceTests.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				602D16DA1E82B1E700C53A5E /* HATFormatterHelper.swift */,
 				60E41DD31E853C1D00E3DF60 /* HATJSONHelper.swift */,
 				602D16D81E82B1E700C53A5E /* HATNetworkHelper.swift */,
+				604EAC0E1EB886EE0084EEC8 /* HATTokenHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -717,6 +720,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				604EAC0F1EB886EE0084EEC8 /* HATTokenHelper.swift in Sources */,
 				602D16E51E82B20000C53A5E /* HATDataPlugDataDefinitionObject.swift in Sources */,
 				602D17101E82B23000C53A5E /* HATSystemStatusKindObject.swift in Sources */,
 				602D16FB1E82B21300C53A5E /* HATProviderKindObject.swift in Sources */,

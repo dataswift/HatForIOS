@@ -57,7 +57,8 @@ public class HATAccountService: NSObject {
                             return
                         }
                         
-                        successCallback(array, token)
+                        let tokenToReturn = HATTokenHelper.checkTokenScope(token: token)
+                        successCallback(array, tokenToReturn)
                     }
                 }
         })
@@ -100,7 +101,8 @@ public class HATAccountService: NSObject {
                             return
                         }
                         
-                        successCallback(array, token)
+                        let tokenToReturn = HATTokenHelper.checkTokenScope(token: token)
+                        successCallback(array, tokenToReturn)
                     }
                 }
         })
@@ -158,7 +160,8 @@ public class HATAccountService: NSObject {
                             // get notes
                             if tableID != nil {
                                 
-                                successCallback(tableID!, token)
+                                let tokenToReturn = HATTokenHelper.checkTokenScope(token: token)
+                                successCallback(tableID!, tokenToReturn)
                             } else {
                                 
                                 errorCallback(.noTableIDFound)
@@ -246,11 +249,17 @@ public class HATAccountService: NSObject {
             // handle result
             switch r {
                 
-            case .isSuccess(let isSuccess, let statusCode, _, _):
+            case .isSuccess(let isSuccess, let statusCode, _, let newToken):
                 
                 if isSuccess {
                     
-                    success(token)
+                    if let tokenToReturn = HATTokenHelper.checkTokenScope(token: newToken) {
+                        
+                        success(tokenToReturn)
+                    } else {
+                        
+                        success(token)
+                    }
                     
                     HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: {() -> Void in return})
                 } else {
@@ -335,7 +344,9 @@ public class HATAccountService: NSObject {
                                 
                                 break
                             }
-                            successCallback(dictionary, token)
+                            
+                            let tokenToReturn = HATTokenHelper.checkTokenScope(token: token)
+                            successCallback(dictionary, tokenToReturn)
                         //table not found
                         } else if statusCode == 404 {
                             
@@ -399,7 +410,8 @@ public class HATAccountService: NSObject {
                         //table found
                         if statusCode == 200 {
                             
-                            completion(fileUploadJSON, token)
+                            let tokenToReturn = HATTokenHelper.checkTokenScope(token: token)
+                            completion(fileUploadJSON, tokenToReturn)
                         } else {
                             
                             let message = NSLocalizedString("Server responded with error", comment: "")
@@ -452,7 +464,8 @@ public class HATAccountService: NSObject {
                         //table found
                         if statusCode == 200 {
                             
-                            completion(fileUploadJSON, token)
+                            let tokenToReturn = HATTokenHelper.checkTokenScope(token: token)
+                            completion(fileUploadJSON, tokenToReturn)
                         } else {
                             
                             let message = NSLocalizedString("Server responded with error", comment: "")
@@ -612,8 +625,9 @@ public class HATAccountService: NSObject {
                     
                     //table found
                     if let message = result.dictionaryValue["message"]?.stringValue {
-                            
-                        successCallback(message, token)
+                        
+                        let tokenToReturn = HATTokenHelper.checkTokenScope(token: token)
+                        successCallback(message, tokenToReturn)
                     }
                 }
             }
