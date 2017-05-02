@@ -517,7 +517,7 @@ public class HATAccountService: NSObject {
                 }
             }
             
-            HATAccountService.getHatTableValuesWithOutPretty(token: userToken!, userDomain: userDomain, tableID: tableID, parameters: [:], successCallback: profileEntries, errorCallback: failCallback)
+            HATAccountService.getHatTableValuesWithOutPretty(token: userToken!, userDomain: userDomain, tableID: tableID, parameters: ["starttime" : "0"], successCallback: profileEntries, errorCallback: failCallback)
         }
         
         HATAccountService.checkHatTableExists(userDomain: userDomain, tableName: "profile", sourceName: "rumpel", authToken: userToken, successCallback: tableFound, errorCallback: failCallback)
