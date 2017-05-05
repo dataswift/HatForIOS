@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		379C91CDBA516AF1B61C086D /* Pods_HATTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276A84838AF114846AA6C978 /* Pods_HATTests.framework */; };
+		600995C81EBCC7DC007F9330 /* HATTokenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EAC0E1EB886EE0084EEC8 /* HATTokenHelper.swift */; };
 		6020A7031E526BBF00D7DC04 /* LocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7021E526BBF00D7DC04 /* LocationServiceTests.swift */; };
 		6020A7061E52749700D7DC04 /* HATServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7051E52749700D7DC04 /* HATServiceTests.swift */; };
 		6020A7081E52803800D7DC04 /* HATAccountServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7071E52803800D7DC04 /* HATAccountServiceTests.swift */; };
@@ -843,6 +844,7 @@
 				60DDBB111E82F528007CDAFB /* HATService.swift in Sources */,
 				60DDBB0E1E82F528007CDAFB /* HATFacebookService.swift in Sources */,
 				60DDBB271E82F544007CDAFB /* HATProviderPaymentObject.swift in Sources */,
+				600995C81EBCC7DC007F9330 /* HATTokenHelper.swift in Sources */,
 				60DDBB2A1E82F548007CDAFB /* HATFacebookDataPostsPrivacySocialFeedObject.swift in Sources */,
 				60DDBB211E82F53F007CDAFB /* HATLocationsDataLocationsObject.swift in Sources */,
 				6020A7061E52749700D7DC04 /* HATServiceTests.swift in Sources */,

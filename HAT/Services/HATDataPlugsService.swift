@@ -206,6 +206,10 @@ public class HATDataPlugsService: NSObject {
                 
                 if isSuccess {
                     
+                    if statusCode == 400 {
+                        
+                        failCallBack(.offerClaimed)
+                    }
                     succesfulCallBack("enabled")
                 } else {
                     
