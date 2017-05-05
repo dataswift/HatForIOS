@@ -54,6 +54,9 @@ public struct HATNotesPhotoData: Comparable {
     /// the caption of the photo
     public var caption: String = ""
     
+    /// the image downloaded from the link
+    public var image: UIImage? = nil
+    
     /// if photo is shared
     public var shared: Bool = false
     
