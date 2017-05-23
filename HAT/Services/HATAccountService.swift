@@ -118,7 +118,7 @@ public class HATAccountService: NSObject {
      - parameter successCallback: A callback called when successful of type @escaping ([JSON]) -> Void
      - parameter errorCallback: A callback called when failed of type @escaping (Void) -> Void)
      */
-    public class func createTableValuev2(token: String, userDomain: String, dataPath: String, parameters: Dictionary<String, Any>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public class func createTableValuev2(token: String, userDomain: String, dataPath: String, parameters: Dictionary<String, Any>, successCallback: @escaping (HATNationalityObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // form the url
         let url = "https://" + userDomain + "/api/v2/data/rumpellite/" + dataPath
@@ -140,13 +140,7 @@ public class HATAccountService: NSObject {
                     
                     if isSuccess {
                         
-                        guard let array = result.array else {
-                            
-                            errorCallback(.noValuesFound)
-                            return
-                        }
-                        
-                        successCallback(array, token)
+                        successCallback(HATNationalityObject(from: result), token)
                     }
                 }
         })
