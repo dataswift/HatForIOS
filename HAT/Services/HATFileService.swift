@@ -193,7 +193,7 @@ public class HATFileService: NSObject {
         })
     }
     
-    // MARK: - Upload File to hat
+    // MARK: - Complete Upload File to hat
     
     /**
      Completes an upload of a file to hat
@@ -250,30 +250,33 @@ public class HATFileService: NSObject {
         })
     }
     
+    // MARK: - Upload File to hat
+    
     /**
-     Completes an upload of a file to hat
+     Uploads a file to hat
      
-     - parameter fileID: The fileID of the file uploaded to hat
+     - parameter fileName: The file name of the file to be uploaded
      - parameter token: The owner's token
      - parameter userDomain: The user hat domain
      - parameter completion: A function to execute on success, returning the object returned from the server
      - parameter errorCallback: A function to execute on failure, returning an error
      */
-    public class func completeUploadFileToHAT(fileID: String, token: String, userDomain: String, completion: @escaping (FileUploadObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public class func uploadFileToHAT(fileName: String, token: String, userDomain: String, tags: [String], completion: @escaping (FileUploadObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
-        let uploadURL = "https://" + userDomain + "/api/v2/files/file/" + fileID + "/complete"
+        let uploadURL = "https://" + userDomain + "/api/v2/files/upload"
         
         // create parameters and headers
+        let parameters: Dictionary<String, String> = HATJSONHelper.createFileUploadingJSONFrom(fileName: fileName, tags: tags) as! Dictionary<String, String>
         let header = ["X-Auth-Token" : token]
         
         // make async request
         HATNetworkHelper.AsynchronousRequest(
             uploadURL,
-            method: HTTPMethod.put,
+            method: HTTPMethod.post,
             encoding: Alamofire.JSONEncoding.default,
             contentType: "application/json",
-            parameters: [:],
+            parameters: parameters,
             headers: header,
             completion: {(r: HATNetworkHelper.ResultType) -> Void in
                 
