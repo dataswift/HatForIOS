@@ -78,5 +78,18 @@ public class HATNationalityObject: Comparable {
         placeOfBirth = (dict["placeOfBirth"].stringValue)
         language = (dict["language"].stringValue)
     }
+    
+    public func toJSON() -> Dictionary<String, String> {
+        
+        return [
+        
+            "nationality" : self.nationality,
+            "passportHeld" : self.passportHeld,
+            "passportNumber" : self.passportNumber,
+            "placeOfBirth" : self.placeOfBirth,
+            "language" : self.language
+        ]
+        
+    }
 
 }

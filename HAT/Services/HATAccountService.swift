@@ -21,7 +21,7 @@ public class HATAccountService: NSObject {
     // MARK: - Get hat values from a table
     
     /**
-     Gets values from a particular table
+     Gets values from a particular table in use with v1 API
      
      - parameter token: The token in String format
      - parameter userDomain: The user's domain in String format
@@ -65,7 +65,7 @@ public class HATAccountService: NSObject {
     }
     
     /**
-     Gets values from a particular table
+     Gets values from a particular table in use with v2 API
      
      - parameter token: The token in String format
      - parameter userDomain: The user's domain in String format
@@ -84,6 +84,50 @@ public class HATAccountService: NSObject {
         
         // make the request
         HATNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion:
+            { (r: HATNetworkHelper.ResultType) -> Void in
+                
+                switch r {
+                    
+                case .error(let error, let statusCode):
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    errorCallback(.generalError(message, statusCode, error))
+                case .isSuccess(let isSuccess, _, let result, let token):
+                    
+                    if isSuccess {
+                        
+                        guard let array = result.array else {
+                            
+                            errorCallback(.noValuesFound)
+                            return
+                        }
+                        
+                        successCallback(array, token)
+                    }
+                }
+        })
+    }
+    
+    /**
+     Gets values from a particular table in use with v2 API
+     
+     - parameter token: The token in String format
+     - parameter userDomain: The user's domain in String format
+     - parameter dataPath: The table id as NSNumber
+     - parameter parameters: The parameters to pass to the request, e.g. startime, endtime, limit
+     - parameter successCallback: A callback called when successful of type @escaping ([JSON]) -> Void
+     - parameter errorCallback: A callback called when failed of type @escaping (Void) -> Void)
+     */
+    public class func createTableValuev2(token: String, userDomain: String, dataPath: String, parameters: Dictionary<String, Any>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+        
+        // form the url
+        let url = "https://" + userDomain + "/api/v2/data/rumpel/" + dataPath
+        
+        // create parameters and headers
+        let headers = [RequestHeaders.xAuthToken : token]
+        
+        // make the request
+        HATNetworkHelper.AsynchronousRequest(url, method: .post, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion:
             { (r: HATNetworkHelper.ResultType) -> Void in
                 
                 switch r {

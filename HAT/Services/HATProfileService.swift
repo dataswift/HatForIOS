@@ -20,7 +20,7 @@ public class HATProfileService: NSObject {
     // MARK: - Get profile nationality
     
     /**
-     Searches for profile table and fetches the entries
+     Gets the nationality of the user from the hat, if it's there already
      
      - parameter userDomain: The user's HAT domain
      - parameter userToken: The user's token
@@ -41,4 +41,36 @@ public class HATProfileService: NSObject {
         
         HATAccountService.getHatTableValuesv2(token: userToken, userDomain: userDomain, dataPath: "nationality", parameters: ["starttime" : "0"], successCallback: profileEntries, errorCallback: failCallback)
     }
+    
+    // MARK: - Post profile nationality
+    
+    /**
+     Posts user's nationality to the hat
+     
+     - parameter userDomain: The user's HAT domain
+     - parameter userToken: The user's token
+     - parameter nationality: The user's token
+     - parameter successCallback: A function to call on success
+     - parameter failCallback: A fuction to call on fail
+     */
+    public class func postNationalityToHAT(userDomain: String, userToken: String, nationality: HATNationalityObject, successCallback: @escaping (HATNationalityObject) -> Void, failCallback: @escaping (HATTableError) -> Void) -> Void {
+        
+        func profileEntries(json: [JSON], renewedToken: String?) {
+            
+            // if we have values return them
+            if json.count > 0 {
+                
+                let array = HATNationalityObject(from: json[0])
+                successCallback(array)
+            }
+        }
+        
+        let json = nationality.toJSON()
+        
+        HATAccountService.createTableValuev2(token: userToken, userDomain: userDomain, dataPath: "nationality", parameters: json, successCallback: {(json, token) in
+        
+            print(json)
+        }, errorCallback: failCallback)
+    }
+    
 }
