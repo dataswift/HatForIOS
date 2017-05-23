@@ -964,4 +964,24 @@ public struct HATJSONHelper {
             ] as [String : Any]
     }
     
+    // MARK: - Create JSON for nationality uploading
+    
+    /**
+     Creates the json file to purchase a HAT
+     
+     - parameter purchaseModel: The purchase model with all the necessary values
+     - returns: A Dictionary <String, Any>
+     */
+    static func createFileUploadingJSONFrom(nationality: HATNationalityObject) -> Dictionary <String, String> {
+        
+        // the final JSON file to be returned
+        return [
+            
+            "nationality" : nationality.nationality,
+            "passportHeld" : nationality.passportHeld,
+            "passportNumber" : nationality.passportNumber,
+            "placeOfBirthe" : nationality.placeOfBirth,
+            "language" : nationality.language
+            ] as [String : String]
+    }
 }
