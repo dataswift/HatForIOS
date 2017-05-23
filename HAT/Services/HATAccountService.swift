@@ -83,7 +83,7 @@ public class HATAccountService: NSObject {
         let headers = [RequestHeaders.xAuthToken : token]
         
         // make the request
-        HATNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion:
+        HATNetworkHelper.AsynchronousRequest(url, method: .get, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion:
             { (r: HATNetworkHelper.ResultType) -> Void in
                 
                 switch r {

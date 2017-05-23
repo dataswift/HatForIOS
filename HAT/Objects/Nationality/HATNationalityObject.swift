@@ -52,6 +52,8 @@ public class HATNationalityObject: Comparable {
     public var passportNumber: String = ""
     public var placeOfBirth: String = ""
     public var language: String = ""
+    public var recordID: String = ""
+    public var unixTimeStamp: Int? = Int(HATFormatterHelper.formatDateToISO(date: Date()))
     
     // MARK: - Initialisers
     
@@ -65,6 +67,8 @@ public class HATNationalityObject: Comparable {
         passportNumber = ""
         placeOfBirth = ""
         language = ""
+        recordID = ""
+        unixTimeStamp = Int(HATFormatterHelper.formatDateToISO(date: Date()))
     }
     
     /**
@@ -72,11 +76,17 @@ public class HATNationalityObject: Comparable {
      */
     public init(from dict: JSON) {
         
-        nationality = (dict["nationality"].stringValue)
-        passportHeld = (dict["passportHeld"].stringValue)
-        passportNumber = (dict["passportNumber"].stringValue)
-        placeOfBirth = (dict["placeOfBirth"].stringValue)
-        language = (dict["language"].stringValue)
+        if let data = (dict["data"].dictionary) {
+            
+            nationality = (data["nationality"]!.stringValue)
+            passportHeld = (data["passportHeld"]!.stringValue)
+            passportNumber = (data["passportNumber"]!.stringValue)
+            placeOfBirth = (data["placeOfBirth"]!.stringValue)
+            language = (data["language"]!.stringValue)
+            unixTimeStamp = Int((data["unixTimeStamp"]!.stringValue))
+        }
+        
+        recordID = (dict["recordId"].stringValue)
     }
     
     public func toJSON() -> Dictionary<String, String> {
