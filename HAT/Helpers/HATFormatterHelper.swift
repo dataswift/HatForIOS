@@ -88,7 +88,7 @@ public class HATFormatterHelper: NSObject {
      - parameter date: The date to format
      - returns: String?
      */
-    static func formatDateToEpoch(date: Date) -> String? {
+    public static func formatDateToEpoch(date: Date) -> String? {
         
         // get the unix time stamp
         let elapse = date.timeIntervalSince1970

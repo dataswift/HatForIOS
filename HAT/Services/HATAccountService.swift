@@ -77,7 +77,7 @@ public class HATAccountService: NSObject {
     public class func getHatTableValuesv2(token: String, userDomain: String, dataPath: String, parameters: Dictionary<String, String>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // form the url
-        let url = "https://" + userDomain + "/api/v2/data/rumpel/" + dataPath
+        let url = "https://" + userDomain + "/api/v2/data/rumpellite/" + dataPath
         
         // create parameters and headers
         let headers = [RequestHeaders.xAuthToken : token]
@@ -121,13 +121,13 @@ public class HATAccountService: NSObject {
     public class func createTableValuev2(token: String, userDomain: String, dataPath: String, parameters: Dictionary<String, Any>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // form the url
-        let url = "https://" + userDomain + "/api/v2/data/rumpel/" + dataPath
+        let url = "https://" + userDomain + "/api/v2/data/rumpellite/" + dataPath
         
         // create parameters and headers
         let headers = [RequestHeaders.xAuthToken : token]
         
         // make the request
-        HATNetworkHelper.AsynchronousRequest(url, method: .post, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion:
+        HATNetworkHelper.AsynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion:
             { (r: HATNetworkHelper.ResultType) -> Void in
                 
                 switch r {

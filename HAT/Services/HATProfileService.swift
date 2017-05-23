@@ -34,7 +34,7 @@ public class HATProfileService: NSObject {
             // if we have values return them
             if json.count > 0 {
                 
-                let array = HATNationalityObject(from: json[0])
+                let array = HATNationalityObject(from: json.last!)
                 successCallback(array)
             }
         }

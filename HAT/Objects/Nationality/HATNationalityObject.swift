@@ -53,7 +53,7 @@ public class HATNationalityObject: Comparable {
     public var placeOfBirth: String = ""
     public var language: String = ""
     public var recordID: String = ""
-    public var unixTimeStamp: Int? = Int(HATFormatterHelper.formatDateToISO(date: Date()))
+    public var unixTimeStamp: Int? = nil
     
     // MARK: - Initialisers
     
@@ -68,7 +68,7 @@ public class HATNationalityObject: Comparable {
         placeOfBirth = ""
         language = ""
         recordID = ""
-        unixTimeStamp = Int(HATFormatterHelper.formatDateToISO(date: Date()))
+        unixTimeStamp = nil
     }
     
     /**
@@ -83,7 +83,10 @@ public class HATNationalityObject: Comparable {
             passportNumber = (data["passportNumber"]!.stringValue)
             placeOfBirth = (data["placeOfBirth"]!.stringValue)
             language = (data["language"]!.stringValue)
-            unixTimeStamp = Int((data["unixTimeStamp"]!.stringValue))
+            if let time = (data["unixTimeStamp"]?.stringValue) {
+                
+                unixTimeStamp = Int(time)
+            }
         }
         
         recordID = (dict["recordId"].stringValue)
