@@ -267,7 +267,7 @@ public class HATFileService: NSObject {
         let uploadURL = "https://" + userDomain + "/api/v2/files/upload"
         
         // create parameters and headers
-        let parameters: Dictionary<String, String> = HATJSONHelper.createFileUploadingJSONFrom(fileName: fileName)
+        let parameters: Dictionary<String, Any> = HATJSONHelper.createFileUploadingJSONFrom(fileName: fileName, tags: tags)
         let header = ["X-Auth-Token" : token]
         
         // make async request
@@ -291,7 +291,6 @@ public class HATFileService: NSObject {
                     if isSuccess {
                         
                         let fileUploadJSON = FileUploadObject(from: result.dictionaryValue)
-                        fileUploadJSON.tags = tags
                         
                         //table found
                         if statusCode == 200 {
