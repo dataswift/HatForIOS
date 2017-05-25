@@ -954,15 +954,15 @@ public struct HATJSONHelper {
      - parameter tags: The tags attached to the photo
      - returns: A Dictionary <String, Any>
      */
-    static func createFileUploadingJSONFrom(fileName: String, tags: [String]) -> Dictionary <String, Any> {
+    static func createFileUploadingJSONFrom(fileName: String) -> Dictionary <String, String> {
         
         // the final JSON file to be returned
         return [
             
             "name" : fileName,
             "source" : "iPhone",
-            "tags" : tags
-            ] as [String : Any]
+            "tags" : ""
+            ] as [String : String]
     }
     
     // MARK: - Create JSON for nationality uploading

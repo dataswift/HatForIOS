@@ -116,7 +116,7 @@ public struct HATProfileRelationshipAndHouseholdObject: Comparable {
         
         return [
             
-            "highestAcademicQualification" : self.relationshipStatus,
+            "relationshipStatus" : self.relationshipStatus,
             "typeOfAccomodation" : self.typeOfAccomodation,
             "livingSituation" : self.livingSituation,
             "howManyUsuallyLiveInYourHousehold" : self.howManyUsuallyLiveInYourHousehold,
