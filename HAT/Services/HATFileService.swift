@@ -31,7 +31,7 @@ public class HATFileService: NSObject {
         
         let url: String = "https://" + userDomain + "/api/v2/files/search"
         let headers = ["X-Auth-Token" : token]
-        HATNetworkHelper.AsynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: ["source" : "iPhone", "name": "", "status" : ["status" : status!, "size" : 0]], headers: headers, completion: { (r) -> Void in
+        HATNetworkHelper.AsynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: ["source" : "iPhone", "name": "", "tags" : "photo", "status" : ["status" : status!, "size" : 0]], headers: headers, completion: { (r) -> Void in
             // handle result
             switch r {
                 
@@ -274,6 +274,63 @@ public class HATFileService: NSObject {
         HATNetworkHelper.AsynchronousRequest(
             uploadURL,
             method: HTTPMethod.post,
+            encoding: Alamofire.JSONEncoding.default,
+            contentType: "application/json",
+            parameters: parameters,
+            headers: header,
+            completion: {(r: HATNetworkHelper.ResultType) -> Void in
+                
+                switch r {
+                    
+                case .error(let error, let statusCode):
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    errorCallback(.generalError(message, statusCode, error))
+                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                    
+                    if isSuccess {
+                        
+                        let fileUploadJSON = FileUploadObject(from: result.dictionaryValue)
+                        
+                        //table found
+                        if statusCode == 200 {
+                            
+                            completion(fileUploadJSON, token)
+                        } else {
+                            
+                            let message = NSLocalizedString("Server responded with error", comment: "")
+                            errorCallback(.generalError(message, statusCode, nil))
+                        }
+                    }
+                }
+        })
+    }
+    
+    // MARK: Update Tags
+    
+    /**
+     Updates the tags and name of a file
+     
+     - parameter fileID: The file id of the file
+     - parameter fileName: The file name of the file
+     - parameter token: The owner's token
+     - parameter userDomain: The user hat domain
+     - parameter completion: A function to execute on success, returning the object returned from the server
+     - parameter errorCallback: A function to execute on failure, returning an error
+     */
+    public class func updateParametersOfFile(fileID: String, fileName: String, token: String, userDomain: String, tags: [String], completion: @escaping (FileUploadObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+        
+        // create the url
+        let updateURL = "https://" + userDomain + "/api/v2/files/" + fileID
+        
+        // create parameters and headers
+        let parameters: Dictionary<String, Any> = HATJSONHelper.createFileUploadingJSONFrom(fileName: fileName, tags: tags)
+        let header = ["X-Auth-Token" : token]
+        
+        // make async request
+        HATNetworkHelper.AsynchronousRequest(
+            updateURL,
+            method: HTTPMethod.put,
             encoding: Alamofire.JSONEncoding.default,
             contentType: "application/json",
             parameters: parameters,
