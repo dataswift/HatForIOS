@@ -29,7 +29,7 @@ class LocationServiceTests: XCTestCase {
     func testWriteToCloud() {
         
         let body = ["message" : ""]
-        let urlToConnect = "https://marketsquare.hubofallthings.com/api/dataplugs/c532e122-db4a-44b8-9eaf-18989f214262/connect?hat=mariostsekis.hubofallthings.net"
+        let urlToConnect = "https://dex.hubofallthings.com/api/dataplugs/c532e122-db4a-44b8-9eaf-18989f214262/connect?hat=mariostsekis.hubofallthings.net"
         let userDomain = "mariostsekis.hubofallthings.net"
         let expectationTest = expectation(description: "Authorized...")
         
@@ -58,7 +58,7 @@ class LocationServiceTests: XCTestCase {
     
     func testFormatOfURLDuringRegistration() {
         
-        let url = "https://marketsquare.hubofallthings.com/api/dataplugs/c532e122-db4a-44b8-9eaf-18989f214262/connect?hat=mariostsekis.hubofallthings.net"
+        let url = "https://dex.hubofallthings.com/api/dataplugs/c532e122-db4a-44b8-9eaf-18989f214262/connect?hat=mariostsekis.hubofallthings.net"
         let userDomain = "mariostsekis.hubofallthings.net"
         
         let formattedURL = HATLocationService.locationDataPlugURL(userDomain, dataPlugID: HATDataPlugCredentials.Market_DataPlugID)
