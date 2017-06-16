@@ -397,7 +397,76 @@ public struct HATJSONHelper {
         return JSON
     }
     
-    
+    public static func createJSONForNotablesV2(note: HATNotesData) -> Dictionary<String, Any> {
+        
+        // create the author table fields
+        let authorFieldsJSON: Dictionary = [
+            
+            "nick": note.data.authorData.nickName,
+            "name": note.data.authorData.name,
+            "photo_url": note.data.authorData.photoURL,
+            "id": note.data.authorData.id,
+            "phata": note.data.authorData.phata
+        ] as [String : Any]
+        
+        var latitude = 0.0
+        if note.data.locationData.latitude != nil {
+            
+            latitude = note.data.locationData.latitude!
+        }
+        var longitude = 0.0
+        if note.data.locationData.longitude != nil {
+            
+            longitude = note.data.locationData.longitude!
+        }
+        
+        // create the location table fields
+        let locationFieldsJSON: Dictionary = [
+            
+            "altitude": note.data.locationData.altitude,
+            "altitude_accuracy": note.data.locationData.altitudeAccuracy,
+            "heading": note.data.locationData.heading,
+            "latitude": latitude,
+            "shared": note.data.locationData.shared,
+            "accuracy": note.data.locationData.accuracy,
+            "longitude": longitude,
+            "speed": note.data.locationData.speed
+        ] as [String : Any]
+        
+        // create the photos table field
+        let photosFieldsJSON: Dictionary = [
+            
+            "link": note.data.photoData.link,
+            "source": note.data.photoData.source,
+            "caption": note.data.photoData.caption,
+            "shared": note.data.photoData.shared
+        ] as [String : Any]
+        
+        var publicUntil = ""
+        if note.data.publicUntil != nil {
+            
+            publicUntil = HATFormatterHelper.formatDateToISO(date: note.data.publicUntil!)
+        }
+        
+        // create the final json file
+        let JSON: Dictionary = [
+            
+            "lastUpdated": (HATFormatterHelper.formatDateToEpoch(date: Date())!),
+            "authorv1": authorFieldsJSON,
+            "created_time": note.data.createdTime,
+            "shared": note.data.shared,
+            "shared_on" : note.data.sharedOn,
+            "photov1": photosFieldsJSON,
+            "locationv1": locationFieldsJSON,
+            "message": note.data.message,
+            "public_until": publicUntil,
+            "updated_time" : note.data.updatedTime,
+            "kind" : note.data.kind
+            ] as [String : Any]
+        
+        // return the json file
+        return JSON
+    }
     
     /**
      Creates the json file to update a note
@@ -416,8 +485,7 @@ public struct HATJSONHelper {
         // the record json fields
         let recordDictionary: Dictionary = [
             
-            "name": iso8601String,
-            "lastUpdated":iso8601String
+            "name": iso8601String
             ] as [String : Any]
         
         // for each json file in hatTableStructure

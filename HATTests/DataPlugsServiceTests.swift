@@ -36,7 +36,7 @@ class DataPlugsServiceTests: XCTestCase {
         ]
         let expectationTest = expectation(description: "Checking for available data plugs...")
         
-        let urlToConnect = "https://dex.hubofallthings.com/api/dataplugs"
+        let urlToConnect = "https://marketsquare.hubofallthings.com/api/dataplugs"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         

@@ -42,6 +42,11 @@ public struct HATLocationsObject: Equatable {
     public var name: String = ""
     /// The data of the location object
     public var data: HATLocationsDataObject = HATLocationsDataObject()
+    /// The endPoint of the note, used in v2 API only
+    public var endPoint: String = ""
+    
+    /// The recordID of the note, used in v2 API only
+    public var recordID: String = ""
     
     // MARK: - Initialisers
     
@@ -54,6 +59,8 @@ public struct HATLocationsObject: Equatable {
         lastUpdate = nil
         name = ""
         data = HATLocationsDataObject()
+        endPoint = ""
+        recordID = ""
     }
     
     /**
@@ -81,6 +88,35 @@ public struct HATLocationsObject: Equatable {
         }
         
         if let tempTables = dict["data"]?.dictionaryValue {
+            
+            data = HATLocationsDataObject(dict: tempTables)
+        }
+    }
+    
+    /**
+     It initialises everything from the received JSON file from the HAT using V2 API
+     */
+    public init(dictV2: Dictionary<String, JSON>) {
+        
+        // init optional JSON fields to default values
+        self.init()
+        
+        if let tempEndpoint = dictV2["endpoint"]?.string {
+            
+            endPoint = tempEndpoint
+        }
+        
+        if let tempRecordID = dictV2["recordId"]?.string {
+            
+            recordID = tempRecordID
+        }
+        
+        if let tempTables = dictV2["data"]?.dictionaryValue {
+            
+            if let tempUpdatedTime = tempTables["lastUpdated"]?.string {
+                
+                lastUpdate = HATFormatterHelper.formatStringToDate(string: tempUpdatedTime)
+            }
             
             data = HATLocationsDataObject(dict: tempTables)
         }

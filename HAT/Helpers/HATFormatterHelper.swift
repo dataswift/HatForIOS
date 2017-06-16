@@ -29,9 +29,10 @@ public class HATFormatterHelper: NSObject {
         
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        dateFormatter.locale = Locale.current
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         
-        return dateFormatter.string(from: date as Date)
+        return dateFormatter.string(from: date)
     }
     
     /**

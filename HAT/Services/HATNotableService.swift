@@ -17,7 +17,7 @@ import Alamofire
 
 /// A class about the methods concerning the Notables service
 public class HATNotablesService: NSObject {
-
+    
     // MARK: - Get Notes
     
     /**
@@ -28,10 +28,10 @@ public class HATNotablesService: NSObject {
     public class func fetchNotables(userDomain: String, authToken: String, structure: Dictionary<String, Any>, parameters: Dictionary<String, String>, success: @escaping (_ array: [JSON], String?) -> Void, failure: @escaping (HATTableError) -> Void ) -> Void {
         
         HATAccountService.checkHatTableExists(userDomain: userDomain, tableName: "notablesv1",
-            sourceName: "rumpel",
-            authToken: authToken,
-            successCallback: getNotes(userDomain: userDomain, token: authToken, parameters: parameters, success: success),
-            errorCallback: failure)
+                                              sourceName: "rumpel",
+                                              authToken: authToken,
+                                              successCallback: getNotes(userDomain: userDomain, token: authToken, parameters: parameters, success: success),
+                                              errorCallback: failure)
     }
     
     /**
@@ -169,10 +169,16 @@ public class HATNotablesService: NSObject {
                             
                             if innerNote.lastUpdated > note.lastUpdated {
                                 
-                                arrayToReturn.remove(at: outterIndex)
+                                if outterIndex < arrayToReturn.count {
+                                    
+                                    arrayToReturn.remove(at: outterIndex)
+                                }
                             } else {
                                 
-                                arrayToReturn.remove(at: innerIndex)
+                                if innerIndex < arrayToReturn.count {
+                                    
+                                    arrayToReturn.remove(at: innerIndex)
+                                }
                             }
                         }
                     }

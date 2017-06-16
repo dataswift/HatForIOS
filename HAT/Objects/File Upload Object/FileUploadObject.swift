@@ -57,6 +57,7 @@ public struct FileUploadObject: Comparable {
     public var name: String = ""
     public var source: String = ""
     public var tags: [String] = []
+    public var image: UIImage? = nil
     public var title: String = ""
     public var fileDescription: String = ""
     public var dateCreated: Date? = nil
@@ -77,6 +78,7 @@ public struct FileUploadObject: Comparable {
         name = ""
         source = ""
         tags = []
+        image = nil
         title = ""
         fileDescription = ""
         dateCreated = nil
