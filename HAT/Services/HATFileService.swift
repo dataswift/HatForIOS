@@ -395,7 +395,7 @@ public class HATFileService: NSObject {
      - parameter completion: A function to execute on success
      - parameter errorCallBack: A Function to execute on failure
      */
-    class func uploadFileToHATWrapper(token: String, userDomain: String, fileToUpload: UIImage, tags: [String], progressUpdater: ((Double) -> Void)?, completion: ((FileUploadObject, String?) -> Void)?, errorCallBack: ((HATTableError) -> Void)?) {
+    public class func uploadFileToHATWrapper(token: String, userDomain: String, fileToUpload: UIImage, tags: [String], progressUpdater: ((Double) -> Void)?, completion: ((FileUploadObject, String?) -> Void)?, errorCallBack: ((HATTableError) -> Void)?) {
         
         HATFileService.uploadFileToHAT(
             fileName: "rumpelPhoto",
