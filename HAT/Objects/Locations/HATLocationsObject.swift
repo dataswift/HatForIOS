@@ -121,4 +121,20 @@ public struct HATLocationsObject: Equatable {
             data = HATLocationsDataObject(dict: tempTables)
         }
     }
+    
+    // MARK: - JSON Mapper
+    
+    /**
+     Returns the object as Dictionary, JSON
+     
+     - returns: Dictionary<String, String>
+     */
+    public func toJSON() -> Dictionary<String, Any> {
+        
+        return [
+            
+            "locations" : self.data.locations.toJSON(),
+            "unixTimeStamp" : Int(HATFormatterHelper.formatDateToEpoch(date: Date())!)!
+        ]
+    }
 }

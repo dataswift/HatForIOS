@@ -132,4 +132,20 @@ public struct HATNotesData: Comparable {
             }
         }
     }
+    
+    // MARK: - JSON Mapper
+    
+    /**
+     Returns the object as Dictionary, JSON
+     
+     - returns: Dictionary<String, String>
+     */
+    public func toJSON() -> Dictionary<String, Any> {
+        
+        return [
+            
+            "notablesv1" : self.data.toJSON(),
+            "lastUpdated" : Int(HATFormatterHelper.formatDateToEpoch(date: Date())!)!
+        ]
+    }
 }

@@ -150,4 +150,57 @@ public struct FileUploadObject: Comparable {
         }
     }
     
+    // MARK: - JSON Mapper
+    
+    /**
+     Returns the object as Dictionary, JSON
+     
+     - returns: Dictionary<String, String>
+     */
+    public func toJSON() -> Dictionary<String, Any> {
+        
+        var array: [Dictionary<String, Any>] = []
+        
+        for permision in self.permisions {
+            
+            array.append(permision.toJSON())
+        }
+        
+        var tempDateCreated = 0
+        var tempLastUpdated = 0
+        
+        if self.dateCreated == nil {
+            
+            tempDateCreated = Int(HATFormatterHelper.formatDateToEpoch(date: Date())!)!
+        } else {
+            
+            tempDateCreated = Int(HATFormatterHelper.formatDateToEpoch(date: self.dateCreated!)!)!
+        }
+        
+        if self.lastUpdated == nil {
+            
+            tempLastUpdated = Int(HATFormatterHelper.formatDateToEpoch(date: Date())!)!
+        } else {
+            
+            tempLastUpdated = Int(HATFormatterHelper.formatDateToEpoch(date: self.lastUpdated!)!)!
+        }
+        
+        return [
+            
+            "fileId" : self.fileID,
+            "name" : self.name,
+            "source" : self.source,
+            "tags" : self.tags,
+            "title" : self.title,
+            "description" : self.fileDescription,
+            "dateCreated" : tempDateCreated,
+            "lastUpdated" : tempLastUpdated,
+            "contentUrl" : self.contentURL,
+            "contentPublic" : self.contentPublic,
+            "status" : self.status.toJSON(),
+            "permissions" : array,
+            "unixTimeStamp" : Int(HATFormatterHelper.formatDateToEpoch(date: Date())!)!
+        ]
+    }
+    
 }
