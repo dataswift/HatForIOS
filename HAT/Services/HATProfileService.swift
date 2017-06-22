@@ -32,7 +32,7 @@ public class HATProfileService: NSObject {
         func profileEntries(json: [JSON], renewedToken: String?) {
 
             // if we have values return them
-            if json.isEmpty {
+            if !json.isEmpty {
 
                 let array = HATNationalityObject(from: json.last!)
                 successCallback(array)
@@ -88,7 +88,7 @@ public class HATProfileService: NSObject {
         func profileEntries(json: [JSON], renewedToken: String?) {
 
             // if we have values return them
-            if json.isEmpty {
+            if !json.isEmpty {
 
                 let array = HATProfileRelationshipAndHouseholdObject(from: json.last!)
                 successCallback(array)
@@ -145,7 +145,7 @@ public class HATProfileService: NSObject {
         func profileEntries(json: [JSON], renewedToken: String?) {
 
             // if we have values return them
-            if json.isEmpty {
+            if !json.isEmpty {
 
                 let array = HATProfileEducationObject(from: json.last!)
                 successCallback(array)
@@ -202,7 +202,7 @@ public class HATProfileService: NSObject {
         func profileEntries(json: [JSON], renewedToken: String?) {
 
             // if we have values return them
-            if json.isEmpty {
+            if !json.isEmpty {
 
                 let array = FileUploadObject(from: (json.last?.dictionaryValue)!)
                 successCallback(array)

@@ -34,7 +34,7 @@ public class HATPhataService: NSObject {
             func profileEntries(json: [JSON], renewedToken: String?) {
 
                 // if we have values return them
-                if json.isEmpty {
+                if !json.isEmpty {
 
                     let array = HATProfileObject(from: json[0].dictionaryValue)
                     successCallback(array)

@@ -98,7 +98,7 @@ public class HATFormatterHelper: NSObject {
 
         let array = temp.components(separatedBy: ".")
 
-        if array.isEmpty {
+        if !array.isEmpty {
 
             return array[0]
         }
