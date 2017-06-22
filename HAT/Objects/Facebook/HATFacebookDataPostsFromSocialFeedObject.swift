@@ -16,9 +16,9 @@ import SwiftyJSON
 
 /// A class representing the user's details that made the post
 public struct HATFacebookDataPostsFromSocialFeedObject: Comparable {
-    
+
     // MARK: - Comparable protocol
-    
+
     /// Returns a Boolean value indicating whether two values are equal.
     ///
     /// Equality is the inverse of inequality. For any values `a` and `b`,
@@ -27,11 +27,11 @@ public struct HATFacebookDataPostsFromSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: HATFacebookDataPostsFromSocialFeedObject, rhs: HATFacebookDataPostsFromSocialFeedObject) -> Bool {
-        
-        return (lhs.name == rhs.name && lhs.id == rhs.id)
+    public static func == (lhs: HATFacebookDataPostsFromSocialFeedObject, rhs: HATFacebookDataPostsFromSocialFeedObject) -> Bool {
+
+        return (lhs.name == rhs.name && lhs.userID == rhs.userID)
     }
-    
+
     /// Returns a Boolean value indicating whether the value of the first
     /// argument is less than that of the second argument.
     ///
@@ -42,43 +42,43 @@ public struct HATFacebookDataPostsFromSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: HATFacebookDataPostsFromSocialFeedObject, rhs: HATFacebookDataPostsFromSocialFeedObject) -> Bool {
-        
+    public static func < (lhs: HATFacebookDataPostsFromSocialFeedObject, rhs: HATFacebookDataPostsFromSocialFeedObject) -> Bool {
+
         return lhs.name < rhs.name
     }
-    
+
     // MARK: - Variables
 
     /// The user's name
     public var name: String = ""
     /// The user's id
-    public var id: String = ""
-    
+    public var userID: String = ""
+
     // MARK: - Initialisers
-    
+
     /**
      The default initialiser. Initialises everything to default values.
      */
     public init() {
-        
+
         name = ""
-        id = ""
+        userID = ""
     }
-    
+
     /**
      It initialises everything from the received JSON file from the HAT
      */
     public init(from dictionary: Dictionary<String, JSON>) {
-        
+
         self.init()
-        
+
         if let tempName = dictionary["name"]?.stringValue {
-            
+
             name = tempName
         }
         if let tempID = dictionary["id"]?.stringValue {
-            
-            id = tempID
+
+            userID = tempID
         }
     }
 }

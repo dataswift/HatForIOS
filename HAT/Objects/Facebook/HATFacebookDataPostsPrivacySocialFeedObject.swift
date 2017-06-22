@@ -16,9 +16,9 @@ import SwiftyJSON
 
 /// A class representing the privacy settings of the post
 public struct HATFacebookDataPostsPrivacySocialFeedObject: Comparable {
-    
+
     // MARK: - Comparable protocol
-    
+
     /// Returns a Boolean value indicating whether two values are equal.
     ///
     /// Equality is the inverse of inequality. For any values `a` and `b`,
@@ -27,11 +27,11 @@ public struct HATFacebookDataPostsPrivacySocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: HATFacebookDataPostsPrivacySocialFeedObject, rhs: HATFacebookDataPostsPrivacySocialFeedObject) -> Bool {
-        
+    public static func == (lhs: HATFacebookDataPostsPrivacySocialFeedObject, rhs: HATFacebookDataPostsPrivacySocialFeedObject) -> Bool {
+
         return (lhs.friends == rhs.friends && lhs.value == rhs.value && lhs.deny == rhs.deny && lhs.description == rhs.description && lhs.allow == rhs.allow)
     }
-    
+
     /// Returns a Boolean value indicating whether the value of the first
     /// argument is less than that of the second argument.
     ///
@@ -42,11 +42,11 @@ public struct HATFacebookDataPostsPrivacySocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: HATFacebookDataPostsPrivacySocialFeedObject, rhs: HATFacebookDataPostsPrivacySocialFeedObject) -> Bool {
-        
+    public static func < (lhs: HATFacebookDataPostsPrivacySocialFeedObject, rhs: HATFacebookDataPostsPrivacySocialFeedObject) -> Bool {
+
         return lhs.description < rhs.description
     }
-    
+
     // MARK: - Variables
 
     /// Is it friends only?
@@ -59,46 +59,46 @@ public struct HATFacebookDataPostsPrivacySocialFeedObject: Comparable {
     public var description: String = ""
     /// Allow?
     public var allow: String = ""
-    
+
     // MARK: - Initialisers
-    
+
     /**
      The default initialiser. Initialises everything to default values.
      */
     public init() {
-        
+
         friends = ""
         value = ""
         deny = ""
         description = ""
         allow = ""
     }
-    
+
     /**
      It initialises everything from the received JSON file from the HAT
      */
     public init(from dictionary: Dictionary<String, JSON>) {
-        
+
         self.init()
-        
+
         if let tempFriends = dictionary["friends"]?.stringValue {
-            
+
             friends = tempFriends
         }
         if let tempValue = dictionary["value"]?.stringValue {
-            
+
             value = tempValue
         }
         if let tempDeny = dictionary["deny"]?.string {
-            
+
             deny = tempDeny
         }
         if let tempDescription = dictionary["description"]?.stringValue {
-            
+
             description = tempDescription
         }
         if let tempAllow = dictionary["allow"]?.stringValue {
-            
+
             allow = tempAllow
         }
     }

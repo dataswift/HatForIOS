@@ -621,6 +621,7 @@
 				60444EDA1E4B27C4005E4433 /* Headers */,
 				60444EDB1E4B27C4005E4433 /* Resources */,
 				54E8888CF1957371297870C3 /* [CP] Copy Pods Resources */,
+				604E45FD1EFACAF10071347E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -755,6 +756,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HAT/Pods-HAT-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		604E45FD1EFACAF10071347E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
 		98B979C718B084FEAF2FC42D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

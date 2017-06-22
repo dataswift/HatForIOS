@@ -12,7 +12,7 @@ public enum Download: ExpressibleByNilLiteral, Equatable {
   public init(nilLiteral: ()) {
     self = .noContent
   }
-  
+
   // Simulate download in one step
   case content(Data)
 
@@ -23,7 +23,7 @@ public enum Download: ExpressibleByNilLiteral, Equatable {
   case noContent
 }
 
-public func ==(lhs:Download, rhs:Download) -> Bool {
+public func ==(lhs: Download, rhs: Download) -> Bool {
   switch(lhs, rhs) {
   case let (.content(lhsData), .content(rhsData)):
     return (lhsData == rhsData)
@@ -36,12 +36,12 @@ public func ==(lhs:Download, rhs:Download) -> Bool {
   }
 }
 
-public enum Response : Equatable {
+public enum Response: Equatable {
   case success(URLResponse, Download)
   case failure(NSError)
 }
 
-public func ==(lhs:Response, rhs:Response) -> Bool {
+public func ==(lhs: Response, rhs: Response) -> Bool {
   switch (lhs, rhs) {
   case let (.failure(lhsError), .failure(rhsError)):
     return lhsError == rhsError

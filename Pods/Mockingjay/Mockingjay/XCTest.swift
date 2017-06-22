@@ -39,7 +39,7 @@ extension XCTest {
     return MockingjayProtocol.addStub(matcher: matcher, builder: builder)
   }
 
-  public func removeStub(_ stub:Stub) {
+  public func removeStub(_ stub: Stub) {
     MockingjayProtocol.removeStub(stub)
   }
 

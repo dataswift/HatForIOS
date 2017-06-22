@@ -16,9 +16,9 @@ import SwiftyJSON
 
 /// A class representing the application that this post came from
 public struct HATFacebookDataPostsApplicationSocialFeedObject: Comparable {
-    
+
     // MARK: - Comparable protocol
-    
+
     /// Returns a Boolean value indicating whether two values are equal.
     ///
     /// Equality is the inverse of inequality. For any values `a` and `b`,
@@ -27,11 +27,11 @@ public struct HATFacebookDataPostsApplicationSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: HATFacebookDataPostsApplicationSocialFeedObject, rhs: HATFacebookDataPostsApplicationSocialFeedObject) -> Bool {
-        
-        return (lhs.id == rhs.id && lhs.namespace == rhs.namespace && lhs.name == rhs.name && lhs.category == rhs.category && lhs.link == rhs.link)
+    public static func == (lhs: HATFacebookDataPostsApplicationSocialFeedObject, rhs: HATFacebookDataPostsApplicationSocialFeedObject) -> Bool {
+
+        return (lhs.applicationID == rhs.applicationID && lhs.namespace == rhs.namespace && lhs.name == rhs.name && lhs.category == rhs.category && lhs.link == rhs.link)
     }
-    
+
     /// Returns a Boolean value indicating whether the value of the first
     /// argument is less than that of the second argument.
     ///
@@ -42,15 +42,15 @@ public struct HATFacebookDataPostsApplicationSocialFeedObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func <(lhs: HATFacebookDataPostsApplicationSocialFeedObject, rhs: HATFacebookDataPostsApplicationSocialFeedObject) -> Bool {
-        
+    public static func < (lhs: HATFacebookDataPostsApplicationSocialFeedObject, rhs: HATFacebookDataPostsApplicationSocialFeedObject) -> Bool {
+
         return lhs.name < rhs.name
     }
-    
+
     // MARK: - Variables
 
     /// The id of the application
-    public var id: String = ""
+    public var applicationID: String = ""
     /// The namespace of the application
     public var namespace: String = ""
     /// The name of the application
@@ -59,46 +59,46 @@ public struct HATFacebookDataPostsApplicationSocialFeedObject: Comparable {
     public var category: String = ""
     /// The link of the application
     public var link: String = ""
-    
+
     // MARK: - Initialisers
-    
+
     /**
      The default initialiser. Initialises everything to default values.
      */
     public init() {
-        
-        id = ""
+
+        applicationID = ""
         namespace = ""
         name = ""
         category = ""
         link = ""
     }
-    
+
     /**
      It initialises everything from the received JSON file from the HAT
      */
     public init(from dictionary: Dictionary<String, JSON>) {
-        
+
         self.init()
-        
+
         if let tempID = dictionary["id"]?.stringValue {
-            
-            id = tempID
+
+            applicationID = tempID
         }
         if let tempNameSpace = dictionary["namespace"]?.stringValue {
-            
+
             namespace = tempNameSpace
         }
         if let tempName = dictionary["name"]?.string {
-            
+
             name = tempName
         }
         if let tempCategory = dictionary["category"]?.stringValue {
-            
+
             category = tempCategory
         }
         if let tempLink = dictionary["link"]?.stringValue {
-            
+
             link = tempLink
         }
     }

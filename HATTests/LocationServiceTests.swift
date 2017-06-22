@@ -10,67 +10,66 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-import XCTest
-import Mockingjay
 import Alamofire
+import Mockingjay
+import XCTest
 
-class LocationServiceTests: XCTestCase {
-    
+internal class LocationServiceTests: XCTestCase {
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     func testWriteToCloud() {
-        
-        let body = ["message" : ""]
+
+        let body = ["message": ""]
         let urlToConnect = "https://dex.hubofallthings.com/api/dataplugs/c532e122-db4a-44b8-9eaf-18989f214262/connect?hat=mariostsekis.hubofallthings.net"
         let userDomain = "mariostsekis.hubofallthings.net"
         let expectationTest = expectation(description: "Authorized...")
-        
+
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
-        
+
         func completion(result: Bool) {
-            
+
             XCTAssert(result)
             expectationTest.fulfill()
         }
-        
+
         func failed(error: JSONParsingError) {
-            
 
         }
-        
+
         HATLocationService.enableLocationDataPlug(userDomain, userDomain, success: completion, failed: failed)
-        
+
         waitForExpectations(timeout: 10) { error in
-            
+
             if let error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
     }
-    
+
     func testFormatOfURLDuringRegistration() {
-        
+
         let url = "https://dex.hubofallthings.com/api/dataplugs/c532e122-db4a-44b8-9eaf-18989f214262/connect?hat=mariostsekis.hubofallthings.net"
         let userDomain = "mariostsekis.hubofallthings.net"
-        
-        let formattedURL = HATLocationService.locationDataPlugURL(userDomain, dataPlugID: HATDataPlugCredentials.Market_DataPlugID)
-        
+
+        let formattedURL = HATLocationService.locationDataPlugURL(userDomain, dataPlugID: HATDataPlugCredentials.dataPlugID)
+
         XCTAssert(url == formattedURL)
     }
-    
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
     }
-    
+
 }

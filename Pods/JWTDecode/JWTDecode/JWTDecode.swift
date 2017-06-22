@@ -108,7 +108,7 @@ public struct Claim {
 
         /// value of the claim as `NSDate`
     public var date: Date? {
-        guard let timestamp:TimeInterval = self.double else { return nil }
+        guard let timestamp: TimeInterval = self.double else { return nil }
         return Date(timeIntervalSince1970: timestamp)
     }
 
