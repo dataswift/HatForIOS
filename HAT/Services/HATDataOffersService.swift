@@ -93,6 +93,10 @@ public class HATDataOffersService: NSObject {
                     if let claimed = dictionaryResponse["claimed"]?.stringValue {
                         
                         succesfulCallBack(claimed, token)
+                    } else {
+                        
+                        let message = NSLocalizedString("Server response was unexpected", comment: "")
+                        failCallBack(.generalError(message, statusCode, nil))
                     }
                 } else {
                     
