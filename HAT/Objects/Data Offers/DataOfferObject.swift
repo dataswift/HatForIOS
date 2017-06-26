@@ -36,6 +36,7 @@ public struct DataOfferObject {
         static let reward: String = "reward"
         static let owner: String = "owner"
         static let claim: String = "claim"
+        static let pii: String = "pii"
     }
     
     // MARK: - Variables
@@ -64,7 +65,7 @@ public struct DataOfferObject {
     
     public var image: UIImage?
     
-    public var isPPIRequested: Bool = false
+    public var isPΙIRequested: Bool = false
     
     // MARK: - Initialisers
     
@@ -97,7 +98,7 @@ public struct DataOfferObject {
         
         image = nil
 
-        isPPIRequested = false
+        isPΙIRequested = false
     }
     
     /**
@@ -163,6 +164,11 @@ public struct DataOfferObject {
         if let tempUserClaims = dictionary[DataOfferObject.Fields.usersClaimedOffer]?.int {
             
             usersClaimedOffer = tempUserClaims
+        }
+        
+        if let tempPII = dictionary[DataOfferObject.Fields.pii]?.bool {
+            
+            isPΙIRequested = tempPII
         }
         
         if let tempRequiredDataDefinition = dictionary[DataOfferObject.Fields.requiredDataDefinitions]?.array {
