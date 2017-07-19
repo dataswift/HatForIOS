@@ -36,6 +36,7 @@ public struct DataOfferRewardsObject {
     public var vendor: String = ""
     public var vendorURL: String = ""
     public var value: String = ""
+    public var valueInt: Int?
     public var areCodesReusable: Bool?
     public var codes: [String]?
     public var cashValue: DataOfferRewardsCashValueObject?
@@ -52,6 +53,7 @@ public struct DataOfferRewardsObject {
         vendor = ""
         vendorURL = ""
         value = ""
+        valueInt = nil
         areCodesReusable = nil
         codes = nil
         cashValue = nil
@@ -81,6 +83,16 @@ public struct DataOfferRewardsObject {
         if let tempValue = dictionary[DataOfferRewardsObject.Fields.rewardValue]?.string {
             
             value = tempValue
+        }
+        
+        if let tempCurrency = dictionary[DataOfferRewardsObject.Fields.currency]?.string {
+            
+            currency = tempCurrency
+        }
+        
+        if let tempIntValue = dictionary[DataOfferRewardsObject.Fields.rewardValue]?.int {
+            
+            valueInt = tempIntValue
         }
         
         if let tempCodeReusable = dictionary[DataOfferRewardsObject.Fields.codesReuseable]?.bool {
