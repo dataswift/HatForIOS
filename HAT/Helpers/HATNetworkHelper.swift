@@ -92,7 +92,7 @@ public class HATNetworkHelper: NSObject {
                 case .success:
 
                     let header = response.response?.allHeaderFields
-                    let token = header?["X-Auth-Token"] as? String
+                    let token = header?["x-auth-token"] as? String
                     let tokenToReturn = HATTokenHelper.checkTokenScope(token: token)
 
                     // check if we have a value and return it
@@ -179,7 +179,7 @@ public class HATNetworkHelper: NSObject {
                 case .success:
 
                     let header = response.response?.allHeaderFields
-                    let token = header?["X-Auth-Token"] as? String
+                    let token = header?["x-auth-token"] as? String
                     let tokenToReturn = HATTokenHelper.checkTokenScope(token: token)
 
                     // check if we have a value and return it
@@ -237,7 +237,7 @@ public class HATNetworkHelper: NSObject {
         }).responseString(completionHandler: {(response) in
 
             let header = response.response?.allHeaderFields
-            let token = header?["X-Auth-Token"] as? String
+            let token = header?["x-auth-token"] as? String
             let tokenToReturn = HATTokenHelper.checkTokenScope(token: token)
 
             switch response.result {
