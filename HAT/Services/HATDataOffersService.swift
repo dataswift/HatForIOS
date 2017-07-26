@@ -149,4 +149,59 @@ public class HATDataOffersService: NSObject {
             }
         )
     }
+    
+    // MARK: - Get Merchants
+    
+    /**
+     Gets available merchants from HAT
+     
+     - parameter userToken: The users token
+     - parameter userDomain: The user's domain name
+     - parameter succesfulCallBack: A function to execute on successful response returning the merchants array and the renewed user's token
+     - parameter failCallBack: A function to execute on failed response returning the error
+     */
+    public class func getMerchants(userToken: String, userDomain: String, succesfulCallBack: @escaping ([String], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+        
+        let url = "https://" + userDomain + "/api/v2/data/dex/databuyer"
+        
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .get,
+            encoding: Alamofire.URLEncoding.default,
+            contentType: ContentType.JSON,
+            parameters: ["X-Auth-Token": userToken],
+            headers: [:],
+            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+                
+                switch response {
+                    
+                case .error(let error, let statusCode):
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    failCallBack(.generalError(message, statusCode, error))
+                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                    
+                    if statusCode == 200 && isSuccess {
+                        
+                        let dictionaryResponse = result.dictionaryValue
+                        if let tempDictionary = dictionaryResponse["data"]?.dictionaryValue {
+                            
+                            if let merchants = tempDictionary["merchants"]?.arrayValue {
+                                
+                                var arrayToReturn: [String] = []
+                                for merchant in merchants {
+                                    
+                                    if let merchantString = merchant.string {
+                                        
+                                        arrayToReturn.append(merchantString)
+                                    }
+                                }
+                                succesfulCallBack(arrayToReturn, token)
+                            }
+                        }
+                    }
+                }
+            }
+        )
+    }
 }
