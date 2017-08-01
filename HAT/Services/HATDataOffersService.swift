@@ -196,7 +196,7 @@ public class HATDataOffersService: NSObject {
                     failCallBack(.generalError(message, statusCode, error))
                 case .isSuccess(let isSuccess, let statusCode, let result, let token):
                     
-                    if statusCode == 200 && isSuccess {
+                    if statusCode == 200 && isSuccess && !result.arrayValue.isEmpty {
                         
                         let dictionaryResponse = result.arrayValue[0].dictionaryValue
                         if let tempDictionary = dictionaryResponse["data"]?.dictionaryValue {
@@ -214,6 +214,9 @@ public class HATDataOffersService: NSObject {
                                 succesfulCallBack(arrayToReturn, token)
                             }
                         }
+                    } else if statusCode == 200 && isSuccess && result.arrayValue.isEmpty {
+                        
+                        succesfulCallBack([], token)
                     } else if statusCode == 401 {
                         
                         let message = NSLocalizedString("Server responded with error", comment: "")
