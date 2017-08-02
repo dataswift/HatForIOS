@@ -18,9 +18,9 @@ public struct NotificationNoticeObject {
     
     // MARK: - Variables
     
-    var noticeID: Int = -1
-    var message: String = ""
-    var dateCreated: Date = Date()
+    public var noticeID: Int = -1
+    public var message: String = ""
+    public var dateCreated: Date = Date()
     
     // MARK: - Initialisers
     

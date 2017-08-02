@@ -18,9 +18,9 @@ public struct NotificationObject {
     
     // MARK: - Variables
     
-    var notice: NotificationNoticeObject = NotificationNoticeObject()
-    var received: Date = Date()
-    var read: Date?
+    public var notice: NotificationNoticeObject = NotificationNoticeObject()
+    public var received: Date = Date()
+    public var read: Date?
     
     // MARK: - Initialisers
     
