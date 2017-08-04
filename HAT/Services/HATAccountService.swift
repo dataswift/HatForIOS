@@ -15,8 +15,8 @@ import SwiftyJSON
 
 // MARK: Class
 
-/// A class about the methods concerning the user's HAT account
-public class HATAccountService: NSObject {
+/// A Struct about the methods concerning the user's HAT account
+public struct HATAccountService {
     
     // MARK: - Get hat values from a table
     
@@ -30,7 +30,7 @@ public class HATAccountService: NSObject {
      - parameter successCallback: A callback called when successful of type @escaping ([JSON]) -> Void
      - parameter errorCallback: A callback called when failed of type @escaping (Void) -> Void)
      */
-    public class func getHatTableValues(token: String, userDomain: String, tableID: NSNumber, parameters: Dictionary<String, String>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func getHatTableValues(token: String, userDomain: String, tableID: NSNumber, parameters: Dictionary<String, String>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // form the url
         let url = "https://" + userDomain + "/data/table/" + tableID.stringValue + "/values?pretty=true"
@@ -73,7 +73,7 @@ public class HATAccountService: NSObject {
      - parameter successCallback: A callback called when successful of type @escaping ([JSON]) -> Void
      - parameter errorCallback: A callback called when failed of type @escaping (Void) -> Void)
      */
-    public class func getHatTableValuesv2(token: String, userDomain: String, source: String, scope: String, parameters: Dictionary<String, Any>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func getHatTableValuesv2(token: String, userDomain: String, source: String, scope: String, parameters: Dictionary<String, Any>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // form the url
         let url = "https://" + userDomain + "/api/v2/data/" + source + "/" + scope
@@ -116,7 +116,7 @@ public class HATAccountService: NSObject {
      - parameter successCallback: A callback called when successful of type @escaping ([JSON]) -> Void
      - parameter errorCallback: A callback called when failed of type @escaping (Void) -> Void)
      */
-    public class func createTableValuev2(token: String, userDomain: String, source: String, dataPath: String, parameters: Dictionary<String, Any>, successCallback: @escaping (JSON, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func createTableValuev2(token: String, userDomain: String, source: String, dataPath: String, parameters: Dictionary<String, Any>, successCallback: @escaping (JSON, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // form the url
         let url = "https://" + userDomain + "/api/v2/data/" + source + "/" + dataPath
@@ -157,7 +157,7 @@ public class HATAccountService: NSObject {
      - parameter successCallback: A callback called when successful of type @escaping ([JSON]) -> Void
      - parameter errorCallback: A callback called when failed of type @escaping (Void) -> Void)
      */
-    public class func getHatTableValuesWithOutPretty(token: String, userDomain: String, tableID: NSNumber, parameters: Dictionary<String, String>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func getHatTableValuesWithOutPretty(token: String, userDomain: String, tableID: NSNumber, parameters: Dictionary<String, String>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // form the url
         let url = "https://" + userDomain + "/data/table/" + tableID.stringValue + "/values"
@@ -199,7 +199,7 @@ public class HATAccountService: NSObject {
      - parameter successCallback: A callback called when successful of type @escaping (NSNumber) -> Void
      - parameter errorCallback: A callback called when failed of type @escaping (Void) -> Void)
      */
-    public class func checkHatTableExists(userDomain: String, tableName: String, sourceName: String, authToken: String, successCallback: @escaping (NSNumber, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func checkHatTableExists(userDomain: String, tableName: String, sourceName: String, authToken: String, successCallback: @escaping (NSNumber, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let tableURL = "https://" + userDomain + "/data/table?name=" + tableName + "&source=" + sourceName
@@ -267,7 +267,7 @@ public class HATAccountService: NSObject {
      
      - parameter token: The token returned from the hat
      */
-    public class func createHatTable(userDomain: String, token: String, notablesTableStructure: Dictionary<String, Any>, failed: @escaping (HATTableError) -> Void) -> (_ callback: Void) -> Void {
+    public static func createHatTable(userDomain: String, token: String, notablesTableStructure: Dictionary<String, Any>, failed: @escaping (HATTableError) -> Void) -> (_ callback: Void) -> Void {
         
         return { (_ callback: Void) -> Void in
             
@@ -314,7 +314,7 @@ public class HATAccountService: NSObject {
      - parameter recordId: The record id to delete
      - parameter success: A callback called when successful of type @escaping (String) -> Void
      */
-    public class func deleteHatRecord(userDomain: String, token: String, recordId: Int, success: @escaping (String) -> Void, failed: @ escaping (HATTableError) -> Void) {
+    public static func deleteHatRecord(userDomain: String, token: String, recordId: Int, success: @escaping (String) -> Void, failed: @ escaping (HATTableError) -> Void) {
         
         // form the url
         let url = "https://" + userDomain + "/data/record/" + String(recordId)
@@ -354,7 +354,7 @@ public class HATAccountService: NSObject {
      - parameter recordId: The record id to delete
      - parameter success: A callback called when successful of type @escaping (String) -> Void
      */
-    public class func deleteHatRecordV2(userDomain: String, token: String, recordId: [Int], success: @escaping (String) -> Void, failed: @ escaping (HATTableError) -> Void) {
+    public static func deleteHatRecordV2(userDomain: String, token: String, recordId: [Int], success: @escaping (String) -> Void, failed: @ escaping (HATTableError) -> Void) {
         
         // form the url
         let url = "https://" + userDomain + "/api/v2/data/"
@@ -403,7 +403,7 @@ public class HATAccountService: NSObject {
      - parameter recordId: The record id to delete
      - parameter success: A callback called when successful of type @escaping (String) -> Void
      */
-    public class func editHatRecordV2(userDomain: String, token: String, parameters: Dictionary<String, Any>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func editHatRecordV2(userDomain: String, token: String, parameters: Dictionary<String, Any>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // form the url
         let url = "https://" + userDomain + "/api/v2/data/"
@@ -442,7 +442,7 @@ public class HATAccountService: NSObject {
     /**
      Triggers an update to hat servers
      */
-    public class func triggerHatUpdate(userDomain: String, completion: @escaping () -> Void) {
+    public static func triggerHatUpdate(userDomain: String, completion: @escaping () -> Void) {
         
         // define the url to connect to
         let url = "https://notables.hubofallthings.com/api/bulletin/tickle"
@@ -463,7 +463,7 @@ public class HATAccountService: NSObject {
      - parameter successCallback: A callback called when successful of type @escaping (NSNumber) -> Void
      - parameter errorCallback: A callback called when failed of type @escaping (Void) -> Void)
      */
-    public class func checkHatTableExistsForUploading(userDomain: String, tableName: String, sourceName: String, authToken: String, successCallback: @escaping (Dictionary<String, Any>, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func checkHatTableExistsForUploading(userDomain: String, tableName: String, sourceName: String, authToken: String, successCallback: @escaping (Dictionary<String, Any>, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let tableURL = "https://" + userDomain + "/data/table?name=" + tableName + "&source=" + sourceName
@@ -526,7 +526,7 @@ public class HATAccountService: NSObject {
      
      - returns: HATRegistrationURLAlias
      */
-    public class func theUserHATDomainPublicKeyURL(_ userHATDomain: String) -> String? {
+    public static func theUserHATDomainPublicKeyURL(_ userHATDomain: String) -> String? {
         
         if let escapedUserHATDomain: String = userHATDomain.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
             
@@ -548,7 +548,7 @@ public class HATAccountService: NSObject {
      - parameter successCallback: A function of type (String, String?) to call on success
      - parameter failCallback: A fuction of type (HATError) to call on fail
      */
-    public class func changePassword(userDomain: String, userToken: String, oldPassword: String, newPassword: String, successCallback: @escaping (String, String?) -> Void, failCallback: @escaping (HATError) -> Void) {
+    public static func changePassword(userDomain: String, userToken: String, oldPassword: String, newPassword: String, successCallback: @escaping (String, String?) -> Void, failCallback: @escaping (HATError) -> Void) {
         
         let url = "https://" + userDomain + "/control/v2/auth/password"
         

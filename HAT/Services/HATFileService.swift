@@ -12,9 +12,9 @@
 
 import Alamofire
 
-// MARK: Class
+// MARK: Struct
 
-public class HATFileService: NSObject {
+public struct HATFileService {
     
     // MARK: - Functions
     
@@ -27,7 +27,7 @@ public class HATFileService: NSObject {
      - parameter successCallback: An @escaping ([FileUploadObject]) -> Void function to execute when the server has returned the files we were looking for
      - parameter errorCallBack: An @escaping (HATError) -> Void to execute when something went wrong
      */
-    public class func searchFiles(userDomain: String, token: String, status: String? = "Completed", name: String = "", tags: [String]? = [""], successCallback: @escaping ([FileUploadObject], String?) -> Void, errorCallBack: @escaping (HATError) -> Void) {
+    public static func searchFiles(userDomain: String, token: String, status: String? = "Completed", name: String = "", tags: [String]? = [""], successCallback: @escaping ([FileUploadObject], String?) -> Void, errorCallBack: @escaping (HATError) -> Void) {
         
         let url: String = "https://" + userDomain + "/api/v2/files/search"
         let headers = ["X-Auth-Token": token]
@@ -90,7 +90,7 @@ public class HATFileService: NSObject {
      - parameter successCallback: An @escaping (Bool) -> Void function to execute when the file has been deleted
      - parameter errorCallBack: An @escaping (HATError) -> Void to execute when something went wrong
      */
-    public class func deleteFile(fileID: String, token: String, userDomain: String, successCallback: @escaping (Bool, String?) -> Void, errorCallBack: @escaping (HATError) -> Void) {
+    public static func deleteFile(fileID: String, token: String, userDomain: String, successCallback: @escaping (Bool, String?) -> Void, errorCallBack: @escaping (HATError) -> Void) {
         
         let url: String = "https://" + userDomain + "/api/v2/files/file/" + fileID
         let headers = ["X-Auth-Token": token]
@@ -134,7 +134,7 @@ public class HATFileService: NSObject {
      - parameter successCallback: An @escaping (Bool) -> Void function to execute when the file has been made public
      - parameter errorCallBack: An @escaping (HATError) -> Void to execute when something went wrong
      */
-    public class func makeFilePublic(fileID: String, token: String, userDomain: String, successCallback: @escaping (Bool) -> Void, errorCallBack: @escaping (HATError) -> Void) {
+    public static func makeFilePublic(fileID: String, token: String, userDomain: String, successCallback: @escaping (Bool) -> Void, errorCallBack: @escaping (HATError) -> Void) {
         
         let url: String = "https://" + userDomain + "/api/v2/files/allowAccessPublic/" + fileID
         let headers = ["X-Auth-Token": token]
@@ -178,7 +178,7 @@ public class HATFileService: NSObject {
      - parameter successCallback: An @escaping (Bool) -> Void function to execute when the file has been made private
      - parameter errorCallBack: An @escaping (HATError) -> Void to execute when something went wrong
      */
-    public class func makeFilePrivate(fileID: String, token: String, userDomain: String, successCallback: @escaping (Bool) -> Void, errorCallBack: @escaping (HATError) -> Void) {
+    public static func makeFilePrivate(fileID: String, token: String, userDomain: String, successCallback: @escaping (Bool) -> Void, errorCallBack: @escaping (HATError) -> Void) {
         
         let url: String = "https://" + userDomain + "/api/v2/files/restrictAccessPublic/" + fileID
         let headers = ["X-Auth-Token": token]
@@ -225,7 +225,7 @@ public class HATFileService: NSObject {
      - parameter completion: A function to execute on success, returning the object returned from the server
      - parameter errorCallback: A function to execute on failure, returning an error
      */
-    public class func completeUploadFileToHAT(fileID: String, token: String, tags: [String], userDomain: String, completion: @escaping (FileUploadObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func completeUploadFileToHAT(fileID: String, token: String, tags: [String], userDomain: String, completion: @escaping (FileUploadObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let uploadURL = "https://" + userDomain + "/api/v2/files/file/" + fileID + "/complete"
@@ -281,7 +281,7 @@ public class HATFileService: NSObject {
      - parameter completion: A function to execute on success, returning the object returned from the server
      - parameter errorCallback: A function to execute on failure, returning an error
      */
-    public class func uploadFileToHAT(fileName: String, token: String, userDomain: String, tags: [String], completion: @escaping (FileUploadObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func uploadFileToHAT(fileName: String, token: String, userDomain: String, tags: [String], completion: @escaping (FileUploadObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let uploadURL = "https://" + userDomain + "/api/v2/files/upload"
@@ -338,7 +338,7 @@ public class HATFileService: NSObject {
      - parameter completion: A function to execute on success, returning the object returned from the server
      - parameter errorCallback: A function to execute on failure, returning an error
      */
-    public class func updateParametersOfFile(fileID: String, fileName: String, token: String, userDomain: String, tags: [String], completion: @escaping (FileUploadObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func updateParametersOfFile(fileID: String, fileName: String, token: String, userDomain: String, tags: [String], completion: @escaping (FileUploadObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let updateURL = "https://" + userDomain + "/api/v2/files/file/" + fileID
@@ -395,7 +395,7 @@ public class HATFileService: NSObject {
      - parameter completion: A function to execute on success
      - parameter errorCallBack: A Function to execute on failure
      */
-    public class func uploadFileToHATWrapper(token: String, userDomain: String, fileToUpload: UIImage, tags: [String], name: String = "rumpelPhoto", progressUpdater: ((Double) -> Void)?, completion: ((FileUploadObject, String?) -> Void)?, errorCallBack: ((HATTableError) -> Void)?) {
+    public static func uploadFileToHATWrapper(token: String, userDomain: String, fileToUpload: UIImage, tags: [String], name: String = "rumpelPhoto", progressUpdater: ((Double) -> Void)?, completion: ((FileUploadObject, String?) -> Void)?, errorCallBack: ((HATTableError) -> Void)?) {
         
         HATFileService.uploadFileToHAT(
             fileName: name,

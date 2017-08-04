@@ -16,6 +16,15 @@ import SwiftyJSON
 
 public struct NotificationObject {
     
+    // MARK: - Fields
+    
+    private struct Fields {
+        
+        static let notice: String = "notice"
+        static let received: String = "received"
+        static let read: String = "read"
+    }
+    
     // MARK: - Variables
     
     public var notice: NotificationNoticeObject = NotificationNoticeObject()
@@ -27,7 +36,7 @@ public struct NotificationObject {
     /**
      The default initialiser. Initialises everything to default values.
      */
-    init() {
+    public init() {
         
         notice = NotificationNoticeObject()
         received = Date()
@@ -37,19 +46,19 @@ public struct NotificationObject {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    init(dictionary: Dictionary<String, JSON>) {
+    public init(dictionary: Dictionary<String, JSON>) {
         
-        if let tempNotice = dictionary["notice"]?.dictionary {
+        if let tempNotice = dictionary[Fields.notice]?.dictionary {
             
             notice = NotificationNoticeObject(dictionary: tempNotice)
         }
         
-        if let tempReceivedDate = dictionary["received"]?.intValue {
+        if let tempReceivedDate = dictionary[Fields.received]?.intValue {
             
             received = Date(timeIntervalSince1970: TimeInterval(tempReceivedDate))
         }
         
-        if let tempReadDate = dictionary["read"]?.intValue {
+        if let tempReadDate = dictionary[Fields.read]?.intValue {
             
             read = Date(timeIntervalSince1970: TimeInterval(tempReadDate))
         }

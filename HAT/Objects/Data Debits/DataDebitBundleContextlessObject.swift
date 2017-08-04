@@ -14,23 +14,25 @@ import SwiftyJSON
 
 // MARK: Struct
 
-public struct NotificationNoticeObject {
+public struct DataDebitBundleContextlessObject {
     
     // MARK: - Fields
     
     private struct Fields {
         
-        static let noticeID: String = "id"
+        static let bundleID: String = "id"
         static let dateCreated: String = "dateCreated"
-        static let message: String = "message"
+        static let lastUpdated: String = "lastUpdated"
+        static let name: String = "name"
     }
     
     // MARK: - Variables
-    
-    public var noticeID: Int = -1
-    public var message: String = ""
-    public var dateCreated: Date = Date()
-    
+
+    public var bundleID: Int = 0
+    public var dateCreated: Date?
+    public var lastUpdated: Date?
+    public var name: String = ""
+
     // MARK: - Initialisers
     
     /**
@@ -38,9 +40,10 @@ public struct NotificationNoticeObject {
      */
     public init() {
         
-        noticeID = -1
-        message = ""
-        dateCreated = Date()
+        bundleID = 0
+        dateCreated = nil
+        lastUpdated = nil
+        name = ""
     }
     
     /**
@@ -48,19 +51,24 @@ public struct NotificationNoticeObject {
      */
     public init(dictionary: Dictionary<String, JSON>) {
         
-        if let tempNoticeID = dictionary[Fields.noticeID]?.int {
+        if let tempBundleID = dictionary[Fields.bundleID]?.int {
             
-            noticeID = tempNoticeID
+            bundleID = tempBundleID
         }
         
-        if let tempMessage = dictionary[Fields.message]?.string {
+        if let tempDateCreated = dictionary[Fields.dateCreated]?.string {
             
-            message = tempMessage
+            dateCreated = HATFormatterHelper.formatStringToDate(string: tempDateCreated)
         }
         
-        if let tempDateCreated = dictionary[Fields.dateCreated]?.intValue {
+        if let tempLastDate = dictionary[Fields.lastUpdated]?.string {
             
-            dateCreated = Date(timeIntervalSince1970: TimeInterval(tempDateCreated))
+            lastUpdated = HATFormatterHelper.formatStringToDate(string: tempLastDate)
+        }
+        
+        if let tempName = dictionary[Fields.name]?.string {
+            
+            name = tempName
         }
     }
 }

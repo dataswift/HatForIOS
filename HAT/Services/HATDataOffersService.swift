@@ -11,11 +11,10 @@
  */
 
 import Alamofire
-import UIKit
 
-// MARK: Class
+// MARK: Struct
 
-public class HATDataOffersService: NSObject {
+public struct HATDataOffersService {
     
     // MARK: - Get available data offers
     
@@ -25,7 +24,7 @@ public class HATDataOffersService: NSObject {
      - parameter succesfulCallBack: A function of type ([HATDataPlugObject]) -> Void, executed on a successful result
      - parameter failCallBack: A function of type (Void) -> Void, executed on an unsuccessful result
      */
-    public class func getAvailableDataOffers(applicationToken: String, merchants: [String]?, succesfulCallBack: @escaping ([DataOfferObject], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func getAvailableDataOffers(applicationToken: String, merchants: [String]?, succesfulCallBack: @escaping ([DataOfferObject], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
         let mutableURL: NSMutableString = "http://databuyer.hubat.net/api/v1/offersWithClaims"
         
@@ -84,7 +83,7 @@ public class HATDataOffersService: NSObject {
      - parameter succesfulCallBack: A function of type ([HATDataPlugObject]) -> Void, executed on a successful result
      - parameter failCallBack: A function of type (Void) -> Void, executed on an unsuccessful result
      */
-    public class func claimOffer(applicationToken: String, offerID: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func claimOffer(applicationToken: String, offerID: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
         let url: String = "http://databuyer.hubat.net/api/v1/offer/\(offerID)/claim"
         let headers: Dictionary<String, String> = ["X-Auth-Token": applicationToken]
@@ -131,7 +130,7 @@ public class HATDataOffersService: NSObject {
      - parameter succesfulCallBack: A function to execute on successful response returning the server message and the renewed user's token
      - parameter failCallBack: A function to execute on failed response returning the error
      */
-    public class func redeemOffer(appToken: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func redeemOffer(appToken: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
         let url = "https://databuyer.hubat.net/api/v1/user/redeem/cash"
         
@@ -175,7 +174,7 @@ public class HATDataOffersService: NSObject {
      - parameter succesfulCallBack: A function to execute on successful response returning the merchants array and the renewed user's token
      - parameter failCallBack: A function to execute on failed response returning the error
      */
-    public class func getMerchants(userToken: String, userDomain: String, succesfulCallBack: @escaping ([String], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func getMerchants(userToken: String, userDomain: String, succesfulCallBack: @escaping ([String], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
         let url = "https://\(userDomain)/api/v2/data/dex/databuyer"
         
