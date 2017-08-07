@@ -164,8 +164,8 @@ public struct UKSpecificInfo: Comparable {
             Fields.passportNumber: self.passportNumber,
             Fields.placeOfBirth: self.placeOfBirth,
             Fields.secondPassportNumber: self.secondPassportNumber,
-            Fields.passportExpiryDate: self.passportExpiryDate,
-            Fields.secondPassportExpiryDate: self.secondPassportExpiryDate,
+            Fields.passportExpiryDate: Int(HATFormatterHelper.formatDateToEpoch(date: self.passportExpiryDate)!)!,
+            Fields.secondPassportExpiryDate: Int(HATFormatterHelper.formatDateToEpoch(date: self.secondPassportExpiryDate)!)!,
             Fields.unixTimeStamp: Int(HATFormatterHelper.formatDateToEpoch(date: Date())!)!
         ]
         
