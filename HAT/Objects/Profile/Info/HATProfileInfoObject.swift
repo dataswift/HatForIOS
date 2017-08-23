@@ -116,7 +116,7 @@ public struct HATProfileInfo: Comparable {
         
         return [
             
-            Fields.dateOfBirth: Int(HATFormatterHelper.formatDateToEpoch(date: self.dateOfBirth)!)!,
+            Fields.dateOfBirth: HATFormatterHelper.formatDateToISO(date: self.dateOfBirth),
             Fields.gender: self.gender,
             Fields.incomeGroup: self.incomeGroup,
             Fields.unixTimeStamp: Int(HATFormatterHelper.formatDateToEpoch(date: Date())!)!

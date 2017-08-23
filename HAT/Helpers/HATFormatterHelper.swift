@@ -54,6 +54,12 @@ public class HATFormatterHelper: NSObject {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         var date = dateFormatter.date(from: string)
 
+        if date == nil {
+            
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+            date = dateFormatter.date(from: string)
+        }
+        
         // if date is nil try a different format and reformat
         if date == nil {
 
