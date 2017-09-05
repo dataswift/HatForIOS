@@ -113,11 +113,4 @@ internal class LoginServiceTests: XCTestCase {
         }
     }
 
-    func testVerifyDomain() {
-
-        let domain = "hubofallthings.net"
-
-        XCTAssert(HATLoginService.verifyDomain(domain))
-    }
-
 }
