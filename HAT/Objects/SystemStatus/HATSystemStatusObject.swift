@@ -83,13 +83,25 @@ public struct HATSystemStatusObject: Comparable {
     }
     
     func encode<T>(value: T) -> NSData {
+        
+        do {
+            
+            let test = try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+            print(test)
+        } catch {
+            
+            
+        }
+        
         var value = value
         return withUnsafePointer(to: &value) { pointer in
+            
             NSData(bytes: pointer, length: MemoryLayout.size(ofValue: value))
         }
     }
     
     func decode<T>(data: NSData) -> T {
+        
         let pointer = UnsafeMutablePointer<T>.allocate(capacity: MemoryLayout<T>.size)
         data.getBytes(pointer, length: MemoryLayout<T>.size)
         
