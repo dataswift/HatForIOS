@@ -88,4 +88,21 @@ public struct HATSystemStatusKindObject: Comparable {
             units = tempUnits
         }
     }
+    
+    // MARK: - JSON Mapper
+    
+    /**
+     Returns the object as Dictionary, JSON
+     
+     - returns: Dictionary<String, String>
+     */
+    public func toJSON() -> Dictionary<String, Any> {
+        
+        return [
+            
+            "metric": self.metric,
+            "kind": self.kind,
+            "units": self.units ?? ""
+        ]
+    }
 }
