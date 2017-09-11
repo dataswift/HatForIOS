@@ -6,4 +6,4 @@ xcode_sdk: iphonesimulator10.3
 before_install:
    - rvm use system
    - sudo gem install cocoapods
-script: xcodebuild clean build -workspace HAT.xcworkspace -scheme HAT -destination 'platform=iOS Simulator,name=iPhone 7'
+script: xcodebuild clean build -workspace HAT.xcworkspace -scheme HAT
