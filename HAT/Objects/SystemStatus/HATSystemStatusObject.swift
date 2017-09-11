@@ -82,7 +82,7 @@ public struct HATSystemStatusObject: Comparable {
         }
     }
     
-    func encode<T>(value: T) -> NSData {
+    public func encode<T>(value: T) -> NSData {
         
         do {
             
@@ -100,7 +100,7 @@ public struct HATSystemStatusObject: Comparable {
         }
     }
     
-    func decode<T>(data: NSData) -> T {
+    public func decode<T>(data: NSData) -> T {
         
         let pointer = UnsafeMutablePointer<T>.allocate(capacity: MemoryLayout<T>.size)
         data.getBytes(pointer, length: MemoryLayout<T>.size)
