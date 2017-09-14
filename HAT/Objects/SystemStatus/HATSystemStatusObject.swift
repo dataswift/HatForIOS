@@ -14,7 +14,7 @@ import SwiftyJSON
 
 // MARK: Class
 
-public protocol HatApiType: Comparable {
+public protocol HatApiType {
     
     func toJSON() -> Dictionary<String, Any>
     
@@ -31,7 +31,6 @@ extension HatApiType {
         
         self.initialize(fromCache: fromCache)
     }
-    
 }
 
 /// A class representing the system status object

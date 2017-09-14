@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Class
 
 /// A class representing the locations received from server
-public struct HATLocationsObject: Equatable {
+public struct HATLocationsObject: Equatable, HatApiType {
 
     // MARK: - Equatable protocol
 
@@ -71,24 +71,35 @@ public struct HATLocationsObject: Equatable {
         // init optional JSON fields to default values
         self.init()
 
+        self.initialize(from: dict)
+    }
+    
+    public mutating func initialize(fromCache: Dictionary<String, Any>) {
+        
+        let dictionary = JSON(fromCache)
+        self.initialize(from: dictionary.dictionaryValue)
+    }
+    
+    public mutating func initialize(from dictionary: Dictionary<String, JSON>) {
+        
         // this field will always have a value no need to use if let
-        if let tempID = dict["id"]?.intValue {
-
+        if let tempID = dictionary["id"]?.intValue {
+            
             locationID = tempID
         }
-
-        if let tempUpdatedTime = dict["lastUpdated"]?.string {
-
+        
+        if let tempUpdatedTime = dictionary["lastUpdated"]?.string {
+            
             lastUpdate = HATFormatterHelper.formatStringToDate(string: tempUpdatedTime)
         }
-
-        if let tempName = dict["name"]?.string {
-
+        
+        if let tempName = dictionary["name"]?.string {
+            
             name = tempName
         }
-
-        if let tempTables = dict["data"]?.dictionaryValue {
-
+        
+        if let tempTables = dictionary["data"]?.dictionaryValue {
+            
             data = HATLocationsDataObject(dict: tempTables)
         }
     }
