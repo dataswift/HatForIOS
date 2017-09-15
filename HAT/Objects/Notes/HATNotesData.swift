@@ -15,7 +15,13 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A struct representing the outer notes JSON format
-public struct HATNotesData: Comparable {
+public struct HATNotesData: Comparable, HatApiType {
+    
+    public mutating func initialize(fromCache: Dictionary<String, Any>) {
+        
+        let dictionary = JSON(fromCache)
+        self.inititialize(dict: dictionary.dictionaryValue)
+    }
 
     // MARK: - Comparable protocol
 
@@ -85,7 +91,7 @@ public struct HATNotesData: Comparable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
-    public init(dict: Dictionary<String, JSON>) {
+    public mutating func inititialize(dict: Dictionary<String, JSON>) {
 
         if let tempID = dict["id"]?.int {
 
