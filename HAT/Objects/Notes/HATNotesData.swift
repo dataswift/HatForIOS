@@ -87,11 +87,30 @@ public struct HATNotesData: Comparable, HatApiType {
         lastUpdated = Date()
         data = HATNotesNotablesData()
     }
-
+    
     /**
      It initialises everything from the received JSON file from the HAT
      */
     public mutating func inititialize(dict: Dictionary<String, JSON>) {
+        
+        if let tempID = dict["noteID"]?.int {
+            
+            noteID = tempID
+        }
+        if let tempLastUpdated = dict["lastUpdated"]?.string {
+            
+            lastUpdated = HATFormatterHelper.formatStringToDate(string: tempLastUpdated)!
+        }
+        if let tempData = dict["notablesv1"]?.dictionary {
+            
+            data = HATNotesNotablesData.init(dict: tempData)
+        }
+    }
+
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init(dict: Dictionary<String, JSON>) {
 
         if let tempID = dict["id"]?.int {
 
@@ -150,6 +169,7 @@ public struct HATNotesData: Comparable, HatApiType {
 
         return [
 
+            "noteID": self.noteID,
             "notablesv1": self.data.toJSON(),
             "lastUpdated": Int(HATFormatterHelper.formatDateToEpoch(date: Date())!)!
         ]
