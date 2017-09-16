@@ -64,9 +64,9 @@ public struct HATNotablesService {
      - parameter id: the id of the note to delete
      - parameter tkn: the user's token as a string
      */
-    public static func deleteNote(recordID: Int, tkn: String, userDomain: String) {
+    public static func deleteNote(recordID: Int, tkn: String, userDomain: String, success: @escaping ((String) -> Void) = { _ in }, failed: @escaping ((HATTableError) -> Void) = { _ in }) {
 
-        HATAccountService.deleteHatRecord(userDomain: userDomain, token: tkn, recordId: recordID, success: { _ in }, failed: { (_) -> Void in return })
+        HATAccountService.deleteHatRecord(userDomain: userDomain, token: tkn, recordId: recordID, success: success, failed: failed)
     }
 
     // MARK: - Post note

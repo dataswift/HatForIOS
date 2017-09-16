@@ -333,7 +333,7 @@ public struct HATAccountService {
                 if isSuccess {
                     
                     success(token)
-                    HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () -> Void in return })
+                    HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: {})
                 } else {
                     
                     let message = NSLocalizedString("The request was unsuccesful", comment: "")

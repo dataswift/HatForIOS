@@ -377,7 +377,6 @@
 			isa = PBXGroup;
 			children = (
 				602D16C81E82B1D700C53A5E /* HATAccountService.swift */,
-				60D8DAA71F31F7500055CEAC /* HATNotificationsService.swift */,
 				60DE1DD81F34AB9300E031F6 /* HATDataDebitsService.swift */,
 				602E4D9A1F01118500C5FF31 /* HATDataOffersService.swift */,
 				602D16C91E82B1D700C53A5E /* HATDataPlugsService.swift */,
@@ -386,6 +385,7 @@
 				602D16CB1E82B1D700C53A5E /* HATLocationService.swift */,
 				602D16CC1E82B1D700C53A5E /* HATLoginService.swift */,
 				602D16CD1E82B1D700C53A5E /* HATNotableService.swift */,
+				60D8DAA71F31F7500055CEAC /* HATNotificationsService.swift */,
 				609820571ED451400036D1B3 /* HATPhataService.swift */,
 				609820591ED452150036D1B3 /* HATProfileService.swift */,
 				602D16CE1E82B1D700C53A5E /* HATService.swift */,
