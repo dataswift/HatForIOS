@@ -111,17 +111,19 @@ public struct HATPhataService {
 
                 case .error(let error, let statusCode):
 
-                    let message = NSLocalizedString("Server responded with error", comment: "")
-                    errorCallback(.generalError(message, statusCode, error))
+                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        errorCallback(.noInternetConnection)
+                    } else {
+                        
+                        let message = NSLocalizedString("Server responded with error", comment: "")
+                        errorCallback(.generalError(message, statusCode, error))
+                    }
                 }
             })
         }
 
-        func errorCall(error: HATTableError) {
-
-        }
-
-        HATAccountService.checkHatTableExistsForUploading(userDomain: userDomain, tableName: "profile", sourceName: "rumpel", authToken: userToken, successCallback: posting, errorCallback: errorCall)
+        HATAccountService.checkHatTableExistsForUploading(userDomain: userDomain, tableName: "profile", sourceName: "rumpel", authToken: userToken, successCallback: posting, errorCallback: errorCallback)
     }
 
 }

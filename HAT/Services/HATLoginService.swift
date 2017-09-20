@@ -140,8 +140,14 @@ public struct HATLoginService {
 
                     case .error(let error, let statusCode):
 
-                        let message = NSLocalizedString("Server responded with error", comment: "")
-                        failed?(.generalError(message, statusCode, error))
+                        if error.localizedDescription == "The Internet connection appears to be offline." {
+                            
+                            failed?(.noInternetConnection)
+                        } else {
+                            
+                            let message = NSLocalizedString("Server responded with error", comment: "")
+                            failed?(.generalError(message, statusCode, error))
+                        }
                     }
                 }
             }

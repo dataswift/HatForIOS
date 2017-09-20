@@ -45,8 +45,14 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                let message = NSLocalizedString("Server responded with error", comment: "")
-                errorCallback(.generalError(message, statusCode, error))
+                if error.localizedDescription == "The Internet connection appears to be offline." {
+                    
+                    errorCallback(.noInternetConnection)
+                } else {
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    errorCallback(.generalError(message, statusCode, error))
+                }
             case .isSuccess(let isSuccess, _, let result, let token):
                 
                 if isSuccess {
@@ -88,8 +94,14 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                let message = NSLocalizedString("Server responded with error", comment: "")
-                errorCallback(.generalError(message, statusCode, error))
+                if error.localizedDescription == "The Internet connection appears to be offline." {
+                    
+                    errorCallback(.noInternetConnection)
+                } else {
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    errorCallback(.generalError(message, statusCode, error))
+                }
             case .isSuccess(let isSuccess, _, let result, let token):
                 
                 if isSuccess {
@@ -131,8 +143,14 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                let message = NSLocalizedString("Server responded with error", comment: "")
-                errorCallback(.generalError(message, statusCode, error))
+                if error.localizedDescription == "The Internet connection appears to be offline." {
+                    
+                    errorCallback(.noInternetConnection)
+                } else {
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    errorCallback(.generalError(message, statusCode, error))
+                }
             case .isSuccess(let isSuccess, let statusCode, let result, let token):
                 
                 if isSuccess {
@@ -172,8 +190,14 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                let message = NSLocalizedString("Server responded with error", comment: "")
-                errorCallback(.generalError(message, statusCode, error))
+                if error.localizedDescription == "The Internet connection appears to be offline." {
+                    
+                    errorCallback(.noInternetConnection)
+                } else {
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    errorCallback(.generalError(message, statusCode, error))
+                }
             case .isSuccess(let isSuccess, _, let result, let token):
                 
                 if isSuccess {
@@ -223,7 +247,10 @@ public struct HATAccountService {
                     
                 case .error(let error, let statusCode):
                     
-                    if statusCode == 404 {
+                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        errorCallback(.noInternetConnection)
+                    } else if statusCode == 404 {
                         
                         errorCallback(.tableDoesNotExist)
                     } else {
@@ -298,8 +325,14 @@ public struct HATAccountService {
                     
                 case .error(let error, let statusCode):
                     
-                    let message = NSLocalizedString("Server responded with error", comment: "")
-                    failed(.generalError(message, statusCode, error))
+                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        failed(.noInternetConnection)
+                    } else {
+                        
+                        let message = NSLocalizedString("Server responded with error", comment: "")
+                        failed(.generalError(message, statusCode, error))
+                    }
                 }
             })
         }
@@ -342,8 +375,14 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                let message = NSLocalizedString("Server responded with error", comment: "")
-                failed(.generalError(message, statusCode, error))
+                if error.localizedDescription == "The Internet connection appears to be offline." {
+                    
+                    failed(.noInternetConnection)
+                } else {
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    failed(.generalError(message, statusCode, error))
+                }
             }
         })
     }
@@ -388,8 +427,14 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                let message = NSLocalizedString("Server responded with error", comment: "")
-                failed(.generalError(message, statusCode, error))
+                if error.localizedDescription == "The Internet connection appears to be offline." {
+                    
+                    failed(.noInternetConnection)
+                } else {
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    failed(.generalError(message, statusCode, error))
+                }
             }
         })
     }
@@ -419,8 +464,14 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                let message = NSLocalizedString("Server responded with error", comment: "")
-                errorCallback(.generalError(message, statusCode, error))
+                if error.localizedDescription == "The Internet connection appears to be offline." {
+                    
+                    errorCallback(.noInternetConnection)
+                } else {
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    errorCallback(.generalError(message, statusCode, error))
+                }
             case .isSuccess(let isSuccess, _, let result, let token):
                 
                 if isSuccess {
@@ -485,7 +536,10 @@ public struct HATAccountService {
                     
                 case .error(let error, let statusCode):
                     
-                    if statusCode == 404 {
+                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        errorCallback(.noInternetConnection)
+                    } else if statusCode == 404 {
                         
                         errorCallback(.tableDoesNotExist)
                     } else {
@@ -561,8 +615,14 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                let message = NSLocalizedString("Server responded with error", comment: "")
-                failCallback(.generalError(message, statusCode, error))
+                if error.localizedDescription == "The Internet connection appears to be offline." {
+                    
+                    failCallback(.noInternetConnection)
+                } else {
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    failCallback(.generalError(message, statusCode, error))
+                }
             case .isSuccess(let isSuccess, _, let result, let token):
                 
                 if isSuccess, let message = result.dictionaryValue["message"]?.stringValue {

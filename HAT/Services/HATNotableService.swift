@@ -27,11 +27,12 @@ public struct HATNotablesService {
      */
     public static func fetchNotables(userDomain: String, authToken: String, structure: Dictionary<String, Any>, parameters: Dictionary<String, String>, success: @escaping (_ array: [JSON], String?) -> Void, failure: @escaping (HATTableError) -> Void ) {
 
-        HATAccountService.checkHatTableExists(userDomain: userDomain, tableName: "notablesv1",
-                                              sourceName: "rumpel",
-                                              authToken: authToken,
-                                              successCallback: getNotes(userDomain: userDomain, token: authToken, parameters: parameters, success: success),
-                                              errorCallback: failure)
+        HATAccountService.checkHatTableExists(
+            userDomain: userDomain, tableName: "notablesv1",
+            sourceName: "rumpel",
+            authToken: authToken,
+            successCallback: getNotes(userDomain: userDomain, token: authToken, parameters: parameters, success: success),
+            errorCallback: failure)
     }
 
     /**
@@ -44,7 +45,13 @@ public struct HATNotablesService {
 
         return { (tableID: NSNumber, returnedToken: String?) -> Void in
 
-            HATAccountService.getHatTableValues(token: token, userDomain: userDomain, tableID: tableID, parameters: parameters, successCallback: success, errorCallback: showNotablesFetchError)
+            HATAccountService.getHatTableValues(
+                token: token,
+                userDomain: userDomain,
+                tableID: tableID,
+                parameters: parameters,
+                successCallback: success,
+                errorCallback: showNotablesFetchError)
         }
     }
 
@@ -77,7 +84,7 @@ public struct HATNotablesService {
      - parameter token: The token returned from the hat
      - parameter json: The json file as a Dictionary<String, Any>
      */
-    public static func postNote(userDomain: String, userToken: String, note: HATNotesData, successCallBack: @escaping () -> Void) {
+    public static func postNote(userDomain: String, userToken: String, note: HATNotesData, successCallBack: @escaping () -> Void, errorCallback: @escaping (HATTableError) -> Void) {
 
         func posting(resultJSON: Dictionary<String, Any>, token: String?) {
 
@@ -107,18 +114,21 @@ public struct HATNotablesService {
                         HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () })
                     }
 
-                case .error(let error, _):
+                case .error(let error, let statusCode):
 
-                    print("error res: \(error)")
+                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        errorCallback(.noInternetConnection)
+                    } else {
+                        
+                        let message = NSLocalizedString("Server responded with error", comment: "")
+                        errorCallback(.generalError(message, statusCode, error))
+                    }
                 }
             })
         }
 
-        func errorCall(error: HATTableError) {
-
-        }
-
-        HATAccountService.checkHatTableExistsForUploading(userDomain: userDomain, tableName: "notablesv1", sourceName: "rumpel", authToken: userToken, successCallback: posting, errorCallback: errorCall)
+        HATAccountService.checkHatTableExistsForUploading(userDomain: userDomain, tableName: "notablesv1", sourceName: "rumpel", authToken: userToken, successCallback: posting, errorCallback: errorCallback)
     }
 
     // MARK: - Remove duplicates
