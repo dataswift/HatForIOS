@@ -153,7 +153,7 @@ public struct HATFacebookService {
             // inform user that there was an error
             case .error(let error, let statusCode):
 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     failed(.noInternetConnection)
                 } else {

@@ -44,7 +44,7 @@ public struct HATService {
             // in case of error call the failCallBack
             case .error(let error, let statusCode):
 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     failCallBack(.noInternetConnection)
                 } else {
@@ -82,7 +82,7 @@ public struct HATService {
             // in case of error call the failCallBack
             case .error(let error, let statusCode):
 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     failCallBack(.noInternetConnection)
                 } else {
@@ -129,7 +129,7 @@ public struct HATService {
             // in case of error call the failCallBack
             case .error(let error, let statusCode):
 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     failCallBack(.noInternetConnection)
                 } else {

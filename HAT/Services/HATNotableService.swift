@@ -116,7 +116,7 @@ public struct HATNotablesService {
 
                 case .error(let error, let statusCode):
 
-                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                    if error.localizedDescription == "The request timed out." {
                         
                         errorCallback(.noInternetConnection)
                     } else {

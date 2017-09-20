@@ -45,7 +45,7 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     errorCallback(.noInternetConnection)
                 } else {
@@ -94,7 +94,7 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     errorCallback(.noInternetConnection)
                 } else {
@@ -143,7 +143,7 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     errorCallback(.noInternetConnection)
                 } else {
@@ -190,7 +190,7 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     errorCallback(.noInternetConnection)
                 } else {
@@ -247,7 +247,7 @@ public struct HATAccountService {
                     
                 case .error(let error, let statusCode):
                     
-                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                    if error.localizedDescription == "The request timed out." {
                         
                         errorCallback(.noInternetConnection)
                     } else if statusCode == 404 {
@@ -325,7 +325,7 @@ public struct HATAccountService {
                     
                 case .error(let error, let statusCode):
                     
-                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                    if error.localizedDescription == "The request timed out." {
                         
                         failed(.noInternetConnection)
                     } else {
@@ -375,7 +375,7 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     failed(.noInternetConnection)
                 } else {
@@ -427,7 +427,7 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     failed(.noInternetConnection)
                 } else {
@@ -464,7 +464,7 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     errorCallback(.noInternetConnection)
                 } else {
@@ -536,7 +536,7 @@ public struct HATAccountService {
                     
                 case .error(let error, let statusCode):
                     
-                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                    if error.localizedDescription == "The request timed out." {
                         
                         errorCallback(.noInternetConnection)
                     } else if statusCode == 404 {
@@ -615,7 +615,7 @@ public struct HATAccountService {
                 
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     failCallback(.noInternetConnection)
                 } else {

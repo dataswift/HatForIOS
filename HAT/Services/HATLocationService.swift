@@ -83,7 +83,7 @@ public struct HATLocationService {
             case .error(let error, let statusCode):
 
                 //show error
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     failed(.noInternetConnection)
                 } else {

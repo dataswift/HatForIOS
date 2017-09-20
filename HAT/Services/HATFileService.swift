@@ -75,7 +75,7 @@ public struct HATFileService {
                 
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     errorCallBack(.noInternetConnection)
                 } else {
@@ -125,7 +125,7 @@ public struct HATFileService {
                 
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     errorCallBack(.noInternetConnection)
                 } else {
@@ -175,7 +175,7 @@ public struct HATFileService {
                 
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     errorCallBack(.noInternetConnection)
                 } else {
@@ -225,7 +225,7 @@ public struct HATFileService {
                 
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     errorCallBack(.noInternetConnection)
                 } else {
@@ -271,7 +271,7 @@ public struct HATFileService {
                     
                 case .error(let error, let statusCode):
                     
-                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                    if error.localizedDescription == "The request timed out." {
                         
                         errorCallback(.noInternetConnection)
                     } else {
@@ -335,7 +335,7 @@ public struct HATFileService {
                     
                 case .error(let error, let statusCode):
                     
-                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                    if error.localizedDescription == "The request timed out." {
                         
                         errorCallback(.noInternetConnection)
                     } else {
@@ -399,7 +399,7 @@ public struct HATFileService {
                     
                 case .error(let error, let statusCode):
                     
-                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                    if error.localizedDescription == "The request timed out." {
                         
                         errorCallback(.noInternetConnection)
                     } else {

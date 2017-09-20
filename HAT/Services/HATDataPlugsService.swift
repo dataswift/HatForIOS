@@ -36,7 +36,7 @@ public struct HATDataPlugsService {
             // in case of error call the failCallBack
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     failCallBack(.noInternetConnection)
                 } else {
@@ -93,7 +93,7 @@ public struct HATDataPlugsService {
             // in case of error call the failCallBack
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     failCallBack(.noInternetConnection)
                 } else if statusCode != 404 {
@@ -158,7 +158,7 @@ public struct HATDataPlugsService {
             // in case of error call the failCallBack
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     failCallBack(.noInternetConnection)
                 } else {
@@ -216,7 +216,7 @@ public struct HATDataPlugsService {
             // in case of error call the failCallBack
             case .error(let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     failCallBack(.noInternetConnection)
                 } else {
@@ -267,7 +267,7 @@ public struct HATDataPlugsService {
             // in case of error call the failCallBack
             case .error( let error, let statusCode):
                 
-                if error.localizedDescription == "The Internet connection appears to be offline." {
+                if error.localizedDescription == "The request timed out." {
                     
                     failCallBack(.noInternetConnection)
                 } else if statusCode != 404 {
@@ -327,7 +327,7 @@ public struct HATDataPlugsService {
                 // in case of error call the failCallBack
                 case .error(let error, let statusCode):
                     
-                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                    if error.localizedDescription == "The request timed out." {
                         
                         failCallBack(.noInternetConnection)
                     } else if statusCode == 404 {
@@ -380,7 +380,7 @@ public struct HATDataPlugsService {
                 // in case of error call the failCallBack
                 case .error(let error, let statusCode):
                     
-                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                    if error.localizedDescription == "The request timed out." {
                         
                         failCallBack(.noInternetConnection)
                     } else if statusCode == 404 {
