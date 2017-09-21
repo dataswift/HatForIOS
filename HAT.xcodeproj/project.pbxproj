@@ -88,6 +88,8 @@
 		60444EE71E4B27C5005E4433 /* HAT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60444EDD1E4B27C4005E4433 /* HAT.framework */; };
 		60444EEC1E4B27C5005E4433 /* LoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60444EEB1E4B27C5005E4433 /* LoginServiceTests.swift */; };
 		60444EEE1E4B27C5005E4433 /* HAT.h in Headers */ = {isa = PBXBuildFile; fileRef = 60444EE01E4B27C4005E4433 /* HAT.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		604B91741F73FDAE0099A58A /* HatApiType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604B91731F73FDAE0099A58A /* HatApiType.swift */; };
+		604B91751F73FDB10099A58A /* HatApiType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604B91731F73FDAE0099A58A /* HatApiType.swift */; };
 		604EAC0F1EB886EE0084EEC8 /* HATTokenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EAC0E1EB886EE0084EEC8 /* HATTokenHelper.swift */; };
 		6050BF011ED59BB300984EEF /* HATProfileEducationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050BF001ED59BB300984EEF /* HATProfileEducationObject.swift */; };
 		6050BF031ED59BD400984EEF /* HATProfileRelationshipAndHouseholdObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050BF021ED59BD400984EEF /* HATProfileRelationshipAndHouseholdObject.swift */; };
@@ -244,7 +246,7 @@
 		602D16D81E82B1E700C53A5E /* HATNetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATNetworkHelper.swift; sourceTree = "<group>"; };
 		602D16D91E82B1E700C53A5E /* HATErrorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATErrorHelper.swift; sourceTree = "<group>"; };
 		602D16DA1E82B1E700C53A5E /* HATFormatterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATFormatterHelper.swift; sourceTree = "<group>"; };
-		602D16DE1E82B1F600C53A5E /* HATSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATSocialFeedObject.swift; sourceTree = "<group>"; };
+		602D16DE1E82B1F600C53A5E /* HATSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HATSocialFeedObject.swift; path = Objects/HATSocialFeedObject.swift; sourceTree = "<group>"; };
 		602D16E01E82B20000C53A5E /* HATDataPlugDataDefinitionObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATDataPlugDataDefinitionObject.swift; sourceTree = "<group>"; };
 		602D16E11E82B20000C53A5E /* HATDataPlugDataSetObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATDataPlugDataSetObject.swift; sourceTree = "<group>"; };
 		602D16E21E82B20000C53A5E /* HATDataPlugObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATDataPlugObject.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 		60444EE61E4B27C5005E4433 /* HATTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HATTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60444EEB1E4B27C5005E4433 /* LoginServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServiceTests.swift; sourceTree = "<group>"; };
 		60444EED1E4B27C5005E4433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		604B91731F73FDAE0099A58A /* HatApiType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HatApiType.swift; path = Protocols/HatApiType.swift; sourceTree = "<group>"; };
 		604EAC0E1EB886EE0084EEC8 /* HATTokenHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATTokenHelper.swift; sourceTree = "<group>"; };
 		6050BF001ED59BB300984EEF /* HATProfileEducationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATProfileEducationObject.swift; sourceTree = "<group>"; };
 		6050BF021ED59BD400984EEF /* HATProfileRelationshipAndHouseholdObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATProfileRelationshipAndHouseholdObject.swift; sourceTree = "<group>"; };
@@ -423,7 +426,6 @@
 				6050BEFD1ED59B0100984EEF /* Profile */,
 				60275BA11E6ECBF70098B66C /* SystemStatus */,
 				601691231E4B6AD300505E8D /* Twitter */,
-				602D16DE1E82B1F600C53A5E /* HATSocialFeedObject.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -570,6 +572,7 @@
 		60444EDF1E4B27C4005E4433 /* HAT */ = {
 			isa = PBXGroup;
 			children = (
+				604B91721F73FD850099A58A /* Protocols */,
 				601691091E4B4B8400505E8D /* Helpers */,
 				6016910A1E4B4B8900505E8D /* Objects */,
 				601691081E4B4B7C00505E8D /* Services */,
@@ -596,6 +599,15 @@
 				606375AA1E536B1500F0D1B1 /* TwitterServiceTests.swift */,
 			);
 			path = HATTests;
+			sourceTree = "<group>";
+		};
+		604B91721F73FD850099A58A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				602D16DE1E82B1F600C53A5E /* HATSocialFeedObject.swift */,
+				604B91731F73FDAE0099A58A /* HatApiType.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		6050BEFD1ED59B0100984EEF /* Profile */ = {
@@ -1005,6 +1017,7 @@
 				602D170A1E82B22700C53A5E /* HATNotesData.swift in Sources */,
 				602D16D51E82B1D700C53A5E /* HATNotableService.swift in Sources */,
 				60BA45E81E8A7C5700ABB758 /* FileUploadObject.swift in Sources */,
+				604B91741F73FDAE0099A58A /* HatApiType.swift in Sources */,
 				60CDCBE61EAA656400035882 /* HATProfileDataProfileAboutObject.swift in Sources */,
 				60BA45EA1E8A7C5700ABB758 /* FileUploadObjectStatus.swift in Sources */,
 				602E4DAC1F0111F400C5FF31 /* DataOfferRequiredDataDefinitionObject.swift in Sources */,
@@ -1161,6 +1174,7 @@
 				60DDBB101E82F528007CDAFB /* HATNotableService.swift in Sources */,
 				606BBA3B1E546DF000ECBA6B /* DataPlugsServiceTests.swift in Sources */,
 				60DDBB0A1E82F513007CDAFB /* HATLoginService.swift in Sources */,
+				604B91751F73FDB10099A58A /* HatApiType.swift in Sources */,
 				6050BF081ED5B2E700984EEF /* HATPhataService.swift in Sources */,
 				60CDCBF71EAB6E0700035882 /* HATProfileDataProfileYoutubeObject.swift in Sources */,
 			);
