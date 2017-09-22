@@ -215,6 +215,35 @@ public struct HATProfileDataProfileAddressDetailObject: Comparable {
             }
         }
     }
+    
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init (fromCache: Dictionary<String, JSON>) {
+        
+        if let tempPrivate = (fromCache["private"]?.stringValue) {
+            
+            if let isPrivateResult = Bool(tempPrivate) {
+                
+                isPrivate = isPrivateResult
+            }
+        }
+        
+        if let tempNumber = (fromCache["no"]?.stringValue) {
+            
+            number = tempNumber
+        }
+        
+        if let tempStreet = (fromCache["street"]?.stringValue) {
+            
+            street = tempStreet
+        }
+        
+        if let tempPostcode = (fromCache["postcode"]?.stringValue) {
+            
+            postCode = tempPostcode
+        }
+    }
 
     // MARK: - JSON Mapper
 

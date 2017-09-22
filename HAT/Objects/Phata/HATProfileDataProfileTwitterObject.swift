@@ -131,6 +131,25 @@ public struct HATProfileDataProfileTwitterObject: Comparable {
     /**
      It initialises everything from the received JSON file from the HAT
      */
+    public init (fromCache: Dictionary<String, JSON>) {
+        
+        if let tempPrivate = (fromCache["private"]?.stringValue) {
+            
+            if let isPrivateResult = Bool(tempPrivate) {
+                
+                isPrivate = isPrivateResult
+            }
+        }
+        
+        if let tempLink = (fromCache["link"]?.stringValue) {
+            
+            link = tempLink
+        }
+    }
+    
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
     public init(alternativeArray: [JSON]) {
 
         for json in alternativeArray {

@@ -153,6 +153,25 @@ public struct HATProfileDataProfileAgeObject: Comparable {
             }
         }
     }
+    
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init (fromCache: Dictionary<String, JSON>) {
+        
+        if let tempPrivate = (fromCache["private"]?.stringValue) {
+            
+            if let isPrivateResult = Bool(tempPrivate) {
+                
+                isPrivate = isPrivateResult
+            }
+        }
+        
+        if let tempAge = (fromCache["group"]?.stringValue) {
+            
+            group = tempAge
+        }
+    }
 
     // MARK: - JSON Mapper
 

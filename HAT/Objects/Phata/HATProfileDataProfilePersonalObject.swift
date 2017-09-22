@@ -277,6 +277,45 @@ public struct HATProfileDataProfilePersonalObject: Comparable {
             }
         }
     }
+    
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init (fromCache: Dictionary<String, JSON>) {
+        
+        if let tempPrivate = (fromCache["private"]?.stringValue) {
+            
+            if let isPrivateResult = Bool(tempPrivate) {
+                
+                isPrivate = isPrivateResult
+            }
+        }
+        
+        if let tempFirstName = (fromCache["first_name"]?.stringValue) {
+            
+            firstName = tempFirstName
+        }
+        
+        if let tempLastName = (fromCache["last_name"]?.stringValue) {
+            
+            lastName = tempLastName
+        }
+        
+        if let tempPreferredName = (fromCache["preferred_name"]?.stringValue) {
+            
+            prefferedName = tempPreferredName
+        }
+        
+        if let tempMiddleName = (fromCache["middle_name"]?.stringValue) {
+            
+            middleName = tempMiddleName
+        }
+        
+        if let tempTitle = (fromCache["title"]?.stringValue) {
+            
+            title = tempTitle
+        }
+    }
 
     // MARK: - JSON Mapper
 

@@ -246,6 +246,40 @@ public struct HATProfileDataProfileEmergencyContactObject: Comparable {
             }
         }
     }
+    
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init (fromCache: Dictionary<String, JSON>) {
+        
+        if let tempPrivate = (fromCache["private"]?.stringValue) {
+            
+            if let isPrivateResult = Bool(tempPrivate) {
+                
+                isPrivate = isPrivateResult
+            }
+        }
+        
+        if let tempFirstName = (fromCache["first_name"]?.stringValue) {
+            
+            firstName = tempFirstName
+        }
+        
+        if let tempLastName = (fromCache["last_name"]?.stringValue) {
+            
+            lastName = tempLastName
+        }
+        
+        if let tempRelationship = (fromCache["relationship"]?.stringValue) {
+            
+            relationship = tempRelationship
+        }
+        
+        if let tempMobile = (fromCache["mobile"]?.stringValue) {
+            
+            mobile = tempMobile
+        }
+    }
 
     // MARK: - JSON Mapper
 

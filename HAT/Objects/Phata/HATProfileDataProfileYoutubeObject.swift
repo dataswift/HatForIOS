@@ -16,6 +16,19 @@ import SwiftyJSON
 
 /// A struct representing the profile data Youtube object from the received profile JSON file
 public struct HATProfileDataProfileYoutubeObject: Comparable {
+    
+    // MARK: - Fields
+    
+    /// The possible Fields of the JSON struct
+    public struct Fields {
+        
+        static let name: String = "name"
+        static let youtubeID: String = "id"
+        static let values: String = "values"
+        static let value: String = "value"
+        static let isPrivate: String = "private"
+        static let link: String = "link"
+    }
 
     // MARK: - Comparable protocol
 
@@ -125,6 +138,25 @@ public struct HATProfileDataProfileYoutubeObject: Comparable {
                     }
                 }
             }
+        }
+    }
+    
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init (fromCache: Dictionary<String, JSON>) {
+        
+        if let tempPrivate = (fromCache["private"]?.stringValue) {
+            
+            if let isPrivateResult = Bool(tempPrivate) {
+                
+                isPrivate = isPrivateResult
+            }
+        }
+        
+        if let tempLink = (fromCache["link"]?.stringValue) {
+            
+            link = tempLink
         }
     }
 

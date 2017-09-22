@@ -153,6 +153,25 @@ public struct HATProfileDataProfileGenderObject: Comparable {
             }
         }
     }
+    
+    /**
+     It initialises everything from the received JSON file from the HAT
+     */
+    public init (fromCache: Dictionary<String, JSON>) {
+        
+        if let tempPrivate = (fromCache["private"]?.stringValue) {
+            
+            if let isPrivateResult = Bool(tempPrivate) {
+                
+                isPrivate = isPrivateResult
+            }
+        }
+        
+        if let tempType = (fromCache["type"]?.stringValue) {
+            
+            type = tempType
+        }
+    }
 
     // MARK: - JSON Mapper
 

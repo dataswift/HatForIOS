@@ -389,6 +389,114 @@ public struct HATProfileDataProfileObject: Comparable {
             }
         }
     }
+    
+    mutating func initFromCache(dictionary: Dictionary<String, JSON>) {
+        
+        if let tempWebsite = dictionary["website"]?.dictionary {
+            
+            website = HATProfileDataProfileWebsiteObject(fromCache: tempWebsite)
+        }
+        
+        if let tempNick = dictionary["nick"]?.dictionary {
+            
+            nick = HATProfileDataProfileNickObject(fromCache: tempNick)
+        }
+        
+        if let tempPrimaryEmail = dictionary["primary_email"]?.dictionary {
+            
+            primaryEmail = HATProfileDataProfilePrimaryEmailObject(fromCache: tempPrimaryEmail)
+        }
+        
+        if let tempYoutube = dictionary["youtube"]?.dictionary {
+            
+            youtube = HATProfileDataProfileYoutubeObject(fromCache: tempYoutube)
+        }
+        
+        if let tempAddressGlobal = dictionary["address_global"]?.dictionary {
+            
+            addressGlobal = HATProfileDataProfileAddressGlobalObject(fromCache: tempAddressGlobal)
+        }
+        
+        if let tempLinkedIn = dictionary["linkedin"]?.dictionary {
+            
+            linkedIn = HATProfileDataProfileLinkedInObject(fromCache: tempLinkedIn)
+        }
+        
+        if let tempBirthday = dictionary["birth"]?.dictionary {
+            
+            birth = HATProfileDataProfileBirthObject(fromCache: tempBirthday)
+        }
+        
+        if let tempHomePhone = dictionary["home_phone"]?.dictionary {
+            
+            homePhone = HATProfileDataProfileHomePhoneObject(fromCache: tempHomePhone)
+        }
+        
+        if let tempGoogle = dictionary["google"]?.dictionary {
+            
+            google = HATProfileDataProfileGoogleObject(fromCache: tempGoogle)
+        }
+        
+        if let tempAge = dictionary["age"]?.dictionary {
+            
+            age = HATProfileDataProfileAgeObject(fromCache: tempAge)
+        }
+        
+        if let tempPersonal = dictionary["personal"]?.dictionary {
+            
+            personal = HATProfileDataProfilePersonalObject(fromCache: tempPersonal)
+        }
+        
+        if let tempBlog = dictionary["blog"]?.dictionary {
+            
+            blog = HATProfileDataProfileBlogObject(fromCache: tempBlog)
+        }
+        
+        if let tempFacebook = dictionary["facebook"]?.dictionary {
+            
+            facebook = HATProfileDataProfileFacebookObject(fromCache: tempFacebook)
+        }
+        
+        if let tempAddressDetails = dictionary["address_details"]?.dictionary {
+            
+            addressDetails = HATProfileDataProfileAddressDetailObject(fromCache: tempAddressDetails)
+        }
+        
+        if let tempEmergencyContact = dictionary["emergency_contact"]?.dictionary {
+            
+            emergencyContact = HATProfileDataProfileEmergencyContactObject(fromCache: tempEmergencyContact)
+        }
+        
+        if let tempAlternativeEmail = dictionary["alternative_email"]?.dictionary {
+            
+            alternativeEmail = HATProfileDataProfileAlternativeEmailObject(fromCache: tempAlternativeEmail)
+        }
+        
+        if let tempFacebookProfile = dictionary["fb_profile_photo"]?.dictionary {
+            
+            facebookProfilePhoto = HATProfileDataProfileFacebookProfilePhotoObject(fromCache: tempFacebookProfile)
+        }
+        
+        if let tempTwitter = dictionary["twitter"]?.dictionary {
+            
+            twitter = HATProfileDataProfileTwitterObject(fromCache: tempTwitter)
+        }
+        
+        if let tempAbout = dictionary["about"]?.dictionary {
+            
+            about = HATProfileDataProfileAboutObject(fromCache: tempAbout)
+        }
+        
+        if let tempMobile = dictionary["mobile"]?.dictionary {
+            
+            mobile = HATProfileDataProfileMobileObject(fromCache: tempMobile)
+        }
+        
+        if let tempGender = dictionary["gender"]?.dictionary {
+            
+            gender = HATProfileDataProfileGenderObject(fromCache: tempGender)
+        }
+    }
 
     // MARK: - JSON Mapper
 
