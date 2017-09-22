@@ -29,17 +29,19 @@ public struct HATFacebookProfileImageObject: HatApiType {
         static let url: String = "url"
         static let endPoint: String = "endpoint"
         static let lastUpdated: String = "lastUpdated"
+        static let imageData: String = "imageData"
     }
 
     // MARK: - Variables
 
-    var isSilhouette: Bool = false
-    var url: String = ""
-    var imageHeight: Int = 0
-    var imageWidth: Int = 0
-    var lastUpdated: Int?
-    var recordID: String?
-    var endPoint: String = "profile_picture"
+    public var isSilhouette: Bool = false
+    public var url: String = ""
+    public var imageHeight: Int = 0
+    public var imageWidth: Int = 0
+    public var lastUpdated: Int = 0
+    public var recordID: String?
+    public var endPoint: String = "profile_picture"
+    public var image: UIImage? = nil
 
     // MARK: - Initialisers
 
@@ -52,9 +54,10 @@ public struct HATFacebookProfileImageObject: HatApiType {
         url = ""
         imageWidth = 0
         imageHeight = 0
-        lastUpdated = nil
+        lastUpdated = 0
         recordID = nil
         endPoint = "profile_picture"
+        image = nil
     }
 
     /**
@@ -81,7 +84,7 @@ public struct HATFacebookProfileImageObject: HatApiType {
 
                 if let date = HATFormatterHelper.formatStringToDate(string: tempLastUpdated) {
 
-                    lastUpdated = Int(HATFormatterHelper.formatDateToEpoch(date: date)!)
+                    lastUpdated = Int(HATFormatterHelper.formatDateToEpoch(date: date)!)!
                 }
             }
             if let tempSilhouette = dictionary[Fields.isSilhouette]?.boolValue {
@@ -125,7 +128,7 @@ public struct HATFacebookProfileImageObject: HatApiType {
                 
                 if let date = HATFormatterHelper.formatStringToDate(string: tempLastUpdated) {
                     
-                    lastUpdated = Int(HATFormatterHelper.formatDateToEpoch(date: date)!)
+                    lastUpdated = Int(HATFormatterHelper.formatDateToEpoch(date: date)!)!
                 }
             }
             if let tempSilhouette = dict[Fields.isSilhouette]?.boolValue {
@@ -154,6 +157,10 @@ public struct HATFacebookProfileImageObject: HatApiType {
         
         let dictionary = JSON(fromCache)
         self.inititialize(dict: dictionary.dictionaryValue)
+        if let tempImage = fromCache[Fields.imageData] as? Data {
+            
+            self.image = UIImage(data: tempImage)
+        }
     }
     
     // MARK: - JSON Mapper
@@ -173,7 +180,8 @@ public struct HATFacebookProfileImageObject: HatApiType {
             Fields.height: self.imageHeight,
             Fields.width: self.imageWidth,
             Fields.endPoint: self.endPoint,
-            Fields.lastUpdated: HATFormatterHelper.formatDateToISO(date: Date())
+            Fields.lastUpdated: HATFormatterHelper.formatDateToISO(date: Date()),
+            Fields.imageData: UIImageJPEGRepresentation(self.image ?? UIImage(), 1.0) ?? UIImage()
         ]
     }
 }
