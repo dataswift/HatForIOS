@@ -16,9 +16,9 @@ import SwiftyJSON
 
 /// A struct representing the profile object from the received profile JSON file
 public struct HATProfileDataProfileObject: Comparable {
-
+    
     // MARK: - Comparable protocol
-
+    
     /// Returns a Boolean value indicating whether two values are equal.
     ///
     /// Equality is the inverse of inequality. For any values `a` and `b`,
@@ -28,10 +28,10 @@ public struct HATProfileDataProfileObject: Comparable {
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
     public static func == (lhs: HATProfileDataProfileObject, rhs: HATProfileDataProfileObject) -> Bool {
-
+        
         return (lhs.isPrivate == rhs.isPrivate && lhs.website == rhs.website && lhs.nick == rhs.nick && lhs.primaryEmail == rhs.primaryEmail && lhs.youtube == rhs.youtube && lhs.addressGlobal == rhs.addressGlobal && lhs.linkedIn == rhs.linkedIn && lhs.birth == rhs.birth && lhs.homePhone == rhs.homePhone && lhs.google == rhs.google && lhs.age == rhs.age && lhs.personal == rhs.personal && lhs.blog == rhs.blog && lhs.facebook == rhs.facebook && lhs.addressDetails == rhs.addressDetails && lhs.emergencyContact == rhs.emergencyContact && lhs.alternativeEmail == rhs.alternativeEmail && lhs.facebookProfilePhoto == rhs.facebookProfilePhoto && lhs.twitter == rhs.twitter && lhs.about == rhs.about && lhs.mobile == rhs.mobile && lhs.gender == rhs.gender)
     }
-
+    
     /// Returns a Boolean value indicating whether the value of the first
     /// argument is less than that of the second argument.
     ///
@@ -43,24 +43,24 @@ public struct HATProfileDataProfileObject: Comparable {
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
     public static func < (lhs: HATProfileDataProfileObject, rhs: HATProfileDataProfileObject) -> Bool {
-
+        
         return lhs.age < rhs.age
     }
-
+    
     // MARK: - Variables
-
+    
     /// Indicates if the object, HATProfileDataProfileObject, is private
     public var isPrivate: Bool = true {
-
+        
         didSet {
-
+            
             isPrivateTuple = (isPrivate, isPrivateTuple.1)
         }
     }
-
+    
     /// A tuple containing the isPrivate and the ID of the value
     var isPrivateTuple: (Bool, Int) = (true, 0)
-
+    
     /// The website object of user's profile
     public var website: HATProfileDataProfileWebsiteObject = HATProfileDataProfileWebsiteObject()
     /// The nickname object of user's profile
@@ -103,17 +103,17 @@ public struct HATProfileDataProfileObject: Comparable {
     public var mobile: HATProfileDataProfileMobileObject = HATProfileDataProfileMobileObject()
     /// The gender object of user's profile
     public var gender: HATProfileDataProfileGenderObject = HATProfileDataProfileGenderObject()
-
+    
     // MARK: - Initialisers
-
+    
     /**
      The default initialiser. Initialises everything to default values.
      */
     public init() {
-
+        
         isPrivate = true
         isPrivateTuple = (true, 0)
-
+        
         website = HATProfileDataProfileWebsiteObject()
         nick = HATProfileDataProfileNickObject()
         primaryEmail = HATProfileDataProfilePrimaryEmailObject()
@@ -136,379 +136,387 @@ public struct HATProfileDataProfileObject: Comparable {
         mobile = HATProfileDataProfileMobileObject()
         gender = HATProfileDataProfileGenderObject()
     }
-
+    
     /**
      It initialises everything from the received JSON file from the HAT
      */
     public init(from dict: Dictionary<String, JSON>) {
-
+        
         if let tempFieldsDictionary = (dict["fields"]?.arrayValue[0].dictionaryValue) {
-
+            
             if let tempPrivateValue = tempFieldsDictionary["values"]?[0]["value"].stringValue {
-
+                
                 isPrivate = Bool(tempPrivateValue)!
                 isPrivateTuple = (isPrivate, (tempFieldsDictionary["id"]?.intValue)!)
             }
         }
-
+        
         if let tempSubTables = (dict["subTables"]?.arrayValue) {
-
+            
             for subtable in tempSubTables {
-
+                
                 let tempName = (subtable["name"].stringValue)
-
+                
                 if tempName == "website" {
-
+                    
                     website = HATProfileDataProfileWebsiteObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "nick" {
-
+                    
                     nick = HATProfileDataProfileNickObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "primary_email" {
-
+                    
                     primaryEmail = HATProfileDataProfilePrimaryEmailObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "youtube" {
-
+                    
                     youtube = HATProfileDataProfileYoutubeObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "address_global" {
-
+                    
                     addressGlobal = HATProfileDataProfileAddressGlobalObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "linkedin" {
-
+                    
                     linkedIn = HATProfileDataProfileLinkedInObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "birth" {
-
+                    
                     birth = HATProfileDataProfileBirthObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "home_phone" {
-
+                    
                     homePhone = HATProfileDataProfileHomePhoneObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "google" {
-
+                    
                     google = HATProfileDataProfileGoogleObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "age" {
-
+                    
                     age = HATProfileDataProfileAgeObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "personal" {
-
+                    
                     personal = HATProfileDataProfilePersonalObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "blog" {
-
+                    
                     blog = HATProfileDataProfileBlogObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "facebook" {
-
+                    
                     facebook = HATProfileDataProfileFacebookObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "address_details" {
-
+                    
                     addressDetails = HATProfileDataProfileAddressDetailObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "emergency_contact" {
-
+                    
                     emergencyContact = HATProfileDataProfileEmergencyContactObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "alternative_email" {
-
+                    
                     alternativeEmail = HATProfileDataProfileAlternativeEmailObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "fb_profile_photo" {
-
+                    
                     facebookProfilePhoto = HATProfileDataProfileFacebookProfilePhotoObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "twitter" {
-
+                    
                     twitter = HATProfileDataProfileTwitterObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "about" {
-
+                    
                     about = HATProfileDataProfileAboutObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "mobile" {
-
+                    
                     mobile = HATProfileDataProfileMobileObject(from: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "gender" {
-
+                    
                     gender = HATProfileDataProfileGenderObject(from: (subtable["fields"].arrayValue))
                 }
             }
         }
     }
-
+    
     /**
      It initialises everything from the received JSON file from the HAT
      */
     public init(alternativeDictionary: Dictionary<String, JSON>) {
-
+        
         if let tempFieldsDictionary = (alternativeDictionary["fields"]?.arrayValue[0].dictionaryValue) {
-
+            
             isPrivate = true
             isPrivateTuple = (isPrivate, (tempFieldsDictionary["id"]?.intValue)!)
         }
-
+        
         if let tempSubTables = (alternativeDictionary["subTables"]?.arrayValue) {
-
+            
             for subtable in tempSubTables {
-
+                
                 let tempName = (subtable["name"].stringValue)
-
+                
                 if tempName == "website" {
-
+                    
                     website = HATProfileDataProfileWebsiteObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "nick" {
-
+                    
                     nick = HATProfileDataProfileNickObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "primary_email" {
-
+                    
                     primaryEmail = HATProfileDataProfilePrimaryEmailObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "youtube" {
-
+                    
                     youtube = HATProfileDataProfileYoutubeObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "address_global" {
-
+                    
                     addressGlobal = HATProfileDataProfileAddressGlobalObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "linkedin" {
-
+                    
                     linkedIn = HATProfileDataProfileLinkedInObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "birth" {
-
+                    
                     birth = HATProfileDataProfileBirthObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "home_phone" {
-
+                    
                     homePhone = HATProfileDataProfileHomePhoneObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "google" {
-
+                    
                     google = HATProfileDataProfileGoogleObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "age" {
-
+                    
                     age = HATProfileDataProfileAgeObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "personal" {
-
+                    
                     personal = HATProfileDataProfilePersonalObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "blog" {
-
+                    
                     blog = HATProfileDataProfileBlogObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "facebook" {
-
+                    
                     facebook = HATProfileDataProfileFacebookObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "address_details" {
-
+                    
                     addressDetails = HATProfileDataProfileAddressDetailObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "emergency_contact" {
-
+                    
                     emergencyContact = HATProfileDataProfileEmergencyContactObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "alternative_email" {
-
+                    
                     alternativeEmail = HATProfileDataProfileAlternativeEmailObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "fb_profile_photo" {
-
+                    
                     facebookProfilePhoto = HATProfileDataProfileFacebookProfilePhotoObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "twitter" {
-
+                    
                     twitter = HATProfileDataProfileTwitterObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "about" {
-
+                    
                     about = HATProfileDataProfileAboutObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "mobile" {
-
+                    
                     mobile = HATProfileDataProfileMobileObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
-
+                
                 if tempName == "gender" {
-
+                    
                     gender = HATProfileDataProfileGenderObject(alternativeArray: (subtable["fields"].arrayValue))
                 }
             }
         }
     }
     
-    mutating func initFromCache(dictionary: Dictionary<String, JSON>) {
+    public init(fromCache: Dictionary<String, JSON>) {
         
-        if let tempWebsite = dictionary["website"]?.dictionary {
+        if let tempWebsite = fromCache["website"]?.dictionary {
             
             website = HATProfileDataProfileWebsiteObject(fromCache: tempWebsite)
         }
         
-        if let tempNick = dictionary["nick"]?.dictionary {
+        if let tempNick = fromCache["nick"]?.dictionary {
             
             nick = HATProfileDataProfileNickObject(fromCache: tempNick)
         }
         
-        if let tempPrimaryEmail = dictionary["primary_email"]?.dictionary {
+        if let tempPrimaryEmail = fromCache["primary_email"]?.dictionary {
             
             primaryEmail = HATProfileDataProfilePrimaryEmailObject(fromCache: tempPrimaryEmail)
         }
         
-        if let tempYoutube = dictionary["youtube"]?.dictionary {
+        if let tempYoutube = fromCache["youtube"]?.dictionary {
             
             youtube = HATProfileDataProfileYoutubeObject(fromCache: tempYoutube)
         }
         
-        if let tempAddressGlobal = dictionary["address_global"]?.dictionary {
+        if let tempAddressGlobal = fromCache["address_global"]?.dictionary {
             
             addressGlobal = HATProfileDataProfileAddressGlobalObject(fromCache: tempAddressGlobal)
         }
         
-        if let tempLinkedIn = dictionary["linkedin"]?.dictionary {
+        if let tempLinkedIn = fromCache["linkedin"]?.dictionary {
             
             linkedIn = HATProfileDataProfileLinkedInObject(fromCache: tempLinkedIn)
         }
         
-        if let tempBirthday = dictionary["birth"]?.dictionary {
+        if let tempBirthday = fromCache["birth"]?.dictionary {
             
             birth = HATProfileDataProfileBirthObject(fromCache: tempBirthday)
         }
         
-        if let tempHomePhone = dictionary["home_phone"]?.dictionary {
+        if let tempHomePhone = fromCache["home_phone"]?.dictionary {
             
             homePhone = HATProfileDataProfileHomePhoneObject(fromCache: tempHomePhone)
         }
         
-        if let tempGoogle = dictionary["google"]?.dictionary {
+        if let tempGoogle = fromCache["google"]?.dictionary {
             
             google = HATProfileDataProfileGoogleObject(fromCache: tempGoogle)
         }
         
-        if let tempAge = dictionary["age"]?.dictionary {
+        if let tempAge = fromCache["age"]?.dictionary {
             
             age = HATProfileDataProfileAgeObject(fromCache: tempAge)
         }
         
-        if let tempPersonal = dictionary["personal"]?.dictionary {
+        if let tempPersonal = fromCache["personal"]?.dictionary {
             
             personal = HATProfileDataProfilePersonalObject(fromCache: tempPersonal)
         }
         
-        if let tempBlog = dictionary["blog"]?.dictionary {
+        if let tempBlog = fromCache["blog"]?.dictionary {
             
             blog = HATProfileDataProfileBlogObject(fromCache: tempBlog)
         }
         
-        if let tempFacebook = dictionary["facebook"]?.dictionary {
+        if let tempFacebook = fromCache["facebook"]?.dictionary {
             
             facebook = HATProfileDataProfileFacebookObject(fromCache: tempFacebook)
         }
         
-        if let tempAddressDetails = dictionary["address_details"]?.dictionary {
+        if let tempAddressDetails = fromCache["address_details"]?.dictionary {
             
             addressDetails = HATProfileDataProfileAddressDetailObject(fromCache: tempAddressDetails)
         }
         
-        if let tempEmergencyContact = dictionary["emergency_contact"]?.dictionary {
+        if let tempEmergencyContact = fromCache["emergency_contact"]?.dictionary {
             
             emergencyContact = HATProfileDataProfileEmergencyContactObject(fromCache: tempEmergencyContact)
         }
         
-        if let tempAlternativeEmail = dictionary["alternative_email"]?.dictionary {
+        if let tempAlternativeEmail = fromCache["alternative_email"]?.dictionary {
             
             alternativeEmail = HATProfileDataProfileAlternativeEmailObject(fromCache: tempAlternativeEmail)
         }
         
-        if let tempFacebookProfile = dictionary["fb_profile_photo"]?.dictionary {
+        if let tempFacebookProfile = fromCache["fb_profile_photo"]?.dictionary {
             
             facebookProfilePhoto = HATProfileDataProfileFacebookProfilePhotoObject(fromCache: tempFacebookProfile)
         }
         
-        if let tempTwitter = dictionary["twitter"]?.dictionary {
+        if let tempTwitter = fromCache["twitter"]?.dictionary {
             
             twitter = HATProfileDataProfileTwitterObject(fromCache: tempTwitter)
         }
         
-        if let tempAbout = dictionary["about"]?.dictionary {
+        if let tempAbout = fromCache["about"]?.dictionary {
             
             about = HATProfileDataProfileAboutObject(fromCache: tempAbout)
         }
         
-        if let tempMobile = dictionary["mobile"]?.dictionary {
+        if let tempMobile = fromCache["mobile"]?.dictionary {
             
             mobile = HATProfileDataProfileMobileObject(fromCache: tempMobile)
         }
         
-        if let tempGender = dictionary["gender"]?.dictionary {
+        if let tempGender = fromCache["gender"]?.dictionary {
             
             gender = HATProfileDataProfileGenderObject(fromCache: tempGender)
         }
+        
+        if let tempPrivate = fromCache["private"]?.string {
+            
+            if let boolResult = Bool(tempPrivate) {
+                
+                isPrivate = boolResult
+            }
+        }
     }
-
+    
     // MARK: - JSON Mapper
-
+    
     /**
      Returns the object as Dictionary, JSON
      
      - returns: Dictionary<String, String>
      */
     public func toJSON() -> Dictionary<String, Any> {
-
+        
         return [
-
+            
             "website": self.website.toJSON(),
             "nick": self.nick.toJSON(),
             "primary_email": self.primaryEmail.toJSON(),
@@ -533,5 +541,5 @@ public struct HATProfileDataProfileObject: Comparable {
             "gender": self.gender.toJSON()
         ]
     }
-
+    
 }

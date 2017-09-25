@@ -16,9 +16,24 @@ import SwiftyJSON
 
 /// A struct representing the profile data Home Phone object from the received profile JSON file
 public struct HATProfileDataProfileHomePhoneObject: Comparable {
-
+    
+    // MARK: - Fields
+    
+    /// The possible Fields of the JSON struct
+    struct Fields {
+        
+        static let isPrivate: String = "private"
+        static let isPrivateID: String = "privateID"
+        static let number: String = "no"
+        static let numberID: String = "numberID"
+        static let name: String = "name"
+        static let id: String = "id"
+        static let values: String = "values"
+        static let value: String = "value"
+    }
+    
     // MARK: - Comparable protocol
-
+    
     /// Returns a Boolean value indicating whether two values are equal.
     ///
     /// Equality is the inverse of inequality. For any values `a` and `b`,
@@ -28,10 +43,10 @@ public struct HATProfileDataProfileHomePhoneObject: Comparable {
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
     public static func == (lhs: HATProfileDataProfileHomePhoneObject, rhs: HATProfileDataProfileHomePhoneObject) -> Bool {
-
+        
         return (lhs.isPrivate == rhs.isPrivate && lhs.number == rhs.number)
     }
-
+    
     /// Returns a Boolean value indicating whether the value of the first
     /// argument is less than that of the second argument.
     ///
@@ -43,83 +58,83 @@ public struct HATProfileDataProfileHomePhoneObject: Comparable {
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
     public static func < (lhs: HATProfileDataProfileHomePhoneObject, rhs: HATProfileDataProfileHomePhoneObject) -> Bool {
-
+        
         return lhs.number < rhs.number
     }
-
+    
     // MARK: - Variables
-
+    
     /// Indicates if the object, HATProfileDataProfileHomePhoneObject, is private
     public var isPrivate: Bool = true {
-
+        
         didSet {
-
+            
             isPrivateTuple = (isPrivate, isPrivateTuple.1)
         }
     }
-
+    
     /// User's home phone number
     public var number: String = "" {
-
+        
         didSet {
-
+            
             numberTuple = (number, numberTuple.1)
         }
     }
-
+    
     /// A tuple containing the isPrivate and the ID of the value
     var isPrivateTuple: (Bool, Int) = (true, 0)
-
+    
     /// A tuple containing the value and the ID of the value
     var numberTuple: (String, Int) = ("", 0)
-
+    
     // MARK: - Initialisers
-
+    
     /**
      The default initialiser. Initialises everything to default values.
      */
     public init() {
-
+        
         isPrivate = true
         number = ""
-
+        
         isPrivateTuple = (true, 0)
         numberTuple = ("", 0)
     }
-
+    
     /**
      It initialises everything from the received JSON file from the HAT
      */
     public init(from array: [JSON]) {
-
+        
         for json in array {
-
+            
             let dict = json.dictionaryValue
-
-            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
-
+            
+            if let tempName = (dict[Fields.name]?.stringValue), let id = dict[Fields.id]?.intValue {
+                
                 if tempName == "private" {
-
-                    if let tempValues = dict["values"]?.arrayValue {
-
-                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
-
+                    
+                    if let tempValues = dict[Fields.values]?.arrayValue {
+                        
+                        if let stringValue = tempValues[0].dictionaryValue[Fields.value]?.stringValue {
+                            
                             if let result = Bool(stringValue) {
-
+                                
                                 isPrivate = result
                                 isPrivateTuple = (isPrivate, id)
                             }
                         }
                     }
                 }
-
+                
                 if tempName == "no" {
-
-                    if let tempValues = dict["values"]?.arrayValue {
-
-                        if let stringValue = tempValues[0].dictionaryValue["value"]?.stringValue {
-
-                            number = stringValue
+                    
+                    if let tempValues = dict[Fields.values]?.arrayValue {
+                        
+                        if let result = tempValues[0].dictionaryValue[Fields.value]?.stringValue {
+                            
+                            number = result
                             numberTuple = (number, id)
                         }
                     }
@@ -127,26 +142,26 @@ public struct HATProfileDataProfileHomePhoneObject: Comparable {
             }
         }
     }
-
+    
     /**
      It initialises everything from the received JSON file from the HAT
      */
     public init(alternativeArray: [JSON]) {
-
+        
         for json in alternativeArray {
-
+            
             let dict = json.dictionaryValue
-
-            if let tempName = (dict["name"]?.stringValue), let id = dict["id"]?.intValue {
-
+            
+            if let tempName = (dict[Fields.name]?.stringValue), let id = dict[Fields.id]?.intValue {
+                
                 if tempName == "private" {
-
+                    
                     isPrivate = true
                     isPrivateTuple = (isPrivate, id)
                 }
-
+                
                 if tempName == "no" {
-
+                    
                     number = ""
                     numberTuple = (number, id)
                 }
@@ -159,7 +174,7 @@ public struct HATProfileDataProfileHomePhoneObject: Comparable {
      */
     public init (fromCache: Dictionary<String, JSON>) {
         
-        if let tempPrivate = (fromCache["private"]?.stringValue) {
+        if let tempPrivate = (fromCache[Fields.isPrivate]?.stringValue) {
             
             if let isPrivateResult = Bool(tempPrivate) {
                 
@@ -167,26 +182,38 @@ public struct HATProfileDataProfileHomePhoneObject: Comparable {
             }
         }
         
-        if let tempNumber = (fromCache["no"]?.stringValue) {
+        if let tempPrivateID = (fromCache[Fields.isPrivateID]?.intValue) {
+            
+            isPrivateTuple = (isPrivate, tempPrivateID)
+        }
+        
+        if let tempNumber = (fromCache[Fields.number]?.stringValue) {
             
             number = tempNumber
         }
+        
+        if let tempNumberID = (fromCache[Fields.numberID]?.intValue) {
+            
+            numberTuple = (number, tempNumberID)
+        }
     }
-
+    
     // MARK: - JSON Mapper
-
+    
     /**
      Returns the object as Dictionary, JSON
      
      - returns: Dictionary<String, String>
      */
     public func toJSON() -> Dictionary<String, Any> {
-
+        
         return [
-
-            "private": String(describing: self.isPrivate),
-            "no": self.number
+            
+            Fields.isPrivate: String(describing: self.isPrivate),
+            Fields.isPrivateID: isPrivateTuple.1,
+            Fields.number: self.number,
+            Fields.numberID: numberTuple.1
         ]
     }
-
+    
 }
