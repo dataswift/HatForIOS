@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		379C91CDBA516AF1B61C086D /* Pods_HATTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276A84838AF114846AA6C978 /* Pods_HATTests.framework */; };
+		51A475E626D5112130B270AB /* Pods_HATTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD642EFF5F3FE2D3D30F93D2 /* Pods_HATTests.framework */; };
 		600995C81EBCC7DC007F9330 /* HATTokenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EAC0E1EB886EE0084EEC8 /* HATTokenHelper.swift */; };
 		600F10B81F5EC383001D21E7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600F10B71F5EC383001D21E7 /* StringExtension.swift */; };
 		600F10B91F5EC56A001D21E7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600F10B71F5EC383001D21E7 /* StringExtension.swift */; };
@@ -211,7 +211,7 @@
 		60DE1DDC1F34ABE300E031F6 /* DataDebitObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DE1DDB1F34ABE300E031F6 /* DataDebitObject.swift */; };
 		60DE1DDE1F34ACEF00E031F6 /* DataDebitBundleContextlessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DE1DDD1F34ACEF00E031F6 /* DataDebitBundleContextlessObject.swift */; };
 		60E41DD41E853C1D00E3DF60 /* HATJSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E41DD31E853C1D00E3DF60 /* HATJSONHelper.swift */; };
-		DAE77631B5EE973DB860751E /* Pods_HAT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E8BDF19F0511F88B218311 /* Pods_HAT.framework */; };
+		CA524A16834392E5AFA77936 /* Pods_HAT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E94A5A3422A75E43A83DAA5 /* Pods_HAT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,10 +225,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0F217E04F6A43CBD1160A765 /* Pods-HAT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HAT.release.xcconfig"; path = "Pods/Target Support Files/Pods-HAT/Pods-HAT.release.xcconfig"; sourceTree = "<group>"; };
-		276A84838AF114846AA6C978 /* Pods_HATTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HATTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E35995A09FA50E6E5A67F12 /* Pods-HATTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HATTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HATTests/Pods-HATTests.release.xcconfig"; sourceTree = "<group>"; };
-		2E6B981390ACA28160998321 /* Pods-HATTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HATTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HATTests/Pods-HATTests.debug.xcconfig"; sourceTree = "<group>"; };
 		600F10B71F5EC383001D21E7 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		6020A7021E526BBF00D7DC04 /* LocationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServiceTests.swift; sourceTree = "<group>"; };
 		6020A7051E52749700D7DC04 /* HATServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATServiceTests.swift; sourceTree = "<group>"; };
@@ -342,8 +338,12 @@
 		60DE1DDB1F34ABE300E031F6 /* DataDebitObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataDebitObject.swift; path = "Data Debits/DataDebitObject.swift"; sourceTree = "<group>"; };
 		60DE1DDD1F34ACEF00E031F6 /* DataDebitBundleContextlessObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataDebitBundleContextlessObject.swift; path = "Data Debits/DataDebitBundleContextlessObject.swift"; sourceTree = "<group>"; };
 		60E41DD31E853C1D00E3DF60 /* HATJSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATJSONHelper.swift; sourceTree = "<group>"; };
-		EA7AEE7D6190163453BCF60C /* Pods-HAT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HAT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HAT/Pods-HAT.debug.xcconfig"; sourceTree = "<group>"; };
-		F5E8BDF19F0511F88B218311 /* Pods_HAT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HAT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6799113B63ED7F22080EC80C /* Pods-HATTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HATTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HATTests/Pods-HATTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7EAB5BFFDFCB290546C168A1 /* Pods-HAT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HAT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HAT/Pods-HAT.debug.xcconfig"; sourceTree = "<group>"; };
+		9E94A5A3422A75E43A83DAA5 /* Pods_HAT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HAT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD642EFF5F3FE2D3D30F93D2 /* Pods_HATTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HATTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C29308405DF5E3D022588531 /* Pods-HATTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HATTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HATTests/Pods-HATTests.release.xcconfig"; sourceTree = "<group>"; };
+		EC58C3B34D47EF838BCC997B /* Pods-HAT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HAT.release.xcconfig"; path = "Pods/Target Support Files/Pods-HAT/Pods-HAT.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,7 +351,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAE77631B5EE973DB860751E /* Pods_HAT.framework in Frameworks */,
+				CA524A16834392E5AFA77936 /* Pods_HAT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,22 +360,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				60444EE71E4B27C5005E4433 /* HAT.framework in Frameworks */,
-				379C91CDBA516AF1B61C086D /* Pods_HATTests.framework in Frameworks */,
+				51A475E626D5112130B270AB /* Pods_HATTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5AE59415FC61321AE461CBEB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F5E8BDF19F0511F88B218311 /* Pods_HAT.framework */,
-				276A84838AF114846AA6C978 /* Pods_HATTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		601691081E4B4B7C00505E8D /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,11 +543,11 @@
 		60444ED31E4B27C4005E4433 = {
 			isa = PBXGroup;
 			children = (
-				5AE59415FC61321AE461CBEB /* Frameworks */,
 				60444EDF1E4B27C4005E4433 /* HAT */,
 				60444EEA1E4B27C5005E4433 /* HATTests */,
-				816EE3D833FB170DB1D6AA4E /* Pods */,
 				60444EDE1E4B27C4005E4433 /* Products */,
+				D02CC56CA4F8740544745768 /* Pods */,
+				84B8AAB5380FD96D707B7A17 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -729,13 +720,22 @@
 			path = "HAT Provider";
 			sourceTree = "<group>";
 		};
-		816EE3D833FB170DB1D6AA4E /* Pods */ = {
+		84B8AAB5380FD96D707B7A17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EA7AEE7D6190163453BCF60C /* Pods-HAT.debug.xcconfig */,
-				0F217E04F6A43CBD1160A765 /* Pods-HAT.release.xcconfig */,
-				2E6B981390ACA28160998321 /* Pods-HATTests.debug.xcconfig */,
-				2E35995A09FA50E6E5A67F12 /* Pods-HATTests.release.xcconfig */,
+				9E94A5A3422A75E43A83DAA5 /* Pods_HAT.framework */,
+				AD642EFF5F3FE2D3D30F93D2 /* Pods_HATTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D02CC56CA4F8740544745768 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7EAB5BFFDFCB290546C168A1 /* Pods-HAT.debug.xcconfig */,
+				EC58C3B34D47EF838BCC997B /* Pods-HAT.release.xcconfig */,
+				6799113B63ED7F22080EC80C /* Pods-HATTests.debug.xcconfig */,
+				C29308405DF5E3D022588531 /* Pods-HATTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -758,13 +758,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60444EF11E4B27C5005E4433 /* Build configuration list for PBXNativeTarget "HAT" */;
 			buildPhases = (
-				98B979C718B084FEAF2FC42D /* [CP] Check Pods Manifest.lock */,
+				CA1112DA210E39907BE2DB93 /* [CP] Check Pods Manifest.lock */,
 				60444ED81E4B27C4005E4433 /* Sources */,
 				60444ED91E4B27C4005E4433 /* Frameworks */,
 				60444EDA1E4B27C4005E4433 /* Headers */,
 				60444EDB1E4B27C4005E4433 /* Resources */,
-				54E8888CF1957371297870C3 /* [CP] Copy Pods Resources */,
 				604E45FD1EFACAF10071347E /* ShellScript */,
+				8B3FF50FE20F39DC309AE770 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -779,12 +779,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60444EF41E4B27C5005E4433 /* Build configuration list for PBXNativeTarget "HATTests" */;
 			buildPhases = (
-				503EF065F8BC5E0DAB569384 /* [CP] Check Pods Manifest.lock */,
+				64D7A2C4EFDDEB1984905FAB /* [CP] Check Pods Manifest.lock */,
 				60444EE21E4B27C5005E4433 /* Sources */,
 				60444EE31E4B27C5005E4433 /* Frameworks */,
 				60444EE41E4B27C5005E4433 /* Resources */,
-				01241C9A8F2E45643A1C5833 /* [CP] Embed Pods Frameworks */,
-				DB6AF063E9360F8795F60D57 /* [CP] Copy Pods Resources */,
+				E862FEB73047A71F3FD8DE21 /* [CP] Embed Pods Frameworks */,
+				96E8F61D67B943C13A754D66 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -803,13 +803,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = HATDeX;
 				TargetAttributes = {
 					60444EDC1E4B27C4005E4433 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = FG275HQ3SR;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					60444EE51E4B27C5005E4433 = {
@@ -855,7 +855,86 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		01241C9A8F2E45643A1C5833 /* [CP] Embed Pods Frameworks */ = {
+		604E45FD1EFACAF10071347E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+		};
+		64D7A2C4EFDDEB1984905FAB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HATTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B3FF50FE20F39DC309AE770 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HAT/Pods-HAT-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96E8F61D67B943C13A754D66 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HATTests/Pods-HATTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA1112DA210E39907BE2DB93 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HAT-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E862FEB73047A71F3FD8DE21 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -881,85 +960,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HATTests/Pods-HATTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		503EF065F8BC5E0DAB569384 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-HATTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		54E8888CF1957371297870C3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HAT/Pods-HAT-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		604E45FD1EFACAF10071347E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
-		};
-		98B979C718B084FEAF2FC42D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-HAT-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DB6AF063E9360F8795F60D57 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HATTests/Pods-HATTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1200,7 +1200,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1208,7 +1210,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1253,7 +1259,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1261,7 +1269,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1292,7 +1304,7 @@
 		};
 		60444EF21E4B27C5005E4433 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA7AEE7D6190163453BCF60C /* Pods-HAT.debug.xcconfig */;
+			baseConfigurationReference = 7EAB5BFFDFCB290546C168A1 /* Pods-HAT.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -1310,13 +1322,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		60444EF31E4B27C5005E4433 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F217E04F6A43CBD1160A765 /* Pods-HAT.release.xcconfig */;
+			baseConfigurationReference = EC58C3B34D47EF838BCC997B /* Pods-HAT.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -1333,13 +1346,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hatdex.HAT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 		60444EF51E4B27C5005E4433 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E6B981390ACA28160998321 /* Pods-HATTests.debug.xcconfig */;
+			baseConfigurationReference = 6799113B63ED7F22080EC80C /* Pods-HATTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = FG275HQ3SR;
@@ -1347,13 +1361,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hatdex.HATTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		60444EF61E4B27C5005E4433 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E35995A09FA50E6E5A67F12 /* Pods-HATTests.release.xcconfig */;
+			baseConfigurationReference = C29308405DF5E3D022588531 /* Pods-HATTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = FG275HQ3SR;
@@ -1361,7 +1375,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hatdex.HATTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

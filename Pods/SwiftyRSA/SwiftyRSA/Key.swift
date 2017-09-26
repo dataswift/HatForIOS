@@ -10,24 +10,24 @@ import Foundation
 import Security
 
 public protocol Key: class {
-
+    
     var reference: SecKey { get }
     var originalData: Data? { get }
-
+    
     init(data: Data) throws
     init(reference: SecKey) throws
     init(base64Encoded base64String: String) throws
     init(pemEncoded pemString: String) throws
     init(pemNamed pemName: String, in bundle: Bundle) throws
     init(derNamed derName: String, in bundle: Bundle) throws
-
+    
     func pemString() throws -> String
     func data() throws -> Data
     func base64String() throws -> String
 }
 
 public extension Key {
-
+    
     /// Returns a Base64 representation of the public key.
     ///
     /// - Returns: Data of the key, Base64-encoded
@@ -35,11 +35,11 @@ public extension Key {
     func base64String() throws -> String {
         return try data().base64EncodedString()
     }
-
+    
     func data() throws -> Data {
         return try SwiftyRSA.data(forKeyReference: reference)
     }
-
+    
     /// Creates a public key with a base64-encoded string.
     ///
     /// - Parameter base64String: Base64-encoded public key data
@@ -50,7 +50,7 @@ public extension Key {
         }
         try self.init(data: data)
     }
-
+    
     /// Creates a public key with a PEM string.
     ///
     /// - Parameter pemString: PEM-encoded public key string
@@ -59,7 +59,7 @@ public extension Key {
         let base64String = try SwiftyRSA.base64String(pemEncoded: pemString)
         try self.init(base64Encoded: base64String)
     }
-
+    
     /// Creates a public key with a PEM file.
     ///
     /// - Parameters:
@@ -73,7 +73,7 @@ public extension Key {
         let keyString = try String(contentsOf: URL(fileURLWithPath: path), encoding: .utf8)
         try self.init(pemEncoded: keyString)
     }
-
+    
     /// Creates a private key with a DER file.
     ///
     /// - Parameters:
@@ -90,18 +90,18 @@ public extension Key {
 }
 
 public class PublicKey: Key {
-
+    
     /// Reference to the key within the keychain
     public let reference: SecKey
-
+    
     /// Data of the public key as provided when creating the key.
     /// Note that if the key was created from a base64string / DER string / PEM file / DER file,
     /// the data holds the actual bytes of the key, not any textual representation like PEM headers
     /// or base64 characters.
     public let originalData: Data?
-
+    
     let tag: String? // Only used on iOS 8/9
-
+    
     /// Returns a PEM representation of the public key.
     ///
     /// - Returns: Data of the key, PEM-encoded
@@ -111,44 +111,44 @@ public class PublicKey: Key {
         let pem = SwiftyRSA.format(keyData: data, withPemType: "RSA PUBLIC KEY")
         return pem
     }
-
+    
     /// Creates a public key with a keychain key reference.
     /// This initializer will throw if the provided key reference is not a public RSA key.
     ///
     /// - Parameter reference: Reference to the key within the keychain.
     /// - Throws: SwiftyRSAError
     public required init(reference: SecKey) throws {
-
+        
         guard SwiftyRSA.isValidKeyReference(reference, forClass: kSecAttrKeyClassPublic) else {
             throw SwiftyRSAError(message: "Provided key reference if not a valid RSA public key")
         }
-
+        
         self.reference = reference
         self.tag = nil
         self.originalData = nil
     }
-
+    
     /// Data of the public key as returned by the keychain.
     /// This method throws if SwiftyRSA cannot extract data from the key.
     ///
     /// - Returns: Data of the public key as returned by the keychain.
     /// - Throws: SwiftyRSAError
     required public init(data: Data) throws {
-
+        
         let tag = UUID().uuidString
         self.tag = tag
-
+        
         self.originalData = data
         let dataWithoutHeader = try SwiftyRSA.stripKeyHeader(keyData: data)
-
+        
         reference = try SwiftyRSA.addKey(dataWithoutHeader, isPublic: true, tag: tag)
     }
-
+    
     static let publicKeyRegex: NSRegularExpression? = {
         let publicKeyRegex = "(-----BEGIN PUBLIC KEY-----.+?-----END PUBLIC KEY-----)"
         return try? NSRegularExpression(pattern: publicKeyRegex, options: .dotMatchesLineSeparators)
     }()
-
+    
     /// Takes an input string, scans for public key sections, and then returns a PublicKey for any valid keys found
     /// - This method scans the file for public key armor - if no keys are found, an empty array is returned
     /// - Each public key block found is "parsed" by `publicKeyFromPEMString()`
@@ -158,38 +158,38 @@ public class PublicKey: Key {
     ///
     /// - returns: An array of `PublicKey` objects
     public static func publicKeys(pemEncoded pemString: String) -> [PublicKey] {
-
+        
         // If our regexp isn't valid, or the input string is empty, we can't move forward…
         guard let publicKeyRegexp = publicKeyRegex, pemString.characters.count > 0 else {
             return []
         }
-
+        
         let all = NSRange(
             location: 0,
             length: pemString.characters.count
         )
-
+        
         let matches = publicKeyRegexp.matches(
             in: pemString,
             options: NSRegularExpression.MatchingOptions(rawValue: 0),
             range: all
         )
-
+        
         let keys = matches.flatMap { result -> PublicKey? in
-            let match = result.rangeAt(1)
+            let match = result.range(at: 1)
             let start = pemString.characters.index(pemString.startIndex, offsetBy: match.location)
             let end = pemString.characters.index(start, offsetBy: match.length)
-
+            
             let range = Range<String.Index>(start..<end)
-
+            
             let thisKey = pemString[range]
-
-            return try? PublicKey(pemEncoded: thisKey)
+            
+            return try? PublicKey(pemEncoded: String(thisKey))
         }
-
+        
         return keys
     }
-
+    
     deinit {
         if let tag = tag {
             SwiftyRSA.removeKey(tag: tag)
@@ -198,16 +198,16 @@ public class PublicKey: Key {
 }
 
 public class PrivateKey: Key {
-
+    
     /// Reference to the key within the keychain
     public let reference: SecKey
-
+    
     /// Original data of the private key.
     /// Note that it does not contain PEM headers and holds data as bytes, not as a base 64 string.
     public let originalData: Data?
-
+    
     let tag: String?
-
+    
     /// Returns a PEM representation of the private key.
     ///
     /// - Returns: Data of the key, PEM-encoded
@@ -217,23 +217,23 @@ public class PrivateKey: Key {
         let pem = SwiftyRSA.format(keyData: data, withPemType: "RSA PRIVATE KEY")
         return pem
     }
-
+    
     /// Creates a private key with a keychain key reference.
     /// This initializer will throw if the provided key reference is not a private RSA key.
     ///
     /// - Parameter reference: Reference to the key within the keychain.
     /// - Throws: SwiftyRSAError
     public required init(reference: SecKey) throws {
-
+        
         guard SwiftyRSA.isValidKeyReference(reference, forClass: kSecAttrKeyClassPrivate) else {
             throw SwiftyRSAError(message: "Provided key reference if not a valid RSA private key")
         }
-
+        
         self.reference = reference
         self.tag = nil
         self.originalData = nil
     }
-
+    
     /// Creates a private key with a RSA public key data.
     ///
     /// - Parameter data: Private key data
@@ -245,7 +245,7 @@ public class PrivateKey: Key {
         let dataWithoutHeader = try SwiftyRSA.stripKeyHeader(keyData: data)
         reference = try SwiftyRSA.addKey(dataWithoutHeader, isPublic: false, tag: tag)
     }
-
+    
     deinit {
         if let tag = tag {
             SwiftyRSA.removeKey(tag: tag)
