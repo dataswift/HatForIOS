@@ -6,4 +6,4 @@ xcode_sdk: iphonesimulator11
 before_install:
    - rvm use system
    - sudo gem install cocoapods
-# script: xcodebuild clean build -workspace HAT.xcworkspace -scheme HAT
+script: xcodebuild build test -workspace HAT.xcworkspace -scheme HAT -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=11.0,name=iPhone 8'

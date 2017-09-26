@@ -548,7 +548,7 @@ internal class HATAccountServiceTests: XCTestCase {
 
         func test() {
 
-            HATAccountService.createHatTable(userDomain: userDomain, token: token, notablesTableStructure: Structures.createNotablesTableJSON(), failed: failed)()
+            HATAccountService.createHatTable(userDomain: userDomain, token: token, notablesTableStructure: Structures.createNotablesTableJSON(), failed: failed)({}())
         }
 
         expectationTest.fulfill()
