@@ -61,6 +61,8 @@ public struct DataOfferObject {
     
     public var requiredDataDefinition: [DataOfferRequiredDataDefinitionObject] = []
     
+    public var requiredDataDefinitionV2: DataOfferRequiredDataDefinitionObjectV2?
+    
     public var reward: DataOfferRewardsObject = DataOfferRewardsObject()
     
     public var owner: DataOfferOwnerObject = DataOfferOwnerObject()
@@ -95,6 +97,7 @@ public struct DataOfferObject {
         usersClaimedOffer = -1
         
         requiredDataDefinition = []
+        requiredDataDefinitionV2 = nil
         
         reward = DataOfferRewardsObject()
         
@@ -188,13 +191,27 @@ public struct DataOfferObject {
         }
         
         if let tempRequiredDataDefinition = dictionary[DataOfferObject.Fields.requiredDataDefinitions]?.array {
-            
+
             if !tempRequiredDataDefinition.isEmpty {
-                
+
                 for dataDefination in tempRequiredDataDefinition {
-                    
+
                     requiredDataDefinition.append(DataOfferRequiredDataDefinitionObject(dictionary: dataDefination.dictionaryValue))
                 }
+            }
+        }
+        
+        if let tempRequiredDataDefinition = dictionary[DataOfferObject.Fields.requiredDataDefinitions]?.dictionary {
+            
+            let test = JSONDecoder()
+            let data = NSKeyedArchiver.archivedData(withRootObject: tempRequiredDataDefinition)
+            do {
+                
+                let test2 = try test.decode(DataOfferRequiredDataDefinitionObjectV2.self, from: data)
+                print(test2)
+            } catch {
+                
+                print(error)
             }
         }
         

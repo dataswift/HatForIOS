@@ -123,7 +123,10 @@ public struct HATProfileInfo: HatApiType, Comparable {
         if let tempDateOfBirth = fromCache[Fields.dateOfBirth] {
             
             let temp = String(describing: tempDateOfBirth)
-            dateOfBirth = Date(timeIntervalSince1970: TimeInterval(temp)!)
+            if let timeInterval = TimeInterval(temp) {
+                
+                dateOfBirth = Date(timeIntervalSince1970: timeInterval)
+            }
         }
     }
     
@@ -143,6 +146,7 @@ public struct HATProfileInfo: HatApiType, Comparable {
             Fields.incomeGroup: self.incomeGroup,
             Fields.unixTimeStamp: Int(HATFormatterHelper.formatDateToEpoch(date: Date())!)!
         ]
-
+        
     }
 }
+
