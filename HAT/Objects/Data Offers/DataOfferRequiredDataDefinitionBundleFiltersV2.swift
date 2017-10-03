@@ -1,15 +1,19 @@
-//
-//  DataOfferRequiredDataDefinitionBundleFiltersV2.swift
-//  HAT
-//
-//  Created by Marios-Andreas Tsekis on 3/10/17.
-//  Copyright © 2017 HATDeX. All rights reserved.
-//
+/**
+ * Copyright (C) 2017 HAT Data Exchange Ltd
+ *
+ * SPDX-License-Identifier: MPL2
+ *
+ * This file is part of the Hub of All Things project (HAT).
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/
+ */
 
 import UIKit
 
 public struct DataOfferRequiredDataDefinitionBundleFiltersV2: Codable {
-
+    
     public var field: String = ""
     public var transformation: Dictionary<String, String> = [:]
     public var `operator`: Dictionary<String, String> = [:]

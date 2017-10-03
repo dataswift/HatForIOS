@@ -13,7 +13,7 @@
 import UIKit
 
 public struct DataOfferRequiredDataDefinitionObjectV2: Codable {
-
+    
     var name: String = ""
-    var bundle: DataOfferRequiredDataDefinitionBundleV2 = DataOfferRequiredDataDefinitionBundleV2()
+    var bundle: Dictionary<String, DataOfferRequiredDataDefinitionBundleKeyV2> = [:]
 }

@@ -149,4 +149,3 @@ public struct HATProfileInfo: HatApiType, Comparable {
         
     }
 }
-
