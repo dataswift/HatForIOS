@@ -106,7 +106,7 @@ public struct DataOfferObject {
         claim = DataOfferClaimObject()
         
         image = nil
-
+        
         isPΙIRequested = false
     }
     
@@ -191,24 +191,21 @@ public struct DataOfferObject {
         }
         
         if let tempRequiredDataDefinition = dictionary[DataOfferObject.Fields.requiredDataDefinitions]?.array {
-
+            
             if !tempRequiredDataDefinition.isEmpty {
-
+                
                 for dataDefination in tempRequiredDataDefinition {
-
+                    
                     requiredDataDefinition.append(DataOfferRequiredDataDefinitionObject(dictionary: dataDefination.dictionaryValue))
                 }
             }
-        }
-        
-        if let tempRequiredDataDefinition = dictionary[DataOfferObject.Fields.requiredDataDefinitions]?.dictionary {
+        } else if let tempRequiredDataDefinition = dictionary[DataOfferObject.Fields.requiredDataDefinitions] {
             
-            let test = JSONDecoder()
-            let data = NSKeyedArchiver.archivedData(withRootObject: tempRequiredDataDefinition)
+            let decoder = JSONDecoder()
             do {
                 
-                let test2 = try test.decode(DataOfferRequiredDataDefinitionObjectV2.self, from: data)
-                print(test2)
+                let data = try tempRequiredDataDefinition.rawData()
+                requiredDataDefinitionV2 = try decoder.decode(DataOfferRequiredDataDefinitionObjectV2.self, from: data)
             } catch {
                 
                 print(error)
@@ -230,5 +227,5 @@ public struct DataOfferObject {
             claim = DataOfferClaimObject(dictionary: tempClaim)
         }
     }
-
+    
 }

@@ -14,6 +14,6 @@ import UIKit
 
 public struct DataOfferRequiredDataDefinitionObjectV2: Codable {
     
-    var name: String = ""
-    var bundle: Dictionary<String, DataOfferRequiredDataDefinitionBundleKeyV2> = [:]
+    public var name: String = ""
+    public var bundle: Dictionary<String, DataOfferRequiredDataDefinitionBundleKeyV2> = [:]
 }

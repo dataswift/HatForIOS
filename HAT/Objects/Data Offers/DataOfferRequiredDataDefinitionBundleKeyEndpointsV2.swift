@@ -14,8 +14,8 @@ import UIKit
 
 public struct DataOfferRequiredDataDefinitionBundleKeyEndpointsV2: Codable {
     
-    var endpoint: String = ""
-    var mapping: Dictionary<String, String> = [:]
-    var filters: [DataOfferRequiredDataDefinitionBundleFiltersV2] = []
+    public var endpoint: String = ""
+    public var mapping: Dictionary<String, String> = [:]
+    public var filters: [DataOfferRequiredDataDefinitionBundleFiltersV2] = []
 }
 

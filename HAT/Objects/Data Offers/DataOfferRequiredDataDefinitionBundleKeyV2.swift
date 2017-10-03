@@ -14,5 +14,5 @@ import UIKit
 
 public struct DataOfferRequiredDataDefinitionBundleKeyV2: Codable {
     
-    var endpoints: [DataOfferRequiredDataDefinitionBundleKeyEndpointsV2] = []
+    public var endpoints: [DataOfferRequiredDataDefinitionBundleKeyEndpointsV2] = []
 }
