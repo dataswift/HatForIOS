@@ -15,6 +15,6 @@ import UIKit
 public struct DataOfferRequiredDataDefinitionBundleFiltersV2: Codable {
     
     public var field: String = ""
-    public var transformation: Dictionary<String, String> = [:]
+    public var transformation: Dictionary<String, String>?
     public var `operator`: Dictionary<String, String> = [:]
 }

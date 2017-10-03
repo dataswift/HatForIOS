@@ -15,4 +15,7 @@ import UIKit
 public struct DataOfferRequiredDataDefinitionBundleKeyV2: Codable {
     
     public var endpoints: [DataOfferRequiredDataDefinitionBundleKeyEndpointsV2] = []
+    public var orderBy: String?
+    public var ordering: String?
+    public var limit: Int?
 }
