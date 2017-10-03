@@ -14,5 +14,5 @@ import UIKit
 
 public struct DataOfferRequiredDataDefinitionBundleV2: Codable {
 
-    var facebook: DataOfferRequiredDataDefinitionBundleKeyV2 = DataOfferRequiredDataDefinitionBundleKeyV2()
+    var bundleDirectory: DataOfferRequiredDataDefinitionBundleKeyV2 = DataOfferRequiredDataDefinitionBundleKeyV2()
 }
