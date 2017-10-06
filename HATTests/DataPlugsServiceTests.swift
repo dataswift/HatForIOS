@@ -30,19 +30,36 @@ internal class DataPlugsServiceTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
 
-        let body: [Dictionary<String, String>] = [
-            ["1": "1"],
-            ["2": "2"]
-        ]
+        let body: [Dictionary<String, Any>] = [[
+            "plug": [
+                "uuid": "2086929c-feca-41ea-ada0-45eaf4f00ca4",
+                "providerId": "1b0903e4-10b0-4744-b5b9-4867bef19f20",
+                "created": 1234,
+                "name": "Photos",
+                "description": "Import your best moments from Dropbox into your HAT",
+                "url": "https://photos-plug.hubofallthings.com/dataplug",
+                "illustrationUrl": "https://rumpel.hubofallthings.com/assets/icons/photos-plug.png",
+                "passwordHash": "$2a$08$UfiQWbSvX5Pai6zvrhgTpe6AE/iSBgynn2XAigObqxYGJ0ctDhq/i",
+                "approved": true
+            ],
+            "provider": [
+                "id": "1b0903e4-10b0-4744-b5b9-4867bef19f20",
+                "email": "",
+                "emailConfirmed": true,
+                "password": "",
+                "name": "HATDeX admin",
+                "dateCreated": 1234
+            ]
+        ]]
         let expectationTest = expectation(description: "Checking for available data plugs...")
 
-        let urlToConnect = "https://marketsquare.hubofallthings.com/api/dataplugs"
+        let urlToConnect = "https://dex.hubofallthings.com/api/dataplugs"
 
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
 
         func success(objects: [HATDataPlugObject], userToken: String?) {
 
-            XCTAssertTrue(objects.count == 2)
+            XCTAssertTrue(objects.count == 1)
             expectationTest.fulfill()
         }
 

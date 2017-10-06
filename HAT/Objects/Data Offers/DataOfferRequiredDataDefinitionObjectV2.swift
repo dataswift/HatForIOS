@@ -10,9 +10,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-import UIKit
+// MARK: Struct
 
 public struct DataOfferRequiredDataDefinitionObjectV2: Codable {
+    
+    // MARK: - Variables
     
     public var name: String = ""
     public var bundle: Dictionary<String, DataOfferRequiredDataDefinitionBundleKeyV2> = [:]

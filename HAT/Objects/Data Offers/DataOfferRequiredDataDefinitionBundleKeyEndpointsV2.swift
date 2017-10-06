@@ -10,13 +10,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-import UIKit
+// MARK: Struct
 
 public struct DataOfferRequiredDataDefinitionBundleKeyEndpointsV2: Codable {
+    
+    // MARK: - Variables
     
     public var endpoint: String = ""
     public var mapping: Dictionary<String, String>?
     public var filters: [DataOfferRequiredDataDefinitionBundleFiltersV2]?
     public var links: [DataOfferRequiredDataDefinitionBundleKeyEndpointsV2]?
 }
-
