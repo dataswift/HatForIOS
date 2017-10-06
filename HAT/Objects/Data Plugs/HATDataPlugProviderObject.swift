@@ -20,6 +20,4 @@ public struct HATDataPlugProviderObject: Decodable {
     public var password: String = ""
     public var name: String = ""
     public var dateCreated: Int = 0
-    
-    public var showCheckMark: Bool? = false
 }

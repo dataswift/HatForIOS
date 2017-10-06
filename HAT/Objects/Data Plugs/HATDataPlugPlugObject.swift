@@ -23,4 +23,6 @@ public struct HATDataPlugPlugObject: Decodable {
     public var illustrationUrl: String = ""
     public var passwordHash: String = ""
     public var approved: Bool = false
+    
+    public var showCheckMark: Bool? = false
 }
