@@ -26,7 +26,7 @@ public struct HATDataOffersService {
      */
     public static func getAvailableDataOffers(applicationToken: String, merchants: [String]?, succesfulCallBack: @escaping ([DataOfferObject], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
-        let mutableURL: NSMutableString = "http://databuyer.hubofallthings.com/api/v1/offersWithClaims"
+        let mutableURL: NSMutableString = "http://databuyer.hubat.net/api/v1/offersWithClaims"
         
         for (index, merchant) in (merchants?.enumerated())! {
             
@@ -250,3 +250,4 @@ public struct HATDataOffersService {
         )
     }
 }
+
