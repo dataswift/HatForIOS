@@ -12,7 +12,7 @@
 
 import UIKit
 
-public struct HATFitbitStatsObject: Decodable {
+public struct HATFitbitStatsObject: HATObject {
 
     public var best: HATFitbitStatsBestObject = HATFitbitStatsBestObject()
     public var lifetime: HATFitbitStatsLifetimeObject = HATFitbitStatsLifetimeObject()

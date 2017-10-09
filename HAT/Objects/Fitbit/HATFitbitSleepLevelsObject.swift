@@ -12,7 +12,7 @@
 
 import UIKit
 
-public struct HATFitbitSleepLevelsObject: Decodable {
+public struct HATFitbitSleepLevelsObject: HATObject {
 
     public var data: [HATFitbitSleepLevelsDataObject] = []
     public var summary: HATFitbitSleepLevelsSummaryObject = HATFitbitSleepLevelsSummaryObject()

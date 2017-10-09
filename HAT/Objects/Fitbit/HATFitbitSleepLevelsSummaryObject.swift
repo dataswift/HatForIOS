@@ -12,7 +12,7 @@
 
 import UIKit
 
-public struct HATFitbitSleepLevelsSummaryObject: Decodable {
+public struct HATFitbitSleepLevelsSummaryObject: HATObject {
 
     public var awake: HATFitbitSleepLevelsSummaryCountObject = HATFitbitSleepLevelsSummaryCountObject()
     public var asleep: HATFitbitSleepLevelsSummaryCountObject = HATFitbitSleepLevelsSummaryCountObject()

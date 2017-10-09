@@ -12,7 +12,7 @@
 
 import UIKit
 
-public struct HATFitbitProfileFeaturesObject: Decodable {
+public struct HATFitbitProfileFeaturesObject: HATObject {
 
     public var exerciseGoal: Bool = false
 }

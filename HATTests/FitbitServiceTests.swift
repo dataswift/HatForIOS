@@ -397,7 +397,7 @@ internal class FitbitServiceTests: XCTestCase {
                     "features": [
                         "exerciseGoal": true
                     ],
-                    "fullName": "Andrius",
+                    "fullName": "Testing",
                     "lastName": "",
                     "swimUnit": "METRIC",
                     "timezone": "Europe/London",
@@ -405,7 +405,7 @@ internal class FitbitServiceTests: XCTestCase {
                     "avatar640": "https://static0.fitbit.com/images/profile/defaultProfile_640_male.png",
                     "corporate": false,
                     "encodedId": "52JQ2P",
-                    "firstName": "Andrius",
+                    "firstName": "Testing",
                     "topBadges": [
                         [
                             "name": "High Tops (20,000 steps in a day)",

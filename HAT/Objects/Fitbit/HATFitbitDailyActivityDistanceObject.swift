@@ -12,7 +12,7 @@
 
 import UIKit
 
-public struct HATFitbitDailyActivityDistanceObject: Decodable {
+public struct HATFitbitDailyActivityDistanceObject: HATObject {
 
     public var activity: String = ""
     public var distance: Float = 0

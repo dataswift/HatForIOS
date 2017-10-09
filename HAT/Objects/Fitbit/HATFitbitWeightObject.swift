@@ -12,7 +12,7 @@
 
 import UIKit
 
-public struct HATFitbitWeightObject: Decodable {
+public struct HATFitbitWeightObject: HATObject {
 
     public var bmi: Float = 0
     public var fat: Float = 0

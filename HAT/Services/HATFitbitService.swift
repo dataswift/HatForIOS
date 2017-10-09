@@ -1,4 +1,4 @@
-	/**
+/**
  * Copyright (C) 2017 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
@@ -80,222 +80,24 @@ public struct HATFitbitService {
     
     public static func getSleep(userDomain: String, userToken: String, successCallback: @escaping ([HATFitbitSleepObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
-        func gotSleep(json: [JSON], renewedToken: String?) {
-            
-            // if we have values return them
-            if !json.isEmpty {
-                
-                var arrayToReturn: [HATFitbitSleepObject] = []
-                
-                for item in json {
-                    
-                    let tempData = item["data"]
-                    
-                    do {
-                        
-                        let decoder = JSONDecoder()
-                        let data = try tempData.rawData()
-                        let sleep = try decoder.decode(HATFitbitSleepObject.self, from: data)
-                        arrayToReturn.append(sleep)
-                    } catch {
-                        
-                        print("error parsing json")
-                    }
-                }
-                
-                successCallback(arrayToReturn, renewedToken)
-            } else {
-                
-                errorCallback(.noValuesFound)
-            }
-        }
-        
-        HATAccountService.getHatTableValuesv2(
-            token: userToken,
+        HATFitbitService.getGeneric(
             userDomain: userDomain,
-            source: "fitbit",
+            userToken: userToken,
+            namespace: "fitbit",
             scope: "sleep",
             parameters: ["take": "1"],
-            successCallback: gotSleep,
+            successCallback: successCallback,
             errorCallback: errorCallback)
     }
     
-    public static func getWeight(userDomain: String, userToken: String, successCallback: @escaping ([HATFitbitWeightObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
-        
-        func gotWeight(json: [JSON], renewedToken: String?) {
-            
-            // if we have values return them
-            if !json.isEmpty {
-                
-                var arrayToReturn: [HATFitbitWeightObject] = []
-                
-                for item in json {
-                    
-                    let tempData = item["data"]
-                    
-                    do {
-                        
-                        let decoder = JSONDecoder()
-                        let data = try tempData.rawData()
-                        let sleep = try decoder.decode(HATFitbitWeightObject.self, from: data)
-                        arrayToReturn.append(sleep)
-                    } catch {
-                        
-                        print("error parsing json")
-                    }
-                }
-                
-                successCallback(arrayToReturn, renewedToken)
-            } else {
-                
-                errorCallback(.noValuesFound)
-            }
-        }
-        
-        HATAccountService.getHatTableValuesv2(
-            token: userToken,
-            userDomain: userDomain,
-            source: "fitbit",
-            scope: "weight",
-            parameters: ["take": "1"],
-            successCallback: gotWeight,
-            errorCallback: errorCallback)
-    }
-    
-    public static func getProfile(userDomain: String, userToken: String, successCallback: @escaping ([HATFitbitProfileObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
-        
-        func gotProfile(json: [JSON], renewedToken: String?) {
-            
-            // if we have values return them
-            if !json.isEmpty {
-                
-                var arrayToReturn: [HATFitbitProfileObject] = []
-                
-                for item in json {
-                    
-                    let tempData = item["data"]
-                    
-                    do {
-                        
-                        let decoder = JSONDecoder()
-                        let data = try tempData.rawData()
-                        let profile = try decoder.decode(HATFitbitProfileObject.self, from: data)
-                        arrayToReturn.append(profile)
-                    } catch {
-                        
-                        print("error parsing json")
-                    }
-                }
-                
-                successCallback(arrayToReturn, renewedToken)
-            } else {
-                
-                errorCallback(.noValuesFound)
-            }
-        }
-        
-        HATAccountService.getHatTableValuesv2(
-            token: userToken,
-            userDomain: userDomain,
-            source: "fitbit",
-            scope: "profile",
-            parameters: ["take": "1"],
-            successCallback: gotProfile,
-            errorCallback: errorCallback)
-    }
-    
-    public static func getDailyActivity(userDomain: String, userToken: String, successCallback: @escaping ([HATFitbitDailyActivityObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
-        
-        func gotDailyActivity(json: [JSON], renewedToken: String?) {
-            
-            // if we have values return them
-            if !json.isEmpty {
-                
-                var arrayToReturn: [HATFitbitDailyActivityObject] = []
-                
-                for item in json {
-                    
-                    let tempData = item["data"]
-                    
-                    do {
-                        
-                        let decoder = JSONDecoder()
-                        let data = try tempData.rawData()
-                        let dailyActivity = try decoder.decode(HATFitbitDailyActivityObject.self, from: data)
-                        arrayToReturn.append(dailyActivity)
-                    } catch {
-                        
-                        print("error parsing json")
-                    }
-                }
-                
-                successCallback(arrayToReturn, renewedToken)
-            } else {
-                
-                errorCallback(.noValuesFound)
-            }
-        }
-        
-        HATAccountService.getHatTableValuesv2(
-            token: userToken,
-            userDomain: userDomain,
-            source: "fitbit",
-            scope: "activity/day/summary",
-            parameters: ["take": "1"],
-            successCallback: gotDailyActivity,
-            errorCallback: errorCallback)
-    }
-
-    public static func getLifetimeStats(userDomain: String, userToken: String, successCallback: @escaping ([HATFitbitStatsObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
-        
-        func gotStats(json: [JSON], renewedToken: String?) {
-            
-            // if we have values return them
-            if !json.isEmpty {
-                
-                var arrayToReturn: [HATFitbitStatsObject] = []
-                
-                for item in json {
-                    
-                    let tempData = item["data"]
-                    
-                    do {
-                        
-                        let decoder = JSONDecoder()
-                        let data = try tempData.rawData()
-                        let stats = try decoder.decode(HATFitbitStatsObject.self, from: data)
-                        arrayToReturn.append(stats)
-                    } catch {
-                        
-                        print("error parsing json")
-                    }
-                }
-                
-                successCallback(arrayToReturn, renewedToken)
-            } else {
-                
-                errorCallback(.noValuesFound)
-            }
-        }
-        
-        HATAccountService.getHatTableValuesv2(
-            token: userToken,
-            userDomain: userDomain,
-            source: "fitbit",
-            scope: "lifetime/stats",
-            parameters: ["take": "1"],
-            successCallback: gotStats,
-            errorCallback: errorCallback)
-    }
-    
-    public static func getActivity(userDomain: String, userToken: String, successCallback: @escaping ([HATFitbitActivityObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    private static func getGeneric<Object: HATObject>(userDomain: String, userToken: String, namespace: String, scope: String, parameters: Dictionary<String, String>, successCallback: @escaping ([Object], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         func gotActivity(json: [JSON], renewedToken: String?) {
             
             // if we have values return them
             if !json.isEmpty {
                 
-                var arrayToReturn: [HATFitbitActivityObject] = []
+                var arrayToReturn: [Object] = []
                 
                 for item in json {
                     
@@ -305,7 +107,7 @@ public struct HATFitbitService {
                         
                         let decoder = JSONDecoder()
                         let data = try tempData.rawData()
-                        let activity = try decoder.decode(HATFitbitActivityObject.self, from: data)
+                        let activity = try decoder.decode(Object.self, from: data)
                         arrayToReturn.append(activity)
                     } catch {
                         
@@ -323,10 +125,70 @@ public struct HATFitbitService {
         HATAccountService.getHatTableValuesv2(
             token: userToken,
             userDomain: userDomain,
-            source: "fitbit",
+            namespace: namespace,
+            scope: scope,
+            parameters: parameters,
+            successCallback: gotActivity,
+            errorCallback: errorCallback)
+    }
+    
+    public static func getWeight(userDomain: String, userToken: String, successCallback: @escaping ([HATFitbitWeightObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+        
+        HATFitbitService.getGeneric(
+            userDomain: userDomain,
+            userToken: userToken,
+            namespace: "fitbit",
+            scope: "weight",
+            parameters: ["take": "1"],
+            successCallback: successCallback,
+            errorCallback: errorCallback)
+    }
+    
+    public static func getProfile(userDomain: String, userToken: String, successCallback: @escaping ([HATFitbitProfileObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+        
+        HATFitbitService.getGeneric(
+            userDomain: userDomain,
+            userToken: userToken,
+            namespace: "fitbit",
+            scope: "profile",
+            parameters: ["take": "1"],
+            successCallback: successCallback,
+            errorCallback: errorCallback)
+    }
+    
+    public static func getDailyActivity(userDomain: String, userToken: String, successCallback: @escaping ([HATFitbitDailyActivityObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+        
+        HATFitbitService.getGeneric(
+            userDomain: userDomain,
+            userToken: userToken,
+            namespace: "fitbit",
+            scope: "activity/day/summary",
+            parameters: ["take": "1"],
+            successCallback: successCallback,
+            errorCallback: errorCallback)
+    }
+
+    public static func getLifetimeStats(userDomain: String, userToken: String, successCallback: @escaping ([HATFitbitStatsObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+        
+        HATFitbitService.getGeneric(
+            userDomain: userDomain,
+            userToken: userToken,
+            namespace: "fitbit",
+            scope: "lifetime/stats",
+            parameters: ["take": "1"],
+            successCallback: successCallback,
+            errorCallback: errorCallback)
+    }
+    
+    public static func getActivity(userDomain: String, userToken: String, successCallback: @escaping ([HATFitbitActivityObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+        
+        HATFitbitService.getGeneric(
+            userDomain: userDomain,
+            userToken: userToken,
+            namespace: "fitbit",
             scope: "activity",
             parameters: ["take": "1"],
-            successCallback: gotActivity,
+            successCallback: successCallback,
             errorCallback: errorCallback)
     }
 }

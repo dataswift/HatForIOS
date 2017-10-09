@@ -10,10 +10,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
+// MARK: Protocol
+
 import UIKit
 
-public struct HATFitbitStatsTotalStatsObject: HATObject {
+public protocol HATObject: Codable {
 
-    public var date: String = ""
-    public var value: Float = 0
 }

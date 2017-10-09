@@ -12,7 +12,7 @@
 
 import UIKit
 
-public struct HATFitbitActivityHeartRateZoneObject: Decodable {
+public struct HATFitbitActivityHeartRateZoneObject: HATObject {
 
     public var max: Int = 0
     public var min: Int = 0

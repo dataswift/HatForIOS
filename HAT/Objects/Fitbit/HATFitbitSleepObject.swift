@@ -12,7 +12,7 @@
 
 import UIKit
 
-public struct HATFitbitSleepObject: Decodable {
+public struct HATFitbitSleepObject: HATObject {
 
     public var type: String = ""
     public var logId: Int = 0

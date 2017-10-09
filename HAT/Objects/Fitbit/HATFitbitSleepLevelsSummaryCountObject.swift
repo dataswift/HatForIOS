@@ -12,7 +12,7 @@
 
 import UIKit
 
-public struct HATFitbitSleepLevelsSummaryCountObject: Decodable {
+public struct HATFitbitSleepLevelsSummaryCountObject: HATObject {
 
     public var count: Int = 0
     public var minutes: Int = 0

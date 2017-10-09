@@ -12,7 +12,7 @@
 
 import UIKit
 
-public struct HATFitbitProfileTopBadgesObject: Decodable {
+public struct HATFitbitProfileTopBadgesObject: HATObject {
 
     public var name: String = ""
     public var value: Int = 0
