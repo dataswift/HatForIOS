@@ -91,7 +91,7 @@ public struct HATDataOffersService {
      */
     public static func claimOffer(applicationToken: String, offerID: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
-        let url: String = "http://databuyer.hubofallthings.com/api/v1/offer/\(offerID)/claim"
+        let url: String = "http://databuyer.hubat.net/api/v1/offer/\(offerID)/claim"
         let headers: Dictionary<String, String> = ["X-Auth-Token": applicationToken]
         
         HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: [:], headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
@@ -144,7 +144,7 @@ public struct HATDataOffersService {
      */
     public static func redeemOffer(appToken: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
-        let url = "https://databuyer.hubofallthings.com/api/v1/user/redeem/cash"
+        let url = "https://databuyer.hubat.net/api/v1/user/redeem/cash"
         
         HATNetworkHelper.asynchronousRequest(
             url,
@@ -246,8 +246,7 @@ public struct HATDataOffersService {
                         failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
-        }
+            }
         )
     }
 }
-

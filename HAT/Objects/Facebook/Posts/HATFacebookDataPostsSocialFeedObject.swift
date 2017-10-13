@@ -333,4 +333,3 @@ public struct HATFacebookDataPostsSocialFeedObject: HatApiType, Comparable {
         ]
     }
 }
-

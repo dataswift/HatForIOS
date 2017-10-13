@@ -167,7 +167,7 @@ public struct HATFitbitService {
             successCallback: successCallback,
             errorCallback: errorCallback)
     }
-
+    
     public static func getLifetimeStats(userDomain: String, userToken: String, successCallback: @escaping ([HATFitbitStatsObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         HATFitbitService.getGeneric(
