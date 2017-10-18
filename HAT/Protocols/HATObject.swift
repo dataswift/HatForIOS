@@ -12,8 +12,34 @@
 
 // MARK: Protocol
 
-import UIKit
+import SwiftyJSON
 
 public protocol HATObject: Codable {
 
+    /**
+     Decodes a JSON file to a HATFitbitWeightObject
+     
+     - parameter from: A JSON object to decode from
+     - returns: An optional HATFitbitWeightObject decoded from the JSON passed in as a parameter
+     */
+    static func decode<T: HATObject>(from: JSON) -> T?
+}
+
+extension HATObject {
+    
+    static public func decode<T: HATObject>(from: JSON) -> T? {
+        
+        let decoder = JSONDecoder()
+        
+        do {
+            
+            let data = try from.rawData()
+            let object = try decoder.decode(T.self, from: data)
+            return object
+        } catch {
+            
+            print("error decoding")
+            return nil
+        }
+    }
 }

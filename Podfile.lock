@@ -10,9 +10,9 @@ PODS:
     - Mockingjay/Core
   - SwiftLint (0.21.0)
   - SwiftyJSON (3.1.4)
-  - SwiftyRSA (1.2.0):
-    - SwiftyRSA/ObjC (= 1.2.0)
-  - SwiftyRSA/ObjC (1.2.0)
+  - SwiftyRSA (1.3.0):
+    - SwiftyRSA/ObjC (= 1.3.0)
+  - SwiftyRSA/ObjC (1.3.0)
   - URITemplate (2.0.2)
 
 DEPENDENCIES:
@@ -29,7 +29,7 @@ SPEC CHECKSUMS:
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
   SwiftLint: 6de8b2d15f43c482bdec2953b8cfd696faa876e8
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
-  SwiftyRSA: 29221dba76837bf09e965ba7584e5919ea153c6f
+  SwiftyRSA: 28e1c9ab1f396fd3001d197ba03e1153b524d155
   URITemplate: d822aaa2f8ec9dcffffd13baa58bf9ee007e96cb
 
 PODFILE CHECKSUM: 51f3d3ba8d0f98c7656853d97c74dbfc8fabf68d
