@@ -451,12 +451,12 @@
 			isa = PBXGroup;
 			children = (
 				602D16C81E82B1D700C53A5E /* HATAccountService.swift */,
-				60854FC71F8944BD00DC2BAC /* HATFitbitService.swift */,
 				60DE1DD81F34AB9300E031F6 /* HATDataDebitsService.swift */,
 				602E4D9A1F01118500C5FF31 /* HATDataOffersService.swift */,
 				602D16C91E82B1D700C53A5E /* HATDataPlugsService.swift */,
 				602D16CA1E82B1D700C53A5E /* HATFacebookService.swift */,
 				602CB44B1E8BFC6900903F33 /* HATFileService.swift */,
+				60854FC71F8944BD00DC2BAC /* HATFitbitService.swift */,
 				602D16CB1E82B1D700C53A5E /* HATLocationService.swift */,
 				602D16CC1E82B1D700C53A5E /* HATLoginService.swift */,
 				602D16CD1E82B1D700C53A5E /* HATNotableService.swift */,

@@ -22,18 +22,21 @@ public protocol HATObject: Codable {
      - parameter from: A JSON object to decode from
      - returns: An optional HATFitbitWeightObject decoded from the JSON passed in as a parameter
      */
-    static func decode<T: HATObject>(from: JSON) -> T?
+    static func decode<T: HATObject>(from: Dictionary<String, JSON>) -> T?
 }
 
 extension HATObject {
     
-    static public func decode<T: HATObject>(from: JSON) -> T? {
+    static public func decode<T: HATObject>(from: Dictionary<String, JSON>) -> T? {
         
         let decoder = JSONDecoder()
         
         do {
             
-            let data = try from.rawData()
+            guard let data = try from["data"]?.rawData() else {
+                
+                return nil
+            }
             let object = try decoder.decode(T.self, from: data)
             return object
         } catch {
