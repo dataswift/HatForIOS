@@ -736,6 +736,7 @@ internal class FitbitServiceTests: XCTestCase {
         HATFitbitService.getWeight(
             userDomain: userDomain,
             userToken: userToken,
+            parameters: ["take": "1"],
             successCallback: success,
             errorCallback: fail)
         
@@ -771,6 +772,7 @@ internal class FitbitServiceTests: XCTestCase {
         HATFitbitService.getDailyActivity(
             userDomain: userDomain,
             userToken: userToken,
+            parameters: ["take": "1"],
             successCallback: success,
             errorCallback: fail)
         
@@ -806,6 +808,7 @@ internal class FitbitServiceTests: XCTestCase {
         HATFitbitService.getActivity(
             userDomain: userDomain,
             userToken: userToken,
+            parameters: ["take": "1"],
             successCallback: success,
             errorCallback: fail)
         
@@ -841,6 +844,7 @@ internal class FitbitServiceTests: XCTestCase {
         HATFitbitService.getLifetimeStats(
             userDomain: userDomain,
             userToken: userToken,
+            parameters: ["take": "1"],
             successCallback: success,
             errorCallback: fail)
         
@@ -876,6 +880,7 @@ internal class FitbitServiceTests: XCTestCase {
         HATFitbitService.getProfile(
             userDomain: userDomain,
             userToken: userToken,
+            parameters: ["take": "1"],
             successCallback: success,
             errorCallback: fail)
         
@@ -911,6 +916,7 @@ internal class FitbitServiceTests: XCTestCase {
         HATFitbitService.getSleep(
             userDomain: userDomain,
             userToken: userToken,
+            parameters: ["take": "1"],
             successCallback: success,
             errorCallback: fail)
         
