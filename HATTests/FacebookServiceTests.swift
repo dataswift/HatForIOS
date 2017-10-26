@@ -50,7 +50,7 @@ internal class FacebookServiceTests: XCTestCase {
 
         }
 
-        HATFacebookService.isFacebookDataPlugActive(token: token, successful: completion, failed: failed)
+        HATFacebookService.isFacebookDataPlugActive(appToken: token, successful: completion, failed: failed)
 
         waitForExpectations(timeout: 10) { error in
 
