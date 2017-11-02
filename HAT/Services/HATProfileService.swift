@@ -186,6 +186,36 @@ public struct HATProfileService {
             errorCallback: failCallback
         )
     }
+    
+    // MARK: - Get Profile
+    
+    /**
+     Gets the profile education of the user from the hat, if it's there already
+     
+     - parameter userDomain: The user's HAT domain
+     - parameter userToken: The user's token
+     - parameter successCallback: A function to call on success
+     - parameter failCallback: A fuction to call on fail
+     */
+    public static func getProfile(userDomain: String, userToken: String, successCallback: @escaping (HATProfileObjectV2) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+        
+        func profileEntries(json: [JSON], renewedToken: String?) {
+            
+            // if we have values return them
+            if !json.isEmpty {
+                
+                if let profile: HATProfileObjectV2 = HATProfileObjectV2.decode(from: json[0].dictionaryValue) {
+                    
+                   successCallback(profile)
+                }
+            } else {
+                
+                failCallback(.noValuesFound)
+            }
+        }
+        
+        HATAccountService.getHatTableValuesv2(token: userToken, userDomain: userDomain, namespace: "rumpel", scope: "profile", parameters: ["take": "1", "ordering": "descending", "orderBy": "dateCreated"], successCallback: profileEntries, errorCallback: failCallback)
+    }
 
     // MARK: - Get Profile Image
 

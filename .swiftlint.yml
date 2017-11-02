@@ -24,7 +24,6 @@ enabled_rules:
     - force_cast
     - force_try
     - for_where
-    - identifier_name
     - implicit_getter
     - implicit_return
     - implicitly_unwrapped_optional
@@ -77,6 +76,7 @@ enabled_rules:
 disabled_rules:
     - compiler_protocol_init
     - cyclomatic_complexity # counts ifs
+    - identifier_name
     - explicit_init
     - file_length
     - function_body_length

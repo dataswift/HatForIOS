@@ -18,7 +18,7 @@ public struct HATFeedService {
     
     // MARK: - Get feed
 
-    static func getFeed(userDomain: String, userToken: String, successCallback: @escaping ([HATFeedObject], String?) -> Void, failed: @escaping (HATTableError) -> Void) {
+    static public func getFeed(userDomain: String, userToken: String, successCallback: @escaping ([HATFeedObject], String?) -> Void, failed: @escaping (HATTableError) -> Void) {
         
         func success(values: [JSON], newToken: String?) {
             
