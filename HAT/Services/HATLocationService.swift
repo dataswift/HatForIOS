@@ -11,6 +11,7 @@
  */
 
 import Alamofire
+import SwiftyJSON
 
 // MARK: Struct
 
@@ -93,5 +94,75 @@ public struct HATLocationService {
                 }
             }
         }
+    }
+    
+    // MARK: - Get Locations
+    
+    public func getLocationsV2(userDomain: String, userToken: String, successCallback: @escaping ([HATLocationsV2Object], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void ) {
+        
+        func receivedLocations(json: [JSON], newUserToken: String?) {
+            
+            // if we have values return them
+            if !json.isEmpty {
+                
+                var arrayToReturn: [HATLocationsV2Object] = []
+                
+                for item in json {
+                    
+                    if let object: HATLocationsV2Object = HATLocationsV2Object.decode(from: item.dictionaryValue) {
+                        
+                        arrayToReturn.append(object)
+                    } else {
+                        
+                        print("error parsing json")
+                    }
+                }
+                
+                successCallback(arrayToReturn, newUserToken)
+            } else {
+                
+                errorCallback(.noValuesFound)
+            }
+        }
+        
+        func locationsReceived(error: HATTableError) {
+            
+            errorCallback(error)
+        }
+        
+        HATAccountService.getHatTableValuesv2(
+            token: userToken,
+            userDomain: userDomain,
+            namespace: "rumpel",
+            scope: "locations",
+            parameters: [:],
+            successCallback: receivedLocations,
+            errorCallback: locationsReceived)
+    }
+    
+    public func pushLocationsV2(userDomain: String, userToken: String, locations: [HATLocationsV2DataObject], successCallback: @escaping ([HATLocationsV2Object], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void ) {
+        
+        guard let json = HATLocationsV2DataObject.encode(from: locations) else {
+            
+            return
+        }
+        
+        HATAccountService.createTableValuev2(
+            token: userToken,
+            userDomain: userDomain,
+            source: "rumpel",
+            dataPath: "locations",
+            parameters: json,
+            successCallback: { (json, newToken) in
+                
+                guard let locations: HATLocationsV2Object = HATLocationsV2Object.decode(from: json.dictionaryValue) else {
+                    
+                    errorCallback(.noValuesFound)
+                    return
+                }
+                successCallback([locations], newToken)
+            },
+            errorCallback: errorCallback
+        )
     }
 }

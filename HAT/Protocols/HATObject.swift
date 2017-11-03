@@ -24,6 +24,13 @@ public protocol HATObject: Codable {
      */
     static func decode<T: HATObject>(from: Dictionary<String, JSON>) -> T?
     
+    /**
+     Decodes a JSON file to a HATFitbitWeightObject
+     
+     - parameter from: A JSON object to decode from
+     - returns: An optional HATFitbitWeightObject decoded from the JSON passed in as a parameter
+     */
+    static func encode<T: HATObject>(from: [T]) -> Dictionary<String, JSON>?
     func extractContent(from: JSON) -> Dictionary<String, JSON>
 }
 
@@ -46,6 +53,24 @@ extension HATObject {
         } catch {
             
             print("error decoding")
+            return nil
+        }
+    }
+    
+    static public func encode<T: HATObject>(from: [T]) -> Dictionary<String, JSON>? {
+        
+        let encoder = JSONEncoder()
+        
+        do {
+            
+            let jsonData: Data = try encoder.encode(from)
+            return NSKeyedUnarchiver.unarchiveObject(with: jsonData) as? Dictionary<String, JSON>
+            //return String(data: jsonData, encoding: .utf8)
+            //print("JSON String : " + jsonString!)
+        }
+        catch {
+            
+            print("error encoding")
             return nil
         }
     }
