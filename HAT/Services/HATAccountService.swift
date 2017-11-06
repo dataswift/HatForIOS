@@ -396,7 +396,7 @@ public struct HATAccountService {
     public static func deleteHatRecordV2(userDomain: String, token: String, recordId: [Int], success: @escaping (String) -> Void, failed: @ escaping (HATTableError) -> Void) {
         
         // form the url
-        let url = "https://\(userDomain)/api/v2/data/"
+        let url = "https://\(userDomain)/api/v2/data"
         
         // create parameters and headers
         let parameters: NSMutableDictionary = [:]
@@ -633,3 +633,4 @@ public struct HATAccountService {
         })
     }
 }
+

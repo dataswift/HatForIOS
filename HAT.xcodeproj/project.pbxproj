@@ -11,6 +11,8 @@
 		600995C81EBCC7DC007F9330 /* HATTokenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EAC0E1EB886EE0084EEC8 /* HATTokenHelper.swift */; };
 		600F10B81F5EC383001D21E7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600F10B71F5EC383001D21E7 /* StringExtension.swift */; };
 		600F10B91F5EC56A001D21E7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600F10B71F5EC383001D21E7 /* StringExtension.swift */; };
+		601431EF1FAF8CE600B4C1DB /* FacebookV2Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601431EE1FAF8CE600B4C1DB /* FacebookV2Object.swift */; };
+		601431F01FAF8CE600B4C1DB /* FacebookV2Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601431EE1FAF8CE600B4C1DB /* FacebookV2Object.swift */; };
 		6020A7031E526BBF00D7DC04 /* LocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7021E526BBF00D7DC04 /* LocationServiceTests.swift */; };
 		6020A7061E52749700D7DC04 /* HATServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7051E52749700D7DC04 /* HATServiceTests.swift */; };
 		6020A7081E52803800D7DC04 /* HATAccountServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7071E52803800D7DC04 /* HATAccountServiceTests.swift */; };
@@ -347,6 +349,7 @@
 
 /* Begin PBXFileReference section */
 		600F10B71F5EC383001D21E7 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		601431EE1FAF8CE600B4C1DB /* FacebookV2Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookV2Object.swift; sourceTree = "<group>"; };
 		6020A7021E526BBF00D7DC04 /* LocationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServiceTests.swift; sourceTree = "<group>"; };
 		6020A7051E52749700D7DC04 /* HATServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATServiceTests.swift; sourceTree = "<group>"; };
 		6020A7071E52803800D7DC04 /* HATAccountServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATAccountServiceTests.swift; sourceTree = "<group>"; };
@@ -549,6 +552,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		601431ED1FAF8CC300B4C1DB /* New Facebook API */ = {
+			isa = PBXGroup;
+			children = (
+				601431EE1FAF8CE600B4C1DB /* FacebookV2Object.swift */,
+			);
+			path = "New Facebook API";
+			sourceTree = "<group>";
+		};
 		601691081E4B4B7C00505E8D /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +634,7 @@
 		601691241E4B6AE600505E8D /* Facebook */ = {
 			isa = PBXGroup;
 			children = (
+				601431ED1FAF8CC300B4C1DB /* New Facebook API */,
 				6041474C1EE1AF35008C9293 /* Posts */,
 				6041474D1EE1AF48008C9293 /* Profile Image */,
 			);
@@ -1246,6 +1258,7 @@
 			files = (
 				604EAC0F1EB886EE0084EEC8 /* HATTokenHelper.swift in Sources */,
 				60854FD81F89873E00DC2BAC /* HATFitbitSleepLevelsSummaryObject.swift in Sources */,
+				601431EF1FAF8CE600B4C1DB /* FacebookV2Object.swift in Sources */,
 				602D17101E82B23000C53A5E /* HATSystemStatusKindObject.swift in Sources */,
 				602D16FB1E82B21300C53A5E /* HATProviderKindObject.swift in Sources */,
 				60854FED1F89918F00DC2BAC /* HATFitbitStatsObject.swift in Sources */,
@@ -1480,6 +1493,7 @@
 				60DDBB281E82F548007CDAFB /* HATFacebookDataPostsApplicationSocialFeedObject.swift in Sources */,
 				60F51C401F899C8700F99C47 /* HATFitbitActivityManualValuesObject.swift in Sources */,
 				60CDCC041EAB6E0700035882 /* HATProfileDataProfileFacebookProfilePhotoObject.swift in Sources */,
+				601431F01FAF8CE600B4C1DB /* FacebookV2Object.swift in Sources */,
 				60CDCC081EAB6E0700035882 /* HATProfileDataProfileGenderObject.swift in Sources */,
 				60B2C9441FACC03E00404DBD /* HATLocationsV2Object.swift in Sources */,
 				60DDBB151E82F52D007CDAFB /* HATFormatterHelper.swift in Sources */,

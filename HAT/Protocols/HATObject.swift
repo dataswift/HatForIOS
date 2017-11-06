@@ -15,7 +15,7 @@
 import SwiftyJSON
 
 public protocol HATObject: Codable {
-
+    
     /**
      Decodes a JSON file to a HATFitbitWeightObject
      
@@ -30,7 +30,7 @@ public protocol HATObject: Codable {
      - parameter from: A JSON object to decode from
      - returns: An optional HATFitbitWeightObject decoded from the JSON passed in as a parameter
      */
-    static func encode<T: HATObject>(from: [T]) -> Dictionary<String, JSON>?
+    static func encode<T: HATObject>(from: [T]) -> Dictionary<String, Any>?
     func extractContent(from: JSON) -> Dictionary<String, JSON>
 }
 
@@ -57,16 +57,15 @@ extension HATObject {
         }
     }
     
-    static public func encode<T: HATObject>(from: [T]) -> Dictionary<String, JSON>? {
+    static public func encode<T: HATObject>(from: [T]) -> Dictionary<String, Any>? {
         
         let encoder = JSONEncoder()
         
         do {
             
-            let jsonData: Data = try encoder.encode(from)
-            return NSKeyedUnarchiver.unarchiveObject(with: jsonData) as? Dictionary<String, JSON>
-            //return String(data: jsonData, encoding: .utf8)
-            //print("JSON String : " + jsonString!)
+            let jsonData: Data = try encoder.encode(from[0])
+            let swiftyJSON = JSON(data: jsonData)
+            return swiftyJSON.dictionaryObject
         }
         catch {
             

@@ -55,5 +55,6 @@ public struct HATProfileDataObjectV2: Codable, HATObject {
     /// The gender object of user's profile
     public var gender: HATProfileDataProfileGenderObjectV2 = HATProfileDataProfileGenderObjectV2()
     public var dateCreated: Int = 0
+    public var dateCreatedLocal: String?
     public var `private`: Bool = true
 }

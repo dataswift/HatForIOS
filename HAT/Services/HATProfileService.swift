@@ -222,14 +222,14 @@ public struct HATProfileService {
             userDomain: userDomain,
             namespace: "rumpel",
             scope: "profile",
-            parameters: ["take": "1", "ordering": "descending", "orderBy": "dateCreated"],
+            parameters: ["ordering": "descending", "orderBy": "lastUpdated"],
             successCallback: profileEntries,
             errorCallback: failCallback)
     }
     
     public static func postProfile(userToken: String, userDomain: String, profile: HATProfileObjectV2, successCallback: @escaping (HATProfileObjectV2, String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
-        guard let profileJSON: Dictionary<String, Any> = HATProfileObjectV2.encode(from: [profile]) else {
+        guard let profileJSON: Dictionary<String, Any> = HATProfileDataObjectV2.encode(from: [profile.data]) else {
             
             return
         }
@@ -249,7 +249,7 @@ public struct HATProfileService {
                 }
                 
                 successCallback(profile, newToken)
-            },
+        },
             errorCallback: failCallback)
     }
     

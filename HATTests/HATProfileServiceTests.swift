@@ -155,7 +155,7 @@ internal class HATProfileServiceTests: XCTestCase {
         }
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2/data/rumpel/profile?orderBy=dateCreated&ordering=descending&take=1"
+        let urlToConnect = "https://testing.hubat.net/api/v2/data/rumpel/profile?orderBy=lastUpdated&ordering=descending"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.profile))
         
