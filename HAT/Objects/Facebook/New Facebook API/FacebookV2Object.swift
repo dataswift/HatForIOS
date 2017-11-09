@@ -8,6 +8,6 @@
 
 import UIKit
 
-class FacebookV2Object: NSObject {
+internal class FacebookV2Object: NSObject {
 
 }

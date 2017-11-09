@@ -15,7 +15,7 @@ public struct HATProfileDataProfileAddressGlobalObjectV2: Codable, HATObject {
     // MARK: - Variables
     
     /// Indicates if the object, HATProfileDataProfileAddressGlobalObject, is private
-    public var `private`: Bool = true 
+    public var `private`: Bool = true
     
     /// User's City
     public var city: String = ""

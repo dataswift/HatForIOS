@@ -64,10 +64,9 @@ extension HATObject {
         do {
             
             let jsonData: Data = try encoder.encode(from[0])
-            let swiftyJSON = JSON(data: jsonData)
+            let swiftyJSON = try JSON(data: jsonData)
             return swiftyJSON.dictionaryObject
-        }
-        catch {
+        } catch {
             
             print("error encoding")
             return nil

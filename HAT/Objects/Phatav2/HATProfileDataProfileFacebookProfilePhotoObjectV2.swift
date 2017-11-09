@@ -15,5 +15,5 @@ public struct HATProfileDataProfileFacebookProfilePhotoObjectV2: Codable, HATObj
     // MARK: - Variables
     
     /// Indicates if the object, HATProfileDataProfileFacebookProfilePhotoObject, is private
-    public var `private`: Bool = true 
+    public var `private`: Bool = true
 }

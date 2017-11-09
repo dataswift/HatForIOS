@@ -15,7 +15,7 @@ public struct HATProfileDataProfilePrimaryEmailObjectV2: Codable, HATObject {
     // MARK: - Variables
     
     /// Indicates if the object, HATProfileDataProfilePrimaryEmailObject, is private
-    public var `private`: Bool = true 
+    public var `private`: Bool = true
     
     /// User's primary email address
     public var value: String = ""

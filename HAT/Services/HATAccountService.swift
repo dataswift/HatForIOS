@@ -633,4 +633,3 @@ public struct HATAccountService {
         })
     }
 }
-

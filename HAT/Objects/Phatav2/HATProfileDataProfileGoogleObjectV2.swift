@@ -15,7 +15,7 @@ public struct HATProfileDataProfileGoogleObjectV2: Codable, HATObject {
     // MARK: - Variables
     
     /// Indicates if the object, HATProfileDataProfileGoogleObject, is private
-    public var `private`: Bool = true 
+    public var `private`: Bool = true
     
     /// Link to user's profile in google
     public var link: String = ""
