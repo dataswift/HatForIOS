@@ -17,9 +17,9 @@ import SwiftyJSON
 
 /// The location data plug service class
 public struct HATLocationService {
-
+    
     // MARK: - Create location plug URL
-
+    
     /**
      Register with HAT url
      
@@ -27,17 +27,17 @@ public struct HATLocationService {
      - returns: HATRegistrationURLAlias, can return empty string
      */
     public static func locationDataPlugURL(_ userHATDomain: String, dataPlugID: String) -> String {
-
+        
         if let escapedUserHATDomain: String = userHATDomain.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
-
+            
             return "https://dex.hubofallthings.com/api/dataplugs/\(dataPlugID)/connect?hat=\(escapedUserHATDomain)"
         }
-
+        
         return ""
     }
-
+    
     // MARK: - Enable locations
-
+    
     /**
      Registers app to write on HAT
      
@@ -45,44 +45,44 @@ public struct HATLocationService {
      - parameter HATDomainFromToken: The HAT domain from token
      - parameter viewController: The UIViewController that calls this method
      */
-   public static func enableLocationDataPlug(_ userDomain: String, _ HATDomainFromToken: String, success: @escaping (Bool) -> Void, failed: @escaping (JSONParsingError) -> Void) {
-
+    public static func enableLocationDataPlug(_ userDomain: String, _ HATDomainFromToken: String, success: @escaping (Bool) -> Void, failed: @escaping (JSONParsingError) -> Void) {
+        
         // parameters..
         let parameters: Dictionary<String, String> = [:]
-
+        
         // auth header
         let headers: [String : String] = ["Accept": ContentType.JSON,
                                           "Content-Type": ContentType.JSON,
                                           RequestHeaders.xAuthToken: HATDataPlugCredentials.locationDataPlugToken]
         // construct url
         let url = HATLocationService.locationDataPlugURL(userDomain, dataPlugID: HATDataPlugCredentials.dataPlugID)
-
+        
         // make asynchronous call
         HATNetworkHelper.asynchronousRequest(url, method: HTTPMethod.get, encoding: Alamofire.URLEncoding.default, contentType: "application/json", parameters: parameters, headers: headers) { (response: HATNetworkHelper.ResultType) -> Void in
-
+            
             switch response {
             case .isSuccess(let isSuccess, let statusCode, let result, _):
-
+                
                 if isSuccess {
-
+                    
                     // belt and braces.. check we have a message in the returned JSON
                     if result["message"].exists() {
-
+                        
                         // save the hatdomain from the token to the device Keychain
                         success(true)
-                    // No message field in JSON file
+                        // No message field in JSON file
                     } else {
-
+                        
                         failed(.expectedFieldNotFound)
                     }
-                // general error
+                    // general error
                 } else {
-
+                    
                     failed(.generalError(isSuccess.description, statusCode, nil))
                 }
-
+                
             case .error(let error, let statusCode):
-
+                
                 //show error
                 if error.localizedDescription == "The request timed out." {
                     
@@ -98,7 +98,7 @@ public struct HATLocationService {
     
     // MARK: - Get Locations
     
-    public func getLocationsV2(userDomain: String, userToken: String, successCallback: @escaping ([HATLocationsV2Object], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void ) {
+    public static func getLocationsV2(userDomain: String, userToken: String, successCallback: @escaping ([HATLocationsV2Object], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void ) {
         
         func receivedLocations(json: [JSON], newUserToken: String?) {
             
@@ -134,13 +134,13 @@ public struct HATLocationService {
             token: userToken,
             userDomain: userDomain,
             namespace: "rumpel",
-            scope: "locations",
+            scope: "ios/locations",
             parameters: [:],
             successCallback: receivedLocations,
             errorCallback: locationsReceived)
     }
     
-    public func pushLocationsV2(userDomain: String, userToken: String, locations: [HATLocationsV2DataObject], successCallback: @escaping ([HATLocationsV2Object], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void ) {
+    public static func pushLocationsV2(userDomain: String, userToken: String, locations: [HATLocationsV2DataObject], successCallback: @escaping ([HATLocationsV2Object], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void ) {
         
         guard let json = HATLocationsV2DataObject.encode(from: locations) else {
             
@@ -151,7 +151,7 @@ public struct HATLocationService {
             token: userToken,
             userDomain: userDomain,
             source: "rumpel",
-            dataPath: "locations",
+            dataPath: "ios/locations",
             parameters: json,
             successCallback: { (json, newToken) in
                 
@@ -161,7 +161,7 @@ public struct HATLocationService {
                     return
                 }
                 successCallback([locations], newToken)
-            },
+        },
             errorCallback: errorCallback
         )
     }
