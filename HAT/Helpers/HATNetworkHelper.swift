@@ -13,6 +13,25 @@
 import Alamofire
 import SwiftyJSON
 
+internal class TestFA: HATObject {
+    
+    var endpoint: String = ""
+    var filters: Filters = Filters()
+}
+
+internal class Filters: HATObject {
+    
+    var field: String = ""
+    var `operator`: Operator = Operator()
+}
+
+internal class Operator: HATObject {
+    
+    var `operator`: String = ""
+    var upper: Int = 0
+    var lower: Int = 0
+}
+
 // MARK: Class
 
 /// All network related methods
@@ -127,6 +146,107 @@ public class HATNetworkHelper: NSObject {
                 
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
+    }
+    
+    /**
+     Makes ansychronous JSON request
+     Closure for caller to handle
+     
+     - parameter url: The URL to connect to
+     - parameter method: The method to use in connecting with the URL
+     - parameter encoding: The encoding to use in the request
+     - parameter contentType: The content type of the request
+     - parameter parameters: The parameters in the request
+     - parameter headers: The headers in the request
+     - parameter completion: The completion handler to execute upon completing the request
+     */
+    public class func asynchronousRequestMultipleObjects(
+        
+        _ url: String,
+        method: HTTPMethod,
+        encoding: ParameterEncoding,
+        contentType: String,
+        parameters: [Dictionary<String, Any>],
+        headers: Dictionary<String, String>,
+        completion: @escaping (_ r: HATNetworkHelper.ResultType) -> Void) {
+        
+        // swiftlint:disable force_try
+        var request = URLRequest(url: try! url.asURL())
+        request.httpMethod = method.rawValue
+        request.setValue(headers.first!.value, forHTTPHeaderField: "x-auth-token")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let testOperator: Operator = Operator()
+        testOperator.`operator` = "between"
+        testOperator.lower = 4
+        testOperator.upper = 9
+        
+        let testFilters: Filters = Filters()
+        testFilters.field = "dateCreated"
+        testFilters.operator = testOperator
+        
+        let testClass: TestFA = TestFA()
+        testClass.endpoint = "rumpel/ios/locations"
+        testClass.filters = testFilters
+        
+        print(testClass)
+        let tempJson = TestFA.encode(from: [testClass])
+        //old way one
+        let data = try! JSONSerialization.data(withJSONObject: tempJson!, options: [])
+        // swiftlint:enable force_try
+        //check validity
+        print(JSONSerialization.isValidJSONObject(data))
+        
+        // put in body
+        request.httpBody = data
+        
+        Alamofire.request(request).responseJSON { response in
+            //print(response.request)  // original URL request
+            //print(response.response) // URL response
+            //print(response.data)     // server data
+            //print(response.result)   // result of response serialization
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            
+            switch response.result {
+            case .success:
+                
+                let header = response.response?.allHeaderFields
+                let token = header?["x-auth-token"] as? String
+                let tokenToReturn = HATTokenHelper.checkTokenScope(token: token)
+                
+                // check if we have a value and return it
+                if let value = response.result.value {
+                    
+                    let json = JSON(value)
+                    if token != nil {
+                        
+                        completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: json, token: tokenToReturn))
+                    } else {
+                        
+                        completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: json, token: nil))
+                    }
+                    
+                    // else return isSuccess: false and nil for value
+                } else {
+                    
+                    if token != nil {
+                        
+                        completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: tokenToReturn))
+                    } else {
+                        
+                        completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: nil))
+                    }
+                }
+                
+            // in case of failure return the error but check for internet connection or unauthorised status and let the user know
+            case .failure(let error):
+                
+                completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode))
+            }
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
     }
     
     /**
@@ -288,5 +408,4 @@ public class HATNetworkHelper: NSObject {
         
         return nil
     }
-    
 }

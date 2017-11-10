@@ -98,7 +98,7 @@ public struct HATLocationService {
     
     // MARK: - Get Locations
     
-    public static func getLocationsV2(userDomain: String, userToken: String, successCallback: @escaping ([HATLocationsV2Object], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void ) {
+    public static func getLocationsV2(userDomain: String, userToken: String, fromDate: Date, toDate: Date, successCallback: @escaping ([HATLocationsV2Object], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void ) {
         
         func receivedLocations(json: [JSON], newUserToken: String?) {
             
@@ -161,7 +161,7 @@ public struct HATLocationService {
                     return
                 }
                 successCallback([locations], newToken)
-        },
+            },
             errorCallback: errorCallback
         )
     }

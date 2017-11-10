@@ -111,6 +111,113 @@ public struct HATService {
             }
         })
     }
+    
+    /**
+     Validates email address with the HAT
+     */
+    public static func validateEmailAddress(email: String, cluster: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (JSONParsingError) -> Void) {
+        
+        let url = "https://hatters.hubofallthings.com/api/products/hat/validate-email"
+        
+        let parameters = ["email": email,
+                          "cluster": cluster]
+        
+        HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: [:], completion: {(response: HATNetworkHelper.ResultType) -> Void in
+            
+            switch response {
+                
+            // in case of error call the failCallBack
+            case .error(let error, let statusCode):
+                
+                if error.localizedDescription == "The request timed out." {
+                    
+                    failCallBack(.noInternetConnection)
+                } else {
+                    
+                    let message = "Invalid Email. HAT with such email already exists"
+                    failCallBack(.generalError(message, statusCode, error))
+                }
+            // in case of success call the succesfulCallBack
+            case .isSuccess(let isSuccess, let statusCode, _, let newToken):
+                
+                if isSuccess && statusCode == 200 {
+                    
+                    succesfulCallBack("valid email", newToken)
+                }
+            }
+        })
+    }
+    
+    /**
+     Validates HAT address with HAT
+     */
+    public static func validateHATAddress(address: String, cluster: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (JSONParsingError) -> Void) {
+        
+        let url = "https://hatters.hubofallthings.com/api/products/hat/validate-hat"
+        
+        let parameters = ["address": address,
+                          "cluster": cluster]
+        
+        HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: [:], completion: {(response: HATNetworkHelper.ResultType) -> Void in
+            
+            switch response {
+                
+            // in case of error call the failCallBack
+            case .error(let error, let statusCode):
+                
+                if error.localizedDescription == "The request timed out." {
+                    
+                    failCallBack(.noInternetConnection)
+                } else {
+                    
+                    let message = "Invalid address. HAT with such address already exists"
+                    failCallBack(.generalError(message, statusCode, error))
+                }
+            // in case of success call the succesfulCallBack
+            case .isSuccess(let isSuccess, let statusCode, _, let newToken):
+                
+                if isSuccess && statusCode == 200 {
+                    
+                    succesfulCallBack("valid address", newToken)
+                }
+            }
+        })
+    }
+    
+    /**
+     Validates HAT address with HAT
+     */
+    public static func confirmHATPurchase(purchaseModel: PurchaseObject, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (JSONParsingError) -> Void) {
+        
+        let url = "https://hatters.hubofallthings.com/api/products/hat/purchase"
+        
+        let body = PurchaseObject.encode(from: [purchaseModel])!
+        
+        HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: body, headers: [:], completion: {(response: HATNetworkHelper.ResultType) -> Void in
+            
+            switch response {
+                
+            // in case of error call the failCallBack
+            case .error(let error, let statusCode):
+                
+                if error.localizedDescription == "The request timed out." {
+                    
+                    failCallBack(.noInternetConnection)
+                } else {
+                    
+                    let message = "Invalid address. HAT with such address already exists"
+                    failCallBack(.generalError(message, statusCode, error))
+                }
+            // in case of success call the succesfulCallBack
+            case .isSuccess(let isSuccess, let statusCode, _, let newToken):
+                
+                if isSuccess && statusCode == 200 {
+                    
+                    succesfulCallBack("purchase ok", newToken)
+                }
+            }
+        })
+    }
 
     // MARK: - Get system status
 
