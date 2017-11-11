@@ -279,7 +279,7 @@ internal class DataPlugsServiceTests: XCTestCase {
         ]
         let expectationTest = expectation(description: "Checking social plug availability...")
 
-        let urlToConnect = "https://social-plug.hubofallthings.com/api/user/token/status"
+        let urlToConnect = "https://facebook.hubat.net/api/status"
 
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
 

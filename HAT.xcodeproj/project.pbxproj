@@ -334,6 +334,8 @@
 		60F51C451F89A25D00F99C47 /* FitbitServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F51C441F89A25D00F99C47 /* FitbitServiceTests.swift */; };
 		60F51C481F8B63C500F99C47 /* HATObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F51C471F8B63C500F99C47 /* HATObject.swift */; };
 		60F51C491F8B63C500F99C47 /* HATObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F51C471F8B63C500F99C47 /* HATObject.swift */; };
+		60F6FF421FB79361000B8A2E /* HATFeedDateObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F6FF411FB79361000B8A2E /* HATFeedDateObject.swift */; };
+		60F6FF431FB79361000B8A2E /* HATFeedDateObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F6FF411FB79361000B8A2E /* HATFeedDateObject.swift */; };
 		60FB240B1F87C807003F446E /* HATDataPlugPlugObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FB240A1F87C807003F446E /* HATDataPlugPlugObject.swift */; };
 		60FB240C1F87C80C003F446E /* HATDataPlugPlugObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FB240A1F87C807003F446E /* HATDataPlugPlugObject.swift */; };
 		60FB240E1F87C839003F446E /* HATDataPlugProviderObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FB240D1F87C839003F446E /* HATDataPlugProviderObject.swift */; };
@@ -527,6 +529,7 @@
 		60F51C3E1F899C8700F99C47 /* HATFitbitActivityManualValuesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATFitbitActivityManualValuesObject.swift; sourceTree = "<group>"; };
 		60F51C441F89A25D00F99C47 /* FitbitServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitbitServiceTests.swift; sourceTree = "<group>"; };
 		60F51C471F8B63C500F99C47 /* HATObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HATObject.swift; path = Protocols/HATObject.swift; sourceTree = "<group>"; };
+		60F6FF411FB79361000B8A2E /* HATFeedDateObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATFeedDateObject.swift; sourceTree = "<group>"; };
 		60FB240A1F87C807003F446E /* HATDataPlugPlugObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATDataPlugPlugObject.swift; sourceTree = "<group>"; };
 		60FB240D1F87C839003F446E /* HATDataPlugProviderObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATDataPlugProviderObject.swift; sourceTree = "<group>"; };
 		6799113B63ED7F22080EC80C /* Pods-HATTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HATTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HATTests/Pods-HATTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -910,6 +913,7 @@
 			isa = PBXGroup;
 			children = (
 				60812BE81FA782F200C91120 /* HATFeedObject.swift */,
+				60F6FF411FB79361000B8A2E /* HATFeedDateObject.swift */,
 				60812BEE1FA7852D00C91120 /* HATFeedContentObject.swift */,
 				60812BF11FA7856700C91120 /* HATFeedContentMediaObject.swift */,
 				60812BEB1FA7842C00C91120 /* HATFeedTitleObject.swift */,
@@ -1343,6 +1347,7 @@
 				60F51C3C1F899BDC00F99C47 /* HATFitbitActivityHeartRateZoneObject.swift in Sources */,
 				602D17011E82B21E00C53A5E /* HATLocationsDataLocationsObject.swift in Sources */,
 				60812BF21FA7856700C91120 /* HATFeedContentMediaObject.swift in Sources */,
+				60F6FF421FB79361000B8A2E /* HATFeedDateObject.swift in Sources */,
 				60705E5D1FAB917C0064551C /* HATProfileDataProfileGenderObjectV2.swift in Sources */,
 				600F10B81F5EC383001D21E7 /* StringExtension.swift in Sources */,
 				60CDCBC81EAA63D000035882 /* HATProfileDataProfileLinkedInObject.swift in Sources */,
@@ -1535,6 +1540,7 @@
 				6020A7061E52749700D7DC04 /* HATServiceTests.swift in Sources */,
 				6050BF051ED5B2E000984EEF /* HATNationalityObject.swift in Sources */,
 				60C463991EE6EA9E00FEC458 /* HATFacebookProfileImageObject.swift in Sources */,
+				60F6FF431FB79361000B8A2E /* HATFeedDateObject.swift in Sources */,
 				60314E6F1F387577004383AA /* UKSpecificInfo.swift in Sources */,
 				60F51C451F89A25D00F99C47 /* FitbitServiceTests.swift in Sources */,
 				60DDBB0C1E82F528007CDAFB /* HATAccountService.swift in Sources */,

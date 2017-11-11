@@ -161,7 +161,7 @@ public struct HATLocationService {
                     return
                 }
                 successCallback([locations], newToken)
-            },
+        },
             errorCallback: errorCallback
         )
     }

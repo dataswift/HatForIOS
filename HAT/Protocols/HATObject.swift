@@ -62,8 +62,11 @@ extension HATObject {
         let encoder = JSONEncoder()
         
         do {
-            
+            print(from)
             let jsonData: Data = try encoder.encode(from[0])
+            print(jsonData)
+            print(JSONSerialization.isValidJSONObject(jsonData))
+            print(String(data: jsonData, encoding: .utf8)!)
             let swiftyJSON = try JSON(data: jsonData)
             return swiftyJSON.dictionaryObject
         } catch {

@@ -166,7 +166,7 @@ public class HATNetworkHelper: NSObject {
         method: HTTPMethod,
         encoding: ParameterEncoding,
         contentType: String,
-        parameters: [Dictionary<String, Any>],
+        parameters: [String: Any],
         headers: Dictionary<String, String>,
         completion: @escaping (_ r: HATNetworkHelper.ResultType) -> Void) {
         
@@ -191,9 +191,9 @@ public class HATNetworkHelper: NSObject {
         
         print(testClass)
         let tempJson = TestFA.encode(from: [testClass])
-        //old way one
         let data = try! JSONSerialization.data(withJSONObject: tempJson!, options: [])
         // swiftlint:enable force_try
+        
         //check validity
         print(JSONSerialization.isValidJSONObject(data))
         

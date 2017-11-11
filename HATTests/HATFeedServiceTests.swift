@@ -18,7 +18,10 @@ private struct Bodies {
             "endpoint": "she/feed",
             "recordId": "2a7a4bac-864a-4b5e-9494-2c9a412a9fcf",
             "data": [
-                "date": 1509312799,
+                "date": [
+                    "iso": "2017-10-22T18:00:00.000Z",
+                    "unix": 1508695200
+                ],
                 "title": [
                     "text": "You walked 3789 steps",
                     "action": "steps"
@@ -32,7 +35,10 @@ private struct Bodies {
             "endpoint": "she/feed",
             "recordId": "dfef929c-4fab-4855-85b1-9554d105a857",
             "data": [
-                "date": 1509265200,
+                "date": [
+                    "iso": "2017-10-22T18:00:00.000Z",
+                    "unix": 1508695200
+                ],
                 "title": [
                     "text": "You posted this photo",
                     "action": nil
@@ -52,7 +58,10 @@ private struct Bodies {
             "endpoint": "she/feed",
             "recordId": "832f8fce-778b-47d7-b87b-585e0e6e29ad",
             "data": [
-                "date": 1509264200,
+                "date": [
+                    "iso": "2017-10-22T18:00:00.000Z",
+                    "unix": 1508695200
+                ],
                 "title": [
                     "text": "You retweeted",
                     "action": nil
@@ -67,7 +76,10 @@ private struct Bodies {
             "endpoint": "she/feed",
             "recordId": "348fff80-d9b4-4301-8957-bb40c83ff4e5",
             "data": [
-                "date": 1509255200,
+                "date": [
+                    "iso": "2017-10-22T18:00:00.000Z",
+                    "unix": 1508695200
+                ],
                 "title": [
                     "text": "You posted this photo",
                     "action": nil
@@ -87,7 +99,10 @@ private struct Bodies {
             "endpoint": "she/feed",
             "recordId": "bfbba54a-dacf-4304-8369-a102197c5ab1",
             "data": [
-                "date": 1509245200,
+                "date": [
+                    "iso": "2017-10-22T18:00:00.000Z",
+                    "unix": 1508695200
+                ],
                 "title": [
                     "text": "You got yourself a HAT",
                     "action": nil

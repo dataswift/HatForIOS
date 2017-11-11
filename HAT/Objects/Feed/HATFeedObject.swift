@@ -10,7 +10,7 @@
 
 public struct HATFeedObject: HATObject {
 
-    public var date: Int = 0
+    public var date: HATFeedDateObject = HATFeedDateObject()
     public var source: String = ""
     public var content: HATFeedContentObject?
     public var title: HATFeedTitleObject = HATFeedTitleObject()

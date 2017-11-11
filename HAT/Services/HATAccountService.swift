@@ -176,7 +176,7 @@ public struct HATAccountService {
      - parameter successCallback: A callback called when successful of type @escaping ([JSON]) -> Void
      - parameter errorCallback: A callback called when failed of type @escaping (Void) -> Void)
      */
-    public static func createTableValuesv2(token: String, userDomain: String, source: String, dataPath: String, parameters: [Dictionary<String, Any>], successCallback: @escaping (JSON, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func createTableValuesv2(token: String, userDomain: String, source: String, dataPath: String, parameters: [String: Any], successCallback: @escaping (JSON, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // form the url
         let url = "https://\(userDomain)/api/v2/data/\(source)/\(dataPath)"
@@ -698,11 +698,10 @@ public struct HATAccountService {
             "field": fieldToFilter as AnyObject,
             "operator": `operator` as AnyObject
             ]]
-        let body: [[String: AnyObject]] = [
+        let body: [String: AnyObject] =
             [
                 "endpoint": "rumpel/ios/locations" as AnyObject,
                 "filters": test as AnyObject
-            ]
         ]
         
         HATNetworkHelper.asynchronousRequestMultipleObjects(
