@@ -199,7 +199,7 @@ public struct HATService {
         
         let url = "https://hatters.hubofallthings.com/api/products/hat/purchase"
         
-        let body = PurchaseObject.encode(from: [purchaseModel])!
+        let body = PurchaseObject.encode(from: purchaseModel)!
         
         HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.JSON, parameters: body, headers: [:], completion: {(response: HATNetworkHelper.ResultType) -> Void in
             
@@ -217,11 +217,15 @@ public struct HATService {
                     failCallBack(.generalError(message, statusCode, error))
                 }
             // in case of success call the succesfulCallBack
-            case .isSuccess(let isSuccess, let statusCode, _, let newToken):
+            case .isSuccess(let isSuccess, let statusCode, let result, let newToken):
                 
                 if isSuccess && statusCode == 200 {
                     
                     succesfulCallBack("purchase ok", newToken)
+                } else {
+                    
+                    let message = result["message"].stringValue
+                    failCallBack(.generalError(message, statusCode, nil))
                 }
             }
         })
@@ -273,5 +277,4 @@ public struct HATService {
             }
         })
     }
-    
 }

@@ -11,6 +11,9 @@
  */
 
 public struct HATLocationsV2Object: HATObject {
-
+    
     public var data: HATLocationsV2DataObject = HATLocationsV2DataObject()
+    
+    public init() {
+    }
 }

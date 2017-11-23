@@ -134,7 +134,7 @@ public struct HATLocationService {
             token: userToken,
             userDomain: userDomain,
             namespace: "rumpel",
-            scope: "ios/locations",
+            scope: "locations/ios",
             parameters: [:],
             successCallback: receivedLocations,
             errorCallback: locationsReceived)
@@ -142,27 +142,27 @@ public struct HATLocationService {
     
     public static func pushLocationsV2(userDomain: String, userToken: String, locations: [HATLocationsV2DataObject], successCallback: @escaping ([HATLocationsV2Object], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void ) {
         
-        guard let json = HATLocationsV2DataObject.encode(from: locations) else {
-            
-            return
-        }
-        
-        HATAccountService.createTableValuev2(
-            token: userToken,
-            userDomain: userDomain,
-            source: "rumpel",
-            dataPath: "ios/locations",
-            parameters: json,
-            successCallback: { (json, newToken) in
-                
-                guard let locations: HATLocationsV2Object = HATLocationsV2Object.decode(from: json.dictionaryValue) else {
-                    
-                    errorCallback(.noValuesFound)
-                    return
-                }
-                successCallback([locations], newToken)
-        },
-            errorCallback: errorCallback
-        )
+        //        guard let json = HATLocationsV2DataObject.encode(from: locations) else {
+        //
+        //            return
+        //        }
+        //
+        //        HATAccountService.createTableValuev2(
+        //            token: userToken,
+        //            userDomain: userDomain,
+        //            source: "rumpel",
+        //            dataPath: "ios/locations",
+        //            parameters: json,
+        //            successCallback: { (json, newToken) in
+        //
+        //                guard let locations: HATLocationsV2Object = HATLocationsV2Object.decode(from: json.dictionaryValue) else {
+        //
+        //                    errorCallback(.noValuesFound)
+        //                    return
+        //                }
+        //                successCallback([locations], newToken)
+        //        },
+        //            errorCallback: errorCallback
+        //        )
     }
 }

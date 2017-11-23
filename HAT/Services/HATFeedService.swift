@@ -17,8 +17,8 @@ import SwiftyJSON
 public struct HATFeedService {
     
     // MARK: - Get feed
-
-    static public func getFeed(userDomain: String, userToken: String, successCallback: @escaping ([HATFeedObject], String?) -> Void, failed: @escaping (HATTableError) -> Void) {
+    
+    static public func getFeed(userDomain: String, userToken: String, parameters: Dictionary<String, Any> = [:], successCallback: @escaping ([HATFeedObject], String?) -> Void, failed: @escaping (HATTableError) -> Void) {
         
         func success(values: [JSON], newToken: String?) {
             
@@ -40,7 +40,7 @@ public struct HATFeedService {
             userDomain: userDomain,
             namespace: "she",
             scope: "feed",
-            parameters: [:],
+            parameters: parameters,
             successCallback: success,
             errorCallback: failed)
     }

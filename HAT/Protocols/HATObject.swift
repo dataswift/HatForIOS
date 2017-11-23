@@ -30,7 +30,8 @@ public protocol HATObject: Codable {
      - parameter from: A JSON object to decode from
      - returns: An optional HATFitbitWeightObject decoded from the JSON passed in as a parameter
      */
-    static func encode<T: HATObject>(from: [T]) -> Dictionary<String, Any>?
+    static func encode<T: HATObject>(from: T) -> Dictionary<String, Any>?
+    static func encode<T: HATObject>(from: [T]) -> Data?
     func extractContent(from: JSON) -> Dictionary<String, JSON>
 }
 
@@ -57,18 +58,32 @@ extension HATObject {
         }
     }
     
-    static public func encode<T: HATObject>(from: [T]) -> Dictionary<String, Any>? {
+    static public func encode<T: HATObject>(from: T) -> Dictionary<String, Any>? {
         
         let encoder = JSONEncoder()
         
         do {
             print(from)
-            let jsonData: Data = try encoder.encode(from[0])
+            let jsonData: Data = try encoder.encode(from)
             print(jsonData)
             print(JSONSerialization.isValidJSONObject(jsonData))
             print(String(data: jsonData, encoding: .utf8)!)
             let swiftyJSON = try JSON(data: jsonData)
             return swiftyJSON.dictionaryObject
+        } catch {
+            
+            print("error encoding")
+            return nil
+        }
+    }
+    
+    static public func encode<T: HATObject>(from: [T]) -> Data? {
+        
+        let encoder = JSONEncoder()
+        
+        do {
+            print(from)
+            return try encoder.encode(from)
         } catch {
             
             print("error encoding")

@@ -229,7 +229,7 @@ public struct HATProfileService {
     
     public static func postProfile(userToken: String, userDomain: String, profile: HATProfileObjectV2, successCallback: @escaping (HATProfileObjectV2, String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
-        guard let profileJSON: Dictionary<String, Any> = HATProfileDataObjectV2.encode(from: [profile.data]) else {
+        guard let profileJSON: Dictionary<String, Any> = HATProfileDataObjectV2.encode(from: profile.data) else {
             
             return
         }
@@ -379,5 +379,4 @@ public struct HATProfileService {
             errorCallback: failCallback
         )
     }
-    
 }

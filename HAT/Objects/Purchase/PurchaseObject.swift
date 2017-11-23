@@ -17,7 +17,7 @@ public struct PurchaseObject: HATObject {
     // MARK: - Variables
 
     public var firstName: String = ""
-    public var termsAgreed: String = ""
+    public var termsAgreed: Bool = false
     public var lastName: String = ""
     public var email: String = ""
     public var hatName: String = ""

@@ -71,7 +71,7 @@ internal class HATServiceTests: XCTestCase {
         
         var purchaseModel = PurchaseObject()
         purchaseModel.email = "mariostsekis@blah.net"
-        purchaseModel.termsAgreed = "true"
+        purchaseModel.termsAgreed = true
         purchaseModel.firstName = "marios"
         purchaseModel.lastName = "tsekis"
         purchaseModel.hatCluster = "hubat.net"
