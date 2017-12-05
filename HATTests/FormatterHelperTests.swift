@@ -41,7 +41,7 @@ internal class FormatterHelperTests: XCTestCase {
         let minutes = calendar.component(.minute, from: result!)
         let seconds = calendar.component(.second, from: result!)
         let mseconds = calendar.component(.nanosecond, from: result!)
-
+        
         XCTAssertTrue(day == 14)
         XCTAssertTrue(month == 02)
         XCTAssertTrue(year == 2017)

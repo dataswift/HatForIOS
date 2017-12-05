@@ -46,7 +46,7 @@ internal class LoginServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
 
-        HATLoginService.formatAndVerifyDomain(userHATDomain: userDomain, successfulVerification: success, failedVerification: failed)
+        HATLoginService.formatAndVerifyDomain(userHATDomain: userDomain, verifiedDomains: [".hubofallthings.net"], successfulVerification: success, failedVerification: failed)
 
         waitForExpectations(timeout: 10) { error in
 

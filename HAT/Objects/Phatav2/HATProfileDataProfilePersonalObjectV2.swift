@@ -10,25 +10,15 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-public struct HATProfileDataProfilePersonalObjectV2: Codable, HATObject {
+public struct HATProfileDataProfilePersonalObjectV2: HATObject {
 
-    // MARK: - Variables
-    
-    /// Indicates if the object, HATProfileDataProfilePersonalObject, is private
-    public var `private`: Bool = true
-    
-    /// User's first name
-    public var first_name: String = ""
-    
-    /// User's last name
-    public var last_name: String = ""
-    
-    /// User's middle name
-    public var middle_name: String = ""
-    
-    /// User's preffered name
-    public var preferred_name: String = ""
-    
-    /// User's title
     public var title: String = ""
+    public var gender: String = ""
+    public var ageGroup: String = ""
+    public var middleName: String = ""
+    public var preferredName: String = ""
+    public var lastName: String = ""
+    public var nickName: String = ""
+    public var firstName: String = ""
+    public var birthDate: String = ""
 }

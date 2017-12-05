@@ -10,13 +10,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-public struct HATProfileDataProfileBlogObjectV2: Codable, HATObject {
+public struct HATProfileDataProfilePhotoObjectV2: HATObject {
 
-    // MARK: - Variables
-    
-    /// Indicates if the object, HATProfileDataProfileBlogObject, is private
-    public var `private`: Bool = true
-    
-    /// Link to user's profile in blog
-    public var link: String = ""
+    public var avatar: String = ""
 }

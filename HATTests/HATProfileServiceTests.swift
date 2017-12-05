@@ -17,110 +17,58 @@ import XCTest
 
 private struct Bodies {
     
-    static let profile: [[String: Any]] = [
-        [
-            "endpoint": "rumpelstaging/profile",
-            "recordId": "f53a6b46-871c-4f84-bd46-8cf0ad0176c3",
-            "data": [
-                "age": [
-                    "group": "",
-                    "private": true
-                ],
-                "blog": [
-                    "link": "",
-                    "private": true
-                ],
-                "nick": [
-                    "name": "",
-                    "private": true
-                ],
-                "about": [
-                    "body": "",
-                    "title": "",
-                    "private": true
-                ],
-                "birth": [
-                    "date": "",
-                    "private": true
-                ],
-                "gender": [
-                    "type": "",
-                    "private": true
-                ],
-                "google": [
-                    "link": "",
-                    "private": true
-                ],
-                "mobile": [
-                    "no": "",
-                    "private": true
-                ],
-                "private": false,
-                "twitter": [
-                    "link": "",
-                    "private": true
-                ],
-                "website": [
-                    "link": "",
-                    "private": true
-                ],
-                "youtube": [
-                    "link": "",
-                    "private": true
-                ],
-                "facebook": [
-                    "link": "",
-                    "private": true
-                ],
-                "linkedin": [
-                    "link": "",
-                    "private": true
-                ],
-                "personal": [
-                    "title": "Mr",
-                    "private": false,
-                    "last_name": "Guy",
-                    "first_name": "F1",
-                    "middle_name": "",
-                    "preferred_name": ""
-                ],
-                "home_phone": [
-                    "no": "",
-                    "private": true
-                ],
-                "dateCreated": 1508413511855,
-                "primary_email": [
-                    "value": "",
-                    "private": true
-                ],
-                "address_global": [
-                    "city": "",
-                    "county": "",
-                    "country": "",
-                    "private": true
-                ],
-                "address_details": [
-                    "no": "",
-                    "street": "",
-                    "private": true,
-                    "postcode": ""
-                ],
-                "fb_profile_photo": [
-                    "private": true
-                ],
-                "alternative_email": [
-                    "value": "",
-                    "private": true
-                ],
-                "emergency_contact": [
-                    "mobile": "",
-                    "private": true,
-                    "last_name": "",
-                    "first_name": "",
-                    "relationship": ""
-                ]
+    static let profile: [[String: Any]] = [[
+        "endpoint": "rumpel/profile",
+        "recordId": "43e39bd4-958f-4e49-ad47-1e2e1bc04034",
+        "data": [
+            "about": [
+                "body": "",
+                "title": ""
+            ],
+            "photo": [
+                "avatar": "https://testing.hubat.net/api/v2/files/content/rumpelhatgrey.png"
+            ],
+            "online": [
+                "blog": "",
+                "google": "",
+                "twitter": "",
+                "website": "",
+                "youtube": "",
+                "facebook": "",
+                "linkedin": ""
+            ],
+            "shared": false,
+            "address": [
+                "city": "",
+                "county": "",
+                "country": ""
+            ],
+            "contact": [
+                "mobile": "",
+                "landline": "",
+                "primaryEmail": "",
+                "alternativeEmail": ""
+            ],
+            "personal": [
+                "title": "Mr",
+                "gender": "male",
+                "ageGroup": "80",
+                "lastName": "Buggidy",
+                "nickName": "",
+                "birthDate": "",
+                "firstName": "Gus",
+                "middleName": "M",
+                "preferredName": ""
+            ],
+            "dateCreated": 1512385859634,
+            "emergencyContact": [
+                "mobile": "",
+                "lastName": "",
+                "firstName": "",
+                "relationship": ""
             ]
         ]
+    ]
     ]
 }
 
@@ -146,7 +94,7 @@ internal class HATProfileServiceTests: XCTestCase {
         
         func success(profile: HATProfileObjectV2) {
             
-            XCTAssertTrue(profile.data.age.`private` == true)
+            XCTAssertTrue(profile.data.personal.ageGroup == "80")
             expectationTest.fulfill()
         }
         

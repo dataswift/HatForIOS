@@ -10,13 +10,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-public struct HATProfileDataProfileGenderObjectV2: Codable, HATObject {
+public struct HATProfileDataProfileContactObjectV2: HATObject {
 
-    // MARK: - Variables
-    
-    /// Indicates if the object, HATProfileDataProfileGenderObject, is private
-    public var `private`: Bool = true
-    
-    /// The user's gender
-    public var type: String = ""
+    public var mobile: String = ""
+    public var landline: String = ""
+    public var primaryEmail: String = ""
+    public var alternativeEmail: String = ""
 }

@@ -10,14 +10,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-public struct HATProfileDataProfileAboutObjectV2: Codable, HATObject {
+public struct HATProfileDataProfileAboutObjectV2: HATObject {
 
-    /// The title of the about section
-    public var title: String = ""
-    
-    /// The body of the about section
     public var body: String = ""
-    
-    /// Is private
-    public var `private`: Bool = true
+    public var title: String = ""
 }

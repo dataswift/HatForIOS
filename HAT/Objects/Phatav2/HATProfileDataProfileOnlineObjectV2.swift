@@ -10,13 +10,13 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-public struct HATProfileDataProfileAgeObjectV2: Codable, HATObject {
+public struct HATProfileDataProfileOnlineObjectV2: HATObject {
 
-    // MARK: - Variables
-    
-    /// Indicates if the object, HATProfileDataProfileAgeObject, is private
-    public var `private`: Bool = true
-    
-    // The user's age
-    public var group: String = ""
+    public var blog: String = ""
+    public var google: String = ""
+    public var twitter: String = ""
+    public var website: String = ""
+    public var youtube: String = ""
+    public var facebook: String = ""
+    public var linkedin: String = ""
 }

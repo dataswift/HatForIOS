@@ -10,13 +10,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-public struct HATProfileDataProfileNickObjectV2: Codable, HATObject {
+public struct HATProfileDataProfileAddressObjectV2: HATObject {
 
-    // MARK: - Variables
-    
-    /// Indicates if the object, HATProfileDataProfileNickObject, is private
-    public var `private`: Bool = true
-    
-    /// The user's nickname
-    public var name: String = ""
+    public var city: String = ""
+    public var county: String = ""
+    public var country: String = ""
 }

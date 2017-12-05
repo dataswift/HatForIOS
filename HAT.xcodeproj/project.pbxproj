@@ -16,6 +16,20 @@
 		6020A7031E526BBF00D7DC04 /* LocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7021E526BBF00D7DC04 /* LocationServiceTests.swift */; };
 		6020A7061E52749700D7DC04 /* HATServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7051E52749700D7DC04 /* HATServiceTests.swift */; };
 		6020A7081E52803800D7DC04 /* HATAccountServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7071E52803800D7DC04 /* HATAccountServiceTests.swift */; };
+		602A12341FD6D4DA0010786B /* HATProfileDataProfileAboutObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A12331FD6D4D90010786B /* HATProfileDataProfileAboutObjectV2.swift */; };
+		602A12351FD6D4DA0010786B /* HATProfileDataProfileAboutObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A12331FD6D4D90010786B /* HATProfileDataProfileAboutObjectV2.swift */; };
+		602A12371FD6D5060010786B /* HATProfileDataProfilePhotoObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A12361FD6D5060010786B /* HATProfileDataProfilePhotoObjectV2.swift */; };
+		602A12381FD6D5060010786B /* HATProfileDataProfilePhotoObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A12361FD6D5060010786B /* HATProfileDataProfilePhotoObjectV2.swift */; };
+		602A123A1FD6D52A0010786B /* HATProfileDataProfileOnlineObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A12391FD6D52A0010786B /* HATProfileDataProfileOnlineObjectV2.swift */; };
+		602A123B1FD6D52A0010786B /* HATProfileDataProfileOnlineObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A12391FD6D52A0010786B /* HATProfileDataProfileOnlineObjectV2.swift */; };
+		602A123D1FD6D57F0010786B /* HATProfileDataProfileAddressObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A123C1FD6D57F0010786B /* HATProfileDataProfileAddressObjectV2.swift */; };
+		602A123E1FD6D57F0010786B /* HATProfileDataProfileAddressObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A123C1FD6D57F0010786B /* HATProfileDataProfileAddressObjectV2.swift */; };
+		602A12401FD6D5B10010786B /* HATProfileDataProfileContactObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A123F1FD6D5B10010786B /* HATProfileDataProfileContactObjectV2.swift */; };
+		602A12411FD6D5B10010786B /* HATProfileDataProfileContactObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A123F1FD6D5B10010786B /* HATProfileDataProfileContactObjectV2.swift */; };
+		602A12431FD6D5E50010786B /* HATProfileDataProfilePersonalObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A12421FD6D5E50010786B /* HATProfileDataProfilePersonalObjectV2.swift */; };
+		602A12441FD6D5E50010786B /* HATProfileDataProfilePersonalObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A12421FD6D5E50010786B /* HATProfileDataProfilePersonalObjectV2.swift */; };
+		602A12461FD6D6390010786B /* HATProfileDataProfileEmergencyContactObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A12451FD6D6390010786B /* HATProfileDataProfileEmergencyContactObjectV2.swift */; };
+		602A12471FD6D6390010786B /* HATProfileDataProfileEmergencyContactObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A12451FD6D6390010786B /* HATProfileDataProfileEmergencyContactObjectV2.swift */; };
 		602CB44C1E8BFC6900903F33 /* HATFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602CB44B1E8BFC6900903F33 /* HATFileService.swift */; };
 		602CB44D1E8C00F900903F33 /* FileUploadObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA45E51E8A7C5700ABB758 /* FileUploadObject.swift */; };
 		602CB44E1E8C00F900903F33 /* FileUploadObjectPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA45E61E8A7C5700ABB758 /* FileUploadObjectPermissions.swift */; };
@@ -114,48 +128,6 @@
 		60705E1C1FAB89F60064551C /* HATProfileObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E1A1FAB89EF0064551C /* HATProfileObjectV2.swift */; };
 		60705E1E1FAB8A4F0064551C /* HATProfileDataObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E1D1FAB8A4F0064551C /* HATProfileDataObjectV2.swift */; };
 		60705E1F1FAB8A4F0064551C /* HATProfileDataObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E1D1FAB8A4F0064551C /* HATProfileDataObjectV2.swift */; };
-		60705E211FAB8F280064551C /* HATProfileDataProfileWebsiteObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E201FAB8F280064551C /* HATProfileDataProfileWebsiteObjectV2.swift */; };
-		60705E221FAB8F280064551C /* HATProfileDataProfileWebsiteObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E201FAB8F280064551C /* HATProfileDataProfileWebsiteObjectV2.swift */; };
-		60705E241FAB8F940064551C /* HATProfileDataProfileNickObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E231FAB8F940064551C /* HATProfileDataProfileNickObjectV2.swift */; };
-		60705E251FAB8F940064551C /* HATProfileDataProfileNickObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E231FAB8F940064551C /* HATProfileDataProfileNickObjectV2.swift */; };
-		60705E271FAB8FB00064551C /* HATProfileDataProfilePrimaryEmailObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E261FAB8FB00064551C /* HATProfileDataProfilePrimaryEmailObjectV2.swift */; };
-		60705E281FAB8FB00064551C /* HATProfileDataProfilePrimaryEmailObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E261FAB8FB00064551C /* HATProfileDataProfilePrimaryEmailObjectV2.swift */; };
-		60705E2A1FAB8FC00064551C /* HATProfileDataProfileYoutubeObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E291FAB8FC00064551C /* HATProfileDataProfileYoutubeObjectV2.swift */; };
-		60705E2B1FAB8FC00064551C /* HATProfileDataProfileYoutubeObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E291FAB8FC00064551C /* HATProfileDataProfileYoutubeObjectV2.swift */; };
-		60705E2D1FAB8FDD0064551C /* HATProfileDataProfileAddressGlobalObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E2C1FAB8FDD0064551C /* HATProfileDataProfileAddressGlobalObjectV2.swift */; };
-		60705E2E1FAB8FDD0064551C /* HATProfileDataProfileAddressGlobalObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E2C1FAB8FDD0064551C /* HATProfileDataProfileAddressGlobalObjectV2.swift */; };
-		60705E301FAB8FF70064551C /* HATProfileDataProfileLinkedInObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E2F1FAB8FF70064551C /* HATProfileDataProfileLinkedInObjectV2.swift */; };
-		60705E311FAB8FF70064551C /* HATProfileDataProfileLinkedInObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E2F1FAB8FF70064551C /* HATProfileDataProfileLinkedInObjectV2.swift */; };
-		60705E331FAB90090064551C /* HATProfileDataProfileBirthObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E321FAB90090064551C /* HATProfileDataProfileBirthObjectV2.swift */; };
-		60705E341FAB90090064551C /* HATProfileDataProfileBirthObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E321FAB90090064551C /* HATProfileDataProfileBirthObjectV2.swift */; };
-		60705E361FAB901E0064551C /* HATProfileDataProfileHomePhoneObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E351FAB901E0064551C /* HATProfileDataProfileHomePhoneObjectV2.swift */; };
-		60705E371FAB901E0064551C /* HATProfileDataProfileHomePhoneObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E351FAB901E0064551C /* HATProfileDataProfileHomePhoneObjectV2.swift */; };
-		60705E391FAB90360064551C /* HATProfileDataProfileGoogleObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E381FAB90360064551C /* HATProfileDataProfileGoogleObjectV2.swift */; };
-		60705E3A1FAB90360064551C /* HATProfileDataProfileGoogleObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E381FAB90360064551C /* HATProfileDataProfileGoogleObjectV2.swift */; };
-		60705E3C1FAB904D0064551C /* HATProfileDataProfileAgeObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E3B1FAB904D0064551C /* HATProfileDataProfileAgeObjectV2.swift */; };
-		60705E3D1FAB904D0064551C /* HATProfileDataProfileAgeObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E3B1FAB904D0064551C /* HATProfileDataProfileAgeObjectV2.swift */; };
-		60705E3F1FAB908B0064551C /* HATProfileDataProfilePersonalObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E3E1FAB908B0064551C /* HATProfileDataProfilePersonalObjectV2.swift */; };
-		60705E401FAB908B0064551C /* HATProfileDataProfilePersonalObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E3E1FAB908B0064551C /* HATProfileDataProfilePersonalObjectV2.swift */; };
-		60705E421FAB909E0064551C /* HATProfileDataProfileBlogObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E411FAB909E0064551C /* HATProfileDataProfileBlogObjectV2.swift */; };
-		60705E431FAB909E0064551C /* HATProfileDataProfileBlogObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E411FAB909E0064551C /* HATProfileDataProfileBlogObjectV2.swift */; };
-		60705E451FAB90B30064551C /* HATProfileDataProfileFacebookObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E441FAB90B30064551C /* HATProfileDataProfileFacebookObjectV2.swift */; };
-		60705E461FAB90B30064551C /* HATProfileDataProfileFacebookObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E441FAB90B30064551C /* HATProfileDataProfileFacebookObjectV2.swift */; };
-		60705E481FAB90CB0064551C /* HATProfileDataProfileAddressDetailObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E471FAB90CB0064551C /* HATProfileDataProfileAddressDetailObjectV2.swift */; };
-		60705E491FAB90CB0064551C /* HATProfileDataProfileAddressDetailObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E471FAB90CB0064551C /* HATProfileDataProfileAddressDetailObjectV2.swift */; };
-		60705E4B1FAB90DF0064551C /* HATProfileDataProfileEmergencyContactObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E4A1FAB90DF0064551C /* HATProfileDataProfileEmergencyContactObjectV2.swift */; };
-		60705E4C1FAB90DF0064551C /* HATProfileDataProfileEmergencyContactObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E4A1FAB90DF0064551C /* HATProfileDataProfileEmergencyContactObjectV2.swift */; };
-		60705E4E1FAB90F50064551C /* HATProfileDataProfileAlternativeEmailObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E4D1FAB90F50064551C /* HATProfileDataProfileAlternativeEmailObjectV2.swift */; };
-		60705E4F1FAB90F50064551C /* HATProfileDataProfileAlternativeEmailObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E4D1FAB90F50064551C /* HATProfileDataProfileAlternativeEmailObjectV2.swift */; };
-		60705E511FAB91200064551C /* HATProfileDataProfileFacebookProfilePhotoObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E501FAB91200064551C /* HATProfileDataProfileFacebookProfilePhotoObjectV2.swift */; };
-		60705E521FAB91200064551C /* HATProfileDataProfileFacebookProfilePhotoObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E501FAB91200064551C /* HATProfileDataProfileFacebookProfilePhotoObjectV2.swift */; };
-		60705E541FAB91380064551C /* HATProfileDataProfileTwitterObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E531FAB91380064551C /* HATProfileDataProfileTwitterObjectV2.swift */; };
-		60705E551FAB91380064551C /* HATProfileDataProfileTwitterObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E531FAB91380064551C /* HATProfileDataProfileTwitterObjectV2.swift */; };
-		60705E571FAB91500064551C /* HATProfileDataProfileAboutObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E561FAB91500064551C /* HATProfileDataProfileAboutObjectV2.swift */; };
-		60705E581FAB91500064551C /* HATProfileDataProfileAboutObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E561FAB91500064551C /* HATProfileDataProfileAboutObjectV2.swift */; };
-		60705E5A1FAB91670064551C /* HATProfileDataProfileMobileObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E591FAB91670064551C /* HATProfileDataProfileMobileObjectV2.swift */; };
-		60705E5B1FAB91670064551C /* HATProfileDataProfileMobileObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E591FAB91670064551C /* HATProfileDataProfileMobileObjectV2.swift */; };
-		60705E5D1FAB917C0064551C /* HATProfileDataProfileGenderObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E5C1FAB917C0064551C /* HATProfileDataProfileGenderObjectV2.swift */; };
-		60705E5E1FAB917C0064551C /* HATProfileDataProfileGenderObjectV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E5C1FAB917C0064551C /* HATProfileDataProfileGenderObjectV2.swift */; };
 		60705E601FAB9E720064551C /* HATProfileServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60705E5F1FAB9E720064551C /* HATProfileServiceTests.swift */; };
 		607C869A1F8394F200521B20 /* DataOfferRequiredDataDefinitionBundleFiltersV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607C86991F8394F200521B20 /* DataOfferRequiredDataDefinitionBundleFiltersV2.swift */; };
 		607C869B1F8394F200521B20 /* DataOfferRequiredDataDefinitionBundleFiltersV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607C86991F8394F200521B20 /* DataOfferRequiredDataDefinitionBundleFiltersV2.swift */; };
@@ -359,6 +331,13 @@
 		6020A7021E526BBF00D7DC04 /* LocationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServiceTests.swift; sourceTree = "<group>"; };
 		6020A7051E52749700D7DC04 /* HATServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATServiceTests.swift; sourceTree = "<group>"; };
 		6020A7071E52803800D7DC04 /* HATAccountServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATAccountServiceTests.swift; sourceTree = "<group>"; };
+		602A12331FD6D4D90010786B /* HATProfileDataProfileAboutObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileAboutObjectV2.swift; sourceTree = "<group>"; };
+		602A12361FD6D5060010786B /* HATProfileDataProfilePhotoObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfilePhotoObjectV2.swift; sourceTree = "<group>"; };
+		602A12391FD6D52A0010786B /* HATProfileDataProfileOnlineObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileOnlineObjectV2.swift; sourceTree = "<group>"; };
+		602A123C1FD6D57F0010786B /* HATProfileDataProfileAddressObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileAddressObjectV2.swift; sourceTree = "<group>"; };
+		602A123F1FD6D5B10010786B /* HATProfileDataProfileContactObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileContactObjectV2.swift; sourceTree = "<group>"; };
+		602A12421FD6D5E50010786B /* HATProfileDataProfilePersonalObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfilePersonalObjectV2.swift; sourceTree = "<group>"; };
+		602A12451FD6D6390010786B /* HATProfileDataProfileEmergencyContactObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileEmergencyContactObjectV2.swift; sourceTree = "<group>"; };
 		602CB44B1E8BFC6900903F33 /* HATFileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATFileService.swift; sourceTree = "<group>"; };
 		602D16C61E82B1CA00C53A5E /* HATConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATConstants.swift; sourceTree = "<group>"; };
 		602D16C81E82B1D700C53A5E /* HATAccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATAccountService.swift; sourceTree = "<group>"; };
@@ -433,27 +412,6 @@
 		606BBA3A1E546DF000ECBA6B /* DataPlugsServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPlugsServiceTests.swift; sourceTree = "<group>"; };
 		60705E1A1FAB89EF0064551C /* HATProfileObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileObjectV2.swift; sourceTree = "<group>"; };
 		60705E1D1FAB8A4F0064551C /* HATProfileDataObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataObjectV2.swift; sourceTree = "<group>"; };
-		60705E201FAB8F280064551C /* HATProfileDataProfileWebsiteObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileWebsiteObjectV2.swift; sourceTree = "<group>"; };
-		60705E231FAB8F940064551C /* HATProfileDataProfileNickObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileNickObjectV2.swift; sourceTree = "<group>"; };
-		60705E261FAB8FB00064551C /* HATProfileDataProfilePrimaryEmailObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfilePrimaryEmailObjectV2.swift; sourceTree = "<group>"; };
-		60705E291FAB8FC00064551C /* HATProfileDataProfileYoutubeObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileYoutubeObjectV2.swift; sourceTree = "<group>"; };
-		60705E2C1FAB8FDD0064551C /* HATProfileDataProfileAddressGlobalObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileAddressGlobalObjectV2.swift; sourceTree = "<group>"; };
-		60705E2F1FAB8FF70064551C /* HATProfileDataProfileLinkedInObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileLinkedInObjectV2.swift; sourceTree = "<group>"; };
-		60705E321FAB90090064551C /* HATProfileDataProfileBirthObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileBirthObjectV2.swift; sourceTree = "<group>"; };
-		60705E351FAB901E0064551C /* HATProfileDataProfileHomePhoneObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileHomePhoneObjectV2.swift; sourceTree = "<group>"; };
-		60705E381FAB90360064551C /* HATProfileDataProfileGoogleObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileGoogleObjectV2.swift; sourceTree = "<group>"; };
-		60705E3B1FAB904D0064551C /* HATProfileDataProfileAgeObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileAgeObjectV2.swift; sourceTree = "<group>"; };
-		60705E3E1FAB908B0064551C /* HATProfileDataProfilePersonalObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfilePersonalObjectV2.swift; sourceTree = "<group>"; };
-		60705E411FAB909E0064551C /* HATProfileDataProfileBlogObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileBlogObjectV2.swift; sourceTree = "<group>"; };
-		60705E441FAB90B30064551C /* HATProfileDataProfileFacebookObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileFacebookObjectV2.swift; sourceTree = "<group>"; };
-		60705E471FAB90CB0064551C /* HATProfileDataProfileAddressDetailObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileAddressDetailObjectV2.swift; sourceTree = "<group>"; };
-		60705E4A1FAB90DF0064551C /* HATProfileDataProfileEmergencyContactObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileEmergencyContactObjectV2.swift; sourceTree = "<group>"; };
-		60705E4D1FAB90F50064551C /* HATProfileDataProfileAlternativeEmailObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileAlternativeEmailObjectV2.swift; sourceTree = "<group>"; };
-		60705E501FAB91200064551C /* HATProfileDataProfileFacebookProfilePhotoObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileFacebookProfilePhotoObjectV2.swift; sourceTree = "<group>"; };
-		60705E531FAB91380064551C /* HATProfileDataProfileTwitterObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileTwitterObjectV2.swift; sourceTree = "<group>"; };
-		60705E561FAB91500064551C /* HATProfileDataProfileAboutObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileAboutObjectV2.swift; sourceTree = "<group>"; };
-		60705E591FAB91670064551C /* HATProfileDataProfileMobileObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileMobileObjectV2.swift; sourceTree = "<group>"; };
-		60705E5C1FAB917C0064551C /* HATProfileDataProfileGenderObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileGenderObjectV2.swift; sourceTree = "<group>"; };
 		60705E5F1FAB9E720064551C /* HATProfileServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileServiceTests.swift; sourceTree = "<group>"; };
 		607C86991F8394F200521B20 /* DataOfferRequiredDataDefinitionBundleFiltersV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOfferRequiredDataDefinitionBundleFiltersV2.swift; sourceTree = "<group>"; };
 		60812BE81FA782F200C91120 /* HATFeedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATFeedObject.swift; sourceTree = "<group>"; };
@@ -883,27 +841,13 @@
 			isa = PBXGroup;
 			children = (
 				60705E1D1FAB8A4F0064551C /* HATProfileDataObjectV2.swift */,
-				60705E561FAB91500064551C /* HATProfileDataProfileAboutObjectV2.swift */,
-				60705E471FAB90CB0064551C /* HATProfileDataProfileAddressDetailObjectV2.swift */,
-				60705E2C1FAB8FDD0064551C /* HATProfileDataProfileAddressGlobalObjectV2.swift */,
-				60705E3B1FAB904D0064551C /* HATProfileDataProfileAgeObjectV2.swift */,
-				60705E4D1FAB90F50064551C /* HATProfileDataProfileAlternativeEmailObjectV2.swift */,
-				60705E321FAB90090064551C /* HATProfileDataProfileBirthObjectV2.swift */,
-				60705E411FAB909E0064551C /* HATProfileDataProfileBlogObjectV2.swift */,
-				60705E4A1FAB90DF0064551C /* HATProfileDataProfileEmergencyContactObjectV2.swift */,
-				60705E441FAB90B30064551C /* HATProfileDataProfileFacebookObjectV2.swift */,
-				60705E501FAB91200064551C /* HATProfileDataProfileFacebookProfilePhotoObjectV2.swift */,
-				60705E5C1FAB917C0064551C /* HATProfileDataProfileGenderObjectV2.swift */,
-				60705E381FAB90360064551C /* HATProfileDataProfileGoogleObjectV2.swift */,
-				60705E351FAB901E0064551C /* HATProfileDataProfileHomePhoneObjectV2.swift */,
-				60705E2F1FAB8FF70064551C /* HATProfileDataProfileLinkedInObjectV2.swift */,
-				60705E591FAB91670064551C /* HATProfileDataProfileMobileObjectV2.swift */,
-				60705E231FAB8F940064551C /* HATProfileDataProfileNickObjectV2.swift */,
-				60705E3E1FAB908B0064551C /* HATProfileDataProfilePersonalObjectV2.swift */,
-				60705E261FAB8FB00064551C /* HATProfileDataProfilePrimaryEmailObjectV2.swift */,
-				60705E531FAB91380064551C /* HATProfileDataProfileTwitterObjectV2.swift */,
-				60705E201FAB8F280064551C /* HATProfileDataProfileWebsiteObjectV2.swift */,
-				60705E291FAB8FC00064551C /* HATProfileDataProfileYoutubeObjectV2.swift */,
+				602A12451FD6D6390010786B /* HATProfileDataProfileEmergencyContactObjectV2.swift */,
+				602A12421FD6D5E50010786B /* HATProfileDataProfilePersonalObjectV2.swift */,
+				602A123F1FD6D5B10010786B /* HATProfileDataProfileContactObjectV2.swift */,
+				602A123C1FD6D57F0010786B /* HATProfileDataProfileAddressObjectV2.swift */,
+				602A12391FD6D52A0010786B /* HATProfileDataProfileOnlineObjectV2.swift */,
+				602A12361FD6D5060010786B /* HATProfileDataProfilePhotoObjectV2.swift */,
+				602A12331FD6D4D90010786B /* HATProfileDataProfileAboutObjectV2.swift */,
 				60705E1A1FAB89EF0064551C /* HATProfileObjectV2.swift */,
 			);
 			path = Phatav2;
@@ -1280,7 +1224,9 @@
 				60854FD81F89873E00DC2BAC /* HATFitbitSleepLevelsSummaryObject.swift in Sources */,
 				601431EF1FAF8CE600B4C1DB /* FacebookV2Object.swift in Sources */,
 				602D17101E82B23000C53A5E /* HATSystemStatusKindObject.swift in Sources */,
+				602A12401FD6D5B10010786B /* HATProfileDataProfileContactObjectV2.swift in Sources */,
 				602D16FB1E82B21300C53A5E /* HATProviderKindObject.swift in Sources */,
+				602A12371FD6D5060010786B /* HATProfileDataProfilePhotoObjectV2.swift in Sources */,
 				60854FED1F89918F00DC2BAC /* HATFitbitStatsObject.swift in Sources */,
 				602D17181E82B23900C53A5E /* HATTwitterDataTweetsUsersSocialFeedObject.swift in Sources */,
 				602D16FA1E82B21300C53A5E /* HATProviderCategoryObject.swift in Sources */,
@@ -1296,16 +1242,13 @@
 				60F51C2D1F8992F100F99C47 /* HATFitbitStatsBestObject.swift in Sources */,
 				60B3C83D1F828E3C002E7AA4 /* DataOfferRequiredDataDefinitionObjectV2.swift in Sources */,
 				60F51C3F1F899C8700F99C47 /* HATFitbitActivityManualValuesObject.swift in Sources */,
-				60705E571FAB91500064551C /* HATProfileDataProfileAboutObjectV2.swift in Sources */,
 				602D16DC1E82B1E700C53A5E /* HATErrorHelper.swift in Sources */,
-				60705E4B1FAB90DF0064551C /* HATProfileDataProfileEmergencyContactObjectV2.swift in Sources */,
 				60CDCBCC1EAA63F500035882 /* HATProfileDataProfileHomePhoneObject.swift in Sources */,
 				602D16DB1E82B1E700C53A5E /* HATNetworkHelper.swift in Sources */,
 				60854FF01F8991BD00DC2BAC /* HATFitbitStatsTotalObject.swift in Sources */,
 				602D16D71E82B1D700C53A5E /* HATTwitterService.swift in Sources */,
 				60CDCBDC1EAA648700035882 /* HATProfileDataProfileEmergencyContactObject.swift in Sources */,
 				60CDCBD61EAA644900035882 /* HATProfileDataProfileBlogObject.swift in Sources */,
-				60705E2A1FAB8FC00064551C /* HATProfileDataProfileYoutubeObjectV2.swift in Sources */,
 				60812BEF1FA7852D00C91120 /* HATFeedContentObject.swift in Sources */,
 				60314E721F388541004383AA /* HATProfileInfoObject.swift in Sources */,
 				60CDCBC01EAA637300035882 /* HATProfileDataProfileNickObject.swift in Sources */,
@@ -1319,17 +1262,16 @@
 				602D17111E82B23000C53A5E /* HATSystemStatusObject.swift in Sources */,
 				6041474F1EE1AF64008C9293 /* HATFacebookProfileImageObject.swift in Sources */,
 				60FB240E1F87C839003F446E /* HATDataPlugProviderObject.swift in Sources */,
+				602A123D1FD6D57F0010786B /* HATProfileDataProfileAddressObjectV2.swift in Sources */,
 				602D17191E82B23900C53A5E /* HATTwitterSocialFeedObject.swift in Sources */,
 				60854FC81F8944BD00DC2BAC /* HATFitbitService.swift in Sources */,
 				602D16DD1E82B1E700C53A5E /* HATFormatterHelper.swift in Sources */,
 				60314E7A1F38925E004383AA /* HATLivingInfoObject.swift in Sources */,
 				60854FD51F8986BC00DC2BAC /* HATFitbitSleepLevelsDataObject.swift in Sources */,
-				60705E541FAB91380064551C /* HATProfileDataProfileTwitterObjectV2.swift in Sources */,
 				602D16F41E82B20900C53A5E /* HATFacebookDataSocialFeedObject.swift in Sources */,
 				60CDCBC21EAA638E00035882 /* HATProfileDataProfilePrimaryEmailObject.swift in Sources */,
 				604AD5561F7EDF8500841502 /* StuffToRememberObject.swift in Sources */,
 				60CDCBD81EAA645500035882 /* HATProfileDataProfileFacebookObject.swift in Sources */,
-				60705E271FAB8FB00064551C /* HATProfileDataProfilePrimaryEmailObjectV2.swift in Sources */,
 				6038F1281FB5A9CD004BBE36 /* PurchaseObject.swift in Sources */,
 				60D8DAA81F31F7500055CEAC /* HATNotificationsService.swift in Sources */,
 				609863271FA78071003309B7 /* HATFeedService.swift in Sources */,
@@ -1342,28 +1284,25 @@
 				60F51C331F8993C400F99C47 /* HATFitbitStatsLifetimeStatsObject.swift in Sources */,
 				60854FCC1F89665100DC2BAC /* HATFitbitWeightObject.swift in Sources */,
 				60DE1DD91F34AB9300E031F6 /* HATDataDebitsService.swift in Sources */,
-				60705E511FAB91200064551C /* HATProfileDataProfileFacebookProfilePhotoObjectV2.swift in Sources */,
 				602D17161E82B23900C53A5E /* HATTwitterDataSocialFeedObject.swift in Sources */,
 				60F51C3C1F899BDC00F99C47 /* HATFitbitActivityHeartRateZoneObject.swift in Sources */,
 				602D17011E82B21E00C53A5E /* HATLocationsDataLocationsObject.swift in Sources */,
 				60812BF21FA7856700C91120 /* HATFeedContentMediaObject.swift in Sources */,
 				60F6FF421FB79361000B8A2E /* HATFeedDateObject.swift in Sources */,
-				60705E5D1FAB917C0064551C /* HATProfileDataProfileGenderObjectV2.swift in Sources */,
 				600F10B81F5EC383001D21E7 /* StringExtension.swift in Sources */,
 				60CDCBC81EAA63D000035882 /* HATProfileDataProfileLinkedInObject.swift in Sources */,
-				60705E451FAB90B30064551C /* HATProfileDataProfileFacebookObjectV2.swift in Sources */,
 				602E4DA61F0111F400C5FF31 /* DataOfferObject.swift in Sources */,
 				60854FEA1F898E9200DC2BAC /* HATFitbitDailyActivityDistanceObject.swift in Sources */,
 				60705E1E1FAB8A4F0064551C /* HATProfileDataObjectV2.swift in Sources */,
-				60705E241FAB8F940064551C /* HATProfileDataProfileNickObjectV2.swift in Sources */,
 				602D170A1E82B22700C53A5E /* HATNotesData.swift in Sources */,
-				60705E391FAB90360064551C /* HATProfileDataProfileGoogleObjectV2.swift in Sources */,
 				602D16D51E82B1D700C53A5E /* HATNotableService.swift in Sources */,
 				60BA45E81E8A7C5700ABB758 /* FileUploadObject.swift in Sources */,
 				60854FE41F898BC000DC2BAC /* HATFitbitProfileTopBadgesObject.swift in Sources */,
 				60B2C9401FACBE0000404DBD /* HATLocationsV2DataObject.swift in Sources */,
 				60F51C301F89938200F99C47 /* HATFitbitStatsLifetimeObject.swift in Sources */,
 				604B91741F73FDAE0099A58A /* HatApiType.swift in Sources */,
+				602A123A1FD6D52A0010786B /* HATProfileDataProfileOnlineObjectV2.swift in Sources */,
+				602A12461FD6D6390010786B /* HATProfileDataProfileEmergencyContactObjectV2.swift in Sources */,
 				60CDCBE61EAA656400035882 /* HATProfileDataProfileAboutObject.swift in Sources */,
 				60BA45EA1E8A7C5700ABB758 /* FileUploadObjectStatus.swift in Sources */,
 				60854FE71F898DFF00DC2BAC /* HATFitbitDailyActivityObject.swift in Sources */,
@@ -1374,16 +1313,11 @@
 				60854FE11F898B7200DC2BAC /* HATFitbitProfileFeaturesObject.swift in Sources */,
 				60CDCBE01EAA64B700035882 /* HATProfileDataProfileFacebookProfilePhotoObject.swift in Sources */,
 				602D17091E82B22700C53A5E /* HATNotesAuthorData.swift in Sources */,
-				60705E301FAB8FF70064551C /* HATProfileDataProfileLinkedInObjectV2.swift in Sources */,
-				60705E3F1FAB908B0064551C /* HATProfileDataProfilePersonalObjectV2.swift in Sources */,
 				6098205A1ED452150036D1B3 /* HATProfileService.swift in Sources */,
 				60854FDB1F89877F00DC2BAC /* HATFitbitSleepLevelsSummaryCountObject.swift in Sources */,
 				602D16F21E82B20900C53A5E /* HATFacebookDataPostsPrivacySocialFeedObject.swift in Sources */,
 				602E4DA81F0111F400C5FF31 /* DataOfferRequiredDataDefinitionDataSetsFieldsObject.swift in Sources */,
 				60CDCBC61EAA63BE00035882 /* HATProfileDataProfileAddressGlobalObject.swift in Sources */,
-				60705E421FAB909E0064551C /* HATProfileDataProfileBlogObjectV2.swift in Sources */,
-				60705E5A1FAB91670064551C /* HATProfileDataProfileMobileObjectV2.swift in Sources */,
-				60705E481FAB90CB0064551C /* HATProfileDataProfileAddressDetailObjectV2.swift in Sources */,
 				602D16D31E82B1D700C53A5E /* HATLocationService.swift in Sources */,
 				602E4D9B1F01118500C5FF31 /* HATDataOffersService.swift in Sources */,
 				602D16D01E82B1D700C53A5E /* HATAccountService.swift in Sources */,
@@ -1394,20 +1328,19 @@
 				60CDCBDE1EAA649C00035882 /* HATProfileDataProfileAlternativeEmailObject.swift in Sources */,
 				60854FDE1F89895600DC2BAC /* HATFitbitProfileObject.swift in Sources */,
 				60CDCBD01EAA641800035882 /* HATProfileDataProfileAgeObject.swift in Sources */,
-				60705E361FAB901E0064551C /* HATProfileDataProfileHomePhoneObjectV2.swift in Sources */,
 				602D16F11E82B20900C53A5E /* HATFacebookDataPostsFromSocialFeedObject.swift in Sources */,
 				60D8DAAD1F31F83D0055CEAC /* NotificationNoticeObject.swift in Sources */,
 				60CDCBCE1EAA640600035882 /* HATProfileDataProfileGoogleObject.swift in Sources */,
 				602E4DB11F01187D00C5FF31 /* DataOfferClaimObject.swift in Sources */,
 				602D17031E82B21E00C53A5E /* HATLocationsObject.swift in Sources */,
-				60705E331FAB90090064551C /* HATProfileDataProfileBirthObjectV2.swift in Sources */,
 				60F51C361F89957C00F99C47 /* HATFitbitActivityObject.swift in Sources */,
 				602CB44C1E8BFC6900903F33 /* HATFileService.swift in Sources */,
+				602A12431FD6D5E50010786B /* HATProfileDataProfilePersonalObjectV2.swift in Sources */,
+				602A12341FD6D4DA0010786B /* HATProfileDataProfileAboutObjectV2.swift in Sources */,
 				60CDCBB81EAA620100035882 /* HATProfileObject.swift in Sources */,
 				602E4DAA1F0111F400C5FF31 /* DataOfferRequiredDataDefinitionDataSetsObject.swift in Sources */,
 				60CDCBBE1EAA635700035882 /* HATProfileDataProfileWebsiteObject.swift in Sources */,
 				602D16D11E82B1D700C53A5E /* HATDataPlugsService.swift in Sources */,
-				60705E3C1FAB904D0064551C /* HATProfileDataProfileAgeObjectV2.swift in Sources */,
 				60CDCBDA1EAA647500035882 /* HATProfileDataProfileAddressDetailObject.swift in Sources */,
 				606B55A11F1E6ADB004B5D4D /* DataOfferRewardsCashValueObject.swift in Sources */,
 				60CDCBCA1EAA63E200035882 /* HATProfileDataProfileBirthObject.swift in Sources */,
@@ -1419,13 +1352,10 @@
 				60CDCBC41EAA63A100035882 /* HATProfileDataProfileYoutubeObject.swift in Sources */,
 				60CDCBE21EAA654A00035882 /* HATProfileDataProfileTwitterObject.swift in Sources */,
 				602D170D1E82B22700C53A5E /* HATNotesPhotoData.swift in Sources */,
-				60705E211FAB8F280064551C /* HATProfileDataProfileWebsiteObjectV2.swift in Sources */,
-				60705E4E1FAB90F50064551C /* HATProfileDataProfileAlternativeEmailObjectV2.swift in Sources */,
 				60CDCBBC1EAA62D200035882 /* HATProfileDataProfileObject.swift in Sources */,
 				60854FCF1F89853900DC2BAC /* HATFitbitSleepObject.swift in Sources */,
 				602D16C71E82B1CA00C53A5E /* HATConstants.swift in Sources */,
 				60314E6E1F387573004383AA /* UKSpecificInfo.swift in Sources */,
-				60705E2D1FAB8FDD0064551C /* HATProfileDataProfileAddressGlobalObjectV2.swift in Sources */,
 				602D16FD1E82B21300C53A5E /* HATProviderPaymentObject.swift in Sources */,
 				60CDCBE41EAA655900035882 /* HATProfileDataProfileMobileObject.swift in Sources */,
 				602D16F51E82B20900C53A5E /* HATFacebookSocialFeedObject.swift in Sources */,
@@ -1442,7 +1372,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60705E401FAB908B0064551C /* HATProfileDataProfilePersonalObjectV2.swift in Sources */,
 				60F51C2E1F8992F400F99C47 /* HATFitbitStatsBestObject.swift in Sources */,
 				6020A7031E526BBF00D7DC04 /* LocationServiceTests.swift in Sources */,
 				60DDBB241E82F544007CDAFB /* HATProviderCategoryObject.swift in Sources */,
@@ -1450,11 +1379,9 @@
 				6050BF041ED5B2DD00984EEF /* HATProfileEducationObject.swift in Sources */,
 				606375AD1E536DA300F0D1B1 /* NotableServiceTests.swift in Sources */,
 				60705E601FAB9E720064551C /* HATProfileServiceTests.swift in Sources */,
-				60705E341FAB90090064551C /* HATProfileDataProfileBirthObjectV2.swift in Sources */,
 				60CDCBFD1EAB6E0700035882 /* HATProfileDataProfileAgeObject.swift in Sources */,
 				60D8DAAF1F31F8420055CEAC /* NotificationNoticeObject.swift in Sources */,
 				60DDBB131E82F52D007CDAFB /* HATNetworkHelper.swift in Sources */,
-				60705E4C1FAB90DF0064551C /* HATProfileDataProfileEmergencyContactObjectV2.swift in Sources */,
 				6038F12C1FB5AA33004BBE36 /* PurchaseMembershipObject.swift in Sources */,
 				609863281FA78071003309B7 /* HATFeedService.swift in Sources */,
 				60705E1C1FAB89F60064551C /* HATProfileObjectV2.swift in Sources */,
@@ -1464,16 +1391,17 @@
 				60854FE21F898B7200DC2BAC /* HATFitbitProfileFeaturesObject.swift in Sources */,
 				60DDBB2C1E82F548007CDAFB /* HATFacebookDataSocialFeedObject.swift in Sources */,
 				60F51C3A1F899B6600F99C47 /* HATFitbitActivityLevelObject.swift in Sources */,
+				602A12351FD6D4DA0010786B /* HATProfileDataProfileAboutObjectV2.swift in Sources */,
 				60854FE81F898DFF00DC2BAC /* HATFitbitDailyActivityObject.swift in Sources */,
 				60CDCBF21EAB6E0700035882 /* HATProfileObject.swift in Sources */,
 				60EDD0211F98DDDF00BE24B3 /* HATDataDebitsService.swift in Sources */,
 				60DDBB191E82F530007CDAFB /* HATTwitterSocialFeedObject.swift in Sources */,
 				60DDBB1D1E82F539007CDAFB /* HATNotesData.swift in Sources */,
-				60705E461FAB90B30064551C /* HATProfileDataProfileFacebookObjectV2.swift in Sources */,
 				60854FE51F898BC000DC2BAC /* HATFitbitProfileTopBadgesObject.swift in Sources */,
 				60854FDC1F89877F00DC2BAC /* HATFitbitSleepLevelsSummaryCountObject.swift in Sources */,
 				60DDBB141E82F52D007CDAFB /* HATErrorHelper.swift in Sources */,
 				60DDBB161E82F530007CDAFB /* HATTwitterDataSocialFeedObject.swift in Sources */,
+				602A123E1FD6D57F0010786B /* HATProfileDataProfileAddressObjectV2.swift in Sources */,
 				60CDCC001EAB6E0700035882 /* HATProfileDataProfileFacebookObject.swift in Sources */,
 				60DDBB221E82F53F007CDAFB /* HATLocationsDataObject.swift in Sources */,
 				60D8DAAE1F31F8420055CEAC /* NotificationObject.swift in Sources */,
@@ -1482,22 +1410,18 @@
 				606375A71E534C2400F0D1B1 /* Structures.swift in Sources */,
 				60DDBB331E82F54F007CDAFB /* HATSocialFeedObject.swift in Sources */,
 				606375AB1E536B1500F0D1B1 /* TwitterServiceTests.swift in Sources */,
-				60705E581FAB91500064551C /* HATProfileDataProfileAboutObjectV2.swift in Sources */,
 				60DDBB1A1E82F532007CDAFB /* HATSystemStatusKindObject.swift in Sources */,
 				60EDD0221F98DE5D00BE24B3 /* DataDebitObject.swift in Sources */,
 				60EDD0201F98DC9000BE24B3 /* DataDebitsServiceTests.swift in Sources */,
 				60DDBB301E82F54C007CDAFB /* HATDataPlugObject.swift in Sources */,
-				60705E311FAB8FF70064551C /* HATProfileDataProfileLinkedInObjectV2.swift in Sources */,
 				60DDBB171E82F530007CDAFB /* HATTwitterDataTweetsSocialFeedObject.swift in Sources */,
 				60854FF41F89921300DC2BAC /* HATFitbitStatsTotalStatsObject.swift in Sources */,
 				60812BF51FA787BD00C91120 /* HATFeedServiceTests.swift in Sources */,
 				60DDBB1F1E82F539007CDAFB /* HATNotesNotablesData.swift in Sources */,
 				60CDCC011EAB6E0700035882 /* HATProfileDataProfileAddressDetailObject.swift in Sources */,
 				60812BF31FA7856700C91120 /* HATFeedContentMediaObject.swift in Sources */,
-				60705E2B1FAB8FC00064551C /* HATProfileDataProfileYoutubeObjectV2.swift in Sources */,
 				60EDD0181F98D89B00BE24B3 /* DataDebitBundleObject.swift in Sources */,
 				60F51C371F89957C00F99C47 /* HATFitbitActivityObject.swift in Sources */,
-				60705E5E1FAB917C0064551C /* HATProfileDataProfileGenderObjectV2.swift in Sources */,
 				602CB4511E8C02D600903F33 /* HATFileService.swift in Sources */,
 				602E4DA71F0111F400C5FF31 /* DataOfferObject.swift in Sources */,
 				60CDCC031EAB6E0700035882 /* HATProfileDataProfileAlternativeEmailObject.swift in Sources */,
@@ -1509,8 +1433,8 @@
 				6038F1291FB5A9CD004BBE36 /* PurchaseObject.swift in Sources */,
 				60DDBB231E82F53F007CDAFB /* HATLocationsObject.swift in Sources */,
 				6050BF071ED5B2E500984EEF /* HATProfileService.swift in Sources */,
-				60705E431FAB909E0064551C /* HATProfileDataProfileBlogObjectV2.swift in Sources */,
 				607C869B1F8394F200521B20 /* DataOfferRequiredDataDefinitionBundleFiltersV2.swift in Sources */,
+				602A123B1FD6D52A0010786B /* HATProfileDataProfileOnlineObjectV2.swift in Sources */,
 				60DDBB2D1E82F548007CDAFB /* HATFacebookSocialFeedObject.swift in Sources */,
 				60CDCBF61EAB6E0700035882 /* HATProfileDataProfilePrimaryEmailObject.swift in Sources */,
 				60CDCBF91EAB6E0700035882 /* HATProfileDataProfileLinkedInObject.swift in Sources */,
@@ -1524,11 +1448,8 @@
 				60DDBB151E82F52D007CDAFB /* HATFormatterHelper.swift in Sources */,
 				604AD5571F7EDF8500841502 /* StuffToRememberObject.swift in Sources */,
 				60CDCC021EAB6E0700035882 /* HATProfileDataProfileEmergencyContactObject.swift in Sources */,
-				60705E4F1FAB90F50064551C /* HATProfileDataProfileAlternativeEmailObjectV2.swift in Sources */,
 				6020A7081E52803800D7DC04 /* HATAccountServiceTests.swift in Sources */,
-				60705E3D1FAB904D0064551C /* HATProfileDataProfileAgeObjectV2.swift in Sources */,
 				602E4DB21F01187D00C5FF31 /* DataOfferClaimObject.swift in Sources */,
-				60705E281FAB8FB00064551C /* HATProfileDataProfilePrimaryEmailObjectV2.swift in Sources */,
 				60DDBB111E82F528007CDAFB /* HATService.swift in Sources */,
 				60DDBB0E1E82F528007CDAFB /* HATFacebookService.swift in Sources */,
 				60DDBB271E82F544007CDAFB /* HATProviderPaymentObject.swift in Sources */,
@@ -1537,20 +1458,19 @@
 				600995C81EBCC7DC007F9330 /* HATTokenHelper.swift in Sources */,
 				60DDBB2A1E82F548007CDAFB /* HATFacebookDataPostsPrivacySocialFeedObject.swift in Sources */,
 				60DDBB211E82F53F007CDAFB /* HATLocationsDataLocationsObject.swift in Sources */,
+				602A12411FD6D5B10010786B /* HATProfileDataProfileContactObjectV2.swift in Sources */,
 				6020A7061E52749700D7DC04 /* HATServiceTests.swift in Sources */,
 				6050BF051ED5B2E000984EEF /* HATNationalityObject.swift in Sources */,
 				60C463991EE6EA9E00FEC458 /* HATFacebookProfileImageObject.swift in Sources */,
 				60F6FF431FB79361000B8A2E /* HATFeedDateObject.swift in Sources */,
+				602A12471FD6D6390010786B /* HATProfileDataProfileEmergencyContactObjectV2.swift in Sources */,
 				60314E6F1F387577004383AA /* UKSpecificInfo.swift in Sources */,
 				60F51C451F89A25D00F99C47 /* FitbitServiceTests.swift in Sources */,
 				60DDBB0C1E82F528007CDAFB /* HATAccountService.swift in Sources */,
-				60705E2E1FAB8FDD0064551C /* HATProfileDataProfileAddressGlobalObjectV2.swift in Sources */,
 				60DDBB0F1E82F528007CDAFB /* HATLocationService.swift in Sources */,
 				60CDCBFA1EAB6E0700035882 /* HATProfileDataProfileBirthObject.swift in Sources */,
 				60B3C8441F82917B002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyV2.swift in Sources */,
-				60705E371FAB901E0064551C /* HATProfileDataProfileHomePhoneObjectV2.swift in Sources */,
 				60854FD31F89861D00DC2BAC /* HATFitbitSleepLevelsObject.swift in Sources */,
-				60705E551FAB91380064551C /* HATProfileDataProfileTwitterObjectV2.swift in Sources */,
 				60CDCBFB1EAB6E0700035882 /* HATProfileDataProfileHomePhoneObject.swift in Sources */,
 				60B2C9411FACBE0000404DBD /* HATLocationsV2DataObject.swift in Sources */,
 				60314E761F3889E6004383AA /* HATEmployementStatusObject.swift in Sources */,
@@ -1563,14 +1483,12 @@
 				60CDCBFC1EAB6E0700035882 /* HATProfileDataProfileGoogleObject.swift in Sources */,
 				60D8DAB01F31F8420055CEAC /* HATNotificationsService.swift in Sources */,
 				60DDBB1E1E82F539007CDAFB /* HATNotesLocationData.swift in Sources */,
-				60705E491FAB90CB0064551C /* HATProfileDataProfileAddressDetailObjectV2.swift in Sources */,
 				602E4DAB1F0111F400C5FF31 /* DataOfferRequiredDataDefinitionDataSetsObject.swift in Sources */,
 				60CDCBF41EAB6E0700035882 /* HATProfileDataProfileObject.swift in Sources */,
 				60FB240F1F87C839003F446E /* HATDataPlugProviderObject.swift in Sources */,
-				60705E221FAB8F280064551C /* HATProfileDataProfileWebsiteObjectV2.swift in Sources */,
 				60DDBB0D1E82F528007CDAFB /* HATDataPlugsService.swift in Sources */,
+				602A12441FD6D5E50010786B /* HATProfileDataProfilePersonalObjectV2.swift in Sources */,
 				60FB240C1F87C80C003F446E /* HATDataPlugPlugObject.swift in Sources */,
-				60705E5B1FAB91670064551C /* HATProfileDataProfileMobileObjectV2.swift in Sources */,
 				60854FD01F89853900DC2BAC /* HATFitbitSleepObject.swift in Sources */,
 				60444EEC1E4B27C5005E4433 /* LoginServiceTests.swift in Sources */,
 				60CDCBF81EAB6E0700035882 /* HATProfileDataProfileAddressGlobalObject.swift in Sources */,
@@ -1582,14 +1500,12 @@
 				60F51C3D1F899BDC00F99C47 /* HATFitbitActivityHeartRateZoneObject.swift in Sources */,
 				60CDCC051EAB6E0700035882 /* HATProfileDataProfileTwitterObject.swift in Sources */,
 				60CDCBFF1EAB6E0700035882 /* HATProfileDataProfileBlogObject.swift in Sources */,
-				60705E251FAB8F940064551C /* HATProfileDataProfileNickObjectV2.swift in Sources */,
 				60DDBB121E82F528007CDAFB /* HATTwitterService.swift in Sources */,
 				60854FEE1F89918F00DC2BAC /* HATFitbitStatsObject.swift in Sources */,
 				602CB44D1E8C00F900903F33 /* FileUploadObject.swift in Sources */,
 				60DDBB181E82F530007CDAFB /* HATTwitterDataTweetsUsersSocialFeedObject.swift in Sources */,
 				60DDBB1B1E82F532007CDAFB /* HATSystemStatusObject.swift in Sources */,
 				60DDBB1C1E82F539007CDAFB /* HATNotesAuthorData.swift in Sources */,
-				60705E3A1FAB90360064551C /* HATProfileDataProfileGoogleObjectV2.swift in Sources */,
 				60CDCC061EAB6E0700035882 /* HATProfileDataProfileMobileObject.swift in Sources */,
 				60DDBB261E82F544007CDAFB /* HATProviderObject.swift in Sources */,
 				60854FC91F8944BD00DC2BAC /* HATFitbitService.swift in Sources */,
@@ -1602,6 +1518,7 @@
 				606375AF1E537C7300F0D1B1 /* FormatterHelperTests.swift in Sources */,
 				60DDBB101E82F528007CDAFB /* HATNotableService.swift in Sources */,
 				60705E1F1FAB8A4F0064551C /* HATProfileDataObjectV2.swift in Sources */,
+				602A12381FD6D5060010786B /* HATProfileDataProfilePhotoObjectV2.swift in Sources */,
 				60812BEA1FA782F200C91120 /* HATFeedObject.swift in Sources */,
 				60854FD91F89873E00DC2BAC /* HATFitbitSleepLevelsSummaryObject.swift in Sources */,
 				60F51C311F89938200F99C47 /* HATFitbitStatsLifetimeObject.swift in Sources */,
@@ -1612,7 +1529,6 @@
 				604B91751F73FDB10099A58A /* HatApiType.swift in Sources */,
 				6050BF081ED5B2E700984EEF /* HATPhataService.swift in Sources */,
 				60CDCBF71EAB6E0700035882 /* HATProfileDataProfileYoutubeObject.swift in Sources */,
-				60705E521FAB91200064551C /* HATProfileDataProfileFacebookProfilePhotoObjectV2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
