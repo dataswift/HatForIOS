@@ -92,7 +92,7 @@ internal class HATProfileServiceTests: XCTestCase {
         
         let expectationTest = expectation(description: "Get profile data from rumpel...")
         
-        func success(profile: HATProfileObjectV2) {
+        func success(profile: HATProfileObjectV2, newToken: String?) {
             
             XCTAssertTrue(profile.data.personal.ageGroup == "80")
             expectationTest.fulfill()
@@ -103,7 +103,7 @@ internal class HATProfileServiceTests: XCTestCase {
         }
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2/data/rumpel/profile?orderBy=lastUpdated&ordering=descending"
+        let urlToConnect = "https://testing.hubat.net/api/v2/data/rumpel/profile?orderBy=dateCreated&ordering=descending"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.profile))
         

@@ -12,8 +12,8 @@
 
 public struct HATProfileObjectV2: HATObject {
     
-    public var endpoint: String = ""
-    public var recordId: String = ""
+    public var endpoint: String? = ""
+    public var recordId: String? = ""
     public var data: HATProfileDataObjectV2 = HATProfileDataObjectV2()
     
     public init() {

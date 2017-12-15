@@ -197,7 +197,7 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func getProfile(userDomain: String, userToken: String, successCallback: @escaping (HATProfileObjectV2) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func getProfile(userDomain: String, userToken: String, successCallback: @escaping (HATProfileObjectV2, String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
         func profileEntries(json: [JSON], renewedToken: String?) {
             
@@ -206,7 +206,7 @@ public struct HATProfileService {
                 
                 if let profile: HATProfileObjectV2 = HATProfileObjectV2.decode(from: json[0].dictionaryValue) {
                     
-                    successCallback(profile)
+                    successCallback(profile, renewedToken)
                 } else {
                     
                     failCallback(.noValuesFound)
@@ -222,7 +222,7 @@ public struct HATProfileService {
             userDomain: userDomain,
             namespace: "rumpel",
             scope: "profile",
-            parameters: ["ordering": "descending", "orderBy": "lastUpdated"],
+            parameters: ["ordering": "descending", "orderBy": "dateCreated"],
             successCallback: profileEntries,
             errorCallback: failCallback)
     }
