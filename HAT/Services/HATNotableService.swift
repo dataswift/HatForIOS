@@ -51,16 +51,45 @@ public struct HATNotablesService {
                 tableID: tableID,
                 parameters: parameters,
                 successCallback: success,
-                errorCallback: showNotablesFetchError)
+                errorCallback: {_ in return})
         }
     }
-
+    
     /**
-     Shows alert that the notes couldn't be fetched
+     Gets the notes of the user from the HAT
+     
+     - parameter token: The user's token
+     - parameter tableID: The table id of the notes
      */
-    public static func showNotablesFetchError(error: HATTableError) {
-
-        // alert magic
+    static func getNotesV2(userDomain: String, token: String, parameters: Dictionary<String, String> = ["orderBy": "updated_time", "ordering": "descending"], success: @escaping (_ array: [HATNotesV2Object], String?) -> Void) {
+        
+        func gotNotes(notesJSON: [JSON], newToken: String?) {
+            
+            var notes: [HATNotesV2Object] = []
+            
+            for item in notesJSON {
+                
+                if let note = item.dictionaryValue["data"]?.dictionary {
+                    let obj: HATNotesV2Object? = HATNotesV2Object.decode(from: note)
+                    notes.append(HATNotesV2Object.decode(from: note)!)
+                }
+            }
+            
+            success(notes, newToken)
+        }
+        
+        func error(error: HATTableError) {
+            
+        }
+        
+        HATAccountService.getHatTableValuesv2(
+            token: token,
+            userDomain: userDomain,
+            namespace: "rumpel",
+            scope: "notablesv1",
+            parameters: parameters,
+            successCallback: gotNotes,
+            errorCallback: error)
     }
 
     // MARK: - Delete notes
