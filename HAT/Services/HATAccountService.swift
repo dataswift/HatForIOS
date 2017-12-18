@@ -396,19 +396,20 @@ public struct HATAccountService {
     public static func deleteHatRecordV2(userDomain: String, token: String, recordId: [Int], success: @escaping (String) -> Void, failed: @ escaping (HATTableError) -> Void) {
         
         // form the url
-        let url = "https://\(userDomain)/api/v2/data"
+        var url = "https://\(userDomain)/api/v2/data"
         
-        // create parameters and headers
-        let parameters: NSMutableDictionary = [:]
+        let firstRecord = recordId.first
+        url.append("?records:\(firstRecord!)")
         
-        for record in recordId {
+        for record in recordId where record != firstRecord! {
             
-            parameters.addEntries(from: ["records": record])
+            url.append("&records:\(record)")
         }
+        
         let headers = [RequestHeaders.xAuthToken: token]
         
         // make the request
-        HATNetworkHelper.asynchronousRequest(url, method: .delete, encoding: Alamofire.URLEncoding.default, contentType: ContentType.Text, parameters: parameters.dictionaryWithValues(forKeys: ["records"]), headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
+        HATNetworkHelper.asynchronousRequest(url, method: .delete, encoding: Alamofire.URLEncoding.default, contentType: ContentType.Text, parameters: [:], headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
             
             // handle result
             switch response {
@@ -448,7 +449,7 @@ public struct HATAccountService {
      - parameter recordId: The record id to delete
      - parameter success: A callback called when successful of type @escaping (String) -> Void
      */
-    public static func editHatRecordV2(userDomain: String, token: String, parameters: Dictionary<String, Any>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func updateHatRecordV2(userDomain: String, token: String, parameters: Dictionary<String, Any>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // form the url
         let url = "https://\(userDomain)/api/v2/data/"
@@ -731,4 +732,3 @@ public struct HATAccountService {
         )
     }
 }
-

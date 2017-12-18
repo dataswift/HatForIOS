@@ -51,7 +51,7 @@ public struct HATNotablesService {
                 tableID: tableID,
                 parameters: parameters,
                 successCallback: success,
-                errorCallback: {_ in return})
+                errorCallback: { _ in return })
         }
     }
     
@@ -69,8 +69,8 @@ public struct HATNotablesService {
             
             for item in notesJSON {
                 
-                if let note = item.dictionaryValue["data"]?.dictionary {
-                    let obj: HATNotesV2Object? = HATNotesV2Object.decode(from: note)
+                if let note = item.dictionary {
+                    
                     notes.append(HATNotesV2Object.decode(from: note)!)
                 }
             }
@@ -91,7 +91,7 @@ public struct HATNotablesService {
             successCallback: gotNotes,
             errorCallback: error)
     }
-
+    
     // MARK: - Delete notes
 
     /**
@@ -103,6 +103,30 @@ public struct HATNotablesService {
     public static func deleteNote(recordID: Int, tkn: String, userDomain: String, success: @escaping ((String) -> Void) = { _ in }, failed: @escaping ((HATTableError) -> Void) = { _ in }) {
 
         HATAccountService.deleteHatRecord(userDomain: userDomain, token: tkn, recordId: recordID, success: success, failed: failed)
+    }
+    
+    /**
+     Deletes a note from the hat
+     
+     - parameter id: the id of the note to delete
+     - parameter tkn: the user's token as a string
+     */
+    public static func deleteNotesv2(noteIDs: [Int], tkn: String, userDomain: String, success: @escaping ((String) -> Void) = { _ in }, failed: @escaping ((HATTableError) -> Void) = { _ in }) {
+        
+        HATAccountService.deleteHatRecordV2(userDomain: userDomain, token: tkn, recordId: noteIDs, success: success, failed: failed)
+    }
+    
+    // MARK: - Update note
+    
+    /**
+     updates a note from the hat
+     
+     - parameter id: the id of the note to delete
+     - parameter tkn: the user's token as a string
+     */
+    public static func updateNotev2(parameters: Dictionary<String, Any>, tkn: String, userDomain: String, success: @escaping (([JSON], String?) -> Void) = { _, _  in }, failed: @escaping ((HATTableError) -> Void) = { _ in }) {
+        
+        HATAccountService.updateHatRecordV2(userDomain: userDomain, token: tkn, parameters: parameters, successCallback: success, errorCallback: failed)
     }
 
     // MARK: - Post note
@@ -158,6 +182,29 @@ public struct HATNotablesService {
         }
 
         HATAccountService.checkHatTableExistsForUploading(userDomain: userDomain, tableName: "notablesv1", sourceName: "rumpel", authToken: userToken, successCallback: posting, errorCallback: errorCallback)
+    }
+    
+    // MARK: - Post note
+    
+    /**
+     Posts the note to the hat
+     
+     - parameter token: The token returned from the hat
+     - parameter json: The json file as a Dictionary<String, Any>
+     */
+    public static func postNoteV2(userDomain: String, userToken: String, note: HATNotesV2Object, successCallBack: @escaping (JSON, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+        
+        // update JSON file with the values needed
+        let hatData = HATNotesV2Object.encode(from: note)!
+        
+        HATAccountService.createTableValuev2(
+            token: userToken,
+            userDomain: userDomain,
+            source: "rumpel",
+            dataPath: "notablesv1",
+            parameters: hatData,
+            successCallback: successCallBack,
+            errorCallback: errorCallback)
     }
 
     // MARK: - Remove duplicates

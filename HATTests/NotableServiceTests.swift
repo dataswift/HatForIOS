@@ -17,7 +17,7 @@ import XCTest
 
 internal class NotableServiceTests: XCTestCase {
 
-    static let notesV2Response = [
+    static let notesV2Response: [[String: Any]] = [
         [
             "endpoint": "rumpel/notablesv1",
             "recordId": "55ae1663-d4ea-494d-9fcb-b89c6b955171",
@@ -60,7 +60,7 @@ internal class NotableServiceTests: XCTestCase {
         
         func success(notes: [HATNotesV2Object], newToken: String?) {
             
-            XCTAssertTrue(notes[0].kind == "note")
+            XCTAssertTrue(notes[0].data.kind == "note")
             expectationTest.fulfill()
         }
         
