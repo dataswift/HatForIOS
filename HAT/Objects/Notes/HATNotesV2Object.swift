@@ -41,6 +41,13 @@ public struct HATNotesV2Object: HATObject, HatApiType {
         
     }
     
+    public init(dict: Dictionary<String, JSON>) {
+        
+        self.init()
+        
+        self.inititialize(dict: dict)
+    }
+    
     /**
      It initialises everything from the received JSON file from the HAT
      */

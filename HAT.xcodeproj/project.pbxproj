@@ -631,12 +631,12 @@
 				602D17051E82B22700C53A5E /* HATNotesData.swift */,
 				602D17061E82B22700C53A5E /* HATNotesLocationData.swift */,
 				602D17071E82B22700C53A5E /* HATNotesNotablesData.swift */,
+				602D17081E82B22700C53A5E /* HATNotesPhotoData.swift */,
 				604B0DBF1FE72C1600F8B91A /* HATNotesV2DataObject.swift */,
 				607A39221FE806C900C90A94 /* HATNotesV2Object.swift */,
 				607A39191FE72D2500C90A94 /* HATNotesV2AuthorObject.swift */,
 				607A391C1FE72D8600C90A94 /* HATNotesV2PhotoObject.swift */,
 				607A391F1FE72DCD00C90A94 /* HATNotesV2LocationObject.swift */,
-				602D17081E82B22700C53A5E /* HATNotesPhotoData.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";

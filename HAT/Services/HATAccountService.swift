@@ -393,7 +393,7 @@ public struct HATAccountService {
      - parameter recordId: The record id to delete
      - parameter success: A callback called when successful of type @escaping (String) -> Void
      */
-    public static func deleteHatRecordV2(userDomain: String, token: String, recordId: [Int], success: @escaping (String) -> Void, failed: @ escaping (HATTableError) -> Void) {
+    public static func deleteHatRecordV2(userDomain: String, token: String, recordId: [String], success: @escaping (String) -> Void, failed: @ escaping (HATTableError) -> Void) {
         
         // form the url
         var url = "https://\(userDomain)/api/v2/data"

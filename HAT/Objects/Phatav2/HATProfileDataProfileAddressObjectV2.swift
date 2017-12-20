@@ -10,9 +10,62 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-public struct HATProfileDataProfileAddressObjectV2: HATObject {
+import SwiftyJSON
 
+public struct HATProfileDataProfileAddressObjectV2: HATObject, HatApiType {
+
+    // MARK: - Fields
+    
+    struct Fields {
+        
+        static let city: String = "city"
+        static let county: String = "county"
+        static let country: String = "country"
+    }
+    
     public var city: String = ""
     public var county: String = ""
     public var country: String = ""
+    
+    public init() {
+        
+    }
+    
+    public init(dict: Dictionary<String, JSON>) {
+        
+        self.init()
+        
+        self.initialize(dict: dict)
+    }
+    
+    public mutating func initialize(dict: Dictionary<String, JSON>) {
+        
+        if let tempCity = (dict[Fields.city]?.stringValue) {
+            
+            city = tempCity
+        }
+        if let tempCounty = (dict[Fields.county]?.stringValue) {
+            
+            county = tempCounty
+        }
+        if let tempCountry = (dict[Fields.country]?.stringValue) {
+            
+            country = tempCountry
+        }
+    }
+    
+    public func toJSON() -> Dictionary<String, Any> {
+        
+        return [
+            Fields.city: self.city,
+            Fields.county: self.county,
+            Fields.country: self.country
+        ]
+    }
+    
+    public mutating func initialize(fromCache: Dictionary<String, Any>) {
+        
+        let json = JSON(fromCache)
+        self.initialize(dict: json.dictionaryValue)
+    }
 }

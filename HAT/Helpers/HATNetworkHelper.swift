@@ -13,25 +13,6 @@
 import Alamofire
 import SwiftyJSON
 
-internal class TestFA: HATObject {
-    
-    var endpoint: String = ""
-    var filters: Filters = Filters()
-}
-
-internal class Filters: HATObject {
-    
-    var field: String = ""
-    var `operator`: Operator = Operator()
-}
-
-internal class Operator: HATObject {
-    
-    var `operator`: String = ""
-    var upper: Int = 0
-    var lower: Int = 0
-}
-
 // MARK: Class
 
 /// All network related methods

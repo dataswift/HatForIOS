@@ -10,7 +10,24 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-public struct HATProfileDataObjectV2: Codable, HATObject {
+import SwiftyJSON
+
+public struct HATProfileDataObjectV2: HATObject, HatApiType {
+    
+    /// The possible Fields of the JSON struct
+    public struct Fields {
+        
+        static let about: String = "about"
+        static let photo: String = "photo"
+        static let online: String = "online"
+        static let address: String = "address"
+        static let contact: String = "contact"
+        static let personal: String = "personal"
+        static let emergencyContact: String = "emergencyContact"
+        static let dateCreated: String = "dateCreated"
+        static let dateCreatedLocal: String = "dateCreatedLocal"
+        static let shared: String = "shared"
+    }
 
     /// The website object of user's profile
     public var about: HATProfileDataProfileAboutObjectV2 = HATProfileDataProfileAboutObjectV2()
@@ -30,4 +47,69 @@ public struct HATProfileDataObjectV2: Codable, HATObject {
     public var dateCreated: Int?
     public var dateCreatedLocal: String?
     public var shared: Bool = false
+    
+    public init() {
+        
+    }
+    
+    public init(dict: Dictionary<String, JSON>) {
+        
+        self.init()
+        
+        self.initialize(dict: dict)
+    }
+    
+    public mutating func initialize(dict: Dictionary<String, JSON>) {
+        
+        if let tempAbout = (dict[Fields.about]?.dictionaryValue) {
+            
+            about = HATProfileDataProfileAboutObjectV2(dict: tempAbout)
+        }
+        if let tempPhoto = (dict[Fields.photo]?.dictionaryValue) {
+            
+            photo = HATProfileDataProfilePhotoObjectV2(dict: tempPhoto)
+        }
+        if let tempOnline = (dict[Fields.online]?.dictionaryValue) {
+            
+            online = HATProfileDataProfileOnlineObjectV2(dict: tempOnline)
+        }
+        if let tempAddress = (dict[Fields.address]?.dictionaryValue) {
+            
+            address = HATProfileDataProfileAddressObjectV2(dict: tempAddress)
+        }
+        if let tempContact = (dict[Fields.contact]?.dictionaryValue) {
+            
+            contact = HATProfileDataProfileContactObjectV2(dict: tempContact)
+        }
+        if let tempPersonal = (dict[Fields.personal]?.dictionaryValue) {
+            
+            personal = HATProfileDataProfilePersonalObjectV2(dict: tempPersonal)
+        }
+        if let tempEmergencyContact = (dict[Fields.emergencyContact]?.dictionaryValue) {
+            
+            emergencyContact = HATProfileDataProfileEmergencyContactObjectV2(dict: tempEmergencyContact)
+        }
+    }
+    
+    public func toJSON() -> Dictionary<String, Any> {
+        
+        return [
+            Fields.about: self.about.toJSON(),
+            Fields.photo: self.photo.toJSON(),
+            Fields.online: self.online.toJSON(),
+            Fields.address: self.address.toJSON(),
+            Fields.contact: self.contact.toJSON(),
+            Fields.personal: self.personal.toJSON(),
+            Fields.emergencyContact: self.emergencyContact.toJSON(),
+            Fields.dateCreated: self.dateCreated ?? Date().timeIntervalSince1970,
+            Fields.dateCreatedLocal: self.dateCreatedLocal ?? HATFormatterHelper.formatDateToISO(date: Date()),
+            Fields.shared: self.shared
+        ]
+    }
+    
+    public mutating func initialize(fromCache: Dictionary<String, Any>) {
+        
+        let json = JSON(fromCache)
+        self.initialize(dict: json.dictionaryValue)
+    }
 }

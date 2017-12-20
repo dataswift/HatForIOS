@@ -61,7 +61,7 @@ public struct HATNotablesService {
      - parameter token: The user's token
      - parameter tableID: The table id of the notes
      */
-    static func getNotesV2(userDomain: String, token: String, parameters: Dictionary<String, String> = ["orderBy": "updated_time", "ordering": "descending"], success: @escaping (_ array: [HATNotesV2Object], String?) -> Void) {
+    public static func getNotesV2(userDomain: String, token: String, parameters: Dictionary<String, String> = ["orderBy": "updated_time", "ordering": "descending"], success: @escaping (_ array: [HATNotesV2Object], String?) -> Void) {
         
         func gotNotes(notesJSON: [JSON], newToken: String?) {
             
@@ -111,7 +111,7 @@ public struct HATNotablesService {
      - parameter id: the id of the note to delete
      - parameter tkn: the user's token as a string
      */
-    public static func deleteNotesv2(noteIDs: [Int], tkn: String, userDomain: String, success: @escaping ((String) -> Void) = { _ in }, failed: @escaping ((HATTableError) -> Void) = { _ in }) {
+    public static func deleteNotesv2(noteIDs: [String], tkn: String, userDomain: String, success: @escaping ((String) -> Void) = { _ in }, failed: @escaping ((HATTableError) -> Void) = { _ in }) {
         
         HATAccountService.deleteHatRecordV2(userDomain: userDomain, token: tkn, recordId: noteIDs, success: success, failed: failed)
     }
@@ -245,6 +245,43 @@ public struct HATNotablesService {
 
         return arrayToReturn
     }
+    
+    /**
+     Removes duplicates from an array of NotesData and returns the corresponding objects in an array
+     
+     - parameter array: The NotesData array
+     - returns: An array of NotesData
+     */
+    public static func removeDuplicatesFrom(array: [HATNotesV2Object]) -> [HATNotesV2Object] {
+        
+        // the array to return
+        var arrayToReturn: [HATNotesV2Object] = []
+        
+        // go through each note object in the array
+        for note in array {
+            
+            // check if the arrayToReturn it contains that value and if not add it
+            let result = arrayToReturn.contains(where: {(note2: HATNotesV2Object) -> Bool in
+                
+                if (note.data.created_time == note2.data.created_time) && (note.data.message == note2.data.message) {
+                    
+                    if (note.data.updated_time < note2.data.updated_time) || (note.recordId == note2.recordId) {
+                        
+                        return true
+                    }
+                }
+                
+                return false
+            })
+            
+            if !result {
+                
+                arrayToReturn.append(note)
+            }
+        }
+        
+        return arrayToReturn
+    }
 
     // MARK: - Sort notables
 
@@ -257,5 +294,16 @@ public struct HATNotablesService {
     public static func sortNotables(notes: [HATNotesData]) -> [HATNotesData] {
 
         return notes.sorted { $0.lastUpdated > $1.lastUpdated }
+    }
+    
+    /**
+     Sorts notes based on updated time
+     
+     - parameter notes: The NotesData array
+     - returns: An array of NotesData
+     */
+    public static func sortNotables(notes: [HATNotesV2Object]) -> [HATNotesV2Object] {
+        
+        return notes.sorted { $0.data.updated_time > $1.data.updated_time }
     }
 }

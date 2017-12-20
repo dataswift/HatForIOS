@@ -140,29 +140,88 @@ public struct HATLocationService {
             errorCallback: locationsReceived)
     }
     
-    public static func pushLocationsV2(userDomain: String, userToken: String, locations: [HATLocationsV2DataObject], successCallback: @escaping ([HATLocationsV2Object], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void ) {
+    public static func syncLocationsToHAT(userDomain: String, userToken: String, locations: [HATLocationsV2DataObject], completion: ((Bool, String?) -> Void)? = nil) {
         
-        //        guard let json = HATLocationsV2DataObject.encode(from: locations) else {
-        //
-        //            return
-        //        }
-        //
-        //        HATAccountService.createTableValuev2(
-        //            token: userToken,
-        //            userDomain: userDomain,
-        //            source: "rumpel",
-        //            dataPath: "ios/locations",
-        //            parameters: json,
-        //            successCallback: { (json, newToken) in
-        //
-        //                guard let locations: HATLocationsV2Object = HATLocationsV2Object.decode(from: json.dictionaryValue) else {
-        //
-        //                    errorCallback(.noValuesFound)
-        //                    return
-        //                }
-        //                successCallback([locations], newToken)
-        //        },
-        //            errorCallback: errorCallback
-        //        )
+        let encoded = HATLocationsV2DataObject.encode(from: locations)
+        
+        var urlRequest = URLRequest.init(url: URL(string: "https://\(userDomain)/api/v2/data/rumpel/locations/ios?skipErrors=true")!)
+        urlRequest.httpMethod = HTTPMethod.post.rawValue
+        urlRequest.addValue(userToken, forHTTPHeaderField: "x-auth-token")
+        urlRequest.networkServiceType = .background
+        urlRequest.httpBody = encoded
+        
+        if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+            
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+        
+        Alamofire.request(urlRequest).responseJSON(completionHandler: { response in
+            
+            let header = response.response?.allHeaderFields
+            let token = header?["x-auth-token"] as? String
+            let tokenToReturn = HATTokenHelper.checkTokenScope(token: token)
+            
+            if response.response?.statusCode == 400 && locations.count > 10 {
+                
+                HATLocationService.failbackDuplicateSyncing(dbLocations: locations, userDomain: userDomain, userToken: userToken, completion: completion)
+            } else if response.response?.statusCode == 201 {
+                
+                completion?(true, tokenToReturn)
+            }
+        })
+    }
+    
+    static func failbackDuplicateSyncing(dbLocations: [HATLocationsV2DataObject], userDomain: String, userToken: String, completion: ((Bool, String?) -> Void)?) {
+        
+        let midPoint = (dbLocations.count - 1) / 2
+        let midPointNext = midPoint + 1
+        let splitArray1 = Array(dbLocations[...midPoint])
+        let splitArray2 = Array(dbLocations[midPointNext...])
+        
+        var urlRequest = URLRequest.init(url: URL(string: "https://\(userDomain)/api/v2/data/rumpel/locations/ios?skipErrors=true")!)
+        urlRequest.httpMethod = HTTPMethod.post.rawValue
+        urlRequest.addValue(userToken, forHTTPHeaderField: "x-auth-token")
+        
+        if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+            
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+        
+        func reccuring(array: [HATLocationsV2DataObject], urlRequest: URLRequest, userDomain: String, userToken: String ) {
+            
+            var urlRequest = urlRequest
+            let encoded = HATLocationsV2DataObject.encode(from: array)
+            urlRequest.httpBody = encoded
+            
+            Alamofire.request(urlRequest).responseJSON(completionHandler: { response in
+                
+                let header = response.response?.allHeaderFields
+                let token = header?["x-auth-token"] as? String
+                let tokenToReturn = HATTokenHelper.checkTokenScope(token: token)
+                
+                if response.response?.statusCode == 400 && array.count > 1 {
+                    
+                    HATLocationService.failbackDuplicateSyncing(dbLocations: array, userDomain: userDomain, userToken: userToken, completion: completion)
+                } else {
+                    
+                    completion?(true, tokenToReturn)
+                }
+            })
+        }
+        
+        if !splitArray1.isEmpty {
+            
+            reccuring(array: splitArray1, urlRequest: urlRequest, userDomain: userDomain, userToken: userToken)
+        }
+        
+        if !splitArray2.isEmpty {
+            
+            reccuring(array: splitArray2, urlRequest: urlRequest, userDomain: userDomain, userToken: userToken)
+        }
+        
+        if dbLocations.count < 2 {
+            
+            completion?(true, userToken)
+        }
     }
 }
