@@ -13,7 +13,7 @@
 import SwiftyJSON
 
 public struct HATProfileDataProfilePersonalObjectV2: HATObject, HatApiType {
-
+    
     // MARK: - Fields
     
     struct Fields {
@@ -100,7 +100,6 @@ public struct HATProfileDataProfilePersonalObjectV2: HATObject, HatApiType {
             Fields.preferredName: self.preferredName,
             Fields.lastName: self.lastName,
             Fields.nickName: self.nickName,
-            Fields.preferredName: self.preferredName,
             Fields.firstName: self.firstName,
             Fields.birthDate: self.birthDate
         ]

@@ -78,7 +78,7 @@ public struct HATFacebookDataSocialFeedObject: HatApiType, Comparable, HATSocial
      */
     public init(from dictionary: Dictionary<String, JSON>) {
         
-        posts = HATFacebookDataPostsSocialFeedObject(from: dictionary)
+        self.inititialize(dict: dictionary)
     }
     
     /**
@@ -89,6 +89,9 @@ public struct HATFacebookDataSocialFeedObject: HatApiType, Comparable, HATSocial
         if let tempPosts = dict[Fields.posts]?.dictionaryValue {
             
             posts = HATFacebookDataPostsSocialFeedObject(from: tempPosts)
+        } else {
+            
+            posts = HATFacebookDataPostsSocialFeedObject(from: dict)
         }
     }
     

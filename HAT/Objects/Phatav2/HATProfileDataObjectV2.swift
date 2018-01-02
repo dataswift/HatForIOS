@@ -28,7 +28,7 @@ public struct HATProfileDataObjectV2: HATObject, HatApiType {
         static let dateCreatedLocal: String = "dateCreatedLocal"
         static let shared: String = "shared"
     }
-
+    
     /// The website object of user's profile
     public var about: HATProfileDataProfileAboutObjectV2 = HATProfileDataProfileAboutObjectV2()
     /// The nickname object of user's profile
@@ -89,6 +89,18 @@ public struct HATProfileDataObjectV2: HATObject, HatApiType {
             
             emergencyContact = HATProfileDataProfileEmergencyContactObjectV2(dict: tempEmergencyContact)
         }
+        if let tempDateCreated = (dict[Fields.dateCreated]?.intValue) {
+            
+            dateCreated = tempDateCreated
+        }
+        if let tempDateCreatedLocal = (dict[Fields.dateCreatedLocal]?.stringValue) {
+            
+            dateCreatedLocal = tempDateCreatedLocal
+        }
+        if let tempShared = (dict[Fields.shared]?.boolValue) {
+            
+            shared = tempShared
+        }
     }
     
     public func toJSON() -> Dictionary<String, Any> {
@@ -113,3 +125,4 @@ public struct HATProfileDataObjectV2: HATObject, HatApiType {
         self.initialize(dict: json.dictionaryValue)
     }
 }
+

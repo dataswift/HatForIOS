@@ -77,7 +77,7 @@ public struct HATTwitterDataSocialFeedObject: HatApiType, Comparable {
         
         self.init()
         
-        tweets = HATTwitterDataTweetsSocialFeedObject(from: dictionary)
+        self.inititialize(dict: dictionary)
     }
     
     /**
@@ -88,6 +88,9 @@ public struct HATTwitterDataSocialFeedObject: HatApiType, Comparable {
         if let tempTweets = dict[Fields.tweets]?.dictionaryValue {
             
             tweets = HATTwitterDataTweetsSocialFeedObject(from: tempTweets)
+        } else {
+            
+            tweets = HATTwitterDataTweetsSocialFeedObject(from: dict)
         }
     }
     

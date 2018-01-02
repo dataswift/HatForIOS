@@ -379,4 +379,195 @@ public struct HATProfileService {
             errorCallback: failCallback
         )
     }
+    
+    public static func getPhataStructureBundle(userDomain: String, userToken: String, parameters: Dictionary<String, Any> = [:], success: @escaping (Dictionary<String, JSON>) -> Void, fail: @escaping (HATTableError) -> Void) {
+        
+        if let url: URLConvertible = URL(string: "https://\(userDomain)/api/v2/data-bundle/phata/structure") {
+            
+            Alamofire.request(
+                url,
+                method: .get,
+                parameters: parameters,
+                encoding: Alamofire.JSONEncoding.default,
+                headers: ["x-auth-token": userToken]).responseJSON(completionHandler: { response in
+                    
+                    switch response.result {
+                    case .success:
+                        
+                        if response.response?.statusCode == 404 {
+                            
+                            fail(HATTableError.generalError("json creation failed", nil, nil))
+                        } else if response.response?.statusCode == 200 {
+                            
+                            if let value = response.result.value {
+                                
+                                let json = JSON(value)
+                                let dict = json["bundle"]["profile"]["endpoints"][0]["mapping"].dictionary
+                                success(dict ?? [:])
+                            }
+                        }
+                    case .failure(let error):
+                        
+                        fail(HATTableError.generalError("", nil, error))
+                    }
+                }
+            )
+        }
+    }
+    
+    static let notablesStructure = [
+        "notables":
+            [
+                "endpoints": [
+                    [
+                        "filters": [
+                            [
+                                "field": "shared",
+                                "operator":
+                                    [
+                                        "value": true,
+                                        "operator": "contains"
+                                ]
+                            ],
+                            [
+                                "field": "shared_on",
+                                "operator":
+                                    [
+                                        "value": "phata",
+                                        "operator": "contains"
+                                ]
+                            ]],
+                        "mapping":
+                            [
+                                "kind": "kind",
+                                "shared": "shared",
+                                "message": "message",
+                                "author": "authorv1",
+                                "location": "locationv1",
+                                "shared_on": "shared_on",
+                                "created_time": "created_time",
+                                "public_until": "public_until",
+                                "updated_time": "updated_time"
+                        ],
+                        "endpoint": "rumpel/notablesv1"
+                    ]],
+                "orderBy": "updated_time",
+                "ordering": "descending"
+        ]
+    ]
+    
+    static let profileMapping = [
+        "(0, 0)": "photo.avatar",
+        "(1, 1)": "personal.firstName",
+        "(1, 2)": "personal.lastName",
+        "(1, 3)": "personal.gender",
+        "(1, 4)": "personal.birthDate",
+        "(1, 5)": "contact.primaryEmail",
+        "(1, 6)": "contact.alternativeEmail",
+        "(1, 7)": "contact.mobile",
+        "(1, 8)": "contact.landline",
+        "(2, 1)": "online.facebook",
+        "(2, 2)": "online.twitter",
+        "(2, 3)": "online.linkedin",
+        "(2, 4)": "online.youtube",
+        "(2, 5)": "online.website",
+        "(2, 6)": "online.blog",
+        "(2, 7)": "online.google",
+        "(3, 1)": "about.title",
+        "(3, 2)": "about.body"
+    ]
+    
+    public static func mapProfileStructure(returnedDictionary: Dictionary<String, String>) -> Dictionary<String, String> {
+        
+        let filtered = HATProfileService.profileMapping.filter({ item1 in
+            
+            for item2 in returnedDictionary {
+                
+                if item1.value == item2.value {
+                    
+                    return true
+                }
+            }
+            
+            return false
+        })
+        
+        return filtered
+    }
+    
+    public static func constructDictionaryForBundle(mutableDictionary: NSMutableDictionary) -> Dictionary<String, Any>? {
+        
+        if let dict = mutableDictionary as? Dictionary<String, String> {
+            
+            let profileStructure = ["profile":
+                [
+                    "endpoints": [
+                        [
+                            "endpoint": "rumpel/profile",
+                            "mapping": dict
+                        ]
+                    ],
+                    "orderBy": "dateCreated",
+                    "ordering": "descending",
+                    "limit": 1
+                ]
+            ]
+            
+            let notablesStructure = HATProfileService.notablesStructure
+            
+            let temp = NSMutableDictionary()
+            temp.addEntries(from: profileStructure)
+            temp.addEntries(from: notablesStructure)
+            
+            if let dictionaryToReturn = temp as? Dictionary<String, Any> {
+                
+                return dictionaryToReturn
+            }
+        }
+        
+        return nil
+    }
+    
+    public static func createPhataStructureBundle(userDomain: String, userToken: String, parameters: Dictionary<String, Any>? = nil, success: @escaping (Bool) -> Void, fail: @escaping (HATTableError) -> Void) {
+        
+        if let url: URLConvertible = URL(string: "https://\(userDomain)/api/v2/data-bundle/phata") {
+            
+            let parametersToSend: Dictionary<String, Any>
+            
+            if parameters == nil {
+                
+                parametersToSend = HATProfileService.notablesStructure
+            } else {
+                
+                let mutableDictionary = NSMutableDictionary()
+                mutableDictionary.addEntries(from: HATProfileService.notablesStructure)
+                mutableDictionary.addEntries(from: parameters!)
+                parametersToSend = (mutableDictionary as? Dictionary<String, Any>)!
+            }
+            
+            Alamofire.request(
+                url,
+                method: .post,
+                parameters: parametersToSend,
+                encoding: Alamofire.JSONEncoding.default,
+                headers: ["x-auth-token": userToken]).responseJSON(completionHandler: { response in
+                    
+                    switch response.result {
+                    case .success:
+                        
+                        if response.response?.statusCode == 201 {
+                            
+                            success(true)
+                        } else {
+                            
+                            success(false)
+                        }
+                    case .failure(let error):
+                        
+                        fail(HATTableError.generalError("", nil, error))
+                    }
+                }
+            )
+        }
+    }
 }

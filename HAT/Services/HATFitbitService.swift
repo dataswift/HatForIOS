@@ -187,17 +187,16 @@ public struct HATFitbitService {
             errorCallback: errorCallback)
     }
     
-    public static func checkIfFitbitIsEnabled(userDomain: String, userToken: String, successCallback: @escaping (Bool, String?) -> Void, errorCallback: @escaping (JSONParsingError) -> Void) {
+    public static func checkIfFitbitIsEnabled(userDomain: String, userToken: String, plugURL: String, statusURL: String, successCallback: @escaping (Bool, String?) -> Void, errorCallback: @escaping (JSONParsingError) -> Void) {
         
         func gotToken(fitbitToken: String, newUserToken: String?) {
             
             // construct the url, set parameters and headers for the request
-            let url = Fitbit.statusURL
             let parameters: Dictionary<String, String> = [:]
             let headers = [RequestHeaders.xAuthToken: fitbitToken]
             
             // make the request
-            HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: {(response: HATNetworkHelper.ResultType) -> Void in
+            HATNetworkHelper.asynchronousRequest(statusURL, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.JSON, parameters: parameters, headers: headers, completion: {(response: HATNetworkHelper.ResultType) -> Void in
                 
                 // act upon response
                 switch response {
@@ -224,17 +223,18 @@ public struct HATFitbitService {
         HATFitbitService.getApplicationTokenForFitbit(
             userDomain: userDomain,
             userToken: userToken,
+            dataPlugURL: plugURL,
             successCallback: gotToken,
             errorCallback: errorCallback)
     }
     
-    public static func getApplicationTokenForFitbit(userDomain: String, userToken: String, successCallback: @escaping (String, String?) -> Void, errorCallback: @escaping (JSONParsingError) -> Void) {
+    public static func getApplicationTokenForFitbit(userDomain: String, userToken: String, dataPlugURL: String, successCallback: @escaping (String, String?) -> Void, errorCallback: @escaping (JSONParsingError) -> Void) {
         
         HATService.getApplicationTokenFor(
             serviceName: Fitbit.serviceName,
             userDomain: userDomain,
             token: userToken,
-            resource: Fitbit.dataPlugURL,
+            resource: dataPlugURL,
             succesfulCallBack: successCallback,
             failCallBack: errorCallback)
     }

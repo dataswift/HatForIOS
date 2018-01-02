@@ -29,9 +29,9 @@ public struct HATTwitterSocialFeedObject: HatApiType, HATSocialFeedObject, Compa
         static let lastUpdated: String = "lastUpdated"
         static let endPoint: String = "endpoint"
     }
-
+    
     // MARK: - Comparable protocol
-
+    
     /// Returns a Boolean value indicating whether two values are equal.
     ///
     /// Equality is the inverse of inequality. For any values `a` and `b`,
@@ -41,10 +41,10 @@ public struct HATTwitterSocialFeedObject: HatApiType, HATSocialFeedObject, Compa
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
     public static func == (lhs: HATTwitterSocialFeedObject, rhs: HATTwitterSocialFeedObject) -> Bool {
-
+        
         return (lhs.name == rhs.name && lhs.recordIDv1 == rhs.recordIDv1 && lhs.data == rhs.data && lhs.lastUpdated == rhs.lastUpdated)
     }
-
+    
     /// Returns a Boolean value indicating whether the value of the first
     /// argument is less than that of the second argument.
     ///
@@ -56,50 +56,50 @@ public struct HATTwitterSocialFeedObject: HatApiType, HATSocialFeedObject, Compa
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
     public static func < (lhs: HATTwitterSocialFeedObject, rhs: HATTwitterSocialFeedObject) -> Bool {
-
+        
         if lhs.lastUpdated != nil && rhs.lastUpdated != nil {
-
+            
             return lhs.lastUpdated! < rhs.lastUpdated!
         } else if lhs.lastUpdated != nil && rhs.lastUpdated == nil {
-
+            
             return false
         } else {
-
+            
             return true
         }
     }
-
+    
     // MARK: - Protocol's variables
-
+    
     /// The last date updated of the record
     public var protocolLastUpdate: Date?
-
+    
     // MARK: - Class' variables
-
+    
     /// The name of the record in database
     public var name: String = ""
     /// The id of the record
     public var recordIDv1: String = ""
-
+    
     /// The actual data of the record
     public var data: HATTwitterDataSocialFeedObject = HATTwitterDataSocialFeedObject()
-
+    
     /// The last updated field of the record
     public var lastUpdated: Date?
-
+    
     /// The endPoint of the note, used in v2 API only
     public var endPoint: String = ""
-
+    
     /// The recordID of the note, used in v2 API only
     public var recordID: String = ""
-
+    
     // MARK: - Initialisers
-
+    
     /**
      The default initialiser. Initialises everything to default values.
      */
     public init() {
-
+        
         name = ""
         data = HATTwitterDataSocialFeedObject()
         recordIDv1 = ""
@@ -107,60 +107,25 @@ public struct HATTwitterSocialFeedObject: HatApiType, HATSocialFeedObject, Compa
         endPoint = ""
         recordID = ""
     }
-
+    
     /**
      It initialises everything from the received JSON file from the HAT
      */
     public init(from dictionary: Dictionary<String, JSON>) {
-
+        
         self.init()
-
-        if let tempName = dictionary[Fields.name]?.stringValue {
-
-            name = tempName
-        }
-        if let tempData = dictionary[Fields.data]?.dictionaryValue {
-
-            data = HATTwitterDataSocialFeedObject(from: tempData)
-        }
-        if let tempID = dictionary[Fields.tweetID]?.stringValue {
-
-            recordIDv1 = tempID
-        }
-        if let tempLastUpdated = dictionary[Fields.lastUpdated]?.stringValue {
-
-            lastUpdated = HATFormatterHelper.formatStringToDate(string: tempLastUpdated)
-            protocolLastUpdate = lastUpdated
-        }
+        
+        self.inititialize(dict: dictionary)
     }
-
+    
     /**
      It initialises everything from the received JSON file from the HAT
      */
     public init(fromV2 dictionary: Dictionary<String, JSON>) {
-
+        
         self.init()
-
-        if let tempEndpoint = dictionary[Fields.endPoint]?.string {
-
-            endPoint = tempEndpoint
-        }
-
-        if let tempRecordID = dictionary[Fields.recordID]?.string {
-
-            recordID = tempRecordID
-        }
-
-        if let tempData = dictionary[Fields.data]?.dictionaryValue {
-
-            if let tempLastUpdated = tempData[Fields.lastUpdated]?.stringValue {
-
-                lastUpdated = HATFormatterHelper.formatStringToDate(string: tempLastUpdated)
-                protocolLastUpdate = lastUpdated
-            }
-
-            data = HATTwitterDataSocialFeedObject(from: tempData)
-        }
+        
+        self.inititialize(dict: dictionary)
     }
     
     /**
@@ -172,18 +137,20 @@ public struct HATTwitterSocialFeedObject: HatApiType, HATSocialFeedObject, Compa
             
             name = tempName
         }
-        if let tempData = dict[Fields.data]?.dictionaryValue {
-            
-            data = HATTwitterDataSocialFeedObject(from: tempData)
-        }
-        if let tempID = dict[Fields.tweetID]?.stringValue {
-            
-            recordIDv1 = tempID
-        }
         if let tempLastUpdated = dict[Fields.lastUpdated]?.stringValue {
             
             lastUpdated = HATFormatterHelper.formatStringToDate(string: tempLastUpdated)
             protocolLastUpdate = lastUpdated
+        }
+        if let tempData = dict[Fields.data]?.dictionaryValue {
+            
+            data = HATTwitterDataSocialFeedObject(from: tempData)
+            self.lastUpdated = data.tweets.createdAt
+            protocolLastUpdate = self.lastUpdated
+        }
+        if let tempID = dict[Fields.tweetID]?.stringValue {
+            
+            recordIDv1 = tempID
         }
     }
     

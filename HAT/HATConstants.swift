@@ -23,8 +23,6 @@ import Foundation
  */
 public enum Twitter {
     
-    static let statusURL: String = "https://twitter.hubat.net/api/status"
-    static let dataPlugURL: String = "https://twitter.hubat.net"
     static let tableName: String = "tweets"
     static let sourceName: String = "twitter"
     static let serviceName: String = "Twitter"
@@ -41,8 +39,6 @@ public enum Twitter {
  */
 public enum Fitbit {
     
-    static let statusURL: String = "https://fitbit.hubat.net/api/status"
-    static let dataPlugURL: String = "https://fitbit.hubat.net"
     static let sourceName: String = "fitbit"
     public static let serviceName: String = "Fitbit"
 }
@@ -58,8 +54,6 @@ public enum Fitbit {
  */
 public enum Facebook {
     
-    static let statusURL: String = "https://facebook.hubat.net/api/status"
-    static let dataPlugURL: String = "https://facebook.hubat.net"
     static let tableName: String = "feed"
     static let sourceName: String = "facebook"
     static let serviceName: String = "Facebook"
