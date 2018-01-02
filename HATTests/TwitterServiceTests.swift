@@ -50,7 +50,7 @@ internal class TwitterServiceTests: XCTestCase {
 
         }
 
-        HATTwitterService.isTwitterDataPlugActive(appToken: token, statusURL: urlToConnect, successful: completion, failed: failed)
+        HATTwitterService.isTwitterDataPlugActive(appToken: token, url: urlToConnect, successful: completion, failed: failed)
 
         waitForExpectations(timeout: 10) { error in
 

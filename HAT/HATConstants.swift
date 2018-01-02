@@ -21,7 +21,12 @@ import Foundation
  - sourceName: Cannot decode token. Includes a description(String)
  - serviceName: Cannot split token. Includes a description(String)
  */
-public enum Twitter {
+public struct Twitter {
+    
+    public static func twitterDataPlugStatusURL(twitterDataPlugURL: String) -> String {
+        
+        return "\(twitterDataPlugURL)/api/status"
+    }
     
     static let tableName: String = "tweets"
     static let sourceName: String = "twitter"
@@ -37,7 +42,12 @@ public enum Twitter {
  - sourceName: Cannot decode token. Includes a description(String)
  - serviceName: Cannot split token. Includes a description(String)
  */
-public enum Fitbit {
+public struct Fitbit {
+    
+    public static func fitbitDataPlugStatusURL(fitbitDataPlugURL: String) -> String {
+        
+        return "\(fitbitDataPlugURL)/api/status"
+    }
     
     static let sourceName: String = "fitbit"
     public static let serviceName: String = "Fitbit"
@@ -52,7 +62,12 @@ public enum Fitbit {
  - sourceName: Cannot decode token. Includes a description(String)
  - serviceName: Cannot split token. Includes a description(String)
  */
-public enum Facebook {
+public struct Facebook {
+    
+    public static func facebookDataPlugStatusURL(facebookDataPlugURL: String) -> String {
+        
+        return "\(facebookDataPlugURL)/api/status"
+    }
     
     static let tableName: String = "feed"
     static let sourceName: String = "facebook"

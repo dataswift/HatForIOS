@@ -125,4 +125,3 @@ public struct HATProfileDataObjectV2: HATObject, HatApiType {
         self.initialize(dict: json.dictionaryValue)
     }
 }
-

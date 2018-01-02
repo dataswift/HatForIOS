@@ -124,14 +124,11 @@ public struct HATFacebookService {
      Checks if facebook plug is active
      
      - parameter appToken: The authorisation token to authenticate with the hat
-     - parameter statusURL: The status URL to check if the plug is active or not
      - parameter successful: An @escaping (Void) -> Void method executed on a successful response
      - parameter failed: An @escaping (Void) -> Void) method executed on a failed response
      */
-    public static func isFacebookDataPlugActive(appToken: String, statusURL: String, successful: @escaping (Bool) -> Void, failed: @escaping (DataPlugError) -> Void) {
+    public static func isFacebookDataPlugActive(appToken: String, url: String, successful: @escaping (Bool) -> Void, failed: @escaping (DataPlugError) -> Void) {
         
-        // construct the url, set parameters and headers for the request
-        let url = statusURL
         let parameters: Dictionary<String, String> = [:]
         let headers = [RequestHeaders.xAuthToken: appToken]
         
@@ -141,9 +138,9 @@ public struct HATFacebookService {
             // act upon response
             switch response {
                 
-            case .isSuccess(let isSuccess, _, let result, _):
+            case .isSuccess(_, let statusCode, _, _):
                 
-                if isSuccess && result["canPost"].boolValue == true {
+                if statusCode == 200 {
                     
                     successful(true)
                 } else {
@@ -197,13 +194,13 @@ public struct HATFacebookService {
      - parameter successful: An @escaping (String) -> Void method executed on a successful response
      - parameter failed: An @escaping (Void) -> Void) method executed on a failed response
      */
-    public static func getAppTokenForFacebook(token: String, userDomain: String, dataPlugURL: String, successful: @escaping (String, String?) -> Void, failed: @escaping (JSONParsingError) -> Void) {
+    public static func getAppTokenForFacebook(plug: HATDataPlugObject, token: String, userDomain: String, successful: @escaping (String, String?) -> Void, failed: @escaping (JSONParsingError) -> Void) {
         
         HATService.getApplicationTokenFor(
-            serviceName: Facebook.serviceName,
+            serviceName: plug.plug.name,
             userDomain: userDomain,
             token: token,
-            resource: dataPlugURL,
+            resource: plug.plug.url,
             succesfulCallBack: successful,
             failCallBack: failed)
     }

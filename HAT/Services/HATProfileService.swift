@@ -415,7 +415,7 @@ public struct HATProfileService {
         }
     }
     
-    static let notablesStructure = [
+    public static let notablesStructure = [
         "notables":
             [
                 "endpoints": [
@@ -455,45 +455,6 @@ public struct HATProfileService {
                 "ordering": "descending"
         ]
     ]
-    
-    static let profileMapping = [
-        "(0, 0)": "photo.avatar",
-        "(1, 1)": "personal.firstName",
-        "(1, 2)": "personal.lastName",
-        "(1, 3)": "personal.gender",
-        "(1, 4)": "personal.birthDate",
-        "(1, 5)": "contact.primaryEmail",
-        "(1, 6)": "contact.alternativeEmail",
-        "(1, 7)": "contact.mobile",
-        "(1, 8)": "contact.landline",
-        "(2, 1)": "online.facebook",
-        "(2, 2)": "online.twitter",
-        "(2, 3)": "online.linkedin",
-        "(2, 4)": "online.youtube",
-        "(2, 5)": "online.website",
-        "(2, 6)": "online.blog",
-        "(2, 7)": "online.google",
-        "(3, 1)": "about.title",
-        "(3, 2)": "about.body"
-    ]
-    
-    public static func mapProfileStructure(returnedDictionary: Dictionary<String, String>) -> Dictionary<String, String> {
-        
-        let filtered = HATProfileService.profileMapping.filter({ item1 in
-            
-            for item2 in returnedDictionary {
-                
-                if item1.value == item2.value {
-                    
-                    return true
-                }
-            }
-            
-            return false
-        })
-        
-        return filtered
-    }
     
     public static func constructDictionaryForBundle(mutableDictionary: NSMutableDictionary) -> Dictionary<String, Any>? {
         
@@ -542,7 +503,12 @@ public struct HATProfileService {
                 let mutableDictionary = NSMutableDictionary()
                 mutableDictionary.addEntries(from: HATProfileService.notablesStructure)
                 mutableDictionary.addEntries(from: parameters!)
-                parametersToSend = (mutableDictionary as? Dictionary<String, Any>)!
+                guard let tempDict = mutableDictionary as? Dictionary<String, Any> else {
+                    
+                    parametersToSend = [:]
+                    return
+                }
+                parametersToSend = tempDict
             }
             
             Alamofire.request(
@@ -569,5 +535,28 @@ public struct HATProfileService {
                 }
             )
         }
+    }
+    
+    public static func createAndGetProfileBundle(userDomain: String, userToken: String, parameters: Dictionary<String, Any>? = nil, success: @escaping (Dictionary<String, JSON>) -> Void, fail: @escaping (HATTableError) -> Void) {
+        
+        func bundleCreated(isBundleCreated: Bool) {
+            
+            if isBundleCreated {
+                
+                HATProfileService.getPhataStructureBundle(
+                    userDomain: userDomain,
+                    userToken: userToken,
+                    parameters: [:],
+                    success: success,
+                    fail: fail)
+            }
+        }
+        
+        HATProfileService.createPhataStructureBundle(
+            userDomain: userDomain,
+            userToken: userToken,
+            parameters: parameters,
+            success: bundleCreated,
+            fail: fail)
     }
 }

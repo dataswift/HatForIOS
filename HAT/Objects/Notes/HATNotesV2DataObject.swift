@@ -135,7 +135,6 @@ public struct HATNotesV2DataObject: HATObject, HatApiType {
     
     public func toJSON() -> Dictionary<String, Any> {
         
-        
         return [
             Fields.authorV1: authorv1.toJSON(),
             Fields.photoV1: photov1?.toJSON() ?? HATNotesV2PhotoObject().toJSON(),

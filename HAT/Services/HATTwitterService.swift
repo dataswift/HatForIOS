@@ -44,10 +44,9 @@ public struct HATTwitterService {
      - parameter successful: An @escaping (Void) -> Void method executed on a successful response
      - parameter failed: An @escaping (Void) -> Void) method executed on a failed response
      */
-    public static func isTwitterDataPlugActive(appToken: String, statusURL: String, successful: @escaping (Bool) -> Void, failed: @escaping (DataPlugError) -> Void) {
+    public static func isTwitterDataPlugActive(appToken: String, url: String, successful: @escaping (Bool) -> Void, failed: @escaping (DataPlugError) -> Void) {
         
         // construct the url, set parameters and headers for the request
-        let url = statusURL
         let parameters: Dictionary<String, String> = [:]
         let headers = [RequestHeaders.xAuthToken: appToken]
         
@@ -125,9 +124,15 @@ public struct HATTwitterService {
      - parameter successful: An @escaping (String) -> Void method executed on a successful response
      - parameter failed: An @escaping (Void) -> Void) method executed on a failed response
      */
-    public static func getAppTokenForTwitter(userDomain: String, token: String, dataPlugURL: String, successful: @escaping (String, String?) -> Void, failed: @escaping (JSONParsingError) -> Void) {
+    public static func getAppTokenForTwitter(plug: HATDataPlugObject, userDomain: String, token: String, successful: @escaping (String, String?) -> Void, failed: @escaping (JSONParsingError) -> Void) {
         
-        HATService.getApplicationTokenFor(serviceName: Twitter.serviceName, userDomain: userDomain, token: token, resource: dataPlugURL, succesfulCallBack: successful, failCallBack: failed)
+        HATService.getApplicationTokenFor(
+            serviceName: plug.plug.name,
+            userDomain: userDomain,
+            token: token,
+            resource: plug.plug.url,
+            succesfulCallBack: successful,
+            failCallBack: failed)
     }
     
     // MARK: - Remove diplicates
@@ -181,7 +186,7 @@ public struct HATTwitterService {
         var arrayToReturn: [HATTwitterSocialFeedObject] = []
         
         // go through each tweet object in the array
-        for tweet in array {
+        for tweet in array where array.count > 1 {
             
             // check if the arrayToReturn it contains that value and if not add it
             let result = arrayToReturn.contains(where: {(tweeter: HATTwitterSocialFeedObject) -> Bool in
