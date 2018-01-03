@@ -270,40 +270,6 @@ internal class DataPlugsServiceTests: XCTestCase {
         }
     }
 
-    func testCheckSocialPlugAvailability() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-
-        let body: Dictionary<String, String> = [
-            "canPost": "true"
-        ]
-        let expectationTest = expectation(description: "Checking social plug availability...")
-
-        let urlToConnect = "https://facebook.hubat.net/api/status"
-
-        MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
-
-        func success(result: String) {
-
-            XCTAssertTrue(result == "true")
-            expectationTest.fulfill()
-        }
-
-        func fail(error: DataPlugError) {
-
-        }
-
-        let test = HATDataPlugsService.checkSocialPlugAvailability(succesfulCallBack: success, failCallBack: fail)
-        test("")
-
-        waitForExpectations(timeout: 10) { error in
-
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-            }
-        }
-    }
-
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
