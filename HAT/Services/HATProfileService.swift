@@ -225,14 +225,14 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func getProfile(userDomain: String, userToken: String, successCallback: @escaping (HATProfileObjectV2, String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func getProfile(userDomain: String, userToken: String, successCallback: @escaping (HATProfileObject, String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
         func profileEntries(json: [JSON], renewedToken: String?) {
             
             // if we have values return them
             if !json.isEmpty {
                 
-                if let profile: HATProfileObjectV2 = HATProfileObjectV2.decode(from: json[0].dictionaryValue) {
+                if let profile: HATProfileObject = HATProfileObject.decode(from: json[0].dictionaryValue) {
                     
                     successCallback(profile, renewedToken)
                 } else {
@@ -266,9 +266,9 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func postProfile(userToken: String, userDomain: String, profile: HATProfileObjectV2, successCallback: @escaping (HATProfileObjectV2, String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func postProfile(userToken: String, userDomain: String, profile: HATProfileObject, successCallback: @escaping (HATProfileObject, String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
-        guard let profileJSON: Dictionary<String, Any> = HATProfileDataObjectV2.encode(from: profile.data) else {
+        guard let profileJSON: Dictionary<String, Any> = HATProfileDataObject.encode(from: profile.data) else {
             
             return
         }
@@ -281,7 +281,7 @@ public struct HATProfileService {
             parameters: profileJSON,
             successCallback: { (json, newToken) in
                 
-                guard let profile: HATProfileObjectV2 = HATProfileObjectV2.decode(from: json.dictionaryValue) else {
+                guard let profile: HATProfileObject = HATProfileObject.decode(from: json.dictionaryValue) else {
                     
                     failCallback(.noValuesFound)
                     return

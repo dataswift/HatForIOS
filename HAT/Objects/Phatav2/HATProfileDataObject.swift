@@ -12,7 +12,7 @@
 
 import SwiftyJSON
 
-public struct HATProfileDataObjectV2: HATObject, HatApiType {
+public struct HATProfileDataObject: HATObject, HatApiType {
     
     /// The possible Fields of the JSON struct
     public struct Fields {
@@ -30,19 +30,19 @@ public struct HATProfileDataObjectV2: HATObject, HatApiType {
     }
     
     /// The website object of user's profile
-    public var about: HATProfileDataProfileAboutObjectV2 = HATProfileDataProfileAboutObjectV2()
+    public var about: HATProfileDataProfileAboutObject = HATProfileDataProfileAboutObject()
     /// The nickname object of user's profile
-    public var photo: HATProfileDataProfilePhotoObjectV2 = HATProfileDataProfilePhotoObjectV2()
+    public var photo: HATProfileDataProfilePhotoObject = HATProfileDataProfilePhotoObject()
     /// The primary email address object of user's profile
-    public var online: HATProfileDataProfileOnlineObjectV2 = HATProfileDataProfileOnlineObjectV2()
+    public var online: HATProfileDataProfileOnlineObject = HATProfileDataProfileOnlineObject()
     /// The youtube object of user's profile
-    public var address: HATProfileDataProfileAddressObjectV2 = HATProfileDataProfileAddressObjectV2()
+    public var address: HATProfileDataProfileAddressObject = HATProfileDataProfileAddressObject()
     /// The global addres object of user's profile
-    public var contact: HATProfileDataProfileContactObjectV2 = HATProfileDataProfileContactObjectV2()
+    public var contact: HATProfileDataProfileContactObject = HATProfileDataProfileContactObject()
     /// The youtube object of user's profile
-    public var personal: HATProfileDataProfilePersonalObjectV2 = HATProfileDataProfilePersonalObjectV2()
+    public var personal: HATProfileDataProfilePersonalObject = HATProfileDataProfilePersonalObject()
     /// The global addres object of user's profile
-    public var emergencyContact: HATProfileDataProfileEmergencyContactObjectV2 = HATProfileDataProfileEmergencyContactObjectV2()
+    public var emergencyContact: HATProfileDataProfileEmergencyContactObject = HATProfileDataProfileEmergencyContactObject()
     
     public var dateCreated: Int?
     public var dateCreatedLocal: String?
@@ -63,31 +63,31 @@ public struct HATProfileDataObjectV2: HATObject, HatApiType {
         
         if let tempAbout = (dict[Fields.about]?.dictionaryValue) {
             
-            about = HATProfileDataProfileAboutObjectV2(dict: tempAbout)
+            about = HATProfileDataProfileAboutObject(dict: tempAbout)
         }
         if let tempPhoto = (dict[Fields.photo]?.dictionaryValue) {
             
-            photo = HATProfileDataProfilePhotoObjectV2(dict: tempPhoto)
+            photo = HATProfileDataProfilePhotoObject(dict: tempPhoto)
         }
         if let tempOnline = (dict[Fields.online]?.dictionaryValue) {
             
-            online = HATProfileDataProfileOnlineObjectV2(dict: tempOnline)
+            online = HATProfileDataProfileOnlineObject(dict: tempOnline)
         }
         if let tempAddress = (dict[Fields.address]?.dictionaryValue) {
             
-            address = HATProfileDataProfileAddressObjectV2(dict: tempAddress)
+            address = HATProfileDataProfileAddressObject(dict: tempAddress)
         }
         if let tempContact = (dict[Fields.contact]?.dictionaryValue) {
             
-            contact = HATProfileDataProfileContactObjectV2(dict: tempContact)
+            contact = HATProfileDataProfileContactObject(dict: tempContact)
         }
         if let tempPersonal = (dict[Fields.personal]?.dictionaryValue) {
             
-            personal = HATProfileDataProfilePersonalObjectV2(dict: tempPersonal)
+            personal = HATProfileDataProfilePersonalObject(dict: tempPersonal)
         }
         if let tempEmergencyContact = (dict[Fields.emergencyContact]?.dictionaryValue) {
             
-            emergencyContact = HATProfileDataProfileEmergencyContactObjectV2(dict: tempEmergencyContact)
+            emergencyContact = HATProfileDataProfileEmergencyContactObject(dict: tempEmergencyContact)
         }
         if let tempDateCreated = (dict[Fields.dateCreated]?.intValue) {
             

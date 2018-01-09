@@ -395,10 +395,10 @@ public struct HATAccountService {
                     
                     if isSuccess, let array: [JSON] = result.array {
                         
-                        var arrayToReturn: [HATLocationsV2Object] = []
+                        var arrayToReturn: [HATLocationsObject] = []
                         for item: JSON in array {
                             
-                            if let object: HATLocationsV2Object = HATLocationsV2Object.decode(from: item.dictionaryValue) {
+                            if let object: HATLocationsObject = HATLocationsObject.decode(from: item.dictionaryValue) {
                                 
                                 arrayToReturn.append(object)
                             }

@@ -12,22 +12,21 @@
 
 import SwiftyJSON
 
-public struct HATProfileDataProfileContactObjectV2: HATObject, HatApiType {
+public struct HATProfileDataProfileEmergencyContactObject: HATObject, HatApiType {
     
-    // MARK: - Fields
-    
-    struct Fields {
+    /// The possible Fields of the JSON struct
+    public struct Fields {
         
+        static let relationship: String = "relationship"
+        static let lastName: String = "lastName"
         static let mobile: String = "mobile"
-        static let landline: String = "landline"
-        static let primaryEmail: String = "primaryEmail"
-        static let alternativeEmail: String = "alternativeEmail"
+        static let firstName: String = "firstName"
     }
 
+    public var relationship: String = ""
+    public var lastName: String = ""
     public var mobile: String = ""
-    public var landline: String = ""
-    public var primaryEmail: String = ""
-    public var alternativeEmail: String = ""
+    public var firstName: String = ""
     
     public init() {
         
@@ -42,31 +41,31 @@ public struct HATProfileDataProfileContactObjectV2: HATObject, HatApiType {
     
     public mutating func initialize(dict: Dictionary<String, JSON>) {
         
+        if let tempRelationship = (dict[Fields.relationship]?.stringValue) {
+            
+            relationship = tempRelationship
+        }
+        if let tempLastName = (dict[Fields.lastName]?.stringValue) {
+            
+            lastName = tempLastName
+        }
         if let tempMobile = (dict[Fields.mobile]?.stringValue) {
             
             mobile = tempMobile
         }
-        if let tempLandline = (dict[Fields.landline]?.stringValue) {
+        if let tempFirstName = (dict[Fields.firstName]?.stringValue) {
             
-            landline = tempLandline
-        }
-        if let tempPrimaryEmail = (dict[Fields.primaryEmail]?.stringValue) {
-            
-            primaryEmail = tempPrimaryEmail
-        }
-        if let tempAlternativeEmail = (dict[Fields.alternativeEmail]?.stringValue) {
-            
-            alternativeEmail = tempAlternativeEmail
+            firstName = tempFirstName
         }
     }
     
     public func toJSON() -> Dictionary<String, Any> {
         
         return [
+            Fields.relationship: self.relationship,
+            Fields.lastName: self.lastName,
             Fields.mobile: self.mobile,
-            Fields.landline: self.landline,
-            Fields.primaryEmail: self.primaryEmail,
-            Fields.alternativeEmail: self.alternativeEmail
+            Fields.firstName: self.firstName
         ]
     }
     

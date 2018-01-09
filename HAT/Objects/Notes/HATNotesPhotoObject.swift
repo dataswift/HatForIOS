@@ -12,7 +12,7 @@
 
 import SwiftyJSON
 
-public struct HATNotesV2PhotoObject: HATObject, HatApiType {
+public struct HATNotesPhotoObject: HATObject, HatApiType {
 
     // MARK: - JSON Fields
     

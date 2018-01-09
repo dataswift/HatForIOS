@@ -52,7 +52,7 @@ internal class HATServiceTests: XCTestCase {
 
         }
 
-        HATService.getApplicationTokenFor(serviceName: serviceName, userDomain: userDomain, token: token, resource: resource, succesfulCallBack: completion, failCallBack: failed)
+        HATService.getApplicationTokenFor(serviceName: serviceName, userDomain: userDomain, userToken: token, resource: resource, succesfulCallBack: completion, failCallBack: failed)
 
         waitForExpectations(timeout: 10) { error in
 

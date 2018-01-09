@@ -12,16 +12,20 @@
 
 import SwiftyJSON
 
-public struct HATProfileDataProfilePhotoObjectV2: HATObject, HatApiType {
+public struct HATProfileDataProfileAddressObject: HATObject, HatApiType {
 
     // MARK: - Fields
     
     struct Fields {
         
-        static let avatar: String = "avatar"
+        static let city: String = "city"
+        static let county: String = "county"
+        static let country: String = "country"
     }
     
-    public var avatar: String = ""
+    public var city: String = ""
+    public var county: String = ""
+    public var country: String = ""
     
     public init() {
         
@@ -36,16 +40,26 @@ public struct HATProfileDataProfilePhotoObjectV2: HATObject, HatApiType {
     
     public mutating func initialize(dict: Dictionary<String, JSON>) {
         
-        if let tempAvatar = (dict[Fields.avatar]?.stringValue) {
+        if let tempCity = (dict[Fields.city]?.stringValue) {
             
-            avatar = tempAvatar
+            city = tempCity
+        }
+        if let tempCounty = (dict[Fields.county]?.stringValue) {
+            
+            county = tempCounty
+        }
+        if let tempCountry = (dict[Fields.country]?.stringValue) {
+            
+            country = tempCountry
         }
     }
     
     public func toJSON() -> Dictionary<String, Any> {
         
         return [
-            Fields.avatar: self.avatar
+            Fields.city: self.city,
+            Fields.county: self.county,
+            Fields.country: self.country
         ]
     }
     

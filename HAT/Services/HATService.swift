@@ -70,7 +70,6 @@ public struct HATService {
     
     // MARK: - Get available HAT providers
     
-
     /**
      Fetches the available HAT providers
      

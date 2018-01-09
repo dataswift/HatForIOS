@@ -12,7 +12,7 @@
 
 import SwiftyJSON
 
-public struct HATProfileObjectV2: HATObject, HatApiType {
+public struct HATProfileObject: HATObject, HatApiType {
     
     /// The possible Fields of the JSON struct
     public struct Fields {
@@ -24,7 +24,7 @@ public struct HATProfileObjectV2: HATObject, HatApiType {
     
     public var endpoint: String? = ""
     public var recordId: String? = ""
-    public var data: HATProfileDataObjectV2 = HATProfileDataObjectV2()
+    public var data: HATProfileDataObject = HATProfileDataObject()
     
     public init() {
         
@@ -55,7 +55,7 @@ public struct HATProfileObjectV2: HATObject, HatApiType {
         }
         if let tempData = (dict[Fields.data]?.dictionaryValue) {
             
-            data = HATProfileDataObjectV2(dict: tempData)
+            data = HATProfileDataObject(dict: tempData)
         }
     }
     

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2017 HAT Data Exchange Ltd
+ * Copyright (C) 2018 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -12,7 +12,7 @@
 
 import SwiftyJSON
 
-public struct HATNotesV2DataObject: HATObject, HatApiType {
+public struct HATNotesDataObject: HATObject, HatApiType {
     
     // MARK: - JSON Fields
     
@@ -26,7 +26,7 @@ public struct HATNotesV2DataObject: HATObject, HatApiType {
         static let public_until: String = "public_until"
         static let updated_time: String = "updated_time"
         static let shared: String = "shared"
-        static let currenlty_shared: String = "currenlty_shared"
+        static let currently_shared: String = "currently_shared"
         static let shared_on: String = "shared_on"
         static let message: String = "message"
         static let kind: String = "kind"
@@ -35,13 +35,13 @@ public struct HATNotesV2DataObject: HATObject, HatApiType {
     // MARK: - Variables
     
     /// the author data
-    public var authorv1: HATNotesV2AuthorObject = HATNotesV2AuthorObject()
+    public var authorv1: HATNotesAuthorObject = HATNotesAuthorObject()
     
     /// the photo data
-    public var photov1: HATNotesV2PhotoObject?
+    public var photov1: HATNotesPhotoObject?
     
     /// the location data
-    public var locationv1: HATNotesV2LocationObject?
+    public var locationv1: HATNotesLocationObject?
     
     /// creation date
     public var created_time: String = ""
@@ -53,7 +53,7 @@ public struct HATNotesV2DataObject: HATObject, HatApiType {
     /// if true this note is shared to facebook etc.
     public var shared: Bool = false
     /// if true this note is shared to facebook etc.
-    public var currenlty_shared: Bool = false
+    public var currently_shared: Bool = false
     
     /// If shared, where is it shared? Coma seperated string (don't know if it's optional or not)
     public var shared_on: [String] = []
@@ -82,17 +82,17 @@ public struct HATNotesV2DataObject: HATObject, HatApiType {
         
         if let tempAuthorData = dict[Fields.authorV1]?.dictionary {
             
-            authorv1 = HATNotesV2AuthorObject.init(dict: tempAuthorData)
+            authorv1 = HATNotesAuthorObject.init(dict: tempAuthorData)
         }
         
         if let tempPhotoData = dict[Fields.photoV1]?.dictionary {
             
-            photov1 = HATNotesV2PhotoObject.init(dict: tempPhotoData)
+            photov1 = HATNotesPhotoObject.init(dict: tempPhotoData)
         }
         
         if let tempLocationData = dict[Fields.locationV1]?.dictionary {
             
-            locationv1 = HATNotesV2LocationObject.init(dict: tempLocationData)
+            locationv1 = HATNotesLocationObject.init(dict: tempLocationData)
         }
         
         if let tempSharedOn = dict[Fields.shared_on]?.arrayValue {
@@ -122,9 +122,9 @@ public struct HATNotesV2DataObject: HATObject, HatApiType {
             
             shared = tempShared
         }
-        if let tempCurrentlyShared = dict[Fields.currenlty_shared]?.boolValue {
+        if let tempCurrentlyShared = dict[Fields.currently_shared]?.boolValue {
             
-            currenlty_shared = tempCurrentlyShared
+            currently_shared = tempCurrentlyShared
         }
         
         if let tempMessage = dict[Fields.message]?.string {
@@ -144,12 +144,13 @@ public struct HATNotesV2DataObject: HATObject, HatApiType {
         
         return [
             Fields.authorV1: authorv1.toJSON(),
-            Fields.photoV1: photov1?.toJSON() ?? HATNotesV2PhotoObject().toJSON(),
-            Fields.locationV1: locationv1?.toJSON() ?? HATNotesV2LocationObject().toJSON(),
+            Fields.photoV1: photov1?.toJSON() ?? HATNotesPhotoObject().toJSON(),
+            Fields.locationV1: locationv1?.toJSON() ?? HATNotesLocationObject().toJSON(),
             Fields.created_time: created_time,
             Fields.public_until: public_until ?? "",
             Fields.updated_time: updated_time,
             Fields.shared: shared,
+            Fields.currently_shared: currently_shared,
             Fields.shared_on: shared_on,
             Fields.message: message,
             Fields.kind: kind

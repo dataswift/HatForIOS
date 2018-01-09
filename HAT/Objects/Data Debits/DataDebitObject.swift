@@ -22,5 +22,4 @@ public struct DataDebitObject: HATObject {
     public var dateCreated: String = ""
     public var client: DataDebitClientObject
     public var bundles: [DataDebitBundleObject] = []
-    
 }

@@ -43,7 +43,6 @@ public protocol HATObject: Codable {
      */
     static func encode<T: HATObject>(from: [T]) -> Data?
     
-    
     /**
      Extracts the dictionary out of a JSON Object
      

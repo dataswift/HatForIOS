@@ -24,6 +24,7 @@ internal class NotableServiceTests: XCTestCase {
             "data": [
                 "kind": "note",
                 "shared": true,
+                "currently_shared": true,
                 "message": "faceboooook",
                 "authorv1": [
                     "phata": "testing.hubat.net",
@@ -58,7 +59,7 @@ internal class NotableServiceTests: XCTestCase {
         
         let expectationTest = expectation(description: "Get notes v2 data from hat...")
         
-        func success(notes: [HATNotesV2Object], newToken: String?) {
+        func success(notes: [HATNotesObject], newToken: String?) {
             
             XCTAssertTrue(notes[0].data.kind == "note")
             expectationTest.fulfill()
@@ -73,10 +74,11 @@ internal class NotableServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(NotableServiceTests.notesV2Response))
         
-        HATNotablesService.getNotesV2(
+        HATNotablesService.getNotes(
             userDomain: userDomain,
-            token: userToken,
-            success: success)
+            userToken: userToken,
+            success: success,
+            failed: fail)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -86,25 +88,9 @@ internal class NotableServiceTests: XCTestCase {
         }
     }
 
-    func testSorting() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-
-        let note1 = HATNotesData()
-        var note2 = HATNotesData()
-
-        note2.lastUpdated = note2.lastUpdated.addingTimeInterval(100)
-
-        var array = [note1, note2]
-
-        array = HATNotablesService.sortNotables(notes: array)
-
-        XCTAssertTrue(array[0] == note2)
-    }
-
     func testRemoveDuplicates() {
 
-        let note1 = HATNotesData()
+        let note1 = HATNotesObject()
         let note2 = note1
 
         var array = [note1, note2]

@@ -29,17 +29,17 @@ public struct HATNotablesService {
      - parameter success: A function executing on success returning ([HATNotesV2Object], String?) -> Void)
      - parameter failed: A function executing on failure returning (HATTableError) -> Void)
      */
-    public static func getNotes(userDomain: String, userToken: String, parameters: Dictionary<String, String> = ["orderBy": "updated_time", "ordering": "descending"], success: @escaping (_ array: [HATNotesV2Object], String?) -> Void, failed: @escaping (HATTableError) -> Void) {
+    public static func getNotes(userDomain: String, userToken: String, parameters: Dictionary<String, String> = ["orderBy": "updated_time", "ordering": "descending"], success: @escaping (_ array: [HATNotesObject], String?) -> Void, failed: @escaping (HATTableError) -> Void) {
         
         func gotNotes(notesJSON: [JSON], newToken: String?) {
             
-            var notes: [HATNotesV2Object] = []
+            var notes: [HATNotesObject] = []
             
             for item: JSON in notesJSON {
                 
                 if let note: [String: JSON] = item.dictionary {
                     
-                    if let tempNote: HATNotesV2Object = (HATNotesV2Object.decode(from: note)) {
+                    if let tempNote: HATNotesObject = (HATNotesObject.decode(from: note)) {
                         
                         notes.append(tempNote)
                     }
@@ -95,10 +95,10 @@ public struct HATNotablesService {
      - parameter success: A function to execute on success
      - parameter failed: A function to execute on failure
      */
-    public static func updateNote(note: HATNotesV2Object, userToken: String, userDomain: String, success: @escaping (([JSON], String?) -> Void) = { _, _  in }, failed: @escaping ((HATTableError) -> Void) = { _ in }) {
+    public static func updateNote(note: HATNotesObject, userToken: String, userDomain: String, success: @escaping (([JSON], String?) -> Void) = { _, _  in }, failed: @escaping ((HATTableError) -> Void) = { _ in }) {
         
         // update JSON file with the values needed
-        let hatData: [String: Any] = HATNotesV2DataObject.encode(from: note.data)!
+        let hatData: [String: Any] = HATNotesDataObject.encode(from: note.data)!
         
         HATAccountService.updateHatRecord(
             userDomain: userDomain,
@@ -123,10 +123,10 @@ public struct HATNotablesService {
      - parameter successCallBack: A function to execute on success
      - parameter errorCallback: A function to execute on failure
      */
-    public static func postNote(userDomain: String, userToken: String, note: HATNotesV2Object, successCallBack: @escaping (JSON, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func postNote(userDomain: String, userToken: String, note: HATNotesObject, successCallBack: @escaping (JSON, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // update JSON file with the values needed
-        let hatData: [String: Any] = HATNotesV2DataObject.encode(from: note.data)!
+        let hatData: [String: Any] = HATNotesDataObject.encode(from: note.data)!
         
         HATAccountService.createTableValue(
             userToken: userToken,
@@ -151,16 +151,16 @@ public struct HATNotablesService {
      
      - returns: An array of HATNotesV2Object
      */
-    public static func removeDuplicatesFrom(array: [HATNotesV2Object]) -> [HATNotesV2Object] {
+    public static func removeDuplicatesFrom(array: [HATNotesObject]) -> [HATNotesObject] {
         
         // the array to return
-        var arrayToReturn: [HATNotesV2Object] = []
+        var arrayToReturn: [HATNotesObject] = []
         
         // go through each note object in the array
-        for note: HATNotesV2Object in array {
+        for note: HATNotesObject in array {
             
             // check if the arrayToReturn it contains that value and if not add it
-            let result = arrayToReturn.contains(where: {(note2: HATNotesV2Object) -> Bool in
+            let result = arrayToReturn.contains(where: {(note2: HATNotesObject) -> Bool in
                 
                 if note.recordId == note2.recordId {
                     
@@ -188,7 +188,7 @@ public struct HATNotablesService {
      
      - returns: An array of HATNotesV2Object
      */
-    public static func sortNotables(notes: [HATNotesV2Object]) -> [HATNotesV2Object] {
+    public static func sortNotables(notes: [HATNotesObject]) -> [HATNotesObject] {
         
         return notes.sorted { $0.data.updated_time > $1.data.updated_time }
     }
