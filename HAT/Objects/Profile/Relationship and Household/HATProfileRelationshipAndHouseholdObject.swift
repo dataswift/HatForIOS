@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2017 HAT Data Exchange Ltd
+ * Copyright (C) 2018 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -14,7 +14,7 @@ import SwiftyJSON
 
 // MARK: Struct
 
-public struct HATProfileRelationshipAndHouseholdObject: Comparable {
+public struct HATProfileRelationshipAndHouseholdObject: HatApiType, Comparable {
 
     // MARK: - Comparable protocol
 
@@ -85,8 +85,14 @@ public struct HATProfileRelationshipAndHouseholdObject: Comparable {
      */
     public init(from dict: JSON) {
 
-        if let data = (dict["data"].dictionary) {
-
+        self.initialize(fromCache: dict.dictionaryValue)
+    }
+    
+    public mutating func initialize(fromCache: Dictionary<String, Any>) {
+        
+        let json: JSON = JSON(fromCache)
+        if let data = (json["data"].dictionary) {
+            
             relationshipStatus = (data["relationshipStatus"]!.stringValue)
             typeOfAccomodation = (data["typeOfAccomodation"]!.stringValue)
             livingSituation = (data["livingSituation"]!.stringValue)
@@ -95,14 +101,14 @@ public struct HATProfileRelationshipAndHouseholdObject: Comparable {
             hasChildren = (data["hasChildren"]!.stringValue)
             additionalDependents = (data["additionalDependents"]!.stringValue)
             numberOfChildren = (data["numberOfChildren"]!.intValue)
-
+            
             if let time = (data["unixTimeStamp"]?.stringValue) {
-
+                
                 unixTimeStamp = Int(time)
             }
         }
-
-        recordID = (dict["recordId"].stringValue)
+        
+        recordID = (json["recordId"].stringValue)
     }
 
     // MARK: - JSON Mapper

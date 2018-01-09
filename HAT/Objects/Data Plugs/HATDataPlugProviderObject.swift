@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2017 HAT Data Exchange Ltd
+ * Copyright (C) 2018 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -12,7 +12,7 @@
 
 import UIKit
 
-public struct HATDataPlugProviderObject: Decodable {
+public struct HATDataPlugProviderObject: HATObject {
 
     public var id: String = ""
     public var email: String = ""
