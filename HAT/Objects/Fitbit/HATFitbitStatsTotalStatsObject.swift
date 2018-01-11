@@ -16,6 +16,8 @@ public struct HATFitbitStatsTotalStatsObject: HATObject {
 
     // MARK: - Variables
     
+    /// The date of the stats
     public var date: String = ""
+    /// The value of the stats
     public var value: Float = 0
 }

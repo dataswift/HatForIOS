@@ -12,7 +12,11 @@
 
 import SwiftyJSON
 
+// MARK: Struct
+
 public struct HATProfileObject: HATObject, HatApiType {
+    
+    // MARK: - Fields
     
     /// The possible Fields of the JSON struct
     public struct Fields {
@@ -22,16 +26,28 @@ public struct HATProfileObject: HATObject, HatApiType {
         static let data: String = "data"
     }
     
+    // MARK: - Variables
+    
+    /// The endpoint the data are coming from
     public var endpoint: String? = ""
+    /// The record ID of the data
     public var recordId: String? = ""
+    /// The data of the profile
     public var data: HATProfileDataObject = HATProfileDataObject()
     
+    // MARK: - Initialisers
+    
+    /**
+     The default initialiser. Initialises everything to default values.
+     */
     public init() {
         
     }
     
     /**
      It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
      */
     public init(from dict: Dictionary<String, JSON>) {
         
@@ -42,6 +58,8 @@ public struct HATProfileObject: HATObject, HatApiType {
     
     /**
      It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
      */
     public mutating func initialize(dict: Dictionary<String, JSON>) {
         
@@ -59,9 +77,8 @@ public struct HATProfileObject: HATObject, HatApiType {
         }
     }
     
-    /**
-     It initialises everything from the received JSON file from the cache
-     */
+    // MARK: - HatApiType Protocol
+    
     public mutating func initialize(fromCache: Dictionary<String, Any>) {
         
         let json = JSON(fromCache)
@@ -70,11 +87,6 @@ public struct HATProfileObject: HATObject, HatApiType {
     
     // MARK: - JSON Mapper
     
-    /**
-     Returns the object as Dictionary, JSON
-     
-     - returns: Dictionary<String, String>
-     */
     public func toJSON() -> Dictionary<String, Any> {
         
         return [

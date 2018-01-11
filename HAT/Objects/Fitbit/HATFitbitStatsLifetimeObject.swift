@@ -16,6 +16,8 @@ public struct HATFitbitStatsLifetimeObject: HATObject {
     
     // MARK: - Variables
 
+    /// The total lifetime stats
     public var total: HATFitbitStatsLifetimeStatsObject = HATFitbitStatsLifetimeStatsObject()
+    /// The tracker used
     public var tracker: HATFitbitStatsLifetimeStatsObject = HATFitbitStatsLifetimeStatsObject()
 }

@@ -12,21 +12,37 @@
 
 import SwiftyJSON
 
+// MARK: Struct
+
 public struct HATProfileDataProfilePhotoObject: HATObject, HatApiType {
 
     // MARK: - Fields
     
+    /// The possible Fields of the JSON struct
     struct Fields {
         
         static let avatar: String = "avatar"
     }
     
+    // MARK: - Variables
+    
+    /// The user's avatar URL
     public var avatar: String = ""
     
+    // MARK: - Initialisers
+    
+    /**
+     The default initialiser. Initialises everything to default values.
+     */
     public init() {
         
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
+     */
     public init(dict: Dictionary<String, JSON>) {
         
         self.init()
@@ -34,6 +50,11 @@ public struct HATProfileDataProfilePhotoObject: HATObject, HatApiType {
         self.initialize(dict: dict)
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
+     */
     public mutating func initialize(dict: Dictionary<String, JSON>) {
         
         if let tempAvatar = (dict[Fields.avatar]?.stringValue) {
@@ -41,6 +62,8 @@ public struct HATProfileDataProfilePhotoObject: HATObject, HatApiType {
             avatar = tempAvatar
         }
     }
+    
+    // MARK: - HatApiType protocol
     
     public func toJSON() -> Dictionary<String, Any> {
         

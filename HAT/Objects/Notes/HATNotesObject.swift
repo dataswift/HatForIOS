@@ -12,6 +12,8 @@
 
 import SwiftyJSON
 
+// MARK: Struct
+
 public struct HATNotesObject: HATObject, HatApiType {
 
     // MARK: - JSON Fields
@@ -37,10 +39,18 @@ public struct HATNotesObject: HATObject, HatApiType {
     
     // MARK: - Initialiser
     
+    /**
+     The default initialiser. Initialises everything to default values.
+     */
     public init() {
         
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
+     */
     public init(dict: Dictionary<String, JSON>) {
         
         self.init()
@@ -50,6 +60,9 @@ public struct HATNotesObject: HATObject, HatApiType {
     
     /**
      It initialises everything from the received JSON file from the HAT
+     
+     
+     - dict: The JSON file received from the HAT
      */
     public mutating func inititialize(dict: Dictionary<String, JSON>) {
         
@@ -83,5 +96,29 @@ public struct HATNotesObject: HATObject, HatApiType {
         
         let dictionary = JSON(fromCache)
         self.inititialize(dict: dictionary.dictionaryValue)
+    }
+    
+    // MARK: - Override decoding code to parse old notes as well
+    
+    public static func decode<T: HATObject>(from: Dictionary<String, JSON>) -> T? {
+        
+        let decoder = JSONDecoder()
+        
+        do {
+            
+            let data = try JSON(from).rawData()
+            let object = try decoder.decode(T.self, from: data)
+            return object
+        } catch {
+            
+            if let _ = from["data"]?["notablesv1"].dictionaryValue {
+                
+                let tst = self.init(dict: from) as? T
+                return tst!
+            } else {
+                
+                return nil
+            }
+        }
     }
 }

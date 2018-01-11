@@ -16,8 +16,12 @@ public struct DataOfferRequiredDataDefinitionBundleKeyV2: Codable {
     
     // MARK: - Variables
     
+    /// The endpoints of the definition
     public var endpoints: [DataOfferRequiredDataDefinitionBundleKeyEndpointsV2] = []
+    /// The ordering filter of the defition
     public var orderBy: String?
+    /// The order, ascending of descending
     public var ordering: String?
+    /// The limit of the filter
     public var limit: Int?
 }

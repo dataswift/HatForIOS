@@ -18,8 +18,11 @@ public struct DataOfferRequiredDataDefinitionBundleFiltersV2: Codable {
     
     // MARK: - Variables
     
+    /// the field to filter
     public var field: String = ""
+    /// The transformation to be done on the field
     public var transformation: Dictionary<String, String>?
+    /// The operator of the filter
     public var `operator`: Dictionary<String, Any> {
         
         return (NSKeyedUnarchiver().decodeDecodable([String: Any].self, forKey: "operator"))!

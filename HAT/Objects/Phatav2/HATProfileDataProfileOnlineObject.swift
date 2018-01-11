@@ -12,10 +12,13 @@
 
 import SwiftyJSON
 
+// MARK: Struct
+
 public struct HATProfileDataProfileOnlineObject: HATObject, HatApiType {
 
     // MARK: - Fields
     
+    /// The possible Fields of the JSON struct
     struct Fields {
         
         static let blog: String = "blog"
@@ -27,18 +30,37 @@ public struct HATProfileDataProfileOnlineObject: HATObject, HatApiType {
         static let linkedin: String = "linkedin"
     }
     
+    // MARK: - Variables
+    
+    /// The user's blog address
     public var blog: String = ""
+    /// The user's google address
     public var google: String = ""
+    /// The user's twitter address
     public var twitter: String = ""
+    /// The user's website address
     public var website: String = ""
+    /// The user's youtube address
     public var youtube: String = ""
+    /// The user's facebook address
     public var facebook: String = ""
+    /// The user's linkedin address
     public var linkedin: String = ""
     
+    // MARK: - Initialisers
+    
+    /**
+     The default initialiser. Initialises everything to default values.
+     */
     public init() {
         
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
+     */
     public init(dict: Dictionary<String, JSON>) {
         
         self.init()
@@ -46,6 +68,11 @@ public struct HATProfileDataProfileOnlineObject: HATObject, HatApiType {
         self.initialize(dict: dict)
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
+     */
     public mutating func initialize(dict: Dictionary<String, JSON>) {
         
         if let tempBlog = (dict[Fields.blog]?.stringValue) {
@@ -77,6 +104,8 @@ public struct HATProfileDataProfileOnlineObject: HATObject, HatApiType {
             linkedin = tempLinkedin
         }
     }
+    
+    // MARK: - HatApiType protocol
     
     public func toJSON() -> Dictionary<String, Any> {
         

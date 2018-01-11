@@ -75,6 +75,8 @@ public struct HATProviderCategoryObject: Comparable {
 
     /**
      It initialises everything from the received JSON file from the HAT
+     
+     - dictionary: The JSON file received
      */
     public init(from dictionary: Dictionary<String, JSON>) {
 

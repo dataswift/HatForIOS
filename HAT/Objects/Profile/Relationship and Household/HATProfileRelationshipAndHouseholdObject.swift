@@ -48,17 +48,27 @@ public struct HATProfileRelationshipAndHouseholdObject: HatApiType, Comparable {
 
     // MARK: - Variables
 
+    /// User's relationship status
     public var relationshipStatus: String = ""
+    /// User's type of accomodation
     public var typeOfAccomodation: String = ""
+    /// User's living situation
     public var livingSituation: String = ""
+    /// User's total people in household
     public var howManyUsuallyLiveInYourHousehold: String = ""
+    /// User's household ownership
     public var householdOwnership: String = ""
+    /// User has children
     public var hasChildren: String = ""
+    /// User's descendants
     public var additionalDependents: String = ""
+    /// Record ID
     public var recordID: String = ""
-
-    public var unixTimeStamp: Int?
+    /// User's children number
     public var numberOfChildren: Int = 0
+
+    /// The date the record was created
+    public var unixTimeStamp: Int?
 
     // MARK: - Initialisers
 
@@ -82,6 +92,8 @@ public struct HATProfileRelationshipAndHouseholdObject: HatApiType, Comparable {
 
     /**
      It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
      */
     public init(from dict: JSON) {
 
@@ -113,11 +125,6 @@ public struct HATProfileRelationshipAndHouseholdObject: HatApiType, Comparable {
 
     // MARK: - JSON Mapper
 
-    /**
-     Returns the object as Dictionary, JSON
-     
-     - returns: Dictionary<String, String>
-     */
     public func toJSON() -> Dictionary<String, Any> {
 
         return [

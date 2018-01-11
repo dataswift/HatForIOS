@@ -125,6 +125,16 @@ public struct HATNotablesService {
      */
     public static func postNote(userDomain: String, userToken: String, note: HATNotesObject, successCallBack: @escaping (JSON, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
+        var tempNote = note
+        if tempNote.data.locationv1?.latitude == nil {
+            
+            tempNote.data.locationv1 = nil
+        }
+        if tempNote.data.photov1?.link == "" {
+            
+            tempNote.data.photov1 = nil
+        }
+        
         // update JSON file with the values needed
         let hatData: [String: Any] = HATNotesDataObject.encode(from: note.data)!
         

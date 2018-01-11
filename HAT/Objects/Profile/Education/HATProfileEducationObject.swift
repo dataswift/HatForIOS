@@ -17,6 +17,8 @@ import SwiftyJSON
 public struct HATProfileEducationObject: HatApiType, Comparable {
     
     // MARK: - Fields
+    
+    /// The possible Fields of the JSON struct
     struct Fields {
         
         static let highestAcademicQualification: String = "highestAcademicQualification"
@@ -57,9 +59,12 @@ public struct HATProfileEducationObject: HatApiType, Comparable {
     
     // MARK: - Variables
     
+    /// User's highest academic qualification
     public var highestAcademicQualification: String = ""
+    /// Record ID
     public var recordID: String = ""
     
+    /// Date of the record created in Unix time stamp
     public var unixTimeStamp: Int?
     
     // MARK: - Initialisers
@@ -76,6 +81,8 @@ public struct HATProfileEducationObject: HatApiType, Comparable {
     
     /**
      It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
      */
     public init(from dict: JSON) {
         
@@ -92,7 +99,9 @@ public struct HATProfileEducationObject: HatApiType, Comparable {
     }
     
     /**
-     It initialises everything from the received JSON file from the cache
+     It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
      */
     public mutating func initialize(fromCache: Dictionary<String, Any>) {
         

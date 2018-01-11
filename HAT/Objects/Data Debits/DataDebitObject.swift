@@ -18,8 +18,12 @@ public struct DataDebitObject: HATObject {
     
     // MARK: - Variables
     
+    /// The data debit key
     public var dataDebitKey: String = ""
+    /// The date created of the data debit
     public var dateCreated: String = ""
+    /// The client object of the data debit
     public var client: DataDebitClientObject
+    /// The bundles included in Data Debit
     public var bundles: [DataDebitBundleObject] = []
 }

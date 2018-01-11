@@ -12,7 +12,7 @@
 
 import SwiftyJSON
 
-// MARK: Class
+// MARK: Struct
 
 /// A class representing the system status object
 public struct HATSystemStatusObject: HatApiType {
@@ -76,6 +76,8 @@ public struct HATSystemStatusObject: HatApiType {
     
     /**
      It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
      */
     public init(from dictionary: Dictionary<String, JSON>) {
         
@@ -90,6 +92,11 @@ public struct HATSystemStatusObject: HatApiType {
         self.initialize(from: dictionary.dictionaryValue)
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     
+     - dictionary: The JSON file received from the HAT
+     */
     public mutating func initialize(from dictionary: Dictionary<String, JSON>) {
         
         if let tempTitle = dictionary[Fields.title]?.stringValue {

@@ -16,7 +16,10 @@ public struct HATFitbitSleepLevelsDataObject: HATObject {
     
     // MARK: - Variables
 
+    /// The sleep level
     public var level: String = ""
+    /// The sleep duration in seconds
     public var seconds: Int = 0
+    /// The sleep date time started
     public var dateTime: String = ""
 }

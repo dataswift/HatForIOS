@@ -12,7 +12,11 @@
 
 import SwiftyJSON
 
+// MARK: Struct
+
 public struct HATProfileDataProfileEmergencyContactObject: HATObject, HatApiType {
+    
+    // MARK: - Fields
     
     /// The possible Fields of the JSON struct
     public struct Fields {
@@ -22,16 +26,32 @@ public struct HATProfileDataProfileEmergencyContactObject: HATObject, HatApiType
         static let mobile: String = "mobile"
         static let firstName: String = "firstName"
     }
+    
+    // MARK: - Variables
 
+    /// The type of relationship with the user
     public var relationship: String = ""
+    /// The last name of the emergency contact
     public var lastName: String = ""
+    /// The mobile number of the emergency contact
     public var mobile: String = ""
+    /// The first name of the emergency contact
     public var firstName: String = ""
     
+    // MARK: - Initialisers
+    
+    /**
+     The default initialiser. Initialises everything to default values.
+     */
     public init() {
         
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
+     */
     public init(dict: Dictionary<String, JSON>) {
         
         self.init()
@@ -39,6 +59,11 @@ public struct HATProfileDataProfileEmergencyContactObject: HATObject, HatApiType
         self.initialize(dict: dict)
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
+     */
     public mutating func initialize(dict: Dictionary<String, JSON>) {
         
         if let tempRelationship = (dict[Fields.relationship]?.stringValue) {
@@ -58,6 +83,8 @@ public struct HATProfileDataProfileEmergencyContactObject: HATObject, HatApiType
             firstName = tempFirstName
         }
     }
+    
+    // MARK: - HatApiType protocol
     
     public func toJSON() -> Dictionary<String, Any> {
         

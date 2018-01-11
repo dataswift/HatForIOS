@@ -16,6 +16,8 @@ public struct HATFitbitSleepLevelsObject: HATObject {
     
     // MARK: - Variables
 
+    /// The sleep data
     public var data: [HATFitbitSleepLevelsDataObject] = []
+    /// The sleep summary
     public var summary: HATFitbitSleepLevelsSummaryObject = HATFitbitSleepLevelsSummaryObject()
 }

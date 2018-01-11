@@ -16,6 +16,8 @@ public struct HATFitbitActivityLevelObject: HATObject {
     
     // MARK: - Variables
 
+    /// The name of the activity
     public var name: String = ""
+    /// The duration of the activity in minutes
     public var minutes: Int = 0
 }

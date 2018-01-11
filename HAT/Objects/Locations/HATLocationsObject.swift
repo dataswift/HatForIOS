@@ -12,6 +12,8 @@
 
 import SwiftyJSON
 
+// MARK: Struct
+
 public struct HATLocationsObject: HATObject, HatApiType {
     
     // MARK: - Fields
@@ -29,13 +31,23 @@ public struct HATLocationsObject: HATObject, HatApiType {
         static let unixTimeStamp: String = "unixTimeStamp"
     }
     
+    // MARK: - Variables
+    
+    /// The location data
     public var data: HATLocationsDataObject = HATLocationsDataObject()
     
+    // MARK: - Initialisers
+    
+    /**
+     The default initialiser. Initialises everything to default values.
+     */
     public init() {
     }
     
     /**
      It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
      */
     public init(dict: Dictionary<String, JSON>) {
         
@@ -47,7 +59,9 @@ public struct HATLocationsObject: HATObject, HatApiType {
     }
     
     /**
-     It initialises everything from the received JSON file from the cache
+     It initialises everything from the received Dictionary file from the cache
+     
+     - fromCache: The dictionary file received from the cache
      */
     public mutating func initialize(fromCache: Dictionary<String, Any>) {
         
@@ -57,6 +71,8 @@ public struct HATLocationsObject: HATObject, HatApiType {
     
     /**
      It initialises everything from the received JSON file from the cache
+     
+     - dictionary: The JSON file received from the HAT
      */
     public mutating func initialize(from dictionary: Dictionary<String, JSON>) {
         
@@ -69,6 +85,8 @@ public struct HATLocationsObject: HATObject, HatApiType {
     
     /**
      It initialises everything from the received JSON file from the HAT using V2 API
+     
+     - dictV2: The JSON file received from the HAT
      */
     public init(dictV2: Dictionary<String, JSON>) {
         
@@ -81,6 +99,13 @@ public struct HATLocationsObject: HATObject, HatApiType {
         }
     }
     
+    // MARK: - JSON Mapper
+    
+    /**
+     Returns the object as Dictionary, JSON
+     
+     - returns: Dictionary<String, String>
+     */
     public func toJSON() -> Dictionary<String, Any> {
         
         return [

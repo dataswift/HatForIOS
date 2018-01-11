@@ -16,9 +16,14 @@ public struct HATFitbitStatsLifetimeStatsObject: HATObject {
     
     // MARK: - Variables
 
+    /// The lifetime steps taken
     public var steps: Int = 0
+    /// The lifetime floors climbed
     public var floors: Int = 0
+    /// The lifetime distance
     public var distance: Float = 0
+    /// The lifetime active score
     public var activeScore: Int = 0
+    /// The lifetime calories burnt
     public var caloriesOut: Int = 0
 }

@@ -16,6 +16,8 @@ public struct HATFitbitSleepLevelsSummaryCountObject: HATObject {
     
     // MARK: - Variables
 
+    /// The total sleep levels count
     public var count: Int = 0
+    /// The total duration of the sleep level in minutes
     public var minutes: Int = 0
 }

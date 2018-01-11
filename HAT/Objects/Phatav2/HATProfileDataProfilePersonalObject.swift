@@ -12,10 +12,13 @@
 
 import SwiftyJSON
 
+// MARK: Struct
+
 public struct HATProfileDataProfilePersonalObject: HATObject, HatApiType {
     
     // MARK: - Fields
     
+    /// The possible Fields of the JSON struct
     struct Fields {
         
         static let title: String = "title"
@@ -29,20 +32,41 @@ public struct HATProfileDataProfilePersonalObject: HATObject, HatApiType {
         static let birthDate: String = "birthDate"
     }
     
+    // MARK: - Variables
+    
+    /// The user's title
     public var title: String = ""
+    /// The user's gender
     public var gender: String = ""
+    /// The user's age group
     public var ageGroup: String = ""
+    /// The user's middle name
     public var middleName: String = ""
+    /// The user's preferred name
     public var preferredName: String = ""
+    /// The user's last name
     public var lastName: String = ""
+    /// The user's nick name
     public var nickName: String = ""
+    /// The user's first name
     public var firstName: String = ""
+    /// The user's birth date
     public var birthDate: String = ""
     
+    // MARK: - Initialisers
+    
+    /**
+     The default initialiser. Initialises everything to default values.
+     */
     public init() {
         
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
+     */
     public init(dict: Dictionary<String, JSON>) {
         
         self.init()
@@ -50,6 +74,11 @@ public struct HATProfileDataProfilePersonalObject: HATObject, HatApiType {
         self.initialize(dict: dict)
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
+     */
     public mutating func initialize(dict: Dictionary<String, JSON>) {
         
         if let tempTitle = (dict[Fields.title]?.stringValue) {
@@ -89,6 +118,8 @@ public struct HATProfileDataProfilePersonalObject: HATObject, HatApiType {
             birthDate = tempBirthDate
         }
     }
+    
+    // MARK: - HatApiType protocol
     
     public func toJSON() -> Dictionary<String, Any> {
         

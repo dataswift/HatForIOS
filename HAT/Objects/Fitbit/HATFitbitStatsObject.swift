@@ -16,6 +16,8 @@ public struct HATFitbitStatsObject: HATObject {
     
     // MARK: - Variables
 
+    /// The best stats
     public var best: HATFitbitStatsBestObject = HATFitbitStatsBestObject()
+    /// The lifetime stats
     public var lifetime: HATFitbitStatsLifetimeObject = HATFitbitStatsLifetimeObject()
 }

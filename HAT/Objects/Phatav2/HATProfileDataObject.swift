@@ -12,7 +12,11 @@
 
 import SwiftyJSON
 
+// MARK: Struct
+
 public struct HATProfileDataObject: HATObject, HatApiType {
+    
+    // MARK: - Fields
     
     /// The possible Fields of the JSON struct
     public struct Fields {
@@ -29,6 +33,8 @@ public struct HATProfileDataObject: HATObject, HatApiType {
         static let shared: String = "shared"
     }
     
+    // MARK: - Variables
+    
     /// The website object of user's profile
     public var about: HATProfileDataProfileAboutObject = HATProfileDataProfileAboutObject()
     /// The nickname object of user's profile
@@ -44,14 +50,27 @@ public struct HATProfileDataObject: HATObject, HatApiType {
     /// The global addres object of user's profile
     public var emergencyContact: HATProfileDataProfileEmergencyContactObject = HATProfileDataProfileEmergencyContactObject()
     
+    /// The date the profile was created in unix time stamp
     public var dateCreated: Int?
+    /// The date the profile was created in ISO format
     public var dateCreatedLocal: String?
+    /// Is profile shared
     public var shared: Bool = false
     
+    // MARK: - Initialisers
+    
+    /**
+     The default initialiser. Initialises everything to default values.
+     */
     public init() {
         
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
+     */
     public init(dict: Dictionary<String, JSON>) {
         
         self.init()
@@ -59,6 +78,11 @@ public struct HATProfileDataObject: HATObject, HatApiType {
         self.initialize(dict: dict)
     }
     
+    /**
+     It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
+     */
     public mutating func initialize(dict: Dictionary<String, JSON>) {
         
         if let tempAbout = (dict[Fields.about]?.dictionaryValue) {
@@ -102,6 +126,8 @@ public struct HATProfileDataObject: HATObject, HatApiType {
             shared = tempShared
         }
     }
+    
+    // MARK: - HatApiType protocol
     
     public func toJSON() -> Dictionary<String, Any> {
         

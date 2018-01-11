@@ -10,8 +10,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-import SwiftyJSON
-
 // MARK: Struct
 
 /// A class representing the outer data plug JSON format

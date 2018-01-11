@@ -16,5 +16,6 @@ public struct HATFitbitProfileFeaturesObject: HATObject {
 
     // MARK: - Variables
     
+    /// The exercise goal
     public var exerciseGoal: Bool = false
 }

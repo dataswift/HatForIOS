@@ -16,6 +16,8 @@ public struct HATFitbitStatsBestObject: HATObject {
     
     // MARK: - Variables
 
+    /// The total best stats
     public var total: HATFitbitStatsTotalObject = HATFitbitStatsTotalObject()
+    /// The tracker used
     public var tracker: HATFitbitStatsTotalObject = HATFitbitStatsTotalObject()
 }

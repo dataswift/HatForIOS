@@ -16,7 +16,10 @@ public struct HATFitbitStatsTotalObject: HATObject {
 
     // MARK: - Variables
     
+    /// The total steps taken
     public var steps: HATFitbitStatsTotalStatsObject = HATFitbitStatsTotalStatsObject()
+    /// The total floors climbed
     public var floors: HATFitbitStatsTotalStatsObject = HATFitbitStatsTotalStatsObject()
+    /// The total distance covered
     public var distance: HATFitbitStatsTotalStatsObject = HATFitbitStatsTotalStatsObject()
 }

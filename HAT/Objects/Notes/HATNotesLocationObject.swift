@@ -12,6 +12,8 @@
 
 import SwiftyJSON
 
+// MARK: Struct
+
 public struct HATNotesLocationObject: HATObject, HatApiType {
 
     // MARK: - JSON Fields
@@ -52,12 +54,17 @@ public struct HATNotesLocationObject: HATObject, HatApiType {
     
     // MARK: - Initialiser
     
+    /**
+     The default initialiser. Initialises everything to default values.
+     */
     public init() {
         
     }
     
     /**
      It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
      */
     public init(dict: Dictionary<String, JSON>) {
         
@@ -68,6 +75,8 @@ public struct HATNotesLocationObject: HATObject, HatApiType {
     
     /**
      It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
      */
     public mutating func inititialize(dict: Dictionary<String, JSON>) {
         
@@ -159,11 +168,6 @@ public struct HATNotesLocationObject: HATObject, HatApiType {
     
     // MARK: - JSON Mapper
     
-    /**
-     Returns the object as Dictionary, JSON
-     
-     - returns: Dictionary<String, String>
-     */
     public func toJSON() -> Dictionary<String, Any> {
         
         return [

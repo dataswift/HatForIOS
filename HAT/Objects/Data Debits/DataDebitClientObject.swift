@@ -16,9 +16,14 @@ public struct DataDebitClientObject: HATObject {
     
     // MARK: - Variables
 
+    /// The user id of the client
     public var userId: String = ""
+    /// The email of the client
     public var email: String = ""
+    /// The pass of the client
     public var pass: String = ""
+    /// The name of the client
     public var name: String = ""
+    /// The role of the client
     public var role: String = ""
 }

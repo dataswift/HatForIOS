@@ -10,14 +10,22 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
+// MARK: Struct
+
 public struct DataDebitBundleObject: HATObject {
 
     // MARK: - Variables
     
+    /// The created date of the bundle
     public var dateCreated: String = ""
+    /// The start date of the bundle
     public var startDate: String = ""
+    /// The end date of the bundle
     public var endDate: String = ""
+    /// Is the bundle rolling
     public var rolling: Bool = false
+    /// Is the bundle enabled
     public var enabled: Bool = false
+    /// It is possible for a data debit bundle to have an inner bundle object
     public var bundle: DataOfferRequiredDataDefinitionObjectV2 = DataOfferRequiredDataDefinitionObjectV2()
 }

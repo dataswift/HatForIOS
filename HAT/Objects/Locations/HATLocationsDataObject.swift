@@ -12,6 +12,8 @@
 
 import SwiftyJSON
 
+// MARK: Struct
+
 public struct HATLocationsDataObject: HATObject, HatApiType {
     
     // MARK: - Fields
@@ -31,23 +33,42 @@ public struct HATLocationsDataObject: HATObject, HatApiType {
         static let floor: String = "floor"
     }
     
+    // MARK: - Variables
+    
+    /// The location's latitude
     public var latitude: Float = 0
+    /// The location's longitude
     public var longitude: Float = 0
+    /// The location's date created as unix time stamp
     public var dateCreated: Int = 0
+    /// The location's date created as an ISO format
     public var dateCreatedLocal: String = ""
+    /// The location's speed date
     public var speed: Float?
+    /// The location's floor date
     public var floor: Int?
+    /// The location's vertical accuracy
     public var verticalAccuracy: Float?
+    /// The location's horizontal accuracy
     public var horizontalAccuracy: Float?
+    /// The location's altitude data
     public var altitude: Float?
+    /// The location's course data
     public var course: Float?
     
+    // MARK: - Initialisers
+    
+    /**
+     The default initialiser. Initialises everything to default values.
+     */
     public init() {
         
     }
     
     /**
      It initialises everything from the received JSON file from the HAT
+     
+     - dict: The JSON file received from the HAT
      */
     public init(dict: Dictionary<String, JSON>) {
         
@@ -103,6 +124,11 @@ public struct HATLocationsDataObject: HATObject, HatApiType {
         }
     }
     
+    /**
+     It initialises everything from the received Dictionary file from the cache
+     
+     - fromCache: The Dictionary file received from the cache
+     */
     public func initialize(fromCache: Dictionary<String, Any>) {
         
     }
