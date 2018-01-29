@@ -26,17 +26,157 @@ internal class FacebookServiceTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    
+    func testGetFacebookProfileImage() {
+        
+        let body: [Dictionary<String, Any>] = [[
+            "endpoint": "facebook/profile/picture",
+            "recordId": "c7e2b5eb-87c8-4dfd-b304-5d47cd6e97c5",
+            "data": [
+                "url": "https://scontent.xx.fbcdn.net/v/t1.0-1/p320x320/22050067_10214414562536185_3335565455711428906_n.jpg?oh=1f8957baf78066ad7a9b0e9eaaf1f024&oe=5A98FE74",
+                "width": 320,
+                "height": 320,
+                "is_silhouette": false
+            ]
+        ]]
+        let userDomain = "mariostsekis.hubat.net"
+        let urlToConnect = "https://mariostsekis.hubat.net/api/v2/data/facebook/profile/picture"
+        
+        let expectationTest = expectation(description: "Checking facebook profile image info...")
+        
+        MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
+        
+        func completion(profileImages: [HATFacebookProfileImageObject], newToken: String?) {
+            
+            XCTAssertTrue(!profileImages.isEmpty)
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: HATTableError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATFacebookService.fetchProfileFacebookPhoto(authToken: "", userDomain: userDomain, parameters: [:], successCallback: completion, errorCallback: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func testGetFacebookData() {
+        
+        let body: [Dictionary<String, Any>] = [[
+            "endpoint": "facebook/feed",
+            "recordId": "44f8461f-52e2-4953-9146-2b6f72724d7b",
+            "data": [
+                "id": "10208854387451137_10211996601004512",
+                "from": [
+                    "id": "10153942604579623",
+                    "name": "Irene Ng"
+                ],
+                "type": "status",
+                "story": "Irene Ng is with Marios Tsekis.",
+                "message": "One year of building platform and product with this guy. :)",
+                "privacy": [
+                    "deny": "",
+                    "allow": "",
+                    "value": "",
+                    "friends": "",
+                    "description": ""
+                ],
+                "is_hidden": false,
+                "with_tags": [
+                    "data": [
+                        [
+                            "id": "10208854387451137",
+                            "name": "Marios Tsekis"
+                        ]
+                    ]
+                ],
+                "status_type": "mobile_status_update",
+                "created_time": "2017-11-10T07:48:57+0000",
+                "is_published": true,
+                "updated_time": "2017-11-10T15:00:40+0000"
+            ]
+            ]]
+        let userDomain = "mariostsekis.hubat.net"
+        let urlToConnect = "https://mariostsekis.hubat.net/api/v2/data/facebook/feed"
+        
+        let expectationTest = expectation(description: "Getting facebook data from hat...")
+        
+        MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
+        
+        func completion(feed: [HATFacebookSocialFeedObject], newToken: String?) {
+            
+            XCTAssertTrue(!feed.isEmpty)
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: HATTableError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATFacebookService.getFacebookData(authToken: "", userDomain: userDomain, parameters: [:], successCallback: completion, errorCallback: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
 
+    func testGettingFacebookToken() {
+        
+        let body: Dictionary<String, Any> = ["accessToken": "token"]
+        let userDomain = "mariostsekis.hubofallthings.net"
+        let urlToConnect = "https://\(userDomain)/users/application_token?name=facebook&resource=facebook"
+        
+        let expectationTest = expectation(description: "Getting app token for facebook...")
+        
+        MockingjayProtocol.addStub(matcher: everything, builder: json(body))
+        
+        func completion(facebookToken: String, newUserToken: String?) {
+            
+            XCTAssertTrue(facebookToken == "token")
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: JSONParsingError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        var plug = HATDataPlugObject()
+        plug.plug.name = "facebook"
+        plug.plug.url = "facebook"
+        
+        HATFacebookService.getAppTokenForFacebook(plug: plug, token: "", userDomain: userDomain, successful: completion, failed: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     func testIsFacebookDataPlugActive() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
 
         let body: Dictionary<String, Any> = ["canPost": "true"]
         let userDomain = "mariostsekis.hubofallthings.net"
         let urlToConnect = "https://facebook.hubofallthings.com/api/status"
         let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaWJXRnlhVzl6ZEhObGEybHpMbWgxWW05bVlXeHNkR2hwYm1kekxtNWxkQ0lzSW5CeWIzWnBaR1Z5UzJWNUlqb2liV0Z5YVc5emRITmxhMmx6SW4wPSIsInJlc291cmNlIjoibWFyaW9zdHNla2lzLmh1Ym9mYWxsdGhpbmdzLm5ldCIsImFjY2Vzc1Njb3BlIjoib3duZXIiLCJpc3MiOiJtYXJpb3N0c2VraXMuaHVib2ZhbGx0aGluZ3MubmV0IiwiZXhwIjoxNDg3MzIyNzk0LCJpYXQiOjE0ODcwNjM1OTQsImp0aSI6ImUxYWY1ODY3ZWRhNjFmM2MxMmE3YzE1OGEwNDhmMjM0YmFiMzI3ZDVhNzQ5NDIzYWIwNGU1OTkxZTUxZDE1MTM0MzE3MDQwZDFhMjBiNTI1ZDMxODFmNWJiNTI3ZmVkMWJhMWYzZWEwZTlmZTM0MjZmM2E5ZDMwNmFjMGY3NGFjMTM1MWQ1OTFhYmMxZTI4NmJmMGYyMjgzNzRkZWU2MDdhYWQ2MjU3OGJkNzJhZTI2OWI4NDY4NWJiYjY2OGMzMmQzODRkZjQwZjIxNDU4Y2IwMjFlMDc5ODc5MzFmNmVlNTMyNWMxNGViNGNiOGFmYTNlMWI0ZjgwNzQ5M2M3ZDYifQ.lz3Snzglz9WtGTIlp4qmJsCnpljrwafYRSg7QKa9CNQAfq_yB5XIOcfH8As8f_fneQW08-ats4Qk1F_yfeQKPIa2GnissQj0W2rl4pnRMiFcKE2vddMRsM_fwGEsr43foGNIjJM3KIBPaECxC_QZdGdqu_wnpSS2rRqbJPrcdPs5FOhAWaLdL6ej0vkhdVX97-VwGyW70AcwZ-yFP8mKLZygwixqPn1-ubCc2ahkS94cM40s4-fon0HNNC4SNOB-q4g_87caAjXRN6cchrJitltHZ3_4xe4p9wMCK-LGjF99xUYT4aUbsiJ4tOPKOcqQsZgbfBZGqUM4_4aHQQ3Pxg"
 
-        let expectationTest = expectation(description: "Checking facebook hat hat...")
+        let expectationTest = expectation(description: "Checking facebook hat...")
 
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
 
@@ -48,6 +188,8 @@ internal class FacebookServiceTests: XCTestCase {
 
         func failed(error: DataPlugError) {
 
+            XCTFail()
+            expectationTest.fulfill()
         }
 
         HATFacebookService.isFacebookDataPlugActive(appToken: token, url: urlToConnect, successful: completion, failed: failed)

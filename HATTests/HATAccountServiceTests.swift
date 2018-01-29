@@ -28,8 +28,6 @@ internal class HATAccountServiceTests: XCTestCase {
     }
 
     func testTickle() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
 
         let body: [Dictionary<String, Any>] =
             [
@@ -67,6 +65,8 @@ internal class HATAccountServiceTests: XCTestCase {
 
         func failed(error: HATTableError) {
 
+            XCTFail()
+            expectationTest.fulfill()
         }
 
         HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: completion)
@@ -78,7 +78,274 @@ internal class HATAccountServiceTests: XCTestCase {
             }
         }
     }
+    
+    func testCreateValueOnHAT() {
+        
+        let parameters: Dictionary<String, Any> = ["newData": "true"]
+        
+        let body: [Dictionary<String, Any>] =
+            [
+                [
+                    "lastUpdated": "2017-02-09T16:48:17.499Z",
+                    "id": 31707,
+                    "data": [
+                        "newData": "true"
+                    ],
+                    "name": "2017-02-09T16:48:19.506Z"
+                ]
+        ]
+        let userDomain = "mariostsekis.hubofallthings.net"
+        let urlToConnect = "https://mariostsekis.hubofallthings.net/api/v2/data/newdata/test"
+        let expectationTest = expectation(description: "Create value on hat...")
+        
+        MockingjayProtocol.addStub(matcher: everything, builder: json(body))
+        
+        func completion(json: JSON, newToken: String?) {
+            
+            let tempDict = json[0].dictionaryValue
+            
+            XCTAssert(tempDict["data"] == ["newData": "true"])
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: HATTableError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATAccountService.createTableValue(userToken: "", userDomain: userDomain, namespace: "newdata", scope: "test", parameters: parameters, successCallback: completion, errorCallback: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func testGetValueOnHAT() {
+        
+        let body: [Dictionary<String, Any>] =
+            [
+                [
+                    "lastUpdated": "2017-02-09T16:48:17.499Z",
+                    "id": 31707,
+                    "data": [
+                        "newData": "true"
+                    ],
+                    "name": "2017-02-09T16:48:19.506Z"
+                ]
+        ]
+        let userDomain = "mariostsekis.hubofallthings.net"
+        let urlToConnect = "https://mariostsekis.hubofallthings.net/api/v2/data/newdata/test"
+        let expectationTest = expectation(description: "Get value from hat...")
+        
+        MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
+        
+        func completion(json: [JSON], newToken: String?) {
+            
+            let tempDict = json[0].dictionaryValue
+            
+            XCTAssert(tempDict["data"] == ["newData": "true"])
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: HATTableError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATAccountService.getHatTableValues(token: "", userDomain: userDomain, namespace: "newdata", scope: "test", parameters: [:], successCallback: completion, errorCallback: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func testDeleteValueOnHAT() {
+        
+        let parameters: [String: String] = ["records": "123-123"]
+        let body: String = "All records Deleted!"
+        let userDomain = "mariostsekis.hubofallthings.net"
+        let urlToConnect = "https://\(userDomain)/api/v2/data"
+        let expectationTest = expectation(description: "Delete record from hat...")
+        
+        MockingjayProtocol.addStub(matcher: http(.delete, uri: urlToConnect), builder: json(body))
+        
+        func completion(response: String) {
+            
+            XCTAssert(response == "token")
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: HATTableError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATAccountService.deleteHatRecord(userDomain: userDomain, userToken: "token", recordIds: ["123-123"], success: completion, failed: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func testUpdateValueOnHAT() {
+        
+        let body: [[String: Any]] = [
+            [
+                "lastUpdated": "2017-02-09T16:48:17.499Z",
+                "id": 31707,
+                "data": [
+                    "newData": "true"
+                ],
+                "name": "2017-02-09T16:48:19.506Z"
+            ]
+        ]
+        let userDomain = "mariostsekis.hubofallthings.net"
+        let urlToConnect = "https://\(userDomain)/api/v2/data"
+        let expectationTest = expectation(description: "Update record on hat...")
+        
+        MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: json(body))
+        
+        func completion(json: [JSON], newToken: String?) {
+            
+            let tempDict = json[0].dictionaryValue
+            
+            XCTAssert(tempDict["data"] == ["newData": "true"])
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: HATTableError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATAccountService.updateHatRecord(userDomain: userDomain, userToken: "", parameters: body[0], successCallback: completion, errorCallback: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
 
+    func testChangePassword() {
+        
+        let body: [String: Any] = [
+            
+            "message": "Password changed"
+        ]
+        let parameters: [String: String] = ["oldpassword": "123", "newpassword": "321"]
+        let userDomain = "mariostsekis.hubofallthings.net"
+        let urlToConnect = "https://\(userDomain)/control/v2/auth/password"
+        let expectationTest = expectation(description: "Changing password...")
+        
+        MockingjayProtocol.addStub(matcher: everything, builder: json(body))
+        
+        func completion(response: String, newToken: String?) {
+            
+            XCTAssert(response == "Password changed")
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: HATError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATAccountService.changePassword(userDomain: userDomain, userToken: "", oldPassword: "123", newPassword: "321", successCallback: completion, failCallback: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func testCombinatorCreation() {
+        
+        let body: [String: Any] = [
+            
+            "message": "Combinator created"
+        ]
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let combinatorName: String = "testcombinator"
+        let urlToConnect = "https://\(userDomain)/api/v2/combinator/\(combinatorName)"
+        let expectationTest = expectation(description: "Create a combinator...")
+        
+        MockingjayProtocol.addStub(matcher: http(.post, uri: urlToConnect), builder: json(body))
+        
+        func completion(isCreated: Bool, newToken: String?) {
+            
+            XCTAssert(isCreated)
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: HATError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATAccountService.createCombinator(userDomain: userDomain, userToken: "", combinatorName: combinatorName, fieldToFilter: "dateCreated", lowerValue: 0, upperValue: 5, successCallback: completion, failCallback: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func testGettingCombinator() {
+        
+        let body: [[String: Any]] = [[
+            
+            "message": "Combinator created"
+        ]]
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let combinatorName: String = "testcombinator"
+        let urlToConnect = "https://\(userDomain)/api/v2/combinator/\(combinatorName)"
+        let expectationTest = expectation(description: "Create a combinator...")
+        
+        MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
+        
+        func completion(json: [JSON], newToken: String?) {
+            
+            XCTAssert(!json.isEmpty)
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: HATError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATAccountService.getCombinator(userDomain: userDomain, userToken: "", combinatorName: combinatorName, successCallback: completion, failCallback: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     func testDomainURL() {
 
         let userDomain = "mariostsekis.hubofallthings.net"

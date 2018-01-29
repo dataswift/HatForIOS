@@ -47,7 +47,7 @@ public struct HATFacebookService {
             token: authToken,
             userDomain: userDomain,
             namespace: Facebook.sourceName,
-            scope: "profile_picture",
+            scope: "profile/picture",
             parameters: parameters,
             successCallback: sendObjectBack,
             errorCallback: errorCallback)

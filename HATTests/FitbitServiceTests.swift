@@ -26,7 +26,7 @@ private struct Bodies {
                 "fat": 21.613000869750977,
                 "date": "2017-10-04",
                 "time": "07:13:06",
-                "logId": 1507101186000,
+                "logId": 123,
                 "source": "Aria",
                 "weight": 95.7
             ]
@@ -87,7 +87,7 @@ private struct Bodies {
             "endpoint": "fitbit/activity",
             "recordId": "436b202b-f45b-4c41-bb1e-b9ceb23e26be",
             "data": [
-                "logId": 6398976747,
+                "logId": 423423,
                 "steps": 3449,
                 "logType": "auto_detected",
                 "tcxLink": "https://api.fitbit.com/1/user/-/activities/6398976747.tcx",
@@ -363,7 +363,7 @@ private struct Bodies {
             "recordId": "14dba31e-8fa8-4f59-ba88-c6e5d21b7499",
             "data": [
                 "type": "classic",
-                "logId": 14829699043,
+                "logId": 432423,
                 "levels": [
                     "data": [
                         [
@@ -792,7 +792,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         func success(activity: [HATFitbitActivityObject], newToken: String?) {
             
-            XCTAssertTrue(activity[0].logId == 6398976747)
+            XCTAssertTrue(activity[0].logId == 423423)
             expectationTest.fulfill()
         }
         
@@ -919,6 +919,139 @@ internal class FitbitServiceTests: XCTestCase {
             parameters: ["take": "1"],
             successCallback: success,
             errorCallback: fail)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func testGettingFitbitToken() {
+        
+        let body: Dictionary<String, Any> = ["accessToken": "token"]
+        let userDomain = "mariostsekis.hubofallthings.net"
+        let urlToConnect = "https://\(userDomain)/users/application_token?name=fitbit&resource=fitbit"
+        
+        let expectationTest = expectation(description: "Getting app token for Fitbit...")
+        
+        MockingjayProtocol.addStub(matcher: everything, builder: json(body))
+        
+        func completion(fitbitToken: String, newUserToken: String?) {
+            
+            XCTAssertTrue(fitbitToken == "token")
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: JSONParsingError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATFitbitService.getApplicationTokenForFitbit(userDomain: userDomain, userToken: userToken, dataPlugURL: "fitbit", successCallback: completion, errorCallback: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func testIsFitbitEnabled() {
+        
+        let body: Dictionary<String, Any> = ["accessToken": "token"]
+        let userDomain = "mariostsekis.hubofallthings.net"
+        let urlToConnect = "https://\(userDomain)/users/application_token?name=fitbit&resource=fitbit"
+        
+        let expectationTest = expectation(description: "Getting app token for Fitbit...")
+        
+        MockingjayProtocol.addStub(matcher: everything, builder: json(body))
+        
+        func completion(isFitbitEnabled: Bool, newUserToken: String?) {
+            
+            XCTAssertTrue(isFitbitEnabled)
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: JSONParsingError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATFitbitService.checkIfFitbitIsEnabled(userDomain: userDomain, userToken: "", plugURL: "fitbit", statusURL: "fitbit", successCallback: completion, errorCallback: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func testGetFitbitEndpoints() {
+        
+        let body: [Dictionary<String, Any>] = [[
+            "namespace": "fitbit",
+            "endpoints": [
+                [
+                    "endpoint": "weight",
+                    "fields": [
+                        [
+                            "name": "weight",
+                            "count": 33
+                        ],
+                        [
+                            "name": "bmi",
+                            "count": 33
+                        ],
+                        [
+                            "name": "source",
+                            "count": 33
+                        ],
+                        [
+                            "name": "date",
+                            "count": 33
+                        ],
+                        [
+                            "name": "fat",
+                            "count": 33
+                        ],
+                        [
+                            "name": "logId",
+                            "count": 33
+                        ],
+                        [
+                            "name": "time",
+                            "count": 33
+                        ]
+                    ]
+                ]
+            ]
+        ]]
+        let userDomain = "mariostsekis.hubofallthings.net"
+        let urlToConnect = "https://dex.hubofallthings.com/stats/available-data"
+        
+        let expectationTest = expectation(description: "Getting app token for Fitbit...")
+        
+        MockingjayProtocol.addStub(matcher: everything, builder: json(body))
+        
+        func completion(endpoints: [String], newUserToken: String?) {
+            
+            XCTAssertTrue(!endpoints.isEmpty)
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: HATTableError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATFitbitService.getFitbitEndpoints(successCallback: completion, errorCallback: failed)
         
         waitForExpectations(timeout: 10) { error in
             

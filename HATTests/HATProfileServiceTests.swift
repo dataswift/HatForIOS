@@ -60,7 +60,7 @@ private struct Bodies {
                 "middleName": "M",
                 "preferredName": ""
             ],
-            "dateCreated": 1512385859634,
+            "dateCreated": 32423,
             "emergencyContact": [
                 "mobile": "",
                 "lastName": "",
@@ -87,8 +87,6 @@ internal class HATProfileServiceTests: XCTestCase {
     }
     
     func testGetProfile() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         let expectationTest = expectation(description: "Get profile data from rumpel...")
         
@@ -100,6 +98,8 @@ internal class HATProfileServiceTests: XCTestCase {
         
         func fail(error: HATTableError) {
             
+            XCTFail()
+            expectationTest.fulfill()
         }
         
         let userDomain = "testing.hubat.net"
@@ -119,6 +119,37 @@ internal class HATProfileServiceTests: XCTestCase {
             }
         }
     }
+    
+//    func testGetNationality() {
+//        
+//        let expectationTest = expectation(description: "Get nationality from hat...")
+//        
+//        func success(nationality: HATNationalityObject) {
+//            
+//            XCTAssertTrue(nationality.nationality == "80")
+//            expectationTest.fulfill()
+//        }
+//        
+//        func fail(error: HATTableError) {
+//            
+//            XCTFail()
+//            expectationTest.fulfill()
+//        }
+//        
+//        let userDomain = "testing.hubat.net"
+//        let urlToConnect = "https://testing.hubat.net/api/v2/data/rumpel/nationality"
+//        
+//        MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.profile))
+//        
+//        HATProfileService.getNationalityFromHAT(userDomain: userDomain, userToken: "", successCallback: success, failCallback: fail)
+//        
+//        waitForExpectations(timeout: 10) { error in
+//            
+//            if let error = error {
+//                print("Error: \(error.localizedDescription)")
+//            }
+//        }
+//    }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.

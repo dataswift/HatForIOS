@@ -26,7 +26,7 @@ public struct HATProfileService {
      - parameter userToken: The user's token
      - parameter nameSpace: The namespace to read from
      - parameter scope: The scope to read from
-     - parameter parameters: The parameters to pass on to the request, defaults are ["orderBy": "dateCreated", "ordering": "descending", "take": "1"]
+     - parameter parameters: The parameters to§ pass on to the request, defaults are ["orderBy": "dateCreated", "ordering": "descending", "take": "1"]
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
@@ -476,6 +476,7 @@ public struct HATProfileService {
                             [
                                 "kind": "kind",
                                 "shared": "shared",
+                                "currently_shared": "currently_shared",
                                 "message": "message",
                                 "author": "authorv1",
                                 "location": "locationv1",

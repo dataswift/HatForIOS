@@ -144,6 +144,8 @@ internal class HATFeedServiceTests: XCTestCase {
         
         func fail(error: HATTableError) {
             
+            XCTFail()
+            expectationTest.fulfill()
         }
         
         let userDomain = "testing.hubat.net"

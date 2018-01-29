@@ -163,7 +163,13 @@ public struct HATLocationService {
      */
     public static func syncLocationsToHAT(userDomain: String, userToken: String, locations: [HATLocationsDataObject], completion: ((Bool, String?) -> Void)? = nil) {
         
-        let encoded: Data? = HATLocationsDataObject.encode(from: locations)
+        var tempLocations = locations
+        if locations.count > 100 {
+            
+            tempLocations = Array(locations.prefix(100))
+        }
+        
+        let encoded: Data? = HATLocationsDataObject.encode(from: tempLocations)
         
         var urlRequest: URLRequest = URLRequest.init(url: URL(string: "https://\(userDomain)/api/v2/data/rumpel/locations/ios?skipErrors=true")!)
         urlRequest.httpMethod = HTTPMethod.post.rawValue
@@ -182,10 +188,16 @@ public struct HATLocationService {
             let token: String? = header?["x-auth-token"] as? String
             let tokenToReturn: String? = HATTokenHelper.checkTokenScope(token: token)
             
-            if response.response?.statusCode == 400 && locations.count > 10 {
+            var tempLocations = locations
+            if locations.count > 100 {
+                
+                tempLocations = Array(locations.prefix(100))
+            }
+            
+            if response.response?.statusCode == 400 && tempLocations.count > 10 {
                 
                 // if failed syncing, duplicate files found, try failback method
-                HATLocationService.failbackDuplicateSyncing(dbLocations: locations, userDomain: userDomain, userToken: userToken, completion: completion)
+                HATLocationService.failbackDuplicateSyncing(dbLocations: tempLocations, userDomain: userDomain, userToken: userToken, completion: completion)
             } else if response.response?.statusCode == 201 {
                 
                 completion?(true, tokenToReturn)
@@ -202,6 +214,12 @@ public struct HATLocationService {
      - parameter completion: A ([HATLocationsV2Object], String?) -> Void function executed on success
      */
     static func failbackDuplicateSyncing(dbLocations: [HATLocationsDataObject], userDomain: String, userToken: String, completion: ((Bool, String?) -> Void)?) {
+        
+        guard dbLocations.count > 2 else {
+            
+            completion?(true, userToken)
+            return
+        }
         
         let midPoint: Int = (dbLocations.count - 1) / 2
         let midPointNext: Int = midPoint + 1
@@ -247,11 +265,6 @@ public struct HATLocationService {
         if !splitArray2.isEmpty {
             
             reccuring(array: splitArray2, urlRequest: urlRequest, userDomain: userDomain, userToken: userToken)
-        }
-        
-        if dbLocations.count < 2 {
-            
-            completion?(true, userToken)
         }
     }
     

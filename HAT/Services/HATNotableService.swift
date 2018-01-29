@@ -95,7 +95,7 @@ public struct HATNotablesService {
      - parameter success: A function to execute on success
      - parameter failed: A function to execute on failure
      */
-    public static func updateNote(note: HATNotesObject, userToken: String, userDomain: String, success: @escaping (([JSON], String?) -> Void) = { _, _  in }, failed: @escaping ((HATTableError) -> Void) = { _ in }) {
+    public static func updateNote(note: HATNotesObject, userToken: String, userDomain: String, success: @escaping ((HATNotesObject, String?) -> Void) = { _, _  in }, failed: @escaping ((HATTableError) -> Void) = { _ in }) {
         
         // update JSON file with the values needed
         let hatData: [String: Any] = HATNotesDataObject.encode(from: note.data)!
@@ -107,7 +107,9 @@ public struct HATNotablesService {
             successCallback: { jsonArray, newToken in
                 
                 HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () })
-                success(jsonArray, newToken)
+                
+                let note = HATNotesObject(dict: jsonArray[0].dictionaryValue)
+                success(note, newToken)
             },
             errorCallback: failed)
     }
@@ -123,7 +125,7 @@ public struct HATNotablesService {
      - parameter successCallBack: A function to execute on success
      - parameter errorCallback: A function to execute on failure
      */
-    public static func postNote(userDomain: String, userToken: String, note: HATNotesObject, successCallBack: @escaping (JSON, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func postNote(userDomain: String, userToken: String, note: HATNotesObject, successCallBack: @escaping (HATNotesObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         var tempNote = note
         if tempNote.data.locationv1?.latitude == nil {
@@ -147,7 +149,9 @@ public struct HATNotablesService {
             successCallback: { notes, newToken in
                 
                 HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () })
-                successCallBack(notes, newToken)
+                
+                let note = HATNotesObject(dict: notes[0].dictionaryValue)
+                successCallBack(note, newToken)
             },
             errorCallback: errorCallback)
     }

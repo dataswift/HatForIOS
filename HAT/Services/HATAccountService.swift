@@ -148,7 +148,7 @@ public struct HATAccountService {
         let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]
         
         // make the request
-        HATNetworkHelper.asynchronousRequest(url, method: .delete, encoding: Alamofire.URLEncoding.default, contentType: ContentType.text, parameters: [:], headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
+        HATNetworkHelper.asynchronousRequest(url, method: .delete, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.text, parameters: [:], headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
             
             // handle result
             switch response {
@@ -193,13 +193,13 @@ public struct HATAccountService {
     public static func updateHatRecord(userDomain: String, userToken: String, parameters: Dictionary<String, Any>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // form the url
-        let url: String = "https://\(userDomain)/api/v2/data/"
+        let url: String = "https://\(userDomain)/api/v2/data"
         
         // create parameters and headers
         let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]
         
         // make the request
-        HATNetworkHelper.asynchronousRequest(url, method: .put, encoding: Alamofire.URLEncoding.default, contentType: ContentType.text, parameters: parameters, headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
+        HATNetworkHelper.asynchronousRequest(url, method: .put, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: parameters, headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
             
             // handle result
             switch response {
@@ -394,15 +394,6 @@ public struct HATAccountService {
                 case .isSuccess(let isSuccess, _, let result, let token):
                     
                     if isSuccess, let array: [JSON] = result.array {
-                        
-                        var arrayToReturn: [HATLocationsObject] = []
-                        for item: JSON in array {
-                            
-                            if let object: HATLocationsObject = HATLocationsObject.decode(from: item.dictionaryValue) {
-                                
-                                arrayToReturn.append(object)
-                            }
-                        }
                         
                         successCallback(array, token)
                     }

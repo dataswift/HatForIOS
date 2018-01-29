@@ -29,7 +29,7 @@ public struct HATDataDebitsService {
      */
     public static func getAvailableDataDebits(userToken: String, userDomain: String, succesfulCallBack: @escaping ([DataDebitObject], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
-        let url: String = "http://\(userDomain)/api/v2/data-debit"
+        let url: String = "https://\(userDomain)/api/v2/data-debit"
         
         let headers: Dictionary<String, String> = ["X-Auth-Token": userToken]
         

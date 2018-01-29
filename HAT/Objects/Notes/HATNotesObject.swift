@@ -111,7 +111,7 @@ public struct HATNotesObject: HATObject, HatApiType {
             return object
         } catch {
             
-            if let _ = from["data"]?["notablesv1"].dictionaryValue {
+            if from["data"]?["notablesv1"].dictionaryValue != nil {
                 
                 let tst = self.init(dict: from) as? T
                 return tst!

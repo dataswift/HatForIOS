@@ -475,7 +475,7 @@ public struct HATFileService {
                                 
                                 var tempFile: FileUploadObject = fileObject
                                 tempFile.status.status = uploadedFile.status.status
-                                completion?(tempFile, renewedUserToken!)
+                                completion?(tempFile, renewedUserToken)
                             },
                             errorCallback: {(error) -> Void in
                                 

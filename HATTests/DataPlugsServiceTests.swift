@@ -65,6 +65,8 @@ internal class DataPlugsServiceTests: XCTestCase {
 
         func fail(error: DataPlugError) {
 
+            XCTFail()
+            expectationTest.fulfill()
         }
 
         HATDataPlugsService.getAvailableDataPlugs(succesfulCallBack: success, failCallBack: fail)
@@ -101,6 +103,8 @@ internal class DataPlugsServiceTests: XCTestCase {
 
         func fail(error: DataPlugError) {
 
+            XCTFail()
+            expectationTest.fulfill()
         }
 
         HATDataPlugsService.checkIfOfferIsClaimed(offerID: offerID, appToken: appToken, succesfulCallBack: success, failCallBack: fail)
@@ -137,6 +141,8 @@ internal class DataPlugsServiceTests: XCTestCase {
 
         func fail(error: DataPlugError) {
 
+            XCTFail()
+            expectationTest.fulfill()
         }
 
         HATDataPlugsService.claimOfferWithOfferID(offerID, appToken: appToken, succesfulCallBack: success, failCallBack: fail)
@@ -174,6 +180,8 @@ internal class DataPlugsServiceTests: XCTestCase {
 
         func fail(error: DataPlugError) {
 
+            XCTFail()
+            expectationTest.fulfill()
         }
 
         HATDataPlugsService.approveDataDebit(dataDebitID, userToken: appToken, userDomain: userDomain, succesfulCallBack: success, failCallBack: fail)
@@ -258,6 +266,8 @@ internal class DataPlugsServiceTests: XCTestCase {
 
         func fail(error: DataPlugError) {
 
+            XCTFail()
+            expectationTest.fulfill()
         }
 
         HATDataPlugsService.checkDataDebit(dataDebitID, userToken: appToken, userDomain: userDomain, succesfulCallBack: success, failCallBack: fail)

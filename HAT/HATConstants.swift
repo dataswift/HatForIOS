@@ -89,6 +89,32 @@ public struct Facebook {
 }
 
 /**
+ The strings needed for communicating with facebook data plug
+ 
+ - tableName: The name of the table that HAT saves data
+ - sourceName: The source name of the data
+ - serviceName: The service, Plug, name
+ */
+public struct GoogleCalendar {
+    
+    /**
+     Constructs the api/status endpoint for the plug according to the dataplug url returned from the HAT
+     
+     - parameter facebookDataPlugURL: The plug url returned from HAT
+     
+     - returns: The facebookDataPlugURL appended with /api/status
+     */
+    public static func googleCalendarDataPlugStatusURL(googleDataPlugURL: String) -> String {
+        
+        return "\(googleDataPlugURL)/api/status"
+    }
+    
+    public static let tableName: String = "google/events"
+    public static let sourceName: String = "calendar"
+    public static let serviceName: String = "calendar"
+}
+
+/**
  The strings needed for communicating with notables service
  
  - tableName: The source name of the data
@@ -98,6 +124,18 @@ public enum Notables {
     
     public static let tableName: String = "notablesv1"
     public static let sourceName: String = "rumpel"
+}
+
+/**
+ The strings needed for generating databuyer token
+ 
+ - name: The name of the service
+ - source: The source of the service
+ */
+public struct DataBuyer {
+    
+    static let name: String = "DataBuyer"
+    static var source: String = "https://databuyer.hubat.net/"
 }
 
 /**
