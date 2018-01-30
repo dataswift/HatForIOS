@@ -215,6 +215,42 @@ internal class HATGoogleCalendarTests: XCTestCase {
         }
     }
     
+    func testGettingGoogleCalendarToken() {
+        
+        let body: Dictionary<String, Any> = ["accessToken": "token"]
+        let userDomain = "mariostsekis.hubofallthings.net"
+        let urlToConnect = "https://\(userDomain)/users/application_token?name=Calendar&resource=calendar"
+        
+        let expectationTest = expectation(description: "Getting app token for google calendar...")
+        
+        MockingjayProtocol.addStub(matcher: everything, builder: json(body))
+        
+        func completion(facebookToken: String, newUserToken: String?) {
+            
+            XCTAssertTrue(facebookToken == "token")
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: JSONParsingError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        var plug = HATDataPlugObject()
+        plug.plug.name = "Calendar"
+        plug.plug.url = "calendar"
+        
+        HATFacebookService.getAppTokenForFacebook(plug: plug, token: "", userDomain: userDomain, successful: completion, failed: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

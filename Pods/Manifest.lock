@@ -1,12 +1,12 @@
 PODS:
-  - Alamofire (4.5.1)
+  - Alamofire (4.6.0)
   - JWTDecode (2.1.1)
-  - Mockingjay (2.0.0):
-    - Mockingjay/Core (= 2.0.0)
-    - Mockingjay/XCTest (= 2.0.0)
-  - Mockingjay/Core (2.0.0):
+  - Mockingjay (2.0.1):
+    - Mockingjay/Core (= 2.0.1)
+    - Mockingjay/XCTest (= 2.0.1)
+  - Mockingjay/Core (2.0.1):
     - URITemplate (~> 2.0)
-  - Mockingjay/XCTest (2.0.0):
+  - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
   - SwiftLint (0.21.0)
   - SwiftyJSON (4.0.0)
@@ -24,9 +24,9 @@ DEPENDENCIES:
   - SwiftyRSA
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   JWTDecode: 83e8b381aafe27158d9f692cbdca2b12d61d460c
-  Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
+  Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
   SwiftLint: 6de8b2d15f43c482bdec2953b8cfd696faa876e8
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   SwiftyRSA: 28e1c9ab1f396fd3001d197ba03e1153b524d155
@@ -34,4 +34,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 51f3d3ba8d0f98c7656853d97c74dbfc8fabf68d
 
-COCOAPODS: 1.4.0.beta.2
+COCOAPODS: 1.4.0
