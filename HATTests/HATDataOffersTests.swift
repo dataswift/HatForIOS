@@ -766,12 +766,12 @@ internal class HATDataOffersTests: XCTestCase {
 
         let userDomain: String = "mariostsekis.hubat.net"
         let expectationTest = expectation(description: "Claiming and enabling offer...")
-        
-        MockingjayProtocol.addStub(matcher: everything, builder: json(tokenRepsonse))
+
+        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/users/application_token?name=DataBuyer&resource=https%3A//databuyer.hubat.net/"), builder: json(tokenRepsonse))
         MockingjayProtocol.addStub(matcher: http(.get, uri: "https://databuyer.hubat.net/api/v2/offer/97a0748f-bf81-4aaa-8f39-97ac2557d920/claim"), builder: json(claimOfferResponse))
         MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/api/v2/data-debit/123"), builder: json(checkIfDebitEnabledResponse))
         MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/api/v2/data-debit/123/enable"), builder: json(enableDebitResponse))
-        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://databuyer.hubat.net//api/v2/offersWithClaims"), builder: json(getOffersResponse))
+        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://databuyer.hubat.net/api/v2/offersWithClaims"), builder: json(getOffersResponse))
 
         func completion(dataOffer: DataOfferObject, newToken: String?) {
             
