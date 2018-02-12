@@ -93,30 +93,35 @@ public class HATNetworkHelper: NSObject {
                     let token: String? = header?["x-auth-token"] as? String
                     let tokenToReturn: String? = HATTokenHelper.checkTokenScope(token: token)
                     
-                    // check if we have a value and return it
-                    if let value: Any = response.result.value {
+                    if response.response?.statusCode == 401 {
                         
-                        let json: JSON = JSON(value)
-                        if token != nil {
-                            
-                            completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: json, token: tokenToReturn))
-                        } else {
-                            
-                            completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: json, token: nil))
-                        }
-                        
-                        // else return isSuccess: false and nil for value
+                        completion(HATNetworkHelper.ResultType.error(error: AuthenicationError.tokenValidationFailed("expired"), statusCode: response.response?.statusCode))
                     } else {
                         
-                        if token != nil {
+                        // check if we have a value and return it
+                        if let value: Any = response.result.value {
                             
-                            completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: tokenToReturn))
+                            let json: JSON = JSON(value)
+                            if token != nil {
+                                
+                                completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: json, token: tokenToReturn))
+                            } else {
+                                
+                                completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: json, token: nil))
+                            }
+                            
+                            // else return isSuccess: false and nil for value
                         } else {
                             
-                            completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: nil))
+                            if token != nil {
+                                
+                                completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: tokenToReturn))
+                            } else {
+                                
+                                completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: nil))
+                            }
                         }
                     }
-                    
                 // in case of failure return the error but check for internet connection or unauthorised status and let the user know
                 case .failure(let error):
                     
