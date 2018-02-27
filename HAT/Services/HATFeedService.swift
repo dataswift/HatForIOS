@@ -53,4 +53,37 @@ public struct HATFeedService {
             successCallback: success,
             errorCallback: failed)
     }
+    
+    // MARK: - Get she combinator
+    
+    /**
+     Gets the she combinator data from HAT
+     
+     - parameter userDomain: The user's domain
+     - parameter userToken: The user's authentication token
+     - parameter successCallback: A function of type ([HATFeedObject], String?) to call on success
+     - parameter failCallback: A fuction of type (HATError) to call on fail
+     */
+    static public func getFeedCombinator(userDomain: String, userToken: String, successCallback: @escaping ([HATFeedObject], String?) -> Void, failCallback: @escaping (HATError) -> Void) {
+        
+        HATAccountService.getCombinator(
+            userDomain: userDomain,
+            userToken: userToken,
+            combinatorName: "shefilter",
+            successCallback: { array, newToken in
+                
+                var arrayToReturn: [HATFeedObject] = []
+                for item: JSON in array {
+                    
+                    if let object: HATFeedObject = HATFeedObject.decode(from: item["data"].dictionaryValue) {
+                        
+                        arrayToReturn.append(object)
+                    }
+                }
+                
+                successCallback(arrayToReturn, newToken)
+        },
+            failCallback: failCallback
+        )
+    }
 }

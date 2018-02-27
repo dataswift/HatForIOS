@@ -13,12 +13,10 @@
 
 // MARK: Struct
 
-public struct HATExternalAppsPermissionsObject: HATObject {
+public struct HATProfileBundleDataObject: HATObject {
 
-    // MARK: - Variables
-    
-    /// Any roles granted with this app
-    public var rolesGranted: [HATExternalAppsPermissionsRolesGrantedObject] = []
-    /// The bundle info required for this app
-    public var dataRequired: HATExternalAppsDataRequiredObject?
+    public var endpoints: [HATProfileBundleEndpointsObject] = []
+    public var orderBy: String = ""
+    public var ordering: String = ""
+    public var limit: Int?
 }

@@ -301,7 +301,7 @@ internal class HATAccountServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        HATAccountService.createCombinator(userDomain: userDomain, userToken: "", combinatorName: combinatorName, fieldToFilter: "dateCreated", lowerValue: 0, upperValue: 5, successCallback: completion, failCallback: failed)
+        HATAccountService.createCombinator(userDomain: userDomain, userToken: "", endPoint: "test/endpoint", combinatorName: combinatorName, fieldToFilter: "dateCreated", lowerValue: 0, upperValue: 5, successCallback: completion, failCallback: failed)
         
         waitForExpectations(timeout: 10) { error in
             

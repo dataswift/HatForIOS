@@ -134,8 +134,20 @@ public enum Notables {
  */
 public struct DataBuyer {
     
-    static let name: String = "DataBuyer"
-    static var source: String = "https://databuyer.hubat.net/"
+    public static let name: String = "DataBuyer"
+    public static var source: String = "https://databuyer.hubat.net/"
+}
+
+/**
+ The strings needed for generating Dex token
+ 
+ - name: The name of the service
+ - source: The source of the service
+ */
+public struct Dex {
+    
+    public static let name: String = "Dex"
+    public static var source: String = "https://dex.hubofallthings.com/"
 }
 
 /**

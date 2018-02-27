@@ -102,23 +102,24 @@ public class HATNetworkHelper: NSObject {
                         if let value: Any = response.result.value {
                             
                             let json: JSON = JSON(value)
-                            if token != nil {
+                            if tokenToReturn != nil || 200 ... 299 ~= response.response!.statusCode {
                                 
                                 completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: json, token: tokenToReturn))
                             } else {
                                 
-                                completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: json, token: nil))
+                                
+                                completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode))
                             }
                             
                             // else return isSuccess: false and nil for value
                         } else {
                             
-                            if token != nil {
+                            if tokenToReturn != nil || 200 ... 299 ~= response.response!.statusCode {
                                 
                                 completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: tokenToReturn))
                             } else {
                                 
-                                completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: nil))
+                                completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode))
                             }
                         }
                     }

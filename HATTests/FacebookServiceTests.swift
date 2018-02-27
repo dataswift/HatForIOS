@@ -74,34 +74,38 @@ internal class FacebookServiceTests: XCTestCase {
             "endpoint": "facebook/feed",
             "recordId": "44f8461f-52e2-4953-9146-2b6f72724d7b",
             "data": [
-                "id": "10208854387451137_10211996601004512",
+                "id": "10208242138349438_10215582474533255",
                 "from": [
-                    "id": "10153942604579623",
-                    "name": "Irene Ng"
+                    "id": "10208242138349438",
+                    "name": "Andrius Aucinas"
                 ],
                 "type": "status",
-                "story": "Irene Ng is with Marios Tsekis.",
-                "message": "One year of building platform and product with this guy. :)",
-                "privacy": [
-                    "deny": "",
-                    "allow": "",
-                    "value": "",
-                    "friends": "",
-                    "description": ""
-                ],
-                "is_hidden": false,
-                "with_tags": [
-                    "data": [
-                        [
-                            "id": "10208854387451137",
-                            "name": "Marios Tsekis"
-                        ]
+                "place": [
+                    "id": "773512479404143",
+                    "name": "Vilnius Airport",
+                    "location": [
+                        "zip": "02189",
+                        "city": "Vilnius",
+                        "street": "Rodūnios kelias 2",
+                        "country": "Lithuania",
+                        "latitude": 54.6428795,
+                        "longitude": 25.2795944
                     ]
                 ],
+                "story": "Andrius Aucinas checked in to Vilnius Airport.",
+                "message": "‘tis going to be one loooong day...",
+                "privacy": [
+                    "deny": "2461771541953",
+                    "allow": "",
+                    "value": "CUSTOM",
+                    "friends": "ALL_FRIENDS",
+                    "description": "Friends"
+                ],
+                "is_hidden": false,
                 "status_type": "mobile_status_update",
-                "created_time": "2017-11-10T07:48:57+0000",
+                "created_time": "2018-02-08T00:53:19+0000",
                 "is_published": true,
-                "updated_time": "2017-11-10T15:00:40+0000"
+                "updated_time": "2018-02-08T00:53:19+0000"
             ]
             ]]
         let userDomain = "mariostsekis.hubat.net"

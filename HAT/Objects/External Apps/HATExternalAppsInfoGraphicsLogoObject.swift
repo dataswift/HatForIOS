@@ -17,6 +17,12 @@ public struct HATExternalAppsInfoGraphicsLogoObject: HATObject {
 
     // MARK: - Variables
     
+    /// The small dimensions image
+    public var small: String?
     /// The normal dimensions image
     public var normal: String = ""
+    /// The large dimensions image
+    public var large: String?
+    /// The extra large dimensions image
+    public var xlarge: String?
 }
