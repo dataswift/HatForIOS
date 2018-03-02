@@ -20,16 +20,17 @@ public struct HATExternalAppsService {
     // MARK: - Get external apps
     
     /**
-     Gets the apps from HAT 
+     Gets the apps from HAT
      
-     - parameter dexToken: The app token, dex, required to complete this request
+     - parameter userToken: The user's token, required to complete this request
+     - parameter userDomain: The user's domain, required to complete this request
      - parameter completion: A function to execute on success with the apps and the new token
      - parameter failCallBack: A function to execute on fail that takes the error produced
      */
-    public static func getExternalApps(dexToken: String, completion: @escaping (([HATExternalAppsObject], String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
+    public static func getExternalApps(userToken: String, userDomain: String, completion: @escaping (([HATApplicationObject], String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
         
-        let url: String = "https://dex.hubofallthings.com/api/applications"
-        let headers: [String: String] = ["x-auth-token": dexToken]
+        let url: String = "https://\(userDomain)/api/v2/applications"
+        let headers: [String: String] = ["x-auth-token": userToken]
         
         HATNetworkHelper.asynchronousRequest(
             url,
@@ -60,11 +61,11 @@ public struct HATExternalAppsService {
                         
                         if let array = result.array {
                             
-                            var arrayToReturn: [HATExternalAppsObject] = []
+                            var arrayToReturn: [HATApplicationObject] = []
                             
                             for item in array {
                                 
-                                if let object: HATExternalAppsObject = HATExternalAppsObject.decode(from: item.dictionaryValue) {
+                                if let object: HATApplicationObject = HATApplicationObject.decode(from: item.dictionaryValue) {
                                     
                                     arrayToReturn.append(object)
                                 }

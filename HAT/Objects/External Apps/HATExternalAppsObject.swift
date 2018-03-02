@@ -17,6 +17,8 @@ public struct HATExternalAppsObject: HATObject {
     
     // MARK: - Variables
     
+    /// The id of the specified application
+    public var id: String = ""
     /// The kind and the urls of the app
     public var kind: HATExternalAppsKindObject = HATExternalAppsKindObject()
     /// Various information about the app, released, version etc.

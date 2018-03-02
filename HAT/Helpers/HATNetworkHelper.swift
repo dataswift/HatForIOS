@@ -107,7 +107,6 @@ public class HATNetworkHelper: NSObject {
                                 completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: json, token: tokenToReturn))
                             } else {
                                 
-                                
                                 completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode))
                             }
                             

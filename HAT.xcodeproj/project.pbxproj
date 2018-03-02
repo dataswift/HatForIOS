@@ -65,6 +65,8 @@
 		60125070201F857500BF0508 /* HATGoogleCalendarDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012506F201F857500BF0508 /* HATGoogleCalendarDataObject.swift */; };
 		60125071201F857500BF0508 /* HATGoogleCalendarDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012506F201F857500BF0508 /* HATGoogleCalendarDataObject.swift */; };
 		60125073201F874000BF0508 /* HATGoogleCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125072201F874000BF0508 /* HATGoogleCalendarTests.swift */; };
+		60132F3E204979EA002309AB /* HATApplicationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60132F3D204979EA002309AB /* HATApplicationObject.swift */; };
+		60132F3F204979EA002309AB /* HATApplicationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60132F3D204979EA002309AB /* HATApplicationObject.swift */; };
 		601A9D38201117A0003F3D8A /* HATFileServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A9D37201117A0003F3D8A /* HATFileServiceTests.swift */; };
 		601A9D3E20113ADF003F3D8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 601A9D3C20113A93003F3D8A /* Assets.xcassets */; };
 		6020A7031E526BBF00D7DC04 /* LocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6020A7021E526BBF00D7DC04 /* LocationServiceTests.swift */; };
@@ -382,6 +384,7 @@
 		6012506C201F843700BF0508 /* HATGoogleCalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarService.swift; sourceTree = "<group>"; };
 		6012506F201F857500BF0508 /* HATGoogleCalendarDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarDataObject.swift; sourceTree = "<group>"; };
 		60125072201F874000BF0508 /* HATGoogleCalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarTests.swift; sourceTree = "<group>"; };
+		60132F3D204979EA002309AB /* HATApplicationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATApplicationObject.swift; sourceTree = "<group>"; };
 		601A9D37201117A0003F3D8A /* HATFileServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATFileServiceTests.swift; sourceTree = "<group>"; };
 		601A9D3C20113A93003F3D8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6020A7021E526BBF00D7DC04 /* LocationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServiceTests.swift; sourceTree = "<group>"; };
@@ -984,6 +987,7 @@
 				60981B202031CFEB0010F632 /* HATExternalAppsInfoObject.swift */,
 				60981B1D2031CE660010F632 /* HATExternalAppsKindObject.swift */,
 				60981B1A2031CE220010F632 /* HATExternalAppsObject.swift */,
+				60132F3D204979EA002309AB /* HATApplicationObject.swift */,
 				60981B322031D9EE0010F632 /* HATExternalAppsPermissionsObject.swift */,
 				60981B352031DA180010F632 /* HATExternalAppsPermissionsRolesGrantedObject.swift */,
 				60981B3B2031DC310010F632 /* HATExternalAppsSetupObject.swift */,
@@ -1317,6 +1321,7 @@
 				60E3F52420457F0A00A00B3E /* HATFacebookDataPostsPlaceSocialFeedObject.swift in Sources */,
 				60981B392031DAAB0010F632 /* HATExternalAppsDataRequiredObject.swift in Sources */,
 				60B3C83D1F828E3C002E7AA4 /* DataOfferRequiredDataDefinitionObjectV2.swift in Sources */,
+				60132F3E204979EA002309AB /* HATApplicationObject.swift in Sources */,
 				60019C5B2034A4C400AABE8A /* HATProfileBundleObject.swift in Sources */,
 				60F51C3F1F899C8700F99C47 /* HATFitbitActivityManualValuesObject.swift in Sources */,
 				602D16DC1E82B1E700C53A5E /* HATErrorHelper.swift in Sources */,
@@ -1582,6 +1587,7 @@
 				602E4DAB1F0111F400C5FF31 /* DataOfferRequiredDataDefinitionDataSetsObject.swift in Sources */,
 				60FB240F1F87C839003F446E /* HATDataPlugProviderObject.swift in Sources */,
 				60DDBB0D1E82F528007CDAFB /* HATDataPlugsService.swift in Sources */,
+				60132F3F204979EA002309AB /* HATApplicationObject.swift in Sources */,
 				602A12441FD6D5E50010786B /* HATProfileDataProfilePersonalObject.swift in Sources */,
 				60FB240C1F87C80C003F446E /* HATDataPlugPlugObject.swift in Sources */,
 				60125059201F769E00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestObject.swift in Sources */,

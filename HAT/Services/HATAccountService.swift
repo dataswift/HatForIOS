@@ -332,7 +332,7 @@ public struct HATAccountService {
      - parameter successCallback: A function of type (Bool, String?) to call on success
      - parameter failCallback: A fuction of type (HATError) to call on fail
      */
-    public static func createCombinator(userDomain: String, userToken: String, endPoint: String, combinatorName: String, fieldToFilter: String, lowerValue: Int, upperValue: Int, successCallback: @escaping (Bool, String?) -> Void, failCallback: @escaping (HATError) -> Void) {
+    public static func createCombinator(userDomain: String, userToken: String, endPoint: String, combinatorName: String, fieldToFilter: String, lowerValue: Int, upperValue: Int, transformationType: String? = nil, transformationPart: String? = nil, successCallback: @escaping (Bool, String?) -> Void, failCallback: @escaping (HATError) -> Void) {
         
         let url: String = "https://\(userDomain)/api/v2/combinator/\(combinatorName)"
         
@@ -341,6 +341,12 @@ public struct HATAccountService {
         bodyRequest[0].filters[0].field = fieldToFilter
         bodyRequest[0].filters[0].`operator`.lower = lowerValue
         bodyRequest[0].filters[0].`operator`.upper = upperValue
+        if transformationPart != nil && transformationType != nil {
+            
+            bodyRequest[0].filters[0].transformation = Transformation()
+            bodyRequest[0].filters[0].transformation?.part = transformationPart!
+            bodyRequest[0].filters[0].transformation?.transformation = transformationType!
+        }
         
         var urlRequest: URLRequest = URLRequest.init(url: URL(string: url)!)
         urlRequest.httpBody = BodyRequest.encode(from: bodyRequest)
@@ -436,6 +442,13 @@ private class Filter: HATObject {
     
     var field: String = ""
     var `operator`: Operator = Operator()
+    var transformation: Transformation?
+}
+/// The filter JSON format
+private class Transformation: HATObject {
+    
+    var transformation: String = ""
+    var part: String = ""
 }
 /// The combinator JSON format
 private class BodyRequest: HATObject {

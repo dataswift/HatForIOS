@@ -1,3 +1,4 @@
+//
 /**
  * Copyright (C) 2018 HAT Data Exchange Ltd
  *
@@ -12,16 +13,10 @@
 
 // MARK: Struct
 
-public struct HATFeedContentObject: Codable {
-    
-    // MARK: - Variables
-    
-    /// The content of the feed item
-    public var text: String?
-    /// The media of the feed item
-    public var media: [HATFeedContentMediaObject]?
-    
-    public init() {
-        
-    }
+public struct HATApplicationObject: HATObject {
+
+    public var application: HATExternalAppsObject = HATExternalAppsObject()
+    public var setup: Bool = false
+    public var active: Bool = false
+    public var needsUpdating: Bool = false
 }
