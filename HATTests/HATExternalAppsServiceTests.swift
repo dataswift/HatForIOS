@@ -222,6 +222,43 @@ internal class HATExternalAppsServiceTests: XCTestCase {
         }
     }
     
+    func testSetUpApp() {
+        
+        let userDomain: String = "testing.hubat.net"
+        let applicationID: String = "notables"
+        let urlToConnect = "https://\(userDomain)/api/v2/applications/\(applicationID)/setup"
+        
+        let expectationTest = expectation(description: "Setting up app from HAT...")
+        
+        MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(appsResponseJSON[0]))
+        
+        func completion(appsReceived: HATApplicationObject, newUserToken: String?) {
+            
+            XCTAssertTrue(appsReceived.application.id == "notables")
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: HATTableError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATExternalAppsService.setUpApp(
+            userToken: "",
+            userDomain: userDomain,
+            applicationID: applicationID,
+            completion: completion,
+            failCallBack: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
