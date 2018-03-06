@@ -84,7 +84,7 @@ internal class LoginServiceTests: XCTestCase {
 
             MockingjayProtocol.addStub(matcher: http(.get, uri: url), builder: string(body) )
 
-            func completion(result: String?) {
+            func completion(userDomain: String?, result: String?) {
 
                 if result != nil {
 
@@ -98,11 +98,13 @@ internal class LoginServiceTests: XCTestCase {
 
             func failed(error: AuthenicationError) {
 
+                XCTFail()
+                expectationTest.fulfill()
             }
 
-            let urlToConnect = "rumpellocationtrackerapp://rumpellocationtrackerapphost?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaWJXRnlhVzl6ZEhObGEybHpMbWgxWW05bVlXeHNkR2hwYm1kekxtNWxkQ0lzSW5CeWIzWnBaR1Z5UzJWNUlqb2liV0Z5YVc5emRITmxhMmx6SW4wPSIsInJlc291cmNlIjoibWFyaW9zdHNla2lzLmh1Ym9mYWxsdGhpbmdzLm5ldCIsImFjY2Vzc1Njb3BlIjoib3duZXIiLCJpc3MiOiJtYXJpb3N0c2VraXMuaHVib2ZhbGx0aGluZ3MubmV0IiwiZXhwIjoxNDg3MjUzMTMxLCJpYXQiOjE0ODY5OTM5MzEsImp0aSI6ImRlNjM5YmVjZWYxY2RhYmY0Mjk2YTQzOTBjMThjZjQ3NTZmNGJhNzcwMDRjODg1YzBjOWE2YmZmMGZmZTY3NDVjYmFjYTUzZGQ2M2VlN2MzMzUxNWRjNzgyMDg4Yzc2MzdiMGE1YjVhMmVjN2ZjZGYwN2NkYTdjYjJjYTg5N2Q4MTFjNGY3YWIyYmRhNjVmMmI5ZTgzYTgyNzgzMzlmNTYwOTVhNTM4NzBiYzA0MWY0YmY5YzRmMTNhZDg2N2Y3ZTJkYjM4ZmE3NmZkNmU2ZTAyMWVjZjRiZjlmMThkNzUyYWVlMWZkMmI2M2RlODNhNTY0MmFlNWNkYzIwMzFhN2IifQ.Q3MdMggMpPWqPl1XMLm740WAaHw3oxLqMSiDT16tt4V4Q3WFrsH-geLva6m7fosjDg5r0L3MkpB-yqnOPeLc-YcWFLBYZOgnfyMEN0Q5o0vZ6_2m5JgOPGvLIJ3CEec8Dh3rf7p0Ua69oU0woCwBFjkuTosNfnTStbHisVg26JywGprK7jjve_W1zwAKr20GcCoMC5ulsP3nWCTZVLy2V6IRBUBPR8lXwmEz_PY27ayAqiGBXKz6lXJEkzxbwRrTYF3pO3s8E6oJYI1547rAteaIQDYbD7kisqAccHIvxyTz3AGjiAPPthlPf41pgHK4KuER91uKEBOul59A76vYAQ"
+            let urlToConnect = "notables://notablesapphost?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhcHBsaWNhdGlvblZlcnNpb24iOiIxLjAuMCIsInN1YiI6IjEtZjF0UEtjWlFnZ3U2dWRsb2RuUXpGUkF4Sjh0RzBsS0lTdXBoRHp2OURIUklKczBBZ3NwdDVoQ2d5UWEwZVltRmFJV0FQa1N6Y1FMSmx4M3VmWFdVaEluQTJVRmhWcmNOQkpzPSIsImFwcGxpY2F0aW9uIjoibm90YWJsZXMiLCJpc3MiOiJ0ZXN0aW5nLmh1YmF0Lm5ldCIsImV4cCI6MTUyMjkzNjI1MywiaWF0IjoxNTIwMzQ0MjUzLCJqdGkiOiJhZDI3MGE2M2NjM2Y2ZmFhN2QwNjExY2Y2NTg5MjA5NzE2OTJiNzc2OTg4OWY3YzRiZGMyOTVjOWUwZTQ5ZWMzZWMwMDU5YTlmMmJiOTFjNTBmYzNiY2VjMjk2YTgyNDgzMzc1YzkxNjBlMzdjNmRlZTA2NmVhMDQxZDUzMTBiODVlNjliZWRiOGE3ZDA1MjA5OTk5N2Q0ZTZmYmQzYWIzZjk4YTUwOTYzNWU3MWE3MzEzMDQ3YWFhMjdkOTI4NTNjZjJmZjMxOTE4YTE0OWQ3Y2RiYThiNzQwYjc4NGRmNTg3NGZiZjAxZDQzZGQ5ZjI5MzJiMWIwZTJlMGIyOGYzIn0.mJf-I3v8X-7FwAaBSKdMNCMpXG5ONkP837y0gpVSjP1MqO4a3EaRrTnqhAWSxx1dq9oykVnolZ18cN4Zwa522i3yMsJ-9pZnvtuNG4Nhk2Su9XVlbwFxKyJsc-3geAvmVn_SA_JIwqmgKuP1w57veuznwhFwHC_tb78lD2nYyFbrB8qWs-Jma2mKIZpccGUPf_Gs0t4hFQNYSc7r-O8TXT_rCMcr1UV4AcRKsNYkIPXb-WgxeMLp-KhP9E_WOvi4YUEOI3u5o5_zDz0AL40UxlT3t8UkYJUa3uv5wVfus1TehBAYGNmaJsINc0rGrCW3oAZevIdyRDbXrHn_IQryew"
 
-            HATLoginService.loginToHATAuthorization(userDomain: userDomain, url: NSURL(string: urlToConnect)!, success: completion, failed: failed)
+            HATLoginService.loginToHATAuthorization(applicationName: "notables", url: NSURL(string: urlToConnect)!, success: completion, failed: failed)
 
             waitForExpectations(timeout: 10) { error in
 

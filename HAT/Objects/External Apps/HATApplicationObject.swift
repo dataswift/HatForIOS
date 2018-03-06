@@ -18,5 +18,5 @@ public struct HATApplicationObject: HATObject {
     public var application: HATExternalAppsObject = HATExternalAppsObject()
     public var setup: Bool = false
     public var active: Bool = false
-    public var needsUpdating: Bool = false
+    public var needsUpdating: Bool?
 }
