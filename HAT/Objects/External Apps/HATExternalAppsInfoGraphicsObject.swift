@@ -18,9 +18,9 @@ public struct HATExternalAppsInfoGraphicsObject: HATObject {
     // MARK: - Variables
     
     /// The banner logo
-    public var banner: HATExternalAppsInfoGraphicsBannerObject = HATExternalAppsInfoGraphicsBannerObject()
+    public var banner: HATExternalAppsIllustrationObject = HATExternalAppsIllustrationObject()
     /// The app logo
-    public var logo: HATExternalAppsInfoGraphicsLogoObject = HATExternalAppsInfoGraphicsLogoObject()
+    public var logo: HATExternalAppsIllustrationObject = HATExternalAppsIllustrationObject()
     /// The screenshots used in the preview
-    public var screenshots: [HATExternalAppsInfoGraphicsScreenshotsObject] = []
+    public var screenshots: [HATExternalAppsIllustrationObject] = []
 }

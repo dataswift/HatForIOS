@@ -13,7 +13,7 @@
 
 // MARK: Struct
 
-public struct HATExternalAppsInfoGraphicsBannerObject: HATObject {
+public struct HATExternalAppsIllustrationObject: HATObject {
 
     // MARK: - Variables
     

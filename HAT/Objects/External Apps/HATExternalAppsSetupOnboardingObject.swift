@@ -11,16 +11,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-// MARK: Struct
+import UIKit
 
-public struct HATExternalAppsSetupObject: HATObject {
+public struct HATExternalAppsSetupOnboardingObject: HATObject {
 
-    // MARK: - Variables
-    
-    /// The url needed to launch the app from another app
-    public var iosUrl: String = ""
-    /// The kind of app this is
-    public var kind: String = ""
-    public var preferences: String?
-    public var onboarding: [HATExternalAppsSetupOnboardingObject]?
+    public var illustration: HATExternalAppsIllustrationObject = HATExternalAppsIllustrationObject()
+    public var title: String = ""
+    public var description: String = ""
 }
