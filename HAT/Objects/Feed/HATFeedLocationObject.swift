@@ -13,11 +13,8 @@
 
 // MARK: Struct
 
-public struct HATApplicationObject: HATObject {
+public struct HATFeedLocationObject: HATObject {
 
-    public var application: HATExternalAppsObject = HATExternalAppsObject()
-    public var setup: Bool = false
-    public var active: Bool = false
-    public var needsUpdating: Bool?
-    public var mostRecentData: String?
+    /// The address of the location
+    public var address: HATFeedLocationAddressObject?
 }

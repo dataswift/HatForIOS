@@ -10,6 +10,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
+import Alamofire
 import SwiftyJSON
 
 // MARK: Struct
@@ -34,7 +35,7 @@ public struct HATFeedService {
             var arrayToReturn: [HATFeedObject] = []
             for value: JSON in values {
                 
-                let dict: [String: JSON] = value["data"].dictionaryValue
+                let dict: [String: JSON] = value.dictionaryValue
                 if let object: HATFeedObject = HATFeedObject.decode(from: dict) {
                     
                     arrayToReturn.append(object)
@@ -44,14 +45,46 @@ public struct HATFeedService {
             successCallback(arrayToReturn, newToken)
         }
         
-        HATAccountService.getHatTableValues(
-            token: userToken,
-            userDomain: userDomain,
-            namespace: "she",
-            scope: "feed",
-            parameters: parameters,
-            successCallback: success,
-            errorCallback: failed)
+        // form the url
+        let url: String = "https://\(userDomain)/api/v2/she/feed"
+        
+        // create parameters and headers
+        let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]
+        
+        // make the request
+        HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: parameters, headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
+            
+            switch response {
+                
+            case .error(let error, let statusCode):
+                
+                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                    
+                    failed(.noInternetConnection)
+                } else {
+                    
+                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    failed(.generalError(message, statusCode, error))
+                }
+            case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                
+                if statusCode != nil && statusCode! == 401 {
+                    
+                    let message = NSLocalizedString("Token expired", comment: "")
+                    failed(.generalError(message, statusCode, nil))
+                }
+                if isSuccess {
+                    
+                    if let array = result.array {
+                        
+                        success(values: array, newToken: token)
+                    } else {
+                        
+                        failed(.noValuesFound)
+                    }
+                }
+            }
+        })
     }
     
     // MARK: - Get she combinator

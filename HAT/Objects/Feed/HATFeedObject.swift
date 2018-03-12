@@ -24,6 +24,10 @@ public struct HATFeedObject: HATObject {
     public var content: HATFeedContentObject?
     /// The title of the feed item
     public var title: HATFeedTitleObject = HATFeedTitleObject()
+    /// The types of events, for google calendar
+    public var types: [String]?
+    /// The title of the feed item
+    public var location: HATFeedLocationObject?
     
     public init() {
         

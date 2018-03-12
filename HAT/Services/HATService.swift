@@ -11,6 +11,7 @@
  */
 
 import Alamofire
+import SwiftyJSON
 
 // MARK: Struct
 
@@ -222,9 +223,10 @@ public struct HATService {
         
         let url: String = "https://hatters.hubofallthings.com/api/products/hat/purchase"
         
-        let body: [String: Any] = PurchaseObject.encode(from: purchaseModel)!
+        let body = PurchaseObject.encode(from: purchaseModel)
+        let test = JSON(body!).dictionaryObject!
         
-        HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: body, headers: [:], completion: {(response: HATNetworkHelper.ResultType) -> Void in
+        HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: test, headers: [:], completion: {(response: HATNetworkHelper.ResultType) -> Void in
             
             switch response {
                 

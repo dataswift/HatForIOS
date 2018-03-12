@@ -32,7 +32,8 @@ internal class FormatterHelperTests: XCTestCase {
 
         let result = HATFormatterHelper.formatStringToDate(string: stringDate)
 
-        let calendar = Calendar.current
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "GMT")!
         let day = calendar.component(.day, from: result!)
         let month = calendar.component(.month, from: result!)
         let year = calendar.component(.year, from: result!)

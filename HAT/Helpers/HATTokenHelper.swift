@@ -25,16 +25,16 @@ public struct HATTokenHelper {
      
      - returns: Returns the token if the scope of it is owner else nil
      */
-    public static func checkTokenScope(token: String?) -> String? {
+    public static func checkTokenScope(token: String?, applicationName: String) -> String? {
 
         if let unwrappedToken = token {
 
             do {
 
                 let jwt = try decode(jwt: unwrappedToken)
-                let scope = jwt.claim(name: "accessScope")
+                let scope = jwt.claim(name: "application")
 
-                if scope.string == "owner" {
+                if scope.string == applicationName {
 
                     return unwrappedToken
                 }
