@@ -59,8 +59,8 @@ public struct HATLoginService {
         // get token out
         if let token: String = HATNetworkHelper.getQueryStringParameter(url: url.absoluteString, param: RequestHeaders.tokenParamName) {
             
-            let decodedToken = try? decode(jwt: token)
-            let userDomain = decodedToken?.claim(name: "iss").string
+            let decodedToken: JWT? = try? decode(jwt: token)
+            let userDomain: String? = decodedToken?.claim(name: "iss").string
             // make asynchronous call
             // parameters..
             let parameters: Dictionary<String, String> = [:]
@@ -91,9 +91,14 @@ public struct HATLoginService {
                                 return
                             }
                             
-                            let appName = jwt.claim(name: "application").string
+                            let appName: String? = jwt.claim(name: "application").string
+                            let scope: String? = jwt.claim(name: "accessScope").string
                             
-                            if appName != applicationName {
+                            if appName != applicationName && scope == nil {
+                                
+                                failed?(.cannotDecodeToken(token))
+                                return
+                            } else if scope != "owner" && appName == nil {
                                 
                                 failed?(.cannotDecodeToken(token))
                                 return

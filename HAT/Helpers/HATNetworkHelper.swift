@@ -213,11 +213,11 @@ public class HATNetworkHelper: NSObject {
      */
     public class func uploadFile(image: Data, url: String, progressUpdateHandler: ((Double) -> Void)?, completion: @escaping (_ r: HATNetworkHelper.ResultType) -> Void) {
         
-        let headers = ["x-amz-server-side-encryption": "AES256"]
+        let headers: [String: String] = ["x-amz-server-side-encryption": "AES256"]
         
         Alamofire.upload(image, to: URL(string: url)!, method: .put, headers: headers).uploadProgress(closure: {(progress) -> Void in
             
-            if let updateFunc = progressUpdateHandler {
+            if let updateFunc: ((Double) -> Void) = progressUpdateHandler {
                 
                 updateFunc(progress.fractionCompleted)
             }
@@ -272,7 +272,7 @@ public class HATNetworkHelper: NSObject {
         
         if let url: String = url,
             let urlComponents: NSURLComponents = NSURLComponents(string: url),
-            let queryItems: [URLQueryItem] = (urlComponents.queryItems as [URLQueryItem]!) {
+            let queryItems: [URLQueryItem] = (urlComponents.queryItems) {
             
             let parameter: URLQueryItem? = queryItems.first(where: { item in item.name == param })
             
