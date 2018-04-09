@@ -44,6 +44,30 @@ public struct Twitter {
  - sourceName: The source name of the data
  - serviceName: The service, Plug, name
  */
+public struct Spotify {
+    
+    /**
+     Constructs the api/status endpoint for the plug according to the dataplug url returned from the HAT
+     
+     - parameter spotifyDataPlugURL: The plug url returned from HAT
+     
+     - returns: The spotifyDataPlugURL appended with /api/status
+     */
+    public static func spotifyDataPlugStatusURL(spotifyDataPlugURL: String) -> String {
+        
+        return "\(spotifyDataPlugURL)/api/status"
+    }
+    
+    public static let sourceName: String = "spotify"
+    public static let serviceName: String = "spotify"
+}
+
+/**
+ The strings needed for communicating with fitbit data plug
+ 
+ - sourceName: The source name of the data
+ - serviceName: The service, Plug, name
+ */
 public struct Fitbit {
     
     /**

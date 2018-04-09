@@ -28,7 +28,7 @@ public struct HATFeedService {
      - parameter successCallback: A function of type ([HATFeedObject], String?) that executes on success
      - parameter failed: A function of type (HATTableError) that executes on failure
      */
-    static public func getFeed(userDomain: String, userToken: String, parameters: Dictionary<String, Any> = [:], successCallback: @escaping ([HATFeedObject], String?) -> Void, failed: @escaping (HATTableError) -> Void) {
+    static public func getFeed(userDomain: String, userToken: String, parameters: Dictionary<String, Any> = [:], hatSuffix: String = "", successCallback: @escaping ([HATFeedObject], String?) -> Void, failed: @escaping (HATTableError) -> Void) {
         
         func success(values: [JSON], newToken: String?) {
             
@@ -46,7 +46,7 @@ public struct HATFeedService {
         }
         
         // form the url
-        let url: String = "https://\(userDomain)/api/v2/she/feed"
+        let url: String = "https://\(userDomain)/api/v2/she/feed\(hatSuffix)"
         
         // create parameters and headers
         let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]

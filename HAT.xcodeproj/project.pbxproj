@@ -156,6 +156,16 @@
 		604D35082010FCC8008378D0 /* HATDataOffersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604D35072010FCC8008378D0 /* HATDataOffersTests.swift */; };
 		604D35092010FE44008378D0 /* HATDataOffersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E4D9A1F01118500C5FF31 /* HATDataOffersService.swift */; };
 		604EAC0F1EB886EE0084EEC8 /* HATTokenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EAC0E1EB886EE0084EEC8 /* HATTokenHelper.swift */; };
+		604EC188207BCF5700CD426D /* HATSpotifyProfileImagesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EC187207BCF5700CD426D /* HATSpotifyProfileImagesObject.swift */; };
+		604EC18A207BCF9C00CD426D /* HATSpotifyProfileFollowersObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EC189207BCF9C00CD426D /* HATSpotifyProfileFollowersObject.swift */; };
+		604EC18C207BCFD800CD426D /* HATSpotifyProfileExternalURLObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EC18B207BCFD800CD426D /* HATSpotifyProfileExternalURLObject.swift */; };
+		604EC18E207BD01A00CD426D /* HATSpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EC18D207BD01A00CD426D /* HATSpotifyService.swift */; };
+		604EC190207BD28D00CD426D /* SpotifyServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EC18F207BD28D00CD426D /* SpotifyServiceTests.swift */; };
+		604EC191207BD59400CD426D /* HATSpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EC18D207BD01A00CD426D /* HATSpotifyService.swift */; };
+		604EC192207BD5A000CD426D /* HATSpotifyProfileObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4FEF0207BCDE500084D4B /* HATSpotifyProfileObject.swift */; };
+		604EC193207BD5A000CD426D /* HATSpotifyProfileImagesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EC187207BCF5700CD426D /* HATSpotifyProfileImagesObject.swift */; };
+		604EC194207BD5A000CD426D /* HATSpotifyProfileFollowersObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EC189207BCF9C00CD426D /* HATSpotifyProfileFollowersObject.swift */; };
+		604EC195207BD5A000CD426D /* HATSpotifyProfileExternalURLObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EC18B207BCFD800CD426D /* HATSpotifyProfileExternalURLObject.swift */; };
 		6050BF011ED59BB300984EEF /* HATProfileEducationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050BF001ED59BB300984EEF /* HATProfileEducationObject.swift */; };
 		6050BF031ED59BD400984EEF /* HATProfileRelationshipAndHouseholdObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050BF021ED59BD400984EEF /* HATProfileRelationshipAndHouseholdObject.swift */; };
 		6050BF041ED5B2DD00984EEF /* HATProfileEducationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050BF001ED59BB300984EEF /* HATProfileEducationObject.swift */; };
@@ -266,6 +276,7 @@
 		60B427BB20571B9F002A32AE /* HATFeedLocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B427B920571B94002A32AE /* HATFeedLocationObject.swift */; };
 		60B427BD20571C37002A32AE /* HATFeedLocationAddressObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B427BC20571C37002A32AE /* HATFeedLocationAddressObject.swift */; };
 		60B427BE20571C37002A32AE /* HATFeedLocationAddressObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B427BC20571C37002A32AE /* HATFeedLocationAddressObject.swift */; };
+		60B4FEF1207BCDE500084D4B /* HATSpotifyProfileObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B4FEF0207BCDE500084D4B /* HATSpotifyProfileObject.swift */; };
 		60B9CB37204E980A00EFDD40 /* HATExternalAppsSetupOnboardingObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B9CB36204E980A00EFDD40 /* HATExternalAppsSetupOnboardingObject.swift */; };
 		60B9CB39204E984C00EFDD40 /* HATExternalAppsIllustrationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B9CB38204E984C00EFDD40 /* HATExternalAppsIllustrationObject.swift */; };
 		60B9CB3A204E98FA00EFDD40 /* HATExternalAppsIllustrationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B9CB38204E984C00EFDD40 /* HATExternalAppsIllustrationObject.swift */; };
@@ -451,6 +462,11 @@
 		604B91731F73FDAE0099A58A /* HatApiType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HatApiType.swift; path = Protocols/HatApiType.swift; sourceTree = "<group>"; };
 		604D35072010FCC8008378D0 /* HATDataOffersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATDataOffersTests.swift; sourceTree = "<group>"; };
 		604EAC0E1EB886EE0084EEC8 /* HATTokenHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATTokenHelper.swift; sourceTree = "<group>"; };
+		604EC187207BCF5700CD426D /* HATSpotifyProfileImagesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATSpotifyProfileImagesObject.swift; sourceTree = "<group>"; };
+		604EC189207BCF9C00CD426D /* HATSpotifyProfileFollowersObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATSpotifyProfileFollowersObject.swift; sourceTree = "<group>"; };
+		604EC18B207BCFD800CD426D /* HATSpotifyProfileExternalURLObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATSpotifyProfileExternalURLObject.swift; sourceTree = "<group>"; };
+		604EC18D207BD01A00CD426D /* HATSpotifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATSpotifyService.swift; sourceTree = "<group>"; };
+		604EC18F207BD28D00CD426D /* SpotifyServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyServiceTests.swift; sourceTree = "<group>"; };
 		6050BF001ED59BB300984EEF /* HATProfileEducationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATProfileEducationObject.swift; sourceTree = "<group>"; };
 		6050BF021ED59BD400984EEF /* HATProfileRelationshipAndHouseholdObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATProfileRelationshipAndHouseholdObject.swift; sourceTree = "<group>"; };
 		606287901FFBA17E004145BA /* HATProfileAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileAddress.swift; sourceTree = "<group>"; };
@@ -511,6 +527,7 @@
 		60B3C8451F8291E0002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyEndpointsV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOfferRequiredDataDefinitionBundleKeyEndpointsV2.swift; sourceTree = "<group>"; };
 		60B427B920571B94002A32AE /* HATFeedLocationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATFeedLocationObject.swift; sourceTree = "<group>"; };
 		60B427BC20571C37002A32AE /* HATFeedLocationAddressObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATFeedLocationAddressObject.swift; sourceTree = "<group>"; };
+		60B4FEF0207BCDE500084D4B /* HATSpotifyProfileObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATSpotifyProfileObject.swift; sourceTree = "<group>"; };
 		60B9CB36204E980A00EFDD40 /* HATExternalAppsSetupOnboardingObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATExternalAppsSetupOnboardingObject.swift; sourceTree = "<group>"; };
 		60B9CB38204E984C00EFDD40 /* HATExternalAppsIllustrationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATExternalAppsIllustrationObject.swift; sourceTree = "<group>"; };
 		60BA45E51E8A7C5700ABB758 /* FileUploadObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadObject.swift; sourceTree = "<group>"; };
@@ -606,6 +623,7 @@
 				609863261FA78071003309B7 /* HATFeedService.swift */,
 				602CB44B1E8BFC6900903F33 /* HATFileService.swift */,
 				60854FC71F8944BD00DC2BAC /* HATFitbitService.swift */,
+				604EC18D207BD01A00CD426D /* HATSpotifyService.swift */,
 				6012506C201F843700BF0508 /* HATGoogleCalendarService.swift */,
 				602D16CB1E82B1D700C53A5E /* HATLocationService.swift */,
 				602D16CC1E82B1D700C53A5E /* HATLoginService.swift */,
@@ -634,6 +652,7 @@
 		6016910A1E4B4B8900505E8D /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				60B4FEEF207BCDD300084D4B /* Spotify */,
 				60DE1DDA1F34ABD100E031F6 /* Data Debits */,
 				602E4D9D1F0111DA00C5FF31 /* Data Offers */,
 				606BBA2F1E54546700ECBA6B /* Data Plugs */,
@@ -831,6 +850,7 @@
 				60EDD01F1F98DC9000BE24B3 /* DataDebitsServiceTests.swift */,
 				606BBA3A1E546DF000ECBA6B /* DataPlugsServiceTests.swift */,
 				606375A81E53613D00F0D1B1 /* FacebookServiceTests.swift */,
+				604EC18F207BD28D00CD426D /* SpotifyServiceTests.swift */,
 				60F51C441F89A25D00F99C47 /* FitbitServiceTests.swift */,
 				606375AE1E537C7300F0D1B1 /* FormatterHelperTests.swift */,
 				6020A7071E52803800D7DC04 /* HATAccountServiceTests.swift */,
@@ -1006,6 +1026,17 @@
 				6098205C1ED4694F0036D1B3 /* HATNationalityObject.swift */,
 			);
 			path = Nationality;
+			sourceTree = "<group>";
+		};
+		60B4FEEF207BCDD300084D4B /* Spotify */ = {
+			isa = PBXGroup;
+			children = (
+				60B4FEF0207BCDE500084D4B /* HATSpotifyProfileObject.swift */,
+				604EC187207BCF5700CD426D /* HATSpotifyProfileImagesObject.swift */,
+				604EC189207BCF9C00CD426D /* HATSpotifyProfileFollowersObject.swift */,
+				604EC18B207BCFD800CD426D /* HATSpotifyProfileExternalURLObject.swift */,
+			);
+			path = Spotify;
 			sourceTree = "<group>";
 		};
 		60BA45DE1E8A7BB100ABB758 /* File Upload Object */ = {
@@ -1292,6 +1323,7 @@
 				60F51C481F8B63C500F99C47 /* HATObject.swift in Sources */,
 				607A39201FE72DCD00C90A94 /* HATNotesLocationObject.swift in Sources */,
 				60F51C2D1F8992F100F99C47 /* HATFitbitStatsBestObject.swift in Sources */,
+				604EC18E207BD01A00CD426D /* HATSpotifyService.swift in Sources */,
 				60E3F52420457F0A00A00B3E /* HATFacebookDataPostsPlaceSocialFeedObject.swift in Sources */,
 				60981B392031DAAB0010F632 /* HATExternalAppsDataRequiredObject.swift in Sources */,
 				60B3C83D1F828E3C002E7AA4 /* DataOfferRequiredDataDefinitionObjectV2.swift in Sources */,
@@ -1347,13 +1379,16 @@
 				60854FCC1F89665100DC2BAC /* HATFitbitWeightObject.swift in Sources */,
 				60DE1DD91F34AB9300E031F6 /* HATDataDebitsService.swift in Sources */,
 				602D17161E82B23900C53A5E /* HATTwitterDataSocialFeedObject.swift in Sources */,
+				604EC18C207BCFD800CD426D /* HATSpotifyProfileExternalURLObject.swift in Sources */,
 				60F51C3C1F899BDC00F99C47 /* HATFitbitActivityHeartRateZoneObject.swift in Sources */,
 				60001F702005221100E0CEF3 /* HATFacebookDataSocialFeedObject.swift in Sources */,
+				604EC188207BCF5700CD426D /* HATSpotifyProfileImagesObject.swift in Sources */,
 				60812BF21FA7856700C91120 /* HATFeedContentMediaObject.swift in Sources */,
 				60001F712005221100E0CEF3 /* HATFacebookDataPostsSocialFeedObject.swift in Sources */,
 				60981B332031D9EE0010F632 /* HATExternalAppsPermissionsObject.swift in Sources */,
 				60F6FF421FB79361000B8A2E /* HATFeedDateObject.swift in Sources */,
 				607A391D1FE72D8600C90A94 /* HATNotesPhotoObject.swift in Sources */,
+				604EC18A207BCF9C00CD426D /* HATSpotifyProfileFollowersObject.swift in Sources */,
 				600F10B81F5EC383001D21E7 /* StringExtension.swift in Sources */,
 				602E4DA61F0111F400C5FF31 /* DataOfferObject.swift in Sources */,
 				60125035201F220A00BF0508 /* HATGoogleCalendarObject.swift in Sources */,
@@ -1413,6 +1448,7 @@
 				60FB240B1F87C807003F446E /* HATDataPlugPlugObject.swift in Sources */,
 				6038F12B1FB5AA33004BBE36 /* PurchaseMembershipObject.swift in Sources */,
 				60125061201F7C9600BF0508 /* HATGoogleCalendarRemindersObject.swift in Sources */,
+				60B4FEF1207BCDE500084D4B /* HATSpotifyProfileObject.swift in Sources */,
 				6098205D1ED4694F0036D1B3 /* HATNationalityObject.swift in Sources */,
 				60001F6E2005221100E0CEF3 /* HATFacebookDataPostsPrivacySocialFeedObject.swift in Sources */,
 				60854FCF1F89853900DC2BAC /* HATFitbitSleepObject.swift in Sources */,
@@ -1467,6 +1503,7 @@
 				6012503F201F369200BF0508 /* HATGoogleCalendarStartObject.swift in Sources */,
 				60854FE81F898DFF00DC2BAC /* HATFitbitDailyActivityObject.swift in Sources */,
 				60EDD0211F98DDDF00BE24B3 /* HATDataDebitsService.swift in Sources */,
+				604EC192207BD5A000CD426D /* HATSpotifyProfileObject.swift in Sources */,
 				60981B402031DC850010F632 /* HATExternalAppsStatusObject.swift in Sources */,
 				60DDBB191E82F530007CDAFB /* HATTwitterSocialFeedObject.swift in Sources */,
 				60854FE51F898BC000DC2BAC /* HATFitbitProfileTopBadgesObject.swift in Sources */,
@@ -1488,6 +1525,7 @@
 				60EDD0201F98DC9000BE24B3 /* DataDebitsServiceTests.swift in Sources */,
 				60DDBB301E82F54C007CDAFB /* HATDataPlugObject.swift in Sources */,
 				60DDBB171E82F530007CDAFB /* HATTwitterDataTweetsSocialFeedObject.swift in Sources */,
+				604EC190207BD28D00CD426D /* SpotifyServiceTests.swift in Sources */,
 				60854FF41F89921300DC2BAC /* HATFitbitStatsTotalStatsObject.swift in Sources */,
 				60812BF51FA787BD00C91120 /* HATFeedServiceTests.swift in Sources */,
 				60812BF31FA7856700C91120 /* HATFeedContentMediaObject.swift in Sources */,
@@ -1507,6 +1545,7 @@
 				602CB44E1E8C00F900903F33 /* FileUploadObjectPermissions.swift in Sources */,
 				6038F1291FB5A9CD004BBE36 /* PurchaseObject.swift in Sources */,
 				6012504D201F40DC00BF0508 /* HATGoogleCalendarConferenceDataObject.swift in Sources */,
+				604EC194207BD5A000CD426D /* HATSpotifyProfileFollowersObject.swift in Sources */,
 				604B0DC11FE72C1D00F8B91A /* HATNotesDataObject.swift in Sources */,
 				6050BF071ED5B2E500984EEF /* HATProfileService.swift in Sources */,
 				60001F752005277800E0CEF3 /* HATFacebookDataPostsSocialFeedObject.swift in Sources */,
@@ -1541,10 +1580,12 @@
 				60314E6F1F387577004383AA /* UKSpecificInfo.swift in Sources */,
 				60B9CB3B204E98FA00EFDD40 /* HATExternalAppsSetupOnboardingObject.swift in Sources */,
 				60F51C451F89A25D00F99C47 /* FitbitServiceTests.swift in Sources */,
+				604EC193207BD5A000CD426D /* HATSpotifyProfileImagesObject.swift in Sources */,
 				60DDBB0C1E82F528007CDAFB /* HATAccountService.swift in Sources */,
 				60DDBB0F1E82F528007CDAFB /* HATLocationService.swift in Sources */,
 				60125068201F80F500BF0508 /* HATGoogleCalendarSourceObject.swift in Sources */,
 				60B3C8441F82917B002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyV2.swift in Sources */,
+				604EC191207BD59400CD426D /* HATSpotifyService.swift in Sources */,
 				60854FD31F89861D00DC2BAC /* HATFitbitSleepLevelsObject.swift in Sources */,
 				607A391E1FE72D8600C90A94 /* HATNotesPhotoObject.swift in Sources */,
 				60B2C9411FACBE0000404DBD /* HATLocationsDataObject.swift in Sources */,
@@ -1571,6 +1612,7 @@
 				60B3C83E1F828E3C002E7AA4 /* DataOfferRequiredDataDefinitionObjectV2.swift in Sources */,
 				60B427BB20571B9F002A32AE /* HATFeedLocationObject.swift in Sources */,
 				60F51C3D1F899BDC00F99C47 /* HATFitbitActivityHeartRateZoneObject.swift in Sources */,
+				604EC195207BD5A000CD426D /* HATSpotifyProfileExternalURLObject.swift in Sources */,
 				60DDBB121E82F528007CDAFB /* HATTwitterService.swift in Sources */,
 				60B9CB3A204E98FA00EFDD40 /* HATExternalAppsIllustrationObject.swift in Sources */,
 				60854FEE1F89918F00DC2BAC /* HATFitbitStatsObject.swift in Sources */,
