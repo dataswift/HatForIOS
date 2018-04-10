@@ -13,6 +13,5 @@
 
 public struct HATSpotifyProfileFollowersObject: HATObject {
 
-    public var href: String = ""
     public var total: Int = 0
 }
