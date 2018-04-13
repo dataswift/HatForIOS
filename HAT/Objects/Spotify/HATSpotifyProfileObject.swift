@@ -23,6 +23,6 @@ public struct HATSpotifyProfileObject: HATObject {
     public var birthdate: String = ""
     public var followers: HATSpotifyProfileFollowersObject = HATSpotifyProfileFollowersObject()
     public var dateCreated: String = ""
-    public var display_name: String = ""
+    public var display_name: String?
     public var external_urls: HATSpotifyProfileExternalURLObject = HATSpotifyProfileExternalURLObject()
 }
