@@ -79,7 +79,7 @@ public struct HATProfileService {
             successCallback: { (json, _) in
                 
                 successCallback(T(fromCache: json.dictionaryValue))
-            },
+        },
             errorCallback: failCallback)
     }
     
@@ -188,6 +188,7 @@ public struct HATProfileService {
             userToken: userToken,
             nameSpace: "rumpel",
             scope: "education",
+            parameters: ["orderBy":"unixTimeStamp", "ordering": "descending", "take": "1"],
             successCallback: successCallback,
             failCallback: failCallback)
     }

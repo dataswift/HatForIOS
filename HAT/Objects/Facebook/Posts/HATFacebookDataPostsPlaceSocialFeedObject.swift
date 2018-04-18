@@ -33,6 +33,9 @@ public struct HATFacebookDataPostsPlaceSocialFeedObject: HATObject, HatApiType {
     
     public init() {
         
+        id = ""
+        name = ""
+        location = HATFacebookDataPostsPlaceLocationSocialFeedObject()
     }
     
     /**
@@ -41,6 +44,8 @@ public struct HATFacebookDataPostsPlaceSocialFeedObject: HATObject, HatApiType {
      - dictionary: The JSON file received
      */
     public init(from dictionary: Dictionary<String, JSON>) {
+        
+        self.init()
         
         self.inititialize(dict: dictionary)
     }
@@ -81,5 +86,5 @@ public struct HATFacebookDataPostsPlaceSocialFeedObject: HATObject, HatApiType {
         let dictionary = JSON(fromCache)
         self.inititialize(dict: dictionary.dictionaryValue)
     }
-
+    
 }

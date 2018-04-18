@@ -29,7 +29,15 @@ public struct HATDataOffersService {
      */
     public static func getAvailableDataOffers(isBeta: Bool = false, userDomain: String, applicationToken: String, merchants: [String]?, succesfulCallBack: @escaping ([DataOfferObject], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
-        let mutableURL: NSMutableString = "https://databuyer.hubat.net/api/v2/offersWithClaims"
+        let mutableURL: NSMutableString
+        
+        if userDomain.contains("hubofallthings") {
+            
+            mutableURL = "https://databuyer.hubofallthings.com/api/v2/offersWithClaims"
+        } else {
+            
+            mutableURL = "https://databuyer.hubat.net/api/v2/offersWithClaims"
+        }
         
         if merchants != nil {
             
@@ -100,8 +108,16 @@ public struct HATDataOffersService {
      */
     public static func claimOffer(userDomain: String, applicationToken: String, offerID: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
-        let url: String = "https://databuyer.hubat.net/api/v2/offer/\(offerID)/claim"
-
+        let url: String
+        
+        if userDomain.contains("hubofallthings") {
+            
+            url = "https://databuyer.hubofallthings.com/api/v2/offer/\(offerID)/claim"
+        } else {
+            
+            url = "https://databuyer.hubat.net/api/v2/offer/\(offerID)/claim"
+        }
+        
         let headers: Dictionary<String, String> = ["X-Auth-Token": applicationToken]
         
         HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: [:], headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
@@ -155,7 +171,15 @@ public struct HATDataOffersService {
      */
     public static func redeemOffer(userDomain: String, appToken: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
-        let url: String = "https://databuyer.hubat.net/api/v2/user/redeem/cash"
+        let url: String
+        
+        if userDomain.contains("hubofallthings") {
+            
+            url = "https://databuyer.hubofallthings.com/api/v2/user/redeem/cash"
+        } else {
+            
+            url = "https://databuyer.hubat.net/api/v2/user/redeem/cash"
+        }
         
         HATNetworkHelper.asynchronousRequest(
             url,
@@ -189,7 +213,7 @@ public struct HATDataOffersService {
                         }
                     }
                 }
-            }
+        }
         )
     }
     
@@ -257,7 +281,7 @@ public struct HATDataOffersService {
                         failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
-            }
+        }
         )
     }
     
