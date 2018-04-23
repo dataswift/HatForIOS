@@ -113,7 +113,7 @@ internal class DataDebitsServiceTests: XCTestCase {
                                                 ],
                                                 "operator": [
                                                     "search": "BBC",
-                                                    "operator": "between"
+                                                    "operator": "find"
                                                 ]
                                             ]
                                         ]
