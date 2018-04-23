@@ -70,7 +70,7 @@ internal class NotableServiceTests: XCTestCase {
         }
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2/data/rumpel/notablesv1?orderBy=updated_time&ordering=descending"
+        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/rumpel/notablesv1?orderBy=updated_time&ordering=descending"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(NotableServiceTests.notesV2Response))
         
@@ -106,7 +106,7 @@ internal class NotableServiceTests: XCTestCase {
         }
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2/data?records=123"
+        let urlToConnect = "https://testing.hubat.net/api/v2.6/data?records=123"
         
         MockingjayProtocol.addStub(matcher: http(.delete, uri: urlToConnect), builder: json(body))
         
@@ -163,7 +163,7 @@ internal class NotableServiceTests: XCTestCase {
         }
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2/data"
+        let urlToConnect = "https://testing.hubat.net/api/v2.6/data"
         var note = HATNotesObject()
         note.data.message = "test updated"
         MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: json(body))
@@ -221,7 +221,7 @@ internal class NotableServiceTests: XCTestCase {
         }
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/data/rumpel/notablesv1"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/data/rumpel/notablesv1"
         
         var note = HATNotesObject()
         note.data.message = "test updated"

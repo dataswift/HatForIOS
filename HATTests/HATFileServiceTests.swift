@@ -55,7 +55,7 @@ internal class HATFileServiceTests: XCTestCase {
             ]
             ]]
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2/files/search"
+        let urlToConnect = "https://testing.hubat.net/api/v2.6/files/search"
         
         let expectationTest = expectation(description: "Searching files for photos...")
         
@@ -87,7 +87,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         let body: [Dictionary<String, Any>] = []
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/files/file/1)"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/files/file/1)"
         
         let expectationTest = expectation(description: "Deleting files from photos...")
         
@@ -119,7 +119,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         let body: [Dictionary<String, Any>] = []
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/files/allowAccessPublic/1"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/files/allowAccessPublic/1"
         
         let expectationTest = expectation(description: "Making file Public...")
         
@@ -151,7 +151,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         let body: [Dictionary<String, Any>] = []
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/files/restrictAccessPublic/1"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/files/restrictAccessPublic/1"
         
         let expectationTest = expectation(description: "Making file Private...")
         
@@ -206,7 +206,7 @@ internal class HATFileServiceTests: XCTestCase {
             ]
             ]
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/files/file/1/complete"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/files/file/1/complete"
         
         let expectationTest = expectation(description: "Marking up file as completed for photos...")
         
@@ -261,7 +261,7 @@ internal class HATFileServiceTests: XCTestCase {
             ]
         ]
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/files/upload"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/files/upload"
         
         let expectationTest = expectation(description: "Upload file to HAT...")
         
@@ -316,7 +316,7 @@ internal class HATFileServiceTests: XCTestCase {
             ]
         ]
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/files/file/1"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/files/file/1"
         
         let expectationTest = expectation(description: "Updating parameters of a file from HAT...")
         

@@ -42,7 +42,7 @@ private struct Bodies {
                 "title": ""
             ],
             "photo": [
-                "avatar": "https://testing.hubat.net/api/v2/files/content/rumpelhatgrey.png"
+                "avatar": "https://testing.hubat.net/api/v2.6/files/content/rumpelhatgrey.png"
             ],
             "online": [
                 "blog": "",
@@ -119,7 +119,7 @@ internal class HATProfileServiceTests: XCTestCase {
         }
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2/data/rumpel/profile?orderBy=dateCreated&ordering=descending&take=1"
+        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/rumpel/profile?orderBy=dateCreated&ordering=descending&take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.profile))
         

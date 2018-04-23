@@ -293,7 +293,7 @@ internal class HATDataOffersTests: XCTestCase {
             ]
         ]
         let userDomain: String = "mariostsekis.hubat.net"
-        let urlToConnect = "https://databuyer.hubat.net/api/v2/offersWithClaims"
+        let urlToConnect = "https://databuyer.hubat.net/api/v2.6/offersWithClaims"
         let expectationTest = expectation(description: "Getting available Data Offers...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
@@ -327,7 +327,7 @@ internal class HATDataOffersTests: XCTestCase {
             ]
         let userDomain: String = "mariostsekis.hubat.net"
         let offerID: String = "123"
-        let urlToConnect = "https://databuyer.hubat.net/api/v2/offer/\(offerID)/claim"
+        let urlToConnect = "https://databuyer.hubat.net/api/v2.6/offer/\(offerID)/claim"
         let expectationTest = expectation(description: "Claiming Data Offer...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
@@ -360,7 +360,7 @@ internal class HATDataOffersTests: XCTestCase {
             "message": "redeemed"
         ]
         let userDomain: String = "mariostsekis.hubat.net"
-        let urlToConnect = "https://databuyer.hubat.net/api/v2/user/redeem/cash"
+        let urlToConnect = "https://databuyer.hubat.net/api/v2.6/user/redeem/cash"
         let expectationTest = expectation(description: "Redeeming Data Offer...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
@@ -400,7 +400,7 @@ internal class HATDataOffersTests: XCTestCase {
             ]
         ]
         let userDomain: String = "mariostsekis.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/data/dex/databuyer"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/data/dex/databuyer"
         let expectationTest = expectation(description: "Getting available merchants...")
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))
@@ -431,75 +431,104 @@ internal class HATDataOffersTests: XCTestCase {
         
         let tokenRepsonse: [String: Any] = ["accessToken": "token"]
         let claimOfferResponse: [String: Any] = ["dataDebitId": "123"]
-        let checkIfDebitEnabledResponse: [String: Any] =
+        let checkIfDebitEnabledResponse: Dictionary<String, Any?> =
             [
-                "dataDebitKey": "92e4a135-cd81-4c5e-bbf8-57bea3b7d9e0",
-                "dateCreated": "2018-01-11T13:29:02+0000",
-                "client": [
-                    "userId": "92e4a135-cd81-4c5e-bbf8-57bea3b7d9e0",
-                    "email": "share-your-notables-2",
-                    "pass": "$2a$12$Xq/.xwu.PBlkZBpbvdPv8eibOxQ6G5Ml7NOsR435Ub9iH4Z4RtalW",
-                    "name": "Share your Notables",
-                    "role": "validate",
-                    "roles": []
-                ],
-                "bundles": [
+                "dataDebitKey": "8127e4c8-19e2-4e4e-aafb-1145bb175325",
+                "dateCreated": "2017-09-28T14:21:15+0000",
+                "permissions": [
                     [
-                        "dateCreated": "2018-01-11T13:29:02+0000",
-                        "startDate": "2018-01-11T13:29:28+0000",
-                        "endDate": "2018-04-11T13:29:28+0000",
-                        "rolling": false,
-                        "enabled": true,
+                        "dateCreated": "2017-09-28T14:21:15+0000",
+                        "purpose": "",
+                        "start": "2017-09-28T14:21:38.000Z",
+                        "period": 86400000,
+                        "cancelAtPeriodEnd": true,
+                        "termsUrl": "",
                         "bundle": [
-                            "name": "notablesapp",
+                            "name": "8127e4c8-19e2-4e4e-aafb-1145bb175325",
                             "bundle": [
-                                "profile": [
+                                "facebook/posts": [
                                     "endpoints": [
                                         [
-                                            "endpoint": "rumpel/profile",
+                                            "endpoint": "facebook/posts",
                                             "mapping": [
-                                                "name": "personal.preferredName",
-                                                "nick": "personal.nickName",
-                                                "photo_url": "photo.avatar"
+                                                "story": "data.story",
+                                                "picture": "data.picture",
+                                                "lastUpdated": "data.lastUpdated",
+                                                "status_type": "data.status_type",
+                                                "full_picture": "data.full_picture"
                                             ],
                                             "filters": [
                                                 [
-                                                    "field": "shared",
+                                                    "field": "data.story",
+                                                    "transformation": [
+                                                        "transformation": "searchable"
+                                                    ],
                                                     "operator": [
-                                                        "value": true,
-                                                        "operator": "contains"
+                                                        "search": "BBC",
+                                                        "operator": "find"
                                                     ]
                                                 ]
                                             ]
                                         ]
-                                    ],
-                                    "orderBy": "dateCreated",
-                                    "ordering": "descending",
-                                    "limit": 1
-                                ],
-                                "notables": [
-                                    "endpoints": [
-                                        [
-                                            "endpoint": "rumpel/notablesv1",
-                                            "filters": [
-                                                [
-                                                    "field": "shared",
-                                                    "operator": [
-                                                        "value": true,
-                                                        "operator": "contains"
-                                                    ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        "accepted": true,
+                        "active": false,
+                        "end": "2017-09-29T14:21:38.000Z"
+                    ]
+                ],
+                "requestClientName": "",
+                "requestClientUrl": "",
+                "requestClientLogoUrl": "",
+                "active": false,
+                "start": nil,
+                "end": nil,
+                "permissionsActive": nil,
+                "permissionsLatest": [
+                    "dateCreated": "2017-09-28T14:21:15+0000",
+                    "purpose": "",
+                    "start": "2017-09-28T14:21:38.000Z",
+                    "period": 86400000,
+                    "cancelAtPeriodEnd": true,
+                    "termsUrl": "",
+                    "bundle": [
+                        "name": "8127e4c8-19e2-4e4e-aafb-1145bb175325",
+                        "bundle": [
+                            "facebook/posts": [
+                                "endpoints": [
+                                    [
+                                        "endpoint": "facebook/posts",
+                                        "mapping": [
+                                            "story": "data.story",
+                                            "picture": "data.picture",
+                                            "lastUpdated": "data.lastUpdated",
+                                            "status_type": "data.status_type",
+                                            "full_picture": "data.full_picture"
+                                        ],
+                                        "filters": [
+                                            [
+                                                "field": "data.story",
+                                                "transformation": [
+                                                    "transformation": "searchable"
+                                                ],
+                                                "operator": [
+                                                    "search": "BBC",
+                                                    "operator": "find"
                                                 ]
                                             ]
                                         ]
-                                    ],
-                                    "orderBy": "updated_time",
-                                    "ordering": "descending"
+                                    ]
                                 ]
                             ]
                         ]
-                    ]
+                    ],
+                    "accepted": true,
+                    "active": false,
+                    "end": "2017-09-29T14:21:38.000Z"
                 ]
-            ]
+        ]
         let enableDebitResponse: [String] = ["enabled"]
         let getOffersResponse: [[String: Any]] = [
             [
@@ -768,10 +797,10 @@ internal class HATDataOffersTests: XCTestCase {
         let expectationTest = expectation(description: "Claiming and enabling offer...")
 
         MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/users/application_token?name=DataBuyer&resource=https%3A//databuyer.hubat.net/"), builder: json(tokenRepsonse))
-        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://databuyer.hubat.net/api/v2/offer/97a0748f-bf81-4aaa-8f39-97ac2557d920/claim"), builder: json(claimOfferResponse))
-        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/api/v2/data-debit/123"), builder: json(checkIfDebitEnabledResponse))
-        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/api/v2/data-debit/123/enable"), builder: json(enableDebitResponse))
-        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://databuyer.hubat.net/api/v2/offersWithClaims"), builder: json(getOffersResponse))
+        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://databuyer.hubat.net/api/v2.6/offer/97a0748f-bf81-4aaa-8f39-97ac2557d920/claim"), builder: json(claimOfferResponse))
+        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/api/v2.6/data-debit/123"), builder: json(checkIfDebitEnabledResponse))
+        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/api/v2.6/data-debit/123/enable"), builder: json(enableDebitResponse))
+        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://databuyer.hubat.net/api/v2.6/offersWithClaims"), builder: json(getOffersResponse))
 
         func completion(dataOffer: DataOfferObject, newToken: String?) {
             

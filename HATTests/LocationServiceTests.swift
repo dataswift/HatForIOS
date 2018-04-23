@@ -92,7 +92,7 @@ internal class LocationServiceTests: XCTestCase {
             ]
         ]
         let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/data/rumpel/locations/ios"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/data/rumpel/locations/ios"
         let expectationTest = expectation(description: "Getting location data...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
@@ -154,7 +154,7 @@ internal class LocationServiceTests: XCTestCase {
             ]
         ]
         let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/data/rumpel/locations/ios"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/data/rumpel/locations/ios"
         let expectationTest = expectation(description: "Syncing location data...")
         
         stub(everything, http(201))
@@ -224,7 +224,7 @@ internal class LocationServiceTests: XCTestCase {
             ]
         ]
         let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/data/rumpel/locations/ios"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/data/rumpel/locations/ios"
         let expectationTest = expectation(description: "Syncing duplicate failback location data...")
         
         MockingjayProtocol.addStub(matcher: http(.post, uri: urlToConnect), builder: json(body))
@@ -291,7 +291,7 @@ internal class LocationServiceTests: XCTestCase {
         ]
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/combinator/locationsfilter"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/combinator/locationsfilter"
         let expectationTest = expectation(description: "Gettin location combinator...")
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))

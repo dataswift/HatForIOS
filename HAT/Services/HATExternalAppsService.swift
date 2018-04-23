@@ -29,7 +29,7 @@ public struct HATExternalAppsService {
      */
     public static func getExternalApps(userToken: String, userDomain: String, completion: @escaping (([HATApplicationObject], String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
         
-        let url: String = "https://\(userDomain)/api/v2/applications"
+        let url: String = "https://\(userDomain)/api/v2.6/applications"
         let headers: [String: String] = ["x-auth-token": userToken]
         
         HATNetworkHelper.asynchronousRequest(
@@ -96,7 +96,7 @@ public struct HATExternalAppsService {
      */
     public static func setUpApp(userToken: String, userDomain: String, applicationID: String, completion: @escaping ((HATApplicationObject, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
         
-        let url: String = "https://\(userDomain)/api/v2/applications/\(applicationID)/setup"
+        let url: String = "https://\(userDomain)/api/v2.6/applications/\(applicationID)/setup"
         let headers: [String: String] = ["x-auth-token": userToken]
         
         HATNetworkHelper.asynchronousRequest(

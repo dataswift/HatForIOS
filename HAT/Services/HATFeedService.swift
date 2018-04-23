@@ -46,7 +46,7 @@ public struct HATFeedService {
         }
         
         // form the url
-        let url: String = "https://\(userDomain)/api/v2/she/feed\(hatSuffix)"
+        let url: String = "https://\(userDomain)/api/v2.6/she/feed\(hatSuffix)"
         
         // create parameters and headers
         let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]

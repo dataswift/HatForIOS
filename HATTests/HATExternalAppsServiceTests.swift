@@ -194,7 +194,7 @@ internal class HATExternalAppsServiceTests: XCTestCase {
     func testGetApps() {
         
         let userDomain: String = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/applications"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/applications"
         
         let expectationTest = expectation(description: "Getting apps from HAT...")
         
@@ -226,7 +226,7 @@ internal class HATExternalAppsServiceTests: XCTestCase {
         
         let userDomain: String = "testing.hubat.net"
         let applicationID: String = "notables"
-        let urlToConnect = "https://\(userDomain)/api/v2/applications/\(applicationID)/setup"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/applications/\(applicationID)/setup"
         
         let expectationTest = expectation(description: "Setting up app from HAT...")
         

@@ -729,7 +729,7 @@ internal class FitbitServiceTests: XCTestCase {
         }
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2/data/fitbit/weight?take=1"
+        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/fitbit/weight?take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.weightBody))
         
@@ -765,7 +765,7 @@ internal class FitbitServiceTests: XCTestCase {
         }
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2/data/fitbit/activity/day/summary?take=1"
+        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/fitbit/activity/day/summary?take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.dailyActivity))
         
@@ -801,7 +801,7 @@ internal class FitbitServiceTests: XCTestCase {
         }
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2/data/fitbit/activity?take=1"
+        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/fitbit/activity?take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.activity))
         
@@ -837,7 +837,7 @@ internal class FitbitServiceTests: XCTestCase {
         }
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2/data/fitbit/lifetime/stats?take=1"
+        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/fitbit/lifetime/stats?take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.lifetimeStats))
         
@@ -873,7 +873,7 @@ internal class FitbitServiceTests: XCTestCase {
         }
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2/data/fitbit/profile?take=1"
+        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/fitbit/profile?take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.profile))
         
@@ -909,7 +909,7 @@ internal class FitbitServiceTests: XCTestCase {
         }
         
         let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2/data/fitbit/sleep?take=1"
+        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/fitbit/sleep?take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.sleep))
         

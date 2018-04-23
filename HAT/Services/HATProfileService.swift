@@ -414,7 +414,7 @@ public struct HATProfileService {
      */
     public static func getPhataStructureBundle(userDomain: String, userToken: String, parameters: Dictionary<String, Any> = [:], success: @escaping (Dictionary<String, JSON>) -> Void, fail: @escaping (HATTableError) -> Void) {
         
-        if let url: URLConvertible = URL(string: "https://\(userDomain)/api/v2/data-bundle/phata/structure") {
+        if let url: URLConvertible = URL(string: "https://\(userDomain)/api/v2.6/data-bundle/phata/structure") {
             
             Alamofire.request(
                 url,
@@ -559,7 +559,7 @@ public struct HATProfileService {
      */
     public static func createPhataStructureBundle(userDomain: String, userToken: String, parameters: Dictionary<String, Any>? = nil, success: @escaping (Bool) -> Void, fail: @escaping (HATTableError) -> Void) {
         
-        if let url: URLConvertible = URL(string: "https://\(userDomain)/api/v2/data-bundle/phata") {
+        if let url: URLConvertible = URL(string: "https://\(userDomain)/api/v2.6/data-bundle/phata") {
             
             let parametersToSend: Dictionary<String, Any>
             

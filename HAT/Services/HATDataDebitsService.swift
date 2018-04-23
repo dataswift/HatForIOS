@@ -29,7 +29,7 @@ public struct HATDataDebitsService {
      */
     public static func getAvailableDataDebits(userToken: String, userDomain: String, succesfulCallBack: @escaping ([DataDebitObject], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
-        let url: String = "https://\(userDomain)/api/v2/data-debit"
+        let url: String = "https://\(userDomain)/api/v2.6/data-debit"
         
         let headers: Dictionary<String, String> = ["X-Auth-Token": userToken]
         
@@ -62,18 +62,14 @@ public struct HATDataDebitsService {
                         
                         if statusCode == 200 {
                             
-                            var returnValue: [DataDebitObject] = []
-                            
-                            for item: JSON in result.arrayValue {
+                            guard let dataDebit: DataDebitObject = DataDebitObject.decode(from: result.dictionaryValue) else {
                                 
-                                guard let dataDebit: DataDebitObject = DataDebitObject.decode(from: item.dictionaryValue) else {
-                                    
-                                    return
-                                }
-                                returnValue.append(dataDebit)
+                                let message: String = NSLocalizedString("Failed parsing Data Debit", comment: "")
+                                failCallBack(.generalError(message, statusCode, nil))
+                                return
                             }
                             
-                            succesfulCallBack(returnValue, token)
+                            succesfulCallBack([dataDebit], token)
                         } else {
                             
                             let message: String = NSLocalizedString("Server response was unexpected", comment: "")

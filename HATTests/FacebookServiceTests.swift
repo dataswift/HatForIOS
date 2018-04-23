@@ -40,7 +40,7 @@ internal class FacebookServiceTests: XCTestCase {
             ]
         ]]
         let userDomain = "mariostsekis.hubat.net"
-        let urlToConnect = "https://mariostsekis.hubat.net/api/v2/data/facebook/profile/picture"
+        let urlToConnect = "https://mariostsekis.hubat.net/api/v2.6/data/facebook/profile/picture"
         
         let expectationTest = expectation(description: "Checking facebook profile image info...")
         
@@ -109,7 +109,7 @@ internal class FacebookServiceTests: XCTestCase {
             ]
             ]]
         let userDomain = "mariostsekis.hubat.net"
-        let urlToConnect = "https://mariostsekis.hubat.net/api/v2/data/facebook/feed"
+        let urlToConnect = "https://mariostsekis.hubat.net/api/v2.6/data/facebook/feed"
         
         let expectationTest = expectation(description: "Getting facebook data from hat...")
         

@@ -95,7 +95,7 @@ internal class HATAccountServiceTests: XCTestCase {
                 ]
         ]
         let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://mariostsekis.hubofallthings.net/api/v2/data/newdata/test"
+        let urlToConnect = "https://mariostsekis.hubofallthings.net/api/v2.6/data/newdata/test"
         let expectationTest = expectation(description: "Create value on hat...")
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))
@@ -138,7 +138,7 @@ internal class HATAccountServiceTests: XCTestCase {
                 ]
         ]
         let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://mariostsekis.hubofallthings.net/api/v2/data/newdata/test"
+        let urlToConnect = "https://mariostsekis.hubofallthings.net/api/v2.6/data/newdata/test"
         let expectationTest = expectation(description: "Get value from hat...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
@@ -172,7 +172,7 @@ internal class HATAccountServiceTests: XCTestCase {
         let parameters: [String: String] = ["records": "123-123"]
         let body: String = "All records Deleted!"
         let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/data"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/data"
         let expectationTest = expectation(description: "Delete record from hat...")
         
         MockingjayProtocol.addStub(matcher: http(.delete, uri: urlToConnect), builder: json(body))
@@ -212,7 +212,7 @@ internal class HATAccountServiceTests: XCTestCase {
             ]
         ]
         let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/api/v2/data"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/data"
         let expectationTest = expectation(description: "Update record on hat...")
         
         MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: json(body))
@@ -284,7 +284,7 @@ internal class HATAccountServiceTests: XCTestCase {
         ]
         let userDomain: String = "mariostsekis.hubofallthings.net"
         let combinatorName: String = "testcombinator"
-        let urlToConnect = "https://\(userDomain)/api/v2/combinator/\(combinatorName)"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/combinator/\(combinatorName)"
         let expectationTest = expectation(description: "Create a combinator...")
         
         MockingjayProtocol.addStub(matcher: http(.post, uri: urlToConnect), builder: json(body))
@@ -319,7 +319,7 @@ internal class HATAccountServiceTests: XCTestCase {
         ]]
         let userDomain: String = "mariostsekis.hubofallthings.net"
         let combinatorName: String = "testcombinator"
-        let urlToConnect = "https://\(userDomain)/api/v2/combinator/\(combinatorName)"
+        let urlToConnect = "https://\(userDomain)/api/v2.6/combinator/\(combinatorName)"
         let expectationTest = expectation(description: "Create a combinator...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
