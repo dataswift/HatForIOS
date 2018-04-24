@@ -29,7 +29,7 @@ internal class DataDebitsServiceTests: XCTestCase {
     
     func testGetDataDebit() {
         
-        let body: Dictionary<String, Any?> =
+        let body: [Dictionary<String, Any?>] = [
             [
                 "dataDebitKey": "8127e4c8-19e2-4e4e-aafb-1145bb175325",
                 "dateCreated": "2017-09-28T14:21:15+0000",
@@ -126,6 +126,7 @@ internal class DataDebitsServiceTests: XCTestCase {
                     "active": false,
                     "end": "2017-09-29T14:21:38.000Z"
                 ]
+            ]
         ]
         
         let userDomain = "testing.hubat.net"

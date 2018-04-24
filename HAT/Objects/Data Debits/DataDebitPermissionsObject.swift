@@ -19,15 +19,15 @@ public struct DataDebitPermissionsObject: HATObject {
     /// The created date of the permission
     public var dateCreated: String = ""
     /// The purpose of the permission
-    public var purpose: String = ""
+    public var purpose: String?
     /// The start date of the permission
-    public var start: String = ""
+    public var start: String?
     /// The end date of the permission
-    public var end: String = ""
+    public var end: String?
     /// A flag indicating if the permissions will auto cancel when the debit will end
     public var cancelAtPeriodEnd: Bool = false
     /// The terms and conditions URL for the permissions
-    public var termsUrl: String = ""
+    public var termsUrl: String?
     /// The period duration
     public var period: Int = 0
     /// Is the permission active

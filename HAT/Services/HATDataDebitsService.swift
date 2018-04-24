@@ -62,14 +62,18 @@ public struct HATDataDebitsService {
                         
                         if statusCode == 200 {
                             
-                            guard let dataDebit: DataDebitObject = DataDebitObject.decode(from: result.dictionaryValue) else {
+                            var arrayToReturn: [DataDebitObject] = []
+                            for item in result.arrayValue {
                                 
-                                let message: String = NSLocalizedString("Failed parsing Data Debit", comment: "")
-                                failCallBack(.generalError(message, statusCode, nil))
-                                return
+                                guard let dataDebit: DataDebitObject = DataDebitObject.decode(from: item.dictionaryValue) else {
+                                    
+                                    continue
+                                }
+                                
+                                arrayToReturn.append(dataDebit)
                             }
                             
-                            succesfulCallBack([dataDebit], token)
+                            succesfulCallBack(arrayToReturn, token)
                         } else {
                             
                             let message: String = NSLocalizedString("Server response was unexpected", comment: "")

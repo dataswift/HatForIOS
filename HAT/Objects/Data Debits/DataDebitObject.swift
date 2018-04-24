@@ -37,7 +37,7 @@ public struct DataDebitObject: HATObject {
     /// The end date of the data debit
     public var end: String?
     /// Are permissions still active
-    public var permissionsActive: Bool?
+    public var permissionsActive: DataDebitPermissionsObject?
     /// The last permission set
     public var permissionsLatest: DataDebitPermissionsObject = DataDebitPermissionsObject()
 }
