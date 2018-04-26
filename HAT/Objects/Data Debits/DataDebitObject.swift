@@ -30,6 +30,10 @@ public struct DataDebitObject: HATObject {
     public var requestClientUrl: String = ""
     /// The client logo URL of the data debit
     public var requestClientLogoUrl: String = ""
+    /// The description of the data debit
+    public var requestDescription: String?
+    /// The id of the application, if the data debit is an application
+    public var requestApplicationId: String?
     /// Is data debit active?
     public var active: Bool = false
     /// The start date of the data debit
