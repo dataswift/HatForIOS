@@ -83,6 +83,65 @@ public struct HATExternalAppsService {
         )
     }
     
+    // MARK: - Get external apps
+    
+    /**
+     Gets the apps from HAT
+     
+     - parameter userToken: The user's token, required to complete this request
+     - parameter userDomain: The user's domain, required to complete this request
+     - parameter completion: A function to execute on success with the apps and the new token
+     - parameter failCallBack: A function to execute on fail that takes the error produced
+     */
+    public static func getAppInfo(userToken: String, userDomain: String, applicationId: String, completion: @escaping ((HATApplicationObject, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
+        
+        let url: String = "https://\(userDomain)/api/v2.6/applications/\(applicationId)"
+        let headers: [String: String] = ["x-auth-token": userToken]
+        
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .get,
+            encoding: Alamofire.JSONEncoding.default,
+            contentType: ContentType.json,
+            parameters: [:],
+            headers: headers,
+            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+                
+                switch response {
+                    
+                // in case of error call the failCallBack
+                case .error(let error, let statusCode):
+                    
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        failCallBack(.noInternetConnection)
+                    } else {
+                        
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        failCallBack(.generalError(message, statusCode, error))
+                    }
+                // in case of success call succesfulCallBack
+                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                    
+                    if isSuccess && statusCode != 401 {
+                        
+                        if let item = result.dictionary {
+                            
+                            if let object: HATApplicationObject = HATApplicationObject.decode(from: item) {
+                                
+                                completion(object, token)
+                            }
+                        }
+                    } else {
+                        
+                        let message: String = NSLocalizedString("Server response was unexpected", comment: "")
+                        failCallBack(.generalError(message, statusCode, nil))
+                    }
+                }
+            }
+        )
+    }
+    
     // MARK: - Setup external apps
     
     /**
