@@ -276,6 +276,8 @@
 		60B3C8441F82917B002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B3C8421F82917B002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyV2.swift */; };
 		60B3C8461F8291E0002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyEndpointsV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B3C8451F8291E0002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyEndpointsV2.swift */; };
 		60B3C8471F8291E0002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyEndpointsV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B3C8451F8291E0002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyEndpointsV2.swift */; };
+		60B3F8A02099B82E0068D5DA /* HATExternalAppsInfoRatingObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B3F89F2099B82D0068D5DA /* HATExternalAppsInfoRatingObject.swift */; };
+		60B3F8A12099B82E0068D5DA /* HATExternalAppsInfoRatingObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B3F89F2099B82D0068D5DA /* HATExternalAppsInfoRatingObject.swift */; };
 		60B427BA20571B94002A32AE /* HATFeedLocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B427B920571B94002A32AE /* HATFeedLocationObject.swift */; };
 		60B427BB20571B9F002A32AE /* HATFeedLocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B427B920571B94002A32AE /* HATFeedLocationObject.swift */; };
 		60B427BD20571C37002A32AE /* HATFeedLocationAddressObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B427BC20571C37002A32AE /* HATFeedLocationAddressObject.swift */; };
@@ -529,6 +531,7 @@
 		60B3C83C1F828E3C002E7AA4 /* DataOfferRequiredDataDefinitionObjectV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOfferRequiredDataDefinitionObjectV2.swift; sourceTree = "<group>"; };
 		60B3C8421F82917B002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOfferRequiredDataDefinitionBundleKeyV2.swift; sourceTree = "<group>"; };
 		60B3C8451F8291E0002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyEndpointsV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOfferRequiredDataDefinitionBundleKeyEndpointsV2.swift; sourceTree = "<group>"; };
+		60B3F89F2099B82D0068D5DA /* HATExternalAppsInfoRatingObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATExternalAppsInfoRatingObject.swift; sourceTree = "<group>"; };
 		60B427B920571B94002A32AE /* HATFeedLocationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATFeedLocationObject.swift; sourceTree = "<group>"; };
 		60B427BC20571C37002A32AE /* HATFeedLocationAddressObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATFeedLocationAddressObject.swift; sourceTree = "<group>"; };
 		60B4FEF0207BCDE500084D4B /* HATSpotifyProfileObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATSpotifyProfileObject.swift; sourceTree = "<group>"; };
@@ -1013,6 +1016,7 @@
 				60B9CB38204E984C00EFDD40 /* HATExternalAppsIllustrationObject.swift */,
 				60981B262031D2160010F632 /* HATExternalAppsInfoGraphicsObject.swift */,
 				60981B202031CFEB0010F632 /* HATExternalAppsInfoObject.swift */,
+				60B3F89F2099B82D0068D5DA /* HATExternalAppsInfoRatingObject.swift */,
 				60981B1D2031CE660010F632 /* HATExternalAppsKindObject.swift */,
 				60981B1A2031CE220010F632 /* HATExternalAppsObject.swift */,
 				60132F3D204979EA002309AB /* HATApplicationObject.swift */,
@@ -1447,6 +1451,7 @@
 				602A12341FD6D4DA0010786B /* HATProfileDataProfileAboutObject.swift in Sources */,
 				602E4DAA1F0111F400C5FF31 /* DataOfferRequiredDataDefinitionDataSetsObject.swift in Sources */,
 				602D16D11E82B1D700C53A5E /* HATDataPlugsService.swift in Sources */,
+				60B3F8A02099B82E0068D5DA /* HATExternalAppsInfoRatingObject.swift in Sources */,
 				606B55A11F1E6ADB004B5D4D /* DataOfferRewardsCashValueObject.swift in Sources */,
 				60001F6F2005221100E0CEF3 /* HATFacebookDataPostsFromSocialFeedObject.swift in Sources */,
 				60B3C8461F8291E0002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyEndpointsV2.swift in Sources */,
@@ -1625,6 +1630,7 @@
 				602CB44D1E8C00F900903F33 /* FileUploadObject.swift in Sources */,
 				60E3F52520457F1000A00B3E /* HATFacebookDataPostsPlaceSocialFeedObject.swift in Sources */,
 				60DDBB181E82F530007CDAFB /* HATTwitterDataTweetsUsersSocialFeedObject.swift in Sources */,
+				60B3F8A12099B82E0068D5DA /* HATExternalAppsInfoRatingObject.swift in Sources */,
 				60981B282031D2160010F632 /* HATExternalAppsInfoGraphicsObject.swift in Sources */,
 				60DDBB1B1E82F532007CDAFB /* HATSystemStatusObject.swift in Sources */,
 				60125073201F874000BF0508 /* HATGoogleCalendarTests.swift in Sources */,
