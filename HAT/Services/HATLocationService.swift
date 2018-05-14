@@ -182,7 +182,10 @@ public struct HATLocationService {
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         
-        Alamofire.request(urlRequest).responseJSON(completionHandler: { response in
+        let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        let manager = Alamofire.SessionManager(configuration: configuration)
+        
+        manager.request(urlRequest).responseJSON(completionHandler: { response in
             
             let header = response.response?.allHeaderFields
             let token: String? = header?["x-auth-token"] as? String
@@ -240,7 +243,10 @@ public struct HATLocationService {
             let encoded: Data? = HATLocationsDataObject.encode(from: array)
             urlRequest.httpBody = encoded
             
-            Alamofire.request(urlRequest).responseJSON(completionHandler: { response in
+            let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+            let manager = Alamofire.SessionManager(configuration: configuration)
+            
+            manager.request(urlRequest).responseJSON(completionHandler: { response in
                 
                 let header = response.response?.allHeaderFields
                 let token: String? = header?["x-auth-token"] as? String

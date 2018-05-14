@@ -20,7 +20,7 @@ public struct HATExternalAppsKindObject: HATObject {
     /// The iTunes url of the app
     public var url: String = ""
     /// The iOS url to launch the app
-    public var iosUrl: String = ""
+    public var iosUrl: String?
     /// The kind of the app
     public var kind: String = ""
 }

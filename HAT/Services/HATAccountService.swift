@@ -249,8 +249,11 @@ public struct HATAccountService {
         // define the url to connect to
         let url: String = "https://notables.hubofallthings.com/api/bulletin/tickle"
         
+        let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        let manager = Alamofire.SessionManager(configuration: configuration)
+        
         // make the request
-        Alamofire.request(url, method: .get, parameters: ["phata": userDomain], encoding: Alamofire.URLEncoding.default, headers: nil).responseString { _ in
+        manager.request(url, method: .get, parameters: ["phata": userDomain], encoding: Alamofire.URLEncoding.default, headers: nil).responseString { _ in
             
             completion()
         }
@@ -357,7 +360,10 @@ public struct HATAccountService {
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         
-        Alamofire.request(urlRequest).responseJSON(completionHandler: { response in
+        let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        let manager = Alamofire.SessionManager(configuration: configuration)
+        
+        manager.request(urlRequest).responseJSON(completionHandler: { response in
             
             switch response.result {
             case .success:

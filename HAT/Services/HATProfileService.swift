@@ -416,7 +416,10 @@ public struct HATProfileService {
         
         if let url: URLConvertible = URL(string: "https://\(userDomain)/api/v2.6/data-bundle/phata/structure") {
             
-            Alamofire.request(
+            let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+            let manager = Alamofire.SessionManager(configuration: configuration)
+            
+            manager.request(
                 url,
                 method: .get,
                 parameters: parameters,
@@ -579,7 +582,10 @@ public struct HATProfileService {
                 parametersToSend = tempDict
             }
             
-            Alamofire.request(
+            let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+            let manager = Alamofire.SessionManager(configuration: configuration)
+            
+            manager.request(
                 url,
                 method: .post,
                 parameters: parametersToSend,

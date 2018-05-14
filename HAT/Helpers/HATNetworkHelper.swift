@@ -72,8 +72,11 @@ public class HATNetworkHelper: NSObject {
         headers: Dictionary<String, String>,
         completion: @escaping (_ r: HATNetworkHelper.ResultType) -> Void) {
         
+        let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        let manager = Alamofire.SessionManager(configuration: configuration)
+        
         // do a post
-        Alamofire.request(
+        manager.request(
             url, /* request url */
             method: method, /* GET, POST, etc*/
             parameters: parameters, /* parameters to POST*/
@@ -90,6 +93,14 @@ public class HATNetworkHelper: NSObject {
                 case .success:
                     
                     let header: [AnyHashable: Any]? = response.response?.allHeaderFields
+                    
+                    if let stringHeaders: [String: String] = header as? [String: String], let url = (response.response?.url!) {
+                        
+                        let cookies: [HTTPCookie] = HTTPCookie.cookies(withResponseHeaderFields: stringHeaders, for: url)
+                        manager.session.configuration.httpCookieStorage?.setCookies(cookies, for: url, mainDocumentURL: nil)
+
+                    }
+                    
                     let token: String? = header?["x-auth-token"] as? String
                     
                     if response.response?.statusCode == 401 {
@@ -151,8 +162,11 @@ public class HATNetworkHelper: NSObject {
         headers: Dictionary<String, String>,
         completion: @escaping (_ r: HATNetworkHelper.ResultTypeString) -> Void) {
         
+        let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        let manager = Alamofire.SessionManager(configuration: configuration)
+        
         // do a post
-        Alamofire.request(
+        manager.request(
             url, /* request url */
             method: method, /* GET, POST, etc*/
             parameters: parameters, /* parameters to POST*/
