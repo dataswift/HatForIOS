@@ -204,7 +204,7 @@ public struct HATLocationService {
                 
                 completion?(true, token)
             }
-        })
+        }).session.finishTasksAndInvalidate()
     }
     
     /**
@@ -258,7 +258,7 @@ public struct HATLocationService {
                     
                     completion?(true, token)
                 }
-            })
+            }).session.finishTasksAndInvalidate()
         }
         
         if !splitArray1.isEmpty {

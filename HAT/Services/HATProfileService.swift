@@ -455,7 +455,7 @@ public struct HATProfileService {
                         fail(HATTableError.generalError("", nil, error))
                     }
                 }
-            )
+            ).session.finishTasksAndInvalidate()
         }
     }
     
@@ -607,7 +607,7 @@ public struct HATProfileService {
                         fail(HATTableError.generalError("", nil, error))
                     }
                 }
-            )
+            ).session.finishTasksAndInvalidate()
         }
     }
     

@@ -137,7 +137,7 @@ public class HATNetworkHelper: NSObject {
                     
                     completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode))
                 }
-            }
+            }.session.finishTasksAndInvalidate()
     }
     
     /**
@@ -213,7 +213,7 @@ public class HATNetworkHelper: NSObject {
                     
                     completion(HATNetworkHelper.ResultTypeString.error(error: error, statusCode: response.response?.statusCode))
                 }
-            }
+            }.session.finishTasksAndInvalidate()
     }
     
     // MARK: - Upload file
@@ -229,7 +229,10 @@ public class HATNetworkHelper: NSObject {
         
         let headers: [String: String] = ["x-amz-server-side-encryption": "AES256"]
         
-        Alamofire.upload(image, to: URL(string: url)!, method: .put, headers: headers).uploadProgress(closure: {(progress) -> Void in
+        let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        let manager = Alamofire.SessionManager(configuration: configuration)
+        
+        manager.upload(image, to: URL(string: url)!, method: .put, headers: headers).uploadProgress(closure: {(progress) -> Void in
             
             if let updateFunc: ((Double) -> Void) = progressUpdateHandler {
                 
@@ -269,7 +272,7 @@ public class HATNetworkHelper: NSObject {
                 
                 completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode))
             }
-        })
+        }).session.finishTasksAndInvalidate()
     }
     
     // MARK: - Query from string

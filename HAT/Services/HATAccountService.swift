@@ -256,7 +256,7 @@ public struct HATAccountService {
         manager.request(url, method: .get, parameters: ["phata": userDomain], encoding: Alamofire.URLEncoding.default, headers: nil).responseString { _ in
             
             completion()
-        }
+        }.session.finishTasksAndInvalidate()
     }
     
     // MARK: - Get public key
@@ -381,7 +381,7 @@ public struct HATAccountService {
                 
                 failCallback(HATError.generalError("", nil, error))
             }
-        })
+        }).session.finishTasksAndInvalidate()
     }
     
     /**
