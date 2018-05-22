@@ -56,7 +56,7 @@ public struct HATAccountService {
                 }
             case .isSuccess(let isSuccess, let statusCode, let result, let token):
                 
-                if statusCode != nil && statusCode! == 401 {
+                if statusCode != nil && (statusCode! == 401 || statusCode! == 403) {
                     
                     let message = NSLocalizedString("Token expired", comment: "")
                     errorCallback(.generalError(message, statusCode, nil))
@@ -121,7 +121,7 @@ public struct HATAccountService {
                 if statusCode == 404 {
                     
                     errorCallback(.tableDoesNotExist)
-                } else if statusCode == 401 {
+                } else if (statusCode! == 401 || statusCode! == 403) {
                     
                     let message = NSLocalizedString("Token expired", comment: "")
                     errorCallback(.generalError(message, statusCode, nil))
@@ -368,10 +368,10 @@ public struct HATAccountService {
             switch response.result {
             case .success:
                 
-                if response.response?.statusCode == 401 {
+                if (response.response?.statusCode == 401 || response.response?.statusCode == 403) {
                     
                     let message = NSLocalizedString("Token expired", comment: "")
-                    failCallback(.generalError(message, 401, nil))
+                    failCallback(.generalError(message, response.response?.statusCode, nil))
                 } else {
                     
                     successCallback(true, nil)

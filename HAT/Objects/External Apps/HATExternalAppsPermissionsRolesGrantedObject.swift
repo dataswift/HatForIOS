@@ -20,5 +20,5 @@ public struct HATExternalAppsPermissionsRolesGrantedObject: HATObject {
     /// The permission role, read, write etc
     public var role: String = ""
     /// The app the role applies to
-    public var detail: String = ""
+    public var detail: String?
 }

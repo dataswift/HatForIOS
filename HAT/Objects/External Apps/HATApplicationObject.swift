@@ -14,10 +14,13 @@
 // MARK: Struct
 
 public struct HATApplicationObject: HATObject {
-
+    
+    // MARK: - Variables
+    
     public var application: HATExternalAppsObject = HATExternalAppsObject()
     public var setup: Bool = false
     public var active: Bool = false
+    public var enabled: Bool = false
     public var needsUpdating: Bool?
     public var mostRecentData: String?
 }

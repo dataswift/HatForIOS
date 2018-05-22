@@ -17,7 +17,7 @@ public struct HATFeedContentMediaObject: Codable {
     // MARK: - Variables
     
     /// The URL of the media
-    public var url: String = ""
+    public var url: String?
     /// The url of the media but in thumbnail size
     public var thumbnail: String?
     

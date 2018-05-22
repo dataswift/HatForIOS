@@ -15,9 +15,11 @@
 public struct HATFeedTitleObject: Codable {
     
     // MARK: - Variables
-
+    
     /// The text of the feed item
     public var text: String = ""
+    /// The subtitle of the feed item
+    public var subtitle: String?
     /// The action of the feed item
     public var action: String?
 }
