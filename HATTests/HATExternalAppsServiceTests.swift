@@ -177,6 +177,7 @@ internal class HATExternalAppsServiceTests: XCTestCase {
             ],
             "setup": true,
             "active": true,
+            "enabled": false,
             "needsUpdating": false
         ]
     ]
