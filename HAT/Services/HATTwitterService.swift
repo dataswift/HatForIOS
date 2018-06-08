@@ -51,7 +51,7 @@ public struct HATTwitterService {
                 }
                 
             // inform user that there was an error
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, _):
                 
                 let message: String = NSLocalizedString("Server responded with error", comment: "")
                 failed(.generalError(message, statusCode, error))

@@ -417,6 +417,7 @@ public struct HATProfileService {
         if let url: URLConvertible = URL(string: "https://\(userDomain)/api/v2.6/data-bundle/phata/structure") {
             
             let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+            configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
             let manager = Alamofire.SessionManager(configuration: configuration)
             
             manager.request(
@@ -583,6 +584,7 @@ public struct HATProfileService {
             }
             
             let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+            configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
             let manager = Alamofire.SessionManager(configuration: configuration)
             
             manager.request(

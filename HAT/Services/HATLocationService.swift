@@ -82,7 +82,7 @@ public struct HATLocationService {
                     failed(.generalError(isSuccess.description, statusCode, nil))
                 }
                 
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, _):
                 
                 //show error
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
@@ -183,6 +183,7 @@ public struct HATLocationService {
         }
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         let manager = Alamofire.SessionManager(configuration: configuration)
         
         manager.request(urlRequest).responseJSON(completionHandler: { response in
@@ -244,6 +245,7 @@ public struct HATLocationService {
             urlRequest.httpBody = encoded
             
             let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+            configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
             let manager = Alamofire.SessionManager(configuration: configuration)
             
             manager.request(urlRequest).responseJSON(completionHandler: { response in

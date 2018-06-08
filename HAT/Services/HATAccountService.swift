@@ -44,7 +44,7 @@ public struct HATAccountService {
             
             switch response {
                 
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, _):
                 
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                     
@@ -101,7 +101,7 @@ public struct HATAccountService {
             
             switch response {
                 
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, _):
                 
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                     
@@ -174,7 +174,7 @@ public struct HATAccountService {
                     failed(.generalError(message, statusCode, nil))
                 }
                 
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, _):
                 
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                     
@@ -213,7 +213,7 @@ public struct HATAccountService {
             // handle result
             switch response {
                 
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, _):
                 
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                     
@@ -250,6 +250,7 @@ public struct HATAccountService {
         let url: String = "https://notables.hubofallthings.com/api/bulletin/tickle"
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         let manager = Alamofire.SessionManager(configuration: configuration)
         
         // make the request
@@ -292,7 +293,7 @@ public struct HATAccountService {
      */
     public static func changePassword(userDomain: String, userToken: String, oldPassword: String, newPassword: String, successCallback: @escaping (String, String?) -> Void, failCallback: @escaping (HATError) -> Void) {
         
-        let url: String = "https://\(userDomain)/control/v2/auth/password"
+        let url: String = "https://\(userDomain)/control/v2.6/auth/password"
         
         let parameters: Dictionary<String, Any> = ["password": oldPassword, "newPassword": newPassword]
         let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]
@@ -301,7 +302,7 @@ public struct HATAccountService {
             
             switch response {
                 
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, _):
                 
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                     
@@ -361,6 +362,7 @@ public struct HATAccountService {
         }
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         let manager = Alamofire.SessionManager(configuration: configuration)
         
         manager.request(urlRequest).responseJSON(completionHandler: { response in
@@ -410,7 +412,7 @@ public struct HATAccountService {
                 
                 switch response {
                     
-                case .error(let error, let statusCode):
+                case .error(let error, let statusCode, _):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         

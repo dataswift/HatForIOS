@@ -30,8 +30,8 @@ public class HATNetworkHelper: NSObject {
         
         /// when the result is success. A tuple containing: isSuccess: Bool, statusCode: Int?, result: JSON
         case isSuccess(isSuccess: Bool, statusCode: Int?, result: JSON, token: String?)
-        /// when the result is error. A tuple containing: error: Error, statusCode: Int?
-        case error(error: Error, statusCode: Int?)
+        /// when the result is error. A tuple containing: error: Error, statusCode: Int?, result: JSON
+        case error(error: Error, statusCode: Int?, result: JSON?)
     }
     
     /**
@@ -73,6 +73,7 @@ public class HATNetworkHelper: NSObject {
         completion: @escaping (_ r: HATNetworkHelper.ResultType) -> Void) {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         let manager = Alamofire.SessionManager(configuration: configuration)
         
         // do a post
@@ -105,7 +106,7 @@ public class HATNetworkHelper: NSObject {
                     
                     if response.response?.statusCode == 401 {
                         
-                        completion(HATNetworkHelper.ResultType.error(error: AuthenicationError.tokenValidationFailed("expired"), statusCode: response.response?.statusCode))
+                        completion(HATNetworkHelper.ResultType.error(error: AuthenicationError.tokenValidationFailed("expired"), statusCode: response.response?.statusCode, result: nil))
                     } else {
                         
                         // check if we have a value and return it
@@ -117,10 +118,10 @@ public class HATNetworkHelper: NSObject {
                                 completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: json, token: token))
                             } else {
                                 
-                                completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode))
+                                completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode, result: json))
                             }
                             
-                            // else return isSuccess: false and nil for value
+                        // else return isSuccess: false and nil for value
                         } else {
                             
                             if token != nil || 200 ... 299 ~= response.response!.statusCode {
@@ -128,14 +129,21 @@ public class HATNetworkHelper: NSObject {
                                 completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: token))
                             } else {
                                 
-                                completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode))
+                                completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode, result: nil))
                             }
                         }
                     }
                 // in case of failure return the error but check for internet connection or unauthorised status and let the user know
                 case .failure(let error):
                     
-                    completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode))
+                    if let value: Any = response.result.value {
+                        
+                        let json: JSON = JSON(value)
+                        completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: json))
+                    } else {
+                        
+                        completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: nil))
+                    }
                 }
             }.session.finishTasksAndInvalidate()
     }
@@ -163,6 +171,7 @@ public class HATNetworkHelper: NSObject {
         completion: @escaping (_ r: HATNetworkHelper.ResultTypeString) -> Void) {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         let manager = Alamofire.SessionManager(configuration: configuration)
         
         // do a post
@@ -270,7 +279,14 @@ public class HATNetworkHelper: NSObject {
             // return the error
             case .failure(let error):
                 
-                completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode))
+                if let value: Any = response.result.value {
+                    
+                    let json: JSON = JSON(value)
+                    completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: json))
+                } else {
+                    
+                    completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: nil))
+                }
             }
         }).session.finishTasksAndInvalidate()
     }

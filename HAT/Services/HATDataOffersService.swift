@@ -63,7 +63,7 @@ public struct HATDataOffersService {
             switch response {
                 
             // in case of error call the failCallBack
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, _):
                 
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                     
@@ -125,7 +125,7 @@ public struct HATDataOffersService {
             switch response {
                 
             // in case of error call the failCallBack
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, _):
                 
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                     
@@ -192,7 +192,7 @@ public struct HATDataOffersService {
                 
                 switch response {
                     
-                case .error(let error, let statusCode):
+                case .error(let error, let statusCode, _):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
@@ -242,7 +242,7 @@ public struct HATDataOffersService {
                 
                 switch response {
                     
-                case .error(let error, let statusCode):
+                case .error(let error, let statusCode, _):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         

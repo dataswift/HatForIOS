@@ -249,7 +249,7 @@ internal class HATAccountServiceTests: XCTestCase {
         ]
         let parameters: [String: String] = ["oldpassword": "123", "newpassword": "321"]
         let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/control/v2/auth/password"
+        let urlToConnect = "https://\(userDomain)/control/v2.6/auth/password"
         let expectationTest = expectation(description: "Changing password...")
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))

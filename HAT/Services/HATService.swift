@@ -45,7 +45,7 @@ public struct HATService {
             switch response {
                 
             // in case of error call the failCallBack
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, _):
                 
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." || error.localizedDescription == "The Internet connection appears to be offline." {
                     
@@ -86,7 +86,7 @@ public struct HATService {
             switch response {
                 
             // in case of error call the failCallBack
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, _):
                 
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                     
@@ -140,15 +140,21 @@ public struct HATService {
             switch response {
                 
             // in case of error call the failCallBack
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, let result):
                 
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                     
                     failCallBack(.noInternetConnection)
                 } else {
                     
-                    let message: String = "Invalid Email. HAT with such email already exists"
-                    failCallBack(.generalError(message, statusCode, error))
+                    if let message = result?["cause"].string {
+                        
+                        failCallBack(.generalError(message, statusCode, nil))
+                    } else {
+                        
+                        let message: String = "Invalid address. HAT with such address already exists"
+                        failCallBack(.generalError(message, statusCode, nil))
+                    }
                 }
             // in case of success call the succesfulCallBack
             case .isSuccess(let isSuccess, let statusCode, _, let newToken):
@@ -185,15 +191,21 @@ public struct HATService {
             switch response {
                 
             // in case of error call the failCallBack
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, let result):
                 
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                     
                     failCallBack(.noInternetConnection)
                 } else {
                     
-                    let message: String = "Connection error. Please try again later."
-                    failCallBack(.generalError(message, statusCode, error))
+                    if let message = result?["cause"].string {
+                        
+                        failCallBack(.generalError(message, statusCode, nil))
+                    } else {
+                        
+                        let message: String = "Invalid address. HAT with such address already exists"
+                        failCallBack(.generalError(message, statusCode, nil))
+                    }
                 }
             // in case of success call the succesfulCallBack
             case .isSuccess(let isSuccess, let statusCode, let result, let newToken):
@@ -237,15 +249,21 @@ public struct HATService {
             switch response {
                 
             // in case of error call the failCallBack
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, let result):
                 
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                     
                     failCallBack(.noInternetConnection)
                 } else {
                     
-                    let message: String = "Invalid address. HAT with such address already exists"
-                    failCallBack(.generalError(message, statusCode, error))
+                    if let message = result?["cause"].string {
+                        
+                        failCallBack(.generalError(message, statusCode, nil))
+                    } else {
+                        
+                        let message: String = "Invalid address. HAT with such address already exists"
+                        failCallBack(.generalError(message, statusCode, nil))
+                    }
                 }
             // in case of success call the succesfulCallBack
             case .isSuccess(let isSuccess, let statusCode, let result, let newToken):
@@ -282,7 +300,7 @@ public struct HATService {
             switch response {
                 
             // in case of error call the failCallBack
-            case .error(let error, let statusCode):
+            case .error(let error, let statusCode, _):
                 
                 if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                     
