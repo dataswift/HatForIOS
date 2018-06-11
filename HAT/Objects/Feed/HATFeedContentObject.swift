@@ -20,6 +20,8 @@ public struct HATFeedContentObject: Codable {
     public var text: String?
     /// The media of the feed item
     public var media: [HATFeedContentMediaObject]?
+    /// The nested structure if ane of the feed item. Used for insights
+    public var nestedStructure: [String: [HATFeedContentNestedObject]]?
     
     public init() {
         

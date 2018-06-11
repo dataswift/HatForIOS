@@ -152,7 +152,7 @@ public struct HATService {
                         failCallBack(.generalError(message, statusCode, nil))
                     } else {
                         
-                        let message: String = "Invalid address. HAT with such address already exists"
+                        let message: String = "Invalid email. HAT with such email already exists"
                         failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
@@ -203,7 +203,7 @@ public struct HATService {
                         failCallBack(.generalError(message, statusCode, nil))
                     } else {
                         
-                        let message: String = "Invalid address. HAT with such address already exists"
+                        let message: String = "Please choose your HAT microserver domain name. It can only contain letters, numbers or hyphens (cannot start or end with a hyphen). The entire domain name can only be up to 22 characters in length."
                         failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
@@ -220,7 +220,7 @@ public struct HATService {
                         failCallBack(.generalError(message, statusCode, nil))
                     } else {
                         
-                        let message: String = "Invalid address. HAT with such address already exists"
+                        let message: String = "Please choose your HAT microserver domain name. It can only contain letters, numbers or hyphens (cannot start or end with a hyphen). The entire domain name can only be up to 22 characters in length."
                         failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
