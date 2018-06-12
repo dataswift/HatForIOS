@@ -195,9 +195,9 @@ internal class HATExternalAppsServiceTests: XCTestCase {
     func testGetApps() {
         
         let userDomain: String = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/applications"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/applications"
         
-        let expectationTest = expectation(description: "Getting apps from HAT...")
+        let expectationTest: XCTestExpectation = expectation(description: "Getting apps from HAT...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(appsResponseJSON))
         
@@ -217,7 +217,7 @@ internal class HATExternalAppsServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -227,9 +227,9 @@ internal class HATExternalAppsServiceTests: XCTestCase {
         
         let userDomain: String = "testing.hubat.net"
         let applicationID: String = "notables"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/applications/\(applicationID)/setup"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/applications/\(applicationID)/setup"
         
-        let expectationTest = expectation(description: "Setting up app from HAT...")
+        let expectationTest: XCTestExpectation = expectation(description: "Setting up app from HAT...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(appsResponseJSON[0]))
         
@@ -254,7 +254,7 @@ internal class HATExternalAppsServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }

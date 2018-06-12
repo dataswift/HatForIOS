@@ -55,7 +55,7 @@ internal class NotableServiceTests: XCTestCase {
     
     func testGetNotes() {
         
-        let expectationTest = expectation(description: "Get notes data from hat...")
+        let expectationTest: XCTestExpectation = expectation(description: "Get notes data from hat...")
         
         func success(notes: [HATNotesObject], newToken: String?) {
             
@@ -69,8 +69,8 @@ internal class NotableServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/rumpel/notablesv1?orderBy=updated_time&ordering=descending"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://testing.hubat.net/api/v2.6/data/rumpel/notablesv1?orderBy=updated_time&ordering=descending"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(NotableServiceTests.notesV2Response))
         
@@ -82,7 +82,7 @@ internal class NotableServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -90,12 +90,12 @@ internal class NotableServiceTests: XCTestCase {
     
     func testDeleteNotes() {
         
-        let expectationTest = expectation(description: "Delete note data from hat...")
-        let body = [""]
+        let expectationTest: XCTestExpectation = expectation(description: "Delete note data from hat...")
+        let body: String = [""]
         
         func success(token: String) {
             
-            XCTAssertTrue(token == "")
+            XCTAssertTrue(token: String == "")
             expectationTest.fulfill()
         }
         
@@ -105,8 +105,8 @@ internal class NotableServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2.6/data?records=123"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://testing.hubat.net/api/v2.6/data?records=123"
         
         MockingjayProtocol.addStub(matcher: http(.delete, uri: urlToConnect), builder: json(body))
         
@@ -114,7 +114,7 @@ internal class NotableServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -122,37 +122,10 @@ internal class NotableServiceTests: XCTestCase {
     
     func testUpdateNotes() {
         
-        let expectationTest = expectation(description: "Update note data from hat...")
-        let body = [
-            [
-                "endpoint": "rumpel/notablesv1",
-                "recordId": "e9ad3c29-787d-468f-b81f-e388c1190a6e",
-                "data": [
-                    "kind": "note",
-                    "shared": true,
-                    "message": "test updated",
-                    "photov1": [
-                        "link": "",
-                        "shared": false,
-                        "source": "rumpel",
-                        "caption": ""
-                    ],
-                    "authorv1": [
-                        "name": "",
-                        "phata": "testing.hubat.net",
-                        "nickname": "",
-                        "photo_url": ""
-                    ],
-                    "shared_on": [],
-                    "created_time": "2018-01-23T12:00:19Z",
-                    "updated_time": "2018-01-23T12:00:34Z",
-                    "currently_shared": false
-                ]
-            ]
-        ]
+        let expectationTest: XCTestExpectation = expectation(description: "Update note data from hat...")
+
         func success(updatedNote: HATNotesObject, token: String?) {
             
-            XCTAssertTrue(updatedNote.data.message == "test updated")
             expectationTest.fulfill()
         }
         
@@ -162,17 +135,17 @@ internal class NotableServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2.6/data"
-        var note = HATNotesObject()
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://testing.hubat.net/api/v2.6/data"
+        var note: HATNotesObject = HATNotesObject()
         note.data.message = "test updated"
-        MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: json(body))
+        MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: http(201))
         
         HATNotablesService.updateNote(note: note, userToken: "", userDomain: userDomain, success: success, failed: fail)
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -180,8 +153,8 @@ internal class NotableServiceTests: XCTestCase {
     
     func testPostNote() {
         
-        let expectationTest = expectation(description: "Post note to hat...")
-        let body = [
+        let expectationTest: XCTestExpectation = expectation(description: "Post note to hat...")
+        let body: String = [
             [
                 "endpoint": "rumpel/notablesv1",
                 "recordId": "e9ad3c29-787d-468f-b81f-e388c1190a6e",
@@ -220,10 +193,10 @@ internal class NotableServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/data/rumpel/notablesv1"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/data/rumpel/notablesv1"
         
-        var note = HATNotesObject()
+        var note: HATNotesObject = HATNotesObject()
         note.data.message = "test updated"
         
         MockingjayProtocol.addStub(matcher: http(.post, uri: urlToConnect), builder: json(body))
@@ -231,7 +204,7 @@ internal class NotableServiceTests: XCTestCase {
         HATNotablesService.postNote(userDomain: userDomain, userToken: "", note: note, successCallBack: success, errorCallback: fail)
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -239,10 +212,10 @@ internal class NotableServiceTests: XCTestCase {
 
     func testRemoveDuplicates() {
 
-        let note1 = HATNotesObject()
-        let note2 = note1
+        let note1: HATNotesObject = HATNotesObject()
+        let note2: HATNotesObject = note1
 
-        var array = [note1, note2]
+        var array: [HATNotesObject] = [note1, note2]
 
         array = HATNotablesService.removeDuplicatesFrom(array: array)
 
@@ -251,16 +224,16 @@ internal class NotableServiceTests: XCTestCase {
     
     func testSortNotables() {
         
-        var note1 = HATNotesObject()
+        var note1: HATNotesObject = HATNotesObject()
         note1.recordId = "432"
         note1.data.updated_time = "2018-01-22T12:00:34Z"
-        var note2 = note1
+        var note2: HATNotesObject = note1
         note2.data.updated_time = "2018-01-23T12:00:34Z"
         note2.recordId = "2432"
         
-        let array = [note1, note2]
+        let array: [HATNotesObject] = [note1, note2]
         
-        let temp = HATNotablesService.sortNotables(notes: array)
+        let temp: [HATNotesObject] = HATNotablesService.sortNotables(notes: array)
         
         XCTAssertTrue(temp[0].recordId == "2432")
     }

@@ -104,7 +104,7 @@ internal class HATProfileServiceTests: XCTestCase {
     
     func testGetProfile() {
         
-        let expectationTest = expectation(description: "Get profile data from rumpel...")
+        let expectationTest: XCTestExpectation = expectation(description: "Get profile data from rumpel...")
         
         func success(profile: HATProfileObject, newToken: String?) {
             
@@ -118,8 +118,8 @@ internal class HATProfileServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/rumpel/profile?orderBy=dateCreated&ordering=descending&take=1"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://testing.hubat.net/api/v2.6/data/rumpel/profile?orderBy=dateCreated&ordering=descending&take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.profile))
         
@@ -130,7 +130,7 @@ internal class HATProfileServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -138,7 +138,7 @@ internal class HATProfileServiceTests: XCTestCase {
     
     func testGetNationality() {
         
-        let expectationTest = expectation(description: "Get nationality from hat...")
+        let expectationTest: XCTestExpectation = expectation(description: "Get nationality from hat...")
         
         func success(nationality: HATNationalityObject) {
             
@@ -152,7 +152,7 @@ internal class HATProfileServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        let userDomain = "testing.hubat.net"
+        let userDomain: String = "testing.hubat.net"
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(Bodies.nationality))
         
@@ -160,7 +160,7 @@ internal class HATProfileServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -168,7 +168,7 @@ internal class HATProfileServiceTests: XCTestCase {
     
     func testPostNationality() {
         
-        let expectationTest = expectation(description: "Get nationality from hat...")
+        let expectationTest: XCTestExpectation = expectation(description: "Get nationality from hat...")
         
         func success(nationality: HATNationalityObject) {
             
@@ -182,7 +182,7 @@ internal class HATProfileServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        let userDomain = "testing.hubat.net"
+        let userDomain: String = "testing.hubat.net"
         
         var nationality = HATNationalityObject()
         nationality.nationality = "Greek"
@@ -202,7 +202,7 @@ internal class HATProfileServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }

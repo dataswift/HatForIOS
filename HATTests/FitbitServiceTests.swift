@@ -716,7 +716,7 @@ internal class FitbitServiceTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let expectationTest = expectation(description: "Get weight data from fitbit...")
+        let expectationTest: XCTestExpectation = expectation(description: "Get weight data from fitbit...")
         
         func success(weight: [HATFitbitWeightObject], newToken: String?) {
             
@@ -728,8 +728,8 @@ internal class FitbitServiceTests: XCTestCase {
             
         }
         
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/fitbit/weight?take=1"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://testing.hubat.net/api/v2.6/data/fitbit/weight?take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.weightBody))
         
@@ -742,7 +742,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -752,7 +752,7 @@ internal class FitbitServiceTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let expectationTest = expectation(description: "Get daily activity data from fitbit...")
+        let expectationTest: XCTestExpectation = expectation(description: "Get daily activity data from fitbit...")
         
         func success(dailyActivity: [HATFitbitDailyActivityObject], newToken: String?) {
             
@@ -764,8 +764,8 @@ internal class FitbitServiceTests: XCTestCase {
             
         }
         
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/fitbit/activity/day/summary?take=1"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://testing.hubat.net/api/v2.6/data/fitbit/activity/day/summary?take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.dailyActivity))
         
@@ -778,7 +778,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -788,7 +788,7 @@ internal class FitbitServiceTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let expectationTest = expectation(description: "Get activity data from fitbit...")
+        let expectationTest: XCTestExpectation = expectation(description: "Get activity data from fitbit...")
         
         func success(activity: [HATFitbitActivityObject], newToken: String?) {
             
@@ -800,8 +800,8 @@ internal class FitbitServiceTests: XCTestCase {
             
         }
         
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/fitbit/activity?take=1"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://testing.hubat.net/api/v2.6/data/fitbit/activity?take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.activity))
         
@@ -814,7 +814,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -824,7 +824,7 @@ internal class FitbitServiceTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let expectationTest = expectation(description: "Get lifetime stats data from fitbit...")
+        let expectationTest: XCTestExpectation = expectation(description: "Get lifetime stats data from fitbit...")
         
         func success(stats: [HATFitbitStatsObject], newToken: String?) {
             
@@ -836,8 +836,8 @@ internal class FitbitServiceTests: XCTestCase {
             
         }
         
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/fitbit/lifetime/stats?take=1"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://testing.hubat.net/api/v2.6/data/fitbit/lifetime/stats?take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.lifetimeStats))
         
@@ -850,7 +850,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -860,7 +860,7 @@ internal class FitbitServiceTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let expectationTest = expectation(description: "Get profile data from fitbit...")
+        let expectationTest: XCTestExpectation = expectation(description: "Get profile data from fitbit...")
         
         func success(profile: [HATFitbitProfileObject], newToken: String?) {
             
@@ -872,8 +872,8 @@ internal class FitbitServiceTests: XCTestCase {
             
         }
         
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/fitbit/profile?take=1"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://testing.hubat.net/api/v2.6/data/fitbit/profile?take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.profile))
         
@@ -886,7 +886,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -896,7 +896,7 @@ internal class FitbitServiceTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let expectationTest = expectation(description: "Get sleep data from fitbit...")
+        let expectationTest: XCTestExpectation = expectation(description: "Get sleep data from fitbit...")
 
         func success(sleep: [HATFitbitSleepObject], newToken: String?) {
             
@@ -908,8 +908,8 @@ internal class FitbitServiceTests: XCTestCase {
             
         }
         
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2.6/data/fitbit/sleep?take=1"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://testing.hubat.net/api/v2.6/data/fitbit/sleep?take=1"
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(Bodies.sleep))
         
@@ -922,7 +922,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -931,16 +931,16 @@ internal class FitbitServiceTests: XCTestCase {
     func testGettingFitbitToken() {
         
         let body: Dictionary<String, Any> = ["accessToken": "token"]
-        let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/users/application_token?name=fitbit&resource=fitbit"
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let urlToConnect: String = "https://\(userDomain)/users/application_token?name=fitbit&resource=fitbit"
         
-        let expectationTest = expectation(description: "Getting app token for Fitbit...")
+        let expectationTest: XCTestExpectation = expectation(description: "Getting app token for Fitbit...")
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))
         
         func completion(fitbitToken: String, newUserToken: String?) {
             
-            XCTAssertTrue(fitbitToken == "token")
+            XCTAssertTrue(fitbittoken: String == "token")
             expectationTest.fulfill()
         }
         
@@ -954,7 +954,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -963,10 +963,10 @@ internal class FitbitServiceTests: XCTestCase {
     func testIsFitbitEnabled() {
         
         let body: Dictionary<String, Any> = ["accessToken": "token"]
-        let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/users/application_token?name=fitbit&resource=fitbit"
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let urlToConnect: String = "https://\(userDomain)/users/application_token?name=fitbit&resource=fitbit"
         
-        let expectationTest = expectation(description: "Getting app token for Fitbit...")
+        let expectationTest: XCTestExpectation = expectation(description: "Getting app token for Fitbit...")
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))
         
@@ -986,7 +986,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -1032,10 +1032,10 @@ internal class FitbitServiceTests: XCTestCase {
                 ]
             ]
         ]]
-        let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://dex.hubofallthings.com/stats/available-data"
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let urlToConnect: String = "https://dex.hubofallthings.com/stats/available-data"
         
-        let expectationTest = expectation(description: "Getting app token for Fitbit...")
+        let expectationTest: XCTestExpectation = expectation(description: "Getting app token for Fitbit...")
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))
         
@@ -1055,7 +1055,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }

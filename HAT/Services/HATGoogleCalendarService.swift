@@ -81,7 +81,7 @@ public struct HATGoogleCalendarService {
     public static func getStaticData(plugURL: String, calendarToken: String, successCallback: @escaping ([String], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         let statusURL: String = GoogleCalendar.googleCalendarDataPlugStatusURL(googleDataPlugURL: plugURL)
-        let headers = ["x-auth-token": calendarToken]
+        let headers: [String:String] = ["x-auth-token": calendarToken]
         
         HATNetworkHelper.asynchronousRequest(
             statusURL,

@@ -32,13 +32,13 @@ internal class HATServiceTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
 
-        let body = ["accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaWJXRnlhVzl6ZEhObGEybHpMbWgxWW05bVlXeHNkR2hwYm1kekxtNWxkQ0lzSW5CeWIzWnBaR1Z5UzJWNUlqb2liV0Z5YVc5emRITmxhMmx6SW4wPSIsInJlc291cmNlIjoiaHR0cHM6XC9cL3NvY2lhbC1wbHVnLmh1Ym9mYWxsdGhpbmdzLmNvbSIsImFjY2Vzc1Njb3BlIjoidmFsaWRhdGUiLCJpc3MiOiJtYXJpb3N0c2VraXMuaHVib2ZhbGx0aGluZ3MubmV0IiwiZXhwIjoxNDg3MzIyODM2LCJpYXQiOjE0ODcwNjM2MzYsImp0aSI6ImRkZDk4NWRiNjE0MzQxNjUxMGY5ZjU3NTY5MjQ4YTRiNGJhODg1NzE3N2Q4YTJlZjMxMzQyYWM2ZDAwMWFjZTJkZjI5MDIwMWM1MWNmODlhNDE2Y2FhOWYzNGY5NDQ2ZGEyMjJlMTZiM2UzOGVmZWM5NzYxNzBlZWVmYTNmNDRkNjM2ZTIyMTMyYTFlODg4ZmQ1YzU3MzE3MDU5NjQ5NWVkMjM0OTUyMGEyOTgwZWQxMjRmOGNkYmZlMTU0MDYyN2NkZDMwZWMzOTlhMGJiNTU3YTYyZmI4Y2VhMmYyODZiZWM4MzMxZjEwNjZkMjE3OThkMmU0NDUzNTg5ZTgxZjcifQ.r8MUnCojsUDxQmGPeCljwizVxCG9mULEFFl4qXHHCtavUvPTZM-blR4U8ItJUSo7lGDwwbZmMyRgeEDtkpQVN7NV0Vpu1dibmRob5AgRrtqamXjZUZBlYKGlkvk26xvB94c1Lt-5_bYNy83ZF1D9PqiDC_h504fX15OX6XTrAXUnWyErZ_ukbn9MEdv-uxrhqCzTV0OW9U9kAcIJ42FUHoBkTCayqE76LP04Yf9N7eWuhAz63QqBzg4R3sFF-SmOb7Gu1JCTf7l5cILEVd1sdlJR4ipgBuq5g8IvkqwF38Ea2K1PKY4lKaOqb9pAXQYOqhBKkeyKANeeEPGhJ7OJHg",
+        let body: String = ["accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaWJXRnlhVzl6ZEhObGEybHpMbWgxWW05bVlXeHNkR2hwYm1kekxtNWxkQ0lzSW5CeWIzWnBaR1Z5UzJWNUlqb2liV0Z5YVc5emRITmxhMmx6SW4wPSIsInJlc291cmNlIjoiaHR0cHM6XC9cL3NvY2lhbC1wbHVnLmh1Ym9mYWxsdGhpbmdzLmNvbSIsImFjY2Vzc1Njb3BlIjoidmFsaWRhdGUiLCJpc3MiOiJtYXJpb3N0c2VraXMuaHVib2ZhbGx0aGluZ3MubmV0IiwiZXhwIjoxNDg3MzIyODM2LCJpYXQiOjE0ODcwNjM2MzYsImp0aSI6ImRkZDk4NWRiNjE0MzQxNjUxMGY5ZjU3NTY5MjQ4YTRiNGJhODg1NzE3N2Q4YTJlZjMxMzQyYWM2ZDAwMWFjZTJkZjI5MDIwMWM1MWNmODlhNDE2Y2FhOWYzNGY5NDQ2ZGEyMjJlMTZiM2UzOGVmZWM5NzYxNzBlZWVmYTNmNDRkNjM2ZTIyMTMyYTFlODg4ZmQ1YzU3MzE3MDU5NjQ5NWVkMjM0OTUyMGEyOTgwZWQxMjRmOGNkYmZlMTU0MDYyN2NkZDMwZWMzOTlhMGJiNTU3YTYyZmI4Y2VhMmYyODZiZWM4MzMxZjEwNjZkMjE3OThkMmU0NDUzNTg5ZTgxZjcifQ.r8MUnCojsUDxQmGPeCljwizVxCG9mULEFFl4qXHHCtavUvPTZM-blR4U8ItJUSo7lGDwwbZmMyRgeEDtkpQVN7NV0Vpu1dibmRob5AgRrtqamXjZUZBlYKGlkvk26xvB94c1Lt-5_bYNy83ZF1D9PqiDC_h504fX15OX6XTrAXUnWyErZ_ukbn9MEdv-uxrhqCzTV0OW9U9kAcIJ42FUHoBkTCayqE76LP04Yf9N7eWuhAz63QqBzg4R3sFF-SmOb7Gu1JCTf7l5cILEVd1sdlJR4ipgBuq5g8IvkqwF38Ea2K1PKY4lKaOqb9pAXQYOqhBKkeyKANeeEPGhJ7OJHg",
                     "userId": "f5e089cb-a63f-4879-b3df-6ba99a928dac"]
-        let userDomain = "mariostsekis.hubofallthings.net"
+        let userDomain: String = "mariostsekis.hubofallthings.net"
         let serviceName = "facebook"
         let resource = "https://social-plug.hubofallthings.com"
-        let urlToConnect = "https://mariostsekis.hubofallthings.net/users/application_token?name=facebook&resource=https%3A//social-plug.hubofallthings.com"
-        let expectationTest = expectation(description: "Getting app token...")
+        let urlToConnect: String = "https://mariostsekis.hubofallthings.net/users/application_token?name=facebook&resource=https%3A//social-plug.hubofallthings.com"
+        let expectationTest: XCTestExpectation = expectation(description: "Getting app token...")
 
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
 
@@ -56,7 +56,7 @@ internal class HATServiceTests: XCTestCase {
 
         waitForExpectations(timeout: 10) { error in
 
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -81,8 +81,8 @@ internal class HATServiceTests: XCTestCase {
         purchaseModel.membership.membershipType = "trial"
         purchaseModel.membership.plan = "trial"
         
-        let urlToConnect = "https://hatters.hubofallthings.com/api/products/hat/purchase"
-        let expectationTest = expectation(description: "Making purchase...")
+        let urlToConnect: String = "https://hatters.hubofallthings.com/api/products/hat/purchase"
+        let expectationTest: XCTestExpectation = expectation(description: "Making purchase...")
         
         MockingjayProtocol.addStub(matcher: http(.post, uri: urlToConnect), builder: json([response]))
         
@@ -103,7 +103,7 @@ internal class HATServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }

@@ -129,11 +129,11 @@ internal class DataDebitsServiceTests: XCTestCase {
             ]
         ]
         
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2.6/data-debit"
-        let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaVkzSmxaR1Z1ZEdsaGJITWlMQ0p3Y205MmFXUmxja3RsZVNJNkluUmxjM1JwYm1jaWZRPT0iLCJyZXNvdXJjZSI6InRlc3RpbmcuaHViYXQubmV0IiwiYWNjZXNzU2NvcGUiOiJvd25lciIsImlzcyI6InRlc3RpbmcuaHViYXQubmV0IiwiZXhwIjoxNTA4NjY4MjMwLCJpYXQiOjE1MDg0MDkwMzAsImp0aSI6IjZmYTNiYTNmN2QyMzMwMzMwMmUxMTgwMDllNzBjMzZmNGZiMjk3ODQzNmU4MDI0NmJmNTdjNmRlYWE1MjgxZGZmNGQwNjFhY2U4MjY5YjRiOTI5N2Q5ZmMyYmJkZjk5NDE2NzJmMGQ5MGM1YzFhMTkyYjZlNjk0N2Y3OWIxYzZjM2E5MmNlMGZmYzIyYTExMmI1NDJlYWY3ZmNkNTEzYjUzMzU1YmU4NzZjMTc0NmZlN2JlNTE1NmNmMjkzNDA5MDcwMTk4OTliOWYxMjEzMTMyNjNjMzBjYjI3MmViZTgwMjI1MDg0YmFkOGNkNTgzMzZkOWQ4YzIzNDkzYWM1YzIifQ.cObRGNjdXfjfp9pd5SF2vS-gj5t7faEEdn5bVat1TvjnX60oQGdc55M80VuDaNXnTnLQOAL6x9YnWgDY1bnmRa0_4_W8553VmMbEWdQ6fDaeW9iLhkh-UYWpIlxexvdof8Vy7YwKTLseR0l7JhheWBQkugp7bAJ7ZTnAIDOfGDR02_i7cdASvJwbefIeSOahdx9DVPMUj1DRE2dq7cR2-eRqJyc09cITKtKu0fY8reHqRfc2151grGx7KxRNd2aBMnqJeNgscOZR13jshapmrDTo9SSpyo8Z6CKcoWj-_7NdHa-8ceJSZzL64JkRbvCX07HdpmAuSIHuAA0xuQIqlg"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://testing.hubat.net/api/v2.6/data-debit"
+        let token: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaVkzSmxaR1Z1ZEdsaGJITWlMQ0p3Y205MmFXUmxja3RsZVNJNkluUmxjM1JwYm1jaWZRPT0iLCJyZXNvdXJjZSI6InRlc3RpbmcuaHViYXQubmV0IiwiYWNjZXNzU2NvcGUiOiJvd25lciIsImlzcyI6InRlc3RpbmcuaHViYXQubmV0IiwiZXhwIjoxNTA4NjY4MjMwLCJpYXQiOjE1MDg0MDkwMzAsImp0aSI6IjZmYTNiYTNmN2QyMzMwMzMwMmUxMTgwMDllNzBjMzZmNGZiMjk3ODQzNmU4MDI0NmJmNTdjNmRlYWE1MjgxZGZmNGQwNjFhY2U4MjY5YjRiOTI5N2Q5ZmMyYmJkZjk5NDE2NzJmMGQ5MGM1YzFhMTkyYjZlNjk0N2Y3OWIxYzZjM2E5MmNlMGZmYzIyYTExMmI1NDJlYWY3ZmNkNTEzYjUzMzU1YmU4NzZjMTc0NmZlN2JlNTE1NmNmMjkzNDA5MDcwMTk4OTliOWYxMjEzMTMyNjNjMzBjYjI3MmViZTgwMjI1MDg0YmFkOGNkNTgzMzZkOWQ4YzIzNDkzYWM1YzIifQ.cObRGNjdXfjfp9pd5SF2vS-gj5t7faEEdn5bVat1TvjnX60oQGdc55M80VuDaNXnTnLQOAL6x9YnWgDY1bnmRa0_4_W8553VmMbEWdQ6fDaeW9iLhkh-UYWpIlxexvdof8Vy7YwKTLseR0l7JhheWBQkugp7bAJ7ZTnAIDOfGDR02_i7cdASvJwbefIeSOahdx9DVPMUj1DRE2dq7cR2-eRqJyc09cITKtKu0fY8reHqRfc2151grGx7KxRNd2aBMnqJeNgscOZR13jshapmrDTo9SSpyo8Z6CKcoWj-_7NdHa-8ceJSZzL64JkRbvCX07HdpmAuSIHuAA0xuQIqlg"
         
-        let expectationTest = expectation(description: "Checking getting of data debits...")
+        let expectationTest: XCTestExpectation = expectation(description: "Checking getting of data debits...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
@@ -157,7 +157,7 @@ internal class DataDebitsServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }

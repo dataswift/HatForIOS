@@ -28,10 +28,10 @@ internal class LocationServiceTests: XCTestCase {
 
     func testEnableLocationDataPlug() {
 
-        let body = ["message": ""]
-        let urlToConnect = "https://dex.hubofallthings.com/api/dataplugs/c532e122-db4a-44b8-9eaf-18989f214262/connect?hat=mariostsekis.hubofallthings.net"
-        let userDomain = "mariostsekis.hubofallthings.net"
-        let expectationTest = expectation(description: "Enabling location data plug...")
+        let body: String = ["message": ""]
+        let urlToConnect: String = "https://dex.hubofallthings.com/api/dataplugs/c532e122-db4a-44b8-9eaf-18989f214262/connect?hat=mariostsekis.hubofallthings.net"
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let expectationTest: XCTestExpectation = expectation(description: "Enabling location data plug...")
 
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
 
@@ -51,7 +51,7 @@ internal class LocationServiceTests: XCTestCase {
 
         waitForExpectations(timeout: 10) { error in
 
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -59,7 +59,7 @@ internal class LocationServiceTests: XCTestCase {
     
     func testGetLocationData() {
         
-        let body = [
+        let body: String = [
             [
                 "endpoint": "rumpel/locations/ios",
                 "recordId": "ad0c3ef8-e024-4053-a875-76228b9aa0ea",
@@ -91,9 +91,9 @@ internal class LocationServiceTests: XCTestCase {
                 ]
             ]
         ]
-        let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/data/rumpel/locations/ios"
-        let expectationTest = expectation(description: "Getting location data...")
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/data/rumpel/locations/ios"
+        let expectationTest: XCTestExpectation = expectation(description: "Getting location data...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
@@ -113,7 +113,7 @@ internal class LocationServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -121,7 +121,7 @@ internal class LocationServiceTests: XCTestCase {
     
     func testSyncLocationData() {
         
-        let body = [
+        let body: String = [
             [
                 "endpoint": "rumpel/locations/ios",
                 "recordId": "ad0c3ef8-e024-4053-a875-76228b9aa0ea",
@@ -153,9 +153,9 @@ internal class LocationServiceTests: XCTestCase {
                 ]
             ]
         ]
-        let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/data/rumpel/locations/ios"
-        let expectationTest = expectation(description: "Syncing location data...")
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/data/rumpel/locations/ios"
+        let expectationTest: XCTestExpectation = expectation(description: "Syncing location data...")
         
         stub(everything, http(201))
         
@@ -183,7 +183,7 @@ internal class LocationServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -191,7 +191,7 @@ internal class LocationServiceTests: XCTestCase {
     
     func testFailbackSyncLocationData() {
         
-        let body = [
+        let body: String = [
             [
                 "endpoint": "rumpel/locations/ios",
                 "recordId": "ad0c3ef8-e024-4053-a875-76228b9aa0ea",
@@ -223,9 +223,9 @@ internal class LocationServiceTests: XCTestCase {
                 ]
             ]
         ]
-        let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/data/rumpel/locations/ios"
-        let expectationTest = expectation(description: "Syncing duplicate failback location data...")
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/data/rumpel/locations/ios"
+        let expectationTest: XCTestExpectation = expectation(description: "Syncing duplicate failback location data...")
         
         MockingjayProtocol.addStub(matcher: http(.post, uri: urlToConnect), builder: json(body))
         
@@ -253,7 +253,7 @@ internal class LocationServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -261,7 +261,7 @@ internal class LocationServiceTests: XCTestCase {
     
     func testGetLocationCombinator() {
         
-        let body = [
+        let body: String = [
             [
                 "endpoint": "rumpel/locations/ios",
                 "recordId": "1b3b3330-b12c-495a-b804-4852b381cb32",
@@ -290,9 +290,9 @@ internal class LocationServiceTests: XCTestCase {
             ]
         ]
         
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/combinator/locationsfilter"
-        let expectationTest = expectation(description: "Gettin location combinator...")
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/combinator/locationsfilter"
+        let expectationTest: XCTestExpectation = expectation(description: "Gettin location combinator...")
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))
         
@@ -312,7 +312,7 @@ internal class LocationServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -321,7 +321,7 @@ internal class LocationServiceTests: XCTestCase {
     func testFormatOfURLDuringRegistration() {
 
         let url = "https://dex.hubofallthings.com/api/dataplugs/c532e122-db4a-44b8-9eaf-18989f214262/connect?hat=mariostsekis.hubofallthings.net"
-        let userDomain = "mariostsekis.hubofallthings.net"
+        let userDomain: String = "mariostsekis.hubofallthings.net"
 
         let formattedURL = HATLocationService.locationDataPlugURL(userDomain, dataPlugID: HATDataPlugCredentials.dataPlugID)
 

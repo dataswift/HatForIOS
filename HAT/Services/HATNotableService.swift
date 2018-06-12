@@ -77,10 +77,10 @@ public struct HATNotablesService {
             userToken: userToken,
             recordIds: noteIDs,
             success: { string in
-            
+                
                 HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () })
                 success(string)
-            },
+        },
             failed: failed)
     }
     
@@ -97,23 +97,20 @@ public struct HATNotablesService {
      */
     public static func updateNote(note: HATNotesObject, userToken: String, userDomain: String, success: @escaping ((HATNotesObject, String?) -> Void) = { _, _  in }, failed: @escaping ((HATTableError) -> Void) = { _ in }) {
         
-        // update JSON file with the values needed
-        let hatData: [String: Any] = HATNotesDataObject.encode(from: note.data)!
-        
         HATAccountService.updateHatRecord(
             userDomain: userDomain,
             userToken: userToken,
-            parameters: hatData,
+            notes: [note],
             successCallback: { jsonArray, newToken in
                 
                 HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () })
                 
                 let note: HATNotesObject = HATNotesObject(dict: jsonArray[0].dictionaryValue)
                 success(note, newToken)
-            },
+        },
             errorCallback: failed)
     }
-        
+    
     // MARK: - Post note
     
     /**
@@ -152,7 +149,7 @@ public struct HATNotablesService {
                 
                 let note: HATNotesObject = HATNotesObject(dict: notes[0].dictionaryValue)
                 successCallBack(note, newToken)
-            },
+        },
             errorCallback: errorCallback)
     }
     

@@ -60,7 +60,7 @@ public struct HATProfileDataProfileAboutObject: HATObject, HatApiType {
      */
     public mutating func initialize(dict: Dictionary<String, JSON>) {
     
-        if let tempBody = (dict[Fields.body]?.stringValue) {
+        if let tempBody: String = (dict[Fields.body]?.stringValue) {
             
             body = tempBody
         }

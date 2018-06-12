@@ -51,9 +51,9 @@ internal class HATAccountServiceTests: XCTestCase {
                     "name": "2017-02-09T16:48:19.506Z"
                 ]
         ]
-        let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://notables.hubofallthings.com/api/bulletin/tickle?"
-        let expectationTest = expectation(description: "Tickling hat...")
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let urlToConnect: String = "https://notables.hubofallthings.com/api/bulletin/tickle?"
+        let expectationTest: XCTestExpectation = expectation(description: "Tickling hat...")
 
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
 
@@ -73,7 +73,7 @@ internal class HATAccountServiceTests: XCTestCase {
 
         waitForExpectations(timeout: 10) { error in
 
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -94,9 +94,9 @@ internal class HATAccountServiceTests: XCTestCase {
                     "name": "2017-02-09T16:48:19.506Z"
                 ]
         ]
-        let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://mariostsekis.hubofallthings.net/api/v2.6/data/newdata/test"
-        let expectationTest = expectation(description: "Create value on hat...")
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let urlToConnect: String = "https://mariostsekis.hubofallthings.net/api/v2.6/data/newdata/test"
+        let expectationTest: XCTestExpectation = expectation(description: "Create value on hat...")
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))
         
@@ -118,7 +118,7 @@ internal class HATAccountServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -137,9 +137,9 @@ internal class HATAccountServiceTests: XCTestCase {
                     "name": "2017-02-09T16:48:19.506Z"
                 ]
         ]
-        let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://mariostsekis.hubofallthings.net/api/v2.6/data/newdata/test"
-        let expectationTest = expectation(description: "Get value from hat...")
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let urlToConnect: String = "https://mariostsekis.hubofallthings.net/api/v2.6/data/newdata/test"
+        let expectationTest: XCTestExpectation = expectation(description: "Get value from hat...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
@@ -161,7 +161,7 @@ internal class HATAccountServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -171,9 +171,9 @@ internal class HATAccountServiceTests: XCTestCase {
         
         let parameters: [String: String] = ["records": "123-123"]
         let body: String = "All records Deleted!"
-        let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/data"
-        let expectationTest = expectation(description: "Delete record from hat...")
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/data"
+        let expectationTest: XCTestExpectation = expectation(description: "Delete record from hat...")
         
         MockingjayProtocol.addStub(matcher: http(.delete, uri: urlToConnect), builder: json(body))
         
@@ -193,7 +193,7 @@ internal class HATAccountServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -201,27 +201,15 @@ internal class HATAccountServiceTests: XCTestCase {
     
     func testUpdateValueOnHAT() {
         
-        let body: [[String: Any]] = [
-            [
-                "lastUpdated": "2017-02-09T16:48:17.499Z",
-                "id": 31707,
-                "data": [
-                    "newData": "true"
-                ],
-                "name": "2017-02-09T16:48:19.506Z"
-            ]
-        ]
-        let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/data"
-        let expectationTest = expectation(description: "Update record on hat...")
+        let note: HATNotesObject = HATNotesObject()
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/data"
+        let expectationTest: XCTestExpectation = expectation(description: "Update record on hat...")
         
-        MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: json(body))
+        MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: http(201))
         
         func completion(json: [JSON], newToken: String?) {
             
-            let tempDict = json[0].dictionaryValue
-            
-            XCTAssert(tempDict["data"] == ["newData": "true"])
             expectationTest.fulfill()
         }
         
@@ -231,11 +219,11 @@ internal class HATAccountServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        HATAccountService.updateHatRecord(userDomain: userDomain, userToken: "", parameters: body[0], successCallback: completion, errorCallback: failed)
+        HATAccountService.updateHatRecord(userDomain: userDomain, userToken: "", notes: [note], successCallback: completion, errorCallback: failed)
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -248,9 +236,9 @@ internal class HATAccountServiceTests: XCTestCase {
             "message": "Password changed"
         ]
         let parameters: [String: String] = ["oldpassword": "123", "newpassword": "321"]
-        let userDomain = "mariostsekis.hubofallthings.net"
-        let urlToConnect = "https://\(userDomain)/control/v2.6/auth/password"
-        let expectationTest = expectation(description: "Changing password...")
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let urlToConnect: String = "https://\(userDomain)/control/v2.6/auth/password"
+        let expectationTest: XCTestExpectation = expectation(description: "Changing password...")
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))
         
@@ -270,7 +258,7 @@ internal class HATAccountServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -284,8 +272,8 @@ internal class HATAccountServiceTests: XCTestCase {
         ]
         let userDomain: String = "mariostsekis.hubofallthings.net"
         let combinatorName: String = "testcombinator"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/combinator/\(combinatorName)"
-        let expectationTest = expectation(description: "Create a combinator...")
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/combinator/\(combinatorName)"
+        let expectationTest: XCTestExpectation = expectation(description: "Create a combinator...")
         
         MockingjayProtocol.addStub(matcher: http(.post, uri: urlToConnect), builder: json(body))
         
@@ -305,7 +293,7 @@ internal class HATAccountServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -319,8 +307,8 @@ internal class HATAccountServiceTests: XCTestCase {
         ]]
         let userDomain: String = "mariostsekis.hubofallthings.net"
         let combinatorName: String = "testcombinator"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/combinator/\(combinatorName)"
-        let expectationTest = expectation(description: "Create a combinator...")
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/combinator/\(combinatorName)"
+        let expectationTest: XCTestExpectation = expectation(description: "Create a combinator...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
@@ -340,7 +328,7 @@ internal class HATAccountServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -348,7 +336,7 @@ internal class HATAccountServiceTests: XCTestCase {
     
     func testDomainURL() {
 
-        let userDomain = "mariostsekis.hubofallthings.net"
+        let userDomain: String = "mariostsekis.hubofallthings.net"
         let expectedURL = "https://" + userDomain + "/publickey"
         let returnedURL = HATAccountService.theUserHATDomainPublicKeyURL(userDomain)
 

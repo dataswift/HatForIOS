@@ -199,44 +199,40 @@ public struct HATAccountService {
      - parameter successCallback: A callback called when successful of type @escaping ([JSON], String?) -> Void
      - parameter errorCallback: A callback called when failed of type @escaping (HATTableError) -> Void
      */
-    public static func updateHatRecord(userDomain: String, userToken: String, parameters: Dictionary<String, Any>, successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func updateHatRecord(userDomain: String, userToken: String, notes: [HATNotesObject], successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
-        // form the url
-        let url: String = "https://\(userDomain)/api/v2.6/data"
+        let encoded: Data? = HATNotesObject.encode(from: notes)
         
-        // create parameters and headers
-        let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]
+        var urlRequest: URLRequest = URLRequest.init(url: URL(string: "https://\(userDomain)/api/v2.6/data")!)
+        urlRequest.httpMethod = HTTPMethod.put.rawValue
+        urlRequest.addValue(userToken, forHTTPHeaderField: "x-auth-token")
+        urlRequest.networkServiceType = .background
+        urlRequest.httpBody = encoded
         
-        // make the request
-        HATNetworkHelper.asynchronousRequest(url, method: .put, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: parameters, headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
+        if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
             
-            // handle result
-            switch response {
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+        
+        let configuration: URLSessionConfiguration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+        let manager = Alamofire.SessionManager(configuration: configuration)
+        
+        manager.request(urlRequest).responseJSON(completionHandler: { response in
+            
+            let header = response.response?.allHeaderFields
+            let token: String? = header?["x-auth-token"] as? String
+            
+            if response.response?.statusCode != 201 {
                 
-            case .error(let error, let statusCode, _):
+                errorCallback(.generalError("An error occured", 400, nil))
+            } else {
                 
-                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
-                    
-                    errorCallback(.noInternetConnection)
-                } else {
-                    
-                    let message: String = NSLocalizedString("Server responded with error", comment: "")
-                    errorCallback(.generalError(message, statusCode, error))
-                }
-            case .isSuccess(let isSuccess, _, let result, let token):
-                
-                if isSuccess {
-                    
-                    if let array: [JSON] = result.array {
-                        
-                        successCallback(array, token)
-                    } else {
-                        
-                        errorCallback(.noValuesFound)
-                    }
-                }
+                let array = response.result.value
+                let json = JSON(array)
+                successCallback([json], token)
             }
-        })
+        }).session.finishTasksAndInvalidate()
     }
     
     // MARK: - Trigger an update
@@ -257,7 +253,7 @@ public struct HATAccountService {
         manager.request(url, method: .get, parameters: ["phata": userDomain], encoding: Alamofire.URLEncoding.default, headers: nil).responseString { _ in
             
             completion()
-        }.session.finishTasksAndInvalidate()
+            }.session.finishTasksAndInvalidate()
     }
     
     // MARK: - Get public key

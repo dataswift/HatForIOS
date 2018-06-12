@@ -54,10 +54,10 @@ internal class HATFileServiceTests: XCTestCase {
                 ]
             ]
             ]]
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://testing.hubat.net/api/v2.6/files/search"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://testing.hubat.net/api/v2.6/files/search"
         
-        let expectationTest = expectation(description: "Searching files for photos...")
+        let expectationTest: XCTestExpectation = expectation(description: "Searching files for photos...")
         
         MockingjayProtocol.addStub(matcher: http(.post, uri: urlToConnect), builder: json(body))
         
@@ -77,7 +77,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -86,10 +86,10 @@ internal class HATFileServiceTests: XCTestCase {
     func testDeleteFile() {
         
         let body: [Dictionary<String, Any>] = []
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/files/file/1)"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/files/file/1)"
         
-        let expectationTest = expectation(description: "Deleting files from photos...")
+        let expectationTest: XCTestExpectation = expectation(description: "Deleting files from photos...")
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))
         
@@ -109,7 +109,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -118,10 +118,10 @@ internal class HATFileServiceTests: XCTestCase {
     func testMakeFilePublic() {
         
         let body: [Dictionary<String, Any>] = []
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/files/allowAccessPublic/1"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/files/allowAccessPublic/1"
         
-        let expectationTest = expectation(description: "Making file Public...")
+        let expectationTest: XCTestExpectation = expectation(description: "Making file Public...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
@@ -141,7 +141,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -150,10 +150,10 @@ internal class HATFileServiceTests: XCTestCase {
     func testMakeFilePrivate() {
         
         let body: [Dictionary<String, Any>] = []
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/files/restrictAccessPublic/1"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/files/restrictAccessPublic/1"
         
-        let expectationTest = expectation(description: "Making file Private...")
+        let expectationTest: XCTestExpectation = expectation(description: "Making file Private...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
@@ -173,7 +173,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -205,10 +205,10 @@ internal class HATFileServiceTests: XCTestCase {
                 ]
             ]
             ]
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/files/file/1/complete"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/files/file/1/complete"
         
-        let expectationTest = expectation(description: "Marking up file as completed for photos...")
+        let expectationTest: XCTestExpectation = expectation(description: "Marking up file as completed for photos...")
         
         MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: json(body))
         
@@ -228,7 +228,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -260,10 +260,10 @@ internal class HATFileServiceTests: XCTestCase {
                 ]
             ]
         ]
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/files/upload"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/files/upload"
         
-        let expectationTest = expectation(description: "Upload file to HAT...")
+        let expectationTest: XCTestExpectation = expectation(description: "Upload file to HAT...")
         
         MockingjayProtocol.addStub(matcher: http(.post, uri: urlToConnect), builder: json(body))
         
@@ -283,7 +283,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -315,10 +315,10 @@ internal class HATFileServiceTests: XCTestCase {
                 ]
             ]
         ]
-        let userDomain = "testing.hubat.net"
-        let urlToConnect = "https://\(userDomain)/api/v2.6/files/file/1"
+        let userDomain: String = "testing.hubat.net"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/files/file/1"
         
-        let expectationTest = expectation(description: "Updating parameters of a file from HAT...")
+        let expectationTest: XCTestExpectation = expectation(description: "Updating parameters of a file from HAT...")
         
         MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: json(body))
         
@@ -338,7 +338,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
@@ -371,9 +371,9 @@ internal class HATFileServiceTests: XCTestCase {
                 ]
             ]
         ]
-        let userDomain = "testing.hubat.net"
+        let userDomain: String = "testing.hubat.net"
         
-        let expectationTest = expectation(description: "Updating parameters of a file from HAT...")
+        let expectationTest: XCTestExpectation = expectation(description: "Updating parameters of a file from HAT...")
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))
         
@@ -404,7 +404,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error = error {
+            if let error: Error = error {
                 print("Error: \(error.localizedDescription)")
             }
         }
