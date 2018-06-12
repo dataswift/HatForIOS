@@ -92,19 +92,19 @@ public struct StuffToRememberObject: HatApiType, Comparable {
         
         self.init()
         
-        if let tempData = dictionary[Fields.data]?.dictionaryValue {
+        if let tempData: [String : JSON] = dictionary[Fields.data]?.dictionaryValue {
             
             if let tempBody: String = tempData[Fields.body]?.stringValue {
                 
                 self.body = tempBody
             }
             
-            if let tempTitle = tempData[Fields.title]?.stringValue {
+            if let tempTitle: String = tempData[Fields.title]?.stringValue {
                 
                 self.title = tempTitle
             }
             
-            if let tempUnixTimeStamp = tempData[Fields.unixTimeStamp]?.intValue {
+            if let tempUnixTimeStamp: Int = tempData[Fields.unixTimeStamp]?.intValue {
                 
                 self.unixTimeStamp = tempUnixTimeStamp
             }
@@ -116,17 +116,17 @@ public struct StuffToRememberObject: HatApiType, Comparable {
      */
     public mutating func initialize(fromCache: Dictionary<String, Any>) {
         
-        if let tempBody = fromCache[Fields.body] {
+        if let tempBody: Any = fromCache[Fields.body] {
             
             self.body = String(describing: tempBody)
         }
         
-        if let tempTitle = fromCache[Fields.title] {
+        if let tempTitle: Any = fromCache[Fields.title] {
             
             self.title = String(describing: tempTitle)
         }
         
-        if let tempUnixTimeStamp = fromCache[Fields.unixTimeStamp] as? Int {
+        if let tempUnixTimeStamp: Int = fromCache[Fields.unixTimeStamp] as? Int {
             
             self.unixTimeStamp = tempUnixTimeStamp
         }

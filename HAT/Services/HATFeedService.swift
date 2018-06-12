@@ -63,19 +63,19 @@ public struct HATFeedService {
                     failed(.noInternetConnection)
                 } else {
                     
-                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    let message: String = NSLocalizedString("Server responded with error", comment: "")
                     failed(.generalError(message, statusCode, error))
                 }
             case .isSuccess(let isSuccess, let statusCode, let result, let token):
                 
                 if statusCode != nil && statusCode! == 401 {
                     
-                    let message = NSLocalizedString("Token expired", comment: "")
+                    let message: String = NSLocalizedString("Token expired", comment: "")
                     failed(.generalError(message, statusCode, nil))
                 }
                 if isSuccess {
                     
-                    if let array = result.array {
+                    if let array: [JSON] = result.array {
                         
                         success(values: array, newToken: token)
                     } else {

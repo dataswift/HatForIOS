@@ -389,13 +389,13 @@ internal class HATFileServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 25, height: 25))
-        let image = renderer.image { ctx in
+        let renderer: UIGraphicsImageRenderer = UIGraphicsImageRenderer(size: CGSize(width: 25, height: 25))
+        let image: UIImage = renderer.image { ctx in
             ctx.cgContext.setFillColor(UIColor.red.cgColor)
             ctx.cgContext.setStrokeColor(UIColor.green.cgColor)
             ctx.cgContext.setLineWidth(10)
             
-            let rectangle = CGRect(x: 0, y: 0, width: 25, height: 25)
+            let rectangle: CGRect = CGRect(x: 0, y: 0, width: 25, height: 25)
             ctx.cgContext.addEllipse(in: rectangle)
             ctx.cgContext.drawPath(using: .fillStroke)
         }

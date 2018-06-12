@@ -57,15 +57,15 @@ public struct HATFacebookDataPostsPlaceSocialFeedObject: HATObject, HatApiType {
      */
     public mutating func inititialize(dict: Dictionary<String, JSON>) {
         
-        if let tempID = dict[Fields.id]?.stringValue {
+        if let tempID: String = dict[Fields.id]?.stringValue {
             
             id = tempID
         }
-        if let tempName = dict[Fields.name]?.stringValue {
+        if let tempName: String = dict[Fields.name]?.stringValue {
             
             name = tempName
         }
-        if let tempLocation = dict[Fields.location]?.dictionaryValue {
+        if let tempLocation: [String : JSON] = dict[Fields.location]?.dictionaryValue {
             
             location = HATFacebookDataPostsPlaceLocationSocialFeedObject(from: tempLocation)
         }
@@ -83,7 +83,7 @@ public struct HATFacebookDataPostsPlaceSocialFeedObject: HATObject, HatApiType {
     
     public mutating func initialize(fromCache: Dictionary<String, Any>) {
         
-        let dictionary = JSON(fromCache)
+        let dictionary: JSON = JSON(fromCache)
         self.inititialize(dict: dictionary.dictionaryValue)
     }
     

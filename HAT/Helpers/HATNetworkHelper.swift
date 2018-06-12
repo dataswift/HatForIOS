@@ -74,7 +74,7 @@ public class HATNetworkHelper: NSObject {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-        let manager = Alamofire.SessionManager(configuration: configuration)
+        let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
         
         // do a post
         manager.request(
@@ -95,11 +95,10 @@ public class HATNetworkHelper: NSObject {
                     
                     let header: [AnyHashable: Any]? = response.response?.allHeaderFields
                     
-                    if let stringHeaders: [String: String] = header as? [String: String], let url = (response.response?.url!) {
+                    if let stringHeaders: [String: String] = header as? [String: String], let url: URL = (response.response?.url!) {
                         
                         let cookies: [HTTPCookie] = HTTPCookie.cookies(withResponseHeaderFields: stringHeaders, for: url)
                         manager.session.configuration.httpCookieStorage?.setCookies(cookies, for: url, mainDocumentURL: nil)
-
                     }
                     
                     let token: String? = header?["x-auth-token"] as? String
@@ -172,7 +171,7 @@ public class HATNetworkHelper: NSObject {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-        let manager = Alamofire.SessionManager(configuration: configuration)
+        let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
         
         // do a post
         manager.request(
@@ -239,7 +238,7 @@ public class HATNetworkHelper: NSObject {
         let headers: [String: String] = ["x-amz-server-side-encryption": "AES256"]
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
-        let manager = Alamofire.SessionManager(configuration: configuration)
+        let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
         
         manager.upload(image, to: URL(string: url)!, method: .put, headers: headers).uploadProgress(closure: {(progress) -> Void in
             

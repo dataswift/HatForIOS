@@ -188,7 +188,7 @@ public struct HATProfileService {
             userToken: userToken,
             nameSpace: "rumpel",
             scope: "education",
-            parameters: ["orderBy":"unixTimeStamp", "ordering": "descending", "take": "1"],
+            parameters: ["orderBy": "unixTimeStamp", "ordering": "descending", "take": "1"],
             successCallback: successCallback,
             failCallback: failCallback)
     }
@@ -418,7 +418,7 @@ public struct HATProfileService {
             
             let configuration: URLSessionConfiguration = URLSessionConfiguration.default
             configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-            let manager = Alamofire.SessionManager(configuration: configuration)
+            let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
             
             manager.request(
                 url,
@@ -432,10 +432,10 @@ public struct HATProfileService {
                         
                         if response.response?.statusCode == 404 {
                             
-                            if let value = response.result.value {
+                            if let value: Any = response.result.value {
                                 
-                                let json = JSON(value)
-                                let message = json["message"].stringValue
+                                let json: JSON = JSON(value)
+                                let message: String = json["message"].stringValue
                                 
                                 if message != "Bundle Not Found" {
                                     
@@ -444,10 +444,10 @@ public struct HATProfileService {
                             }
                         } else if response.response?.statusCode == 200 {
                             
-                            if let value = response.result.value {
+                            if let value: Any = response.result.value {
                                 
                                 let json: JSON = JSON(value)
-                                let dict = json["bundle"]["profile"]["endpoints"][0]["mapping"].dictionary
+                                let dict: [String: JSON]? = json["bundle"]["profile"]["endpoints"][0]["mapping"].dictionary
                                 success(dict ?? [:])
                             }
                         }
@@ -519,9 +519,9 @@ public struct HATProfileService {
      */
     public static func constructDictionaryForBundle(mutableDictionary: NSMutableDictionary) -> Dictionary<String, Any>? {
         
-        if let dict = mutableDictionary as? Dictionary<String, String> {
+        if let dict: [String: String] = mutableDictionary as? Dictionary<String, String> {
             
-            let profileStructure = ["profile":
+            let profileStructure: [String: Any] = ["profile":
                 [
                     "endpoints": [
                         [
@@ -535,13 +535,13 @@ public struct HATProfileService {
                 ]
             ]
             
-            let notablesStructure = HATProfileService.notablesStructure
+            let notablesStructure: [String: Any] = HATProfileService.notablesStructure
             
-            let temp = NSMutableDictionary()
+            let temp: NSMutableDictionary = NSMutableDictionary()
             temp.addEntries(from: profileStructure)
             temp.addEntries(from: notablesStructure)
             
-            if let dictionaryToReturn = temp as? Dictionary<String, Any> {
+            if let dictionaryToReturn: [String: Any]? = temp as? Dictionary<String, Any> {
                 
                 return dictionaryToReturn
             }
@@ -585,7 +585,7 @@ public struct HATProfileService {
             
             let configuration: URLSessionConfiguration = URLSessionConfiguration.default
             configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-            let manager = Alamofire.SessionManager(configuration: configuration)
+            let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
             
             manager.request(
                 url,

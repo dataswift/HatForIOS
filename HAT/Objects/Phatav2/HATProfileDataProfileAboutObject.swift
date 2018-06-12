@@ -64,7 +64,7 @@ public struct HATProfileDataProfileAboutObject: HATObject, HatApiType {
             
             body = tempBody
         }
-        if let tempTitle = (dict[Fields.title]?.stringValue) {
+        if let tempTitle: String = (dict[Fields.title]?.stringValue) {
             
             title = tempTitle
         }
@@ -82,7 +82,7 @@ public struct HATProfileDataProfileAboutObject: HATObject, HatApiType {
     
     public mutating func initialize(fromCache: Dictionary<String, Any>) {
         
-        let json = JSON(fromCache)
+        let json: JSON = JSON(fromCache)
         self.initialize(dict: json.dictionaryValue)
     }
 }

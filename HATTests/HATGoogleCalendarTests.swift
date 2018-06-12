@@ -227,7 +227,7 @@ internal class HATGoogleCalendarTests: XCTestCase {
         
         func completion(facebookToken: String, newUserToken: String?) {
             
-            XCTAssertTrue(facebooktoken: String == "token")
+            XCTAssertTrue(facebookToken == "token")
             expectationTest.fulfill()
         }
         
@@ -237,7 +237,7 @@ internal class HATGoogleCalendarTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        var plug = HATDataPlugObject()
+        var plug: HATDataPlugObject = HATDataPlugObject()
         plug.plug.name = "Calendar"
         plug.plug.url = "calendar"
         

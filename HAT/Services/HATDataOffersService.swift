@@ -70,7 +70,7 @@ public struct HATDataOffersService {
                     failCallBack(.noInternetConnection)
                 } else {
                     
-                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    let message: String = NSLocalizedString("Server responded with error", comment: "")
                     failCallBack(.generalError(message, statusCode, error))
                 }
             // in case of success call the succesfulCallBack
@@ -132,7 +132,7 @@ public struct HATDataOffersService {
                     failCallBack(.noInternetConnection)
                 } else {
                     
-                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    let message: String = NSLocalizedString("Server responded with error", comment: "")
                     failCallBack(.generalError(message, statusCode, error))
                 }
             // in case of success call the succesfulCallBack
@@ -142,7 +142,7 @@ public struct HATDataOffersService {
                     
                     let dictionaryResponse = result.dictionaryValue
                     
-                    if let claimed = dictionaryResponse["dataDebitId"]?.stringValue {
+                    if let claimed: String = dictionaryResponse["dataDebitId"]?.stringValue {
                         
                         succesfulCallBack(claimed, token)
                     } else {
@@ -249,7 +249,7 @@ public struct HATDataOffersService {
                         failCallBack(.noInternetConnection)
                     } else {
                         
-                        let message = NSLocalizedString("Server responded with error", comment: "")
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
                         failCallBack(.generalError(message, statusCode, error))
                     }
                 case .isSuccess(let isSuccess, let statusCode, let result, let token):
@@ -264,7 +264,7 @@ public struct HATDataOffersService {
                                 var arrayToReturn: [String] = []
                                 for merchant in merchants {
                                     
-                                    if let merchantString = merchant.string {
+                                    if let merchantString: String = merchant.string {
                                         
                                         arrayToReturn.append(merchantString)
                                     }
@@ -305,7 +305,7 @@ public struct HATDataOffersService {
                 
                 func filterOffers(offers: [DataOfferObject], newUserToken: String?) {
                     
-                    let filteredOffer = offers.filter {
+                    let filteredOffer: [DataOfferObject] = offers.filter {
                         
                         if $0.dataOfferID == offer.dataOfferID {
                             
@@ -321,7 +321,7 @@ public struct HATDataOffersService {
                         return
                     }
                     
-                    let offer = filteredOffer[0]
+                    let offer: DataOfferObject = filteredOffer[0]
                     succesfulCallBack(offer, newUserToken)
                 }
                 

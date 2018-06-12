@@ -77,39 +77,39 @@ public struct HATFacebookProfileImageObject: HatApiType {
         
         self.init()
         
-        if let tempRecordID = dictionary[Fields.recordID]?.stringValue {
+        if let tempRecordID: String = dictionary[Fields.recordID]?.stringValue {
             
             recordID = tempRecordID
         }
         
-        if let tempEndPoint = dictionary[Fields.endPoint]?.stringValue {
+        if let tempEndPoint: String = dictionary[Fields.endPoint]?.stringValue {
             
             endPoint = tempEndPoint
         }
         
-        if let data = dictionary[Fields.data]?.dictionaryValue {
+        if let data: [String : JSON] = dictionary[Fields.data]?.dictionaryValue {
             
             // In new v2 API last updated will be inside data
-            if let tempLastUpdated = data[Fields.lastUpdated]?.stringValue {
+            if let tempLastUpdated: String = data[Fields.lastUpdated]?.stringValue {
                 
-                if let date = HATFormatterHelper.formatStringToDate(string: tempLastUpdated) {
+                if let date: Date = HATFormatterHelper.formatStringToDate(string: tempLastUpdated) {
                     
                     lastUpdated = Int(HATFormatterHelper.formatDateToEpoch(date: date)!)!
                 }
             }
-            if let tempSilhouette = dictionary[Fields.isSilhouette]?.boolValue {
+            if let tempSilhouette: Bool = dictionary[Fields.isSilhouette]?.boolValue {
                 
                 isSilhouette = tempSilhouette
             }
-            if let tempHeight = dictionary[Fields.height]?.string {
+            if let tempHeight: String = dictionary[Fields.height]?.string {
                 
                 imageHeight = Int(tempHeight)!
             }
-            if let tempWidth = dictionary[Fields.width]?.stringValue {
+            if let tempWidth: String = dictionary[Fields.width]?.stringValue {
                 
                 imageWidth = Int(tempWidth)!
             }
-            if let tempLink = dictionary[Fields.url]?.stringValue {
+            if let tempLink: String = dictionary[Fields.url]?.stringValue {
                 
                 url = tempLink
             }
@@ -123,39 +123,39 @@ public struct HATFacebookProfileImageObject: HatApiType {
      */
     public mutating func inititialize(dict: Dictionary<String, JSON>) {
         
-        if let tempRecordID = dict[Fields.recordID]?.stringValue {
+        if let tempRecordID: String = dict[Fields.recordID]?.stringValue {
             
             recordID = tempRecordID
         }
         
-        if let tempEndPoint = dict[Fields.endPoint]?.stringValue {
+        if let tempEndPoint: String = dict[Fields.endPoint]?.stringValue {
             
             endPoint = tempEndPoint
         }
         
-        if let data = dict[Fields.data]?.dictionaryValue {
+        if let data: [String : JSON] = dict[Fields.data]?.dictionaryValue {
             
             // In new v2 API last updated will be inside data
-            if let tempLastUpdated = data[Fields.lastUpdated]?.stringValue {
+            if let tempLastUpdated: String = data[Fields.lastUpdated]?.stringValue {
                 
-                if let date = HATFormatterHelper.formatStringToDate(string: tempLastUpdated) {
+                if let date: Date = HATFormatterHelper.formatStringToDate(string: tempLastUpdated) {
                     
                     lastUpdated = Int(HATFormatterHelper.formatDateToEpoch(date: date)!)!
                 }
             }
-            if let tempSilhouette = dict[Fields.isSilhouette]?.boolValue {
+            if let tempSilhouette: Bool = dict[Fields.isSilhouette]?.boolValue {
                 
                 isSilhouette = tempSilhouette
             }
-            if let tempHeight = dict[Fields.height]?.string {
+            if let tempHeight: String = dict[Fields.height]?.string {
                 
                 imageHeight = Int(tempHeight)!
             }
-            if let tempWidth = dict[Fields.width]?.stringValue {
+            if let tempWidth: String = dict[Fields.width]?.stringValue {
                 
                 imageWidth = Int(tempWidth)!
             }
-            if let tempLink = dict[Fields.url]?.stringValue {
+            if let tempLink: String = dict[Fields.url]?.stringValue {
                 
                 url = tempLink
             }
@@ -169,9 +169,9 @@ public struct HATFacebookProfileImageObject: HatApiType {
      */
     public mutating func initialize(fromCache: Dictionary<String, Any>) {
         
-        let dictionary = JSON(fromCache)
+        let dictionary: JSON = JSON(fromCache)
         self.inititialize(dict: dictionary.dictionaryValue)
-        if let tempImage = fromCache[Fields.imageData] as? Data {
+        if let tempImage: Data = fromCache[Fields.imageData] as? Data {
             
             self.image = UIImage(data: tempImage)
         }

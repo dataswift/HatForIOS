@@ -62,10 +62,10 @@ internal class TwitterServiceTests: XCTestCase {
 
     func testRemoveDuplicatesFromObjects() {
 
-        let obj1 = HATTwitterSocialFeedObject()
-        let obj2 = HATTwitterSocialFeedObject()
+        let obj1: HATTwitterSocialFeedObject = HATTwitterSocialFeedObject()
+        let obj2: HATTwitterSocialFeedObject = HATTwitterSocialFeedObject()
 
-        var array = [obj1, obj2]
+        var array: [HATTwitterSocialFeedObject] = [obj1, obj2]
 
         array = HATTwitterService.removeDuplicatesFrom(array: array)
 

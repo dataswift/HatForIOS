@@ -220,7 +220,7 @@ public struct HATFileService {
                         successCallback(true)
                     } else {
                         
-                        let message = "Server returned unexpected respone"
+                        let message: String = "Server returned unexpected respone"
                         errorCallBack(.generalError(message, statusCode, nil))
                     }
                 } else {

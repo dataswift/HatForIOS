@@ -102,7 +102,7 @@ internal class HATAccountServiceTests: XCTestCase {
         
         func completion(json: JSON, newToken: String?) {
             
-            let tempDict = json[0].dictionaryValue
+            let tempDict: [String : JSON] = json[0].dictionaryValue
             
             XCTAssert(tempDict["data"] == ["newData": "true"])
             expectationTest.fulfill()
@@ -145,7 +145,7 @@ internal class HATAccountServiceTests: XCTestCase {
         
         func completion(json: [JSON], newToken: String?) {
             
-            let tempDict = json[0].dictionaryValue
+            let tempDict: [String : JSON] = json[0].dictionaryValue
             
             XCTAssert(tempDict["data"] == ["newData": "true"])
             expectationTest.fulfill()
@@ -337,8 +337,8 @@ internal class HATAccountServiceTests: XCTestCase {
     func testDomainURL() {
 
         let userDomain: String = "mariostsekis.hubofallthings.net"
-        let expectedURL = "https://" + userDomain + "/publickey"
-        let returnedURL = HATAccountService.theUserHATDomainPublicKeyURL(userDomain)
+        let expectedURL: String = "https://\(userDomain)/publickey"
+        let returnedURL: String? = HATAccountService.theUserHATDomainPublicKeyURL(userDomain)
 
         XCTAssertEqual(returnedURL, expectedURL)
     }

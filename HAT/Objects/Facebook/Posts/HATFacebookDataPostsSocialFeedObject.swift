@@ -171,71 +171,71 @@ public struct HATFacebookDataPostsSocialFeedObject: HatApiType, Comparable, HATO
      */
     public mutating func inititialize(dict: Dictionary<String, JSON>) {
         
-        if let tempFrom = dict[Fields.from]?.dictionaryValue {
+        if let tempFrom: [String : JSON] = dict[Fields.from]?.dictionaryValue {
             
             from = HATFacebookDataPostsFromSocialFeedObject(from: tempFrom)
         }
-        if let tempID = dict[Fields.postID]?.stringValue {
+        if let tempID: String = dict[Fields.postID]?.stringValue {
             
             postID = tempID
         }
-        if let tempStatusType = dict[Fields.statusType]?.stringValue {
+        if let tempStatusType: String = dict[Fields.statusType]?.stringValue {
             
             statusType = tempStatusType
         }
-        if let tempPrivacy = dict[Fields.privacy]?.dictionaryValue {
+        if let tempPrivacy: [String : JSON] = dict[Fields.privacy]?.dictionaryValue {
             
             privacy = HATFacebookDataPostsPrivacySocialFeedObject(from: tempPrivacy)
         }
-        if let tempUpdateTime = dict[Fields.updatedTime]?.stringValue {
+        if let tempUpdateTime: String = dict[Fields.updatedTime]?.stringValue {
             
             updatedTime = HATFormatterHelper.formatStringToDate(string: tempUpdateTime)
         }
-        if let tempType = dict[Fields.type]?.stringValue {
+        if let tempType: String = dict[Fields.type]?.stringValue {
             
             type = tempType
         }
-        if let tempCreatedTime = dict[Fields.createdTime]?.stringValue {
+        if let tempCreatedTime: String = dict[Fields.createdTime]?.stringValue {
             
             createdTime = HATFormatterHelper.formatStringToDate(string: tempCreatedTime)
         }
-        if let tempMessage = dict[Fields.message]?.stringValue {
+        if let tempMessage: String = dict[Fields.message]?.stringValue {
             
             message = tempMessage
         }
-        if let tempFullPicture = dict[Fields.fullPicture]?.stringValue {
+        if let tempFullPicture: String = dict[Fields.fullPicture]?.stringValue {
             
             fullPicture = tempFullPicture
         }
-        if let tempLink = dict[Fields.link]?.stringValue {
+        if let tempLink: String = dict[Fields.link]?.stringValue {
             
             link = tempLink
         }
-        if let tempPicture = dict[Fields.picture]?.stringValue {
+        if let tempPicture: String = dict[Fields.picture]?.stringValue {
             
             picture = tempPicture
         }
-        if let tempStory = dict[Fields.story]?.stringValue {
+        if let tempStory: String = dict[Fields.story]?.stringValue {
             
             story = tempStory
         }
-        if let tempDescription = dict[Fields.description]?.stringValue {
+        if let tempDescription: String = dict[Fields.description]?.stringValue {
             
             description = tempDescription
         }
-        if let tempObjectID = dict[Fields.objectID]?.stringValue {
+        if let tempObjectID: String = dict[Fields.objectID]?.stringValue {
             
             objectID = tempObjectID
         }
-        if let tempApplication = dict[Fields.application]?.dictionaryValue {
+        if let tempApplication: [String : JSON] = dict[Fields.application]?.dictionaryValue {
             
             application = HATFacebookDataPostsApplicationSocialFeedObject(from: tempApplication)
         }
-        if let tempCaption = dict[Fields.caption]?.stringValue {
+        if let tempCaption: String = dict[Fields.caption]?.stringValue {
             
             caption = tempCaption
         }
-        if let tempPlace = dict[Fields.place]?.dictionaryValue {
+        if let tempPlace: [String : JSON] = dict[Fields.place]?.dictionaryValue {
             
             place = HATFacebookDataPostsPlaceSocialFeedObject(from: tempPlace)
         }
@@ -248,7 +248,7 @@ public struct HATFacebookDataPostsSocialFeedObject: HatApiType, Comparable, HATO
      */
     public mutating func initialize(fromCache: Dictionary<String, Any>) {
         
-        let dictionary = JSON(fromCache)
+        let dictionary: JSON = JSON(fromCache)
         self.inititialize(dict: dictionary.dictionaryValue)
     }
     

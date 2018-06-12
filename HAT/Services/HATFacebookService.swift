@@ -175,7 +175,7 @@ public struct HATFacebookService {
             let object: HATFacebookSocialFeedObject = HATFacebookSocialFeedObject(from: dictionary.dictionaryValue)
             
             // check if the arrayToReturn it contains that value and if not add it
-            let result = arrayToReturn.contains(where: {(post: HATFacebookSocialFeedObject) -> Bool in
+            let result: Bool = arrayToReturn.contains(where: {(post: HATFacebookSocialFeedObject) -> Bool in
                 
                 if object.data.posts.postID == post.data.posts.postID {
                     
@@ -210,7 +210,7 @@ public struct HATFacebookService {
         for facebookPost: HATFacebookSocialFeedObject in array {
             
             // check if the arrayToReturn it contains that value and if not add it
-            let result = arrayToReturn.contains(where: {(post: HATFacebookSocialFeedObject) -> Bool in
+            let result: Bool = arrayToReturn.contains(where: {(post: HATFacebookSocialFeedObject) -> Bool in
                 
                 if facebookPost.data.posts.postID == post.data.posts.postID {
                     

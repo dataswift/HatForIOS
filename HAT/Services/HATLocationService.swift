@@ -163,7 +163,7 @@ public struct HATLocationService {
      */
     public static func syncLocationsToHAT(userDomain: String, userToken: String, locations: [HATLocationsDataObject], completion: ((Bool, String?) -> Void)? = nil) {
         
-        var tempLocations = locations
+        var tempLocations: [HATLocationsDataObject] = locations
         if locations.count > 100 {
             
             tempLocations = Array(locations.prefix(100))
@@ -184,14 +184,14 @@ public struct HATLocationService {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-        let manager = Alamofire.SessionManager(configuration: configuration)
+        let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
         
         manager.request(urlRequest).responseJSON(completionHandler: { response in
             
-            let header = response.response?.allHeaderFields
+            let header: [AnyHashable: Any]? = response.response?.allHeaderFields
             let token: String? = header?["x-auth-token"] as? String
             
-            var tempLocations = locations
+            var tempLocations: [HATLocationsDataObject] = locations
             if locations.count > 100 {
                 
                 tempLocations = Array(locations.prefix(100))
@@ -246,11 +246,11 @@ public struct HATLocationService {
             
             let configuration: URLSessionConfiguration = URLSessionConfiguration.default
             configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-            let manager = Alamofire.SessionManager(configuration: configuration)
+            let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
             
             manager.request(urlRequest).responseJSON(completionHandler: { response in
                 
-                let header = response.response?.allHeaderFields
+                let header: [AnyHashable: Any]? = response.response?.allHeaderFields
                 let token: String? = header?["x-auth-token"] as? String
                 
                 if response.response?.statusCode == 400 && array.count > 1 {

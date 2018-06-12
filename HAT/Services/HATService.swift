@@ -101,9 +101,9 @@ public struct HATService {
                 
                 if isSuccess {
                     
-                    let resultArray = result.arrayValue
+                    let resultArray: [JSON] = result.arrayValue
                     var arrayToSendBack: [HATProviderObject] = []
-                    for item in resultArray {
+                    for item: JSON in resultArray {
                         
                         arrayToSendBack.append(HATProviderObject(from: item.dictionaryValue))
                     }
@@ -147,7 +147,7 @@ public struct HATService {
                     failCallBack(.noInternetConnection)
                 } else {
                     
-                    if let message = result?["cause"].string {
+                    if let message: String = result?["cause"].string {
                         
                         failCallBack(.generalError(message, statusCode, nil))
                     } else {
@@ -198,7 +198,7 @@ public struct HATService {
                     failCallBack(.noInternetConnection)
                 } else {
                     
-                    if let message = result?["cause"].string {
+                    if let message: String = result?["cause"].string {
                         
                         failCallBack(.generalError(message, statusCode, nil))
                     } else {
@@ -215,7 +215,7 @@ public struct HATService {
                     succesfulCallBack("valid address", newToken)
                 } else if statusCode == 400 {
                     
-                    if let message = result["cause"].string {
+                    if let message: String = result["cause"].string {
                         
                         failCallBack(.generalError(message, statusCode, nil))
                     } else {
@@ -241,8 +241,8 @@ public struct HATService {
         
         let url: String = "https://hatters.hubofallthings.com/api/products/hat/purchase"
         
-        let body = PurchaseObject.encode(from: purchaseModel)
-        let test = JSON(body!).dictionaryObject!
+        let body: [String : Any]? = PurchaseObject.encode(from: purchaseModel)
+        let test: [String : Any] = JSON(body!).dictionaryObject!
         
         HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: test, headers: [:], completion: {(response: HATNetworkHelper.ResultType) -> Void in
             
@@ -315,9 +315,9 @@ public struct HATService {
                 
                 if isSuccess {
                     
-                    let resultArray = result.arrayValue
+                    let resultArray: [JSON] = result.arrayValue
                     var arrayToSendBack: [HATSystemStatusObject] = []
-                    for item in resultArray {
+                    for item: JSON in resultArray {
                         
                         arrayToSendBack.append(HATSystemStatusObject(from: item.dictionaryValue))
                     }

@@ -80,7 +80,7 @@ internal class LoginServiceTests: XCTestCase {
             }
         }
 
-        if let url = HATAccountService.theUserHATDomainPublicKeyURL(userDomain) {
+        if let url: String = HATAccountService.theUserHATDomainPublicKeyURL(userDomain) {
 
             MockingjayProtocol.addStub(matcher: http(.get, uri: url), builder: string(body) )
 

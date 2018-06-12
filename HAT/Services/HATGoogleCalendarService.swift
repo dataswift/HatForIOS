@@ -101,7 +101,7 @@ public struct HATGoogleCalendarService {
                         errorCallback(.noInternetConnection)
                     } else {
                         
-                        let message = NSLocalizedString("Server responded with error", comment: "")
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
                         errorCallback(.generalError(message, statusCode, error))
                     }
                 case .isSuccess(let isSuccess, _, let result, let token):
@@ -112,9 +112,9 @@ public struct HATGoogleCalendarService {
                             
                             var arrayToReturn: [String] = []
                             
-                            for item in array {
+                            for item: JSON in array {
                                 
-                                let calendarName = item["apiEndpoint"]["endpoint"]["name"].stringValue
+                                let calendarName: String = item["apiEndpoint"]["endpoint"]["name"].stringValue
                                 arrayToReturn.append(calendarName)
                             }
                             

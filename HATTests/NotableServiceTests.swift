@@ -91,11 +91,11 @@ internal class NotableServiceTests: XCTestCase {
     func testDeleteNotes() {
         
         let expectationTest: XCTestExpectation = expectation(description: "Delete note data from hat...")
-        let body: String = [""]
+        let body: [String] = [""]
         
         func success(token: String) {
             
-            XCTAssertTrue(token: String == "")
+            XCTAssertTrue(token == "")
             expectationTest.fulfill()
         }
         
@@ -154,7 +154,7 @@ internal class NotableServiceTests: XCTestCase {
     func testPostNote() {
         
         let expectationTest: XCTestExpectation = expectation(description: "Post note to hat...")
-        let body: String = [
+        let body: [[String : Any]] = [
             [
                 "endpoint": "rumpel/notablesv1",
                 "recordId": "e9ad3c29-787d-468f-b81f-e388c1190a6e",

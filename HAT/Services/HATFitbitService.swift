@@ -54,14 +54,14 @@ public struct HATFitbitService {
                     
                     if isSuccess {
                         
-                        if let array = result.array {
+                        if let array: [JSON] = result.array {
                             
-                            for item in array where item["namespace"] == "fitbit" {
+                            for item: JSON in array where item["namespace"] == "fitbit" {
                                 
                                 var arraytoReturn: [String] = []
                                 
-                                let tempArray = item["endpoints"].arrayValue
-                                for tempItem in tempArray {
+                                let tempArray: [JSON] = item["endpoints"].arrayValue
+                                for tempItem: JSON in tempArray {
                                     
                                     arraytoReturn.append(tempItem["endpoint"].stringValue)
                                 }

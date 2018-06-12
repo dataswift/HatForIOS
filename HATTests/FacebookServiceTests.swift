@@ -149,7 +149,7 @@ internal class FacebookServiceTests: XCTestCase {
         
         func completion(facebookToken: String, newUserToken: String?) {
             
-            XCTAssertTrue(facebooktoken: String == "token")
+            XCTAssertTrue(facebookToken == "token")
             expectationTest.fulfill()
         }
         
@@ -159,7 +159,7 @@ internal class FacebookServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        var plug = HATDataPlugObject()
+        var plug: HATDataPlugObject = HATDataPlugObject()
         plug.plug.name = "facebook"
         plug.plug.url = "facebook"
         
@@ -208,10 +208,10 @@ internal class FacebookServiceTests: XCTestCase {
 
     func testRemoveDuplicatesFromObjects() {
 
-        let obj1 = HATFacebookSocialFeedObject()
-        let obj2 = HATFacebookSocialFeedObject()
+        let obj1: HATFacebookSocialFeedObject = HATFacebookSocialFeedObject()
+        let obj2: HATFacebookSocialFeedObject = HATFacebookSocialFeedObject()
 
-        var array = [obj1, obj2]
+        var array: [HATFacebookSocialFeedObject] = [obj1, obj2]
 
         array = HATFacebookService.removeDuplicatesFrom(array: array)
 
@@ -283,9 +283,9 @@ internal class FacebookServiceTests: XCTestCase {
             "lastUpdated": "2017-01-08T21:21:26.184Z"
         ]
 
-        let array = [obj1, obj2]
+        let array: [JSON] = [obj1, obj2]
 
-        let result = HATFacebookService.removeDuplicatesFrom(array: array)
+        let result: [HATFacebookSocialFeedObject] = HATFacebookService.removeDuplicatesFrom(array: array)
 
         XCTAssertTrue(result.count == 1)
     }

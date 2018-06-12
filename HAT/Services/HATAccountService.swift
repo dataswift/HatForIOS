@@ -51,14 +51,14 @@ public struct HATAccountService {
                     errorCallback(.noInternetConnection)
                 } else {
                     
-                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    let message: String = NSLocalizedString("Server responded with error", comment: "")
                     errorCallback(.generalError(message, statusCode, error))
                 }
             case .isSuccess(let isSuccess, let statusCode, let result, let token):
                 
                 if statusCode != nil && (statusCode! == 401 || statusCode! == 403) {
                     
-                    let message = NSLocalizedString("Token expired", comment: "")
+                    let message: String = NSLocalizedString("Token expired", comment: "")
                     errorCallback(.generalError(message, statusCode, nil))
                 }
                 if isSuccess {
@@ -108,7 +108,7 @@ public struct HATAccountService {
                     errorCallback(.noInternetConnection)
                 } else {
                     
-                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    let message: String = NSLocalizedString("Server responded with error", comment: "")
                     errorCallback(.generalError(message, statusCode, error))
                 }
             case .isSuccess(let isSuccess, let statusCode, let result, let token):
@@ -121,9 +121,9 @@ public struct HATAccountService {
                 if statusCode == 404 {
                     
                     errorCallback(.tableDoesNotExist)
-                } else if (statusCode! == 401 || statusCode! == 403) {
+                } else if statusCode! == 401 || statusCode! == 403 {
                     
-                    let message = NSLocalizedString("Token expired", comment: "")
+                    let message: String = NSLocalizedString("Token expired", comment: "")
                     errorCallback(.generalError(message, statusCode, nil))
                 }
             }
@@ -181,7 +181,7 @@ public struct HATAccountService {
                     failed(.noInternetConnection)
                 } else {
                     
-                    let message = NSLocalizedString("Server responded with error", comment: "")
+                    let message: String = NSLocalizedString("Server responded with error", comment: "")
                     failed(.generalError(message, statusCode, error))
                 }
             }
@@ -216,7 +216,7 @@ public struct HATAccountService {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-        let manager = Alamofire.SessionManager(configuration: configuration)
+        let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
         
         manager.request(urlRequest).responseJSON(completionHandler: { response in
             
@@ -228,8 +228,8 @@ public struct HATAccountService {
                 errorCallback(.generalError("An error occured", 400, nil))
             } else {
                 
-                let array = response.result.value
-                let json = JSON(array)
+                let array: Any? = response.result.value
+                let json: JSON = JSON(array)
                 successCallback([json], token)
             }
         }).session.finishTasksAndInvalidate()
@@ -247,13 +247,13 @@ public struct HATAccountService {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-        let manager = Alamofire.SessionManager(configuration: configuration)
+        let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
         
         // make the request
         manager.request(url, method: .get, parameters: ["phata": userDomain], encoding: Alamofire.URLEncoding.default, headers: nil).responseString { _ in
             
             completion()
-            }.session.finishTasksAndInvalidate()
+        }.session.finishTasksAndInvalidate()
     }
     
     // MARK: - Get public key
@@ -310,7 +310,7 @@ public struct HATAccountService {
                 }
             case .isSuccess(let isSuccess, _, let result, let token):
                 
-                if isSuccess, let message = result.dictionaryValue["message"]?.stringValue {
+                if isSuccess, let message: String = result.dictionaryValue["message"]?.stringValue {
                     
                     successCallback(message, token)
                 }
@@ -359,16 +359,16 @@ public struct HATAccountService {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-        let manager = Alamofire.SessionManager(configuration: configuration)
+        let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
         
         manager.request(urlRequest).responseJSON(completionHandler: { response in
             
             switch response.result {
             case .success:
                 
-                if (response.response?.statusCode == 401 || response.response?.statusCode == 403) {
+                if response.response?.statusCode == 401 || response.response?.statusCode == 403 {
                     
-                    let message = NSLocalizedString("Token expired", comment: "")
+                    let message: String = NSLocalizedString("Token expired", comment: "")
                     failCallback(.generalError(message, response.response?.statusCode, nil))
                 } else {
                     
@@ -425,7 +425,7 @@ public struct HATAccountService {
                         successCallback(array, token)
                     } else {
                         
-                        let message = NSLocalizedString("General Error", comment: "")
+                        let message: String = NSLocalizedString("General Error", comment: "")
                         failCallback(.generalError(message, statusCode, nil))
                     }
                 }

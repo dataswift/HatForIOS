@@ -940,7 +940,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         func completion(fitbitToken: String, newUserToken: String?) {
             
-            XCTAssertTrue(fitbittoken: String == "token")
+            XCTAssertTrue(fitbitToken == "token")
             expectationTest.fulfill()
         }
         

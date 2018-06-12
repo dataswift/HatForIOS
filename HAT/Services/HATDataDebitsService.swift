@@ -52,7 +52,7 @@ public struct HATDataDebitsService {
                         failCallBack(.noInternetConnection)
                     } else {
                         
-                        let message = NSLocalizedString("Server responded with error", comment: "")
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
                         failCallBack(.generalError(message, statusCode, error))
                     }
                 // in case of success call the succesfulCallBack
@@ -63,7 +63,7 @@ public struct HATDataDebitsService {
                         if statusCode == 200 {
                             
                             var arrayToReturn: [DataDebitObject] = []
-                            for item in result.arrayValue {
+                            for item: JSON in result.arrayValue {
                                 
                                 guard let dataDebit: DataDebitObject = DataDebitObject.decode(from: item.dictionaryValue) else {
                                     
@@ -126,7 +126,7 @@ public struct HATDataDebitsService {
                         failCallBack(.noInternetConnection)
                     } else {
                         
-                        let message = NSLocalizedString("Server responded with error", comment: "")
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
                         failCallBack(.generalError(message, statusCode, error))
                     }
                 // in case of success call the succesfulCallBack
@@ -136,7 +136,7 @@ public struct HATDataDebitsService {
                         
                         if statusCode == 200 {
                             
-                            let dictionary = result.dictionaryValue
+                            let dictionary: [String : JSON] = result.dictionaryValue
                             if let dataDebit: DataDebitObject = DataDebitObject.decode(from: dictionary) {
                                 
                                 succesfulCallBack(dataDebit, token)
@@ -145,13 +145,11 @@ public struct HATDataDebitsService {
                                 let message: String = NSLocalizedString("Could not decode response", comment: "")
                                 failCallBack(.generalError(message, statusCode, nil))
                             }
-                            
                         } else {
                             
                             let message: String = NSLocalizedString("Server response was unexpected", comment: "")
                             failCallBack(.generalError(message, statusCode, nil))
                         }
-                        
                     } else {
                         
                         let message: String = NSLocalizedString("Server response was unexpected", comment: "")

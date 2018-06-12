@@ -90,7 +90,7 @@ internal class SpotifyServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 10) { error in
             
-            if let error: error: Error = error {
+            if let error: Error = error {
                 
                 print("Error: \(error.localizedDescription)")
             }

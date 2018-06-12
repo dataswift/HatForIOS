@@ -41,7 +41,7 @@ public struct DataOfferRequiredDataDefinitionBundleFiltersV2: Codable {
     
     public init(from decoder: Decoder) throws {
         
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container: KeyedDecodingContainer<CodingKeys> = try decoder.container(keyedBy: CodingKeys.self)
         self.field = try container.decode(String.self, forKey: .field)
         do {
             
@@ -53,7 +53,7 @@ public struct DataOfferRequiredDataDefinitionBundleFiltersV2: Codable {
         
         do {
             
-            let test = try container.decode(HATOperator?.self, forKey: .`operator`)
+            let test: HATOperator? = try container.decode(HATOperator?.self, forKey: .`operator`)
             
             switch test?.operator {
                 

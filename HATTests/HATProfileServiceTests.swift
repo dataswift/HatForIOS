@@ -184,7 +184,7 @@ internal class HATProfileServiceTests: XCTestCase {
         
         let userDomain: String = "testing.hubat.net"
         
-        var nationality = HATNationalityObject()
+        var nationality: HATNationalityObject = HATNationalityObject()
         nationality.nationality = "Greek"
         nationality.passportHeld = "123"
         nationality.passportNumber = "123"

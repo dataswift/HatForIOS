@@ -65,7 +65,7 @@ public struct HATSpotifyService {
                     return
                 }
                 
-                let profileJSON = jsonArray[0]["data"].dictionaryValue
+                let profileJSON: [String : JSON] = jsonArray[0]["data"].dictionaryValue
                 if let profile: HATSpotifyProfileObject = HATSpotifyProfileObject.decode(from: profileJSON) {
                 
                     successCallback([profile], newToken)

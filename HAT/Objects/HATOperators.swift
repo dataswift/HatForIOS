@@ -32,7 +32,7 @@ public class HATOperator: Codable {
     
     public required init(from decoder: Decoder) throws {
         
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container: KeyedDecodingContainer<CodingKeys> = try decoder.container(keyedBy: CodingKeys.self)
         self.operator = try container.decode(HATOperatorTypes.self, forKey: .`operator`)
     }
 }
@@ -64,9 +64,8 @@ public class OperatorFind: HATOperator {
     
     public required init(from decoder: Decoder) throws {
         
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.search = try container.decode(String.self, forKey: .search)        
+        let container: KeyedDecodingContainer<CodingKeys> = try decoder.container(keyedBy: CodingKeys.self)
+        self.search = try container.decode(String.self, forKey: .search)
         try super.init(from: decoder)
     }
 }
-
