@@ -96,8 +96,8 @@ public struct HATExternalAppsService {
     public static func getAppInfo(userToken: String, userDomain: String, applicationId: String, completion: @escaping ((HATApplicationObject, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
         
         let url: String = "https://\(userDomain)/api/v2.6/applications/\(applicationId)"
-        let headers: [String: String] = ["x-auth-token": userToken]
-        
+        let headers: [String: String] = ["x-auth-token": userToken, "Cache-Control": "no-cache"]
+
         HATNetworkHelper.asynchronousRequest(
             url,
             method: .get,
