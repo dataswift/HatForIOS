@@ -22,14 +22,7 @@ public struct DataOfferRequiredDataDefinitionBundleFiltersV2: Codable {
         case field
         case transformation
     }
-    
-    enum HATOperatorTypes: String, Decodable {
         
-        case find
-        case contains
-        case between
-    }
-    
     // MARK: - Variables
     
     /// the field to filter

@@ -47,6 +47,51 @@ public struct HATLoginService {
     }
     
     /**
+     Gets the public key from HAT
+     
+     - parameter userDomain: The user's domain
+     - parameter completion: The function to execute on successful verification, returning the puvlic key
+     - parameter failed: The function to execute on failed verification
+     */
+    public static func getPublicKey(userDomain: String, completion: @escaping (String) -> Void, failed: @escaping (HATError) -> Void) {
+        
+        let url = HATAccountService.theUserHATDomainPublicKeyURL(userDomain)
+        
+        HATNetworkHelper.asynchronousStringRequest(
+            url!,
+            method: .get,
+            encoding: Alamofire.JSONEncoding.default,
+            contentType: ContentType.json,
+            parameters: [:],
+            headers: [:],
+            completion: {response in
+                
+                switch response {
+                case .isSuccess(let isSuccess, let statusCode, let result, _):
+                    
+                    if isSuccess && statusCode == 200 {
+                        
+                        completion(result)
+                    } else {
+                        
+                        let message: String = "Error"
+                        failed(.generalError(message, statusCode, nil))
+                    }
+                case .error(let error, let statusCode):
+                    
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        failed(.noInternetConnection)
+                    } else {
+                        
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        failed(.generalError(message, statusCode, error))
+                    }
+                }
+        })
+    }
+    
+    /**
      Log in authorization process
      
      - parameter userDomain: The user's domain
