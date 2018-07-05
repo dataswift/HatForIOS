@@ -23,6 +23,7 @@ private class HATToolsServiceTests: XCTestCase {
             [
                 "name": "data-feed-direct-mapper",
                 "description": "",
+                "headline": "",
                 "trigger": [
                     "triggerType": "individual"
                 ],

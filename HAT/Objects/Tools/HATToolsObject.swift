@@ -15,9 +15,13 @@ public struct HATToolsObject: HATObject {
     
     public var name: String = ""
     public var description: String = ""
+    public var headline: String = ""
+    public var graphics: HATToolsGraphicsObject?
     public var available: Bool = false
     public var enabled: Bool = false
     public var lastExecution: String?
     public var dataBundle: HATToolsDataBundleObject = HATToolsDataBundleObject()
     public var trigger: HATToolsTriggerObject = HATToolsTriggerObject()
+    public var dataPreview: [HATFeedObject]?
+    public var dataPreviewEndpoint: String?
 }

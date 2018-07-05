@@ -20,7 +20,7 @@ public struct HATExternalAppsStatusObject: HATObject {
     /// The compatibility of this app
     public var compatibility: String = ""
     /// The endpoing this app will be reading or writing on HAT
-    public var recentDataCheckEndpoint: String = ""
+    public var recentDataCheckEndpoint: String?
     /// The kind of the app
     public var kind: String = ""
     public var statusUrl: String?

@@ -211,6 +211,8 @@
 		60812BF21FA7856700C91120 /* HATFeedContentMediaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60812BF11FA7856700C91120 /* HATFeedContentMediaObject.swift */; };
 		60812BF31FA7856700C91120 /* HATFeedContentMediaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60812BF11FA7856700C91120 /* HATFeedContentMediaObject.swift */; };
 		60812BF51FA787BD00C91120 /* HATFeedServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60812BF41FA787BD00C91120 /* HATFeedServiceTests.swift */; };
+		60828C9E20EE742D00BD8630 /* HATToolsGraphicsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60828C9D20EE742D00BD8630 /* HATToolsGraphicsObject.swift */; };
+		60828C9F20EE742D00BD8630 /* HATToolsGraphicsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60828C9D20EE742D00BD8630 /* HATToolsGraphicsObject.swift */; };
 		608297AF20DC5591009E544B /* HATToolsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608297AE20DC5591009E544B /* HATToolsObject.swift */; };
 		608297B020DC5591009E544B /* HATToolsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608297AE20DC5591009E544B /* HATToolsObject.swift */; };
 		608297B220DC56FC009E544B /* HATToolsTriggerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608297B120DC56FC009E544B /* HATToolsTriggerObject.swift */; };
@@ -508,6 +510,7 @@
 		60812BEE1FA7852D00C91120 /* HATFeedContentObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATFeedContentObject.swift; sourceTree = "<group>"; };
 		60812BF11FA7856700C91120 /* HATFeedContentMediaObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATFeedContentMediaObject.swift; sourceTree = "<group>"; };
 		60812BF41FA787BD00C91120 /* HATFeedServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATFeedServiceTests.swift; sourceTree = "<group>"; };
+		60828C9D20EE742D00BD8630 /* HATToolsGraphicsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATToolsGraphicsObject.swift; sourceTree = "<group>"; };
 		608297AE20DC5591009E544B /* HATToolsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATToolsObject.swift; sourceTree = "<group>"; };
 		608297B120DC56FC009E544B /* HATToolsTriggerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATToolsTriggerObject.swift; sourceTree = "<group>"; };
 		608297B420DC59E4009E544B /* HATToolsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATToolsService.swift; sourceTree = "<group>"; };
@@ -1005,6 +1008,7 @@
 			isa = PBXGroup;
 			children = (
 				608297AE20DC5591009E544B /* HATToolsObject.swift */,
+				60828C9D20EE742D00BD8630 /* HATToolsGraphicsObject.swift */,
 				60BAC05F20DC626100D946B4 /* HATToolsDataBundleObject.swift */,
 				608297B120DC56FC009E544B /* HATToolsTriggerObject.swift */,
 			);
@@ -1465,6 +1469,7 @@
 				6098205A1ED452150036D1B3 /* HATProfileService.swift in Sources */,
 				60125046201F3AAE00BF0508 /* HATGoogleCalendarAttendeesObject.swift in Sources */,
 				60854FDB1F89877F00DC2BAC /* HATFitbitSleepLevelsSummaryCountObject.swift in Sources */,
+				60828C9E20EE742D00BD8630 /* HATToolsGraphicsObject.swift in Sources */,
 				602E4DA81F0111F400C5FF31 /* DataOfferRequiredDataDefinitionDataSetsFieldsObject.swift in Sources */,
 				60981B362031DA180010F632 /* HATExternalAppsPermissionsRolesGrantedObject.swift in Sources */,
 				602D16D31E82B1D700C53A5E /* HATLocationService.swift in Sources */,
@@ -1618,6 +1623,7 @@
 				60DDBB271E82F544007CDAFB /* HATProviderPaymentObject.swift in Sources */,
 				602E4DAD1F0111F400C5FF31 /* DataOfferRequiredDataDefinitionObject.swift in Sources */,
 				60B3C8471F8291E0002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyEndpointsV2.swift in Sources */,
+				60828C9F20EE742D00BD8630 /* HATToolsGraphicsObject.swift in Sources */,
 				600995C81EBCC7DC007F9330 /* HATTokenHelper.swift in Sources */,
 				602A12411FD6D5B10010786B /* HATProfileDataProfileContactObject.swift in Sources */,
 				6020A7061E52749700D7DC04 /* HATServiceTests.swift in Sources */,
