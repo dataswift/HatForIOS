@@ -13,6 +13,7 @@
 
 public struct HATToolsObject: HATObject {
     
+    public var id: String = ""
     public var name: String = ""
     public var description: String = ""
     public var headline: String = ""
