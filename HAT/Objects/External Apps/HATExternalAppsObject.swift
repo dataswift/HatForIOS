@@ -23,6 +23,8 @@ public struct HATExternalAppsObject: HATObject {
     public var kind: HATExternalAppsKindObject = HATExternalAppsKindObject()
     /// Various information about the app, released, version etc.
     public var info: HATExternalAppsInfoObject = HATExternalAppsInfoObject()
+    /// Information about the developer
+    public var developer: HATExternalAppsInfoDeveloperObject = HATExternalAppsInfoDeveloperObject()
     /// App's permissions to read or write to HAT
     public var permissions: HATExternalAppsPermissionsObject = HATExternalAppsPermissionsObject()
     /// Details about the setup of the app, such as the iosURL needed

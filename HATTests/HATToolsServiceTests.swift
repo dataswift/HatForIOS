@@ -21,6 +21,7 @@ private class HATToolsServiceTests: XCTestCase {
     let appsResponseJSON: [Dictionary<String, Any>] =
         [
             [
+                "id": "id",
                 "name": "data-feed-direct-mapper",
                 "description": "",
                 "headline": "",
