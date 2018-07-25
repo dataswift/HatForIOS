@@ -86,6 +86,10 @@
 		602A12441FD6D5E50010786B /* HATProfileDataProfilePersonalObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A12421FD6D5E50010786B /* HATProfileDataProfilePersonalObject.swift */; };
 		602A12461FD6D6390010786B /* HATProfileDataProfileEmergencyContactObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A12451FD6D6390010786B /* HATProfileDataProfileEmergencyContactObject.swift */; };
 		602A12471FD6D6390010786B /* HATProfileDataProfileEmergencyContactObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A12451FD6D6390010786B /* HATProfileDataProfileEmergencyContactObject.swift */; };
+		602C9F72210874FF00C44A8D /* HATToolsInfoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602C9F71210874FF00C44A8D /* HATToolsInfoObject.swift */; };
+		602C9F73210874FF00C44A8D /* HATToolsInfoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602C9F71210874FF00C44A8D /* HATToolsInfoObject.swift */; };
+		602C9F75210875D300C44A8D /* HATToolsStatusObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602C9F74210875D300C44A8D /* HATToolsStatusObject.swift */; };
+		602C9F76210875D300C44A8D /* HATToolsStatusObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602C9F74210875D300C44A8D /* HATToolsStatusObject.swift */; };
 		602CB44C1E8BFC6900903F33 /* HATFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602CB44B1E8BFC6900903F33 /* HATFileService.swift */; };
 		602CB44D1E8C00F900903F33 /* FileUploadObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA45E51E8A7C5700ABB758 /* FileUploadObject.swift */; };
 		602CB44E1E8C00F900903F33 /* FileUploadObjectPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA45E61E8A7C5700ABB758 /* FileUploadObjectPermissions.swift */; };
@@ -429,6 +433,8 @@
 		602A123F1FD6D5B10010786B /* HATProfileDataProfileContactObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileContactObject.swift; sourceTree = "<group>"; };
 		602A12421FD6D5E50010786B /* HATProfileDataProfilePersonalObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfilePersonalObject.swift; sourceTree = "<group>"; };
 		602A12451FD6D6390010786B /* HATProfileDataProfileEmergencyContactObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileDataProfileEmergencyContactObject.swift; sourceTree = "<group>"; };
+		602C9F71210874FF00C44A8D /* HATToolsInfoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATToolsInfoObject.swift; sourceTree = "<group>"; };
+		602C9F74210875D300C44A8D /* HATToolsStatusObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATToolsStatusObject.swift; sourceTree = "<group>"; };
 		602CB44B1E8BFC6900903F33 /* HATFileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATFileService.swift; sourceTree = "<group>"; };
 		602D16C61E82B1CA00C53A5E /* HATConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATConstants.swift; sourceTree = "<group>"; };
 		602D16C81E82B1D700C53A5E /* HATAccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATAccountService.swift; sourceTree = "<group>"; };
@@ -1011,6 +1017,8 @@
 			isa = PBXGroup;
 			children = (
 				608297AE20DC5591009E544B /* HATToolsObject.swift */,
+				602C9F74210875D300C44A8D /* HATToolsStatusObject.swift */,
+				602C9F71210874FF00C44A8D /* HATToolsInfoObject.swift */,
 				60828C9D20EE742D00BD8630 /* HATToolsGraphicsObject.swift */,
 				60BAC05F20DC626100D946B4 /* HATToolsDataBundleObject.swift */,
 				608297B120DC56FC009E544B /* HATToolsTriggerObject.swift */,
@@ -1410,6 +1418,7 @@
 				60B9CB39204E984C00EFDD40 /* HATExternalAppsIllustrationObject.swift in Sources */,
 				60314E7A1F38925E004383AA /* HATLivingInfoObject.swift in Sources */,
 				60125058201F769E00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestObject.swift in Sources */,
+				602C9F72210874FF00C44A8D /* HATToolsInfoObject.swift in Sources */,
 				60854FD51F8986BC00DC2BAC /* HATFitbitSleepLevelsDataObject.swift in Sources */,
 				6012504F201F420800BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionObject.swift in Sources */,
 				60125070201F857500BF0508 /* HATGoogleCalendarDataObject.swift in Sources */,
@@ -1431,6 +1440,7 @@
 				60854FCC1F89665100DC2BAC /* HATFitbitWeightObject.swift in Sources */,
 				60DE1DD91F34AB9300E031F6 /* HATDataDebitsService.swift in Sources */,
 				602D17161E82B23900C53A5E /* HATTwitterDataSocialFeedObject.swift in Sources */,
+				602C9F75210875D300C44A8D /* HATToolsStatusObject.swift in Sources */,
 				604EC18C207BCFD800CD426D /* HATSpotifyProfileExternalURLObject.swift in Sources */,
 				60F51C3C1F899BDC00F99C47 /* HATFitbitActivityHeartRateZoneObject.swift in Sources */,
 				60001F702005221100E0CEF3 /* HATFacebookDataSocialFeedObject.swift in Sources */,
@@ -1584,6 +1594,7 @@
 				6012506B201F818900BF0508 /* HATGoogleCalendarAttachmentsObject.swift in Sources */,
 				60EDD0201F98DC9000BE24B3 /* DataDebitsServiceTests.swift in Sources */,
 				60DDBB301E82F54C007CDAFB /* HATDataPlugObject.swift in Sources */,
+				602C9F73210874FF00C44A8D /* HATToolsInfoObject.swift in Sources */,
 				60DDBB171E82F530007CDAFB /* HATTwitterDataTweetsSocialFeedObject.swift in Sources */,
 				604EC190207BD28D00CD426D /* SpotifyServiceTests.swift in Sources */,
 				60854FF41F89921300DC2BAC /* HATFitbitStatsTotalStatsObject.swift in Sources */,
@@ -1711,6 +1722,7 @@
 				60125039201F2AF000BF0508 /* HATGoogleCalendarCreatorObject.swift in Sources */,
 				60001F742005277800E0CEF3 /* HATFacebookDataPostsPrivacySocialFeedObject.swift in Sources */,
 				60854FDF1F89895600DC2BAC /* HATFitbitProfileObject.swift in Sources */,
+				602C9F76210875D300C44A8D /* HATToolsStatusObject.swift in Sources */,
 				604B91751F73FDB10099A58A /* HatApiType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

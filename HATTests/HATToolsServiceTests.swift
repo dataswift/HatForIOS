@@ -16,37 +16,93 @@ import Mockingjay
 import SwiftyJSON
 import XCTest
 
-private class HATToolsServiceTests: XCTestCase {
+class HATToolsServiceTests: XCTestCase {
     
-    let appsResponseJSON: [Dictionary<String, Any>] =
+    let appsResponseJSON: [Dictionary<String, Any>] = [
         [
-            [
-                "id": "id",
-                "name": "data-feed-direct-mapper",
-                "description": "",
-                "headline": "",
-                "trigger": [
-                    "triggerType": "individual"
+            "id": "data-feed-counter",
+            "info": [
+                "version": "1.0.0",
+                "name": "Weekly Summary",
+                "headline": "A summary of your week’s digital activities",
+                "description": [
+                    "text": "Weekly Summary shows your weekly online activities.\nIt allows you to to have an overview of your data accumulated in a week. The first weekly summary establish the start date of the tool and is a summary of your history of activities"
                 ],
-                "available": false,
-                "enabled": true,
-                "dataBundle": [
-                    "name": "data-feed-direct-mapper",
-                    "bundle": [
-                        "fitbit/activity/day/summary": [
-                            "endpoints": [
-                                [
-                                    "endpoint": "fitbit/activity/day/summary"
+                "termsUrl": "terms",
+                "dataPreview": [
+                    [
+                        "source": "she",
+                        "date": [
+                            "iso": "2018-07-25T07:32:55.460Z",
+                            "unix": 1532503975
+                        ],
+                        "types": [
+                            "note"
+                        ],
+                        "title": [
+                            "text": "HAT Private Micro-server created",
+                            "subtitle": "21 June 23:00 - 29 June 06:42 GMT",
+                            "action": "insight"
+                        ],
+                        "content": [
+                            "text": "Twitter:\n  Tweets sent: 1\n\nFacebook:\n  Posts composed: 13\n",
+                            "nestedStructure": [
+                                "twitter": [
+                                    [
+                                        "content": "Tweets sent",
+                                        "badge": "1"
+                                    ]
                                 ]
-                            ],
-                            "orderBy": "dateCreated",
-                            "ordering": "descending"
+                            ]
                         ]
                     ]
                 ],
-                "lastExecution": "2018-06-01T08:12:09.875Z"
+                "graphics": [
+                    "banner": [
+                        "normal": ""
+                    ],
+                    "logo": [
+                        "normal": "https://github.com/Hub-of-all-Things/exchange-assets/blob/master/insights-activity-summary/logo.png?raw=true"
+                    ],
+                    "screenshots": [
+                        [
+                            "normal": "https://github.com/Hub-of-all-Things/exchange-assets/blob/master/insights-activity-summary/screenshot1.jpg?raw=true"
+                        ]
+                    ]
+                ],
+                "dataPreviewEndpoint": "she/insights/activity-records"
+            ],
+            "developer": [
+                "id": "hatdex",
+                "name": "HATDeX",
+                "url": "https://hatdex.org",
+                "country": "United Kingdom"
+            ],
+            "trigger": [
+                "period": 0,
+                "triggerType": "periodic"
+            ],
+            "dataBundle": [
+                "name": "data-feed-counter",
+                "bundle": [
+                    "monzo/transactions": [
+                        "endpoints": [
+                            [
+                                "endpoint": "monzo/transactions"
+                            ]
+                        ],
+                        "orderBy": "created",
+                        "ordering": "descending"
+                    ]
+                ]
+            ],
+            "status": [
+                "available": true,
+                "enabled": true,
+                "lastExecution": "2018-07-23T14:46:50.429Z"
             ]
-        ]
+    ]
+    ]
     
     override func setUp() {
         super.setUp()

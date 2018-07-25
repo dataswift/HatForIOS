@@ -24,6 +24,7 @@ public struct HATExternalAppsStatusObject: HATObject {
     /// The kind of the app
     public var kind: String = ""
     public var statusUrl: String?
+    public var versionReleaseDate: String = ""
     public var expectedStatus: Int?
     public var dataPreviewEndpoint: String?
 }

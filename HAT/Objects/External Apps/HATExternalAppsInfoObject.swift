@@ -14,7 +14,7 @@
 // MARK: Struct
 
 public struct HATExternalAppsInfoObject: HATObject {
-
+    
     // MARK: - Variables
     
     /// The current version of the app
@@ -25,6 +25,12 @@ public struct HATExternalAppsInfoObject: HATObject {
     
     /// The name of the app
     public var name: String = ""
+    
+    /// The terms url
+    public var termsUrl: String = ""
+    
+    /// The support email address
+    public var supportContact: String = ""
     
     /// The headline text to describe the app
     public var headline: String = ""

@@ -11,18 +11,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-// MARK: Struct
+public struct HATToolsStatusObject: HATObject {
 
-public struct HATExternalAppsInfoDescriptionObject: HATObject {
-
-    // MARK: - Variables
-    
-    /// The description text as simple String
-    public var text: String = ""
-    
-    /// The description text markdown formatted
-    public var markdown: String?
-    
-    /// The description text html formatte
-    public var html: String?
+    public var available: Bool = false
+    public var enabled: Bool = false
+    public var lastExecution: String?
+    public var executionStarted: String?
 }
