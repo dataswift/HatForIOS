@@ -14,10 +14,12 @@
 public struct HATToolsInfoObject: HATObject {
 
     public var version: String = ""
+    public var versionReleaseDate: String = ""
     public var name: String = ""
     public var headline: String = ""
     public var description: HATExternalAppsInfoDescriptionObject = HATExternalAppsInfoDescriptionObject()
     public var termsUrl: String = ""
+    public var supportContact: String = ""
     public var dataPreview: [HATFeedObject]?
     public var graphics: HATToolsGraphicsObject = HATToolsGraphicsObject()
     public var dataPreviewEndpoint: String = ""

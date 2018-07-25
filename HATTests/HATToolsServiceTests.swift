@@ -23,12 +23,14 @@ class HATToolsServiceTests: XCTestCase {
             "id": "data-feed-counter",
             "info": [
                 "version": "1.0.0",
+                "versionReleaseDate": "2018-01-01T12:00:00.000Z",
                 "name": "Weekly Summary",
                 "headline": "A summary of your week’s digital activities",
                 "description": [
                     "text": "Weekly Summary shows your weekly online activities.\nIt allows you to to have an overview of your data accumulated in a week. The first weekly summary establish the start date of the tool and is a summary of your history of activities"
                 ],
                 "termsUrl": "terms",
+                "supportContact": "contact@hatdex.org",
                 "dataPreview": [
                     [
                         "source": "she",
