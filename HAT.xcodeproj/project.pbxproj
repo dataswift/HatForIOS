@@ -188,6 +188,8 @@
 		6064CEAE208E0E3A003C974A /* HATOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6064CEAC208E0E3A003C974A /* HATOperators.swift */; };
 		6064CEB0208F3BAC003C974A /* HATFeedLocationGeoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6064CEAF208F3BAC003C974A /* HATFeedLocationGeoObject.swift */; };
 		6064CEB1208F3BAC003C974A /* HATFeedLocationGeoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6064CEAF208F3BAC003C974A /* HATFeedLocationGeoObject.swift */; };
+		606611A0211C68B600595576 /* DataDebitValuesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6066119F211C68B600595576 /* DataDebitValuesObject.swift */; };
+		606611A1211C68B600595576 /* DataDebitValuesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6066119F211C68B600595576 /* DataDebitValuesObject.swift */; };
 		606B55A11F1E6ADB004B5D4D /* DataOfferRewardsCashValueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606B55A01F1E6ADB004B5D4D /* DataOfferRewardsCashValueObject.swift */; };
 		606B55A21F1E6B37004B5D4D /* DataOfferRewardsCashValueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606B55A01F1E6ADB004B5D4D /* DataOfferRewardsCashValueObject.swift */; };
 		606BBA3B1E546DF000ECBA6B /* DataPlugsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606BBA3A1E546DF000ECBA6B /* DataPlugsServiceTests.swift */; };
@@ -503,6 +505,7 @@
 		606375AE1E537C7300F0D1B1 /* FormatterHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatterHelperTests.swift; sourceTree = "<group>"; };
 		6064CEAC208E0E3A003C974A /* HATOperators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATOperators.swift; sourceTree = "<group>"; };
 		6064CEAF208F3BAC003C974A /* HATFeedLocationGeoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATFeedLocationGeoObject.swift; sourceTree = "<group>"; };
+		6066119F211C68B600595576 /* DataDebitValuesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataDebitValuesObject.swift; path = "Data Debits/DataDebitValuesObject.swift"; sourceTree = "<group>"; };
 		606B55A01F1E6ADB004B5D4D /* DataOfferRewardsCashValueObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataOfferRewardsCashValueObject.swift; sourceTree = "<group>"; };
 		606BBA3A1E546DF000ECBA6B /* DataPlugsServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPlugsServiceTests.swift; sourceTree = "<group>"; };
 		60705E1A1FAB89EF0064551C /* HATProfileObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileObject.swift; sourceTree = "<group>"; };
@@ -1118,6 +1121,7 @@
 			isa = PBXGroup;
 			children = (
 				60DE1DDB1F34ABE300E031F6 /* DataDebitObject.swift */,
+				6066119F211C68B600595576 /* DataDebitValuesObject.swift */,
 				60EDD0161F98D89B00BE24B3 /* DataDebitPermissionsObject.swift */,
 			);
 			name = "Data Debits";
@@ -1367,6 +1371,7 @@
 				602D16FA1E82B21300C53A5E /* HATProviderCategoryObject.swift in Sources */,
 				60854FF31F89921300DC2BAC /* HATFitbitStatsTotalStatsObject.swift in Sources */,
 				602D16D61E82B1D700C53A5E /* HATService.swift in Sources */,
+				606611A0211C68B600595576 /* DataDebitValuesObject.swift in Sources */,
 				60981B3F2031DC850010F632 /* HATExternalAppsStatusObject.swift in Sources */,
 				60981B3C2031DC310010F632 /* HATExternalAppsSetupObject.swift in Sources */,
 				60854FD21F89861D00DC2BAC /* HATFitbitSleepLevelsObject.swift in Sources */,
@@ -1587,6 +1592,7 @@
 				60DDBB0B1E82F523007CDAFB /* HATConstants.swift in Sources */,
 				606375A71E534C2400F0D1B1 /* Structures.swift in Sources */,
 				60DDBB331E82F54F007CDAFB /* HATSocialFeedObject.swift in Sources */,
+				606611A1211C68B600595576 /* DataDebitValuesObject.swift in Sources */,
 				606375AB1E536B1500F0D1B1 /* TwitterServiceTests.swift in Sources */,
 				604D35092010FE44008378D0 /* HATDataOffersService.swift in Sources */,
 				60DDBB1A1E82F532007CDAFB /* HATSystemStatusKindObject.swift in Sources */,
