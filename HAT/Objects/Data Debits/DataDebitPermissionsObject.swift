@@ -36,4 +36,5 @@ public struct DataDebitPermissionsObject: HATObject {
     public var accepted: Bool = false
     /// It is possible for a permission to have an inner bundle object
     public var bundle: DataOfferRequiredDataDefinitionObjectV2 = DataOfferRequiredDataDefinitionObjectV2()
+    public var conditions: DataOfferRequiredDataDefinitionObjectV2?
 }

@@ -24,16 +24,18 @@ public struct DataOfferClaimObject {
         static let claimStatus: String = "status"
         static let claimConfirmed: String = "confirmed"
         static let claimDateStamp: String = "dateCreated"
+        static let dataDebitID: String = "dataDebitId"
     }
-
+    
     // MARK: - Variables
     
     /// The data offer claim status
     public var claimStatus: String = ""
     /// The data offer claim confirmed state
-    public var claimConfirmed: String = ""
+    public var claimConfirmed: Bool = false
     /// The data offer claim unix time stamp
     public var claimDateStamp: Int = -1
+    public var dataDebitID: String = ""
     
     // MARK: - Initialisers
     
@@ -43,8 +45,9 @@ public struct DataOfferClaimObject {
     public init() {
         
         claimStatus = ""
-        claimConfirmed = ""
+        claimConfirmed = false
         claimDateStamp = -1
+        dataDebitID = ""
     }
     
     /**
@@ -59,9 +62,14 @@ public struct DataOfferClaimObject {
             claimStatus = tempStatus
         }
         
-        if let tempConfirmed = dictionary[DataOfferClaimObject.Fields.claimConfirmed]?.string {
+        if let tempConfirmed = dictionary[DataOfferClaimObject.Fields.claimConfirmed]?.bool {
             
             claimConfirmed = tempConfirmed
+        }
+        
+        if let tempDataDebitID = dictionary[DataOfferClaimObject.Fields.dataDebitID]?.string {
+            
+            dataDebitID = tempDataDebitID
         }
         
         if let tempDateStamp = dictionary[DataOfferClaimObject.Fields.claimDateStamp]?.int {

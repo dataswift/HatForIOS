@@ -22,22 +22,14 @@ public struct HATDataOffersService {
      Gets the available data offers based on the merchants requested
      
      - parameter userDomain: The user's domain
-     - parameter applicationToken: The application token
+     - parameter userToken: The user's token
      - parameter merchants: The merchants to get the offers from
      - parameter succesfulCallBack: A function of type ([DataOfferObject], String?) -> Void, executed on a successful result
      - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
      */
-    public static func getAvailableDataOffers(isBeta: Bool = false, userDomain: String, applicationToken: String, merchants: [String]?, succesfulCallBack: @escaping ([DataOfferObject], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func getAvailableDataOffers(userDomain: String, userToken: String, merchants: [String]?, succesfulCallBack: @escaping ([DataOfferObject], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
-        let mutableURL: NSMutableString
-        
-        if userDomain.contains("hubofallthings") {
-            
-            mutableURL = "https://databuyer.hubofallthings.com/api/v2.6/offersWithClaims"
-        } else {
-            
-            mutableURL = "https://databuyer.hubat.net/api/v2.6/offersWithClaims"
-        }
+        let mutableURL: NSMutableString = NSMutableString(string: "https://\(userDomain)/api/v2.6/applications/databuyer/proxy/api/v2/offersWithClaims")//"https://databuyer.hubofallthings.com/api/v2/offersWithClaims"
         
         if merchants != nil {
             
@@ -56,7 +48,7 @@ public struct HATDataOffersService {
         }
         
         let url: String = mutableURL as String
-        let headers: Dictionary<String, String> = ["X-Auth-Token": applicationToken]
+        let headers: Dictionary<String, String> = ["X-Auth-Token": userToken]
         
         HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: [:], headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
             
@@ -101,24 +93,15 @@ public struct HATDataOffersService {
      Gets the available data plugs for the user to enable
      
      - parameter userDomain: The user's domain
-     - parameter applicationToken: The application token
+     - parameter userToken: The user's token
      - parameter offerID: The offer id to claim
      - parameter succesfulCallBack: A function of type ([HATDataPlugObject]) -> Void, executed on a successful result
      - parameter failCallBack: A function of type (Void) -> Void, executed on an unsuccessful result
      */
-    public static func claimOffer(userDomain: String, applicationToken: String, offerID: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func claimOffer(userDomain: String, userToken: String, offerID: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
-        let url: String
-        
-        if userDomain.contains("hubofallthings") {
-            
-            url = "https://databuyer.hubofallthings.com/api/v2.6/offer/\(offerID)/claim"
-        } else {
-            
-            url = "https://databuyer.hubat.net/api/v2.6/offer/\(offerID)/claim"
-        }
-        
-        let headers: Dictionary<String, String> = ["X-Auth-Token": applicationToken]
+        let url: String = "https://\(userDomain)/api/v2.6/applications/databuyer/proxy/api/v2/offer/\(offerID)/claim"
+        let headers: Dictionary<String, String> = ["X-Auth-Token": userToken]
         
         HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: [:], headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
             
@@ -165,21 +148,13 @@ public struct HATDataOffersService {
      Redeems cash offer
      
      - parameter userDomain: The user's domain
-     - parameter appToken: The databuyer app token
+     - parameter userToken: The user's token
      - parameter succesfulCallBack: A function to execute on successful response returning the server message and the renewed user's token
      - parameter failCallBack: A function to execute on failed response returning the error
      */
-    public static func redeemOffer(userDomain: String, appToken: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func redeemOffer(userDomain: String, userToken: String, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
-        let url: String
-        
-        if userDomain.contains("hubofallthings") {
-            
-            url = "https://databuyer.hubofallthings.com/api/v2.6/user/redeem/cash"
-        } else {
-            
-            url = "https://databuyer.hubat.net/api/v2.6/user/redeem/cash"
-        }
+        let url: String = "https://\(userDomain)/api/v2.6/applications/databuyer/proxy/api/v2/user/redeem/cash"
         
         HATNetworkHelper.asynchronousRequest(
             url,
@@ -187,7 +162,7 @@ public struct HATDataOffersService {
             encoding: Alamofire.URLEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: ["X-Auth-Token": appToken],
+            headers: ["X-Auth-Token": userToken],
             completion: { (response: HATNetworkHelper.ResultType) -> Void in
                 
                 switch response {
@@ -229,7 +204,7 @@ public struct HATDataOffersService {
      */
     public static func getMerchants(userToken: String, userDomain: String, succesfulCallBack: @escaping ([String], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
-        let url: String = "https://\(userDomain)/api/v2.6/data/dex/databuyer"
+        let url: String = "https://\(userDomain)/api/v2/data/dex/databuyer"
         
         HATNetworkHelper.asynchronousRequest(
             url,
@@ -299,85 +274,64 @@ public struct HATDataOffersService {
      */
     public static func claimOfferWrapper(offer: DataOfferObject, userDomain: String, userToken: String, merchants: [String]? = [], succesfulCallBack: @escaping (DataOfferObject, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
-        func gotDatabuyerToken(appToken: String, newUserToken: String?) {
+        func offerAccepted(status: String) {
             
-            func offerAccepted(status: String) {
+            func filterOffers(offers: [DataOfferObject], newUserToken: String?) {
                 
-                func filterOffers(offers: [DataOfferObject], newUserToken: String?) {
+                let filteredOffer: [DataOfferObject] = offers.filter {
                     
-                    let filteredOffer: [DataOfferObject] = offers.filter {
-                        
-                        if $0.dataOfferID == offer.dataOfferID {
-                            
-                            return true
-                        }
-                        
-                        return false
-                    }
-                    
-                    guard !filteredOffer.isEmpty else {
-                        
-                        failCallBack(.noValueFound)
-                        return
-                    }
-                    
-                    let offer: DataOfferObject = filteredOffer[0]
-                    succesfulCallBack(offer, newUserToken)
+                    return $0.dataOfferID == offer.dataOfferID
                 }
                 
-                HATDataOffersService.getAvailableDataOffers(
-                    userDomain: userDomain,
-                    applicationToken: appToken,
-                    merchants: merchants,
-                    succesfulCallBack: filterOffers,
-                    failCallBack: failCallBack)
-            }
-            
-            func success(dataDebitID: String, renewedUserToken: String?) {
-                
-                func dataDebitStatus(isEnabled: Bool) {
+                guard !filteredOffer.isEmpty else {
                     
-                    if !isEnabled {
-                        
-                        HATDataPlugsService.approveDataDebit(
-                            dataDebitID,
-                            userToken: userToken,
-                            userDomain: userDomain,
-                            succesfulCallBack: offerAccepted,
-                            failCallBack: failCallBack)
-                    } else {
-                        
-                        offerAccepted(status: "enabled")
-                    }
+                    failCallBack(.noValueFound)
+                    return
                 }
                 
-                HATDataPlugsService.checkDataDebit(
-                    dataDebitID,
-                    userToken: userToken,
-                    userDomain: userDomain,
-                    succesfulCallBack: dataDebitStatus,
-                    failCallBack: failCallBack)
+                let offer: DataOfferObject = filteredOffer[0]
+                succesfulCallBack(offer, newUserToken)
             }
             
-            HATDataOffersService.claimOffer(
+            HATDataOffersService.getAvailableDataOffers(
                 userDomain: userDomain,
-                applicationToken: appToken,
-                offerID: offer.dataOfferID,
-                succesfulCallBack: success,
+                userToken: userToken,
+                merchants: merchants,
+                succesfulCallBack: filterOffers,
                 failCallBack: failCallBack)
         }
         
-        func failedGettingToken(error: JSONParsingError) {
+        func success(dataDebitID: String, renewedUserToken: String?) {
             
-            failCallBack(.generalError("Failed to get the token", 401, nil))
+            func dataDebitStatus(isEnabled: Bool) {
+                
+                if !isEnabled {
+                    
+                    HATDataPlugsService.approveDataDebit(
+                        dataDebitID,
+                        userToken: userToken,
+                        userDomain: userDomain,
+                        succesfulCallBack: offerAccepted,
+                        failCallBack: failCallBack)
+                } else {
+                    
+                    offerAccepted(status: "enabled")
+                }
+            }
+            
+            HATDataPlugsService.checkDataDebit(
+                dataDebitID,
+                userToken: userToken,
+                userDomain: userDomain,
+                succesfulCallBack: dataDebitStatus,
+                failCallBack: failCallBack)
         }
         
-        HATService.getApplicationTokenFor(
-            serviceName: DataBuyer.name,
+        HATDataOffersService.claimOffer(
             userDomain: userDomain,
             userToken: userToken,
-            resource: DataBuyer.source,
-            succesfulCallBack: gotDatabuyerToken,
-            failCallBack: failedGettingToken)
+            offerID: offer.dataOfferID,
+            succesfulCallBack: success,
+            failCallBack: failCallBack)
     }
 }

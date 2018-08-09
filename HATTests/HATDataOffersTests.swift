@@ -310,7 +310,7 @@ internal class HATDataOffersTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        HATDataOffersService.getAvailableDataOffers(userDomain: userDomain, applicationToken: "", merchants: nil, succesfulCallBack: completion, failCallBack: failed)
+        HATDataOffersService.getAvailableDataOffers(userDomain: userDomain, userToken: "", merchants: nil, succesfulCallBack: completion, failCallBack: failed)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -327,7 +327,7 @@ internal class HATDataOffersTests: XCTestCase {
             ]
         let userDomain: String = "mariostsekis.hubat.net"
         let offerID: String = "123"
-        let urlToConnect: String = "https://databuyer.hubat.net/api/v2.6/offer/\(offerID)/claim"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/applications/databuyer/proxy/api/v2/offer/\(offerID)/claim"
         let expectationTest: XCTestExpectation = expectation(description: "Claiming Data Offer...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
@@ -344,7 +344,7 @@ internal class HATDataOffersTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        HATDataOffersService.claimOffer(userDomain: userDomain, applicationToken: "", offerID: "123", succesfulCallBack: completion, failCallBack: failed)
+        HATDataOffersService.claimOffer(userDomain: userDomain, userToken: "", offerID: "123", succesfulCallBack: completion, failCallBack: failed)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -360,7 +360,7 @@ internal class HATDataOffersTests: XCTestCase {
             "message": "redeemed"
         ]
         let userDomain: String = "mariostsekis.hubat.net"
-        let urlToConnect: String = "https://databuyer.hubat.net/api/v2.6/user/redeem/cash"
+        let urlToConnect: String = "https://\(userDomain)/api/v2.6/applications/databuyer/proxy/api/v2/user/redeem/cash"
         let expectationTest: XCTestExpectation = expectation(description: "Redeeming Data Offer...")
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
@@ -377,7 +377,7 @@ internal class HATDataOffersTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        HATDataOffersService.redeemOffer(userDomain: userDomain, appToken: "", succesfulCallBack: completion, failCallBack: failed)
+        HATDataOffersService.redeemOffer(userDomain: userDomain, userToken: "", succesfulCallBack: completion, failCallBack: failed)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -796,11 +796,10 @@ internal class HATDataOffersTests: XCTestCase {
         let userDomain: String = "mariostsekis.hubat.net"
         let expectationTest: XCTestExpectation = expectation(description: "Claiming and enabling offer...")
 
-        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/users/application_token?name=DataBuyer&resource=https%3A//databuyer.hubat.net/"), builder: json(tokenRepsonse))
-        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://databuyer.hubat.net/api/v2.6/offer/97a0748f-bf81-4aaa-8f39-97ac2557d920/claim"), builder: json(claimOfferResponse))
+        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/api/v2.6/applications/databuyer/proxy/api/v2/offer/97a0748f-bf81-4aaa-8f39-97ac2557d920/claim"), builder: json(claimOfferResponse))
         MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/api/v2.6/data-debit/123"), builder: json(checkIfDebitEnabledResponse))
         MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/api/v2.6/data-debit/123/enable"), builder: json(enableDebitResponse))
-        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://databuyer.hubat.net/api/v2.6/offersWithClaims"), builder: json(getOffersResponse))
+        MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/api/v2.6/applications/databuyer/proxy/api/v2/offersWithClaims"), builder: json(getOffersResponse))
 
         func completion(dataOffer: DataOfferObject, newToken: String?) {
             

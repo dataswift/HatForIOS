@@ -40,7 +40,7 @@ public struct DataOfferRewardsObject {
     /// The vendor URL
     public var vendorURL: String = ""
     /// The reward value of the offer
-    public var value: String = ""
+    public var value: Int = 0
     /// The reward value of the offer as Int
     public var valueInt: Int?
     /// Is the code of the reward able to be reused
@@ -62,7 +62,7 @@ public struct DataOfferRewardsObject {
         rewardType = ""
         vendor = ""
         vendorURL = ""
-        value = ""
+        value = 0
         valueInt = nil
         areCodesReusable = nil
         codes = nil
@@ -92,7 +92,7 @@ public struct DataOfferRewardsObject {
             vendorURL = tempVendorUrl
         }
         
-        if let tempValue = dictionary[DataOfferRewardsObject.Fields.rewardValue]?.string {
+        if let tempValue = dictionary[DataOfferRewardsObject.Fields.rewardValue]?.int {
             
             value = tempValue
         }

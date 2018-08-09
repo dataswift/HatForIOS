@@ -22,7 +22,6 @@ public struct DataOfferObject {
     public struct Fields {
         
         static let dataOfferID: String = "id"
-        static let offerCategory: String = "category"
         static let createdDate: String = "created"
         static let offerTitle: String = "title"
         static let shortDescription: String = "shortDescription"
@@ -30,7 +29,7 @@ public struct DataOfferObject {
         static let imageURL: String = "illustrationUrl"
         static let offerStarts: String = "starts"
         static let offerExpires: String = "expires"
-        static let offerDuration: String = "collectFor"
+        static let collectsDataFor: String = "collectFor"
         static let minimumUsers: String = "requiredMinUser"
         static let maximumUsers: String = "requiredMaxUser"
         static let usersClaimedOffer: String = "totalUserClaims"
@@ -54,17 +53,15 @@ public struct DataOfferObject {
     public var longDescription: String = ""
     /// The image URL of the offer
     public var illustrationURL: String = ""
-    /// The category of the offer
-    public var offerCategory: String = ""
     /// The merchant code of the offer
     public var merchantCode: String = ""
     
     /// the date created as unix time stamp
-    public var created: Int = -1
+    public var created: String = ""
     /// the start date of the offer as unix time stamp
-    public var offerStarts: Int = -1
+    public var offerStarts: String = ""
     /// the expire date of the offer as unix time stamp
-    public var offerExpires: Int = -1
+    public var offerExpires: String = ""
     /// the duration that the offer collects data for as unix time stamp
     public var collectsDataFor: Int = -1
     /// the minimum users required for the offer to activate
@@ -75,10 +72,7 @@ public struct DataOfferObject {
     public var usersClaimedOffer: Int = -1
     
     /// the data definition object of the offer
-    public var requiredDataDefinition: [DataOfferRequiredDataDefinitionObject] = []
-    
-    /// the data definition v2 object of the offer
-    public var requiredDataDefinitionV2: DataOfferRequiredDataDefinitionObjectV2?
+    public var requiredDataDefinition: DataOfferRequiredDataDefinitionObjectV2?
     
     /// the rewards of the offer
     public var reward: DataOfferRewardsObject = DataOfferRewardsObject()
@@ -107,19 +101,17 @@ public struct DataOfferObject {
         shortDescription = ""
         longDescription = ""
         illustrationURL = ""
-        offerCategory = ""
         merchantCode = ""
         
-        created = -1
-        offerStarts = -1
-        offerExpires = -1
+        created = ""
+        offerStarts = ""
+        offerExpires = ""
         collectsDataFor = -1
         requiredMinUsers = -1
         requiredMaxUsers = -1
         usersClaimedOffer = -1
         
-        requiredDataDefinition = []
-        requiredDataDefinitionV2 = nil
+        requiredDataDefinition = nil
         
         reward = DataOfferRewardsObject()
         
@@ -144,14 +136,9 @@ public struct DataOfferObject {
             dataOfferID = tempID
         }
         
-        if let tempCreated = dictionary[DataOfferObject.Fields.createdDate]?.int {
+        if let tempCreated = dictionary[DataOfferObject.Fields.createdDate]?.string {
             
             created = tempCreated
-        }
-        
-        if let tempCategory = dictionary[DataOfferObject.Fields.offerCategory]?.string {
-            
-            offerCategory = tempCategory
         }
         
         if let tempTitle = dictionary[DataOfferObject.Fields.offerTitle]?.string {
@@ -179,17 +166,17 @@ public struct DataOfferObject {
             merchantCode = tempMerchantCode
         }
         
-        if let tempOfferStarts = dictionary[DataOfferObject.Fields.offerStarts]?.int {
+        if let tempOfferStarts = dictionary[DataOfferObject.Fields.offerStarts]?.string {
             
             offerStarts = tempOfferStarts
         }
         
-        if let tempOfferExpires = dictionary[DataOfferObject.Fields.offerExpires]?.int {
+        if let tempOfferExpires = dictionary[DataOfferObject.Fields.offerExpires]?.string {
             
             offerExpires = tempOfferExpires
         }
         
-        if let tempCollectOfferFor = dictionary[DataOfferObject.Fields.offerDuration]?.int {
+        if let tempCollectOfferFor = dictionary[DataOfferObject.Fields.collectsDataFor]?.int {
             
             collectsDataFor = tempCollectOfferFor
         }
@@ -214,22 +201,13 @@ public struct DataOfferObject {
             isPΙIRequested = tempPII
         }
         
-        if let tempRequiredDataDefinition = dictionary[DataOfferObject.Fields.requiredDataDefinitions]?.array {
-            
-            if !tempRequiredDataDefinition.isEmpty {
-                
-                for dataDefination in tempRequiredDataDefinition {
-                    
-                    requiredDataDefinition.append(DataOfferRequiredDataDefinitionObject(dictionary: dataDefination.dictionaryValue))
-                }
-            }
-        } else if let tempRequiredDataDefinition = dictionary[DataOfferObject.Fields.requiredDataDefinitions] {
+        if let tempRequiredDataDefinition = dictionary[DataOfferObject.Fields.requiredDataDefinitions] {
             
             let decoder = JSONDecoder()
             do {
                 
                 let data = try tempRequiredDataDefinition.rawData()
-                requiredDataDefinitionV2 = try decoder.decode(DataOfferRequiredDataDefinitionObjectV2.self, from: data)
+                requiredDataDefinition = try decoder.decode(DataOfferRequiredDataDefinitionObjectV2.self, from: data)
             } catch {
                 
                 print(error)
