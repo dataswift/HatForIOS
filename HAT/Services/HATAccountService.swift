@@ -289,9 +289,51 @@ public struct HATAccountService {
      */
     public static func changePassword(userDomain: String, userToken: String, oldPassword: String, newPassword: String, successCallback: @escaping (String, String?) -> Void, failCallback: @escaping (HATError) -> Void) {
         
-        let url: String = "https://\(userDomain)/control/v2.6/auth/password"
+        let url: String = "https://\(userDomain)/control/v2/auth/password"
         
         let parameters: Dictionary<String, Any> = ["password": oldPassword, "newPassword": newPassword]
+        let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]
+        
+        HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: parameters, headers: headers, completion: {(response: HATNetworkHelper.ResultType) -> Void in
+            
+            switch response {
+                
+            case .error(let error, let statusCode, _):
+                
+                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                    
+                    failCallback(.noInternetConnection)
+                } else {
+                    
+                    let message: String = NSLocalizedString("Server responded with error", comment: "")
+                    failCallback(.generalError(message, statusCode, error))
+                }
+            case .isSuccess(let isSuccess, _, let result, let token):
+                
+                if isSuccess, let message: String = result.dictionaryValue["message"]?.stringValue {
+                    
+                    successCallback(message, token)
+                }
+            }
+        })
+    }
+    
+    // MARK: - Reset Password
+    
+    /**
+     Resets the user's password
+     
+     - parameter userDomain: The user's domain
+     - parameter userToken: The user's authentication token
+     - parameter email: The old password the user entered
+     - parameter successCallback: A function of type (String, String?) to call on success
+     - parameter failCallback: A fuction of type (HATError) to call on fail
+     */
+    public static func resetPassword(userDomain: String, userToken: String, email: String, successCallback: @escaping (String, String?) -> Void, failCallback: @escaping (HATError) -> Void) {
+        
+        let url: String = "https://\(userDomain)/control/v2/auth/passwordReset"
+        
+        let parameters: Dictionary<String, Any> = ["email": email]
         let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]
         
         HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: parameters, headers: headers, completion: {(response: HATNetworkHelper.ResultType) -> Void in

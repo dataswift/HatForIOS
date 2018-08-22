@@ -237,7 +237,7 @@ internal class HATAccountServiceTests: XCTestCase {
         ]
         let parameters: [String: String] = ["oldpassword": "123", "newpassword": "321"]
         let userDomain: String = "mariostsekis.hubofallthings.net"
-        let urlToConnect: String = "https://\(userDomain)/control/v2.6/auth/password"
+        let urlToConnect: String = "https://\(userDomain)/control/v2/auth/password"
         let expectationTest: XCTestExpectation = expectation(description: "Changing password...")
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))
@@ -255,6 +255,41 @@ internal class HATAccountServiceTests: XCTestCase {
         }
         
         HATAccountService.changePassword(userDomain: userDomain, userToken: "", oldPassword: "123", newPassword: "321", successCallback: completion, failCallback: failed)
+        
+        waitForExpectations(timeout: 10) { error in
+            
+            if let error: Error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func testResetPassword() {
+        
+        let body: [String: Any] = [
+            
+            "message": "OK"
+        ]
+        let parameters: [String: String] = ["email": "email"]
+        let userDomain: String = "mariostsekis.hubofallthings.net"
+        let urlToConnect: String = "https://\(userDomain)/control/v2/auth/passwordReset"
+        let expectationTest: XCTestExpectation = expectation(description: "Resetin password...")
+        
+        MockingjayProtocol.addStub(matcher: everything, builder: json(body))
+        
+        func completion(response: String, newToken: String?) {
+            
+            XCTAssert(response == "OK")
+            expectationTest.fulfill()
+        }
+        
+        func failed(error: HATError) {
+            
+            XCTFail()
+            expectationTest.fulfill()
+        }
+        
+        HATAccountService.resetPassword(userDomain: userDomain, userToken: "", email: "email", successCallback: completion, failCallback: failed)
         
         waitForExpectations(timeout: 10) { error in
             

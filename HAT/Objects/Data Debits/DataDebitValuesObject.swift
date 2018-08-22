@@ -14,7 +14,11 @@
 import UIKit
 
 public struct DataDebitValuesObject: HATObject {
-
+    
     public var conditions: [String: Bool]?
     public var bundle: [String: [DataOfferRequiredDataDefinitionBundleKeyEndpointsV2]]?
+    
+    public init() {
+        
+    }
 }
