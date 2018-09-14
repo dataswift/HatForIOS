@@ -81,52 +81,52 @@ public struct HATNotesLocationObject: HATObject, HatApiType {
     public mutating func inititialize(dict: Dictionary<String, JSON>) {
         
         // check for values and assign them if not empty
-        if let tempAltitude = dict[Fields.altitude]?.floatValue {
+        if let tempAltitude: Double = dict[Fields.altitude]?.doubleValue {
             
-            altitude = Double(tempAltitude)
+            altitude = tempAltitude
         }
         
-        if let tempAltitudeAccuracy = dict[Fields.altitudeAccuracy]?.floatValue {
+        if let tempAltitudeAccuracy: Double = dict[Fields.altitudeAccuracy]?.doubleValue {
             
-            altitude_accuracy = Double(tempAltitudeAccuracy)
+            altitude_accuracy = tempAltitudeAccuracy
         }
         
-        if let tempLatitude = dict[Fields.latitude]?.floatValue {
+        if let tempLatitude: Double = dict[Fields.latitude]?.doubleValue {
             
-            latitude = Double(tempLatitude)
+            latitude = tempLatitude
         }
-        if let tempHeading = dict[Fields.heading]?.stringValue {
+        if let tempHeading: String = dict[Fields.heading]?.stringValue {
             
             heading = tempHeading
         }
         
-        if let tempShared = dict[Fields.shared]?.stringValue {
+        if let tempShared: String = dict[Fields.shared]?.stringValue {
             
             if tempShared != "" {
                 
-                if let boolShared = Bool(tempShared) {
+                if let boolShared: Bool = Bool(tempShared) {
                     
                     shared = boolShared
                 }
             }
         }
-        if let tempAccuracy = dict[Fields.accuracy]?.floatValue {
+        if let tempAccuracy: Double = dict[Fields.accuracy]?.doubleValue {
             
-            accuracy = Double(tempAccuracy)
+            accuracy = tempAccuracy
         }
-        if let tempLongitude = dict[Fields.longitude]?.floatValue {
+        if let tempLongitude: Double = dict[Fields.longitude]?.doubleValue {
             
-            longitude = Double(tempLongitude)
+            longitude = tempLongitude
         }
-        if let tempSpeed = dict[Fields.speed]?.floatValue {
+        if let tempSpeed: Double = dict[Fields.speed]?.doubleValue {
             
-            speed = Double(tempSpeed)
+            speed = tempSpeed
         }
     }
     
     public mutating func initialize(fromCache: Dictionary<String, Any>) {
         
-        let dictionary = JSON(fromCache)
+        let dictionary: JSON = JSON(fromCache)
         self.inititialize(dict: dictionary.dictionaryValue)
     }
     

@@ -11,6 +11,7 @@
  */
 
 import Alamofire
+import SwiftyJSON
 
 // MARK: Struct
 
@@ -72,7 +73,7 @@ public struct HATDataOffersService {
                     
                     var returnValue: [DataOfferObject] = []
                     
-                    for item in result.arrayValue {
+                    for item: JSON in result.arrayValue {
                         
                         returnValue.append(DataOfferObject(dictionary: item.dictionaryValue))
                     }
@@ -123,7 +124,7 @@ public struct HATDataOffersService {
                 
                 if isSuccess {
                     
-                    let dictionaryResponse = result.dictionaryValue
+                    let dictionaryResponse: [String: JSON] = result.dictionaryValue
                     
                     if let claimed: String = dictionaryResponse["dataDebitId"]?.stringValue {
                         
@@ -181,7 +182,7 @@ public struct HATDataOffersService {
                     
                     if statusCode == 200 && isSuccess {
                         
-                        let dictionaryResponse = result.dictionaryValue
+                        let dictionaryResponse: [String: JSON] = result.dictionaryValue
                         if let message: String = dictionaryResponse["message"]?.stringValue {
                             
                             succesfulCallBack(message, token)
@@ -231,13 +232,13 @@ public struct HATDataOffersService {
                     
                     if statusCode == 200 && isSuccess && !result.arrayValue.isEmpty {
                         
-                        let dictionaryResponse = result.arrayValue[0].dictionaryValue
-                        if let tempDictionary = dictionaryResponse["data"]?.dictionaryValue {
+                        let dictionaryResponse: [String: JSON] = result.arrayValue[0].dictionaryValue
+                        if let tempDictionary: [String: JSON] = dictionaryResponse["data"]?.dictionaryValue {
                             
-                            if let merchants = tempDictionary["merchants"]?.arrayValue {
+                            if let merchants: [JSON] = tempDictionary["merchants"]?.arrayValue {
                                 
                                 var arrayToReturn: [String] = []
-                                for merchant in merchants {
+                                for merchant: JSON in merchants {
                                     
                                     if let merchantString: String = merchant.string {
                                         

@@ -16,7 +16,7 @@ import Mockingjay
 import SwiftyJSON
 import XCTest
 
-class HATToolsServiceTests: XCTestCase {
+internal class HATToolsServiceTests: XCTestCase {
     
     let appsResponseJSON: [Dictionary<String, Any>] = [
         [

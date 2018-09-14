@@ -12,6 +12,7 @@
  */
 
 import Alamofire
+import SwiftyJSON
 
 public struct HATToolsService {
 
@@ -49,9 +50,9 @@ public struct HATToolsService {
                         
                         var arrayToReturn: [HATToolsObject] = []
                         
-                        if let array = result.array {
+                        if let array: [JSON] = result.array {
                             
-                            for item in array {
+                            for item: JSON in array {
                                 
                                 if let object: HATToolsObject = HATToolsObject.decode(from: item.dictionaryValue) {
                                     
@@ -102,7 +103,7 @@ public struct HATToolsService {
                     
                     if isSuccess && statusCode != 401 {
                         
-                        let dict = result.dictionaryValue
+                        let dict: [String: JSON] = result.dictionaryValue
                             
                         if let object: HATToolsObject = HATToolsObject.decode(from: dict) {
                             
@@ -153,7 +154,7 @@ public struct HATToolsService {
                     
                     if isSuccess && statusCode != 401 {
                         
-                        let dict = result.dictionaryValue
+                        let dict: [String: JSON] = result.dictionaryValue
                         
                         if let object: HATToolsObject = HATToolsObject.decode(from: dict) {
                             
@@ -204,7 +205,7 @@ public struct HATToolsService {
                     
                     if isSuccess && statusCode != 401 {
                         
-                        let dict = result.dictionaryValue
+                        let dict: [String: JSON] = result.dictionaryValue
                         
                         if let object: HATToolsObject = HATToolsObject.decode(from: dict) {
                             
@@ -255,8 +256,8 @@ public struct HATToolsService {
                     
                     if isSuccess && statusCode != 400 {
                         
-                        let dict = result.dictionaryValue
-                        if let message = dict["message"]?.stringValue {
+                        let dict: [String: JSON] = result.dictionaryValue
+                        if let message: String = dict["message"]?.stringValue {
                             
                             completion(message, token)
                         } else {

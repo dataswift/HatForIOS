@@ -77,54 +77,54 @@ public struct DataOfferRewardsObject {
      */
     public init(dictionary: Dictionary<String, JSON>) {
         
-        if let tempRewardType = dictionary[DataOfferRewardsObject.Fields.rewardType]?.string {
+        if let tempRewardType: String = dictionary[DataOfferRewardsObject.Fields.rewardType]?.string {
             
             rewardType = tempRewardType
         }
         
-        if let tempVendor = dictionary[DataOfferRewardsObject.Fields.rewardVendor]?.string {
+        if let tempVendor: String = dictionary[DataOfferRewardsObject.Fields.rewardVendor]?.string {
             
             vendor = tempVendor
         }
         
-        if let tempVendorUrl = dictionary[DataOfferRewardsObject.Fields.vendorURL]?.string {
+        if let tempVendorUrl: String = dictionary[DataOfferRewardsObject.Fields.vendorURL]?.string {
             
             vendorURL = tempVendorUrl
         }
         
-        if let tempValue = dictionary[DataOfferRewardsObject.Fields.rewardValue]?.int {
+        if let tempValue: Int = dictionary[DataOfferRewardsObject.Fields.rewardValue]?.int {
             
             value = tempValue
         }
         
-        if let tempCurrency = dictionary[DataOfferRewardsObject.Fields.currency]?.string {
+        if let tempCurrency: String = dictionary[DataOfferRewardsObject.Fields.currency]?.string {
             
             currency = tempCurrency
         }
         
-        if let tempIntValue = dictionary[DataOfferRewardsObject.Fields.rewardValue]?.int {
+        if let tempIntValue: Int = dictionary[DataOfferRewardsObject.Fields.rewardValue]?.int {
             
             valueInt = tempIntValue
         }
         
-        if let tempCodeReusable = dictionary[DataOfferRewardsObject.Fields.codesReuseable]?.bool {
+        if let tempCodeReusable: Bool = dictionary[DataOfferRewardsObject.Fields.codesReuseable]?.bool {
             
             areCodesReusable = tempCodeReusable
         }
         
-        if let tempCodesArray = dictionary[DataOfferRewardsObject.Fields.codes]?.array {
+        if let tempCodesArray: [JSON] = dictionary[DataOfferRewardsObject.Fields.codes]?.array {
             
             codes = []
-            for code in tempCodesArray {
+            for code: JSON in tempCodesArray {
                 
-                if let unwrappedCode = code.string {
+                if let unwrappedCode: String = code.string {
                     
                     codes?.append(unwrappedCode)
                 }
             }
         }
         
-        if let tempCashValue = dictionary[DataOfferRewardsObject.Fields.cashValue]?.dictionary {
+        if let tempCashValue: [String: JSON] = dictionary[DataOfferRewardsObject.Fields.cashValue]?.dictionary {
             
             cashValue = DataOfferRewardsCashValueObject(dictionary: tempCashValue)
         }

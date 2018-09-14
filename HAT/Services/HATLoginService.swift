@@ -55,7 +55,7 @@ public struct HATLoginService {
      */
     public static func getPublicKey(userDomain: String, completion: @escaping (String) -> Void, failed: @escaping (HATError) -> Void) {
         
-        let url = HATAccountService.theUserHATDomainPublicKeyURL(userDomain)
+        let url: String? = HATAccountService.theUserHATDomainPublicKeyURL(userDomain)
         
         HATNetworkHelper.asynchronousStringRequest(
             url!,

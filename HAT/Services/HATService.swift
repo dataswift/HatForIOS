@@ -256,7 +256,7 @@ public struct HATService {
                     failCallBack(.noInternetConnection)
                 } else {
                     
-                    if let message = result?["cause"].string {
+                    if let message: String = result?["cause"].string {
                         
                         failCallBack(.generalError(message, statusCode, nil))
                     } else {

@@ -86,6 +86,50 @@ internal class HATDataOffersTests: XCTestCase {
                         ]
                     ]
                 ],
+                "dataConditions": [
+                    "name": "97a0748f-bf81-4aaa-8f39-97ac2557d920",
+                    "bundle": [
+                        "iphone/locations": [
+                            "endpoints": [
+                                [
+                                    "endpoint": "iphone/locations",
+                                    "mapping": [
+                                        "accuracy": "accuracy",
+                                        "latitude": "latitude",
+                                        "longitude": "longitude",
+                                        "timestamp": "timestamp",
+                                        "lastUpdated": "lastUpdated",
+                                        "locations.accuracy": "locations.accuracy",
+                                        "locations.latitude": "locations.latitude",
+                                        "locations.longitude": "locations.longitude",
+                                        "locations.timestamp": "locations.timestamp"
+                                    ],
+                                    "filters": []
+                                ]
+                            ]
+                        ],
+                        "rumpel/locations/ios": [
+                            "endpoints": [
+                                [
+                                    "endpoint": "rumpel/locations/ios",
+                                    "mapping": [
+                                        "speed": "speed",
+                                        "course": "course",
+                                        "altitude": "altitude",
+                                        "latitude": "latitude",
+                                        "longitude": "longitude",
+                                        "dateSynced": "dateSynced",
+                                        "dateCreated": "dateCreated",
+                                        "dateCreatedLocal": "dateCreatedLocal",
+                                        "verticalAccuracy": "verticalAccuracy",
+                                        "horizontalAccuracy": "horizontalAccuracy"
+                                    ],
+                                    "filters": []
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 "requiredMinUser": 2,
                 "requiredMaxUser": 100,
                 "totalUserClaims": 7,

@@ -195,7 +195,7 @@ public struct HATFacebookProfileImageObject: HatApiType {
             Fields.width: self.imageWidth,
             Fields.endPoint: self.endPoint,
             Fields.lastUpdated: HATFormatterHelper.formatDateToISO(date: Date()),
-            Fields.imageData: UIImageJPEGRepresentation(self.image ?? UIImage(), 1.0) ?? UIImage()
+            Fields.imageData: (self.image ?? UIImage()).jpegData(compressionQuality: 1.0) ?? UIImage()
         ]
     }
 }

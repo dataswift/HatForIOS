@@ -11,6 +11,7 @@
  */
 
 import Alamofire
+import SwiftyJSON
 
 // MARK: Struct
 
@@ -51,7 +52,7 @@ public struct HATDataPlugsService {
                     
                     var returnValue: [HATDataPlugObject] = []
                     
-                    for item in result.arrayValue {
+                    for item: JSON in result.arrayValue {
                         
                         if let object: HATDataPlugObject = HATDataPlugObject.decode(from: item.dictionaryValue) {
                             

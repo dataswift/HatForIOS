@@ -11,6 +11,7 @@
  */
 
 import Alamofire
+import SwiftyJSON
 
 // MARK: Struct
 
@@ -63,7 +64,7 @@ public struct HATFileService {
                     
                     var images: [FileUploadObject] = []
                     // reload table
-                    for image in result.arrayValue {
+                    for image: JSON in result.arrayValue {
                         
                         images.append(FileUploadObject(from: image.dictionaryValue))
                     }
@@ -71,7 +72,7 @@ public struct HATFileService {
                     successCallback(images, token)
                 } else {
                     
-                    let message = "Server returned unexpected respone"
+                    let message: String = "Server returned unexpected respone"
                     errorCallBack(.generalError(message, statusCode, nil))
                 }
                 
@@ -456,7 +457,7 @@ public struct HATFileService {
             userDomain: userDomain, tags: tags,
             completion: {(fileObject, renewedUserToken) -> Void in
                 
-                let data: Data? = UIImageJPEGRepresentation(fileToUpload, 1.0)
+                let data: Data? = fileToUpload.jpegData(compressionQuality: 1.0)
                 HATNetworkHelper.uploadFile(
                     image: data!,
                     url: fileObject.contentURL,

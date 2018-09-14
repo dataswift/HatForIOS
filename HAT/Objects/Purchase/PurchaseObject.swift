@@ -15,7 +15,7 @@
 public struct PurchaseObject: HATObject {
     
     // MARK: - Variables
-
+    
     /// First name of the new user
     public var firstName: String = ""
     /// Has new user agreed to terms
@@ -34,6 +34,10 @@ public struct PurchaseObject: HATObject {
     public var hatCountry: String = ""
     /// Membership info of the new user
     public var membership: PurchaseMembershipObject = PurchaseMembershipObject()
+    /// The application ID that registers this hat
+    public var applicationId: String = ""
+    /// The optins to mail subscriptions
+    public var optins: [String] = []
     
     // MARK: - Initialisers
     

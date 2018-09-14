@@ -57,22 +57,22 @@ public struct DataOfferClaimObject {
      */
     public init(dictionary: Dictionary<String, JSON>) {
         
-        if let tempStatus = dictionary[DataOfferClaimObject.Fields.claimStatus]?.string {
+        if let tempStatus: String = dictionary[DataOfferClaimObject.Fields.claimStatus]?.string {
             
             claimStatus = tempStatus
         }
         
-        if let tempConfirmed = dictionary[DataOfferClaimObject.Fields.claimConfirmed]?.bool {
+        if let tempConfirmed: Bool = dictionary[DataOfferClaimObject.Fields.claimConfirmed]?.bool {
             
             claimConfirmed = tempConfirmed
         }
         
-        if let tempDataDebitID = dictionary[DataOfferClaimObject.Fields.dataDebitID]?.string {
+        if let tempDataDebitID: String = dictionary[DataOfferClaimObject.Fields.dataDebitID]?.string {
             
             dataDebitID = tempDataDebitID
         }
         
-        if let tempDateStamp = dictionary[DataOfferClaimObject.Fields.claimDateStamp]?.int {
+        if let tempDateStamp: Int = dictionary[DataOfferClaimObject.Fields.claimDateStamp]?.int {
             
             claimDateStamp = tempDateStamp
         }

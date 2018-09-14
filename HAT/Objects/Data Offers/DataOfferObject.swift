@@ -34,6 +34,8 @@ public struct DataOfferObject {
         static let maximumUsers: String = "requiredMaxUser"
         static let usersClaimedOffer: String = "totalUserClaims"
         static let requiredDataDefinitions: String = "requiredDataDefinition"
+        static let dataConditions: String = "dataConditions"
+        static let dataRequirements: String = "dataRequirements"
         static let reward: String = "reward"
         static let owner: String = "owner"
         static let claim: String = "claim"
@@ -74,6 +76,12 @@ public struct DataOfferObject {
     /// the data definition object of the offer
     public var requiredDataDefinition: DataOfferRequiredDataDefinitionObjectV2?
     
+    /// the data conditions object of the offer
+    public var dataConditions: DataOfferRequiredDataDefinitionObjectV2?
+    
+    /// the data requirements object of the offer
+    public var dataRequirements: DataOfferRequiredDataDefinitionObjectV2?
+    
     /// the rewards of the offer
     public var reward: DataOfferRewardsObject = DataOfferRewardsObject()
     
@@ -112,6 +120,8 @@ public struct DataOfferObject {
         usersClaimedOffer = -1
         
         requiredDataDefinition = nil
+        dataConditions = nil
+        dataRequirements = nil
         
         reward = DataOfferRewardsObject()
         
@@ -131,82 +141,82 @@ public struct DataOfferObject {
      */
     public init(dictionary: Dictionary<String, JSON>) {
         
-        if let tempID = dictionary[DataOfferObject.Fields.dataOfferID]?.string {
+        if let tempID: String = dictionary[DataOfferObject.Fields.dataOfferID]?.string {
             
             dataOfferID = tempID
         }
         
-        if let tempCreated = dictionary[DataOfferObject.Fields.createdDate]?.string {
+        if let tempCreated: String = dictionary[DataOfferObject.Fields.createdDate]?.string {
             
             created = tempCreated
         }
         
-        if let tempTitle = dictionary[DataOfferObject.Fields.offerTitle]?.string {
+        if let tempTitle: String = dictionary[DataOfferObject.Fields.offerTitle]?.string {
             
             title = tempTitle
         }
         
-        if let tempShortDescription = dictionary[DataOfferObject.Fields.shortDescription]?.string {
+        if let tempShortDescription: String = dictionary[DataOfferObject.Fields.shortDescription]?.string {
             
             shortDescription = tempShortDescription
         }
         
-        if let tempLongDescription = dictionary[DataOfferObject.Fields.longDescription]?.string {
+        if let tempLongDescription: String = dictionary[DataOfferObject.Fields.longDescription]?.string {
             
             longDescription = tempLongDescription
         }
         
-        if let tempIllustrationUrl = dictionary[DataOfferObject.Fields.imageURL]?.string {
+        if let tempIllustrationUrl: String = dictionary[DataOfferObject.Fields.imageURL]?.string {
             
             illustrationURL = tempIllustrationUrl
         }
         
-        if let tempMerchantCode = dictionary[DataOfferObject.Fields.merchantCode]?.string {
+        if let tempMerchantCode: String = dictionary[DataOfferObject.Fields.merchantCode]?.string {
             
             merchantCode = tempMerchantCode
         }
         
-        if let tempOfferStarts = dictionary[DataOfferObject.Fields.offerStarts]?.string {
+        if let tempOfferStarts: String = dictionary[DataOfferObject.Fields.offerStarts]?.string {
             
             offerStarts = tempOfferStarts
         }
         
-        if let tempOfferExpires = dictionary[DataOfferObject.Fields.offerExpires]?.string {
+        if let tempOfferExpires: String = dictionary[DataOfferObject.Fields.offerExpires]?.string {
             
             offerExpires = tempOfferExpires
         }
         
-        if let tempCollectOfferFor = dictionary[DataOfferObject.Fields.collectsDataFor]?.int {
+        if let tempCollectOfferFor: Int = dictionary[DataOfferObject.Fields.collectsDataFor]?.int {
             
             collectsDataFor = tempCollectOfferFor
         }
         
-        if let tempRequiresMinUsers = dictionary[DataOfferObject.Fields.minimumUsers]?.int {
+        if let tempRequiresMinUsers: Int = dictionary[DataOfferObject.Fields.minimumUsers]?.int {
             
             requiredMinUsers = tempRequiresMinUsers
         }
         
-        if let tempRequiresMaxUsers = dictionary[DataOfferObject.Fields.maximumUsers]?.int {
+        if let tempRequiresMaxUsers: Int = dictionary[DataOfferObject.Fields.maximumUsers]?.int {
             
             requiredMaxUsers = tempRequiresMaxUsers
         }
         
-        if let tempUserClaims = dictionary[DataOfferObject.Fields.usersClaimedOffer]?.int {
+        if let tempUserClaims: Int = dictionary[DataOfferObject.Fields.usersClaimedOffer]?.int {
             
             usersClaimedOffer = tempUserClaims
         }
         
-        if let tempPII = dictionary[DataOfferObject.Fields.pii]?.bool {
+        if let tempPII: Bool = dictionary[DataOfferObject.Fields.pii]?.bool {
             
             isPΙIRequested = tempPII
         }
         
-        if let tempRequiredDataDefinition = dictionary[DataOfferObject.Fields.requiredDataDefinitions] {
+        if let tempRequiredDataDefinition: JSON = dictionary[DataOfferObject.Fields.requiredDataDefinitions] {
             
-            let decoder = JSONDecoder()
+            let decoder: JSONDecoder = JSONDecoder()
             do {
                 
-                let data = try tempRequiredDataDefinition.rawData()
+                let data: Data = try tempRequiredDataDefinition.rawData()
                 requiredDataDefinition = try decoder.decode(DataOfferRequiredDataDefinitionObjectV2.self, from: data)
             } catch {
                 
@@ -214,17 +224,43 @@ public struct DataOfferObject {
             }
         }
         
-        if let tempReward = dictionary[DataOfferObject.Fields.reward]?.dictionary {
+        if let tempDataConditions: JSON = dictionary[DataOfferObject.Fields.dataConditions] {
+            
+            let decoder: JSONDecoder = JSONDecoder()
+            do {
+                
+                let data: Data = try tempDataConditions.rawData()
+                dataConditions = try decoder.decode(DataOfferRequiredDataDefinitionObjectV2.self, from: data)
+            } catch {
+                
+                print(error)
+            }
+        }
+        
+        if let tempDataRequirements: JSON = dictionary[DataOfferObject.Fields.dataRequirements] {
+            
+            let decoder: JSONDecoder = JSONDecoder()
+            do {
+                
+                let data: Data = try tempDataRequirements.rawData()
+                dataRequirements = try decoder.decode(DataOfferRequiredDataDefinitionObjectV2.self, from: data)
+            } catch {
+                
+                print(error)
+            }
+        }
+        
+        if let tempReward: [String: JSON] = dictionary[DataOfferObject.Fields.reward]?.dictionary {
             
             reward = DataOfferRewardsObject(dictionary: tempReward)
         }
         
-        if let tempOwner = dictionary[DataOfferObject.Fields.owner]?.dictionary {
+        if let tempOwner: [String: JSON] = dictionary[DataOfferObject.Fields.owner]?.dictionary {
             
             owner = DataOfferOwnerObject(dictionary: tempOwner)
         }
         
-        if let tempClaim = dictionary[DataOfferObject.Fields.claim]?.dictionary {
+        if let tempClaim: [String: JSON] = dictionary[DataOfferObject.Fields.claim]?.dictionary {
             
             claim = DataOfferClaimObject(dictionary: tempClaim)
         }

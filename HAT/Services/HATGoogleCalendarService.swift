@@ -23,21 +23,26 @@ public struct HATGoogleCalendarService {
     /**
      Gets application token for twitter
      
-     - parameter plug: The plug object to extract the info we need to get the AppToken
+     - parameter name: The name of the plug to get the AppToken
+     - parameter url: The url of the plug to get the AppToken
      - parameter userDomain: The user's domain
      - parameter userToken: The user's token
      - parameter successful: An @escaping (String, String?) -> Void method executed on a successful response
      - parameter failed: An @escaping (JSONParsingError) -> Void) method executed on a failed response
      */
-    public static func getAppTokenForGoogleCalendar(plug: HATDataPlugObject, userDomain: String, userToken: String, successful: @escaping (String, String?) -> Void, failed: @escaping (JSONParsingError) -> Void) {
+    public static func getAppTokenForGoogleCalendar(name: String, url: String, userDomain: String, userToken: String, successful: @escaping (String, String?) -> Void, failed: @escaping (HATTableError) -> Void) {
         
         HATService.getApplicationTokenFor(
-            serviceName: plug.plug.name,
+            serviceName: name,
             userDomain: userDomain,
             userToken: userToken,
-            resource: plug.plug.url,
+            resource: url,
             succesfulCallBack: successful,
-            failCallBack: failed)
+            failCallBack: { error in
+                
+                failed(.generalError(error.localizedDescription, nil, nil))
+            }
+        )
     }
     
     // MARK: - Get calendar data
@@ -125,8 +130,7 @@ public struct HATGoogleCalendarService {
                         }
                     }
                 }
-            }
+        }
         )
     }
-
 }

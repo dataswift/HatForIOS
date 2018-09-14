@@ -12,6 +12,7 @@
  */
 
 import Alamofire
+import SwiftyJSON
 
 // MARK: Struct
 
@@ -59,11 +60,11 @@ public struct HATExternalAppsService {
                     
                     if isSuccess && statusCode != 401 {
                         
-                        if let array = result.array {
+                        if let array: [JSON] = result.array {
                             
                             var arrayToReturn: [HATApplicationObject] = []
                             
-                            for item in array {
+                            for item: JSON in array {
                                 
                                 if let object: HATApplicationObject = HATApplicationObject.decode(from: item.dictionaryValue) {
                                     
@@ -125,7 +126,7 @@ public struct HATExternalAppsService {
                     
                     if isSuccess && statusCode != 401 {
                         
-                        if let item = result.dictionary {
+                        if let item: [String: JSON] = result.dictionary {
                             
                             if let object: HATApplicationObject = HATApplicationObject.decode(from: item) {
                                 
@@ -185,7 +186,7 @@ public struct HATExternalAppsService {
                     
                     if isSuccess && statusCode != 401 {
                         
-                        if let dict = result.dictionary {
+                        if let dict: [String: JSON] = result.dictionary {
                             
                             if let object: HATApplicationObject = HATApplicationObject.decode(from: dict) {
                                 
@@ -249,7 +250,7 @@ public struct HATExternalAppsService {
                     
                     if isSuccess && statusCode != 401 {
                         
-                        if let dict = result.dictionary {
+                        if let dict: [String: JSON] = result.dictionary {
                             
                             if let object: HATApplicationObject = HATApplicationObject.decode(from: dict) {
                                 

@@ -63,7 +63,7 @@ public struct HATAccountService {
                 }
                 if isSuccess {
                     
-                    if let array = result.array {
+                    if let array: [JSON] = result.array {
                         
                         successCallback(array, token)
                     } else {
@@ -220,7 +220,7 @@ public struct HATAccountService {
         
         manager.request(urlRequest).responseJSON(completionHandler: { response in
             
-            let header = response.response?.allHeaderFields
+            let header: [AnyHashable: Any]? = response.response?.allHeaderFields
             let token: String? = header?["x-auth-token"] as? String
             
             if response.response?.statusCode != 201 {
