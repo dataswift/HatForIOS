@@ -20,90 +20,111 @@ internal class HATToolsServiceTests: XCTestCase {
     
     let appsResponseJSON: [Dictionary<String, Any>] = [
         [
-            "id": "data-feed-counter",
+            "id": "sentiment-tracker",
             "info": [
                 "version": "1.0.0",
                 "versionReleaseDate": "2018-01-01T12:00:00.000Z",
-                "name": "Weekly Summary",
-                "headline": "A summary of your week’s digital activities",
+                "name": "Sentiment Tracker",
+                "headline": "Sentiment in your words",
                 "description": [
-                    "text": "Weekly Summary shows your weekly online activities.\nIt allows you to to have an overview of your data accumulated in a week. The first weekly summary establish the start date of the tool and is a summary of your history of activities"
+                    "text": "Sentiment Tracker analyses your texts on Facebook, Twitter and Notables to work out how negative or positive your postings are."
                 ],
-                "termsUrl": "terms",
+                "termsUrl": "https://hatdex.org/terms-of-service-hat-owner-agreement",
                 "supportContact": "contact@hatdex.org",
-                "dataPreview": [
-                    [
-                        "source": "she",
-                        "date": [
-                            "iso": "2018-07-25T07:32:55.460Z",
-                            "unix": 1532503975
-                        ],
-                        "types": [
-                            "note"
-                        ],
-                        "title": [
-                            "text": "HAT Private Micro-server created",
-                            "subtitle": "21 June 23:00 - 29 June 06:42 GMT",
-                            "action": "insight"
-                        ],
-                        "content": [
-                            "text": "Twitter:\n  Tweets sent: 1\n\nFacebook:\n  Posts composed: 13\n",
-                            "nestedStructure": [
-                                "twitter": [
-                                    [
-                                        "content": "Tweets sent",
-                                        "badge": "1"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
                 "graphics": [
                     "banner": [
                         "normal": ""
                     ],
                     "logo": [
-                        "normal": "https://github.com/Hub-of-all-Things/exchange-assets/blob/master/insights-activity-summary/logo.png?raw=true"
+                        "normal": "https://github.com/Hub-of-all-Things/exchange-assets/blob/master/Sentiments/logo.png?raw=true"
                     ],
                     "screenshots": [
                         [
-                            "normal": "https://github.com/Hub-of-all-Things/exchange-assets/blob/master/insights-activity-summary/screenshot1.jpg?raw=true"
+                            "normal": "https://github.com/Hub-of-all-Things/exchange-assets/blob/master/Sentiments/Screenshot1.jpg?raw=true"
+                        ],
+                        [
+                            "normal": "https://github.com/Hub-of-all-Things/exchange-assets/blob/master/Sentiments/Screenshot2.jpg?raw=true"
                         ]
                     ]
                 ],
-                "dataPreviewEndpoint": "she/insights/activity-records"
+                "dataPreviewEndpoint": "/she/feed/she/sentiments"
             ],
             "developer": [
                 "id": "hatdex",
-                "name": "HATDeX",
+                "name": "HAT Data Exchange Ltd",
                 "url": "https://hatdex.org",
                 "country": "United Kingdom"
             ],
             "trigger": [
-                "period": 0,
-                "triggerType": "periodic"
+                "triggerType": "individual"
             ],
             "dataBundle": [
                 "name": "data-feed-counter",
                 "bundle": [
-                    "monzo/transactions": [
+                    "facebook/feed": [
                         "endpoints": [
                             [
-                                "endpoint": "monzo/transactions"
+                                "endpoint": "facebook/feed",
+                                "mapping": [
+                                    "message": "message",
+                                    "timestamp": "created_time"
+                                ]
                             ]
                         ],
-                        "orderBy": "created",
-                        "ordering": "descending"
+                        "orderBy": "created_time",
+                        "ordering": "descending",
+                        "limit": 20
+                    ],
+                    "twitter/tweets": [
+                        "endpoints": [
+                            [
+                                "endpoint": "twitter/tweets",
+                                "mapping": [
+                                    "message": "text",
+                                    "timestamp": "lastUpdated"
+                                ]
+                            ]
+                        ],
+                        "orderBy": "lastUpdated",
+                        "ordering": "descending",
+                        "limit": 20
+                    ],
+                    "notables/feed": [
+                        "endpoints": [
+                            [
+                                "endpoint": "rumpel/notablesv1",
+                                "mapping": [
+                                    "message": "message",
+                                    "timestamp": "created_time"
+                                ]
+                            ]
+                        ],
+                        "orderBy": "created_time",
+                        "ordering": "descending",
+                        "limit": 20
+                    ],
+                    "she/insights/emotions": [
+                        "endpoints": [
+                            [
+                                "endpoint": "she/insights/emotions",
+                                "mapping": [
+                                    "message": "text",
+                                    "timestamp": "timestamp"
+                                ]
+                            ]
+                        ],
+                        "orderBy": "timestamp",
+                        "ordering": "descending",
+                        "limit": 20
                     ]
                 ]
             ],
             "status": [
                 "available": true,
                 "enabled": true,
-                "lastExecution": "2018-07-23T14:46:50.429Z"
+                "lastExecution": "2018-09-14T15:08:53.405Z"
             ]
-    ]
+        ]
     ]
     
     override func setUp() {

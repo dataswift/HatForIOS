@@ -100,6 +100,12 @@ public struct HATDataDebitsService {
      */
     public static func getDataDebit(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (DataDebitObject, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
+        guard dataDebitID != "" else {
+            
+            failCallBack(.generalError("Data debit empy", nil, nil))
+            return
+        }
+        
         let url: String = "https://\(userDomain)/api/v2.6/data-debit/\(dataDebitID)"
         
         let headers: Dictionary<String, String> = ["X-Auth-Token": userToken]
@@ -165,7 +171,7 @@ public struct HATDataDebitsService {
      - parameter succesfulCallBack: A function of type (DataDebitValuesObject) -> Void, executed on a successful result
      - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
      */
-    public static func getDataDebitValues(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (DataDebitValuesObject, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func getDataDebitValues(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (DataDebitValuesObject, String?) -> Void, failCallBack: @escaping (DataPlugError, String) -> Void) {
         
         let url: String = "https://\(userDomain)/api/v2.6/data-debit/\(dataDebitID)/values"
         
@@ -187,11 +193,11 @@ public struct HATDataDebitsService {
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
-                        failCallBack(.noInternetConnection)
+                        failCallBack(.noInternetConnection, dataDebitID)
                     } else {
                         
                         let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        failCallBack(.generalError(message, statusCode, error))
+                        failCallBack(.generalError(message, statusCode, error), dataDebitID)
                     }
                 // in case of success call the succesfulCallBack
                 case .isSuccess(let isSuccess, let statusCode, let result, let token):
@@ -202,7 +208,7 @@ public struct HATDataDebitsService {
                             
                             guard let dataDebit: DataDebitValuesObject = DataDebitValuesObject.decode(from: result.dictionaryValue) else {
                                 
-                                failCallBack(.generalError("Error decoding", statusCode!, nil))
+                                failCallBack(.generalError("Error decoding", statusCode!, nil), dataDebitID)
                                 return
                             }
                             
@@ -210,13 +216,13 @@ public struct HATDataDebitsService {
                         } else {
                             
                             let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                            failCallBack(.generalError(message, statusCode, nil))
+                            failCallBack(.generalError(message, statusCode, nil), dataDebitID)
                         }
                         
                     } else {
                         
                         let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                        failCallBack(.generalError(message, statusCode, nil))
+                        failCallBack(.generalError(message, statusCode, nil), dataDebitID)
                     }
                 }
         }

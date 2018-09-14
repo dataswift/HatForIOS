@@ -214,7 +214,7 @@ internal class DataDebitsServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: DataPlugError) {
+        func failed(error: DataPlugError, dataDebitID: String) {
             
             XCTFail()
             expectationTest.fulfill()
