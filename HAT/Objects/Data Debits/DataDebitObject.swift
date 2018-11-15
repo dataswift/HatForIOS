@@ -36,6 +36,8 @@ public struct DataDebitObject: HATObject {
     public var requestApplicationId: String?
     /// Is data debit active?
     public var active: Bool = false
+    /// Is data debit accepted?
+    public var accepted: Bool = false
     /// The start date of the data debit
     public var start: String?
     /// The end date of the data debit

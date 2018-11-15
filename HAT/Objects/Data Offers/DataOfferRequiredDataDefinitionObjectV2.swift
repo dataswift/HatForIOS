@@ -12,7 +12,7 @@
 
 // MARK: Struct
 
-public struct DataOfferRequiredDataDefinitionObjectV2: Codable {
+public struct DataOfferRequiredDataDefinitionObjectV2: HATObject {
     
     // MARK: - Variables
     
@@ -20,4 +20,16 @@ public struct DataOfferRequiredDataDefinitionObjectV2: Codable {
     public var name: String = ""
     /// The requirements of the offer
     public var bundle: Dictionary<String, DataOfferRequiredDataDefinitionBundleKeyV2> = [:]
+    
+    // MARK: - Initializer
+    
+    public init(name: String, bundle: Dictionary<String, DataOfferRequiredDataDefinitionBundleKeyV2>) {
+        
+        self.name = name
+        self.bundle = bundle
+    }
+    
+    public init() {
+        
+    }
 }

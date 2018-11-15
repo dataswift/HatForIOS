@@ -19,13 +19,13 @@ public class HATFormatterHelper: NSObject {
     
     // MARK: - Static dateFormatter
     
-    /// A static dateFormatter in order to use it accross the file, performance improvements
+    /// A static dateFormatter in order to use it accross the file. `DateFormatter`s are very expensive, it's a good practice to use one instance instead of creating it every time
     static let dateFormatter: DateFormatter = DateFormatter()
     
     // MARK: - String to Date formaters
     
     /**
-     Formats a date to ISO 8601 format
+     Formats a date to `ISO 8601` format
      
      - parameter date: The date to format
      
@@ -41,19 +41,16 @@ public class HATFormatterHelper: NSObject {
     }
     
     /**
-     Formats a string into a Date
+     Formats a string, usually in some ISO format representing a date, into a `Date`
      
-     - parameter string: The string to format to a Date
+     - parameter string: The string to format to a `Date`, usually in some ISO format
      
-     - returns: An optional Date format, nil if all formats failed to produce a date
+     - returns: An optional `Date` format, nil if all formats failed to produce a date
      */
     public class func formatStringToDate(string: String) -> Date? {
         
         // check if the string to format is empty
-        guard string != "" else {
-            
-            return nil
-        }
+        guard string != "" else { return nil }
         
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -92,13 +89,9 @@ public class HATFormatterHelper: NSObject {
         }
         
         // if date is nil try a different format, unix time stamp
-        if date == nil {
-            
-            // timestamp is in milliseconds
-            if let timeStamp: Double = Double(string) {
+        if let timeStamp: Double = Double(string), date == nil  {
                 
-                date = Date(timeIntervalSince1970: TimeInterval(timeStamp / 1000))
-            }
+            date = Date(timeIntervalSince1970: TimeInterval(timeStamp / 1000))
         }
         
         return date
@@ -107,11 +100,11 @@ public class HATFormatterHelper: NSObject {
     // MARK: - UnixTimeStamp
     
     /**
-     Formats a date to unix time stamp
+     Formats a date to unix timestamp in seconds
      
-     - parameter date: The date to format
+     - parameter date: The date to convert to unix timestamp
      
-     - returns: An optional string representing the unix time stamp, nil if the formatting failed
+     - returns: An optional `String` representing the unix timestamp, `nil` if the formatting failed
      */
     public static func formatDateToEpoch(date: Date) -> String? {
         
@@ -133,11 +126,11 @@ public class HATFormatterHelper: NSObject {
     // MARK: - Convert from base64URL to base64
     
     /**
-     String extension to convert from base64Url to base64
+     Convert a `String` from base64Url to base64
      
      parameter stringToConvert: The string to be converted
      
-     returns: The stringToConvert represented in Base64 format
+     returns: The `stringToConvert` parameter represented in Base64 format
      */
     public class func fromBase64URLToBase64(stringToConvert: String) -> String {
         

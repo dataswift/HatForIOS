@@ -14,7 +14,7 @@ import UIKit
 
 // MARK: Struct
 
-public struct DataOfferRequiredDataDefinitionBundleFiltersV2: Codable {
+public struct DataOfferRequiredDataDefinitionBundleFiltersV2: HATObject {
     
     private enum CodingKeys: String, CodingKey {
         

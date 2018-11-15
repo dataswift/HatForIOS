@@ -21,16 +21,13 @@ public class HATNetworkHelper: NSObject {
     // MARK: - Enums
     
     /**
-     JSON Result from HTTP requests
-     
-     - IsSuccess: A tuple containing: isSuccess: Bool, statusCode: Int?, result: JSON, token: String?
-     - Error: A tuple containing: error: Error, statusCode: Int?
+     Network result type from `HTTP` requests. It can be a success or a failure which resulted in some sort of `Error`
      */
     public enum ResultType {
         
-        /// when the result is success. A tuple containing: isSuccess: Bool, statusCode: Int?, result: JSON
+        /// Result is success. A tuple containing: isSuccess: Bool, statusCode: Int?, result: JSON
         case isSuccess(isSuccess: Bool, statusCode: Int?, result: JSON, token: String?)
-        /// when the result is error. A tuple containing: error: Error, statusCode: Int?, result: JSON
+        /// Result is error. A tuple containing: error: Error, statusCode: Int?, result: JSON
         case error(error: Error, statusCode: Int?, result: JSON?)
     }
     

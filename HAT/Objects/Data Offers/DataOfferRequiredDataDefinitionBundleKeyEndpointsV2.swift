@@ -12,7 +12,7 @@
 
 // MARK: Struct
 
-public struct DataOfferRequiredDataDefinitionBundleKeyEndpointsV2: Codable {
+public struct DataOfferRequiredDataDefinitionBundleKeyEndpointsV2: HATObject {
     
     // MARK: - Variables
     
@@ -24,4 +24,9 @@ public struct DataOfferRequiredDataDefinitionBundleKeyEndpointsV2: Codable {
     public var filters: [DataOfferRequiredDataDefinitionBundleFiltersV2]?
     /// The links of the definition object
     public var links: [DataOfferRequiredDataDefinitionBundleKeyEndpointsV2]?
+    
+    public init(endpoint: String) {
+        
+        self.endpoint = endpoint
+    }
 }

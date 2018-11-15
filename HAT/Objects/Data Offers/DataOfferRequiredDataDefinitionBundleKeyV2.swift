@@ -12,7 +12,7 @@
 
 // MARK: Struct
 
-public struct DataOfferRequiredDataDefinitionBundleKeyV2: Codable {
+public struct DataOfferRequiredDataDefinitionBundleKeyV2: HATObject {
     
     // MARK: - Variables
     
@@ -24,4 +24,11 @@ public struct DataOfferRequiredDataDefinitionBundleKeyV2: Codable {
     public var ordering: String?
     /// The limit of the filter
     public var limit: Int?
+    
+    // MARK: - Initializer
+    
+    public init(endpoints: [DataOfferRequiredDataDefinitionBundleKeyEndpointsV2]) {
+        
+        self.endpoints = endpoints
+    }
 }

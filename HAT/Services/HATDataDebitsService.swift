@@ -298,4 +298,97 @@ public struct HATDataDebitsService {
         }
         )
     }
+    
+    // MARK: - Create data debit
+    
+    /**
+     Creates a data debit for the user
+     
+     - parameter dataDebitID: The desired data debit id, this has to be unique
+     - parameter bundle: The bundle structure for the data debit
+     - parameter userToken: A String representing the user's token
+     - parameter userDomain: A String representing the user's domain
+     - parameter succesfulCallBack: A function of type (DataDebitObject) -> Void, executed on a successful result
+     - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
+     */
+    public static func createDataDebit(dataDebitID: String, bundle: DataDebitCreationObject, userToken: String, userDomain: String, succesfulCallBack: @escaping (DataDebitObject, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+        
+        guard dataDebitID != "" else {
+            
+            failCallBack(.generalError("Data debit empy", nil, nil))
+            return
+        }
+        
+        let url: String = "https://\(userDomain)/api/v2.6/data-debit/\(dataDebitID)"
+        
+        let headers: Dictionary<String, String> = ["X-Auth-Token": userToken]
+        
+        let temp = DataDebitCreationObject.encode(from: bundle)!
+        let data = temp.compactMapValues({ $0 })
+        
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .post,
+            encoding: Alamofire.JSONEncoding.default,
+            contentType: ContentType.json,
+            parameters: data,
+            headers: headers,
+            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+                
+                switch response {
+                    
+                // in case of error call the failCallBack
+                case .error(let error, let statusCode, _):
+                    
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        failCallBack(.noInternetConnection)
+                    } else {
+                        
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        failCallBack(.generalError(message, statusCode, error))
+                    }
+                // in case of success call the succesfulCallBack
+                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                    
+                    if isSuccess {
+                        
+                        if statusCode == 201 {
+                            
+                            guard let dataDebit: DataDebitObject = DataDebitObject.decode(from: result.dictionaryValue) else {
+
+                                failCallBack(.generalError("Error decoding", statusCode!, nil))
+                                return
+                            }
+                            
+                            succesfulCallBack(dataDebit, token)
+                        } else {
+                            
+                            let message: String = NSLocalizedString("Server response was unexpected", comment: "")
+                            failCallBack(.generalError(message, statusCode, nil))
+                        }
+                        
+                    } else {
+                        
+                        let message: String = NSLocalizedString("Server response was unexpected", comment: "")
+                        failCallBack(.generalError(message, statusCode, nil))
+                    }
+                }
+            }
+        )
+    }
+}
+
+extension Dictionary {
+    
+    func compactMapValues<U>( _ transform: (Value) throws -> U? ) rethrows -> [Key: U] {
+        
+        var result = [Key: U]()
+        for (key, value) in self {
+            
+            result[key] = try transform(value)
+        }
+        
+        return result
+    }
 }

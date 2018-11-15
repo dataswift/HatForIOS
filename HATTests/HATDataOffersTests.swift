@@ -527,6 +527,7 @@ internal class HATDataOffersTests: XCTestCase {
                 "requestClientUrl": "",
                 "requestClientLogoUrl": "",
                 "active": false,
+                "accepted": false,
                 "start": nil,
                 "end": nil,
                 "permissionsActive": nil,

@@ -248,6 +248,7 @@ internal class DataPlugsServiceTests: XCTestCase {
                 "requestClientUrl": "",
                 "requestClientLogoUrl": "",
                 "active": true,
+                "accepted": true,
                 "start": nil,
                 "end": nil,
                 "permissionsActive": nil,

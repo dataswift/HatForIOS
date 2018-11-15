@@ -17,11 +17,12 @@ public struct HATJSONHelper {
     // MARK: - Create JSON for file uploading
     
     /**
-     Creates the json file to purchase a HAT
+     Creates the `JSON` structure needed to upload a file
      
-     - parameter fileName: The file name of the photo
+     - parameter fileName: The file name of the file
      - parameter tags: The tags attached to the photo
-     - returns: A Dictionary <String, Any>
+     
+     - returns: A `Dictionary <String, Any>` with the name, source and tags
      */
     static func createFileUploadingJSONFrom(fileName: String, tags: [String]) -> Dictionary <String, Any> {
         
@@ -39,8 +40,9 @@ public struct HATJSONHelper {
     /**
      Creates the json file to upload the nationality to  HAT
      
-     - parameter nationality: The HATNationalityObject with all the necessary values
-     - returns: A Dictionary <String, String>
+     - parameter nationality: The `HATNationalityObject` with all the necessary values
+     
+     - returns: A `Dictionary <String, String>` with nationality, passportHeld, passportNumber, placeOfBirth and language
      */
     static func createFileUploadingJSONFrom(nationality: HATNationalityObject) -> Dictionary <String, String> {
         

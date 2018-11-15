@@ -10,199 +10,184 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-import Foundation
-
 /**
- The data needed for communicating with twitter data plug
- 
- - tableName: The name of the table that HAT saves data
- - sourceName: The source name of the data
- - serviceName: The service, Plug, name
+ The data needed for communicating with twitter data plug, such as `tableName`, `sourceName` and `serviceName`
  */
 public struct Twitter {
     
     /**
-     Constructs the api/status endpoint for the plug according to the dataplug url returned from the HAT
+     Constructs the `api/status` endpoint for the plug according to the dataplug url returned from the HAT
      
      - parameter twitterDataPlugURL: The plug url returned from HAT
      
-     - returns: The twitterDataPlugURL appended with /api/status
+     - returns: The `twitterDataPlugURL` parameter appended with `/api/status`
      */
     public static func twitterDataPlugStatusURL(twitterDataPlugURL: String) -> String {
         
         return "\(twitterDataPlugURL)/api/status"
     }
     
+    /// The name of the table that HAT saves data
     public static let tableName: String = "tweets"
+    /// The source name of the plug
     public static let sourceName: String = "twitter"
+    /// The service, Plug, name
     public static let serviceName: String = "Twitter"
 }
 
 /**
- The strings needed for communicating with fitbit data plug
- 
- - sourceName: The source name of the data
- - serviceName: The service, Plug, name
+ The strings needed for communicating with spotify data plug
  */
 public struct Spotify {
     
     /**
-     Constructs the api/status endpoint for the plug according to the dataplug url returned from the HAT
+     Constructs the `api/status` endpoint for the plug according to the dataplug url returned from the HAT
      
      - parameter spotifyDataPlugURL: The plug url returned from HAT
      
-     - returns: The spotifyDataPlugURL appended with /api/status
+     - returns: The `spotifyDataPlugURL` parameter appended with `/api/status`
      */
     public static func spotifyDataPlugStatusURL(spotifyDataPlugURL: String) -> String {
         
         return "\(spotifyDataPlugURL)/api/status"
     }
     
+    /// The source name of the plug
     public static let sourceName: String = "spotify"
+    /// The service, Plug, name
     public static let serviceName: String = "spotify"
 }
 
 /**
  The strings needed for communicating with fitbit data plug
- 
- - sourceName: The source name of the data
- - serviceName: The service, Plug, name
  */
 public struct Fitbit {
     
     /**
-     Constructs the api/status endpoint for the plug according to the dataplug url returned from the HAT
+     Constructs the `api/status` endpoint for the plug according to the dataplug url returned from the HAT
      
      - parameter fitbitDataPlugURL: The plug url returned from HAT
      
-     - returns: The fitbitDataPlugURL appended with /api/status
+     - returns: The `fitbitDataPlugURL` parameter appended with `/api/status`
      */
     public static func fitbitDataPlugStatusURL(fitbitDataPlugURL: String) -> String {
         
         return "\(fitbitDataPlugURL)/api/status"
     }
     
+    /// The source name of the plug
     public static let sourceName: String = "fitbit"
+    /// The service, Plug, name
     public static let serviceName: String = "Fitbit"
 }
 
 /**
  The strings needed for communicating with facebook data plug
- 
- - tableName: The name of the table that HAT saves data
- - sourceName: The source name of the data
- - serviceName: The service, Plug, name
  */
 public struct Facebook {
     
     /**
-     Constructs the api/status endpoint for the plug according to the dataplug url returned from the HAT
+     Constructs the `api/status` endpoint for the plug according to the dataplug url returned from the HAT
      
      - parameter facebookDataPlugURL: The plug url returned from HAT
      
-     - returns: The facebookDataPlugURL appended with /api/status
+     - returns: The `facebookDataPlugURL` paranter appended with `/api/status`
      */
     public static func facebookDataPlugStatusURL(facebookDataPlugURL: String) -> String {
         
         return "\(facebookDataPlugURL)/api/status"
     }
     
+    /// The name of the table that HAT saves data
     public static let tableName: String = "feed"
+    /// The source name of the plug
     public static let sourceName: String = "facebook"
+    /// The service, Plug, name
     public static let serviceName: String = "Facebook"
 }
 
 /**
- The strings needed for communicating with facebook data plug
- 
- - tableName: The name of the table that HAT saves data
- - sourceName: The source name of the data
- - serviceName: The service, Plug, name
+ The strings needed for communicating with google calendar data plug
  */
 public struct GoogleCalendar {
     
     /**
-     Constructs the api/status endpoint for the plug according to the dataplug url returned from the HAT
+     Constructs the `api/status` endpoint for the plug according to the dataplug url returned from the HAT
      
-     - parameter facebookDataPlugURL: The plug url returned from HAT
+     - parameter googleDataPlugURL: The plug url returned from HAT
      
-     - returns: The facebookDataPlugURL appended with /api/status
+     - returns: The `googleDataPlugURL` parameter appended with `/api/status`
      */
     public static func googleCalendarDataPlugStatusURL(googleDataPlugURL: String) -> String {
         
         return "\(googleDataPlugURL)/api/status"
     }
     
+    /// The name of the table that HAT saves data
     public static let tableName: String = "google/events"
+    /// The source name of the plug
     public static let sourceName: String = "calendar"
+    /// The service, Plug, name
     public static let serviceName: String = "calendar"
 }
 
 /**
  The strings needed for communicating with notables service
- 
- - tableName: The source name of the data
- - sourceName: The service, Plug, name
  */
 public enum Notables {
     
+    /// The name of the table that HAT saves data
     public static let tableName: String = "notablesv1"
+    /// The source name of the plug
     public static let sourceName: String = "rumpel"
 }
 
 /**
  The strings needed for generating databuyer token
- 
- - name: The name of the service
- - source: The source of the service
  */
 public struct DataBuyer {
     
+    /// The name of the service
     public static let name: String = "DataBuyer"
+    /// The source of the service
     public static var source: String = "https://databuyer.hubat.net/"
 }
 
 /**
  The strings needed for generating Dex token
- 
- - name: The name of the service
- - source: The source of the service
  */
 public struct Dex {
     
+    /// The name of the service
     public static let name: String = "Dex"
+    /// The source of the service
     public static var source: String = "https://dex.hubofallthings.com/"
 }
 
 /**
- The request headers
- 
- - xAuthToken: The xAuthToken name in the headers
- - tokenParamName: The token name in the headers
+ The request headers used in various network requests
  */
 public enum RequestHeaders {
     
+    /// The xAuthToken name in the headers
     public static let xAuthToken: String = "x-auth-token"
+    /// The token name in the headers
     public static let tokenParamName: String = "token"
 }
 
 /**
- The content type
- 
- - json: "application/json"
- - text: "text/plain"
+ The content type used in various network requests
  */
 public enum ContentType {
     
+    /// The `application/json` content type
     public static let json: String = "application/json"
+    /// The `text/plain` content type
     public static let text: String = "text/plain"
 }
 
 /**
  The authentication data used by location service
- 
- - dataPlugID: The location plug id
- - locationDataPlugToken: The location plug token, used when enabling the service
  */
 public enum HATDataPlugCredentials {
     
