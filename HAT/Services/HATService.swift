@@ -241,8 +241,12 @@ public struct HATService {
         
         let url: String = "https://hatters.hubofallthings.com/api/products/hat/purchase"
         
-        let body: [String : Any]? = PurchaseObject.encode(from: purchaseModel)
-        let test: [String : Any] = JSON(body!).dictionaryObject!
+        guard let temp: [String: Any?] = PurchaseObject.encode(from: purchaseModel) else {
+            
+            return
+        }
+        let body: [String : Any] = temp as [String : Any]
+        let test: [String : Any] = JSON(body).dictionaryObject!
         
         HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: test, headers: [:], completion: {(response: HATNetworkHelper.ResultType) -> Void in
             

@@ -135,7 +135,7 @@ public struct HATNotablesService {
         }
         
         // update JSON file with the values needed
-        let hatData: [String: Any] = HATNotesDataObject.encode(from: tempNote.data)!
+        let hatData: [String: Any] = HATNotesDataObject.encode(from: tempNote.data)! as [String : Any]
         
         HATAccountService.createTableValue(
             userToken: userToken,

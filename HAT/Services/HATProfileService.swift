@@ -269,10 +269,11 @@ public struct HATProfileService {
      */
     public static func postProfile(userToken: String, userDomain: String, profile: HATProfileObject, successCallback: @escaping (HATProfileObject, String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
-        guard let profileJSON: Dictionary<String, Any> = HATProfileDataObject.encode(from: profile.data) else {
+        guard let temp: [String: Any?] = HATProfileDataObject.encode(from: profile.data) else {
             
             return
         }
+        let profileJSON: [String: Any] = temp as [String: Any]
         
         HATAccountService.createTableValue(
             userToken: userToken,
@@ -541,7 +542,7 @@ public struct HATProfileService {
             temp.addEntries(from: profileStructure)
             temp.addEntries(from: notablesStructure)
             
-            if let dictionaryToReturn: [String: Any]? = temp as? Dictionary<String, Any> {
+            if let dictionaryToReturn: Dictionary<String, Any> = temp as? Dictionary<String, Any> {
                 
                 return dictionaryToReturn
             }
