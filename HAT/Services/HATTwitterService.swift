@@ -87,8 +87,8 @@ public struct HATTwitterService {
         HATAccountService.getHatTableValues(
             token: authToken,
             userDomain: userDomain,
-            namespace: Twitter.sourceName,
-            scope: Twitter.tableName,
+            namespace: Twitter.source,
+            scope: Twitter.name,
             parameters: parameters,
             successCallback: sendObjectBack,
             errorCallback: errorCallback)

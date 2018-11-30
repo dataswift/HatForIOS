@@ -29,7 +29,7 @@ public struct HATSpotifyService {
     public static func getApplicationTokenForSpotify(userDomain: String, userToken: String, dataPlugURL: String, successCallback: @escaping (String, String?) -> Void, errorCallback: @escaping (JSONParsingError) -> Void) {
         
         HATService.getApplicationTokenFor(
-            serviceName: Spotify.serviceName,
+            serviceName: Spotify.source,
             userDomain: userDomain,
             userToken: userToken,
             resource: dataPlugURL,

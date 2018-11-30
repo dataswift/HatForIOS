@@ -109,18 +109,12 @@ public class HATFormatterHelper: NSObject {
     public static func formatDateToEpoch(date: Date) -> String? {
         
         // get the unix time stamp
-        let elapse: TimeInterval = date.timeIntervalSince1970
+        let timeElapsedSince1970: String = String(date.timeIntervalSince1970)
+        let dotSeperatedArray: [String] = timeElapsedSince1970.components(separatedBy: ".")
         
-        let temp: String = String(elapse)
+        guard !dotSeperatedArray.isEmpty else { return nil }
         
-        let array: [String] = temp.components(separatedBy: ".")
-        
-        if !array.isEmpty {
-            
-            return array[0]
-        }
-        
-        return nil
+        return dotSeperatedArray[0]
     }
     
     // MARK: - Convert from base64URL to base64
@@ -143,10 +137,7 @@ public class HATFormatterHelper: NSObject {
             convertedString += "="
         }
         
-        convertedString = convertedString.replacingOccurrences(of: "-", with: "+")
-        convertedString = convertedString.replacingOccurrences(of: "_", with: "/")
-        
-        return convertedString
+        return convertedString.replacingOccurrences(of: "-", with: "+").replacingOccurrences(of: "_", with: "/")
     }
     
 }
