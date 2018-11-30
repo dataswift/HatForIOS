@@ -11,7 +11,6 @@
  */
 
 import Alamofire
-@testable import HAT
 import Mockingjay
 import XCTest
 

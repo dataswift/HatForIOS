@@ -285,6 +285,8 @@
 		6098205D1ED4694F0036D1B3 /* HATNationalityObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6098205C1ED4694F0036D1B3 /* HATNationalityObject.swift */; };
 		609863271FA78071003309B7 /* HATFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609863261FA78071003309B7 /* HATFeedService.swift */; };
 		609863281FA78071003309B7 /* HATFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609863261FA78071003309B7 /* HATFeedService.swift */; };
+		609DC1D821B15BDE009566DA /* HATDataPlugsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A14BDD21A6D671005B1D32 /* HATDataPlugsConstants.swift */; };
+		609DC1D921B15BDE009566DA /* HATApplicationsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A14BDF21A71406005B1D32 /* HATApplicationsConstants.swift */; };
 		60A14BDE21A6D671005B1D32 /* HATDataPlugsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A14BDD21A6D671005B1D32 /* HATDataPlugsConstants.swift */; };
 		60A14BE021A71406005B1D32 /* HATApplicationsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A14BDF21A71406005B1D32 /* HATApplicationsConstants.swift */; };
 		60B2C9401FACBE0000404DBD /* HATLocationsDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B2C93F1FACBE0000404DBD /* HATLocationsDataObject.swift */; };
@@ -1690,6 +1692,7 @@
 				60B3C8441F82917B002E7AA4 /* DataOfferRequiredDataDefinitionBundleKeyV2.swift in Sources */,
 				604EC191207BD59400CD426D /* HATSpotifyService.swift in Sources */,
 				60854FD31F89861D00DC2BAC /* HATFitbitSleepLevelsObject.swift in Sources */,
+				609DC1D821B15BDE009566DA /* HATDataPlugsConstants.swift in Sources */,
 				607A391E1FE72D8600C90A94 /* HATNotesPhotoObject.swift in Sources */,
 				60B2C9411FACBE0000404DBD /* HATLocationsDataObject.swift in Sources */,
 				60314E761F3889E6004383AA /* HATEmployementStatusObject.swift in Sources */,
@@ -1740,6 +1743,7 @@
 				60DDBB101E82F528007CDAFB /* HATNotableService.swift in Sources */,
 				60705E1F1FAB8A4F0064551C /* HATProfileDataObject.swift in Sources */,
 				60125047201F3AAE00BF0508 /* HATGoogleCalendarAttendeesObject.swift in Sources */,
+				609DC1D921B15BDE009566DA /* HATApplicationsConstants.swift in Sources */,
 				602A12381FD6D5060010786B /* HATProfileDataProfilePhotoObject.swift in Sources */,
 				60812BEA1FA782F200C91120 /* HATFeedObject.swift in Sources */,
 				60854FD91F89873E00DC2BAC /* HATFitbitSleepLevelsSummaryObject.swift in Sources */,
@@ -1816,6 +1820,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1873,6 +1878,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -1901,7 +1907,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hatdex.HAT;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hubofallthings.hat-api-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1925,7 +1931,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hatdex.HAT;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hubofallthings.hat-api-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
