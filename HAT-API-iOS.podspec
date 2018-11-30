@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "HAT-API-iOS"
-  spec.version      = "0.0.1"
+  spec.version      = "0.0.2"
   spec.summary      = "Includes all the API calls you will need to communicate with HAT."
 
   # This description is used to generate tags and improve search results.
