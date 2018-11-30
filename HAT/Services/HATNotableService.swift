@@ -107,7 +107,7 @@ public struct HATNotablesService {
                 
                 let note: HATNotesObject = HATNotesObject(dict: jsonArray[0].dictionaryValue)
                 success(note, newToken)
-        },
+            },
             errorCallback: failed)
     }
     

@@ -228,11 +228,7 @@ public struct HATAccountService {
                 errorCallback(.generalError("An error occured", 400, nil))
             } else {
                 
-                guard let array: Any = response.result.value else {
-                    
-                    errorCallback(.generalError("An error occured", 400, nil))
-                    return
-                }
+                let array: Any = response.result.value as Any
                 let json: JSON = JSON(array)
                 successCallback([json], token)
             }
