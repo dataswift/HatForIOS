@@ -17,14 +17,14 @@ Pod::Spec.new do |spec|
 
   spec.name         = "HAT-API-iOS"
   spec.version      = "0.0.2"
-  spec.summary      = "Includes all the API calls you will need to communicate with HAT."
+  spec.summary      = "Includes all the API calls you will need to communicate and work with HAT."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  spec.description  = "Includes all the API calls you will need to communicate with HAT."
+  spec.description  = "`HAT-FOR-iOS` provides features that make your app to be able to `authenticate` with the HAT, `read/write` to the `HAT`, fetch and setup `Data Plugs` and `Applications`, fetch `Data debits` and use advanced features like `Combinators` and `Bundles`. "
 
   spec.homepage     = "https://developers.hubofallthings.com"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -51,7 +51,7 @@ Pod::Spec.new do |spec|
   #  profile URL.
   #
 
-  spec.author             = { "whiteshadow-gr" => "marios4th@yahoo.gr" }
+  spec.author             = { "Marios Tsekis" => "developers@hatdex.org" }
   # Or just: spec.author    = "whiteshadow-gr"
   # spec.authors            = { "whiteshadow-gr" => "marios4th@yahoo.gr" }
   # spec.social_media_url   = "https://twitter.com/whiteshadow-gr"
