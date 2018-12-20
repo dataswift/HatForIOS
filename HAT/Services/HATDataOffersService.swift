@@ -28,7 +28,7 @@ public struct HATDataOffersService {
      - parameter succesfulCallBack: A function of type ([DataOfferObject], String?) -> Void, executed on a successful result
      - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
      */
-    public static func getAvailableDataOffers(userDomain: String, userToken: String, merchants: [String]?, succesfulCallBack: @escaping ([DataOfferObject], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func getAvailableDataOffers(userDomain: String, userToken: String, merchants: [String]?, succesfulCallBack: @escaping ([DataOffer], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
         let mutableURL: NSMutableString = NSMutableString(string: "https://\(userDomain)/api/v2.6/applications/databuyer/proxy/api/v2/offersWithClaims")//"https://databuyer.hubofallthings.com/api/v2/offersWithClaims"
         
@@ -71,11 +71,11 @@ public struct HATDataOffersService {
                 
                 if isSuccess {
                     
-                    var returnValue: [DataOfferObject] = []
+                    var returnValue: [DataOffer] = []
                     
                     for item: JSON in result.arrayValue {
                         
-                        returnValue.append(DataOfferObject(dictionary: item.dictionaryValue))
+                        returnValue.append(DataOffer(dictionary: item.dictionaryValue))
                     }
                     
                     succesfulCallBack(returnValue, token)
@@ -189,7 +189,7 @@ public struct HATDataOffersService {
                         }
                     }
                 }
-        }
+            }
         )
     }
     
@@ -257,7 +257,7 @@ public struct HATDataOffersService {
                         failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
-        }
+            }
         )
     }
     
@@ -273,15 +273,15 @@ public struct HATDataOffersService {
      - parameter succesfulCallBack: A function returning the new offer object and the the user's token
      - parameter failCallBack: A function executing of failure
      */
-    public static func claimOfferWrapper(offer: DataOfferObject, userDomain: String, userToken: String, merchants: [String]? = [], succesfulCallBack: @escaping (DataOfferObject, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func claimOfferWrapper(offer: DataOffer, userDomain: String, userToken: String, merchants: [String]? = [], succesfulCallBack: @escaping (DataOffer, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
         func offerAccepted(status: String) {
             
-            func filterOffers(offers: [DataOfferObject], newUserToken: String?) {
+            func filterOffers(offers: [DataOffer], newUserToken: String?) {
                 
-                let filteredOffer: [DataOfferObject] = offers.filter {
+                let filteredOffer: [DataOffer] = offers.filter {
                     
-                    return $0.dataOfferID == offer.dataOfferID
+                    $0.dataOfferID == offer.dataOfferID
                 }
                 
                 guard !filteredOffer.isEmpty else {
@@ -290,7 +290,7 @@ public struct HATDataOffersService {
                     return
                 }
                 
-                let offer: DataOfferObject = filteredOffer[0]
+                let offer: DataOffer = filteredOffer[0]
                 succesfulCallBack(offer, newUserToken)
             }
             

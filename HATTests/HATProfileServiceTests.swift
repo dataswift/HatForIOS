@@ -21,7 +21,7 @@ private struct Bodies {
         "nationality": "Greek",
         "passportHeld": "123",
         "passportNumber": "123",
-        "placeOfBirthe": "Greece",
+        "placeOfBirth": "Greece",
         "language": "Greek"
     ]]
     
@@ -29,9 +29,9 @@ private struct Bodies {
         "nationality": "Greek",
         "passportHeld": "123",
         "passportNumber": "123",
-        "placeOfBirthe": "Greece",
+        "placeOfBirth": "Greece",
         "language": "Greek"
-        ]
+    ]
     
     static let profile: [[String: Any]] = [[
         "endpoint": "rumpel/profile",

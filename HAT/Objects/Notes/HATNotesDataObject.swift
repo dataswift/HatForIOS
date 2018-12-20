@@ -24,14 +24,32 @@ public struct HATNotesDataObject: HATObject, HatApiType {
         static let authorV1: String = "authorv1"
         static let photoV1: String = "photov1"
         static let locationV1: String = "locationv1"
-        static let created_time: String = "created_time"
-        static let public_until: String = "public_until"
-        static let updated_time: String = "updated_time"
+        static let createdTime: String = "created_time"
+        static let publicUntil: String = "public_until"
+        static let updatedTime: String = "updated_time"
         static let shared: String = "shared"
-        static let currently_shared: String = "currently_shared"
-        static let shared_on: String = "shared_on"
+        static let currentlyShared: String = "currently_shared"
+        static let sharedOn: String = "shared_on"
         static let message: String = "message"
         static let kind: String = "kind"
+    }
+    
+    // MARK: - Coding Keys
+    
+    /// The names of the variables in the JSON received
+    enum CodingKeys: String, CodingKey {
+        
+        case authorv1 = "authorv1"
+        case photov1 = "photov1"
+        case locationv1 = "locationv1"
+        case createdTime = "created_time"
+        case publicUntil = "public_until"
+        case updatedTime = "updated_time"
+        case shared = "shared"
+        case currentlyShared = "currently_shared"
+        case sharedOn = "shared_on"
+        case message = "message"
+        case kind = "kind"
     }
     
     // MARK: - Variables
@@ -46,19 +64,19 @@ public struct HATNotesDataObject: HATObject, HatApiType {
     public var locationv1: HATNotesLocationObject?
     
     /// creation date
-    public var created_time: String = ""
+    public var createdTime: String = ""
     /// the date until this note will be public (don't know if it's optional or not)
-    public var public_until: String?
+    public var publicUntil: String?
     /// the updated time of the note
-    public var updated_time: String = ""
+    public var updatedTime: String = ""
     
     /// if true this note is shared to facebook etc.
     public var shared: Bool = false
     /// if true this note is shared to facebook etc.
-    public var currently_shared: Bool = false
+    public var currentlyShared: Bool = false
     
     /// If shared, where is it shared? Coma seperated string (don't know if it's optional or not)
-    public var shared_on: [String] = []
+    public var sharedOn: [String] = []
     /// the actual message of the note
     public var message: String = ""
     /// the kind of the note. 3 types available note, blog or list
@@ -91,66 +109,67 @@ public struct HATNotesDataObject: HATObject, HatApiType {
     public mutating func inititialize(dict: Dictionary<String, JSON>) {
         
         let tempDict: Dictionary<String, JSON>
-        if let temp = dict["notablesv1"]?.dictionaryValue {
+        if let temp: [String: JSON] = dict["notablesv1"]?.dictionaryValue {
             
             tempDict = temp
         } else {
             
             tempDict = dict
         }
-        if let tempAuthorData = tempDict[Fields.authorV1]?.dictionary {
+        
+        if let tempAuthorData: [String: JSON] = tempDict[Fields.authorV1]?.dictionary {
             
             authorv1 = HATNotesAuthorObject.init(dict: tempAuthorData)
         }
         
-        if let tempPhotoData = tempDict[Fields.photoV1]?.dictionary {
+        if let tempPhotoData: [String: JSON] = tempDict[Fields.photoV1]?.dictionary {
             
             photov1 = HATNotesPhotoObject.init(dict: tempPhotoData)
         }
         
-        if let tempLocationData = tempDict[Fields.locationV1]?.dictionary {
+        if let tempLocationData: [String: JSON] = tempDict[Fields.locationV1]?.dictionary {
             
             locationv1 = HATNotesLocationObject.init(dict: tempLocationData)
         }
         
-        if let tempSharedOn = tempDict[Fields.shared_on]?.arrayValue {
+        if let tempSharedOn: [JSON] = tempDict[Fields.sharedOn]?.arrayValue {
             
-            for item in tempSharedOn {
+            for item: JSON in tempSharedOn {
                 
-                shared_on.append(item.stringValue)
+                sharedOn.append(item.stringValue)
             }
         }
         
-        if let tempPublicUntil = tempDict[Fields.public_until]?.string {
+        if let tempPublicUntil: String = tempDict[Fields.publicUntil]?.string {
             
-            public_until = tempPublicUntil
+            publicUntil = tempPublicUntil
         }
         
-        if let tempCreatedTime = tempDict[Fields.created_time]?.string {
+        if let tempCreatedTime: String = tempDict[Fields.createdTime]?.string {
             
-            created_time = tempCreatedTime
+            createdTime = tempCreatedTime
         }
         
-        if let tempUpdatedTime = tempDict[Fields.updated_time]?.string {
+        if let tempUpdatedTime: String = tempDict[Fields.updatedTime]?.string {
             
-            updated_time = tempUpdatedTime
+            updatedTime = tempUpdatedTime
         }
         
-        if let tempShared = tempDict[Fields.shared]?.boolValue {
+        if let tempShared: Bool = tempDict[Fields.shared]?.boolValue {
             
             shared = tempShared
         }
-        if let tempCurrentlyShared = tempDict[Fields.currently_shared]?.boolValue {
+        if let tempCurrentlyShared: Bool = tempDict[Fields.currentlyShared]?.boolValue {
             
-            currently_shared = tempCurrentlyShared
+            currentlyShared = tempCurrentlyShared
         }
         
-        if let tempMessage = tempDict[Fields.message]?.string {
+        if let tempMessage: String = tempDict[Fields.message]?.string {
             
             message = tempMessage
         }
         
-        if let tempKind = tempDict[Fields.kind]?.string {
+        if let tempKind: String = tempDict[Fields.kind]?.string {
             
             kind = tempKind
         }
@@ -164,12 +183,12 @@ public struct HATNotesDataObject: HATObject, HatApiType {
             Fields.authorV1: authorv1.toJSON(),
             Fields.photoV1: photov1?.toJSON() ?? HATNotesPhotoObject().toJSON(),
             Fields.locationV1: locationv1?.toJSON() ?? HATNotesLocationObject().toJSON(),
-            Fields.created_time: created_time,
-            Fields.public_until: public_until ?? "",
-            Fields.updated_time: updated_time,
+            Fields.createdTime: createdTime,
+            Fields.publicUntil: publicUntil ?? "",
+            Fields.updatedTime: updatedTime,
             Fields.shared: shared,
-            Fields.currently_shared: currently_shared,
-            Fields.shared_on: shared_on,
+            Fields.currentlyShared: currentlyShared,
+            Fields.sharedOn: sharedOn,
             Fields.message: message,
             Fields.kind: kind
         ]

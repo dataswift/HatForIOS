@@ -154,7 +154,7 @@ internal class NotableServiceTests: XCTestCase {
     func testPostNote() {
         
         let expectationTest: XCTestExpectation = expectation(description: "Post note to hat...")
-        let body: [[String : Any]] = [
+        let body: [[String: Any]] = [
             [
                 "endpoint": "rumpel/notablesv1",
                 "recordId": "e9ad3c29-787d-468f-b81f-e388c1190a6e",
@@ -226,9 +226,9 @@ internal class NotableServiceTests: XCTestCase {
         
         var note1: HATNotesObject = HATNotesObject()
         note1.recordId = "432"
-        note1.data.updated_time = "2018-01-22T12:00:34Z"
+        note1.data.updatedTime = "2018-01-22T12:00:34Z"
         var note2: HATNotesObject = note1
-        note2.data.updated_time = "2018-01-23T12:00:34Z"
+        note2.data.updatedTime = "2018-01-23T12:00:34Z"
         note2.recordId = "2432"
         
         let array: [HATNotesObject] = [note1, note2]
@@ -239,6 +239,7 @@ internal class NotableServiceTests: XCTestCase {
     }
 
     func testPerformanceExample() {
+        
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.

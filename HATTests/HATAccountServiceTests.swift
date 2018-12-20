@@ -50,7 +50,7 @@ internal class HATAccountServiceTests: XCTestCase {
                     ],
                     "name": "2017-02-09T16:48:19.506Z"
                 ]
-        ]
+            ]
         let userDomain: String = "mariostsekis.hubofallthings.net"
         let urlToConnect: String = "https://notables.hubofallthings.com/api/bulletin/tickle?"
         let expectationTest: XCTestExpectation = expectation(description: "Tickling hat...")
@@ -93,7 +93,7 @@ internal class HATAccountServiceTests: XCTestCase {
                     ],
                     "name": "2017-02-09T16:48:19.506Z"
                 ]
-        ]
+            ]
         let userDomain: String = "mariostsekis.hubofallthings.net"
         let urlToConnect: String = "https://mariostsekis.hubofallthings.net/api/v2.6/data/newdata/test"
         let expectationTest: XCTestExpectation = expectation(description: "Create value on hat...")
@@ -102,7 +102,7 @@ internal class HATAccountServiceTests: XCTestCase {
         
         func completion(json: JSON, newToken: String?) {
             
-            let tempDict: [String : JSON] = json[0].dictionaryValue
+            let tempDict: [String: JSON] = json[0].dictionaryValue
             
             XCTAssert(tempDict["data"] == ["newData": "true"])
             expectationTest.fulfill()
@@ -136,7 +136,7 @@ internal class HATAccountServiceTests: XCTestCase {
                     ],
                     "name": "2017-02-09T16:48:19.506Z"
                 ]
-        ]
+            ]
         let userDomain: String = "mariostsekis.hubofallthings.net"
         let urlToConnect: String = "https://mariostsekis.hubofallthings.net/api/v2.6/data/newdata/test"
         let expectationTest: XCTestExpectation = expectation(description: "Get value from hat...")
@@ -145,7 +145,7 @@ internal class HATAccountServiceTests: XCTestCase {
         
         func completion(json: [JSON], newToken: String?) {
             
-            let tempDict: [String : JSON] = json[0].dictionaryValue
+            let tempDict: [String: JSON] = json[0].dictionaryValue
             
             XCTAssert(tempDict["data"] == ["newData": "true"])
             expectationTest.fulfill()

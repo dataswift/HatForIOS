@@ -118,8 +118,8 @@ open class NetworkReachabilityManager {
         address.sin_family = sa_family_t(AF_INET)
 
         guard let reachability = withUnsafePointer(to: &address, { pointer in
-            return pointer.withMemoryRebound(to: sockaddr.self, capacity: MemoryLayout<sockaddr>.size) {
-                return SCNetworkReachabilityCreateWithAddress(nil, $0)
+            pointer.withMemoryRebound(to: sockaddr.self, capacity: MemoryLayout<sockaddr>.size) {
+                SCNetworkReachabilityCreateWithAddress(nil, $0)
             }
         }) else { return nil }
 
@@ -147,7 +147,7 @@ open class NetworkReachabilityManager {
 
         let callbackEnabled = SCNetworkReachabilitySetCallback(
             reachability,
-            { (_, flags, info) in
+            { _, flags, info in
                 let reachability = Unmanaged<NetworkReachabilityManager>.fromOpaque(info!).takeUnretainedValue()
                 reachability.notifyListener(flags)
             },

@@ -10,28 +10,36 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-import UIKit
-
 // MARK: Struct
 
 public struct DataOfferRequiredDataDefinitionBundleFiltersV2: HATObject {
     
+    // MARK: - Coding Keys
+    
+    /// The names of the variables in the JSON received
     private enum CodingKeys: String, CodingKey {
         
-        case `operator`
-        case field
-        case transformation
+        case hatOperator = "operator"
+        case field = "field"
+        case transformation = "transformation"
     }
         
     // MARK: - Variables
     
-    /// the field to filter
+    /// the field that we want to filter
     public var field: String = ""
-    /// The transformation to be done on the field
+    /// The transformation to be done on the field. Optional
     public var transformation: Dictionary<String, String>?
-    /// The operator of the filter
-    public var `operator`: HATOperator?
+    /// The operator of the filter. Can be `contains`, `in`, `between` and `find`
+    public var hatOperator: HATOperator?
     
+    // MARK: - Initializer
+    
+    /**
+     Tries to decode the JSON into the struct `DataOfferRequiredDataDefinitionBundleFiltersV2`. Can throw
+     
+     - parameter decoder: The decoder to use during the decoding process
+     */
     public init(from decoder: Decoder) throws {
         
         let container: KeyedDecodingContainer<CodingKeys> = try decoder.container(keyedBy: CodingKeys.self)
@@ -46,54 +54,53 @@ public struct DataOfferRequiredDataDefinitionBundleFiltersV2: HATObject {
         
         do {
             
-            let test: HATOperator? = try container.decode(HATOperator?.self, forKey: .`operator`)
+            let tempOperator: HATOperator? = try container.decode(HATOperator?.self, forKey: .hatOperator)
             
-            switch test?.operator {
+            switch tempOperator?.operatorType {
                 
-            case .find?:
+            case .operatorFind?:
                 
                 do {
                     
-                    self.operator = try container.decode(OperatorFind.self, forKey: .`operator`)
-
+                    self.hatOperator = try container.decode(OperatorFind.self, forKey: .hatOperator)
                 } catch {
                     
-                    self.operator = nil
+                    self.hatOperator = nil
                 }
-            case .between?:
+            case .operatorBetween?:
                 
                 do {
                     
-                    self.operator = try container.decode(OperatorBetween.self, forKey: .`operator`)
+                    self.hatOperator = try container.decode(OperatorBetween.self, forKey: .hatOperator)
                 } catch {
                     
-                    self.operator = nil
+                    self.hatOperator = nil
                 }
-            case .contains?:
+            case .operatorContains?:
                 
                 do {
                     
-                    self.operator = try container.decode(OperatorContains.self, forKey: .`operator`)
+                    self.hatOperator = try container.decode(OperatorContains.self, forKey: .hatOperator)
                 } catch {
                     
-                    self.operator = nil
+                    self.hatOperator = nil
                 }
-            case .`in`?:
+            case .operatorIn?:
                 
                 do {
                     
-                    self.operator = try container.decode(OperatorIn.self, forKey: .`operator`)
+                    self.hatOperator = try container.decode(OperatorIn.self, forKey: .hatOperator)
                 } catch {
                     
-                    self.operator = nil
+                    self.hatOperator = nil
                 }
             case .none:
                 
-                self.operator = nil
+                self.hatOperator = nil
             }
         } catch {
             
-            self.operator = nil
+            self.hatOperator = nil
         }
     }
 }

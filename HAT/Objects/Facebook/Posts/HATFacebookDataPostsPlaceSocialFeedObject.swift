@@ -65,7 +65,7 @@ public struct HATFacebookDataPostsPlaceSocialFeedObject: HATObject, HatApiType {
             
             name = tempName
         }
-        if let tempLocation: [String : JSON] = dict[Fields.location]?.dictionaryValue {
+        if let tempLocation: [String: JSON] = dict[Fields.location]?.dictionaryValue {
             
             location = HATFacebookDataPostsPlaceLocationSocialFeedObject(from: tempLocation)
         }

@@ -80,7 +80,7 @@ public struct HATNotablesService {
                 
                 HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () })
                 success(string)
-        },
+            },
             failed: failed)
     }
     
@@ -129,13 +129,13 @@ public struct HATNotablesService {
             
             tempNote.data.locationv1 = nil
         }
-        if tempNote.data.photov1?.link == "" {
+        if tempNote.data.photov1?.link?.isEmpty ?? true {
             
             tempNote.data.photov1 = nil
         }
         
         // update JSON file with the values needed
-        let hatData: [String: Any] = HATNotesDataObject.encode(from: tempNote.data)! as [String : Any]
+        let hatData: [String: Any] = HATNotesDataObject.encode(from: tempNote.data)! as [String: Any]
         
         HATAccountService.createTableValue(
             userToken: userToken,
@@ -149,7 +149,7 @@ public struct HATNotablesService {
                 
                 let note: HATNotesObject = HATNotesObject(dict: notes[0].dictionaryValue)
                 successCallBack(note, newToken)
-        },
+            },
             errorCallback: errorCallback)
     }
     
@@ -173,12 +173,7 @@ public struct HATNotablesService {
             // check if the arrayToReturn it contains that value and if not add it
             let result: Bool = arrayToReturn.contains(where: {(note2: HATNotesObject) -> Bool in
                 
-                if note.recordId == note2.recordId {
-                    
-                    return true
-                }
-                
-                return false
+                return note.recordId == note2.recordId
             })
             
             if !result {
@@ -201,6 +196,6 @@ public struct HATNotablesService {
      */
     public static func sortNotables(notes: [HATNotesObject]) -> [HATNotesObject] {
         
-        return notes.sorted { $0.data.updated_time > $1.data.updated_time }
+        return notes.sorted { $0.data.updatedTime > $1.data.updatedTime }
     }
 }

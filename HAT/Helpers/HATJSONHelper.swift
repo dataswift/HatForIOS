@@ -10,9 +10,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-// MARK: Struct
+// MARK: Enum
 
-public struct HATJSONHelper {
+public enum HATJSONHelper {
     
     // MARK: - Create JSON for file uploading
     
@@ -24,15 +24,13 @@ public struct HATJSONHelper {
      
      - returns: A `Dictionary <String, Any>` with the name, source and tags
      */
-    static func createFileUploadingJSONFrom(fileName: String, tags: [String]) -> Dictionary <String, Any> {
+    static func createFileUploadingJSONFrom(fileName: String, tags: [String]) -> [String: Any] {
         
         // the final JSON file to be returned
-        return [
-            
-            "name": fileName,
-            "source": "rumpel",
-            "tags": tags
-            ] as [String : Any]
+        return [ "name": fileName,
+                 "source": "rumpel",
+                 "tags": tags
+        ]
     }
     
     // MARK: - Create JSON for nationality uploading
@@ -44,16 +42,14 @@ public struct HATJSONHelper {
      
      - returns: A `Dictionary <String, String>` with nationality, passportHeld, passportNumber, placeOfBirth and language
      */
-    static func createFileUploadingJSONFrom(nationality: HATNationalityObject) -> Dictionary <String, String> {
+    static func createFileUploadingJSONFrom(nationality: HATNationalityObject) -> [String: String] {
         
         // the final JSON file to be returned
-        return [
-            
-            "nationality": nationality.nationality,
-            "passportHeld": nationality.passportHeld,
-            "passportNumber": nationality.passportNumber,
-            "placeOfBirthe": nationality.placeOfBirth,
-            "language": nationality.language
-            ] as [String : String]
+        return [ "nationality": nationality.nationality,
+                 "passportHeld": nationality.passportHeld,
+                 "passportNumber": nationality.passportNumber,
+                 "placeOfBirth": nationality.placeOfBirth,
+                 "language": nationality.language
+        ]
     }
 }

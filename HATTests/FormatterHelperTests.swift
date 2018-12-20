@@ -14,34 +14,22 @@ import XCTest
 
 internal class FormatterHelperTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    func testFormattingStringToDate1() {
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
+        let stringDate: String = "2017-02-14T18:07:33.000Z"
 
-    func testFormattingStringToDate() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let result: Date? = HATFormatterHelper.formatStringToDate(string: stringDate)
 
-        let stringDate = "2017-02-14T18:07:33.000Z"
-
-        let result = HATFormatterHelper.formatStringToDate(string: stringDate)
-
-        var calendar = Calendar.current
+        var calendar: Calendar = Calendar.current
         calendar.timeZone = TimeZone(identifier: "GMT")!
-        let day = calendar.component(.day, from: result!)
-        let month = calendar.component(.month, from: result!)
-        let year = calendar.component(.year, from: result!)
+        let day: Int = calendar.component(.day, from: result!)
+        let month: Int = calendar.component(.month, from: result!)
+        let year: Int = calendar.component(.year, from: result!)
 
-        let hour = calendar.component(.hour, from: result!)
-        let minutes = calendar.component(.minute, from: result!)
-        let seconds = calendar.component(.second, from: result!)
-        let mseconds = calendar.component(.nanosecond, from: result!)
+        let hour: Int = calendar.component(.hour, from: result!)
+        let minutes: Int = calendar.component(.minute, from: result!)
+        let seconds: Int = calendar.component(.second, from: result!)
+        let mseconds: Int = calendar.component(.nanosecond, from: result!)
         
         XCTAssertTrue(day == 14)
         XCTAssertTrue(month == 02)
@@ -51,21 +39,152 @@ internal class FormatterHelperTests: XCTestCase {
         XCTAssertTrue(seconds == 33)
         XCTAssertTrue(mseconds == 000)
     }
+    
+    func testFormattingStringToDate2() {
+        
+        let stringDate: String = "2017-02-14T18:07:33-00:00"
+        
+        let result: Date? = HATFormatterHelper.formatStringToDate(string: stringDate)
+        
+        var calendar: Calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "GMT")!
+        let day: Int = calendar.component(.day, from: result!)
+        let month: Int = calendar.component(.month, from: result!)
+        let year: Int = calendar.component(.year, from: result!)
+        
+        let hour: Int = calendar.component(.hour, from: result!)
+        let minutes: Int = calendar.component(.minute, from: result!)
+        let seconds: Int = calendar.component(.second, from: result!)
+        let mseconds: Int = calendar.component(.nanosecond, from: result!)
+        
+        XCTAssertTrue(day == 14)
+        XCTAssertTrue(month == 02)
+        XCTAssertTrue(year == 2017)
+        XCTAssertTrue(hour == 18)
+        XCTAssertTrue(minutes == 07)
+        XCTAssertTrue(seconds == 33)
+        XCTAssertTrue(mseconds == 000)
+    }
+    
+    func testFormattingStringToDate3() {
+        
+        let stringDate: String = "2017-02-14"
+        
+        let result: Date? = HATFormatterHelper.formatStringToDate(string: stringDate)
+        
+        var calendar: Calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "GMT")!
+        let day: Int = calendar.component(.day, from: result!)
+        let month: Int = calendar.component(.month, from: result!)
+        let year: Int = calendar.component(.year, from: result!)
+        
+        XCTAssertTrue(day == 14)
+        XCTAssertTrue(month == 02)
+        XCTAssertTrue(year == 2017)
+    }
+    
+    func testFormattingStringToDate4() {
+        
+        let stringDate: String = "2017-02-14T18:07:33.00Z"
+        
+        let result: Date? = HATFormatterHelper.formatStringToDate(string: stringDate)
+        
+        var calendar: Calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "GMT")!
+        let day: Int = calendar.component(.day, from: result!)
+        let month: Int = calendar.component(.month, from: result!)
+        let year: Int = calendar.component(.year, from: result!)
+        
+        let hour: Int = calendar.component(.hour, from: result!)
+        let minutes: Int = calendar.component(.minute, from: result!)
+        let seconds: Int = calendar.component(.second, from: result!)
+        let mseconds: Int = calendar.component(.nanosecond, from: result!)
+        
+        XCTAssertTrue(day == 14)
+        XCTAssertTrue(month == 02)
+        XCTAssertTrue(year == 2017)
+        XCTAssertTrue(hour == 18)
+        XCTAssertTrue(minutes == 07)
+        XCTAssertTrue(seconds == 33)
+        XCTAssertTrue(mseconds == 000)
+    }
+    
+    func testFormattingStringToDate5() {
+        
+        let stringDate: String = "2017-02-14T18:07:33.000"
+        
+        let result: Date? = HATFormatterHelper.formatStringToDate(string: stringDate)
+        
+        var calendar: Calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "GMT")!
+        let day: Int = calendar.component(.day, from: result!)
+        let month: Int = calendar.component(.month, from: result!)
+        let year: Int = calendar.component(.year, from: result!)
+        
+        let hour: Int = calendar.component(.hour, from: result!)
+        let minutes: Int = calendar.component(.minute, from: result!)
+        let seconds: Int = calendar.component(.second, from: result!)
+        let mseconds: Int = calendar.component(.nanosecond, from: result!)
+        
+        XCTAssertTrue(day == 14)
+        XCTAssertTrue(month == 02)
+        XCTAssertTrue(year == 2017)
+        XCTAssertTrue(hour == 18)
+        XCTAssertTrue(minutes == 07)
+        XCTAssertTrue(seconds == 33)
+        XCTAssertTrue(mseconds == 000)
+    }
+    
+    func testFormattingStringToDate6() {
+        
+        let stringDate: String = "Fri Dec 14 18:07:33 Z 2018"
+        
+        let result: Date? = HATFormatterHelper.formatStringToDate(string: stringDate)
+        
+        var calendar: Calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "GMT")!
+        let day: Int = calendar.component(.day, from: result!)
+        let month: Int = calendar.component(.month, from: result!)
+        let year: Int = calendar.component(.year, from: result!)
+        
+        let hour: Int = calendar.component(.hour, from: result!)
+        let minutes: Int = calendar.component(.minute, from: result!)
+        let seconds: Int = calendar.component(.second, from: result!)
+        let mseconds: Int = calendar.component(.nanosecond, from: result!)
+        
+        XCTAssertTrue(day == 14)
+        XCTAssertTrue(month == 12)
+        XCTAssertTrue(year == 2018)
+        XCTAssertTrue(hour == 18)
+        XCTAssertTrue(minutes == 07)
+        XCTAssertTrue(seconds == 33)
+        XCTAssertTrue(mseconds == 000)
+    }
 
     func testFromBase64URLToBase64() {
 
-        let base64URLString = "eyAibXNnX2VuIjogIkhlbGxvIiwKICAibXNnX2pwIjogIuOBk-OCk-OBq-OBoeOBryIsCiAgIm1zZ19jbiI6ICLkvaDlpb0iLAogICJtc2dfa3IiOiAi7JWI64WV7ZWY7IS47JqUIiwKICAibXNnX3J1IjogItCX0LTRgNCw0LLRgdGC0LLRg9C50YLQtSEiLAogICJtc2dfZGUiOiAiR3LDvMOfIEdvdHQiIH0"
+        let base64URLString: String = "eyAibXNnX2VuIjogIkhlbGxvIiwKICAibXNnX2pwIjogIuOBk-OCk-OBq-OBoeOBryIsCiAgIm1zZ19jbiI6ICLkvaDlpb0iLAogICJtc2dfa3IiOiAi7JWI64WV7ZWY7IS47JqUIiwKICAibXNnX3J1IjogItCX0LTRgNCw0LLRgdGC0LLRg9C50YLQtSEiLAogICJtc2dfZGUiOiAiR3LDvMOfIEdvdHQiIH0"
 
-        let base64String = HATFormatterHelper.fromBase64URLToBase64(stringToConvert: base64URLString)
+        let base64String: String = HATFormatterHelper.fromBase64URLToBase64(stringToConvert: base64URLString)
 
         XCTAssertTrue(base64String == "eyAibXNnX2VuIjogIkhlbGxvIiwKICAibXNnX2pwIjogIuOBk+OCk+OBq+OBoeOBryIsCiAgIm1zZ19jbiI6ICLkvaDlpb0iLAogICJtc2dfa3IiOiAi7JWI64WV7ZWY7IS47JqUIiwKICAibXNnX3J1IjogItCX0LTRgNCw0LLRgdGC0LLRg9C50YLQtSEiLAogICJtc2dfZGUiOiAiR3LDvMOfIEdvdHQiIH0=")
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testFromBase64URLToBase642() {
+        
+        let base64URLString: String = "FRER-R"
+        
+        let base64String: String = HATFormatterHelper.fromBase64URLToBase64(stringToConvert: base64URLString)
+        
+        XCTAssertTrue(base64String == "FRER+R==")
+    }
+    
+    func testformatDateToISO() {
+        
+        let date: Date = Date(timeIntervalSince1970: Double(1544794794))
+        let dateString: String = HATFormatterHelper.formatDateToISO(date: date)
+        
+        XCTAssertTrue(dateString == "2018-12-14T13:39:54Z")
     }
 
 }

@@ -74,7 +74,7 @@ public struct HATFitbitService {
                         }
                     }
                 }
-        }
+            }
         )
     }
     
@@ -327,7 +327,7 @@ public struct HATFitbitService {
      */
     public static func getApplicationTokenForFitbit(userDomain: String, userToken: String, dataPlugURL: String, successCallback: @escaping (String, String?) -> Void, errorCallback: @escaping (JSONParsingError) -> Void) {
         
-        HATService.getApplicationTokenFor(
+        HATService.getApplicationTokenLegacyFor(
             serviceName: Fitbit.source,
             userDomain: userDomain,
             userToken: userToken,

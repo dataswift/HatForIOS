@@ -31,7 +31,7 @@ public struct HATGoogleCalendarService {
      */
     public static func getAppTokenForGoogleCalendar(plug: HATDataPlugObject, userDomain: String, userToken: String, successful: @escaping (String, String?) -> Void, failed: @escaping (JSONParsingError) -> Void) {
         
-        HATService.getApplicationTokenFor(
+        HATService.getApplicationTokenLegacyFor(
             serviceName: plug.plug.name,
             userDomain: userDomain,
             userToken: userToken,
@@ -81,7 +81,7 @@ public struct HATGoogleCalendarService {
     public static func getStaticData(plugURL: String, calendarToken: String, successCallback: @escaping ([String], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         let statusURL: String = GoogleCalendar.checkStatusURL(dataPlugURL: plugURL)
-        let headers: [String:String] = ["x-auth-token": calendarToken]
+        let headers: [String: String] = ["x-auth-token": calendarToken]
         
         HATNetworkHelper.asynchronousRequest(
             statusURL,
@@ -125,7 +125,7 @@ public struct HATGoogleCalendarService {
                         }
                     }
                 }
-        }
+            }
         )
     }
     

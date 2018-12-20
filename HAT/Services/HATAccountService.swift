@@ -167,7 +167,7 @@ public struct HATAccountService {
                 if isSuccess {
                     
                     success(userToken)
-                    HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () -> Void in return })
+                    HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () -> Void in })
                 } else {
                     
                     let message: String = NSLocalizedString("The request was unsuccesful", comment: "")
@@ -471,7 +471,7 @@ public struct HATAccountService {
                         failCallback(.generalError(message, statusCode, nil))
                     }
                 }
-        }
+            }
         )
     }
 }

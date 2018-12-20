@@ -88,7 +88,7 @@ public struct HATLoginService {
                         failed(.generalError(message, statusCode, error))
                     }
                 }
-        })
+            })
     }
     
     /**

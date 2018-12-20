@@ -115,7 +115,7 @@ public struct HATFeedService {
                 }
                 
                 successCallback(arrayToReturn, newToken)
-        },
+            },
             failCallback: failCallback
         )
     }

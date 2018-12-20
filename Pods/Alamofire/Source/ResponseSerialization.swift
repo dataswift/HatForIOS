@@ -276,7 +276,7 @@ extension DataRequest {
     /// - returns: A data response serializer.
     public static func dataResponseSerializer() -> DataResponseSerializer<Data> {
         return DataResponseSerializer { _, response, data, error in
-            return Request.serializeResponseData(response: response, data: data, error: error)
+            Request.serializeResponseData(response: response, data: data, error: error)
         }
     }
 
@@ -394,7 +394,7 @@ extension DataRequest {
     /// - returns: A string response serializer.
     public static func stringResponseSerializer(encoding: String.Encoding? = nil) -> DataResponseSerializer<String> {
         return DataResponseSerializer { _, response, data, error in
-            return Request.serializeResponseString(encoding: encoding, response: response, data: data, error: error)
+            Request.serializeResponseString(encoding: encoding, response: response, data: data, error: error)
         }
     }
 
@@ -517,7 +517,7 @@ extension DataRequest {
         -> DataResponseSerializer<Any>
     {
         return DataResponseSerializer { _, response, data, error in
-            return Request.serializeResponseJSON(options: options, response: response, data: data, error: error)
+            Request.serializeResponseJSON(options: options, response: response, data: data, error: error)
         }
     }
 
@@ -638,7 +638,7 @@ extension DataRequest {
         -> DataResponseSerializer<Any>
     {
         return DataResponseSerializer { _, response, data, error in
-            return Request.serializeResponsePropertyList(options: options, response: response, data: data, error: error)
+            Request.serializeResponsePropertyList(options: options, response: response, data: data, error: error)
         }
     }
 

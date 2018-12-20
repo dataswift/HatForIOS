@@ -87,7 +87,7 @@ public struct HATFacebookProfileImageObject: HatApiType {
             endPoint = tempEndPoint
         }
         
-        if let data: [String : JSON] = dictionary[Fields.data]?.dictionaryValue {
+        if let data: [String: JSON] = dictionary[Fields.data]?.dictionaryValue {
             
             // In new v2 API last updated will be inside data
             if let tempLastUpdated: String = data[Fields.lastUpdated]?.stringValue {
@@ -133,7 +133,7 @@ public struct HATFacebookProfileImageObject: HatApiType {
             endPoint = tempEndPoint
         }
         
-        if let data: [String : JSON] = dict[Fields.data]?.dictionaryValue {
+        if let data: [String: JSON] = dict[Fields.data]?.dictionaryValue {
             
             // In new v2 API last updated will be inside data
             if let tempLastUpdated: String = data[Fields.lastUpdated]?.stringValue {

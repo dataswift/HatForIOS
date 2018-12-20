@@ -166,8 +166,8 @@ internal class HATExternalAppsServiceTests: XCTestCase {
             "active": true,
             "needsUpdating": false,
             "mostRecentData": "2018-07-24T07:45:50.202Z"
+        ]
     ]
-]
     
     override func setUp() {
         super.setUp()

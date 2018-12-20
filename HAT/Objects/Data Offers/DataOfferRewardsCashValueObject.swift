@@ -18,7 +18,14 @@ public struct DataOfferRewardsCashValueObject {
 
     // MARK: - JSON Fields
     
-    /// The JSON fields used by the hat
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `rewardType` in JSON is `rewardType`
+     * `currency` in JSON is `currency`
+     * `value` in JSON is `value`
+     */
     public struct Fields {
         
         static let rewardType: String = "rewardType"
@@ -28,7 +35,7 @@ public struct DataOfferRewardsCashValueObject {
     
     // MARK: - Variables
     
-    /// The reward type of the offer
+    /// The reward type of the offer. Can be `cash`, `voucher` or `service`
     public var rewardType: String = ""
     /// The value of the reward
     public var value: Int = 0
@@ -54,17 +61,17 @@ public struct DataOfferRewardsCashValueObject {
      */
     public init(dictionary: Dictionary<String, JSON>) {
         
-        if let tempRewardType = dictionary[DataOfferRewardsCashValueObject.Fields.rewardType]?.string {
+        if let tempRewardType: String = dictionary[DataOfferRewardsCashValueObject.Fields.rewardType]?.string {
             
             rewardType = tempRewardType
         }
         
-        if let tempValue = dictionary[DataOfferRewardsCashValueObject.Fields.value]?.int {
+        if let tempValue: Int = dictionary[DataOfferRewardsCashValueObject.Fields.value]?.int {
             
             value = tempValue
         }
         
-        if let tempCurrency = dictionary[DataOfferRewardsCashValueObject.Fields.currency]?.string {
+        if let tempCurrency: String = dictionary[DataOfferRewardsCashValueObject.Fields.currency]?.string {
             
             currency = tempCurrency
         }

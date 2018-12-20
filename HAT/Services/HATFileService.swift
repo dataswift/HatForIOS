@@ -54,7 +54,7 @@ public struct HATFileService {
             ]
         }
         
-        HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: parameters, headers: headers, completion: { (response) -> Void in
+        HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: parameters, headers: headers, completion: { response -> Void in
             
             switch response {
                 
@@ -106,7 +106,7 @@ public struct HATFileService {
         let url: String = "https://\(userDomain)/api/v2.6/files/file/\(fileID)"
         let headers: [String: String] = ["X-Auth-Token": token]
         
-        HATNetworkHelper.asynchronousRequest(url, method: .delete, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: [:], headers: headers, completion: { (response) -> Void in
+        HATNetworkHelper.asynchronousRequest(url, method: .delete, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: [:], headers: headers, completion: { response -> Void in
             // handle result
             switch response {
                 
@@ -158,7 +158,7 @@ public struct HATFileService {
         let url: String = "https://\(userDomain)/api/v2.6/files/allowAccessPublic/\(fileID)"
         let headers: [String: String] = ["X-Auth-Token": token]
         
-        HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: [:], headers: headers, completion: { (response) -> Void in
+        HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: [:], headers: headers, completion: { response -> Void in
             // handle result
             switch response {
                 
@@ -208,7 +208,7 @@ public struct HATFileService {
         let url: String = "https://\(userDomain)/api/v2.6/files/restrictAccessPublic/\(fileID)"
         let headers: [String: String] = ["X-Auth-Token": token]
         
-        HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: [:], headers: headers, completion: { (response) -> Void in
+        HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: [:], headers: headers, completion: { response -> Void in
             // handle result
             switch response {
                 
@@ -455,30 +455,30 @@ public struct HATFileService {
             fileName: name,
             token: token,
             userDomain: userDomain, tags: tags,
-            completion: {(fileObject, renewedUserToken) -> Void in
+            completion: {fileObject, renewedUserToken -> Void in
                 
                 let data: Data? = fileToUpload.jpegData(compressionQuality: 1.0)
                 HATNetworkHelper.uploadFile(
                     image: data!,
                     url: fileObject.contentURL,
-                    progressUpdateHandler: {(progress) -> Void in
+                    progressUpdateHandler: {progress -> Void in
                         
                         progressUpdater?(progress)
                     },
-                    completion: {(_) -> Void in
+                    completion: {_ -> Void in
                         
                         HATFileService.completeUploadFileToHAT(
                             fileID: fileObject.fileID,
                             token: token,
                             tags: tags,
                             userDomain: userDomain,
-                            completion: {(uploadedFile, renewedUserToken) -> Void in
+                            completion: {uploadedFile, renewedUserToken -> Void in
                                 
                                 var tempFile: FileUploadObject = fileObject
                                 tempFile.status.status = uploadedFile.status.status
                                 completion?(tempFile, renewedUserToken)
                             },
-                            errorCallback: {(error) -> Void in
+                            errorCallback: {error -> Void in
                                 
                                 errorCallBack?(error)
                             }
@@ -486,7 +486,7 @@ public struct HATFileService {
                     }
                 )
             },
-            errorCallback: {(error) -> Void in
+            errorCallback: {error -> Void in
                 
                 errorCallBack?(error)
             }

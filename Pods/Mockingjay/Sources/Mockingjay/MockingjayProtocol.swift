@@ -172,7 +172,7 @@ public class MockingjayProtocol: URLProtocol {
     guard let rangeStr = headers?["Range"] else {
       return nil
     }
-    let range = rangeStr.components(separatedBy: "=")[1].components(separatedBy: "-").map({ (str) -> Int in
+    let range = rangeStr.components(separatedBy: "=")[1].components(separatedBy: "-").map({ str -> Int in
       Int(str)!
     })
     let loc = range[0]

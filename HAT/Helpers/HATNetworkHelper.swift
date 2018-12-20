@@ -59,15 +59,7 @@ public class HATNetworkHelper: NSObject {
      - parameter headers: The headers in the request
      - parameter completion: The completion handler to execute upon completing the request
      */
-    public class func asynchronousRequest(
-        
-        _ url: String,
-        method: HTTPMethod,
-        encoding: ParameterEncoding,
-        contentType: String,
-        parameters: Dictionary<String, Any>,
-        headers: Dictionary<String, String>,
-        completion: @escaping (_ r: HATNetworkHelper.ResultType) -> Void) {
+    public class func asynchronousRequest( _ url: String, method: HTTPMethod, encoding: ParameterEncoding, contentType: String, parameters: Dictionary<String, Any>, headers: Dictionary<String, String>, completion: @escaping (_ r: HATNetworkHelper.ResultType) -> Void) {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
@@ -82,10 +74,6 @@ public class HATNetworkHelper: NSObject {
             headers: headers /* request header */
             )
             .responseJSON { response in
-                //print(response.request)  // original URL request
-                //print(response.response) // URL response
-                //print(response.data)     // server data
-                //print(response.result)   // result of response serialization
                 
                 switch response.result {
                 case .success:
@@ -98,50 +86,38 @@ public class HATNetworkHelper: NSObject {
                         manager.session.configuration.httpCookieStorage?.setCookies(cookies, for: url, mainDocumentURL: nil)
                     }
                     
-                    let token: String? = header?["x-auth-token"] as? String
+                    let token: String? = header?[RequestHeaders.xAuthToken] as? String
                     
                     if response.response?.statusCode == 401 {
                         
                         completion(HATNetworkHelper.ResultType.error(error: AuthenicationError.tokenValidationFailed("expired"), statusCode: response.response?.statusCode, result: nil))
-                    } else {
+                    } else if token != nil || 200 ... 299 ~= response.response!.statusCode {
                         
                         // check if we have a value and return it
-                        if let value: Any = response.result.value {
+                        guard let value: Any = response.result.value else {
                             
-                            let json: JSON = JSON(value)
-                            if token != nil || 200 ... 299 ~= response.response!.statusCode {
-                                
-                                completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: json, token: token))
-                            } else {
-                                
-                                completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode, result: json))
-                            }
-                            
-                        // else return isSuccess: false and nil for value
-                        } else {
-                            
-                            if token != nil || 200 ... 299 ~= response.response!.statusCode {
-                                
-                                completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: token))
-                            } else {
-                                
-                                completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode, result: nil))
-                            }
+                            completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: token))
+                            return
                         }
+                        
+                        completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: JSON(value), token: token))
+                    } else {
+                        
+                        completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode, result: nil))
                     }
                 // in case of failure return the error but check for internet connection or unauthorised status and let the user know
                 case .failure(let error):
                     
-                    if let value: Any = response.result.value {
-                        
-                        let json: JSON = JSON(value)
-                        completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: json))
-                    } else {
+                    guard let value: Any = response.result.value else {
                         
                         completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: nil))
+                        return
                     }
+                    
+                    completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: JSON(value)))
                 }
-            }.session.finishTasksAndInvalidate()
+            }
+            .session.finishTasksAndInvalidate()
     }
     
     /**
@@ -156,15 +132,7 @@ public class HATNetworkHelper: NSObject {
      - parameter headers: The headers in the request
      - parameter completion: The completion handler to execute upon completing the request
      */
-    public class func asynchronousStringRequest(
-        
-        _ url: String,
-        method: HTTPMethod,
-        encoding: ParameterEncoding,
-        contentType: String,
-        parameters: Dictionary<String, Any>,
-        headers: Dictionary<String, String>,
-        completion: @escaping (_ r: HATNetworkHelper.ResultTypeString) -> Void) {
+    public class func asynchronousStringRequest(_ url: String, method: HTTPMethod, encoding: ParameterEncoding, contentType: String, parameters: Dictionary<String, Any>, headers: Dictionary<String, String>, completion: @escaping (_ r: HATNetworkHelper.ResultTypeString) -> Void) {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
@@ -181,44 +149,29 @@ public class HATNetworkHelper: NSObject {
             .validate(statusCode: 200..<300)
             .validate(contentType: [contentType])
             .responseString { response in
-                //print(response.request)  // original URL request
-                //print(response.response) // URL response
-                //print(response.data)     // server data
-                //print(response.result)   // result of response serialization
                 
                 switch response.result {
                 case .success:
                     
                     let header: [AnyHashable: Any]? = response.response?.allHeaderFields
-                    let token: String? = header?["x-auth-token"] as? String
+                    let token: String? = header?[RequestHeaders.xAuthToken] as? String
                     
                     // check if we have a value and return it
                     if let value: String = response.result.value {
                         
-                        if token != nil {
-                            
-                            completion(HATNetworkHelper.ResultTypeString.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: value, token: token))
-                        } else {
-                            
-                            completion(HATNetworkHelper.ResultTypeString.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: value, token: nil))
-                        }
-                        // else return isSuccess: false and nil for value
+                        completion(HATNetworkHelper.ResultTypeString.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: value, token: token))
+                    // else return isSuccess: false and nil for value
                     } else {
                         
-                        if token != nil {
-                            
-                            completion(HATNetworkHelper.ResultTypeString.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: token))
-                        } else {
-                            
-                            completion(HATNetworkHelper.ResultTypeString.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: nil))
-                        }
+                        completion(HATNetworkHelper.ResultTypeString.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: token))
                     }
                 // return the error
                 case .failure(let error):
                     
                     completion(HATNetworkHelper.ResultTypeString.error(error: error, statusCode: response.response?.statusCode))
                 }
-            }.session.finishTasksAndInvalidate()
+            }
+            .session.finishTasksAndInvalidate()
     }
     
     // MARK: - Upload file
@@ -232,59 +185,52 @@ public class HATNetworkHelper: NSObject {
      */
     public class func uploadFile(image: Data, url: String, progressUpdateHandler: ((Double) -> Void)?, completion: @escaping (_ r: HATNetworkHelper.ResultType) -> Void) {
         
-        let headers: [String: String] = ["x-amz-server-side-encryption": "AES256"]
+        let headers: [String: String] = [RequestHeaders.serverEncryption: RequestHeaders.serverEncryptionAES256]
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
         
-        manager.upload(image, to: URL(string: url)!, method: .put, headers: headers).uploadProgress(closure: {(progress) -> Void in
+        manager.upload(
+            image,
+            to: URL(string: url)!,
+            method: .put,
+            headers: headers)
+            .uploadProgress { progress -> Void in
             
-            if let updateFunc: ((Double) -> Void) = progressUpdateHandler {
-                
-                updateFunc(progress.fractionCompleted)
+                if let updateFunc: ((Double) -> Void) = progressUpdateHandler {
+                    
+                    updateFunc(progress.fractionCompleted)
+                }
             }
-        }).responseString(completionHandler: {(response) in
-            
-            let header: [AnyHashable: Any]? = response.response?.allHeaderFields
-            let token: String? = header?["x-auth-token"] as? String
-            
-            switch response.result {
-            case .success:
+            .responseString { response in
                 
-                // check if we have a value and return it
-                if let value: String = response.result.value {
+                switch response.result {
+                case .success:
                     
-                    if token != nil {
-                        
-                        completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: JSON(value), token: token))
-                    } else {
-                        
-                        completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: JSON(value), token: nil))
-                    }
-                    // else return isSuccess: false and nil for value
-                } else {
+                    let header: [AnyHashable: Any]? = response.response?.allHeaderFields
+                    let token: String? = header?[RequestHeaders.xAuthToken] as? String
                     
-                    if token != nil {
+                    // check if we have a value and return it
+                    guard let value: String = response.result.value else {
                         
                         completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: token))
-                    } else {
-                        
-                        completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: nil))
+                        return
                     }
-                }
-            // return the error
-            case .failure(let error):
-                
-                if let value: Any = response.result.value {
                     
-                    let json: JSON = JSON(value)
-                    completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: json))
-                } else {
+                    completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: JSON(value), token: token))
+                // return the error
+                case .failure(let error):
                     
-                    completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: nil))
+                    guard let value: Any = response.result.value else {
+                        
+                        completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: nil))
+                        return
+                    }
+
+                    completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: JSON(value)))
                 }
             }
-        }).session.finishTasksAndInvalidate()
+            .session.finishTasksAndInvalidate()
     }
     
     // MARK: - Query from string
@@ -299,12 +245,10 @@ public class HATNetworkHelper: NSObject {
      */
     public class func getQueryStringParameter(url: String?, param: String) -> String? {
         
-        if let url: String = url,
-            let urlComponents: NSURLComponents = NSURLComponents(string: url),
-            let queryItems: [URLQueryItem] = (urlComponents.queryItems) {
+        if let url: String = url, let urlComponents: NSURLComponents = NSURLComponents(string: url), let queryItems: [URLQueryItem] = (urlComponents.queryItems) {
             
-            let parameter: URLQueryItem? = queryItems.first(where: { item in item.name == param })
-            
+            let parameter: URLQueryItem? = queryItems.first { item in item.name == param }
+        
             return parameter?.value
         }
         

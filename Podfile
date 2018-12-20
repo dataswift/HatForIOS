@@ -10,7 +10,7 @@ target 'HAT' do
     pod 'SwiftyJSON'
     pod 'JWTDecode'
     pod 'SwiftyRSA'
-    pod 'SwiftLint', '0.21.0'
+    pod 'SwiftLint'
 
   target 'HATTests' do
     inherit! :search_paths

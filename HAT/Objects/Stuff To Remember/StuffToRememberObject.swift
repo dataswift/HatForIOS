@@ -92,7 +92,7 @@ public struct StuffToRememberObject: HatApiType, Comparable {
         
         self.init()
         
-        if let tempData: [String : JSON] = dictionary[Fields.data]?.dictionaryValue {
+        if let tempData: [String: JSON] = dictionary[Fields.data]?.dictionaryValue {
             
             if let tempBody: String = tempData[Fields.body]?.stringValue {
                 

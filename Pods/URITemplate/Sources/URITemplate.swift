@@ -167,7 +167,7 @@ public struct URITemplate : CustomStringConvertible, Equatable, Hashable, Expres
         return op!.expand(variable, value:nil, explode:false, prefix:prefix)
       }
 
-      let expansions = rawExpansions.reduce([], { (accumulator, expansion) -> [String] in
+      let expansions = rawExpansions.reduce([], { accumulator, expansion -> [String] in
         if let expansion = expansion {
           return accumulator + [expansion]
         }
@@ -207,7 +207,7 @@ public struct URITemplate : CustomStringConvertible, Equatable, Hashable, Expres
     }
 
     let regexes = expression.components(separatedBy: ",").map { variable -> String in
-      return self.regexForVariable(variable, op: op)
+      self.regexForVariable(variable, op: op)
     }
 
     return regexes.joined(separator: (op ?? StringExpansion()).joiner)
@@ -294,7 +294,7 @@ extension NSRegularExpression {
     let results = self.matches(in: string, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: range)
 
     return results.map { result -> String in
-      return input.substring(with: result.range)
+      input.substring(with: result.range)
     }
   }
 }
@@ -370,7 +370,7 @@ class BaseOperator {
   func expand(variable: String, value: [String: Any], explode: Bool) -> String? {
     let joiner = explode ? self.joiner : ","
     let keyValueJoiner = explode ? "=" : ","
-    let elements = value.map({ (key, value) -> String in
+    let elements = value.map({ key, value -> String in
       let expandedKey = self.expand(value: key)
       let expandedValue = self.expand(value: "\(value)")
       return "\(expandedKey)\(keyValueJoiner)\(expandedValue)"
@@ -618,11 +618,11 @@ private extension CharacterSet {
     static let unreservedSymbols = CharacterSet(charactersIn: "-._~")
 
     static let unreserved = {
-      return alpha.union(digits).union(unreservedSymbols)
+      alpha.union(digits).union(unreservedSymbols)
     }()
 
     static let reserved = {
-      return genDelims.union(subDelims)
+      genDelims.union(subDelims)
     }()
 
     static let alpha = { () -> CharacterSet in
@@ -633,6 +633,6 @@ private extension CharacterSet {
   }
 
   static let uriTemplateReservedAllowed = {
-    return URITemplate.unreserved.union(URITemplate.reserved)
+    URITemplate.unreserved.union(URITemplate.reserved)
   }()
 }

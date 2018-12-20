@@ -171,7 +171,7 @@ public struct HATFacebookDataPostsSocialFeedObject: HatApiType, Comparable, HATO
      */
     public mutating func inititialize(dict: Dictionary<String, JSON>) {
         
-        if let tempFrom: [String : JSON] = dict[Fields.from]?.dictionaryValue {
+        if let tempFrom: [String: JSON] = dict[Fields.from]?.dictionaryValue {
             
             from = HATFacebookDataPostsFromSocialFeedObject(from: tempFrom)
         }
@@ -183,7 +183,7 @@ public struct HATFacebookDataPostsSocialFeedObject: HatApiType, Comparable, HATO
             
             statusType = tempStatusType
         }
-        if let tempPrivacy: [String : JSON] = dict[Fields.privacy]?.dictionaryValue {
+        if let tempPrivacy: [String: JSON] = dict[Fields.privacy]?.dictionaryValue {
             
             privacy = HATFacebookDataPostsPrivacySocialFeedObject(from: tempPrivacy)
         }
@@ -227,7 +227,7 @@ public struct HATFacebookDataPostsSocialFeedObject: HatApiType, Comparable, HATO
             
             objectID = tempObjectID
         }
-        if let tempApplication: [String : JSON] = dict[Fields.application]?.dictionaryValue {
+        if let tempApplication: [String: JSON] = dict[Fields.application]?.dictionaryValue {
             
             application = HATFacebookDataPostsApplicationSocialFeedObject(from: tempApplication)
         }
@@ -235,7 +235,7 @@ public struct HATFacebookDataPostsSocialFeedObject: HatApiType, Comparable, HATO
             
             caption = tempCaption
         }
-        if let tempPlace: [String : JSON] = dict[Fields.place]?.dictionaryValue {
+        if let tempPlace: [String: JSON] = dict[Fields.place]?.dictionaryValue {
             
             place = HATFacebookDataPostsPlaceSocialFeedObject(from: tempPlace)
         }

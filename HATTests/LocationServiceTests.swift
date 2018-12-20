@@ -28,7 +28,7 @@ internal class LocationServiceTests: XCTestCase {
 
     func testEnableLocationDataPlug() {
 
-        let body: [String : String] = ["message": ""]
+        let body: [String: String] = ["message": ""]
         let urlToConnect: String = "https://dex.hubofallthings.com/api/dataplugs/c532e122-db4a-44b8-9eaf-18989f214262/connect?hat=mariostsekis.hubofallthings.net"
         let userDomain: String = "mariostsekis.hubofallthings.net"
         let expectationTest: XCTestExpectation = expectation(description: "Enabling location data plug...")
@@ -59,7 +59,7 @@ internal class LocationServiceTests: XCTestCase {
     
     func testGetLocationData() {
         
-        let body: [[String : Any]] = [
+        let body: [[String: Any]] = [
             [
                 "endpoint": "rumpel/locations/ios",
                 "recordId": "ad0c3ef8-e024-4053-a875-76228b9aa0ea",
@@ -121,7 +121,7 @@ internal class LocationServiceTests: XCTestCase {
     
     func testSyncLocationData() {
         
-        let body: [[String : Any]] = [
+        let body: [[String: Any]] = [
             [
                 "endpoint": "rumpel/locations/ios",
                 "recordId": "ad0c3ef8-e024-4053-a875-76228b9aa0ea",
@@ -191,7 +191,7 @@ internal class LocationServiceTests: XCTestCase {
     
     func testFailbackSyncLocationData() {
         
-        let body: [[String : Any]] = [
+        let body: [[String: Any]] = [
             [
                 "endpoint": "rumpel/locations/ios",
                 "recordId": "ad0c3ef8-e024-4053-a875-76228b9aa0ea",
@@ -261,7 +261,7 @@ internal class LocationServiceTests: XCTestCase {
     
     func testGetLocationCombinator() {
         
-        let body: [[String : Any]] = [
+        let body: [[String: Any]] = [
             [
                 "endpoint": "rumpel/locations/ios",
                 "recordId": "1b3b3330-b12c-495a-b804-4852b381cb32",

@@ -11,9 +11,32 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-public struct HATSpotifyProfileObject: HATObject {
+// MARK: Struct
 
-    public var `id`: String = ""
+public struct HATSpotifyProfileObject: HATObject {
+    
+    // MARK: - Coding Keys
+    
+    /// The names of the values in the JSON received
+    enum CodingKeys: String, CodingKey {
+        
+        case spotifyID = "id"
+        case uri = "uri"
+        case href = "href"
+        case email = "email"
+        case images = "images"
+        case country = "country"
+        case product = "product"
+        case birthdate = "birthdate"
+        case followers = "followers"
+        case dateCreated = "dateCreated"
+        case displayName = "display_name"
+        case externalUrls = "external_urls"
+    }
+    
+    // MARK: - Variables
+
+    public var spotifyID: String = ""
     public var uri: String = ""
     public var href: String = ""
     public var email: String = ""
@@ -23,6 +46,6 @@ public struct HATSpotifyProfileObject: HATObject {
     public var birthdate: String = ""
     public var followers: HATSpotifyProfileFollowersObject = HATSpotifyProfileFollowersObject()
     public var dateCreated: String = ""
-    public var display_name: String?
-    public var external_urls: HATSpotifyProfileExternalURLObject = HATSpotifyProfileExternalURLObject()
+    public var displayName: String?
+    public var externalUrls: HATSpotifyProfileExternalURLObject = HATSpotifyProfileExternalURLObject()
 }

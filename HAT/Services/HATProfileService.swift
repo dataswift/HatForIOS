@@ -76,10 +76,10 @@ public struct HATProfileService {
             namespace: nameSpace,
             scope: scope,
             parameters: json,
-            successCallback: { (json, _) in
+            successCallback: { json, _ in
                 
                 successCallback(T(fromCache: json.dictionaryValue))
-        },
+            },
             errorCallback: failCallback)
     }
     
@@ -281,7 +281,7 @@ public struct HATProfileService {
             namespace: "rumpel",
             scope: "profile",
             parameters: profileJSON,
-            successCallback: { (json, newToken) in
+            successCallback: { json, newToken in
                 
                 guard let profile: HATProfileObject = HATProfileObject.decode(from: json.dictionaryValue) else {
                     
@@ -290,7 +290,7 @@ public struct HATProfileService {
                 }
                 
                 successCallback(profile, newToken)
-        },
+            },
             errorCallback: failCallback)
     }
     
@@ -476,7 +476,7 @@ public struct HATProfileService {
                                     [
                                         "value": true,
                                         "operator": "contains"
-                                ]
+                                    ]
                             ],
                             [
                                 "field": "shared_on",
@@ -484,7 +484,7 @@ public struct HATProfileService {
                                     [
                                         "value": "phata",
                                         "operator": "contains"
-                                ]
+                                    ]
                             ]
                         ],
                         "mapping":
@@ -500,13 +500,13 @@ public struct HATProfileService {
                                 "public_until": "public_until",
                                 "updated_time": "updated_time",
                                 "photo": "photov1"
-                        ],
+                            ],
                         "endpoint": "rumpel/notablesv1"
                     ]
                 ],
                 "orderBy": "updated_time",
                 "ordering": "descending"
-        ]
+            ]
     ]
     
     // MARK: - Construct Bundle's Dictionary

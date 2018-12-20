@@ -12,10 +12,10 @@ import Foundation
 
 /// Generic builder for returning a failure
 public func failure(_ error: NSError) -> (_ request: URLRequest) -> Response {
-  return { _ in return .failure(error) }
+  return { _ in .failure(error) }
 }
 
-public func http(_ status:Int = 200, headers:[String:String]? = nil, download:Download=nil) -> (_ request: URLRequest) -> Response {
+public func http(_ status:Int = 200, headers:[String:String]? = nil, download:Download = nil) -> (_ request: URLRequest) -> Response {
   return { (request:URLRequest) in
     if let response = HTTPURLResponse(url: request.url!, statusCode: status, httpVersion: nil, headerFields: headers) {
       return Response.success(response, download)

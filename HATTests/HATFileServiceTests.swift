@@ -53,7 +53,7 @@ internal class HATFileServiceTests: XCTestCase {
                     "contentReadable": true
                 ]
             ]
-            ]]
+        ]]
         let userDomain: String = "testing.hubat.net"
         let urlToConnect: String = "https://testing.hubat.net/api/v2.6/files/search"
         
@@ -204,7 +204,7 @@ internal class HATFileServiceTests: XCTestCase {
                     "contentReadable": true
                 ]
             ]
-            ]
+        ]
         let userDomain: String = "testing.hubat.net"
         let urlToConnect: String = "https://\(userDomain)/api/v2.6/files/file/1/complete"
         

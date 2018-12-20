@@ -68,7 +68,7 @@ public struct HATToolsService {
                         failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
-        })
+            })
     }
     
     public static func getTool(toolName: String, userDomain: String, userToken: String, completion: @escaping ((HATToolsObject, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
@@ -119,7 +119,7 @@ public struct HATToolsService {
                         failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
-        })
+            })
     }
     
     public static func enableTool(toolName: String, userDomain: String, userToken: String, completion: @escaping ((HATToolsObject, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
@@ -170,7 +170,7 @@ public struct HATToolsService {
                         failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
-        })
+            })
     }
     
     public static func disableTool(toolName: String, userDomain: String, userToken: String, completion: @escaping ((HATToolsObject, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
@@ -221,7 +221,7 @@ public struct HATToolsService {
                         failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
-        })
+            })
     }
     
     public static func triggerToolUpdate(toolName: String, userDomain: String, userToken: String, completion: @escaping ((String, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
@@ -271,6 +271,6 @@ public struct HATToolsService {
                         failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
-        })
+            })
     }
 }

@@ -368,7 +368,7 @@ internal class HATDataOffersTests: XCTestCase {
         
         let body: [String: Any] = [
                 "dataDebitId": "123"
-            ]
+        ]
         let userDomain: String = "mariostsekis.hubat.net"
         let offerID: String = "123"
         let urlToConnect: String = "https://\(userDomain)/api/v2.6/applications/databuyer/proxy/api/v2/offer/\(offerID)/claim"
@@ -439,8 +439,8 @@ internal class HATDataOffersTests: XCTestCase {
                 "merchants": [
                     "1",
                     "2"
-                    ]
                 ]
+            ]
             ]
         ]
         let userDomain: String = "mariostsekis.hubat.net"
@@ -573,7 +573,7 @@ internal class HATDataOffersTests: XCTestCase {
                     "active": false,
                     "end": "2017-09-29T14:21:38.000Z"
                 ]
-        ]
+            ]
         let enableDebitResponse: [String] = ["enabled"]
         let getOffersResponse: [[String: Any]] = [
             [

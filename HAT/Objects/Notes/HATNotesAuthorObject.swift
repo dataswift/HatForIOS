@@ -28,6 +28,18 @@ public struct HATNotesAuthorObject: HATObject, HatApiType {
         static let photoURL: String = "photo_url"
     }
     
+    // MARK: - Coding Keys
+    
+    /// The names of the variables in the JSON received
+    enum CodingKeys: String, CodingKey {
+        
+        case nickname = "nickname"
+        case name = "name"
+        case photoUrl = "photo_url"
+        case phata = "phata"
+        case authorID = "authorID"
+    }
+    
     // MARK: - Variables
     
     /// the nickname of the author
@@ -35,7 +47,7 @@ public struct HATNotesAuthorObject: HATObject, HatApiType {
     /// the name of the author
     public var name: String?
     /// the photo url of the author
-    public var photo_url: String?
+    public var photoUrl: String?
     /// the phata of the author. Required
     public var phata: String = ""
     
@@ -71,43 +83,43 @@ public struct HATNotesAuthorObject: HATObject, HatApiType {
     public mutating func inititialize(dict: Dictionary<String, JSON>) {
         
         // this field will always have a value no need to use if let
-        if let tempPHATA = dict[Fields.phata]?.string {
+        if let tempPHATA: String = dict[Fields.phata]?.string {
             
             phata = tempPHATA
         }
         
         // check optional fields for value, if found assign it to the correct variable
-        if let tempID = dict[Fields.authorID]?.stringValue {
+        if let tempID: String = dict[Fields.authorID]?.stringValue {
             
             // check if string is "" as well
-            if tempID != "" {
+            if !tempID.isEmpty {
                 
-                if let intTempID = Int(tempID) {
+                if let intTempID: Int = Int(tempID) {
                     
                     authorID = intTempID
                 }
             }
         }
         
-        if let tempNickName = dict[Fields.nick]?.string {
+        if let tempNickName: String = dict[Fields.nick]?.string {
             
             nickname = tempNickName
         }
         
-        if let tempName = dict[Fields.name]?.string {
+        if let tempName: String = dict[Fields.name]?.string {
             
             name = tempName
         }
         
-        if let tempPhotoURL = dict[Fields.photoURL]?.string {
+        if let tempPhotoURL: String = dict[Fields.photoURL]?.string {
             
-            photo_url = tempPhotoURL
+            photoUrl = tempPhotoURL
         }
     }
     
     public mutating func initialize(fromCache: Dictionary<String, Any>) {
         
-        let dictionary = JSON(fromCache)
+        let dictionary: JSON = JSON(fromCache)
         self.inititialize(dict: dictionary.dictionaryValue)
     }
     
@@ -121,7 +133,7 @@ public struct HATNotesAuthorObject: HATObject, HatApiType {
             Fields.authorID: self.authorID ?? "",
             Fields.nick: self.nickname ?? "",
             Fields.name: self.name ?? "",
-            Fields.photoURL: self.photo_url ?? ""
+            Fields.photoURL: self.photoUrl ?? ""
         ]
     }
 }

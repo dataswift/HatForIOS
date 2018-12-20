@@ -17,7 +17,7 @@ import Foundation
 /// A struct for everything that formats something
 public class HATFormatterHelper: NSObject {
     
-    // MARK: - Static dateFormatter
+    // MARK: - Variables
     
     /// A static dateFormatter in order to use it accross the file. `DateFormatter`s are very expensive, it's a good practice to use one instance instead of creating it every time
     static let dateFormatter: DateFormatter = DateFormatter()
@@ -50,7 +50,7 @@ public class HATFormatterHelper: NSObject {
     public class func formatStringToDate(string: String) -> Date? {
         
         // check if the string to format is empty
-        guard string != "" else { return nil }
+        guard !string.isEmpty else { return nil }
         
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -89,7 +89,7 @@ public class HATFormatterHelper: NSObject {
         }
         
         // if date is nil try a different format, unix time stamp
-        if let timeStamp: Double = Double(string), date == nil  {
+        if let timeStamp: Double = Double(string), date == nil {
                 
             date = Date(timeIntervalSince1970: TimeInterval(timeStamp / 1000))
         }

@@ -107,7 +107,7 @@ internal class FacebookServiceTests: XCTestCase {
                 "is_published": true,
                 "updated_time": "2018-02-08T00:53:19+0000"
             ]
-            ]]
+        ]]
         let userDomain: String = "mariostsekis.hubat.net"
         let urlToConnect: String = "https://mariostsekis.hubat.net/api/v2.6/data/facebook/feed"
         

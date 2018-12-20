@@ -62,15 +62,15 @@ internal class LoginServiceTests: XCTestCase {
         let userDomain: String = "mariostsekis.hubofallthings.net"
         let expectationTest: XCTestExpectation = expectation(description: "Authentication...")
 
-        func string(_ body: String, status: Int = 200, headers: [String:String]? = nil) -> (_ request: URLRequest) -> Response {
+        func string(_ body: String, status: Int = 200, headers: [String: String]? = nil) -> (_ request: URLRequest) -> Response {
             return { (request: URLRequest) in
-                return stringData(body, status: status, headers: headers)(request)
+                stringData(body, status: status, headers: headers)(request)
             }
         }
 
-        func stringData(_ data: String, status: Int = 200, headers: [String:String]? = nil) -> (_ request: URLRequest) -> Response {
+        func stringData(_ data: String, status: Int = 200, headers: [String: String]? = nil) -> (_ request: URLRequest) -> Response {
             return { (request: URLRequest) in
-                var headers: [String:String] = headers ?? [String: String]()
+                var headers: [String: String] = headers ?? [String: String]()
                 if headers["Content-Type"] == nil {
                     headers["Content-Type"] = "text/plain; charset=utf-8"
                 }

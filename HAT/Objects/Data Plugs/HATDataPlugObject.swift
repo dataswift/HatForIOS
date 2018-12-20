@@ -12,13 +12,13 @@
 
 // MARK: Struct
 
-/// A class representing the outer data plug JSON format
+/// A class representing the outer `Data Plug` JSON format
 public struct HATDataPlugObject: HATObject {
 
     // MARK: - Variables
 
-    /// The unique id of the data plug
+    /// The unique id of the `Data Plug`
     public var plug: HATDataPlugPlugObject = HATDataPlugPlugObject()
-    /// The name of the data plug
+    /// The provider of the `Data Plug`
     public var provider: HATDataPlugProviderObject = HATDataPlugProviderObject()
 }

@@ -18,8 +18,20 @@ public struct DataOfferRewardsObject {
     
     // MARK: - JSON Fields
     
-    /// The JSON fields used by the hat
-    public struct Fields {
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `rewardType` in JSON is `rewardType`
+     * `rewardVendor` in JSON is `vendor`
+     * `vendorURL` in JSON is `vendorUrl`
+     * `rewardValue` in JSON is `value`
+     * `currency` in JSON is `currency`
+     * `codesReuseable` in JSON is `codesReuseable`
+     * `codes` in JSON is `codes`
+     * `cashValue` in JSON is `cashValue`
+     */
+    enum Fields {
         
         static let rewardType: String = "rewardType"
         static let rewardVendor: String = "vendor"
@@ -33,23 +45,23 @@ public struct DataOfferRewardsObject {
     
     // MARK: - Variables
     
-    /// The reward type of the offer
+    /// The reward type of the offer. Can be `cash`, `voucher` or `service`
     public var rewardType: String = ""
     /// The vendor of the offer
     public var vendor: String = ""
-    /// The vendor URL
+    /// The vendor URL, possibly the website of the vendor
     public var vendorURL: String = ""
     /// The reward value of the offer
     public var value: Int = 0
     /// The reward value of the offer as Int
     public var valueInt: Int?
-    /// Is the code of the reward able to be reused
+    /// Is the code of the reward able to be reused, in case of `voucher` type
     public var areCodesReusable: Bool?
-    /// The possible codes as rewards
+    /// The possible codes as rewards, in case of `voucher` type
     public var codes: [String]?
-    /// The cash value of the reward
+    /// The cash value of the reward, in case of `cash` type
     public var cashValue: DataOfferRewardsCashValueObject?
-    /// The currency of the reward
+    /// The currency of the reward, in case of `cash` type
     public var currency: String?
     
     // MARK: - Initialiser

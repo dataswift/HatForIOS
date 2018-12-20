@@ -294,7 +294,7 @@ internal class DataPlugsServiceTests: XCTestCase {
                     "active": true,
                     "end": "2017-09-29T14:21:38.000Z"
                 ]
-        ]
+            ]
         let expectationTest: XCTestExpectation = expectation(description: "Checking data debit...")
 
         let dataDebitID: String = "123"

@@ -16,15 +16,22 @@ public struct DataOfferRequiredDataDefinitionBundleKeyEndpointsV2: HATObject {
     
     // MARK: - Variables
     
-    /// The endpoint of the definition object
+    /// The endpoint that we want access to, eg facebook/feed
     public var endpoint: String = ""
-    /// The mapping of the definition object
+    /// The mapping to apply in the endpoint, meaning which fields you want to access from that endpoint
     public var mapping: Dictionary<String, String>?
-    /// The filters of the definition object
+    /// The filters to apply in the endpoint, like if you want to `find` something in one of the fields stated in the mapping. Optional
     public var filters: [DataOfferRequiredDataDefinitionBundleFiltersV2]?
     /// The links of the definition object
     public var links: [DataOfferRequiredDataDefinitionBundleKeyEndpointsV2]?
     
+    // MARK: - Initializer
+    
+    /**
+     Initializing a `DataOfferRequiredDataDefinitionBundleKeyEndpointsV2` from specific values
+     
+     - parameter endpoint: The endpoint of the definition object
+     */
     public init(endpoint: String) {
         
         self.endpoint = endpoint

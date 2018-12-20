@@ -22,5 +22,5 @@ public struct HATExternalAppsPermissionsObject: HATObject {
     /// The bundle info required for this app
     public var dataRequired: HATExternalAppsDataRequiredObject?
     /// The bundle info required for this app
-    public var dataRetrieved: DataOfferRequiredDataDefinitionObjectV2?
+    public var dataRetrieved: DataDefinitionObject?
 }

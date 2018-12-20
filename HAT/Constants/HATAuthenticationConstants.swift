@@ -10,21 +10,33 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
+// MARK: Headers
+
 /**
  The request headers used in various network requests
  */
 public enum RequestHeaders {
     
+    // MARK: - Variables
+    
     /// The `x-Auth-Token` name in the header, used to store the user's token
     public static let xAuthToken: String = "x-auth-token"
     /// The `token` name in the headers
     public static let tokenParamName: String = "token"
+    /// The `x-amz-server-side-encryption` name in the headers
+    public static let serverEncryption: String = "x-amz-server-side-encryption"
+    /// The `AES256` value in the headers for `x-amz-server-side-encryption`
+    public static let serverEncryptionAES256: String = "AES256"
 }
+
+// MARK: - Content type
 
 /**
  The content type used in various network requests
  */
 public enum ContentType {
+    
+    // MARK: - Variables
     
     /// The `application/json` content type
     public static let json: String = "application/json"
@@ -32,10 +44,14 @@ public enum ContentType {
     public static let text: String = "text/plain"
 }
 
+// MARK: - Location Plug Credentials
+
 /**
  The authentication data used by location service. Used when enabling the location plug
  */
 public enum HATDataPlugCredentials {
+    
+    // MARK: - Variables
     
     /// market data plug id used for location data plug
     static let dataPlugID: String = "c532e122-db4a-44b8-9eaf-18989f214262"

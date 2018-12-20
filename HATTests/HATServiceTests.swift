@@ -32,7 +32,7 @@ internal class HATServiceTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
 
-        let body: [String : String] = ["accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaWJXRnlhVzl6ZEhObGEybHpMbWgxWW05bVlXeHNkR2hwYm1kekxtNWxkQ0lzSW5CeWIzWnBaR1Z5UzJWNUlqb2liV0Z5YVc5emRITmxhMmx6SW4wPSIsInJlc291cmNlIjoiaHR0cHM6XC9cL3NvY2lhbC1wbHVnLmh1Ym9mYWxsdGhpbmdzLmNvbSIsImFjY2Vzc1Njb3BlIjoidmFsaWRhdGUiLCJpc3MiOiJtYXJpb3N0c2VraXMuaHVib2ZhbGx0aGluZ3MubmV0IiwiZXhwIjoxNDg3MzIyODM2LCJpYXQiOjE0ODcwNjM2MzYsImp0aSI6ImRkZDk4NWRiNjE0MzQxNjUxMGY5ZjU3NTY5MjQ4YTRiNGJhODg1NzE3N2Q4YTJlZjMxMzQyYWM2ZDAwMWFjZTJkZjI5MDIwMWM1MWNmODlhNDE2Y2FhOWYzNGY5NDQ2ZGEyMjJlMTZiM2UzOGVmZWM5NzYxNzBlZWVmYTNmNDRkNjM2ZTIyMTMyYTFlODg4ZmQ1YzU3MzE3MDU5NjQ5NWVkMjM0OTUyMGEyOTgwZWQxMjRmOGNkYmZlMTU0MDYyN2NkZDMwZWMzOTlhMGJiNTU3YTYyZmI4Y2VhMmYyODZiZWM4MzMxZjEwNjZkMjE3OThkMmU0NDUzNTg5ZTgxZjcifQ.r8MUnCojsUDxQmGPeCljwizVxCG9mULEFFl4qXHHCtavUvPTZM-blR4U8ItJUSo7lGDwwbZmMyRgeEDtkpQVN7NV0Vpu1dibmRob5AgRrtqamXjZUZBlYKGlkvk26xvB94c1Lt-5_bYNy83ZF1D9PqiDC_h504fX15OX6XTrAXUnWyErZ_ukbn9MEdv-uxrhqCzTV0OW9U9kAcIJ42FUHoBkTCayqE76LP04Yf9N7eWuhAz63QqBzg4R3sFF-SmOb7Gu1JCTf7l5cILEVd1sdlJR4ipgBuq5g8IvkqwF38Ea2K1PKY4lKaOqb9pAXQYOqhBKkeyKANeeEPGhJ7OJHg",
+        let body: [String: String] = ["accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaWJXRnlhVzl6ZEhObGEybHpMbWgxWW05bVlXeHNkR2hwYm1kekxtNWxkQ0lzSW5CeWIzWnBaR1Z5UzJWNUlqb2liV0Z5YVc5emRITmxhMmx6SW4wPSIsInJlc291cmNlIjoiaHR0cHM6XC9cL3NvY2lhbC1wbHVnLmh1Ym9mYWxsdGhpbmdzLmNvbSIsImFjY2Vzc1Njb3BlIjoidmFsaWRhdGUiLCJpc3MiOiJtYXJpb3N0c2VraXMuaHVib2ZhbGx0aGluZ3MubmV0IiwiZXhwIjoxNDg3MzIyODM2LCJpYXQiOjE0ODcwNjM2MzYsImp0aSI6ImRkZDk4NWRiNjE0MzQxNjUxMGY5ZjU3NTY5MjQ4YTRiNGJhODg1NzE3N2Q4YTJlZjMxMzQyYWM2ZDAwMWFjZTJkZjI5MDIwMWM1MWNmODlhNDE2Y2FhOWYzNGY5NDQ2ZGEyMjJlMTZiM2UzOGVmZWM5NzYxNzBlZWVmYTNmNDRkNjM2ZTIyMTMyYTFlODg4ZmQ1YzU3MzE3MDU5NjQ5NWVkMjM0OTUyMGEyOTgwZWQxMjRmOGNkYmZlMTU0MDYyN2NkZDMwZWMzOTlhMGJiNTU3YTYyZmI4Y2VhMmYyODZiZWM4MzMxZjEwNjZkMjE3OThkMmU0NDUzNTg5ZTgxZjcifQ.r8MUnCojsUDxQmGPeCljwizVxCG9mULEFFl4qXHHCtavUvPTZM-blR4U8ItJUSo7lGDwwbZmMyRgeEDtkpQVN7NV0Vpu1dibmRob5AgRrtqamXjZUZBlYKGlkvk26xvB94c1Lt-5_bYNy83ZF1D9PqiDC_h504fX15OX6XTrAXUnWyErZ_ukbn9MEdv-uxrhqCzTV0OW9U9kAcIJ42FUHoBkTCayqE76LP04Yf9N7eWuhAz63QqBzg4R3sFF-SmOb7Gu1JCTf7l5cILEVd1sdlJR4ipgBuq5g8IvkqwF38Ea2K1PKY4lKaOqb9pAXQYOqhBKkeyKANeeEPGhJ7OJHg",
                     "userId": "f5e089cb-a63f-4879-b3df-6ba99a928dac"]
         let userDomain: String = "mariostsekis.hubofallthings.net"
         let serviceName: String = "facebook"
@@ -52,7 +52,7 @@ internal class HATServiceTests: XCTestCase {
 
         }
 
-        HATService.getApplicationTokenFor(serviceName: serviceName, userDomain: userDomain, userToken: token, resource: resource, succesfulCallBack: completion, failCallBack: failed)
+        HATService.getApplicationTokenLegacyFor(serviceName: serviceName, userDomain: userDomain, userToken: token, resource: resource, succesfulCallBack: completion, failCallBack: failed)
 
         waitForExpectations(timeout: 10) { error in
 
@@ -64,7 +64,7 @@ internal class HATServiceTests: XCTestCase {
 
     func testPurchase() {
         
-        let response: [String : String] = [
+        let response: [String: String] = [
             "message": "purchase ok",
             "cause": "Not a valid username for a domain name: must not contain spaces, uppercase letters or special characters"
         ]

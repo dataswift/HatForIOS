@@ -31,7 +31,7 @@ public enum Notables: HATApplication {
 /**
  The strings needed for generating databuyer token
  */
-public struct DataBuyer: HATApplication {
+public enum DataBuyer: HATApplication {
     
     public static var name: String = "DataBuyer"
     public static var source: String = "https://databuyer.hubat.net/"
@@ -40,7 +40,7 @@ public struct DataBuyer: HATApplication {
 /**
  The strings needed for generating Dex token
  */
-public struct Dex: HATApplication {
+public enum Dex: HATApplication {
     
     public static var name: String = "Dex"
     public static var source: String = "https://dex.hubofallthings.com/"

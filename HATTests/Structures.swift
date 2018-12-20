@@ -39,7 +39,7 @@ public struct Structures {
             "name": "authorv1",
             "source": "rumpel",
             "fields": authorFieldsJSON
-            ] as [String : Any]
+        ] as [String: Any]
 
         // create the notes table
         let notesTable: Array = [
@@ -74,7 +74,7 @@ public struct Structures {
             "name": "locationv1",
             "source": "rumpel",
             "fields": locationFieldsJSON
-            ] as [String : Any]
+        ] as [String: Any]
 
         // create the photos table field
         let photosFieldsJSON: Array = [
@@ -91,7 +91,7 @@ public struct Structures {
             "name": "photov1",
             "source": "rumpel",
             "fields": photosFieldsJSON
-            ] as [String : Any]
+        ] as [String: Any]
 
         // add the created tables in as subarrays
         let subTablesJSON: Array = [
@@ -108,7 +108,7 @@ public struct Structures {
             "source": "rumpel",
             "fields": notesTable,
             "subTables": subTablesJSON
-            ] as [String : Any]
+        ] as [String: Any]
 
         // return the json file
         return JSON

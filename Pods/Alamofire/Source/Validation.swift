@@ -193,7 +193,7 @@ extension DataRequest {
     @discardableResult
     public func validate<S: Sequence>(statusCode acceptableStatusCodes: S) -> Self where S.Iterator.Element == Int {
         return validate { [unowned self] _, response, _ in
-            return self.validate(statusCode: acceptableStatusCodes, response: response)
+            self.validate(statusCode: acceptableStatusCodes, response: response)
         }
     }
 
@@ -207,7 +207,7 @@ extension DataRequest {
     @discardableResult
     public func validate<S: Sequence>(contentType acceptableContentTypes: S) -> Self where S.Iterator.Element == String {
         return validate { [unowned self] _, response, data in
-            return self.validate(contentType: acceptableContentTypes, response: response, data: data)
+            self.validate(contentType: acceptableContentTypes, response: response, data: data)
         }
     }
 
@@ -273,7 +273,7 @@ extension DownloadRequest {
     @discardableResult
     public func validate<S: Sequence>(statusCode acceptableStatusCodes: S) -> Self where S.Iterator.Element == Int {
         return validate { [unowned self] _, response, _, _ in
-            return self.validate(statusCode: acceptableStatusCodes, response: response)
+            self.validate(statusCode: acceptableStatusCodes, response: response)
         }
     }
 

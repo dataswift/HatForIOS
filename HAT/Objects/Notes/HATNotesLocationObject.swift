@@ -31,12 +31,27 @@ public struct HATNotesLocationObject: HATObject, HatApiType {
         static let speed: String = "speed"
     }
     
+    // MARK: - Coding Keys
+    
+    /// The names of the variables in the JSON received
+    enum CodingKeys: String, CodingKey {
+        
+        case altitude = "altitude"
+        case altitudeAccuracy = "altitude_accuracy"
+        case latitude = "latitude"
+        case accuracy = "accuracy"
+        case longitude = "longitude"
+        case speed = "speed"
+        case heading = "heading"
+        case shared = "shared"
+    }
+    
     // MARK: - Variables
     
     /// the altitude the at time of creating the note. This value is optional
     public var altitude: Double?
     /// the altitude accuracy at the time of creating the note. This value is optional
-    public var altitude_accuracy: Double?
+    public var altitudeAccuracy: Double?
     /// the latitude at the time of creating the note
     public var latitude: Double?
     /// the accuracy at the time of creating the note
@@ -88,7 +103,7 @@ public struct HATNotesLocationObject: HATObject, HatApiType {
         
         if let tempAltitudeAccuracy: Double = dict[Fields.altitudeAccuracy]?.doubleValue {
             
-            altitude_accuracy = tempAltitudeAccuracy
+            altitudeAccuracy = tempAltitudeAccuracy
         }
         
         if let tempLatitude: Double = dict[Fields.latitude]?.doubleValue {
@@ -142,7 +157,7 @@ public struct HATNotesLocationObject: HATObject, HatApiType {
         return [
             
             Fields.altitude: self.altitude ?? 0,
-            Fields.altitudeAccuracy: self.altitude_accuracy ?? 0,
+            Fields.altitudeAccuracy: self.altitudeAccuracy ?? 0,
             Fields.latitude: self.latitude ?? 0,
             Fields.heading: self.heading ?? 0,
             Fields.shared: String(describing: self.shared),

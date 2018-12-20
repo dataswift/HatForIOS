@@ -52,7 +52,7 @@ public struct HATLocationService {
         let parameters: Dictionary<String, String> = [:]
         
         // auth header
-        let headers: [String : String] = ["Accept": ContentType.json,
+        let headers: [String: String] = ["Accept": ContentType.json,
                                           "Content-Type": ContentType.json,
                                           RequestHeaders.xAuthToken: HATDataPlugCredentials.locationDataPlugToken]
         // construct url
