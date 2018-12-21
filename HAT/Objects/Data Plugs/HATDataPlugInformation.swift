@@ -12,16 +12,39 @@
 
 // MARK: Struct
 
-public struct HATDataPlugPlugObject: HATObject {
+public struct HATDataPlugInformation: HATObject {
+    
+    // MARK: - Coding Keys
+    
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `information` in JSON is `plug`
+     * `provider` in JSON is `provider`
+     */
+    private enum CodingKeys: String, CodingKey {
+        
+        case plugID = "uuid"
+        case providerID = "providerId"
+        case dateCreated = "created"
+        case name = "name"
+        case description = "description"
+        case url = "url"
+        case imageURL = "illustrationUrl"
+        case passwordHash = "passwordHash"
+        case isApproved = "approved"
+        case shouldShowCheckMark = "showCheckMark"
+    }
     
     // MARK: - Variables
 
     /// The uuid of the plug
-    public var uuid: String = ""
+    public var plugID: String = ""
     /// The provider of the plug
-    public var providerId: String = ""
+    public var providerID: String = ""
     /// The date the plug was created as unix time stamp
-    public var created: Int = 0
+    public var dateCreated: Int = 0
     /// The name of the plug
     public var name: String = ""
     /// The description of the plug
@@ -29,12 +52,12 @@ public struct HATDataPlugPlugObject: HATObject {
     /// The url of the plug
     public var url: String = ""
     /// The image url of the plug
-    public var illustrationUrl: String = ""
+    public var imageURL: String = ""
     /// The password has value of the plug
     public var passwordHash: String = ""
     /// Is the plug approved for use
-    public var approved: Bool = false
+    public var isApproved: Bool = false
     
     /// is the plug connected, if it is show checkmark
-    public var showCheckMark: Bool? = false
+    public var shouldShowCheckMark: Bool? = false
 }

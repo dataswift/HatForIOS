@@ -14,7 +14,7 @@ import SwiftyJSON
 
 // MARK: Struct
 
-public struct DataOfferOwner {
+public struct DataOfferOwner: HATObject {
     
     // MARK: - Coding Keys
     

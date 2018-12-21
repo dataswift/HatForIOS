@@ -143,13 +143,13 @@ public struct HATFacebookService {
      - parameter successful: An @escaping (String) -> Void method executed on a successful response
      - parameter failed: An @escaping (Void) -> Void) method executed on a failed response
      */
-    public static func getAppTokenForFacebook(plug: HATDataPlugObject, token: String, userDomain: String, successful: @escaping (String, String?) -> Void, failed: @escaping (JSONParsingError) -> Void) {
+    public static func getAppTokenForFacebook(plug: HATDataPlug, token: String, userDomain: String, successful: @escaping (String, String?) -> Void, failed: @escaping (JSONParsingError) -> Void) {
         
         HATService.getApplicationTokenLegacyFor(
-            serviceName: plug.plug.name,
+            serviceName: plug.information.name,
             userDomain: userDomain,
             userToken: token,
-            resource: plug.plug.url,
+            resource: plug.information.url,
             succesfulCallBack: successful,
             failCallBack: failed)
     }

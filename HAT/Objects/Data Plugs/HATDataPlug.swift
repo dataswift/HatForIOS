@@ -1,4 +1,3 @@
-//
 /**
  * Copyright (C) 2018 HAT Data Exchange Ltd
  *
@@ -11,9 +10,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-// MARK: - Struct
+// MARK: Struct
 
-public struct DataDebitValues: HATObject {
+/// A class representing the outer `Data Plug` JSON format
+public struct HATDataPlug: HATObject {
     
     // MARK: - Coding Keys
     
@@ -21,27 +21,19 @@ public struct DataDebitValues: HATObject {
      The JSON fields used by the hat
      
      The Fields are the following:
-     * `conditions` in JSON is `conditions`
-     * `bundle` in JSON is `bundle`
+     * `information` in JSON is `plug`
+     * `provider` in JSON is `provider`
      */
     private enum CodingKeys: String, CodingKey {
         
-        case conditions
-        case bundle
+        case information = "plug"
+        case provider = "provider"
     }
+
     // MARK: - Variables
-    
-    /// The conditions for `DataDebitValuesObject`. It can be nil
-    public var conditions: [String: Bool]?
-    /// The bundle for `DataDebitValuesObject`. It can be nil
-    public var bundle: [String: [DataDefinitionBundleKeyEndpoints]]?
-    
-    // MARK: - Initialiazer
-    
-    /**
-     Initializing an empty `DataDebitValuesObject`
-     */
-    public init() {
-        
-    }
+
+    /// The information of the `Data Plug`, like the name, creation date etc.
+    public var information: HATDataPlugInformation = HATDataPlugInformation()
+    /// The provider of the `Data Plug`, like the email and name
+    public var provider: HATDataPlugProvider = HATDataPlugProvider()
 }

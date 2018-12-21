@@ -16,7 +16,22 @@ public struct DataDebitPermissions: HATObject {
     
     // MARK: - Coding Keys
     
-    /// The names of the variables in the JSON received
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `dateCreated` in JSON is `dateCreated`
+     * `purpose` in JSON is `purpose`
+     * `startDate` in JSON is `start`
+     * `period` in JSON is `period`
+     * `endDate` in JSON is `end`
+     * `willCancelAtPeriodsEnd` in JSON is `cancelAtPeriodEnd`
+     * `termsUrl` in JSON is `termsUrl`
+     * `isActive` in JSON is `active`
+     * `isAccepted` in JSON is `accepted`
+     * `conditions` in JSON is `conditions`
+     * `bundle` in JSON is `bundle`
+     */
     private enum CodingKeys: String, CodingKey {
         
         case dateCreated = "dateCreated"
@@ -53,7 +68,7 @@ public struct DataDebitPermissions: HATObject {
     /// Is the permission accepted
     public var isAccepted: Bool = false
     /// It is possible for a permission to have an inner bundle object
-    public var bundle: DataDefinitionObject = DataDefinitionObject()
+    public var bundle: DataDefinition = DataDefinition()
     /// Some `Data Debits` can have some conditions attached to them. For example all the search for a `String` or search for a number to be `between` 2 numbers
-    public var conditions: DataDefinitionObject?
+    public var conditions: DataDefinition?
 }

@@ -12,11 +12,18 @@
 
 // MARK: Struct
 
-public struct DataOfferRequiredDataDefinitionBundleFiltersV2: HATObject {
+public struct DataDefinitionBundleFilters: HATObject {
     
     // MARK: - Coding Keys
     
-    /// The names of the variables in the JSON received
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `hatOperator` in JSON is `operator`
+     * `field` in JSON is `field`
+     * `transformation` in JSON is `transformation`
+     */
     private enum CodingKeys: String, CodingKey {
         
         case hatOperator = "operator"

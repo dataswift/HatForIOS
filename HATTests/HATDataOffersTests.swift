@@ -342,7 +342,7 @@ internal class HATDataOffersTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
-        func completion(dataOffers: [DataOfferObject], newToken: String?) {
+        func completion(dataOffers: [DataOffer], newToken: String?) {
             
             XCTAssert(!dataOffers.isEmpty)
             expectationTest.fulfill()
@@ -846,7 +846,7 @@ internal class HATDataOffersTests: XCTestCase {
         MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/api/v2.6/data-debit/123/enable"), builder: json(enableDebitResponse))
         MockingjayProtocol.addStub(matcher: http(.get, uri: "https://\(userDomain)/api/v2.6/applications/databuyer/proxy/api/v2/offersWithClaims"), builder: json(getOffersResponse))
 
-        func completion(dataOffer: DataOfferObject, newToken: String?) {
+        func completion(dataOffer: DataOffer, newToken: String?) {
             
             XCTAssert(dataOffer.dataOfferID == "97a0748f-bf81-4aaa-8f39-97ac2557d920")
             expectationTest.fulfill()
@@ -858,7 +858,7 @@ internal class HATDataOffersTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        var dataOffer: DataOfferObject = DataOfferObject()
+        var dataOffer: DataOffer = DataOffer()
         dataOffer.dataOfferID = "97a0748f-bf81-4aaa-8f39-97ac2557d920"
         
         HATDataOffersService.claimOfferWrapper(

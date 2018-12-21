@@ -1,3 +1,4 @@
+//
 /**
  * Copyright (C) 2018 HAT Data Exchange Ltd
  *
@@ -10,15 +11,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-// MARK: Struct
+// MARK: Protocol
 
-/// A class representing the outer `Data Plug` JSON format
-public struct HATDataPlugObject: HATObject {
-
+public protocol HATApplicationProtocol {
+    
     // MARK: - Variables
-
-    /// The unique id of the `Data Plug`
-    public var plug: HATDataPlugPlugObject = HATDataPlugPlugObject()
-    /// The provider of the `Data Plug`
-    public var provider: HATDataPlugProviderObject = HATDataPlugProviderObject()
+    
+    /// The name of the table that HAT saves data
+    static var name: String { get set }
+    /// The source name of the application
+    static var source: String { get set }
 }

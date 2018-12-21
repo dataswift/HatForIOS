@@ -12,16 +12,35 @@
 
 // MARK: Struct
 
-public struct HATDataPlugProviderObject: HATObject {
+public struct HATDataPlugProvider: HATObject {
+    
+    // MARK: - Coding Keys
+    
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `information` in JSON is `plug`
+     * `provider` in JSON is `provider`
+     */
+    private enum CodingKeys: String, CodingKey {
+        
+        case providerID = "id"
+        case email = "email"
+        case isEmailConfirmed = "emailConfirmed"
+        case password = "password"
+        case name = "name"
+        case dateCreated = "dateCreated"
+    }
 
     // MARK: - Variables
     
     /// The id of the provider
-    public var id: String = ""
+    public var providerID: String = ""
     /// The email of the provider
     public var email: String = ""
-    /// Is he provider email confirmed
-    public var emailConfirmed: Bool = false
+    /// Is provider's email confirmed
+    public var isEmailConfirmed: Bool = false
     /// The password
     public var password: String = ""
     /// The name of the provider

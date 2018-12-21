@@ -12,7 +12,22 @@
 
 // MARK: Struct
 
-public struct DataDefinitionObject: HATObject {
+public struct DataDefinition: HATObject {
+    
+    // MARK: - Coding Keys
+    
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `name` in JSON is `name`
+     * `bundle` in JSON is `bundle`
+     */
+    private enum CodingKeys: String, CodingKey {
+        
+        case name
+        case bundle
+    }
     
     // MARK: - Variables
     

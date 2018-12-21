@@ -14,7 +14,7 @@ import SwiftyJSON
 
 // MARK: Struct
 
-public struct DataSets {
+public struct DataSets: HATObject {
     
     // MARK: - Coding Keys
     

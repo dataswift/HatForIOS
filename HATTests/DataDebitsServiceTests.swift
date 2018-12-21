@@ -138,7 +138,7 @@ internal class DataDebitsServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
-        func completion(dataDebits: [DataDebitObject], newToken: String?) {
+        func completion(dataDebits: [DataDebit], newToken: String?) {
             
             XCTAssertTrue(!dataDebits.isEmpty)
             expectationTest.fulfill()
@@ -209,7 +209,7 @@ internal class DataDebitsServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
-        func completion(dataDebitValue: DataDebitValuesObject, newToken: String?) {
+        func completion(dataDebitValue: DataDebitValues, newToken: String?) {
             
             XCTAssertTrue(!(dataDebitValue.conditions?.isEmpty ?? true))
             expectationTest.fulfill()

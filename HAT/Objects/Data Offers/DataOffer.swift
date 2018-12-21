@@ -14,7 +14,7 @@ import SwiftyJSON
 
 // MARK: Struct
 
-public struct DataOffer {
+public struct DataOffer: HATObject {
     
     // MARK: - CodingKeys
     
@@ -57,7 +57,7 @@ public struct DataOffer {
         case minimumUsers = "requiredMinUser"
         case maximumUsers = "requiredMaxUser"
         case usersClaimedOffer = "totalUserClaims"
-        case requiredDataDefinitions = "requiredDataDefinition"
+        case requiredDataDefinition = "requiredDataDefinition"
         case dataConditions = "dataConditions"
         case dataRequirements = "dataRequirements"
         case reward = "reward"
@@ -98,21 +98,21 @@ public struct DataOffer {
     public var usersClaimedOffer: Int = -1
     
     /// the data definition object of the offer
-    public var requiredDataDefinition: DataDefinitionObject?
+    public var requiredDataDefinition: DataDefinition?
     
     /// the data conditions object of the offer
-    public var dataConditions: DataDefinitionObject?
+    public var dataConditions: DataDefinition?
     
     /// the data requirements object of the offer
-    public var dataRequirements: DataDefinitionObject?
+    public var dataRequirements: DataDefinition?
     
-    /// the rewards of the offer
-    public var reward: DataOfferRewardsObject = DataOfferRewardsObject()
+    /// the rewards information of the offer. Here you can find information about the type of the reward, tha value, vouchers etc
+    public var reward: DataOfferRewards = DataOfferRewards()
     
-    /// The owner of the offer
+    /// The owner information of the offer. Here you can find stuff like the name of the owner, email address etc
     public var owner: DataOfferOwner = DataOfferOwner()
     
-    /// The claim object of the offer
+    /// The claim information object of the offer. Here you can find stuff like if the offer is claimed, when was it claimed etc
     public var claim: DataOfferClaim = DataOfferClaim()
     
     /// The downloaded image of the offer, used to cache the image once downloaded
@@ -147,7 +147,7 @@ public struct DataOffer {
         dataConditions = nil
         dataRequirements = nil
         
-        reward = DataOfferRewardsObject()
+        reward = DataOfferRewards()
         
         owner = DataOfferOwner()
         
@@ -235,13 +235,13 @@ public struct DataOffer {
             isPΙIRequested = tempPII
         }
         
-        if let tempRequiredDataDefinition: JSON = dictionary[DataOffer.CodingKeys.requiredDataDefinitions.rawValue] {
+        if let tempRequiredDataDefinition: JSON = dictionary[DataOffer.CodingKeys.requiredDataDefinition.rawValue] {
             
             let decoder: JSONDecoder = JSONDecoder()
             do {
                 
                 let data: Data = try tempRequiredDataDefinition.rawData()
-                requiredDataDefinition = try decoder.decode(DataDefinitionObject.self, from: data)
+                requiredDataDefinition = try decoder.decode(DataDefinition.self, from: data)
             } catch {
                 
                 print(error)
@@ -254,7 +254,7 @@ public struct DataOffer {
             do {
                 
                 let data: Data = try tempDataConditions.rawData()
-                dataConditions = try decoder.decode(DataDefinitionObject.self, from: data)
+                dataConditions = try decoder.decode(DataDefinition.self, from: data)
             } catch {
                 
                 print(error)
@@ -267,7 +267,7 @@ public struct DataOffer {
             do {
                 
                 let data: Data = try tempDataRequirements.rawData()
-                dataRequirements = try decoder.decode(DataDefinitionObject.self, from: data)
+                dataRequirements = try decoder.decode(DataDefinition.self, from: data)
             } catch {
                 
                 print(error)
@@ -276,7 +276,7 @@ public struct DataOffer {
         
         if let tempReward: [String: JSON] = dictionary[DataOffer.CodingKeys.reward.rawValue]?.dictionary {
             
-            reward = DataOfferRewardsObject(dictionary: tempReward)
+            reward = DataOfferRewards(dictionary: tempReward)
         }
         
         if let tempOwner: [String: JSON] = dictionary[DataOffer.CodingKeys.owner.rawValue]?.dictionary {

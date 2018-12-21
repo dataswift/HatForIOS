@@ -12,7 +12,26 @@
 
 // MARK: Struct
 
-public struct DataOfferRequiredDataDefinitionBundleKeyEndpointsV2: HATObject {
+public struct DataDefinitionBundleKeyEndpoints: HATObject {
+    
+    // MARK: - Coding Keys
+    
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `endpoint` in JSON is `endpoint`
+     * `mapping` in JSON is `mapping`
+     * `filters` in JSON is `filters`
+     * `links` in JSON is `links`
+     */
+    private enum CodingKeys: String, CodingKey {
+        
+        case endpoint
+        case mapping
+        case filters
+        case links
+    }
     
     // MARK: - Variables
     
@@ -21,9 +40,9 @@ public struct DataOfferRequiredDataDefinitionBundleKeyEndpointsV2: HATObject {
     /// The mapping to apply in the endpoint, meaning which fields you want to access from that endpoint
     public var mapping: Dictionary<String, String>?
     /// The filters to apply in the endpoint, like if you want to `find` something in one of the fields stated in the mapping. Optional
-    public var filters: [DataOfferRequiredDataDefinitionBundleFiltersV2]?
+    public var filters: [DataDefinitionBundleFilters]?
     /// The links of the definition object
-    public var links: [DataOfferRequiredDataDefinitionBundleKeyEndpointsV2]?
+    public var links: [DataDefinitionBundleKeyEndpoints]?
     
     // MARK: - Initializer
     

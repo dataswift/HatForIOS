@@ -20,10 +20,15 @@ public class OperatorIn: HATOperator {
     
     // MARK: - Coding Keys
     
-    /// The names of the variables in the JSON received
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `value` in JSON is `value`
+     */
     private enum CodingKeys: String, CodingKey {
         
-        case value = "value"
+        case value
     }
     
     // MARK: - Variables
@@ -39,7 +44,12 @@ public class OperatorContains: HATOperator {
     
     // MARK: - Coding Keys
     
-    /// The names of the variables in the JSON received
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `hasValue` in JSON is `value`
+     */
     private enum CodingKeys: String, CodingKey {
         
         case hasValue = "value"
@@ -58,7 +68,13 @@ public class OperatorBetween: HATOperator {
     
     // MARK: - Coding Keys
     
-    /// The names of the variables in the JSON received
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `upperLimit` in JSON is `upper`
+     * `lowerLimit` in JSON is `lower`
+     */
     private enum CodingKeys: String, CodingKey {
         
         case upperLimit = "upper"
@@ -80,7 +96,13 @@ public class OperatorFind: HATOperator {
     
     // MARK: - Coding Keys
     
-    /// The names of the variables in the JSON received
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `operatorType` in JSON is `operator`
+     * `searchString` in JSON is `search`
+     */
     private enum CodingKeys: String, CodingKey {
         
         case operatorType = "operator"

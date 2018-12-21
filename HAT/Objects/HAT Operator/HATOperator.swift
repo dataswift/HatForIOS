@@ -20,7 +20,12 @@ public class HATOperator: Codable {
     
     // MARK: - Coding Keys
     
-    /// The names of the variables in the JSON received
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `operatorType` in JSON is `operator`
+     */
     private enum CodingKeys: String, CodingKey {
         
         case operatorType = "operator"

@@ -18,7 +18,25 @@ public struct DataDebit: HATObject {
     
     // MARK: - Coding Keys
     
-    /// The names of the variables in the JSON received
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `dataDebitKey` in JSON is `dataDebitKey`
+     * `dateCreated` in JSON is `dateCreated`
+     * `permissions` in JSON is `permissions`
+     * `requestClientName` in JSON is `requestClientName`
+     * `requestClientUrl` in JSON is `requestClientUrl`
+     * `requestClientLogoUrl` in JSON is `requestClientLogoUrl`
+     * `requestDescription` in JSON is `requestDescription`
+     * `requestApplicationId` in JSON is `requestApplicationId`
+     * `isActive` in JSON is `active`
+     * `isAccepted` in JSON is `accepted`
+     * `startDate` in JSON is `start`
+     * `endDate` in JSON is `end`
+     * `activePermissions` in JSON is `permissionsLatest`
+     * `latestPermissions` in JSON is `requestApplicationId`
+     */
     private enum CodingKeys: String, CodingKey {
         
         case dataDebitKey = "dataDebitKey"

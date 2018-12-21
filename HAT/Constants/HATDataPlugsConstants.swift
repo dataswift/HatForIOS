@@ -11,45 +11,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-// MARK: Protocol
-
-public protocol HATDataPlug {
-    
-    // MARK: - Variables
-    
-    /// The name of the table that HAT saves data
-    static var name: String { get set }
-    /// The source name of the plug
-    static var source: String { get set }
-    
-    // MARK: - Functions
-    
-    /**
-     Constructs the `api/status` endpoint for the plug according to the dataplug url returned from the HAT
-     
-     - parameter dataPlugURL: The plug url returned from HAT
-     
-     - returns: The `dataPlugURL` parameter appended with `/api/status`
-     */
-    static func checkStatusURL(dataPlugURL: String) -> String
-}
-
-// MARK: - Extension
-
-extension HATDataPlug {
-    
-    public static func checkStatusURL(dataPlugURL: String) -> String {
-        
-        return "\(dataPlugURL)/api/status"
-    }
-}
-
-// MARK: - Twiiter
+// MARK: - Twitter
 
 /**
- The data needed for communicating with twitter data plug
+ The data needed for communicating with `Twitter` `Data Plug`
  */
-public enum Twitter: HATDataPlug {
+public enum Twitter: HATDataPlugProtocol {
     
     // MARK: - Variables
     
@@ -60,9 +27,9 @@ public enum Twitter: HATDataPlug {
 // MARK: - Spotify
 
 /**
- The strings needed for communicating with spotify data plug
+ The strings needed for communicating with `Spotify` `Data Plug`
  */
-public enum Spotify: HATDataPlug {
+public enum Spotify: HATDataPlugProtocol {
     
     // MARK: - Variables
 
@@ -73,9 +40,9 @@ public enum Spotify: HATDataPlug {
 // MARK: - Fitbit
 
 /**
- The strings needed for communicating with fitbit data plug
+ The strings needed for communicating with `Fitbit` `Data Plug`
  */
-public enum Fitbit: HATDataPlug {
+public enum Fitbit: HATDataPlugProtocol {
     
     // MARK: - Variables
 
@@ -86,9 +53,9 @@ public enum Fitbit: HATDataPlug {
 // MARK: - Facebook
 
 /**
- The strings needed for communicating with facebook data plug
+ The strings needed for communicating with `Facebook` `Data Plug`
  */
-public enum Facebook: HATDataPlug {
+public enum Facebook: HATDataPlugProtocol {
     
     // MARK: - Variables
 
@@ -99,9 +66,9 @@ public enum Facebook: HATDataPlug {
 // MARK: - Google Calendar
 
 /**
- The strings needed for communicating with google calendar data plug
+ The strings needed for communicating with `Google Calendar` `Data Plug`
  */
-public enum GoogleCalendar: HATDataPlug {
+public enum GoogleCalendar: HATDataPlugProtocol {
     
     // MARK: - Variables
 

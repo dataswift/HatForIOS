@@ -14,16 +14,24 @@ import SwiftyJSON
 
 // MARK: Struct
 
-public struct DataOfferClaim {
+public struct DataOfferClaim: HATObject {
     
     // MARK: - Coding Keys
     
-    /// The names of the variables in the JSON received
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `claimStatus` in JSON is `status`
+     * `claimConfirmed` in JSON is `confirmed`
+     * `claimDateStamp` in JSON is `dateCreated`
+     * `dataDebitID` in JSON is `dataDebitId`
+     */
     private enum CodingKeys: String, CodingKey {
         
         case claimStatus = "status"
-        case claimConfirmed = "confirmed"
-        case claimDateStamp = "dateCreated"
+        case isClaimConfirmed = "confirmed"
+        case dateCreated = "dateCreated"
         case dataDebitID = "dataDebitId"
     }
     
@@ -32,9 +40,9 @@ public struct DataOfferClaim {
     /// The data offer claim status. Can be `confirmed`, `claimed` and `completed`
     public var claimStatus: String = ""
     /// A flag indicating if the claim was confirmed
-    public var claimConfirmed: Bool = false
+    public var isClaimConfirmed: Bool = false
     /// The date that the offer has been claimed as a unix time stamp
-    public var claimDateStamp: Int = -1
+    public var dateCreated: Int = -1
     /// The `Data Debit` id that the offer is attached to
     public var dataDebitID: String = ""
     
@@ -46,8 +54,8 @@ public struct DataOfferClaim {
     public init() {
         
         claimStatus = ""
-        claimConfirmed = false
-        claimDateStamp = -1
+        isClaimConfirmed = false
+        dateCreated = -1
         dataDebitID = ""
     }
     
@@ -63,9 +71,9 @@ public struct DataOfferClaim {
             claimStatus = tempStatus
         }
         
-        if let tempConfirmed: Bool = dictionary[DataOfferClaim.CodingKeys.claimConfirmed.rawValue]?.bool {
+        if let tempConfirmed: Bool = dictionary[DataOfferClaim.CodingKeys.isClaimConfirmed.rawValue]?.bool {
             
-            claimConfirmed = tempConfirmed
+            isClaimConfirmed = tempConfirmed
         }
         
         if let tempDataDebitID: String = dictionary[DataOfferClaim.CodingKeys.dataDebitID.rawValue]?.string {
@@ -73,9 +81,9 @@ public struct DataOfferClaim {
             dataDebitID = tempDataDebitID
         }
         
-        if let tempDateStamp: Int = dictionary[DataOfferClaim.CodingKeys.claimDateStamp.rawValue]?.int {
+        if let tempDateStamp: Int = dictionary[DataOfferClaim.CodingKeys.dateCreated.rawValue]?.int {
             
-            claimDateStamp = tempDateStamp
+            dateCreated = tempDateStamp
         }
     }
 }

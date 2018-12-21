@@ -14,9 +14,9 @@ import SwiftyJSON
 
 // MARK: Struct
 
-public struct DataOfferRewardsObject {
+public struct DataOfferRewards: HATObject {
     
-    // MARK: - JSON Fields
+    // MARK: - Coding Keys
     
     /**
      The JSON fields used by the hat
@@ -31,16 +31,17 @@ public struct DataOfferRewardsObject {
      * `codes` in JSON is `codes`
      * `cashValue` in JSON is `cashValue`
      */
-    enum Fields {
+    private enum CodingKeys: String, CodingKey {
         
-        static let rewardType: String = "rewardType"
-        static let rewardVendor: String = "vendor"
-        static let vendorURL: String = "vendorUrl"
-        static let rewardValue: String = "value"
-        static let currency: String = "currency"
-        static let codesReuseable: String = "codesReuseable"
-        static let codes: String = "codes"
-        static let cashValue: String = "cashValue"
+        case rewardType = "rewardType"
+        case vendor = "vendor"
+        case vendorURL = "vendorUrl"
+        case rewardValue = "value"
+        case rewardValueInt = "rewardValueInt"
+        case currency = "currency"
+        case areCodesReusable = "codesReuseable"
+        case codes = "codes"
+        case cashValue = "cashValue"
     }
     
     // MARK: - Variables
@@ -52,15 +53,15 @@ public struct DataOfferRewardsObject {
     /// The vendor URL, possibly the website of the vendor
     public var vendorURL: String = ""
     /// The reward value of the offer
-    public var value: Int = 0
+    public var rewardValue: Int = 0
     /// The reward value of the offer as Int
-    public var valueInt: Int?
+    public var rewardValueInt: Int?
     /// Is the code of the reward able to be reused, in case of `voucher` type
     public var areCodesReusable: Bool?
     /// The possible codes as rewards, in case of `voucher` type
     public var codes: [String]?
     /// The cash value of the reward, in case of `cash` type
-    public var cashValue: DataOfferRewardsCashValueObject?
+    public var cashValue: DataOfferRewardsCashValue?
     /// The currency of the reward, in case of `cash` type
     public var currency: String?
     
@@ -74,8 +75,8 @@ public struct DataOfferRewardsObject {
         rewardType = ""
         vendor = ""
         vendorURL = ""
-        value = 0
-        valueInt = nil
+        rewardValue = 0
+        rewardValueInt = nil
         areCodesReusable = nil
         codes = nil
         cashValue = nil
@@ -89,42 +90,42 @@ public struct DataOfferRewardsObject {
      */
     public init(dictionary: Dictionary<String, JSON>) {
         
-        if let tempRewardType: String = dictionary[DataOfferRewardsObject.Fields.rewardType]?.string {
+        if let tempRewardType: String = dictionary[DataOfferRewards.CodingKeys.rewardType.rawValue]?.string {
             
             rewardType = tempRewardType
         }
         
-        if let tempVendor: String = dictionary[DataOfferRewardsObject.Fields.rewardVendor]?.string {
+        if let tempVendor: String = dictionary[DataOfferRewards.CodingKeys.vendor.rawValue]?.string {
             
             vendor = tempVendor
         }
         
-        if let tempVendorUrl: String = dictionary[DataOfferRewardsObject.Fields.vendorURL]?.string {
+        if let tempVendorUrl: String = dictionary[DataOfferRewards.CodingKeys.vendorURL.rawValue]?.string {
             
             vendorURL = tempVendorUrl
         }
         
-        if let tempValue: Int = dictionary[DataOfferRewardsObject.Fields.rewardValue]?.int {
+        if let tempValue: Int = dictionary[DataOfferRewards.CodingKeys.rewardValue.rawValue]?.int {
             
-            value = tempValue
+            rewardValue = tempValue
         }
         
-        if let tempCurrency: String = dictionary[DataOfferRewardsObject.Fields.currency]?.string {
+        if let tempCurrency: String = dictionary[DataOfferRewards.CodingKeys.currency.rawValue]?.string {
             
             currency = tempCurrency
         }
         
-        if let tempIntValue: Int = dictionary[DataOfferRewardsObject.Fields.rewardValue]?.int {
+        if let tempIntValue: Int = dictionary[DataOfferRewards.CodingKeys.rewardValue.rawValue]?.int {
             
-            valueInt = tempIntValue
+            rewardValueInt = tempIntValue
         }
         
-        if let tempCodeReusable: Bool = dictionary[DataOfferRewardsObject.Fields.codesReuseable]?.bool {
+        if let tempCodeReusable: Bool = dictionary[DataOfferRewards.CodingKeys.areCodesReusable.rawValue]?.bool {
             
             areCodesReusable = tempCodeReusable
         }
         
-        if let tempCodesArray: [JSON] = dictionary[DataOfferRewardsObject.Fields.codes]?.array {
+        if let tempCodesArray: [JSON] = dictionary[DataOfferRewards.CodingKeys.codes.rawValue]?.array {
             
             codes = []
             for code: JSON in tempCodesArray {
@@ -136,9 +137,9 @@ public struct DataOfferRewardsObject {
             }
         }
         
-        if let tempCashValue: [String: JSON] = dictionary[DataOfferRewardsObject.Fields.cashValue]?.dictionary {
+        if let tempCashValue: [String: JSON] = dictionary[DataOfferRewards.CodingKeys.cashValue.rawValue]?.dictionary {
             
-            cashValue = DataOfferRewardsCashValueObject(dictionary: tempCashValue)
+            cashValue = DataOfferRewardsCashValue(dictionary: tempCashValue)
         }
     }
 }

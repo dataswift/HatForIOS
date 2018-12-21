@@ -26,7 +26,7 @@ public struct HATDataPlugsService {
      - parameter succesfulCallBack: A function of type ([HATDataPlugObject], String?) -> Void, executed on a successful result
      - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
      */
-    public static func getAvailableDataPlugs(succesfulCallBack: @escaping ([HATDataPlugObject], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func getAvailableDataPlugs(succesfulCallBack: @escaping ([HATDataPlug], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
         let url: String = "https://dex.hubofallthings.com/api/dataplugs"
         
@@ -50,11 +50,11 @@ public struct HATDataPlugsService {
                 
                 if isSuccess {
                     
-                    var returnValue: [HATDataPlugObject] = []
+                    var returnValue: [HATDataPlug] = []
                     
                     for item: JSON in result.arrayValue {
                         
-                        if let object: HATDataPlugObject = HATDataPlugObject.decode(from: item.dictionaryValue) {
+                        if let object: HATDataPlug = HATDataPlug.decode(from: item.dictionaryValue) {
                             
                             returnValue.append(object)
                         }

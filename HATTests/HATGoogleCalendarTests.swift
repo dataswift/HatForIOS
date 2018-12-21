@@ -237,9 +237,9 @@ internal class HATGoogleCalendarTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        var plug: HATDataPlugObject = HATDataPlugObject()
-        plug.plug.name = "Calendar"
-        plug.plug.url = "calendar"
+        var plug: HATDataPlug = HATDataPlug()
+        plug.information.name = "Calendar"
+        plug.information.url = "calendar"
         
         HATFacebookService.getAppTokenForFacebook(plug: plug, token: "", userDomain: userDomain, successful: completion, failed: failed)
         

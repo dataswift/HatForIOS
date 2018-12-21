@@ -105,13 +105,13 @@ public struct HATTwitterService {
      - parameter successful: An @escaping (String, String?) -> Void method executed on a successful response
      - parameter failed: An @escaping (JSONParsingError) -> Void) method executed on a failed response
      */
-    public static func getAppTokenForTwitter(plug: HATDataPlugObject, userDomain: String, userToken: String, successful: @escaping (String, String?) -> Void, failed: @escaping (JSONParsingError) -> Void) {
+    public static func getAppTokenForTwitter(plug: HATDataPlug, userDomain: String, userToken: String, successful: @escaping (String, String?) -> Void, failed: @escaping (JSONParsingError) -> Void) {
         
         HATService.getApplicationTokenLegacyFor(
-            serviceName: plug.plug.name,
+            serviceName: plug.information.name,
             userDomain: userDomain,
             userToken: userToken,
-            resource: plug.plug.url,
+            resource: plug.information.url,
             succesfulCallBack: successful,
             failCallBack: failed)
     }

@@ -14,10 +14,29 @@
 
 public struct DataDefinitionBundleKey: HATObject {
     
+    // MARK: - Coding Keys
+    
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `endpoints` in JSON is `endpoints`
+     * `orderBy` in JSON is `orderBy`
+     * `ordering` in JSON is `ordering`
+     * `limit` in JSON is `limit`
+     */
+    private enum CodingKeys: String, CodingKey {
+        
+        case endpoints
+        case orderBy
+        case ordering
+        case limit
+    }
+    
     // MARK: - Variables
     
     /// The endpoints that you request access to
-    public var endpoints: [DataOfferRequiredDataDefinitionBundleKeyEndpointsV2] = []
+    public var endpoints: [DataDefinitionBundleKeyEndpoints] = []
     /// The ordering filter of the endpoints. You can order by field per endpoint. Optional
     public var orderBy: String?
     /// The order, ascending of descending. Optional
@@ -32,7 +51,7 @@ public struct DataDefinitionBundleKey: HATObject {
      
      - parameter endpoints: The endpoints of the definition
      */
-    public init(endpoints: [DataOfferRequiredDataDefinitionBundleKeyEndpointsV2]) {
+    public init(endpoints: [DataDefinitionBundleKeyEndpoints]) {
         
         self.endpoints = endpoints
     }

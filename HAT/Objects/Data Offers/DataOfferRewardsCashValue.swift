@@ -14,9 +14,9 @@ import SwiftyJSON
 
 // MARK: Struct
 
-public struct DataOfferRewardsCashValueObject {
+public struct DataOfferRewardsCashValue: HATObject {
 
-    // MARK: - JSON Fields
+    // MARK: - Coding Keys
     
     /**
      The JSON fields used by the hat
@@ -26,11 +26,11 @@ public struct DataOfferRewardsCashValueObject {
      * `currency` in JSON is `currency`
      * `value` in JSON is `value`
      */
-    public struct Fields {
+    private enum CodingKeys: String, CodingKey {
         
-        static let rewardType: String = "rewardType"
-        static let currency: String = "currency"
-        static let value: String = "value"
+        case rewardType
+        case currency
+        case value
     }
     
     // MARK: - Variables
@@ -61,17 +61,17 @@ public struct DataOfferRewardsCashValueObject {
      */
     public init(dictionary: Dictionary<String, JSON>) {
         
-        if let tempRewardType: String = dictionary[DataOfferRewardsCashValueObject.Fields.rewardType]?.string {
+        if let tempRewardType: String = dictionary[DataOfferRewardsCashValue.CodingKeys.rewardType.rawValue]?.string {
             
             rewardType = tempRewardType
         }
         
-        if let tempValue: Int = dictionary[DataOfferRewardsCashValueObject.Fields.value]?.int {
+        if let tempValue: Int = dictionary[DataOfferRewardsCashValue.CodingKeys.value.rawValue]?.int {
             
             value = tempValue
         }
         
-        if let tempCurrency: String = dictionary[DataOfferRewardsCashValueObject.Fields.currency]?.string {
+        if let tempCurrency: String = dictionary[DataOfferRewardsCashValue.CodingKeys.currency.rawValue]?.string {
             
             currency = tempCurrency
         }

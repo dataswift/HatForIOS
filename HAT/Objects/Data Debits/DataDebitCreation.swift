@@ -17,7 +17,25 @@ public struct DataDebitCreation: HATObject {
     
     // MARK: - Coding Keys
     
-    /// The names of the variables in the JSON received
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `dataDebitKey` in JSON is `dataDebitKey`
+     * `dateCreated` in JSON is `dateCreated`
+     * `permissions` in JSON is `permissions`
+     * `requestClientName` in JSON is `requestClientName`
+     * `requestClientUrl` in JSON is `requestClientUrl`
+     * `requestClientLogoUrl` in JSON is `requestClientLogoUrl`
+     * `requestDescription` in JSON is `requestDescription`
+     * `requestApplicationId` in JSON is `requestApplicationId`
+     * `isActive` in JSON is `active`
+     * `isAccepted` in JSON is `accepted`
+     * `startDate` in JSON is `start`
+     * `endDate` in JSON is `end`
+     * `activePermissions` in JSON is `permissionsLatest`
+     * `latestPermissions` in JSON is `requestApplicationId`
+     */
     private enum CodingKeys: String, CodingKey {
         
         case dataDebitKey = "dataDebitKey"
@@ -60,9 +78,9 @@ public struct DataDebitCreation: HATObject {
     /// A short description for the `Data Debit`. What this is and why it exists. Optinal, can be nil
     public var requestDescription: String? = ""
     /// Some `Data Debits` can have some conditions attached to them. For example all the search for a `String` or search for a number to be `between` 2 numbers
-    public var conditions: DataDefinitionObject?
+    public var conditions: DataDefinition?
     /// The bundle attached to this `Data Debit`. The bundle holds info about the urls and the specific fields that it wants access
-    public var bundle: DataDefinitionObject = DataDefinitionObject()
+    public var bundle: DataDefinition = DataDefinition()
     
     // MARK: - Initializers
     
@@ -80,7 +98,7 @@ public struct DataDebitCreation: HATObject {
      - parameter requestClientLogoUrl: The logo URL of the client that created this `Data Debit` in order to load the image
      - parameter bundle: The bundle attached to this `Data Debit`. The bundle holds info about the urls and the specific fields that it wants access
      */
-    public init(dataDebitKey: String, purpose: String, start: String, period: Double, termsUrl: String, cancelAtPeriodEnd: Bool, requestClientName: String, requestClientUrl: String, requestClientLogoUrl: String, bundle: DataDefinitionObject) {
+    public init(dataDebitKey: String, purpose: String, start: String, period: Double, termsUrl: String, cancelAtPeriodEnd: Bool, requestClientName: String, requestClientUrl: String, requestClientLogoUrl: String, bundle: DataDefinition) {
         
         self.dataDebitKey = dataDebitKey
         self.purpose = purpose

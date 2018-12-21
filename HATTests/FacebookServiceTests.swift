@@ -159,9 +159,9 @@ internal class FacebookServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        var plug: HATDataPlugObject = HATDataPlugObject()
-        plug.plug.name = "facebook"
-        plug.plug.url = "facebook"
+        var plug: HATDataPlug = HATDataPlug()
+        plug.information.name = "facebook"
+        plug.information.url = "facebook"
         
         HATFacebookService.getAppTokenForFacebook(plug: plug, token: "", userDomain: userDomain, successful: completion, failed: failed)
         
