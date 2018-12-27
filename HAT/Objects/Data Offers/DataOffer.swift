@@ -69,56 +69,56 @@ public struct DataOffer: HATObject {
     
     // MARK: - Variables
     
-    /// The data offer ID
+    /// The `Data Offer` unique ID
     public var dataOfferID: String = ""
-    /// The title of the offer
+    /// The `Data Offer` title
     public var offerTitle: String = ""
-    /// The short description of the offer, usually 1 phrase
+    /// The short description of the `Data Offer`, usually 1 phrase
     public var shortDescription: String = ""
-    /// The long description of the offer, usuallu 1 small paragraph stating more info about the offer and the reward
+    /// The long description of the `Data Offer`, usually 1 small paragraph stating more info about the offer and the reward
     public var longDescription: String = ""
-    /// The image URL of the offer in order to fetch it
+    /// The image URL of the `Data Offer` in order to fetch it
     public var imageURL: String = ""
-    /// The merchant code of the offer, this is how you can ask for offers from a specific merchants. Any merchant ending in `public` is visible to everyone. Some merchants can be private only
+    /// The merchant code of the `Data Offer`, this is how you can ask for offers from a specific merchants. Any merchant ending in `private` is not visible publicly. Some merchants can be public as well
     public var merchantCode: String = ""
     
     /// the date created as unix time stamp
     public var dateCreated: String = ""
-    /// the start date of the offer as unix time stamp
+    /// the start date of the `Data Offer` as unix time stamp
     public var startDate: String = ""
-    /// the expire date of the offer as unix time stamp
+    /// the expire date of the `Data Offer` as unix time stamp. After this date no one can claim the offer
     public var expireDate: String = ""
-    /// the duration that the offer collects data for as unix time stamp
+    /// the duration that the `Data Offer` collects data for as unix time stamp
     public var collectsDataFor: Int = -1
-    /// the minimum users required for the offer to activate
+    /// the minimum users required for the `Data Offer` to activate
     public var minimumUsers: Int = -1
-    /// the max users of the offer. If this number is reached no one else can claim the offer
+    /// the max users of the `Data Offer`. If this number is reached no one else can claim the offer
     public var maximumUsers: Int = -1
-    /// the number of users claimed the offer so far
+    /// the number of users claimed the `Data Offer` so far
     public var usersClaimedOffer: Int = -1
     
-    /// the data definition object of the offer
+    /// the data definition object of the `Data Offer`. Here you can find info about the name of the data definitions alongside what endpoints and fields has access to. Optional
     public var requiredDataDefinition: DataDefinition?
     
-    /// the data conditions object of the offer
+    /// the data conditions object of the `Data Offer`. Here you can find info about the name of the data definitions alongside what endpoints and fields has access to. Optional
     public var dataConditions: DataDefinition?
     
-    /// the data requirements object of the offer
+    /// the data requirements object of the `Data Offer`. Here you can find info about the name of the data definitions alongside what endpoints and fields has access to. Optional
     public var dataRequirements: DataDefinition?
     
-    /// the rewards information of the offer. Here you can find information about the type of the reward, tha value, vouchers etc
+    /// the rewards information of the `Data Offer`. Here you can find information about the type of the reward, tha value, vouchers etc
     public var reward: DataOfferRewards = DataOfferRewards()
     
-    /// The owner information of the offer. Here you can find stuff like the name of the owner, email address etc
+    /// The owner information of the `Data Offer`. Here you can find stuff like the name of the owner, email address etc
     public var owner: DataOfferOwner = DataOfferOwner()
     
-    /// The claim information object of the offer. Here you can find stuff like if the offer is claimed, when was it claimed etc
+    /// The claim information object of the `Data Offer`. Here you can find stuff like if the offer is claimed, when was it claimed etc
     public var claim: DataOfferClaim = DataOfferClaim()
     
-    /// The downloaded image of the offer, used to cache the image once downloaded
+    /// The downloaded image of the `Data Offer`, used to cache the image once downloaded. Optional
     public var image: UIImage?
     
-    /// A flag indicating if the offer requires pii, personal identifying information
+    /// A flag indicating if the `Data Offer` requires pii, personal identifying information
     public var isPΙIRequested: Bool = false
     
     // MARK: - Initialisers

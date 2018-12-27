@@ -13,16 +13,31 @@
 
 // MARK: Struct
 
-public struct HATExternalAppsInfoDescriptionObject: HATObject {
+public struct ApplicationsDescription: HATObject {
+    
+    // MARK: - Coding Keys
+    
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `text` in JSON is `text`
+     * `markdown` in JSON is `markdown`
+     * `html` in JSON is `html`
+     */
+    private enum CodingKeys: String, CodingKey {
+        
+        case text
+        case markdown
+        case html
+    }
 
     // MARK: - Variables
     
     /// The description text as simple String
     public var text: String = ""
-    
-    /// The description text markdown formatted
+    /// The description text markdown formatted. Optional
     public var markdown: String?
-    
-    /// The description text html formatte
+    /// The description text html formatted. Optional
     public var html: String?
 }

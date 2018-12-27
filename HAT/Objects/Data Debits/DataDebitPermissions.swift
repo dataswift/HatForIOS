@@ -51,24 +51,24 @@ public struct DataDebitPermissions: HATObject {
     
     /// The created date of the permission
     public var dateCreated: String = ""
-    /// The purpose of the permission
+    /// The purpose of the permission. A short description of what it offers. Optional
     public var purpose: String?
-    /// The start date of the permission
+    /// The start date of the permission in an ISO format. Optional
     public var startDate: String?
-    /// The end date of the permission
+    /// The end date of the permission in an ISO format. Optional
     public var endDate: String?
     /// A flag indicating if the permissions will auto cancel when the debit will end
     public var willCancelAtPeriodsEnd: Bool = false
-    /// The terms and conditions URL for the permissions
+    /// The terms and conditions URL for the permissions. Optional
     public var termsUrl: String?
-    /// The period duration
+    /// The period duration. How long the permissions will be active
     public var period: Int = 0
-    /// Is the permission active
+    /// A flag indicating if the permissions are currently active
     public var isActive: Bool = false
-    /// Is the permission accepted
+    /// A flag indicating if the permissions have been accepted by the user
     public var isAccepted: Bool = false
-    /// It is possible for a permission to have an inner bundle object
+    /// The bundle. It has all sorts of info about which endpoint and fields it can access. Also about mapping and filtering those fields. It can be nil
     public var bundle: DataDefinition = DataDefinition()
-    /// Some `Data Debits` can have some conditions attached to them. For example all the search for a `String` or search for a number to be `between` 2 numbers
+    /// Some `Data Debits` can have some conditions attached to them. For example all the search for a `String` or search for a number to be `between` 2 numbers. Optional
     public var conditions: DataDefinition?
 }

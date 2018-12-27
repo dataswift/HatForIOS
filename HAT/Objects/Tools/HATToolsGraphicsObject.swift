@@ -13,6 +13,6 @@
 
 public struct HATToolsGraphicsObject: HATObject {
 
-    public var logo: HATExternalAppsIllustrationObject = HATExternalAppsIllustrationObject()
-    public var screenshots: [HATExternalAppsIllustrationObject] = []
+    public var logo: ApplicationsImage = ApplicationsImage()
+    public var screenshots: [ApplicationsImage] = []
 }

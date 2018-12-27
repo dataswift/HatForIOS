@@ -57,32 +57,32 @@ public struct DataDebit: HATObject {
     
     // MARK: - Variables
     
-    /// The data debit key
+    /// The `Data Debit` key, a unique ID
     public var dataDebitKey: String = ""
-    /// The date created of the data debit
+    /// The date that the `Data Debit` was created
     public var dateCreated: String = ""
-    /// The permissions of the data debit
+    /// The permissions of the `Data Debit`. Like when it was activated, the period, what URLS and fields it can access etc
     public var permissions: [DataDebitPermissions] = []
-    /// The client name of the data debit
+    /// The name of the creator of the `Data Debit`
     public var requestClientName: String = ""
-    /// The client url of the data debit
+    /// The client URL, possibly a website, of the `Data Debit`
     public var requestClientUrl: String = ""
-    /// The client logo URL of the data debit
+    /// The image URL, in order to fetch it, of the `Data Debit`
     public var requestClientLogoUrl: String = ""
-    /// The description of the data debit
+    /// The description of the `Data Debit`. What it does and why it is useful. Optional
     public var requestDescription: String?
-    /// The id of the application, if the data debit is an application
+    /// The id of the application, if the `Data Debit` is attached to one. Optional
     public var requestApplicationId: String?
-    /// Is data debit active?
+    /// A flag indicating if the `Data Debit` active
     public var isActive: Bool = false
-    /// Is data debit accepted?
+    /// A flag indicating if the `Data Debit` is accepted
     public var isAccepted: Bool = false
-    /// The start date of the data debit
+    /// The start date of the `Data Debit`. Optional
     public var startDate: String?
-    /// The end date of the data debit
+    /// The end date of the `Data Debit`. After this date the `Data Debit` will be disabled. Optional
     public var endDate: String?
-    /// Are permissions still active
+    /// The latest permissions active. Optional
     public var activePermissions: DataDebitPermissions?
-    /// The last permission set
+    /// The latest permission. Permissions can change over time.
     public var latestPermissions: DataDebitPermissions = DataDebitPermissions()
 }

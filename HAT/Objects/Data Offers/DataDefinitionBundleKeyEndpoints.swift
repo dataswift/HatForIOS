@@ -37,11 +37,11 @@ public struct DataDefinitionBundleKeyEndpoints: HATObject {
     
     /// The endpoint that we want access to, eg facebook/feed
     public var endpoint: String = ""
-    /// The mapping to apply in the endpoint, meaning which fields you want to access from that endpoint
+    /// The mapping to apply in the endpoint, meaning which fields you want to access from that endpoint. Optional
     public var mapping: Dictionary<String, String>?
     /// The filters to apply in the endpoint, like if you want to `find` something in one of the fields stated in the mapping. Optional
     public var filters: [DataDefinitionBundleFilters]?
-    /// The links of the definition object
+    /// The links of the definition object. Optional
     public var links: [DataDefinitionBundleKeyEndpoints]?
     
     // MARK: - Initializer

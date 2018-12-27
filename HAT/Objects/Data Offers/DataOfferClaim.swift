@@ -23,8 +23,8 @@ public struct DataOfferClaim: HATObject {
      
      The Fields are the following:
      * `claimStatus` in JSON is `status`
-     * `claimConfirmed` in JSON is `confirmed`
-     * `claimDateStamp` in JSON is `dateCreated`
+     * `isClaimConfirmed` in JSON is `confirmed`
+     * `dateCreated` in JSON is `dateCreated`
      * `dataDebitID` in JSON is `dataDebitId`
      */
     private enum CodingKeys: String, CodingKey {

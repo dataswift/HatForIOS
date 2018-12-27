@@ -73,11 +73,11 @@ public struct DataDebitCreation: HATObject {
     public var requestClientUrl: String = ""
     /// The logo URL of the client that created this `Data Debit` in order to load the image
     public var requestClientLogoUrl: String = ""
-    /// The Application ID, if the `Data Debit` is attached to one, can be nil
+    /// The Application ID, if the `Data Debit` is attached to one. Optional
     public var requestApplicationId: String? = ""
     /// A short description for the `Data Debit`. What this is and why it exists. Optinal, can be nil
     public var requestDescription: String? = ""
-    /// Some `Data Debits` can have some conditions attached to them. For example all the search for a `String` or search for a number to be `between` 2 numbers
+    /// Some `Data Debits` can have some conditions attached to them. For example all the search for a `String` or search for a number to be `between` 2 numbers. Optional
     public var conditions: DataDefinition?
     /// The bundle attached to this `Data Debit`. The bundle holds info about the urls and the specific fields that it wants access
     public var bundle: DataDefinition = DataDefinition()

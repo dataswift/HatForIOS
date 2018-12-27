@@ -17,7 +17,7 @@ public struct HATToolsInfoObject: HATObject {
     public var versionReleaseDate: String = ""
     public var name: String = ""
     public var headline: String = ""
-    public var description: HATExternalAppsInfoDescriptionObject = HATExternalAppsInfoDescriptionObject()
+    public var description: ApplicationsDescription = ApplicationsDescription()
     public var termsUrl: String = ""
     public var supportContact: String = ""
     public var dataPreview: [HATFeedObject]?

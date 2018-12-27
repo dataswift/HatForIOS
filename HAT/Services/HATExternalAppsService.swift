@@ -28,7 +28,7 @@ public struct HATExternalAppsService {
      - parameter completion: A function to execute on success with the apps and the new token
      - parameter failCallBack: A function to execute on fail that takes the error produced
      */
-    public static func getExternalApps(userToken: String, userDomain: String, completion: @escaping (([HATApplicationObject], String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
+    public static func getExternalApps(userToken: String, userDomain: String, completion: @escaping (([ExternalApplications], String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
         
         let url: String = "https://\(userDomain)/api/v2.6/applications"
         let headers: [String: String] = ["x-auth-token": userToken]
@@ -62,11 +62,11 @@ public struct HATExternalAppsService {
                         
                         if let array: [JSON] = result.array {
                             
-                            var arrayToReturn: [HATApplicationObject] = []
+                            var arrayToReturn: [ExternalApplications] = []
                             
                             for item: JSON in array {
                                 
-                                if let object: HATApplicationObject = HATApplicationObject.decode(from: item.dictionaryValue) {
+                                if let object: ExternalApplications = ExternalApplications.decode(from: item.dictionaryValue) {
                                     
                                     arrayToReturn.append(object)
                                 }
@@ -94,7 +94,7 @@ public struct HATExternalAppsService {
      - parameter completion: A function to execute on success with the apps and the new token
      - parameter failCallBack: A function to execute on fail that takes the error produced
      */
-    public static func getAppInfo(userToken: String, userDomain: String, applicationId: String, completion: @escaping ((HATApplicationObject, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
+    public static func getAppInfo(userToken: String, userDomain: String, applicationId: String, completion: @escaping ((ExternalApplications, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
         
         let url: String = "https://\(userDomain)/api/v2.6/applications/\(applicationId)"
         let headers: [String: String] = ["x-auth-token": userToken, "Cache-Control": "no-cache"]
@@ -128,7 +128,7 @@ public struct HATExternalAppsService {
                         
                         if let item: [String: JSON] = result.dictionary {
                             
-                            if let object: HATApplicationObject = HATApplicationObject.decode(from: item) {
+                            if let object: ExternalApplications = ExternalApplications.decode(from: item) {
                                 
                                 completion(object, token)
                             }
@@ -154,7 +154,7 @@ public struct HATExternalAppsService {
      - parameter completion: A function to execute on success with the apps and the new token
      - parameter failCallBack: A function to execute on fail that takes the error produced
      */
-    public static func setUpApp(userToken: String, userDomain: String, applicationID: String, completion: @escaping ((HATApplicationObject, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
+    public static func setUpApp(userToken: String, userDomain: String, applicationID: String, completion: @escaping ((ExternalApplications, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
         
         let url: String = "https://\(userDomain)/api/v2.6/applications/\(applicationID)/setup"
         let headers: [String: String] = ["x-auth-token": userToken]
@@ -188,7 +188,7 @@ public struct HATExternalAppsService {
                         
                         if let dict: [String: JSON] = result.dictionary {
                             
-                            if let object: HATApplicationObject = HATApplicationObject.decode(from: dict) {
+                            if let object: ExternalApplications = ExternalApplications.decode(from: dict) {
                                 
                                 completion(object, token)
                             } else {
@@ -218,7 +218,7 @@ public struct HATExternalAppsService {
      - parameter completion: A function to execute on success with the apps and the new token
      - parameter failCallBack: A function to execute on fail that takes the error produced
      */
-    public static func disableApplication(appID: String, userDomain: String, userToken: String, completion: @escaping ((HATApplicationObject, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
+    public static func disableApplication(appID: String, userDomain: String, userToken: String, completion: @escaping ((ExternalApplications, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
         
         let url: String = "https://\(userDomain)/api/v2.6/applications/\(appID)/disable"
         let headers: [String: String] = ["x-auth-token": userToken]
@@ -252,7 +252,7 @@ public struct HATExternalAppsService {
                         
                         if let dict: [String: JSON] = result.dictionary {
                             
-                            if let object: HATApplicationObject = HATApplicationObject.decode(from: dict) {
+                            if let object: ExternalApplications = ExternalApplications.decode(from: dict) {
                                 
                                 completion(object, token)
                             } else {

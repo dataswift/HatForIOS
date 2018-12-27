@@ -31,9 +31,9 @@ public struct DataDebitValues: HATObject {
     }
     // MARK: - Variables
     
-    /// The conditions for `DataDebitValuesObject`. It can be nil
+    /// The conditions. For every endpoint specified in the bundle it will be true if the data are there and have been taken or false indicating the data are not there. Optional
     public var conditions: [String: Bool]?
-    /// The bundle for `DataDebitValuesObject`. It can be nil
+    /// The bundle. It has all sorts of info about which endpoint and fields it can access. Also about mapping and filtering those fields. Optional
     public var bundle: [String: [DataDefinitionBundleKeyEndpoints]]?
     
     // MARK: - Initialiazer

@@ -20,8 +20,16 @@ public struct HATDataPlugInformation: HATObject {
      The JSON fields used by the hat
      
      The Fields are the following:
-     * `information` in JSON is `plug`
-     * `provider` in JSON is `provider`
+     * `plugID` in JSON is `uuid`
+     * `providerID` in JSON is `providerId`
+     * `dateCreated` in JSON is `crated`
+     * `name` in JSON is `name`
+     * `description` in JSON is `description`
+     * `url` in JSON is `url`
+     * `imageURL` in JSON is `illustrationUrl`
+     * `passwordHash` in JSON is `passwordHash`
+     * `isApproved` in JSON is `approved`
+     * `shouldShowCheckMark` in JSON is `showCheckMark`
      */
     private enum CodingKeys: String, CodingKey {
         
@@ -39,25 +47,25 @@ public struct HATDataPlugInformation: HATObject {
     
     // MARK: - Variables
 
-    /// The uuid of the plug
+    /// The uuid of the `Data Plug`
     public var plugID: String = ""
-    /// The provider of the plug
+    /// The provider ID for the `Data Plug`
     public var providerID: String = ""
-    /// The date the plug was created as unix time stamp
+    /// The date the `Data Plug` was created as unix time stamp
     public var dateCreated: Int = 0
-    /// The name of the plug
+    /// The name of the `Data Plug`
     public var name: String = ""
-    /// The description of the plug
+    /// A short description of the `Data Plug`. What it does and why it is a cool `Data Plug`
     public var description: String = ""
-    /// The url of the plug
+    /// The url of the `Data Plug`
     public var url: String = ""
-    /// The image url of the plug
+    /// The image url of the `Data Plug`, in order to fetch it
     public var imageURL: String = ""
-    /// The password has value of the plug
+    /// The password hash value of the `Data Plug`
     public var passwordHash: String = ""
-    /// Is the plug approved for use
+    /// A flag indicatinf if the `Data Plug` is approved for use
     public var isApproved: Bool = false
     
-    /// is the plug connected, if it is show checkmark
+    /// A flag indicating if the `Data Plug` is connected, if it is show checkmark
     public var shouldShowCheckMark: Bool? = false
 }

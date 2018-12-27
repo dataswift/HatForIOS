@@ -54,15 +54,15 @@ public struct DataOfferRewards: HATObject {
     public var vendorURL: String = ""
     /// The reward value of the offer
     public var rewardValue: Int = 0
-    /// The reward value of the offer as Int
+    /// The reward value of the offer as Int. Optional
     public var rewardValueInt: Int?
-    /// Is the code of the reward able to be reused, in case of `voucher` type
+    /// Is the code of the reward able to be reused, in case of `voucher` type. Optional
     public var areCodesReusable: Bool?
-    /// The possible codes as rewards, in case of `voucher` type
+    /// The possible codes as rewards, in case of `voucher` type. Optional
     public var codes: [String]?
-    /// The cash value of the reward, in case of `cash` type
+    /// The cash value of the reward, in case of `cash` type. Optional
     public var cashValue: DataOfferRewardsCashValue?
-    /// The currency of the reward, in case of `cash` type
+    /// The currency of the reward, in case of `cash` type. Optional
     public var currency: String?
     
     // MARK: - Initialiser

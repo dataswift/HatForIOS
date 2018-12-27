@@ -37,7 +37,7 @@ public struct DataDefinitionBundleFilters: HATObject {
     public var field: String = ""
     /// The transformation to be done on the field. Optional
     public var transformation: Dictionary<String, String>?
-    /// The operator of the filter. Can be `contains`, `in`, `between` and `find`
+    /// The operator of the filter. Can be `contains`, `in`, `between` and `find`. Optional
     public var hatOperator: HATOperator?
     
     // MARK: - Initializer

@@ -15,7 +15,7 @@ import UIKit
 
 public struct HATExternalAppsSetupOnboardingObject: HATObject {
 
-    public var illustration: HATExternalAppsIllustrationObject = HATExternalAppsIllustrationObject()
+    public var illustration: ApplicationsImage = ApplicationsImage()
     public var title: String = ""
     public var description: String = ""
 }
