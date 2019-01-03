@@ -30,7 +30,7 @@ public struct HATFileService {
      - parameter successCallback: An @escaping ([FileUploadObject]) -> Void function to execute when the server has returned the files we were looking for
      - parameter errorCallBack: An @escaping (HATError) -> Void to execute when something went wrong
      */
-    public static func searchFiles(userDomain: String, token: String, status: String? = "Completed", name: String = "", tags: [String]? = [""], successCallback: @escaping ([FileUploadObject], String?) -> Void, errorCallBack: @escaping (HATError) -> Void) {
+    public static func searchFiles(userDomain: String, token: String, status: String? = "Completed", name: String = "", tags: [String]? = [""], successCallback: @escaping ([HATFileUpload], String?) -> Void, errorCallBack: @escaping (HATError) -> Void) {
         
         let url: String = "https://\(userDomain)/api/v2.6/files/search"
         let headers: [String: String] = ["X-Auth-Token": token]
@@ -62,11 +62,11 @@ public struct HATFileService {
                 
                 if isSuccess {
                     
-                    var images: [FileUploadObject] = []
+                    var images: [HATFileUpload] = []
                     // reload table
                     for image: JSON in result.arrayValue {
                         
-                        images.append(FileUploadObject(from: image.dictionaryValue))
+                        images.append(HATFileUpload(from: image.dictionaryValue))
                     }
                     
                     successCallback(images, token)
@@ -256,7 +256,7 @@ public struct HATFileService {
      - parameter completion: A function to execute on success, returning the object returned from the server
      - parameter errorCallback: A function to execute on failure, returning an error
      */
-    public static func completeUploadFileToHAT(fileID: String, token: String, tags: [String], userDomain: String, completion: @escaping (FileUploadObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func completeUploadFileToHAT(fileID: String, token: String, tags: [String], userDomain: String, completion: @escaping (HATFileUpload, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let uploadURL: String = "https://\(userDomain)/api/v2.6/files/file/\(fileID)/complete"
@@ -290,7 +290,7 @@ public struct HATFileService {
                     
                     if isSuccess {
                         
-                        var fileUploadJSON: FileUploadObject = FileUploadObject(from: result.dictionaryValue)
+                        var fileUploadJSON: HATFileUpload = HATFileUpload(from: result.dictionaryValue)
                         fileUploadJSON.tags = tags
                         
                         //table found
@@ -319,7 +319,7 @@ public struct HATFileService {
      - parameter completion: A function to execute on success, returning the object returned from the server
      - parameter errorCallback: A function to execute on failure, returning an error
      */
-    public static func uploadFileToHAT(fileName: String, token: String, userDomain: String, tags: [String], completion: @escaping (FileUploadObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func uploadFileToHAT(fileName: String, token: String, userDomain: String, tags: [String], completion: @escaping (HATFileUpload, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let uploadURL: String = "https://\(userDomain)/api/v2.6/files/upload"
@@ -354,7 +354,7 @@ public struct HATFileService {
                     
                     if isSuccess {
                         
-                        let fileUploadJSON: FileUploadObject = FileUploadObject(from: result.dictionaryValue)
+                        let fileUploadJSON: HATFileUpload = HATFileUpload(from: result.dictionaryValue)
                         
                         //table found
                         if statusCode == 200 {
@@ -384,7 +384,7 @@ public struct HATFileService {
      - parameter completion: A function to execute on success, returning the object returned from the server
      - parameter errorCallback: A function to execute on failure, returning an error
      */
-    public static func updateParametersOfFile(fileID: String, fileName: String, token: String, userDomain: String, tags: [String], completion: @escaping (FileUploadObject, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func updateParametersOfFile(fileID: String, fileName: String, token: String, userDomain: String, tags: [String], completion: @escaping (HATFileUpload, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let updateURL: String = "https://\(userDomain)/api/v2.6/files/file/\(fileID)"
@@ -419,7 +419,7 @@ public struct HATFileService {
                     
                     if isSuccess {
                         
-                        let fileUploadJSON: FileUploadObject = FileUploadObject(from: result.dictionaryValue)
+                        let fileUploadJSON: HATFileUpload = HATFileUpload(from: result.dictionaryValue)
                         
                         //table found
                         if statusCode == 200 {
@@ -449,7 +449,7 @@ public struct HATFileService {
      - parameter completion: A function to execute on success
      - parameter errorCallBack: A Function to execute on failure
      */
-    public static func uploadFileToHATWrapper(token: String, userDomain: String, fileToUpload: UIImage, tags: [String], name: String = "rumpelPhoto", progressUpdater: ((Double) -> Void)?, completion: ((FileUploadObject, String?) -> Void)?, errorCallBack: ((HATTableError) -> Void)?) {
+    public static func uploadFileToHATWrapper(token: String, userDomain: String, fileToUpload: UIImage, tags: [String], name: String = "rumpelPhoto", progressUpdater: ((Double) -> Void)?, completion: ((HATFileUpload, String?) -> Void)?, errorCallBack: ((HATTableError) -> Void)?) {
         
         HATFileService.uploadFileToHAT(
             fileName: name,
@@ -474,7 +474,7 @@ public struct HATFileService {
                             userDomain: userDomain,
                             completion: {uploadedFile, renewedUserToken -> Void in
                                 
-                                var tempFile: FileUploadObject = fileObject
+                                var tempFile: HATFileUpload = fileObject
                                 tempFile.status.status = uploadedFile.status.status
                                 completion?(tempFile, renewedUserToken)
                             },

@@ -139,7 +139,7 @@ public struct HATFitbitService {
      - parameter successCallback: A ([HATFitbitSleepObject], String?) -> Void function executed on success
      - parameter errorCallback: A (HATTableError) -> Void function executed on failure
      */
-    public static func getSleep(userDomain: String, userToken: String, parameters: Dictionary<String, String>, successCallback: @escaping ([HATFitbitSleepObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func getSleep(userDomain: String, userToken: String, parameters: Dictionary<String, String>, successCallback: @escaping ([HATFitbitSleep], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         HATFitbitService.getGeneric(
             userDomain: userDomain,
@@ -160,7 +160,7 @@ public struct HATFitbitService {
      - parameter successCallback: A ([HATFitbitWeightObject], String?) -> Void function executed on success
      - parameter errorCallback: A (HATTableError) -> Void function executed on failure
      */
-    public static func getWeight(userDomain: String, userToken: String, parameters: Dictionary<String, String>, successCallback: @escaping ([HATFitbitWeightObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func getWeight(userDomain: String, userToken: String, parameters: Dictionary<String, String>, successCallback: @escaping ([HATFitbitWeight], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         HATFitbitService.getGeneric(
             userDomain: userDomain,
@@ -181,7 +181,7 @@ public struct HATFitbitService {
      - parameter successCallback: A ([HATFitbitProfileObject], String?) -> Void function executed on success
      - parameter errorCallback: A (HATTableError) -> Void function executed on failure
      */
-    public static func getProfile(userDomain: String, userToken: String, parameters: Dictionary<String, String>, successCallback: @escaping ([HATFitbitProfileObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func getProfile(userDomain: String, userToken: String, parameters: Dictionary<String, String>, successCallback: @escaping ([HATFitbitProfile], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         HATFitbitService.getGeneric(
             userDomain: userDomain,
@@ -202,7 +202,7 @@ public struct HATFitbitService {
      - parameter successCallback: A ([HATFitbitDailyActivityObject], String?) -> Void function executed on success
      - parameter errorCallback: A (HATTableError) -> Void function executed on failure
      */
-    public static func getDailyActivity(userDomain: String, userToken: String, parameters: Dictionary<String, String>, successCallback: @escaping ([HATFitbitDailyActivityObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func getDailyActivity(userDomain: String, userToken: String, parameters: Dictionary<String, String>, successCallback: @escaping ([HATFitbitDailyActivity], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         HATFitbitService.getGeneric(
             userDomain: userDomain,
@@ -223,7 +223,7 @@ public struct HATFitbitService {
      - parameter successCallback: A ([HATFitbitStatsObject], String?) -> Void function executed on success
      - parameter errorCallback: A (HATTableError) -> Void function executed on failure
      */
-    public static func getLifetimeStats(userDomain: String, userToken: String, parameters: Dictionary<String, String>, successCallback: @escaping ([HATFitbitStatsObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func getLifetimeStats(userDomain: String, userToken: String, parameters: Dictionary<String, String>, successCallback: @escaping ([HATFitbitStats], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         HATFitbitService.getGeneric(
             userDomain: userDomain,
@@ -244,7 +244,7 @@ public struct HATFitbitService {
      - parameter successCallback: A ([HATFitbitActivityObject], String?) -> Void function executed on success
      - parameter errorCallback: A (HATTableError) -> Void function executed on failure
      */
-    public static func getActivity(userDomain: String, userToken: String, parameters: Dictionary<String, String>, successCallback: @escaping ([HATFitbitActivityObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func getActivity(userDomain: String, userToken: String, parameters: Dictionary<String, String>, successCallback: @escaping ([HATFitbitActivity], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         HATFitbitService.getGeneric(
             userDomain: userDomain,

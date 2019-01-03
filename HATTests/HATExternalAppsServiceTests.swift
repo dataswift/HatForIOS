@@ -188,7 +188,7 @@ internal class HATExternalAppsServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(appsResponseJSON))
         
-        func completion(appsReceived: [ExternalApplications], newUserToken: String?) {
+        func completion(appsReceived: [HATExternalApplications], newUserToken: String?) {
             
             XCTAssertTrue(!appsReceived.isEmpty)
             expectationTest.fulfill()
@@ -220,7 +220,7 @@ internal class HATExternalAppsServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(appsResponseJSON[0]))
         
-        func completion(appsReceived: ExternalApplications, newUserToken: String?) {
+        func completion(appsReceived: HATExternalApplications, newUserToken: String?) {
             
             XCTAssertTrue(appsReceived.application.applicationID == "hatapp")
             expectationTest.fulfill()

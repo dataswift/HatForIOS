@@ -28,15 +28,15 @@ public struct HATFeedService {
      - parameter successCallback: A function of type ([HATFeedObject], String?) that executes on success
      - parameter failed: A function of type (HATTableError) that executes on failure
      */
-    static public func getFeed(userDomain: String, userToken: String, parameters: Dictionary<String, Any> = [:], hatSuffix: String = "", successCallback: @escaping ([HATFeedObject], String?) -> Void, failed: @escaping (HATTableError) -> Void) {
+    static public func getFeed(userDomain: String, userToken: String, parameters: Dictionary<String, Any> = [:], hatSuffix: String = "", successCallback: @escaping ([HATFeed], String?) -> Void, failed: @escaping (HATTableError) -> Void) {
         
         func success(values: [JSON], newToken: String?) {
             
-            var arrayToReturn: [HATFeedObject] = []
+            var arrayToReturn: [HATFeed] = []
             for value: JSON in values {
                 
                 let dict: [String: JSON] = value.dictionaryValue
-                if let object: HATFeedObject = HATFeedObject.decode(from: dict) {
+                if let object: HATFeed = HATFeed.decode(from: dict) {
                     
                     arrayToReturn.append(object)
                 }
@@ -97,7 +97,7 @@ public struct HATFeedService {
      - parameter successCallback: A function of type ([HATFeedObject], String?) to call on success
      - parameter failCallback: A fuction of type (HATError) to call on fail
      */
-    static public func getFeedCombinator(userDomain: String, userToken: String, successCallback: @escaping ([HATFeedObject], String?) -> Void, failCallback: @escaping (HATError) -> Void) {
+    static public func getFeedCombinator(userDomain: String, userToken: String, successCallback: @escaping ([HATFeed], String?) -> Void, failCallback: @escaping (HATError) -> Void) {
         
         HATAccountService.getCombinator(
             userDomain: userDomain,
@@ -105,10 +105,10 @@ public struct HATFeedService {
             combinatorName: "shefilter",
             successCallback: { array, newToken in
                 
-                var arrayToReturn: [HATFeedObject] = []
+                var arrayToReturn: [HATFeed] = []
                 for item: JSON in array {
                     
-                    if let object: HATFeedObject = HATFeedObject.decode(from: item["data"].dictionaryValue) {
+                    if let object: HATFeed = HATFeed.decode(from: item["data"].dictionaryValue) {
                         
                         arrayToReturn.append(object)
                     }

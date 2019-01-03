@@ -304,7 +304,7 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func getProfileImageFromHAT(userDomain: String, userToken: String, successCallback: @escaping (FileUploadObject) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func getProfileImageFromHAT(userDomain: String, userToken: String, successCallback: @escaping (HATFileUpload) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
         HATProfileService.getFromHATGeneric(
             userDomain: userDomain,
@@ -326,7 +326,7 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func postProfileImageToHAT(userDomain: String, userToken: String, image: FileUploadObject, successCallback: @escaping (FileUploadObject) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func postProfileImageToHAT(userDomain: String, userToken: String, image: HATFileUpload, successCallback: @escaping (HATFileUpload) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
         HATProfileService.postToHATGeneric(
             userDomain: userDomain,

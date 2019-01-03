@@ -29,15 +29,15 @@ public struct HATFacebookService {
      - parameter successCallback: An @escaping ([HATFacebookProfileImageObject], String?) -> Void) method executed on a successful response
      - parameter errorCallback: An @escaping (HATTableError) -> Void) method executed on a successful response
      */
-    public static func fetchProfileFacebookPhoto(authToken: String, userDomain: String, parameters: Dictionary<String, String>, successCallback: @escaping (_ array: [HATFacebookProfileImageObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func fetchProfileFacebookPhoto(authToken: String, userDomain: String, parameters: Dictionary<String, String>, successCallback: @escaping (_ array: [HATFacebookProfileImage], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         func sendObjectBack(jsonArray: [JSON], token: String?) {
             
-            var array: [HATFacebookProfileImageObject] = []
+            var array: [HATFacebookProfileImage] = []
             
             for object: JSON in jsonArray {
                 
-                array.append(HATFacebookProfileImageObject(from: object.dictionaryValue))
+                array.append(HATFacebookProfileImage(from: object.dictionaryValue))
             }
             
             successCallback(array, token)
@@ -64,15 +64,15 @@ public struct HATFacebookService {
      - parameter successCallback: An @escaping ([JSON]) -> Void) method executed on a successful response
      - parameter errorCallback: An @escaping (HATTableError) -> Void) method executed on a failed response
      */
-    public static func getFacebookData(authToken: String, userDomain: String, parameters: Dictionary<String, String>, successCallback: @escaping (_ array: [HATFacebookSocialFeedObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func getFacebookData(authToken: String, userDomain: String, parameters: Dictionary<String, String>, successCallback: @escaping (_ array: [HATFacebook], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         func sendObjectBack(jsonArray: [JSON], token: String?) {
             
-            var array: [HATFacebookSocialFeedObject] = []
+            var array: [HATFacebook] = []
             
             for object: JSON in jsonArray {
                 
-                array.append(HATFacebookSocialFeedObject(from: object.dictionaryValue))
+                array.append(HATFacebook(from: object.dictionaryValue))
             }
             
             successCallback(array, token)
@@ -163,19 +163,19 @@ public struct HATFacebookService {
      
      - returns: An array of HATFacebookSocialFeedObject
      */
-    public static func removeDuplicatesFrom(array: [JSON]) -> [HATFacebookSocialFeedObject] {
+    public static func removeDuplicatesFrom(array: [JSON]) -> [HATFacebook] {
         
         // the array to return
-        var arrayToReturn: [HATFacebookSocialFeedObject] = []
+        var arrayToReturn: [HATFacebook] = []
         
         // go through each dictionary object in the array
         for dictionary: JSON in array {
             
             // transform it to an FacebookSocialFeedObject
-            let object: HATFacebookSocialFeedObject = HATFacebookSocialFeedObject(from: dictionary.dictionaryValue)
+            let object: HATFacebook = HATFacebook(from: dictionary.dictionaryValue)
             
             // check if the arrayToReturn it contains that value and if not add it
-            let result: Bool = arrayToReturn.contains(where: {(post: HATFacebookSocialFeedObject) -> Bool in
+            let result: Bool = arrayToReturn.contains(where: {(post: HATFacebook) -> Bool in
                 
                 if object.data.posts.postID == post.data.posts.postID {
                     
@@ -201,16 +201,16 @@ public struct HATFacebookService {
      
      - returns: An array of HATFacebookSocialFeedObject
      */
-    public static func removeDuplicatesFrom(array: [HATFacebookSocialFeedObject]) -> [HATFacebookSocialFeedObject] {
+    public static func removeDuplicatesFrom(array: [HATFacebook]) -> [HATFacebook] {
         
         // the array to return
-        var arrayToReturn: [HATFacebookSocialFeedObject] = []
+        var arrayToReturn: [HATFacebook] = []
         
         // go through each post object in the array
-        for facebookPost: HATFacebookSocialFeedObject in array {
+        for facebookPost: HATFacebook in array {
             
             // check if the arrayToReturn it contains that value and if not add it
-            let result: Bool = arrayToReturn.contains(where: {(post: HATFacebookSocialFeedObject) -> Bool in
+            let result: Bool = arrayToReturn.contains(where: {(post: HATFacebook) -> Bool in
                 
                 if facebookPost.data.posts.postID == post.data.posts.postID {
                     

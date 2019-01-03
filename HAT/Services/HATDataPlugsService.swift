@@ -290,7 +290,7 @@ public struct HATDataPlugsService {
             // in case of success call succesfulCallBack
             case .isSuccess(let isSuccess, let statusCode, let result, _):
                 
-                guard isSuccess, let dataDebit: DataDebit = DataDebit.decode(from: result.dictionaryValue) else {
+                guard isSuccess, let dataDebit: HATDataDebit = HATDataDebit.decode(from: result.dictionaryValue) else {
                     
                     let message: String = NSLocalizedString("Server response was unexpected", comment: "")
                     failCallBack(.generalError(message, statusCode, nil))

@@ -61,7 +61,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.post, uri: urlToConnect), builder: json(body))
         
-        func completion(profileImages: [FileUploadObject], newToken: String?) {
+        func completion(profileImages: [HATFileUpload], newToken: String?) {
             
             XCTAssertTrue(!profileImages.isEmpty)
             expectationTest.fulfill()
@@ -212,7 +212,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: json(body))
         
-        func completion(file: FileUploadObject, newToken: String?) {
+        func completion(file: HATFileUpload, newToken: String?) {
             
             XCTAssertTrue(file.status.status == "Completed")
             expectationTest.fulfill()
@@ -267,7 +267,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.post, uri: urlToConnect), builder: json(body))
         
-        func completion(file: FileUploadObject, newToken: String?) {
+        func completion(file: HATFileUpload, newToken: String?) {
             
             XCTAssertTrue(file.status.status == "Completed")
             expectationTest.fulfill()
@@ -322,7 +322,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: json(body))
         
-        func completion(file: FileUploadObject, newToken: String?) {
+        func completion(file: HATFileUpload, newToken: String?) {
             
             XCTAssertTrue(file.status.status == "Completed")
             expectationTest.fulfill()
@@ -377,7 +377,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))
         
-        func completion(file: FileUploadObject, newToken: String?) {
+        func completion(file: HATFileUpload, newToken: String?) {
             
             XCTAssertTrue(file.status.status == "Completed")
             expectationTest.fulfill()

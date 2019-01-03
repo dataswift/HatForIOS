@@ -46,7 +46,7 @@ internal class FacebookServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
-        func completion(profileImages: [HATFacebookProfileImageObject], newToken: String?) {
+        func completion(profileImages: [HATFacebookProfileImage], newToken: String?) {
             
             XCTAssertTrue(!profileImages.isEmpty)
             expectationTest.fulfill()
@@ -115,7 +115,7 @@ internal class FacebookServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
-        func completion(feed: [HATFacebookSocialFeedObject], newToken: String?) {
+        func completion(feed: [HATFacebook], newToken: String?) {
             
             XCTAssertTrue(!feed.isEmpty)
             expectationTest.fulfill()
@@ -208,10 +208,10 @@ internal class FacebookServiceTests: XCTestCase {
 
     func testRemoveDuplicatesFromObjects() {
 
-        let obj1: HATFacebookSocialFeedObject = HATFacebookSocialFeedObject()
-        let obj2: HATFacebookSocialFeedObject = HATFacebookSocialFeedObject()
+        let obj1: HATFacebook = HATFacebook()
+        let obj2: HATFacebook = HATFacebook()
 
-        var array: [HATFacebookSocialFeedObject] = [obj1, obj2]
+        var array: [HATFacebook] = [obj1, obj2]
 
         array = HATFacebookService.removeDuplicatesFrom(array: array)
 
@@ -285,7 +285,7 @@ internal class FacebookServiceTests: XCTestCase {
 
         let array: [JSON] = [obj1, obj2]
 
-        let result: [HATFacebookSocialFeedObject] = HATFacebookService.removeDuplicatesFrom(array: array)
+        let result: [HATFacebook] = HATFacebookService.removeDuplicatesFrom(array: array)
 
         XCTAssertTrue(result.count == 1)
     }

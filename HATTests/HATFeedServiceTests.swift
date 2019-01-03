@@ -59,7 +59,7 @@ internal class HATFeedServiceTests: XCTestCase {
         
         let expectationTest: XCTestExpectation = expectation(description: "Get feed data from hat...")
         
-        func success(feed: [HATFeedObject], newToken: String?) {
+        func success(feed: [HATFeed], newToken: String?) {
             
             XCTAssertTrue(feed[0].source == "google")
             expectationTest.fulfill()

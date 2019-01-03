@@ -718,7 +718,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         let expectationTest: XCTestExpectation = expectation(description: "Get weight data from fitbit...")
         
-        func success(weight: [HATFitbitWeightObject], newToken: String?) {
+        func success(weight: [HATFitbitWeight], newToken: String?) {
             
             XCTAssertTrue(weight[0].bmi == 25.71)
             expectationTest.fulfill()
@@ -754,9 +754,9 @@ internal class FitbitServiceTests: XCTestCase {
         
         let expectationTest: XCTestExpectation = expectation(description: "Get daily activity data from fitbit...")
         
-        func success(dailyActivity: [HATFitbitDailyActivityObject], newToken: String?) {
+        func success(dailyActivity: [HATFitbitDailyActivity], newToken: String?) {
             
-            XCTAssertTrue(dailyActivity[0].steps == 0)
+            XCTAssertTrue(dailyActivity[0].totalSteps == 0)
             expectationTest.fulfill()
         }
         
@@ -790,9 +790,9 @@ internal class FitbitServiceTests: XCTestCase {
         
         let expectationTest: XCTestExpectation = expectation(description: "Get activity data from fitbit...")
         
-        func success(activity: [HATFitbitActivityObject], newToken: String?) {
+        func success(activity: [HATFitbitActivity], newToken: String?) {
             
-            XCTAssertTrue(activity[0].logId == 423423)
+            XCTAssertTrue(activity[0].logID == 423423)
             expectationTest.fulfill()
         }
         
@@ -826,7 +826,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         let expectationTest: XCTestExpectation = expectation(description: "Get lifetime stats data from fitbit...")
         
-        func success(stats: [HATFitbitStatsObject], newToken: String?) {
+        func success(stats: [HATFitbitStats], newToken: String?) {
             
             XCTAssertTrue(stats[0].best.total.steps.value == 22469)
             expectationTest.fulfill()
@@ -862,7 +862,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         let expectationTest: XCTestExpectation = expectation(description: "Get profile data from fitbit...")
         
-        func success(profile: [HATFitbitProfileObject], newToken: String?) {
+        func success(profile: [HATFitbitProfile], newToken: String?) {
             
             XCTAssertTrue(profile[0].age == 28)
             expectationTest.fulfill()
@@ -898,7 +898,7 @@ internal class FitbitServiceTests: XCTestCase {
         
         let expectationTest: XCTestExpectation = expectation(description: "Get sleep data from fitbit...")
 
-        func success(sleep: [HATFitbitSleepObject], newToken: String?) {
+        func success(sleep: [HATFitbitSleep], newToken: String?) {
             
             XCTAssertTrue(sleep[0].type == "classic")
             expectationTest.fulfill()

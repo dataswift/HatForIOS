@@ -17,10 +17,10 @@ public struct HATToolsInfoObject: HATObject {
     public var versionReleaseDate: String = ""
     public var name: String = ""
     public var headline: String = ""
-    public var description: ApplicationsDescription = ApplicationsDescription()
+    public var description: HATApplicationsDescription = HATApplicationsDescription()
     public var termsUrl: String = ""
     public var supportContact: String = ""
-    public var dataPreview: [HATFeedObject]?
+    public var dataPreview: [HATFeed]?
     public var graphics: HATToolsGraphicsObject = HATToolsGraphicsObject()
     public var dataPreviewEndpoint: String = ""
 }

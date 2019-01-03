@@ -27,7 +27,7 @@ public struct HATDataDebitsService {
      - parameter succesfulCallBack: A function of type ([DataDebitObject]) -> Void, executed on a successful result
      - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
      */
-    public static func getAvailableDataDebits(userToken: String, userDomain: String, succesfulCallBack: @escaping ([DataDebit], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func getAvailableDataDebits(userToken: String, userDomain: String, succesfulCallBack: @escaping ([HATDataDebit], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
         let url: String = "https://\(userDomain)/api/v2.6/data-debit"
         
@@ -62,10 +62,10 @@ public struct HATDataDebitsService {
                         
                         if statusCode == 200 {
                             
-                            var arrayToReturn: [DataDebit] = []
+                            var arrayToReturn: [HATDataDebit] = []
                             for item: JSON in result.arrayValue {
                                 
-                                guard let dataDebit: DataDebit = DataDebit.decode(from: item.dictionaryValue) else {
+                                guard let dataDebit: HATDataDebit = HATDataDebit.decode(from: item.dictionaryValue) else {
                                     
                                     continue
                                 }
@@ -98,7 +98,7 @@ public struct HATDataDebitsService {
      - parameter succesfulCallBack: A function of type ([DataDebitObject]) -> Void, executed on a successful result
      - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
      */
-    public static func getDataDebit(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (DataDebit, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func getDataDebit(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (HATDataDebit, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
         guard dataDebitID != "" else {
             
@@ -139,7 +139,7 @@ public struct HATDataDebitsService {
                         
                         if statusCode == 200 {
                             
-                            guard let dataDebit: DataDebit = DataDebit.decode(from: result.dictionaryValue) else {
+                            guard let dataDebit: HATDataDebit = HATDataDebit.decode(from: result.dictionaryValue) else {
                                 
                                 failCallBack(.generalError("Error decoding", statusCode!, nil))
                                 return
@@ -171,7 +171,7 @@ public struct HATDataDebitsService {
      - parameter succesfulCallBack: A function of type (DataDebitValuesObject) -> Void, executed on a successful result
      - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
      */
-    public static func getDataDebitValues(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (DataDebitValues, String?) -> Void, failCallBack: @escaping (DataPlugError, String) -> Void) {
+    public static func getDataDebitValues(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (HATDataDebitValues, String?) -> Void, failCallBack: @escaping (DataPlugError, String) -> Void) {
         
         let url: String = "https://\(userDomain)/api/v2.6/data-debit/\(dataDebitID)/values"
         
@@ -206,7 +206,7 @@ public struct HATDataDebitsService {
                         
                         if statusCode == 200 {
                             
-                            guard let dataDebit: DataDebitValues = DataDebitValues.decode(from: result.dictionaryValue) else {
+                            guard let dataDebit: HATDataDebitValues = HATDataDebitValues.decode(from: result.dictionaryValue) else {
                                 
                                 failCallBack(.generalError("Error decoding", statusCode!, nil), dataDebitID)
                                 return
@@ -240,7 +240,7 @@ public struct HATDataDebitsService {
      - parameter succesfulCallBack: A function of type ([DataDebitObject]) -> Void, executed on a successful result
      - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
      */
-    public static func disableDataDebit(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (DataDebit, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func disableDataDebit(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (HATDataDebit, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
         let url: String = "https://\(userDomain)/api/v2.6/data-debit/\(dataDebitID)/disable?atPeriodEnd=true"
         
@@ -276,7 +276,7 @@ public struct HATDataDebitsService {
                         if statusCode == 200 {
                             
                             let dictionary: [String: JSON] = result.dictionaryValue
-                            if let dataDebit: DataDebit = DataDebit.decode(from: dictionary) {
+                            if let dataDebit: HATDataDebit = HATDataDebit.decode(from: dictionary) {
                                 
                                 succesfulCallBack(dataDebit, token)
                             } else {
@@ -311,7 +311,7 @@ public struct HATDataDebitsService {
      - parameter succesfulCallBack: A function of type (DataDebitObject) -> Void, executed on a successful result
      - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
      */
-    public static func createDataDebit(dataDebitID: String, bundle: DataDebitCreation, userToken: String, userDomain: String, succesfulCallBack: @escaping (DataDebit, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func createDataDebit(dataDebitID: String, bundle: HATDataDebitCreation, userToken: String, userDomain: String, succesfulCallBack: @escaping (HATDataDebit, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
         
         guard dataDebitID != "" else {
             
@@ -323,7 +323,7 @@ public struct HATDataDebitsService {
         
         let headers: Dictionary<String, String> = ["X-Auth-Token": userToken]
         
-        let temp = DataDebitCreation.encode(from: bundle)!
+        let temp = HATDataDebitCreation.encode(from: bundle)!
         let data = temp.compactMapValues({ $0 })
         
         HATNetworkHelper.asynchronousRequest(
@@ -355,7 +355,7 @@ public struct HATDataDebitsService {
                         
                         if statusCode == 201 {
                             
-                            guard let dataDebit: DataDebit = DataDebit.decode(from: result.dictionaryValue) else {
+                            guard let dataDebit: HATDataDebit = HATDataDebit.decode(from: result.dictionaryValue) else {
 
                                 failCallBack(.generalError("Error decoding", statusCode!, nil))
                                 return

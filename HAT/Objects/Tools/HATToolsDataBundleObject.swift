@@ -14,5 +14,5 @@
 public struct HATToolsDataBundleObject: HATObject {
 
     public var name: String = ""
-    public var bundle: Dictionary<String, DataDefinitionBundleKey> = [:]
+    public var bundle: Dictionary<String, HATDataDefinitionBundleKey> = [:]
 }

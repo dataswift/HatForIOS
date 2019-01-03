@@ -15,7 +15,7 @@ public struct HATToolsObject: HATObject {
     
     public var id: String = ""
     public var info: HATToolsInfoObject = HATToolsInfoObject()
-    public var developer: ApplicationsDeveloper = ApplicationsDeveloper()
+    public var developer: HATApplicationsDeveloper = HATApplicationsDeveloper()
     public var status: HATToolsStatusObject = HATToolsStatusObject()
     public var dataBundle: HATToolsDataBundleObject = HATToolsDataBundleObject()
     public var trigger: HATToolsTriggerObject = HATToolsTriggerObject()
