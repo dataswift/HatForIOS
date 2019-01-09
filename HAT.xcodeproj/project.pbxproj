@@ -24,46 +24,42 @@
 		600995C81EBCC7DC007F9330 /* HATTokenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604EAC0E1EB886EE0084EEC8 /* HATTokenHelper.swift */; };
 		600F10B81F5EC383001D21E7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600F10B71F5EC383001D21E7 /* StringExtension.swift */; };
 		600F10B91F5EC56A001D21E7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600F10B71F5EC383001D21E7 /* StringExtension.swift */; };
-		60125035201F220A00BF0508 /* HATGoogleCalendarObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125034201F220A00BF0508 /* HATGoogleCalendarObject.swift */; };
-		60125036201F220A00BF0508 /* HATGoogleCalendarObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125034201F220A00BF0508 /* HATGoogleCalendarObject.swift */; };
-		60125038201F2AF000BF0508 /* HATGoogleCalendarCreatorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125037201F2AF000BF0508 /* HATGoogleCalendarCreatorObject.swift */; };
-		60125039201F2AF000BF0508 /* HATGoogleCalendarCreatorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125037201F2AF000BF0508 /* HATGoogleCalendarCreatorObject.swift */; };
-		6012503B201F2CD800BF0508 /* HATGoogleCalendarOrganizerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012503A201F2CD800BF0508 /* HATGoogleCalendarOrganizerObject.swift */; };
-		6012503C201F2CD800BF0508 /* HATGoogleCalendarOrganizerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012503A201F2CD800BF0508 /* HATGoogleCalendarOrganizerObject.swift */; };
-		6012503E201F369200BF0508 /* HATGoogleCalendarStartObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012503D201F369200BF0508 /* HATGoogleCalendarStartObject.swift */; };
-		6012503F201F369200BF0508 /* HATGoogleCalendarStartObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012503D201F369200BF0508 /* HATGoogleCalendarStartObject.swift */; };
-		60125041201F376900BF0508 /* HATGoogleCalendarEndObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125040201F376900BF0508 /* HATGoogleCalendarEndObject.swift */; };
-		60125042201F376900BF0508 /* HATGoogleCalendarEndObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125040201F376900BF0508 /* HATGoogleCalendarEndObject.swift */; };
-		60125046201F3AAE00BF0508 /* HATGoogleCalendarAttendeesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125045201F3AAE00BF0508 /* HATGoogleCalendarAttendeesObject.swift */; };
-		60125047201F3AAE00BF0508 /* HATGoogleCalendarAttendeesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125045201F3AAE00BF0508 /* HATGoogleCalendarAttendeesObject.swift */; };
-		60125049201F3DE300BF0508 /* HATGoogleCalendarExtendedPropertiesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125048201F3DE300BF0508 /* HATGoogleCalendarExtendedPropertiesObject.swift */; };
-		6012504A201F3DE300BF0508 /* HATGoogleCalendarExtendedPropertiesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125048201F3DE300BF0508 /* HATGoogleCalendarExtendedPropertiesObject.swift */; };
-		6012504C201F40DC00BF0508 /* HATGoogleCalendarConferenceDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012504B201F40DC00BF0508 /* HATGoogleCalendarConferenceDataObject.swift */; };
-		6012504D201F40DC00BF0508 /* HATGoogleCalendarConferenceDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012504B201F40DC00BF0508 /* HATGoogleCalendarConferenceDataObject.swift */; };
-		6012504F201F420800BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012504E201F420800BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionObject.swift */; };
-		60125050201F420800BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012504E201F420800BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionObject.swift */; };
-		60125052201F441500BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionKeyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125051201F441500BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionKeyObject.swift */; };
-		60125053201F441500BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionKeyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125051201F441500BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionKeyObject.swift */; };
-		60125055201F58F600BF0508 /* HATGoogleCalendarConferenceDataEntryPointsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125054201F58F600BF0508 /* HATGoogleCalendarConferenceDataEntryPointsObject.swift */; };
-		60125056201F58F600BF0508 /* HATGoogleCalendarConferenceDataEntryPointsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125054201F58F600BF0508 /* HATGoogleCalendarConferenceDataEntryPointsObject.swift */; };
-		60125058201F769E00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125057201F769E00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestObject.swift */; };
-		60125059201F769E00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125057201F769E00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestObject.swift */; };
-		6012505B201F777F00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestStatusObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012505A201F777F00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestStatusObject.swift */; };
-		6012505C201F777F00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestStatusObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012505A201F777F00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestStatusObject.swift */; };
-		6012505E201F78E500BF0508 /* HATGoogleCalendarGadgetObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012505D201F78E500BF0508 /* HATGoogleCalendarGadgetObject.swift */; };
-		6012505F201F78E500BF0508 /* HATGoogleCalendarGadgetObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012505D201F78E500BF0508 /* HATGoogleCalendarGadgetObject.swift */; };
-		60125061201F7C9600BF0508 /* HATGoogleCalendarRemindersObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125060201F7C9600BF0508 /* HATGoogleCalendarRemindersObject.swift */; };
-		60125062201F7C9600BF0508 /* HATGoogleCalendarRemindersObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125060201F7C9600BF0508 /* HATGoogleCalendarRemindersObject.swift */; };
-		60125064201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverridesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125063201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverridesObject.swift */; };
-		60125065201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverridesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125063201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverridesObject.swift */; };
-		60125067201F80F500BF0508 /* HATGoogleCalendarSourceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125066201F80F500BF0508 /* HATGoogleCalendarSourceObject.swift */; };
-		60125068201F80F500BF0508 /* HATGoogleCalendarSourceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125066201F80F500BF0508 /* HATGoogleCalendarSourceObject.swift */; };
-		6012506A201F818900BF0508 /* HATGoogleCalendarAttachmentsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125069201F818900BF0508 /* HATGoogleCalendarAttachmentsObject.swift */; };
-		6012506B201F818900BF0508 /* HATGoogleCalendarAttachmentsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125069201F818900BF0508 /* HATGoogleCalendarAttachmentsObject.swift */; };
+		60125035201F220A00BF0508 /* HATGoogleCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125034201F220A00BF0508 /* HATGoogleCalendar.swift */; };
+		60125036201F220A00BF0508 /* HATGoogleCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125034201F220A00BF0508 /* HATGoogleCalendar.swift */; };
+		60125038201F2AF000BF0508 /* HATGoogleCalendarCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125037201F2AF000BF0508 /* HATGoogleCalendarCreator.swift */; };
+		60125039201F2AF000BF0508 /* HATGoogleCalendarCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125037201F2AF000BF0508 /* HATGoogleCalendarCreator.swift */; };
+		60125041201F376900BF0508 /* HATGoogleCalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125040201F376900BF0508 /* HATGoogleCalendarDate.swift */; };
+		60125042201F376900BF0508 /* HATGoogleCalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125040201F376900BF0508 /* HATGoogleCalendarDate.swift */; };
+		60125046201F3AAE00BF0508 /* HATGoogleCalendarAttendees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125045201F3AAE00BF0508 /* HATGoogleCalendarAttendees.swift */; };
+		60125047201F3AAE00BF0508 /* HATGoogleCalendarAttendees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125045201F3AAE00BF0508 /* HATGoogleCalendarAttendees.swift */; };
+		60125049201F3DE300BF0508 /* HATGoogleCalendarProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125048201F3DE300BF0508 /* HATGoogleCalendarProperties.swift */; };
+		6012504A201F3DE300BF0508 /* HATGoogleCalendarProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125048201F3DE300BF0508 /* HATGoogleCalendarProperties.swift */; };
+		6012504C201F40DC00BF0508 /* HATGoogleCalendarConferenceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012504B201F40DC00BF0508 /* HATGoogleCalendarConferenceData.swift */; };
+		6012504D201F40DC00BF0508 /* HATGoogleCalendarConferenceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012504B201F40DC00BF0508 /* HATGoogleCalendarConferenceData.swift */; };
+		6012504F201F420800BF0508 /* HATGoogleCalendarConferenceSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012504E201F420800BF0508 /* HATGoogleCalendarConferenceSolution.swift */; };
+		60125050201F420800BF0508 /* HATGoogleCalendarConferenceSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012504E201F420800BF0508 /* HATGoogleCalendarConferenceSolution.swift */; };
+		60125052201F441500BF0508 /* HATGoogleCalendarSolutionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125051201F441500BF0508 /* HATGoogleCalendarSolutionKey.swift */; };
+		60125053201F441500BF0508 /* HATGoogleCalendarSolutionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125051201F441500BF0508 /* HATGoogleCalendarSolutionKey.swift */; };
+		60125055201F58F600BF0508 /* HATGoogleCalendarEntryPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125054201F58F600BF0508 /* HATGoogleCalendarEntryPoints.swift */; };
+		60125056201F58F600BF0508 /* HATGoogleCalendarEntryPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125054201F58F600BF0508 /* HATGoogleCalendarEntryPoints.swift */; };
+		60125058201F769E00BF0508 /* HATGoogleCalendarCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125057201F769E00BF0508 /* HATGoogleCalendarCreateRequest.swift */; };
+		60125059201F769E00BF0508 /* HATGoogleCalendarCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125057201F769E00BF0508 /* HATGoogleCalendarCreateRequest.swift */; };
+		6012505B201F777F00BF0508 /* HATGoogleCalendarCreateRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012505A201F777F00BF0508 /* HATGoogleCalendarCreateRequestStatus.swift */; };
+		6012505C201F777F00BF0508 /* HATGoogleCalendarCreateRequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012505A201F777F00BF0508 /* HATGoogleCalendarCreateRequestStatus.swift */; };
+		6012505E201F78E500BF0508 /* HATGoogleCalendarGadget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012505D201F78E500BF0508 /* HATGoogleCalendarGadget.swift */; };
+		6012505F201F78E500BF0508 /* HATGoogleCalendarGadget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012505D201F78E500BF0508 /* HATGoogleCalendarGadget.swift */; };
+		60125061201F7C9600BF0508 /* HATGoogleCalendarReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125060201F7C9600BF0508 /* HATGoogleCalendarReminders.swift */; };
+		60125062201F7C9600BF0508 /* HATGoogleCalendarReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125060201F7C9600BF0508 /* HATGoogleCalendarReminders.swift */; };
+		60125064201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125063201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverrides.swift */; };
+		60125065201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125063201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverrides.swift */; };
+		60125067201F80F500BF0508 /* HATGoogleCalendarSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125066201F80F500BF0508 /* HATGoogleCalendarSource.swift */; };
+		60125068201F80F500BF0508 /* HATGoogleCalendarSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125066201F80F500BF0508 /* HATGoogleCalendarSource.swift */; };
+		6012506A201F818900BF0508 /* HATGoogleCalendarAttachments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125069201F818900BF0508 /* HATGoogleCalendarAttachments.swift */; };
+		6012506B201F818900BF0508 /* HATGoogleCalendarAttachments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125069201F818900BF0508 /* HATGoogleCalendarAttachments.swift */; };
 		6012506D201F843700BF0508 /* HATGoogleCalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012506C201F843700BF0508 /* HATGoogleCalendarService.swift */; };
 		6012506E201F843700BF0508 /* HATGoogleCalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012506C201F843700BF0508 /* HATGoogleCalendarService.swift */; };
-		60125070201F857500BF0508 /* HATGoogleCalendarDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012506F201F857500BF0508 /* HATGoogleCalendarDataObject.swift */; };
-		60125071201F857500BF0508 /* HATGoogleCalendarDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012506F201F857500BF0508 /* HATGoogleCalendarDataObject.swift */; };
+		60125070201F857500BF0508 /* HATGoogleCalendarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012506F201F857500BF0508 /* HATGoogleCalendarData.swift */; };
+		60125071201F857500BF0508 /* HATGoogleCalendarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012506F201F857500BF0508 /* HATGoogleCalendarData.swift */; };
 		60125073201F874000BF0508 /* HATGoogleCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60125072201F874000BF0508 /* HATGoogleCalendarTests.swift */; };
 		60132F3E204979EA002309AB /* HATExternalApplications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60132F3D204979EA002309AB /* HATExternalApplications.swift */; };
 		60132F3F204979EA002309AB /* HATExternalApplications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60132F3D204979EA002309AB /* HATExternalApplications.swift */; };
@@ -116,10 +112,10 @@
 		602D16DF1E82B1F600C53A5E /* HATSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16DE1E82B1F600C53A5E /* HATSocialFeedObject.swift */; };
 		602D16E71E82B20000C53A5E /* HATDataPlug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16E21E82B20000C53A5E /* HATDataPlug.swift */; };
 		602D16F51E82B20900C53A5E /* HATFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16EF1E82B20900C53A5E /* HATFacebook.swift */; };
-		602D16FA1E82B21300C53A5E /* HATProviderCategoryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F61E82B21300C53A5E /* HATProviderCategoryObject.swift */; };
-		602D16FB1E82B21300C53A5E /* HATProviderKindObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F71E82B21300C53A5E /* HATProviderKindObject.swift */; };
-		602D16FC1E82B21300C53A5E /* HATProviderObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F81E82B21300C53A5E /* HATProviderObject.swift */; };
-		602D16FD1E82B21300C53A5E /* HATProviderPaymentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F91E82B21300C53A5E /* HATProviderPaymentObject.swift */; };
+		602D16FA1E82B21300C53A5E /* HATProviderCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F61E82B21300C53A5E /* HATProviderCategory.swift */; };
+		602D16FB1E82B21300C53A5E /* HATProviderKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F71E82B21300C53A5E /* HATProviderKind.swift */; };
+		602D16FC1E82B21300C53A5E /* HATProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F81E82B21300C53A5E /* HATProvider.swift */; };
+		602D16FD1E82B21300C53A5E /* HATProviderPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F91E82B21300C53A5E /* HATProviderPayment.swift */; };
 		602D17101E82B23000C53A5E /* HATSystemStatusKindObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D170E1E82B23000C53A5E /* HATSystemStatusKindObject.swift */; };
 		602D17111E82B23000C53A5E /* HATSystemStatusObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D170F1E82B23000C53A5E /* HATSystemStatusObject.swift */; };
 		602D17161E82B23900C53A5E /* HATTwitterDataSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D17121E82B23900C53A5E /* HATTwitterDataSocialFeedObject.swift */; };
@@ -352,10 +348,10 @@
 		60DDBB191E82F530007CDAFB /* HATTwitterSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D17151E82B23900C53A5E /* HATTwitterSocialFeedObject.swift */; };
 		60DDBB1A1E82F532007CDAFB /* HATSystemStatusKindObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D170E1E82B23000C53A5E /* HATSystemStatusKindObject.swift */; };
 		60DDBB1B1E82F532007CDAFB /* HATSystemStatusObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D170F1E82B23000C53A5E /* HATSystemStatusObject.swift */; };
-		60DDBB241E82F544007CDAFB /* HATProviderCategoryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F61E82B21300C53A5E /* HATProviderCategoryObject.swift */; };
-		60DDBB251E82F544007CDAFB /* HATProviderKindObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F71E82B21300C53A5E /* HATProviderKindObject.swift */; };
-		60DDBB261E82F544007CDAFB /* HATProviderObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F81E82B21300C53A5E /* HATProviderObject.swift */; };
-		60DDBB271E82F544007CDAFB /* HATProviderPaymentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F91E82B21300C53A5E /* HATProviderPaymentObject.swift */; };
+		60DDBB241E82F544007CDAFB /* HATProviderCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F61E82B21300C53A5E /* HATProviderCategory.swift */; };
+		60DDBB251E82F544007CDAFB /* HATProviderKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F71E82B21300C53A5E /* HATProviderKind.swift */; };
+		60DDBB261E82F544007CDAFB /* HATProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F81E82B21300C53A5E /* HATProvider.swift */; };
+		60DDBB271E82F544007CDAFB /* HATProviderPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16F91E82B21300C53A5E /* HATProviderPayment.swift */; };
 		60DDBB2D1E82F548007CDAFB /* HATFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16EF1E82B20900C53A5E /* HATFacebook.swift */; };
 		60DDBB301E82F54C007CDAFB /* HATDataPlug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16E21E82B20000C53A5E /* HATDataPlug.swift */; };
 		60DDBB331E82F54F007CDAFB /* HATSocialFeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D16DE1E82B1F600C53A5E /* HATSocialFeedObject.swift */; };
@@ -415,26 +411,24 @@
 		60019C5C2034A4FF00AABE8A /* HATProfileBundleDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileBundleDataObject.swift; sourceTree = "<group>"; };
 		60019C5E2034A5AD00AABE8A /* HATProfileBundleEndpointsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileBundleEndpointsObject.swift; sourceTree = "<group>"; };
 		600F10B71F5EC383001D21E7 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		60125034201F220A00BF0508 /* HATGoogleCalendarObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarObject.swift; sourceTree = "<group>"; };
-		60125037201F2AF000BF0508 /* HATGoogleCalendarCreatorObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarCreatorObject.swift; sourceTree = "<group>"; };
-		6012503A201F2CD800BF0508 /* HATGoogleCalendarOrganizerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarOrganizerObject.swift; sourceTree = "<group>"; };
-		6012503D201F369200BF0508 /* HATGoogleCalendarStartObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarStartObject.swift; sourceTree = "<group>"; };
-		60125040201F376900BF0508 /* HATGoogleCalendarEndObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarEndObject.swift; sourceTree = "<group>"; };
-		60125045201F3AAE00BF0508 /* HATGoogleCalendarAttendeesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarAttendeesObject.swift; sourceTree = "<group>"; };
-		60125048201F3DE300BF0508 /* HATGoogleCalendarExtendedPropertiesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarExtendedPropertiesObject.swift; sourceTree = "<group>"; };
-		6012504B201F40DC00BF0508 /* HATGoogleCalendarConferenceDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarConferenceDataObject.swift; sourceTree = "<group>"; };
-		6012504E201F420800BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarConferenceDataConferenceSolutionObject.swift; sourceTree = "<group>"; };
-		60125051201F441500BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionKeyObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarConferenceDataConferenceSolutionKeyObject.swift; sourceTree = "<group>"; };
-		60125054201F58F600BF0508 /* HATGoogleCalendarConferenceDataEntryPointsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarConferenceDataEntryPointsObject.swift; sourceTree = "<group>"; };
-		60125057201F769E00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarConferenceDataCreateRequestObject.swift; sourceTree = "<group>"; };
-		6012505A201F777F00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestStatusObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarConferenceDataCreateRequestStatusObject.swift; sourceTree = "<group>"; };
-		6012505D201F78E500BF0508 /* HATGoogleCalendarGadgetObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarGadgetObject.swift; sourceTree = "<group>"; };
-		60125060201F7C9600BF0508 /* HATGoogleCalendarRemindersObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarRemindersObject.swift; sourceTree = "<group>"; };
-		60125063201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverridesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarRemindersOverridesObject.swift; sourceTree = "<group>"; };
-		60125066201F80F500BF0508 /* HATGoogleCalendarSourceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarSourceObject.swift; sourceTree = "<group>"; };
-		60125069201F818900BF0508 /* HATGoogleCalendarAttachmentsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarAttachmentsObject.swift; sourceTree = "<group>"; };
+		60125034201F220A00BF0508 /* HATGoogleCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendar.swift; sourceTree = "<group>"; };
+		60125037201F2AF000BF0508 /* HATGoogleCalendarCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarCreator.swift; sourceTree = "<group>"; };
+		60125040201F376900BF0508 /* HATGoogleCalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarDate.swift; sourceTree = "<group>"; };
+		60125045201F3AAE00BF0508 /* HATGoogleCalendarAttendees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarAttendees.swift; sourceTree = "<group>"; };
+		60125048201F3DE300BF0508 /* HATGoogleCalendarProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarProperties.swift; sourceTree = "<group>"; };
+		6012504B201F40DC00BF0508 /* HATGoogleCalendarConferenceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarConferenceData.swift; sourceTree = "<group>"; };
+		6012504E201F420800BF0508 /* HATGoogleCalendarConferenceSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarConferenceSolution.swift; sourceTree = "<group>"; };
+		60125051201F441500BF0508 /* HATGoogleCalendarSolutionKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarSolutionKey.swift; sourceTree = "<group>"; };
+		60125054201F58F600BF0508 /* HATGoogleCalendarEntryPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarEntryPoints.swift; sourceTree = "<group>"; };
+		60125057201F769E00BF0508 /* HATGoogleCalendarCreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarCreateRequest.swift; sourceTree = "<group>"; };
+		6012505A201F777F00BF0508 /* HATGoogleCalendarCreateRequestStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarCreateRequestStatus.swift; sourceTree = "<group>"; };
+		6012505D201F78E500BF0508 /* HATGoogleCalendarGadget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarGadget.swift; sourceTree = "<group>"; };
+		60125060201F7C9600BF0508 /* HATGoogleCalendarReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarReminders.swift; sourceTree = "<group>"; };
+		60125063201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverrides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarRemindersOverrides.swift; sourceTree = "<group>"; };
+		60125066201F80F500BF0508 /* HATGoogleCalendarSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarSource.swift; sourceTree = "<group>"; };
+		60125069201F818900BF0508 /* HATGoogleCalendarAttachments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarAttachments.swift; sourceTree = "<group>"; };
 		6012506C201F843700BF0508 /* HATGoogleCalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarService.swift; sourceTree = "<group>"; };
-		6012506F201F857500BF0508 /* HATGoogleCalendarDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarDataObject.swift; sourceTree = "<group>"; };
+		6012506F201F857500BF0508 /* HATGoogleCalendarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarData.swift; sourceTree = "<group>"; };
 		60125072201F874000BF0508 /* HATGoogleCalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATGoogleCalendarTests.swift; sourceTree = "<group>"; };
 		60132F3D204979EA002309AB /* HATExternalApplications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATExternalApplications.swift; sourceTree = "<group>"; };
 		60157FE321CC607000160784 /* HATDataPlugProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HATDataPlugProtocol.swift; path = Protocols/HATDataPlugProtocol.swift; sourceTree = "<group>"; };
@@ -469,10 +463,10 @@
 		602D16DE1E82B1F600C53A5E /* HATSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HATSocialFeedObject.swift; path = Objects/HATSocialFeedObject.swift; sourceTree = "<group>"; };
 		602D16E21E82B20000C53A5E /* HATDataPlug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATDataPlug.swift; sourceTree = "<group>"; };
 		602D16EF1E82B20900C53A5E /* HATFacebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATFacebook.swift; sourceTree = "<group>"; };
-		602D16F61E82B21300C53A5E /* HATProviderCategoryObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATProviderCategoryObject.swift; sourceTree = "<group>"; };
-		602D16F71E82B21300C53A5E /* HATProviderKindObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATProviderKindObject.swift; sourceTree = "<group>"; };
-		602D16F81E82B21300C53A5E /* HATProviderObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATProviderObject.swift; sourceTree = "<group>"; };
-		602D16F91E82B21300C53A5E /* HATProviderPaymentObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATProviderPaymentObject.swift; sourceTree = "<group>"; };
+		602D16F61E82B21300C53A5E /* HATProviderCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATProviderCategory.swift; sourceTree = "<group>"; };
+		602D16F71E82B21300C53A5E /* HATProviderKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATProviderKind.swift; sourceTree = "<group>"; };
+		602D16F81E82B21300C53A5E /* HATProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATProvider.swift; sourceTree = "<group>"; };
+		602D16F91E82B21300C53A5E /* HATProviderPayment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATProviderPayment.swift; sourceTree = "<group>"; };
 		602D170E1E82B23000C53A5E /* HATSystemStatusKindObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATSystemStatusKindObject.swift; sourceTree = "<group>"; };
 		602D170F1E82B23000C53A5E /* HATSystemStatusObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATSystemStatusObject.swift; sourceTree = "<group>"; };
 		602D17121E82B23900C53A5E /* HATTwitterDataSocialFeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HATTwitterDataSocialFeedObject.swift; sourceTree = "<group>"; };
@@ -648,25 +642,23 @@
 		60125033201F21EF00BF0508 /* Google Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				60125069201F818900BF0508 /* HATGoogleCalendarAttachmentsObject.swift */,
-				60125045201F3AAE00BF0508 /* HATGoogleCalendarAttendeesObject.swift */,
-				60125051201F441500BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionKeyObject.swift */,
-				6012504E201F420800BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionObject.swift */,
-				60125057201F769E00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestObject.swift */,
-				6012505A201F777F00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestStatusObject.swift */,
-				60125054201F58F600BF0508 /* HATGoogleCalendarConferenceDataEntryPointsObject.swift */,
-				6012504B201F40DC00BF0508 /* HATGoogleCalendarConferenceDataObject.swift */,
-				60125037201F2AF000BF0508 /* HATGoogleCalendarCreatorObject.swift */,
-				6012506F201F857500BF0508 /* HATGoogleCalendarDataObject.swift */,
-				60125040201F376900BF0508 /* HATGoogleCalendarEndObject.swift */,
-				60125048201F3DE300BF0508 /* HATGoogleCalendarExtendedPropertiesObject.swift */,
-				6012505D201F78E500BF0508 /* HATGoogleCalendarGadgetObject.swift */,
-				60125034201F220A00BF0508 /* HATGoogleCalendarObject.swift */,
-				6012503A201F2CD800BF0508 /* HATGoogleCalendarOrganizerObject.swift */,
-				60125060201F7C9600BF0508 /* HATGoogleCalendarRemindersObject.swift */,
-				60125063201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverridesObject.swift */,
-				60125066201F80F500BF0508 /* HATGoogleCalendarSourceObject.swift */,
-				6012503D201F369200BF0508 /* HATGoogleCalendarStartObject.swift */,
+				60125069201F818900BF0508 /* HATGoogleCalendarAttachments.swift */,
+				60125045201F3AAE00BF0508 /* HATGoogleCalendarAttendees.swift */,
+				60125051201F441500BF0508 /* HATGoogleCalendarSolutionKey.swift */,
+				6012504E201F420800BF0508 /* HATGoogleCalendarConferenceSolution.swift */,
+				60125057201F769E00BF0508 /* HATGoogleCalendarCreateRequest.swift */,
+				6012505A201F777F00BF0508 /* HATGoogleCalendarCreateRequestStatus.swift */,
+				60125054201F58F600BF0508 /* HATGoogleCalendarEntryPoints.swift */,
+				6012504B201F40DC00BF0508 /* HATGoogleCalendarConferenceData.swift */,
+				60125037201F2AF000BF0508 /* HATGoogleCalendarCreator.swift */,
+				6012506F201F857500BF0508 /* HATGoogleCalendarData.swift */,
+				60125040201F376900BF0508 /* HATGoogleCalendarDate.swift */,
+				60125048201F3DE300BF0508 /* HATGoogleCalendarProperties.swift */,
+				6012505D201F78E500BF0508 /* HATGoogleCalendarGadget.swift */,
+				60125034201F220A00BF0508 /* HATGoogleCalendar.swift */,
+				60125060201F7C9600BF0508 /* HATGoogleCalendarReminders.swift */,
+				60125063201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverrides.swift */,
+				60125066201F80F500BF0508 /* HATGoogleCalendarSource.swift */,
 			);
 			path = "Google Calendar";
 			sourceTree = "<group>";
@@ -1176,10 +1168,10 @@
 		60E267921E54ADCD00B6D626 /* HAT Provider */ = {
 			isa = PBXGroup;
 			children = (
-				602D16F61E82B21300C53A5E /* HATProviderCategoryObject.swift */,
-				602D16F71E82B21300C53A5E /* HATProviderKindObject.swift */,
-				602D16F81E82B21300C53A5E /* HATProviderObject.swift */,
-				602D16F91E82B21300C53A5E /* HATProviderPaymentObject.swift */,
+				602D16F61E82B21300C53A5E /* HATProviderCategory.swift */,
+				602D16F71E82B21300C53A5E /* HATProviderKind.swift */,
+				602D16F81E82B21300C53A5E /* HATProvider.swift */,
+				602D16F91E82B21300C53A5E /* HATProviderPayment.swift */,
 			);
 			path = "HAT Provider";
 			sourceTree = "<group>";
@@ -1403,19 +1395,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60125067201F80F500BF0508 /* HATGoogleCalendarSourceObject.swift in Sources */,
+				60125067201F80F500BF0508 /* HATGoogleCalendarSource.swift in Sources */,
 				604EAC0F1EB886EE0084EEC8 /* HATTokenHelper.swift in Sources */,
 				60854FD81F89873E00DC2BAC /* HATFitbitSleepLevelsSummary.swift in Sources */,
 				60B427BA20571B94002A32AE /* HATFeedLocation.swift in Sources */,
 				602D17101E82B23000C53A5E /* HATSystemStatusKindObject.swift in Sources */,
 				6064CEAD208E0E3A003C974A /* HATOperatorTypes.swift in Sources */,
 				602A12401FD6D5B10010786B /* HATProfileDataProfileContactObject.swift in Sources */,
-				602D16FB1E82B21300C53A5E /* HATProviderKindObject.swift in Sources */,
+				602D16FB1E82B21300C53A5E /* HATProviderKind.swift in Sources */,
 				602A12371FD6D5060010786B /* HATProfileDataProfilePhotoObject.swift in Sources */,
 				60854FED1F89918F00DC2BAC /* HATFitbitStats.swift in Sources */,
 				60BAC06020DC626100D946B4 /* HATToolsDataBundleObject.swift in Sources */,
 				602D17181E82B23900C53A5E /* HATTwitterDataTweetsUsersSocialFeedObject.swift in Sources */,
-				602D16FA1E82B21300C53A5E /* HATProviderCategoryObject.swift in Sources */,
+				602D16FA1E82B21300C53A5E /* HATProviderCategory.swift in Sources */,
 				60854FF31F89921300DC2BAC /* HATFitbitStatsTotalStats.swift in Sources */,
 				602D16D61E82B1D700C53A5E /* HATService.swift in Sources */,
 				606611A0211C68B600595576 /* HATDataDebitValues.swift in Sources */,
@@ -1445,7 +1437,7 @@
 				602D16DC1E82B1E700C53A5E /* HATErrorHelper.swift in Sources */,
 				602D16DB1E82B1E700C53A5E /* HATNetworkHelper.swift in Sources */,
 				60854FF01F8991BD00DC2BAC /* HATFitbitStatsTotal.swift in Sources */,
-				6012506A201F818900BF0508 /* HATGoogleCalendarAttachmentsObject.swift in Sources */,
+				6012506A201F818900BF0508 /* HATGoogleCalendarAttachments.swift in Sources */,
 				60B427BD20571C37002A32AE /* HATFeedAddress.swift in Sources */,
 				602D16D71E82B1D700C53A5E /* HATTwitterService.swift in Sources */,
 				60019C5D2034A4FF00AABE8A /* HATProfileBundleDataObject.swift in Sources */,
@@ -1458,7 +1450,7 @@
 				6045866620CE7E34002CE83D /* HATFeedNestedStructure.swift in Sources */,
 				60BA45E91E8A7C5700ABB758 /* HATFileUploadPermissions.swift in Sources */,
 				60314E751F38897B004383AA /* HATEmployementStatusObject.swift in Sources */,
-				60125064201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverridesObject.swift in Sources */,
+				60125064201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverrides.swift in Sources */,
 				602D16E71E82B20000C53A5E /* HATDataPlug.swift in Sources */,
 				60F51C391F899B6600F99C47 /* HATFitbitActivityLevel.swift in Sources */,
 				608297B220DC56FC009E544B /* HATToolsTriggerObject.swift in Sources */,
@@ -1473,13 +1465,13 @@
 				602D16DD1E82B1E700C53A5E /* HATFormatterHelper.swift in Sources */,
 				60B9CB39204E984C00EFDD40 /* HATApplicationsImage.swift in Sources */,
 				60314E7A1F38925E004383AA /* HATLivingInfoObject.swift in Sources */,
-				60125058201F769E00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestObject.swift in Sources */,
+				60125058201F769E00BF0508 /* HATGoogleCalendarCreateRequest.swift in Sources */,
 				602C9F72210874FF00C44A8D /* HATToolsInfoObject.swift in Sources */,
 				60854FD51F8986BC00DC2BAC /* HATFitbitSleepLevelInformation.swift in Sources */,
-				6012504F201F420800BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionObject.swift in Sources */,
-				60125070201F857500BF0508 /* HATGoogleCalendarDataObject.swift in Sources */,
+				6012504F201F420800BF0508 /* HATGoogleCalendarConferenceSolution.swift in Sources */,
+				60125070201F857500BF0508 /* HATGoogleCalendarData.swift in Sources */,
 				6057939B219CEB3400A87272 /* HATDataDebitCreation.swift in Sources */,
-				60125041201F376900BF0508 /* HATGoogleCalendarEndObject.swift in Sources */,
+				60125041201F376900BF0508 /* HATGoogleCalendarDate.swift in Sources */,
 				604AD5561F7EDF8500841502 /* StuffToRememberObject.swift in Sources */,
 				6038F1281FB5A9CD004BBE36 /* PurchaseObject.swift in Sources */,
 				60981B272031D2160010F632 /* HATApplicationsGraphics.swift in Sources */,
@@ -1488,9 +1480,9 @@
 				60B3C8431F82917B002E7AA4 /* HATDataDefinitionBundleKey.swift in Sources */,
 				6054BBB121C905DC00B4F90E /* HATTokenConstants.swift in Sources */,
 				60DE1DDC1F34ABE300E031F6 /* HAT\DataDebit.swift in Sources */,
-				60125038201F2AF000BF0508 /* HATGoogleCalendarCreatorObject.swift in Sources */,
+				60125038201F2AF000BF0508 /* HATGoogleCalendarCreator.swift in Sources */,
 				602D17171E82B23900C53A5E /* HATTwitterDataTweetsSocialFeedObject.swift in Sources */,
-				6012505B201F777F00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestStatusObject.swift in Sources */,
+				6012505B201F777F00BF0508 /* HATGoogleCalendarCreateRequestStatus.swift in Sources */,
 				60B2C9431FACC03E00404DBD /* HATLocationsObject.swift in Sources */,
 				60E41DD41E853C1D00E3DF60 /* HATJSONHelper.swift in Sources */,
 				6050BF031ED59BD400984EEF /* HATProfileRelationshipAndHouseholdObject.swift in Sources */,
@@ -1511,18 +1503,16 @@
 				604EC18A207BCF9C00CD426D /* HATSpotifyProfileFollowersObject.swift in Sources */,
 				600F10B81F5EC383001D21E7 /* StringExtension.swift in Sources */,
 				602E4DA61F0111F400C5FF31 /* HATDataOffer.swift in Sources */,
-				60125035201F220A00BF0508 /* HATGoogleCalendarObject.swift in Sources */,
+				60125035201F220A00BF0508 /* HATGoogleCalendar.swift in Sources */,
 				60981B422031DF060010F632 /* HATExternalAppsService.swift in Sources */,
 				60854FEA1F898E9200DC2BAC /* HATFitbitActivityDistance.swift in Sources */,
 				60705E1E1FAB8A4F0064551C /* HATProfileDataObject.swift in Sources */,
 				608297AF20DC5591009E544B /* HATToolsObject.swift in Sources */,
-				6012503E201F369200BF0508 /* HATGoogleCalendarStartObject.swift in Sources */,
 				60001F6D2005221100E0CEF3 /* HATFacebookApplication.swift in Sources */,
-				6012504C201F40DC00BF0508 /* HATGoogleCalendarConferenceDataObject.swift in Sources */,
+				6012504C201F40DC00BF0508 /* HATGoogleCalendarConferenceData.swift in Sources */,
 				60981B242031D17A0010F632 /* HATApplicationsDescription.swift in Sources */,
 				6012506D201F843700BF0508 /* HATGoogleCalendarService.swift in Sources */,
 				602D16D51E82B1D700C53A5E /* HATNotableService.swift in Sources */,
-				6012503B201F2CD800BF0508 /* HATGoogleCalendarOrganizerObject.swift in Sources */,
 				60BA45E81E8A7C5700ABB758 /* HATFileUpload.swift in Sources */,
 				60854FE41F898BC000DC2BAC /* HATFitbitTopBadges.swift in Sources */,
 				60B2C9401FACBE0000404DBD /* HATLocationsDataObject.swift in Sources */,
@@ -1532,12 +1522,12 @@
 				602A12461FD6D6390010786B /* HATProfileDataProfileEmergencyContactObject.swift in Sources */,
 				60BA45EA1E8A7C5700ABB758 /* HATFileUploadStatus.swift in Sources */,
 				60854FE71F898DFF00DC2BAC /* HATFitbitDailyActivity.swift in Sources */,
-				60125049201F3DE300BF0508 /* HATGoogleCalendarExtendedPropertiesObject.swift in Sources */,
+				60125049201F3DE300BF0508 /* HATGoogleCalendarProperties.swift in Sources */,
 				60EDD0171F98D89B00BE24B3 /* HATDataDebitPermissions.swift in Sources */,
 				607A391A1FE72D2500C90A94 /* HATNotesAuthorObject.swift in Sources */,
 				60854FE11F898B7200DC2BAC /* HATFitbitProfileFeatures.swift in Sources */,
 				6098205A1ED452150036D1B3 /* HATProfileService.swift in Sources */,
-				60125046201F3AAE00BF0508 /* HATGoogleCalendarAttendeesObject.swift in Sources */,
+				60125046201F3AAE00BF0508 /* HATGoogleCalendarAttendees.swift in Sources */,
 				60854FDB1F89877F00DC2BAC /* HATFitbitSleepSummaryCount.swift in Sources */,
 				60828C9E20EE742D00BD8630 /* HATToolsGraphicsObject.swift in Sources */,
 				60D80AD22107209E00A5E5F7 /* HATApplicationsDeveloper.swift in Sources */,
@@ -1551,14 +1541,14 @@
 				60705E1B1FAB89EF0064551C /* HATProfileObject.swift in Sources */,
 				602E4DAE1F0111F400C5FF31 /* HATDataOfferRewards.swift in Sources */,
 				606287911FFBA17E004145BA /* HATProfileAddress.swift in Sources */,
-				602D16FC1E82B21300C53A5E /* HATProviderObject.swift in Sources */,
-				6012505E201F78E500BF0508 /* HATGoogleCalendarGadgetObject.swift in Sources */,
+				602D16FC1E82B21300C53A5E /* HATProvider.swift in Sources */,
+				6012505E201F78E500BF0508 /* HATGoogleCalendarGadget.swift in Sources */,
 				60854FDE1F89895600DC2BAC /* HATFitbitProfile.swift in Sources */,
 				60D8DAAD1F31F83D0055CEAC /* NotificationNoticeObject.swift in Sources */,
 				602E4DB11F01187D00C5FF31 /* HATDataOfferClaim.swift in Sources */,
 				604B0DC01FE72C1600F8B91A /* HATNotesDataObject.swift in Sources */,
 				60F51C361F89957C00F99C47 /* HATFitbitActivity.swift in Sources */,
-				60125052201F441500BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionKeyObject.swift in Sources */,
+				60125052201F441500BF0508 /* HATGoogleCalendarSolutionKey.swift in Sources */,
 				602CB44C1E8BFC6900903F33 /* HATFileService.swift in Sources */,
 				602A12431FD6D5E50010786B /* HATProfileDataProfilePersonalObject.swift in Sources */,
 				602A12341FD6D4DA0010786B /* HATProfileDataProfileAboutObject.swift in Sources */,
@@ -1571,7 +1561,7 @@
 				60FB240B1F87C807003F446E /* HATDataPlugInformation.swift in Sources */,
 				60157FE421CC607000160784 /* HATDataPlugProtocol.swift in Sources */,
 				6038F12B1FB5AA33004BBE36 /* PurchaseMembershipObject.swift in Sources */,
-				60125061201F7C9600BF0508 /* HATGoogleCalendarRemindersObject.swift in Sources */,
+				60125061201F7C9600BF0508 /* HATGoogleCalendarReminders.swift in Sources */,
 				60B4FEF1207BCDE500084D4B /* HATSpotifyProfileObject.swift in Sources */,
 				6098205D1ED4694F0036D1B3 /* HATNationalityObject.swift in Sources */,
 				60001F6E2005221100E0CEF3 /* HATFacebookPrivacy.swift in Sources */,
@@ -1579,9 +1569,9 @@
 				602D16C71E82B1CA00C53A5E /* HATAuthenticationConstants.swift in Sources */,
 				60314E6E1F387573004383AA /* UKSpecificInfo.swift in Sources */,
 				60981B1B2031CE220010F632 /* HATApplications.swift in Sources */,
-				602D16FD1E82B21300C53A5E /* HATProviderPaymentObject.swift in Sources */,
+				602D16FD1E82B21300C53A5E /* HATProviderPayment.swift in Sources */,
 				602D16F51E82B20900C53A5E /* HATFacebook.swift in Sources */,
-				60125055201F58F600BF0508 /* HATGoogleCalendarConferenceDataEntryPointsObject.swift in Sources */,
+				60125055201F58F600BF0508 /* HATGoogleCalendarEntryPoints.swift in Sources */,
 				602D16D41E82B1D700C53A5E /* HATLoginService.swift in Sources */,
 				602E4DA41F0111F400C5FF31 /* HATDataOfferOwner.swift in Sources */,
 				60019C5F2034A5AD00AABE8A /* HATProfileBundleEndpointsObject.swift in Sources */,
@@ -1597,19 +1587,19 @@
 				60981B222031CFEB0010F632 /* HATApplicationsInfo.swift in Sources */,
 				60F51C2E1F8992F400F99C47 /* HATFitbitStatsInformation.swift in Sources */,
 				6020A7031E526BBF00D7DC04 /* LocationServiceTests.swift in Sources */,
-				60DDBB241E82F544007CDAFB /* HATProviderCategoryObject.swift in Sources */,
+				60DDBB241E82F544007CDAFB /* HATProviderCategory.swift in Sources */,
 				606375A91E53613D00F0D1B1 /* FacebookServiceTests.swift in Sources */,
 				6050BF041ED5B2DD00984EEF /* HATProfileEducationObject.swift in Sources */,
 				606375AD1E536DA300F0D1B1 /* NotableServiceTests.swift in Sources */,
 				6064CEB1208F3BAC003C974A /* HATFeedGeo.swift in Sources */,
-				6012504A201F3DE300BF0508 /* HATGoogleCalendarExtendedPropertiesObject.swift in Sources */,
+				6012504A201F3DE300BF0508 /* HATGoogleCalendarProperties.swift in Sources */,
 				60705E601FAB9E720064551C /* HATProfileServiceTests.swift in Sources */,
 				608297B320DC56FC009E544B /* HATToolsTriggerObject.swift in Sources */,
 				60D8DAAF1F31F8420055CEAC /* NotificationNoticeObject.swift in Sources */,
-				60125053201F441500BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionKeyObject.swift in Sources */,
+				60125053201F441500BF0508 /* HATGoogleCalendarSolutionKey.swift in Sources */,
 				60DDBB131E82F52D007CDAFB /* HATNetworkHelper.swift in Sources */,
 				60001F762005277800E0CEF3 /* HATFacebookData.swift in Sources */,
-				6012505C201F777F00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestStatusObject.swift in Sources */,
+				6012505C201F777F00BF0508 /* HATGoogleCalendarCreateRequestStatus.swift in Sources */,
 				607A39211FE72DCD00C90A94 /* HATNotesLocationObject.swift in Sources */,
 				6038F12C1FB5AA33004BBE36 /* PurchaseMembershipObject.swift in Sources */,
 				609863281FA78071003309B7 /* HATFeedService.swift in Sources */,
@@ -1618,17 +1608,15 @@
 				608297B620DC59E4009E544B /* HATToolsService.swift in Sources */,
 				60854FCD1F89665100DC2BAC /* HATFitbitWeight.swift in Sources */,
 				600F10B91F5EC56A001D21E7 /* StringExtension.swift in Sources */,
-				60DDBB251E82F544007CDAFB /* HATProviderKindObject.swift in Sources */,
+				60DDBB251E82F544007CDAFB /* HATProviderKind.swift in Sources */,
 				60B427BE20571C37002A32AE /* HATFeedAddress.swift in Sources */,
 				60854FE21F898B7200DC2BAC /* HATFitbitProfileFeatures.swift in Sources */,
-				60125056201F58F600BF0508 /* HATGoogleCalendarConferenceDataEntryPointsObject.swift in Sources */,
+				60125056201F58F600BF0508 /* HATGoogleCalendarEntryPoints.swift in Sources */,
 				60F51C3A1F899B6600F99C47 /* HATFitbitActivityLevel.swift in Sources */,
 				602A12351FD6D4DA0010786B /* HATProfileDataProfileAboutObject.swift in Sources */,
-				6012503C201F2CD800BF0508 /* HATGoogleCalendarOrganizerObject.swift in Sources */,
-				60125042201F376900BF0508 /* HATGoogleCalendarEndObject.swift in Sources */,
-				60125071201F857500BF0508 /* HATGoogleCalendarDataObject.swift in Sources */,
+				60125042201F376900BF0508 /* HATGoogleCalendarDate.swift in Sources */,
+				60125071201F857500BF0508 /* HATGoogleCalendarData.swift in Sources */,
 				60157FE221CC331400160784 /* HATOperator.swift in Sources */,
-				6012503F201F369200BF0508 /* HATGoogleCalendarStartObject.swift in Sources */,
 				60854FE81F898DFF00DC2BAC /* HATFitbitDailyActivity.swift in Sources */,
 				60EDD0211F98DDDF00BE24B3 /* HATDataDebitsService.swift in Sources */,
 				6057939C219CED7400A87272 /* HATDataDebitCreation.swift in Sources */,
@@ -1653,7 +1641,7 @@
 				604D35092010FE44008378D0 /* HATDataOffersService.swift in Sources */,
 				60DDBB1A1E82F532007CDAFB /* HATSystemStatusKindObject.swift in Sources */,
 				60EDD0221F98DE5D00BE24B3 /* HAT\DataDebit.swift in Sources */,
-				6012506B201F818900BF0508 /* HATGoogleCalendarAttachmentsObject.swift in Sources */,
+				6012506B201F818900BF0508 /* HATGoogleCalendarAttachments.swift in Sources */,
 				60EDD0201F98DC9000BE24B3 /* DataDebitsServiceTests.swift in Sources */,
 				60DDBB301E82F54C007CDAFB /* HATDataPlug.swift in Sources */,
 				602C9F73210874FF00C44A8D /* HATToolsInfoObject.swift in Sources */,
@@ -1664,11 +1652,11 @@
 				60812BF31FA7856700C91120 /* HATFeedMedia.swift in Sources */,
 				6054BBAF21C7DB6500B4F90E /* HATJSONHelperTests.swift in Sources */,
 				6054BBB321C90CE600B4F90E /* HATTokenHelperTests.swift in Sources */,
-				60125062201F7C9600BF0508 /* HATGoogleCalendarRemindersObject.swift in Sources */,
+				60125062201F7C9600BF0508 /* HATGoogleCalendarReminders.swift in Sources */,
 				60EDD0181F98D89B00BE24B3 /* HATDataDebitPermissions.swift in Sources */,
 				60E3F52820458D3300A00B3E /* HATFacebookLocation.swift in Sources */,
 				60F51C371F89957C00F99C47 /* HATFitbitActivity.swift in Sources */,
-				60125050201F420800BF0508 /* HATGoogleCalendarConferenceDataConferenceSolutionObject.swift in Sources */,
+				60125050201F420800BF0508 /* HATGoogleCalendarConferenceSolution.swift in Sources */,
 				602CB4511E8C02D600903F33 /* HATFileService.swift in Sources */,
 				602E4DA71F0111F400C5FF31 /* HATDataOffer.swift in Sources */,
 				60854FD61F8986BC00DC2BAC /* HATFitbitSleepLevelInformation.swift in Sources */,
@@ -1676,10 +1664,10 @@
 				60981B452031E3940010F632 /* HATExternalAppsServiceTests.swift in Sources */,
 				60F51C491F8B63C500F99C47 /* HATObject.swift in Sources */,
 				6050BF061ED5B2E200984EEF /* HATProfileRelationshipAndHouseholdObject.swift in Sources */,
-				60125036201F220A00BF0508 /* HATGoogleCalendarObject.swift in Sources */,
+				60125036201F220A00BF0508 /* HATGoogleCalendar.swift in Sources */,
 				602CB44E1E8C00F900903F33 /* HATFileUploadPermissions.swift in Sources */,
 				6038F1291FB5A9CD004BBE36 /* PurchaseObject.swift in Sources */,
-				6012504D201F40DC00BF0508 /* HATGoogleCalendarConferenceDataObject.swift in Sources */,
+				6012504D201F40DC00BF0508 /* HATGoogleCalendarConferenceData.swift in Sources */,
 				6045866720CE7E34002CE83D /* HATFeedNestedStructure.swift in Sources */,
 				604EC194207BD5A000CD426D /* HATSpotifyProfileFollowersObject.swift in Sources */,
 				604B0DC11FE72C1D00F8B91A /* HATNotesDataObject.swift in Sources */,
@@ -1700,10 +1688,10 @@
 				6020A7081E52803800D7DC04 /* HATAccountServiceTests.swift in Sources */,
 				60157FE821CC655200160784 /* HATApplicationProtocol.swift in Sources */,
 				602E4DB21F01187D00C5FF31 /* HATDataOfferClaim.swift in Sources */,
-				60125065201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverridesObject.swift in Sources */,
+				60125065201F7D2E00BF0508 /* HATGoogleCalendarRemindersOverrides.swift in Sources */,
 				60DDBB111E82F528007CDAFB /* HATService.swift in Sources */,
 				60DDBB0E1E82F528007CDAFB /* HATFacebookService.swift in Sources */,
-				60DDBB271E82F544007CDAFB /* HATProviderPaymentObject.swift in Sources */,
+				60DDBB271E82F544007CDAFB /* HATProviderPayment.swift in Sources */,
 				60B3C8471F8291E0002E7AA4 /* HATDataDefinitionBundleKeyEndpoints.swift in Sources */,
 				60D80AD3210720A500A5E5F7 /* HATApplicationsDeveloper.swift in Sources */,
 				60828C9F20EE742D00BD8630 /* HATToolsGraphicsObject.swift in Sources */,
@@ -1714,7 +1702,7 @@
 				60C463991EE6EA9E00FEC458 /* HATFacebookProfileImage.swift in Sources */,
 				60F6FF431FB79361000B8A2E /* HATFeedDate.swift in Sources */,
 				60981B3A2031DAAB0010F632 /* HATApplicationsDataRequired.swift in Sources */,
-				6012505F201F78E500BF0508 /* HATGoogleCalendarGadgetObject.swift in Sources */,
+				6012505F201F78E500BF0508 /* HATGoogleCalendarGadget.swift in Sources */,
 				60001F732005277800E0CEF3 /* HATFacebookPostAccount.swift in Sources */,
 				602A12471FD6D6390010786B /* HATProfileDataProfileEmergencyContactObject.swift in Sources */,
 				60314E6F1F387577004383AA /* UKSpecificInfo.swift in Sources */,
@@ -1723,7 +1711,7 @@
 				604EC193207BD5A000CD426D /* HATSpotifyProfileImagesObject.swift in Sources */,
 				60DDBB0C1E82F528007CDAFB /* HATAccountService.swift in Sources */,
 				60DDBB0F1E82F528007CDAFB /* HATLocationService.swift in Sources */,
-				60125068201F80F500BF0508 /* HATGoogleCalendarSourceObject.swift in Sources */,
+				60125068201F80F500BF0508 /* HATGoogleCalendarSource.swift in Sources */,
 				60B3C8441F82917B002E7AA4 /* HATDataDefinitionBundleKey.swift in Sources */,
 				604EC191207BD59400CD426D /* HATSpotifyService.swift in Sources */,
 				60854FD31F89861D00DC2BAC /* HATFitbitSleepLevels.swift in Sources */,
@@ -1746,7 +1734,7 @@
 				60132F3F204979EA002309AB /* HATExternalApplications.swift in Sources */,
 				602A12441FD6D5E50010786B /* HATProfileDataProfilePersonalObject.swift in Sources */,
 				60FB240C1F87C80C003F446E /* HATDataPlugInformation.swift in Sources */,
-				60125059201F769E00BF0508 /* HATGoogleCalendarConferenceDataCreateRequestObject.swift in Sources */,
+				60125059201F769E00BF0508 /* HATGoogleCalendarCreateRequest.swift in Sources */,
 				60854FD01F89853900DC2BAC /* HATFitbitSleep.swift in Sources */,
 				60444EEC1E4B27C5005E4433 /* LoginServiceTests.swift in Sources */,
 				60812BF01FA7852D00C91120 /* HATFeedContent.swift in Sources */,
@@ -1765,7 +1753,7 @@
 				60981B282031D2160010F632 /* HATApplicationsGraphics.swift in Sources */,
 				60DDBB1B1E82F532007CDAFB /* HATSystemStatusObject.swift in Sources */,
 				60125073201F874000BF0508 /* HATGoogleCalendarTests.swift in Sources */,
-				60DDBB261E82F544007CDAFB /* HATProviderObject.swift in Sources */,
+				60DDBB261E82F544007CDAFB /* HATProvider.swift in Sources */,
 				60854FC91F8944BD00DC2BAC /* HATFitbitService.swift in Sources */,
 				606B55A21F1E6B37004B5D4D /* HATDataOfferRewardsCashValue.swift in Sources */,
 				60314E771F3889E8004383AA /* HATProfileInfoObject.swift in Sources */,
@@ -1777,7 +1765,7 @@
 				606375AF1E537C7300F0D1B1 /* FormatterHelperTests.swift in Sources */,
 				60DDBB101E82F528007CDAFB /* HATNotableService.swift in Sources */,
 				60705E1F1FAB8A4F0064551C /* HATProfileDataObject.swift in Sources */,
-				60125047201F3AAE00BF0508 /* HATGoogleCalendarAttendeesObject.swift in Sources */,
+				60125047201F3AAE00BF0508 /* HATGoogleCalendarAttendees.swift in Sources */,
 				609DC1D921B15BDE009566DA /* HATApplicationsConstants.swift in Sources */,
 				602A12381FD6D5060010786B /* HATProfileDataProfilePhotoObject.swift in Sources */,
 				60812BEA1FA782F200C91120 /* HATFeed.swift in Sources */,
@@ -1786,7 +1774,7 @@
 				60DDBB0A1E82F513007CDAFB /* HATLoginService.swift in Sources */,
 				607A391B1FE72D2500C90A94 /* HATNotesAuthorObject.swift in Sources */,
 				60812BED1FA7842C00C91120 /* HATFeedTitle.swift in Sources */,
-				60125039201F2AF000BF0508 /* HATGoogleCalendarCreatorObject.swift in Sources */,
+				60125039201F2AF000BF0508 /* HATGoogleCalendarCreator.swift in Sources */,
 				60001F742005277800E0CEF3 /* HATFacebookPrivacy.swift in Sources */,
 				60854FDF1F89895600DC2BAC /* HATFitbitProfile.swift in Sources */,
 				602C9F76210875D300C44A8D /* HATToolsStatusObject.swift in Sources */,

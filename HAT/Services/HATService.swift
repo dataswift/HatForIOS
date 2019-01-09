@@ -124,7 +124,7 @@ public struct HATService {
      - parameter succesfulCallBack: A function to call if everything is ok
      - parameter failCallBack: A function to call if fail
      */
-    public static func getAvailableHATProviders(succesfulCallBack: @escaping ([HATProviderObject], String?) -> Void, failCallBack: @escaping (JSONParsingError) -> Void) {
+    public static func getAvailableHATProviders(succesfulCallBack: @escaping ([HATProvider], String?) -> Void, failCallBack: @escaping (JSONParsingError) -> Void) {
         
         let url: String = "https://hatters.hubofallthings.com/api/products/hat"
         
@@ -149,10 +149,10 @@ public struct HATService {
                 if isSuccess {
                     
                     let resultArray: [JSON] = result.arrayValue
-                    var arrayToSendBack: [HATProviderObject] = []
+                    var arrayToSendBack: [HATProvider] = []
                     for item: JSON in resultArray {
                         
-                        arrayToSendBack.append(HATProviderObject(from: item.dictionaryValue))
+                        arrayToSendBack.append(HATProvider(from: item.dictionaryValue))
                     }
                     
                     succesfulCallBack(arrayToSendBack, token)

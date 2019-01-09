@@ -13,20 +13,38 @@
 
 // MARK: Struct
 
-public struct HATGoogleCalendarRemindersOverridesObject: HATObject {
+public struct HATGoogleCalendarRemindersOverrides: HATObject {
+    
+    // MARK: - Coding Keys
+    
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `method` in JSON is `method`
+     * `minutes` in JSON is `minutes`
+     */
+    private enum CodingKeys: String, CodingKey {
+        
+        case method
+        case minutes
+    }
 
     // MARK: - Variables
     
     /// The method used by this reminder. Possible values are:
-    /// - **"email"** - Reminders are sent via email.
-    /// - **"sms"** - Reminders are sent via SMS. These are only available for G Suite customers. Requests to set SMS reminders for other account types are ignored.
-    /// - **"popup"** - Reminders are sent via a UI popup.
+    /// - `email`- Reminders are sent via email.
+    /// - `sms` - Reminders are sent via SMS. These are only available for G Suite customers. Requests to set SMS reminders for other account types are ignored.
+    /// - `popup` - Reminders are sent via a UI popup.
     public var method: String = ""
     /// Number of minutes before the start of the event when the reminder should trigger. Valid values are between 0 and 40320 (4 weeks in minutes).
     public var minutes: Int = 0
     
     // MARK: - Initialisers
     
+    /**
+     The default initialiser. Initialises everything to default values.
+     */
     public init() {
         
     }

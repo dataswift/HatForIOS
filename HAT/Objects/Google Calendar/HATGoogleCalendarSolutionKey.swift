@@ -13,7 +13,20 @@
 
 // MARK: Struct
 
-public struct HATGoogleCalendarConferenceDataConferenceSolutionKeyObject: HATObject {
+public struct HATGoogleCalendarSolutionKey: HATObject {
+    
+    // MARK: - Coding Keys
+    
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `type` in JSON is `type`
+     */
+    private enum CodingKeys: String, CodingKey {
+        
+        case type
+    }
 
     // MARK: - Variables
     
@@ -22,13 +35,16 @@ public struct HATGoogleCalendarConferenceDataConferenceSolutionKeyObject: HATObj
     ///
     /// The possible values are:
     ///
-    /// - "eventHangout" for [Hangouts for consumers](http://hangouts.google.com)
-    /// - "eventNamedHangout" for [Classic Hangouts for GSuite users](http://hangouts.google.com)
-    /// - "hangoutsMeet" for [Hangouts Meet](http://meet.google.com)
+    /// - `eventHangout` for [Hangouts for consumers](http://hangouts.google.com)
+    /// - `eventNamedHangout` for [Classic Hangouts for GSuite users](http://hangouts.google.com)
+    /// - `hangoutsMeet` for [Hangouts Meet](http://meet.google.com)
     public var type: String = ""
     
     // MARK: - Initialisers
     
+    /**
+     The default initialiser. Initialises everything to default values.
+     */
     public init() {
         
     }

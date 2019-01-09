@@ -181,7 +181,7 @@ internal class HATGoogleCalendarTests: XCTestCase {
         
         let expectationTest: XCTestExpectation = expectation(description: "Get google calendar data from hat...")
         
-        func success(feed: [HATGoogleCalendarObject], newToken: String?) {
+        func success(feed: [HATGoogleCalendar], newToken: String?) {
             
             XCTAssertTrue(!feed.isEmpty)
             expectationTest.fulfill()

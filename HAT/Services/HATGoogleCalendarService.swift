@@ -51,15 +51,15 @@ public struct HATGoogleCalendarService {
      - parameter successCallback: An @escaping ([HATGoogleCalendarObject], String?) -> Void) method executed on a successful response
      - parameter errorCallback: An @escaping (HATTableError) -> Void) method executed on a failed response
      */
-    public static func getCalendarEvents(userToken: String, userDomain: String, parameters: Dictionary<String, String>, successCallback: @escaping (_ array: [HATGoogleCalendarObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func getCalendarEvents(userToken: String, userDomain: String, parameters: Dictionary<String, String>, successCallback: @escaping (_ array: [HATGoogleCalendar], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         func sendObjectBack(jsonArray: [JSON], token: String?) {
             
-            var array: [HATGoogleCalendarObject] = []
+            var array: [HATGoogleCalendar] = []
             
             for object: JSON in jsonArray {
                 
-                if let objectToAdd: HATGoogleCalendarObject = HATGoogleCalendarObject.decode(from: object.dictionaryValue) {
+                if let objectToAdd: HATGoogleCalendar = HATGoogleCalendar.decode(from: object.dictionaryValue) {
                     
                     array.append(objectToAdd)
                 }

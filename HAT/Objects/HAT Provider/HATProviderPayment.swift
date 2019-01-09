@@ -14,8 +14,8 @@ import SwiftyJSON
 
 // MARK: Struct
 
-/// A class representing the hat provider category object
-public struct HATProviderCategoryObject: Comparable {
+/// A class representing the hat provider payment object
+public struct HATProviderPayment: HATObject, Comparable {
 
     // MARK: - Comparable protocol
 
@@ -27,9 +27,9 @@ public struct HATProviderCategoryObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func == (lhs: HATProviderCategoryObject, rhs: HATProviderCategoryObject) -> Bool {
+    public static func == (lhs: HATProviderPayment, rhs: HATProviderPayment) -> Bool {
 
-        return (lhs.categoryId == rhs.categoryId && lhs.title == rhs.title && lhs.description == rhs.description && lhs.illustration == rhs.illustration)
+        return lhs.subscription == rhs.subscription
     }
 
     /// Returns a Boolean value indicating whether the value of the first
@@ -42,35 +42,37 @@ public struct HATProviderCategoryObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func < (lhs: HATProviderCategoryObject, rhs: HATProviderCategoryObject) -> Bool {
+    public static func < (lhs: HATProviderPayment, rhs: HATProviderPayment) -> Bool {
 
-        return lhs.title < rhs.title
+        return lhs.subscription["period"]! < rhs.subscription["period"]!
+    }
+    
+    // MARK: - Coding Keys
+    
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `subscription` in JSON is `subscription`
+     */
+    private enum CodingKeys: String, CodingKey {
+        
+        case subscription
     }
 
-    /// MARK: - Variables
+    // MARK: - Variables
 
-    /// The hat provider's category id
-    public var categoryId: Int = 0
+    /// The subscription type, Monthly , yearly
+    public var subscription: [String: String] = ["period": ""]
 
-    /// The hat provider's category title
-    public var title: String = ""
-    /// The hat provider's category description
-    public var description: String = ""
-    /// The hat provider's category illustration url
-    public var illustration: String = ""
-
-    /// MARK: - Initialisers
+    // MARK: - Initialisers
 
     /**
      The default initialiser. Initialises everything to default values.
      */
     public init() {
 
-        categoryId = 0
-
-        title = ""
-        description = ""
-        illustration = ""
+        subscription = ["period": ""]
     }
 
     /**
@@ -82,22 +84,9 @@ public struct HATProviderCategoryObject: Comparable {
 
         self.init()
 
-        if let tempCategoryId = dictionary["categoryId"]?.intValue {
+        if let tempSubscription: [String: JSON] = dictionary[CodingKeys.subscription.rawValue]?.dictionaryValue, let value: String = tempSubscription["period"]?.stringValue {
 
-            categoryId = tempCategoryId
-        }
-
-        if let tempTitle = dictionary["title"]?.stringValue {
-
-            title = tempTitle
-        }
-        if let tempDescription = dictionary["description"]?.stringValue {
-
-            description = tempDescription
-        }
-        if let tempIllustration = dictionary["illustration"]?.stringValue {
-
-            illustration = tempIllustration
+            subscription = ["period": value]
         }
     }
 }

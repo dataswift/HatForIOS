@@ -14,8 +14,8 @@ import SwiftyJSON
 
 // MARK: Struct
 
-/// A class representing the hat provider kind object
-public struct HATProviderKindObject: Comparable {
+/// A struct representing the hat provider kind object
+public struct HATProviderKind: HATObject, Comparable {
 
     // MARK: - Comparable protocol
 
@@ -27,9 +27,9 @@ public struct HATProviderKindObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func == (lhs: HATProviderKindObject, rhs: HATProviderKindObject) -> Bool {
+    public static func == (lhs: HATProviderKind, rhs: HATProviderKind) -> Bool {
 
-        return (lhs.kind == rhs.kind && lhs.domain == rhs.domain && lhs.country == rhs.country && lhs.link == rhs.link)
+        return (lhs.kind == rhs.kind && lhs.domain == rhs.domain && lhs.country == rhs.country && lhs.url == rhs.url)
     }
 
     /// Returns a Boolean value indicating whether the value of the first
@@ -42,21 +42,40 @@ public struct HATProviderKindObject: Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func < (lhs: HATProviderKindObject, rhs: HATProviderKindObject) -> Bool {
+    public static func < (lhs: HATProviderKind, rhs: HATProviderKind) -> Bool {
 
         return lhs.kind < rhs.kind
+    }
+    
+    // MARK: - Coding Keys
+    
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `kind` in JSON is `kind`
+     * `domain` in JSON is `domain`
+     * `country` in JSON is `country`
+     * `url` in JSON is `link`
+     */
+    private enum CodingKeys: String, CodingKey {
+        
+        case kind = "kind"
+        case domain = "domain"
+        case country = "country"
+        case url = "link"
     }
 
     // MARK: - Variables
 
-    /// The hat provider's kind type
+    /// The hat provider's kind type,
     public var kind: String = ""
-    /// The hat provider's kind domain
+    /// The hat provider's kind domain, hubat.net, hubofallthings.net etc
     public var domain: String = ""
-    /// The hat provider's kind country
+    /// The hat provider's kind country. For now it's always UK
     public var country: String = ""
-    /// The hat provider's kind link
-    public var link: String = ""
+    /// The hat provider's kind url, a webpage
+    public var url: String = ""
 
     // MARK: - Initialisers
 
@@ -68,7 +87,7 @@ public struct HATProviderKindObject: Comparable {
         kind = ""
         domain = ""
         country = ""
-        link = ""
+        url = ""
     }
 
     /**
@@ -80,21 +99,21 @@ public struct HATProviderKindObject: Comparable {
 
         self.init()
 
-        if let tempKind = dictionary["kind"]?.stringValue {
+        if let tempKind: String = dictionary[CodingKeys.kind.rawValue]?.stringValue {
 
             kind = tempKind
         }
-        if let tempDomain = dictionary["domain"]?.stringValue {
+        if let tempDomain: String = dictionary[CodingKeys.domain.rawValue]?.stringValue {
 
             domain = tempDomain
         }
-        if let tempCountry = dictionary["country"]?.stringValue {
+        if let tempCountry: String = dictionary[CodingKeys.country.rawValue]?.stringValue {
 
             country = tempCountry
         }
-        if let tempLink = dictionary["link"]?.stringValue {
+        if let tempLink: String = dictionary[CodingKeys.url.rawValue]?.stringValue {
 
-            link = tempLink
+            url = tempLink
         }
     }
 }

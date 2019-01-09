@@ -13,20 +13,47 @@
 
 // MARK: Struct
 
-public struct HATGoogleCalendarGadgetObject: HATObject {
+public struct HATGoogleCalendarGadget: HATObject {
+    
+    // MARK: - Coding Keys
+    
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `display` in JSON is `display`
+     * `height` in JSON is `height`
+     * `iconLink` in JSON is `iconLink`
+     * `link` in JSON is `link`
+     * `preferences` in JSON is `preferences`
+     * `title` in JSON is `title`
+     * `type` in JSON is `type`
+     * `width` in JSON is `width`
+     */
+    private enum CodingKeys: String, CodingKey {
+        
+        case display = "display"
+        case height = "height"
+        case iconURL = "iconLink"
+        case url = "link"
+        case preferences = "preferences"
+        case title = "title"
+        case type = "type"
+        case width = "width"
+    }
     
     // MARK: - Variables
     
     /// The gadget's display mode. Optional. Possible values are:
-    /// - **"icon"** - The gadget displays next to the event's title in the calendar view.
-    /// - **"chip"** - The gadget displays when the event is clicked.
+    /// - `icon` - The gadget displays next to the event's title in the calendar view.
+    /// - `chip` - The gadget displays when the event is clicked.
     public var display: String?
     /// The gadget's height in pixels. The height must be an integer greater than 0. Optional.
     public var height: Int?
     /// The gadget's icon URL. The URL scheme must be HTTPS.
-    public var iconLink: String?
+    public var iconURL: String?
     /// The gadget's URL. The URL scheme must be HTTPS.
-    public var link: String?
+    public var url: String?
     /// The preference name and corresponding value.
     public var preferences: [String: String]?
     /// The gadget's title.
@@ -38,6 +65,9 @@ public struct HATGoogleCalendarGadgetObject: HATObject {
     
     // MARK: - Initialisers
     
+    /**
+     The default initialiser. Initialises everything to default values.
+     */
     public init() {
         
     }
