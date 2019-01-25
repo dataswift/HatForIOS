@@ -57,7 +57,7 @@ internal class NotableServiceTests: XCTestCase {
         
         let expectationTest: XCTestExpectation = expectation(description: "Get notes data from hat...")
         
-        func success(notes: [HATNotesObject], newToken: String?) {
+        func success(notes: [HATNotes], newToken: String?) {
             
             XCTAssertTrue(notes[0].data.kind == "note")
             expectationTest.fulfill()
@@ -124,7 +124,7 @@ internal class NotableServiceTests: XCTestCase {
         
         let expectationTest: XCTestExpectation = expectation(description: "Update note data from hat...")
 
-        func success(updatedNote: HATNotesObject, token: String?) {
+        func success(updatedNote: HATNotes, token: String?) {
             
             expectationTest.fulfill()
         }
@@ -137,7 +137,7 @@ internal class NotableServiceTests: XCTestCase {
         
         let userDomain: String = "testing.hubat.net"
         let urlToConnect: String = "https://testing.hubat.net/api/v2.6/data"
-        var note: HATNotesObject = HATNotesObject()
+        var note: HATNotes = HATNotes()
         note.data.message = "test updated"
         MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: http(201))
         
@@ -181,7 +181,7 @@ internal class NotableServiceTests: XCTestCase {
                 ]
             ]
         ]
-        func success(updatedNote: HATNotesObject, token: String?) {
+        func success(updatedNote: HATNotes, token: String?) {
             
             XCTAssertTrue(updatedNote.data.message == "test updated")
             expectationTest.fulfill()
@@ -196,7 +196,7 @@ internal class NotableServiceTests: XCTestCase {
         let userDomain: String = "testing.hubat.net"
         let urlToConnect: String = "https://\(userDomain)/api/v2.6/data/rumpel/notablesv1"
         
-        var note: HATNotesObject = HATNotesObject()
+        var note: HATNotes = HATNotes()
         note.data.message = "test updated"
         
         MockingjayProtocol.addStub(matcher: http(.post, uri: urlToConnect), builder: json(body))
@@ -212,10 +212,10 @@ internal class NotableServiceTests: XCTestCase {
 
     func testRemoveDuplicates() {
 
-        let note1: HATNotesObject = HATNotesObject()
-        let note2: HATNotesObject = note1
+        let note1: HATNotes = HATNotes()
+        let note2: HATNotes = note1
 
-        var array: [HATNotesObject] = [note1, note2]
+        var array: [HATNotes] = [note1, note2]
 
         array = HATNotablesService.removeDuplicatesFrom(array: array)
 
@@ -224,18 +224,18 @@ internal class NotableServiceTests: XCTestCase {
     
     func testSortNotables() {
         
-        var note1: HATNotesObject = HATNotesObject()
-        note1.recordId = "432"
+        var note1: HATNotes = HATNotes()
+        note1.recordID = "432"
         note1.data.updatedTime = "2018-01-22T12:00:34Z"
-        var note2: HATNotesObject = note1
+        var note2: HATNotes = note1
         note2.data.updatedTime = "2018-01-23T12:00:34Z"
-        note2.recordId = "2432"
+        note2.recordID = "2432"
         
-        let array: [HATNotesObject] = [note1, note2]
+        let array: [HATNotes] = [note1, note2]
         
-        let temp: [HATNotesObject] = HATNotablesService.sortNotables(notes: array)
+        let temp: [HATNotes] = HATNotablesService.sortNotables(notes: array)
         
-        XCTAssertTrue(temp[0].recordId == "2432")
+        XCTAssertTrue(temp[0].recordID == "2432")
     }
 
     func testPerformanceExample() {

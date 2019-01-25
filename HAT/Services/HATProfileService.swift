@@ -93,7 +93,7 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func getNationalityFromHAT(userDomain: String, userToken: String, successCallback: @escaping (HATNationalityObject) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func getNationalityFromHAT(userDomain: String, userToken: String, successCallback: @escaping (HATNationality) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
         HATProfileService.getFromHATGeneric(
             userDomain: userDomain,
@@ -115,7 +115,7 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func postNationalityToHAT(userDomain: String, userToken: String, nationality: HATNationalityObject, successCallback: @escaping (HATNationalityObject) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func postNationalityToHAT(userDomain: String, userToken: String, nationality: HATNationality, successCallback: @escaping (HATNationality) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
         HATProfileService.postToHATGeneric(
             userDomain: userDomain,
@@ -137,7 +137,7 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func getRelationshipAndHouseholdFromHAT(userDomain: String, userToken: String, successCallback: @escaping (HATProfileRelationshipAndHouseholdObject) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func getRelationshipAndHouseholdFromHAT(userDomain: String, userToken: String, successCallback: @escaping (HATProfileRelationshipAndHousehold) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
         HATProfileService.getFromHATGeneric(
             userDomain: userDomain,
@@ -159,7 +159,7 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func postRelationshipAndHouseholdToHAT(userDomain: String, userToken: String, relationshipAndHouseholdObject: HATProfileRelationshipAndHouseholdObject, successCallback: @escaping (HATProfileRelationshipAndHouseholdObject) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func postRelationshipAndHouseholdToHAT(userDomain: String, userToken: String, relationshipAndHouseholdObject: HATProfileRelationshipAndHousehold, successCallback: @escaping (HATProfileRelationshipAndHousehold) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
         HATProfileService.postToHATGeneric(
             userDomain: userDomain,
@@ -181,7 +181,7 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func getEducationFromHAT(userDomain: String, userToken: String, successCallback: @escaping (HATProfileEducationObject) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func getEducationFromHAT(userDomain: String, userToken: String, successCallback: @escaping (HATProfileEducation) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
         HATProfileService.getFromHATGeneric(
             userDomain: userDomain,
@@ -204,7 +204,7 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func postEducationToHAT(userDomain: String, userToken: String, education: HATProfileEducationObject, successCallback: @escaping (HATProfileEducationObject) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func postEducationToHAT(userDomain: String, userToken: String, education: HATProfileEducation, successCallback: @escaping (HATProfileEducation) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
         HATProfileService.postToHATGeneric(
             userDomain: userDomain,
@@ -226,14 +226,14 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func getProfile(userDomain: String, userToken: String, successCallback: @escaping (HATProfileObject, String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func getProfile(userDomain: String, userToken: String, successCallback: @escaping (HATProfile, String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
         func profileEntries(json: [JSON], renewedToken: String?) {
             
             // if we have values return them
             if !json.isEmpty {
                 
-                if let profile: HATProfileObject = HATProfileObject.decode(from: json[0].dictionaryValue) {
+                if let profile: HATProfile = HATProfile.decode(from: json[0].dictionaryValue) {
                     
                     successCallback(profile, renewedToken)
                 } else {
@@ -267,9 +267,9 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func postProfile(userToken: String, userDomain: String, profile: HATProfileObject, successCallback: @escaping (HATProfileObject, String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func postProfile(userToken: String, userDomain: String, profile: HATProfile, successCallback: @escaping (HATProfile, String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
-        guard let temp: [String: Any?] = HATProfileDataObject.encode(from: profile.data) else {
+        guard let temp: [String: Any?] = HATProfileData.encode(from: profile.data) else {
             
             return
         }
@@ -283,7 +283,7 @@ public struct HATProfileService {
             parameters: profileJSON,
             successCallback: { json, newToken in
                 
-                guard let profile: HATProfileObject = HATProfileObject.decode(from: json.dictionaryValue) else {
+                guard let profile: HATProfile = HATProfile.decode(from: json.dictionaryValue) else {
                     
                     failCallback(.noValuesFound)
                     return
@@ -348,18 +348,18 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func getStuffToRememberFromHAT(userDomain: String, userToken: String, successCallback: @escaping ([StuffToRememberObject], String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func getStuffToRememberFromHAT(userDomain: String, userToken: String, successCallback: @escaping ([HATStuffToRemember], String?) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
         func stuffToRemember(json: [JSON], renewedToken: String?) {
             
             // if we have values return them
             if !json.isEmpty {
                 
-                var arrayToReturn: [StuffToRememberObject] = []
+                var arrayToReturn: [HATStuffToRemember] = []
                 
                 for item: JSON in json {
                     
-                    arrayToReturn.append(StuffToRememberObject(dictionary: item.dictionaryValue))
+                    arrayToReturn.append(HATStuffToRemember(dictionary: item.dictionaryValue))
                 }
                 
                 successCallback(arrayToReturn, renewedToken)
@@ -390,7 +390,7 @@ public struct HATProfileService {
      - parameter successCallback: A function to call on success
      - parameter failCallback: A fuction to call on fail
      */
-    public static func postStuffToRememberToHAT(userDomain: String, userToken: String, stuffToRemember: StuffToRememberObject, successCallback: @escaping (StuffToRememberObject) -> Void, failCallback: @escaping (HATTableError) -> Void) {
+    public static func postStuffToRememberToHAT(userDomain: String, userToken: String, stuffToRemember: HATStuffToRemember, successCallback: @escaping (HATStuffToRemember) -> Void, failCallback: @escaping (HATTableError) -> Void) {
         
         HATProfileService.postToHATGeneric(
             userDomain: userDomain,

@@ -42,7 +42,7 @@ public enum HATJSONHelper {
      
      - returns: A `Dictionary <String, String>` with nationality, passportHeld, passportNumber, placeOfBirth and language
      */
-    static func createFileUploadingJSONFrom(nationality: HATNationalityObject) -> [String: String] {
+    static func createFileUploadingJSONFrom(nationality: HATNationality) -> [String: String] {
         
         // the final JSON file to be returned
         return [ "nationality": nationality.nationality,

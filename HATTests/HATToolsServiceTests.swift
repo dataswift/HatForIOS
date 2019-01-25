@@ -146,7 +146,7 @@ internal class HATToolsServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(appsResponseJSON))
         
-        func completion(appsReceived: [HATToolsObject], newUserToken: String?) {
+        func completion(appsReceived: [HATTools], newUserToken: String?) {
             
             XCTAssertTrue(!appsReceived.isEmpty)
             expectationTest.fulfill()

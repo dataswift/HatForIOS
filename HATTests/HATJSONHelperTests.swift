@@ -25,7 +25,7 @@ class HATJSONHelperTests: XCTestCase {
     
     func testCreateFileUploadingJSONFrom2() {
         
-        var nationality: HATNationalityObject = HATNationalityObject()
+        var nationality: HATNationality = HATNationality()
         nationality.nationality = "Greek"
         nationality.language = "Greek"
         nationality.placeOfBirth = "Alexandroupolis"

@@ -106,7 +106,7 @@ internal class HATProfileServiceTests: XCTestCase {
         
         let expectationTest: XCTestExpectation = expectation(description: "Get profile data from rumpel...")
         
-        func success(profile: HATProfileObject, newToken: String?) {
+        func success(profile: HATProfile, newToken: String?) {
             
             XCTAssertTrue(profile.data.personal.ageGroup == "80")
             expectationTest.fulfill()
@@ -140,7 +140,7 @@ internal class HATProfileServiceTests: XCTestCase {
         
         let expectationTest: XCTestExpectation = expectation(description: "Get nationality from hat...")
         
-        func success(nationality: HATNationalityObject) {
+        func success(nationality: HATNationality) {
             
             XCTAssertTrue(nationality.nationality == "Greek")
             expectationTest.fulfill()
@@ -170,7 +170,7 @@ internal class HATProfileServiceTests: XCTestCase {
         
         let expectationTest: XCTestExpectation = expectation(description: "Get nationality from hat...")
         
-        func success(nationality: HATNationalityObject) {
+        func success(nationality: HATNationality) {
             
             XCTAssertTrue(nationality.nationality == "Greek")
             expectationTest.fulfill()
@@ -184,7 +184,7 @@ internal class HATProfileServiceTests: XCTestCase {
         
         let userDomain: String = "testing.hubat.net"
         
-        var nationality: HATNationalityObject = HATNationalityObject()
+        var nationality: HATNationality = HATNationality()
         nationality.nationality = "Greek"
         nationality.passportHeld = "123"
         nationality.passportNumber = "123"

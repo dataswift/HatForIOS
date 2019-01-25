@@ -29,12 +29,12 @@ public struct HATFeed: HATObject {
      */
     private enum CodingKeys: String, CodingKey {
         
-        case date = "date"
-        case source = "source"
-        case content = "content"
-        case title = "title"
-        case types = "types"
-        case location = "location"
+        case date
+        case source
+        case content
+        case title
+        case types
+        case location
     }
     
     // MARK: - Variables

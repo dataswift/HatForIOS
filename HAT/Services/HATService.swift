@@ -284,11 +284,11 @@ public struct HATService {
      - parameter succesfulCallBack: A function to call if everything is ok
      - parameter failCallBack: A function to call if fail
      */
-    public static func confirmHATPurchase(purchaseModel: PurchaseObject, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (JSONParsingError) -> Void) {
+    public static func confirmHATPurchase(purchaseModel: HATPurchase, succesfulCallBack: @escaping (String, String?) -> Void, failCallBack: @escaping (JSONParsingError) -> Void) {
         
         let url: String = "https://hatters.hubofallthings.com/api/products/hat/purchase"
         
-        guard let temp: [String: Any?] = PurchaseObject.encode(from: purchaseModel) else {
+        guard let temp: [String: Any?] = HATPurchase.encode(from: purchaseModel) else {
             
             return
         }
@@ -341,7 +341,7 @@ public struct HATService {
      - parameter succesfulCallBack: A function to call if everything is ok
      - parameter failCallBack: A function to call if fail
      */
-    public static func getSystemStatus(userDomain: String, userToken: String, completion: @escaping ([HATSystemStatusObject], String?) -> Void, failCallBack: @escaping (JSONParsingError) -> Void) {
+    public static func getSystemStatus(userDomain: String, userToken: String, completion: @escaping ([HATSystemStatus], String?) -> Void, failCallBack: @escaping (JSONParsingError) -> Void) {
         
         let url: String = "https://\(userDomain)/api/v2.6/system/status"
         let headers: [String: String] = ["X-Auth-Token": userToken]
@@ -367,10 +367,10 @@ public struct HATService {
                 if isSuccess {
                     
                     let resultArray: [JSON] = result.arrayValue
-                    var arrayToSendBack: [HATSystemStatusObject] = []
+                    var arrayToSendBack: [HATSystemStatus] = []
                     for item: JSON in resultArray {
                         
-                        arrayToSendBack.append(HATSystemStatusObject(from: item.dictionaryValue))
+                        arrayToSendBack.append(HATSystemStatus(from: item.dictionaryValue))
                     }
                     
                     completion(arrayToSendBack, token)

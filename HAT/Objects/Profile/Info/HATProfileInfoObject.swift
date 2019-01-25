@@ -46,16 +46,23 @@ public struct HATProfileInfo: HatApiType, HATObject, Comparable {
         return lhs.recordID < rhs.recordID
     }
     
-    // MARK: - Fields
+    // MARK: - Coding Keys
     
-    /// The possible Fields of the JSON struct
-    private struct Fields {
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `dateOfBirth` in JSON is `dateOfBirth`
+     * `gender` in JSON is `gender`
+     * `incomeGroup` in JSON is `incomeGroup`
+     * `recordID` in JSON is `recordId`
+     */
+    private enum CodingKeys: String, CodingKey {
         
-        static let dateOfBirth: String = "dateOfBirth"
-        static let gender: String = "gender"
-        static let incomeGroup: String = "incomeGroup"
-        static let recordId: String = "recordId"
-        static let unixTimeStamp: String = "unixTimeStamp"
+        case dateOfBirth = "dateOfBirth"
+        case gender = "gender"
+        case incomeGroup = "incomeGroup"
+        case recordID = "recordId"
     }
     
     // MARK: - Variables
@@ -91,28 +98,28 @@ public struct HATProfileInfo: HatApiType, HATObject, Comparable {
      */
     public init(from dict: JSON) {
         
-        if let data = (dict["data"].dictionary) {
+        if let data: [String: JSON] = (dict["data"].dictionary) {
             
-            if let tempGender = (data[Fields.gender]?.stringValue) {
+            if let tempGender: String = (data[CodingKeys.gender.rawValue]?.stringValue) {
                 
                 gender = tempGender
             }
             
-            if let tempIncomeGroup = (data[Fields.incomeGroup]?.stringValue) {
+            if let tempIncomeGroup: String = (data[CodingKeys.incomeGroup.rawValue]?.stringValue) {
                 
                 incomeGroup = tempIncomeGroup
             }
             
-            if let tempDateOfBirth = (data[Fields.dateOfBirth]?.stringValue) {
+            if let tempDateOfBirth: String = (data[CodingKeys.dateOfBirth.rawValue]?.stringValue) {
                 
-                if let tempDate = HATFormatterHelper.formatStringToDate(string: tempDateOfBirth) {
+                if let tempDate: Date = HATFormatterHelper.formatStringToDate(string: tempDateOfBirth) {
                     
                     dateOfBirth = tempDate
                 }
             }
         }
         
-        recordID = (dict[Fields.recordId].stringValue)
+        recordID = (dict[CodingKeys.recordID.rawValue].stringValue)
     }
     
     /**
@@ -122,20 +129,20 @@ public struct HATProfileInfo: HatApiType, HATObject, Comparable {
      */
     public mutating func initialize(fromCache: Dictionary<String, Any>) {
         
-        if let tempGender = fromCache[Fields.gender] {
+        if let tempGender: Any = fromCache[CodingKeys.gender.rawValue] {
             
             gender = String(describing: tempGender)
         }
         
-        if let tempIncomeGroup = fromCache[Fields.incomeGroup] {
+        if let tempIncomeGroup: Any = fromCache[CodingKeys.incomeGroup.rawValue] {
             
             incomeGroup = String(describing: tempIncomeGroup)
         }
         
-        if let tempDateOfBirth = fromCache[Fields.dateOfBirth] {
+        if let tempDateOfBirth: Any = fromCache[CodingKeys.dateOfBirth.rawValue] {
             
-            let temp = String(describing: tempDateOfBirth)
-            if let date = HATFormatterHelper.formatStringToDate(string: temp) {
+            let temp: String = String(describing: tempDateOfBirth)
+            if let date: Date = HATFormatterHelper.formatStringToDate(string: temp) {
                 
                 dateOfBirth = date
             }
@@ -153,10 +160,10 @@ public struct HATProfileInfo: HatApiType, HATObject, Comparable {
         
         return [
             
-            Fields.dateOfBirth: HATFormatterHelper.formatDateToISO(date: self.dateOfBirth),
-            Fields.gender: self.gender,
-            Fields.incomeGroup: self.incomeGroup,
-            Fields.unixTimeStamp: Int(HATFormatterHelper.formatDateToEpoch(date: Date())!)!
+            CodingKeys.dateOfBirth.rawValue: HATFormatterHelper.formatDateToISO(date: self.dateOfBirth),
+            CodingKeys.gender.rawValue: self.gender,
+            CodingKeys.incomeGroup.rawValue: self.incomeGroup,
+            "unixTimeStamp": Int(HATFormatterHelper.formatDateToEpoch(date: Date())!)!
         ]
         
     }

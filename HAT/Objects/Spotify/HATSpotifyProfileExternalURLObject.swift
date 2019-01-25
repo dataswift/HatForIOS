@@ -11,7 +11,25 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-public struct HATSpotifyProfileExternalURLObject: HATObject {
+// MARK: Struct
 
+public struct HATSpotifyProfileExternalURLObject: HATObject {
+    
+    // MARK: - Coding Keys
+    
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `spotify` in JSON is `spotify`
+     */
+    private enum CodingKeys: String, CodingKey {
+        
+        case spotify
+    }
+    
+    // MARK: - Variables
+
+    /// Spotify URL
     public var spotify: String = ""
 }

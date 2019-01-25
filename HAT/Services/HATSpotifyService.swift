@@ -47,7 +47,7 @@ public struct HATSpotifyService {
      - parameter successCallback: A ([JSON], String?) -> Void function executed on success
      - parameter errorCallback: A (HATTableError) -> Void function executed on failure
      */
-    public static func getSpotifyProfile(userToken: String, userDomain: String, successCallback: @escaping ([HATSpotifyProfileObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func getSpotifyProfile(userToken: String, userDomain: String, successCallback: @escaping ([HATSpotifyProfile], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         HATAccountService.getHatTableValues(
             token: userToken,
@@ -66,7 +66,7 @@ public struct HATSpotifyService {
                 }
                 
                 let profileJSON: [String : JSON] = jsonArray[0]["data"].dictionaryValue
-                if let profile: HATSpotifyProfileObject = HATSpotifyProfileObject.decode(from: profileJSON) {
+                if let profile: HATSpotifyProfile = HATSpotifyProfile.decode(from: profileJSON) {
                 
                     successCallback([profile], newToken)
                 } else {

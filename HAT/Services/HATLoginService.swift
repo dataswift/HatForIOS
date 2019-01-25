@@ -77,7 +77,7 @@ public struct HATLoginService {
                         let message: String = "Error"
                         failed(.generalError(message, statusCode, nil))
                     }
-                case .error(let error, let statusCode):
+                case .error(let error, let statusCode, _):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
@@ -115,7 +115,7 @@ public struct HATLoginService {
             if let url: String = HATAccountService.theUserHATDomainPublicKeyURL(userDomain!) {
                 
                 //. application/json
-                HATNetworkHelper.asynchronousStringRequest(url, method: HTTPMethod.get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.text, parameters: parameters as Dictionary<String, AnyObject>, headers: headers) { (response: HATNetworkHelper.ResultTypeString) -> Void in
+                HATNetworkHelper.asynchronousStringRequest(url, method: HTTPMethod.get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.text, parameters: parameters as Dictionary<String, AnyObject>, headers: headers) { (response: HATNetworkHelper.ResultType) -> Void in
                     
                     switch response {
                     case .isSuccess(let isSuccess, let statusCode, let result, _):
@@ -200,7 +200,7 @@ public struct HATLoginService {
                             failed?(.generalError(isSuccess.description, statusCode, nil))
                         }
                         
-                    case .error(let error, let statusCode):
+                    case .error(let error, let statusCode, _):
                         
                         if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                             

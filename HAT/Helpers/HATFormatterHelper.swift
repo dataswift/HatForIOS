@@ -12,10 +12,10 @@
 
 import Foundation
 
-// MARK: Class
+// MARK: Struct
 
 /// A struct for everything that formats something
-public class HATFormatterHelper: NSObject {
+public struct HATFormatterHelper {
     
     // MARK: - Variables
     
@@ -31,7 +31,7 @@ public class HATFormatterHelper: NSObject {
      
      - returns: The date as string represented in ISO format
      */
-    public class func formatDateToISO(date: Date) -> String {
+    public static func formatDateToISO(date: Date) -> String {
         
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         dateFormatter.locale = Locale.current
@@ -47,7 +47,7 @@ public class HATFormatterHelper: NSObject {
      
      - returns: An optional `Date` format, nil if all formats failed to produce a date
      */
-    public class func formatStringToDate(string: String) -> Date? {
+    public static func formatStringToDate(string: String) -> Date? {
         
         // check if the string to format is empty
         guard !string.isEmpty else { return nil }
@@ -126,7 +126,7 @@ public class HATFormatterHelper: NSObject {
      
      returns: The `stringToConvert` parameter represented in Base64 format
      */
-    public class func fromBase64URLToBase64(stringToConvert: String) -> String {
+    public static func fromBase64URLToBase64(stringToConvert: String) -> String {
         
         var convertedString: String = stringToConvert
         if convertedString.count % 4 == 2 {

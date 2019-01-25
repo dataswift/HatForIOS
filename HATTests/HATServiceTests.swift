@@ -69,9 +69,9 @@ internal class HATServiceTests: XCTestCase {
             "cause": "Not a valid username for a domain name: must not contain spaces, uppercase letters or special characters"
         ]
         
-        var purchaseModel: PurchaseObject = PurchaseObject()
+        var purchaseModel: HATPurchase = HATPurchase()
         purchaseModel.email = "mariostsekis@blah.net"
-        purchaseModel.termsAgreed = true
+        purchaseModel.hasUserAcceptedTerms = true
         purchaseModel.firstName = "marios"
         purchaseModel.lastName = "tsekis"
         purchaseModel.hatCluster = "hubat.net"

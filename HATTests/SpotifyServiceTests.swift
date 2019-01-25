@@ -70,7 +70,7 @@ internal class SpotifyServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
-        func completion(profile: [HATSpotifyProfileObject], newToken: String?) {
+        func completion(profile: [HATSpotifyProfile], newToken: String?) {
             
             XCTAssertTrue(!profile.isEmpty)
             expectationTest.fulfill()

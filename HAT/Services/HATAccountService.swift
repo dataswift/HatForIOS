@@ -40,39 +40,45 @@ public struct HATAccountService {
         let headers: [String: String] = [RequestHeaders.xAuthToken: token]
         
         // make the request
-        HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: parameters, headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .get,
+            encoding: Alamofire.URLEncoding.default,
+            contentType: ContentType.json,
+            parameters: parameters,
+            headers: headers) { (response: HATNetworkHelper.ResultType) -> Void in
             
-            switch response {
-                
-            case .error(let error, let statusCode, _):
-                
-                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                switch response {
                     
-                    errorCallback(.noInternetConnection)
-                } else {
+                case .error(let error, let statusCode, _):
                     
-                    let message: String = NSLocalizedString("Server responded with error", comment: "")
-                    errorCallback(.generalError(message, statusCode, error))
-                }
-            case .isSuccess(let isSuccess, let statusCode, let result, let token):
-                
-                if statusCode != nil && (statusCode! == 401 || statusCode! == 403) {
-                    
-                    let message: String = NSLocalizedString("Token expired", comment: "")
-                    errorCallback(.generalError(message, statusCode, nil))
-                }
-                if isSuccess {
-                    
-                    if let array: [JSON] = result.array {
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
-                        successCallback(array, token)
+                        errorCallback(.noInternetConnection)
                     } else {
                         
-                        errorCallback(.noValuesFound)
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        errorCallback(.generalError(message, statusCode, error))
+                    }
+                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                    
+                    if statusCode != nil && (statusCode! == 401 || statusCode! == 403) {
+                        
+                        let message: String = NSLocalizedString("Token expired", comment: "")
+                        errorCallback(.generalError(message, statusCode, nil))
+                    }
+                    if isSuccess {
+                        
+                        if let array: [JSON] = result.array {
+                            
+                            successCallback(array, token)
+                        } else {
+                            
+                            errorCallback(.noValuesFound)
+                        }
                     }
                 }
-            }
-        })
+        }
     }
     
     // MARK: - Create value
@@ -97,37 +103,43 @@ public struct HATAccountService {
         let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]
         
         // make the request
-        HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: parameters, headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .post,
+            encoding: Alamofire.JSONEncoding.default,
+            contentType: ContentType.json,
+            parameters: parameters,
+            headers: headers) { (response: HATNetworkHelper.ResultType) -> Void in
             
-            switch response {
-                
-            case .error(let error, let statusCode, _):
-                
-                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                switch response {
                     
-                    errorCallback(.noInternetConnection)
-                } else {
+                case .error(let error, let statusCode, _):
                     
-                    let message: String = NSLocalizedString("Server responded with error", comment: "")
-                    errorCallback(.generalError(message, statusCode, error))
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        errorCallback(.noInternetConnection)
+                    } else {
+                        
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        errorCallback(.generalError(message, statusCode, error))
+                    }
+                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                    
+                    if isSuccess {
+                        
+                        successCallback(result, token)
+                    }
+                    
+                    if statusCode == 404 {
+                        
+                        errorCallback(.tableDoesNotExist)
+                    } else if statusCode! == 401 || statusCode! == 403 {
+                        
+                        let message: String = NSLocalizedString("Token expired", comment: "")
+                        errorCallback(.generalError(message, statusCode, nil))
+                    }
                 }
-            case .isSuccess(let isSuccess, let statusCode, let result, let token):
-                
-                if isSuccess {
-                    
-                    successCallback(result, token)
-                }
-                
-                if statusCode == 404 {
-                    
-                    errorCallback(.tableDoesNotExist)
-                } else if statusCode! == 401 || statusCode! == 403 {
-                    
-                    let message: String = NSLocalizedString("Token expired", comment: "")
-                    errorCallback(.generalError(message, statusCode, nil))
-                }
-            }
-        })
+        }
     }
     
     // MARK: - Delete from hat
@@ -157,35 +169,40 @@ public struct HATAccountService {
         let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]
         
         // make the request
-        HATNetworkHelper.asynchronousRequest(url, method: .delete, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.text, parameters: [:], headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .delete,
+            encoding: Alamofire.JSONEncoding.default,
+            contentType: ContentType.text,
+            parameters: [:],
+            headers: headers) { (response: HATNetworkHelper.ResultType) -> Void in
             
-            // handle result
-            switch response {
-                
-            case .isSuccess(let isSuccess, let statusCode, _, _):
-                
-                if isSuccess {
+                // handle result
+                switch response {
                     
-                    success(userToken)
-                    HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () -> Void in })
-                } else {
+                case .isSuccess(let isSuccess, let statusCode, _, _):
                     
-                    let message: String = NSLocalizedString("The request was unsuccesful", comment: "")
-                    failed(.generalError(message, statusCode, nil))
+                    if isSuccess {
+                        
+                        success(userToken)
+                        HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () -> Void in })
+                    } else {
+                        
+                        let message: String = NSLocalizedString("The request was unsuccesful", comment: "")
+                        failed(.generalError(message, statusCode, nil))
+                    }
+                case .error(let error, let statusCode, _):
+                    
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        failed(.noInternetConnection)
+                    } else {
+                        
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        failed(.generalError(message, statusCode, error))
+                    }
                 }
-                
-            case .error(let error, let statusCode, _):
-                
-                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
-                    
-                    failed(.noInternetConnection)
-                } else {
-                    
-                    let message: String = NSLocalizedString("Server responded with error", comment: "")
-                    failed(.generalError(message, statusCode, error))
-                }
-            }
-        })
+        }
     }
     
     // MARK: - Edit record
@@ -199,9 +216,9 @@ public struct HATAccountService {
      - parameter successCallback: A callback called when successful of type @escaping ([JSON], String?) -> Void
      - parameter errorCallback: A callback called when failed of type @escaping (HATTableError) -> Void
      */
-    public static func updateHatRecord(userDomain: String, userToken: String, notes: [HATNotesObject], successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func updateHatRecord(userDomain: String, userToken: String, notes: [HATNotes], successCallback: @escaping ([JSON], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
-        let encoded: Data? = HATNotesObject.encode(from: notes)
+        let encoded: Data? = HATNotes.encode(from: notes)
         
         var urlRequest: URLRequest = URLRequest.init(url: URL(string: "https://\(userDomain)/api/v2.6/data")!)
         urlRequest.httpMethod = HTTPMethod.put.rawValue
@@ -218,21 +235,23 @@ public struct HATAccountService {
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
         
-        manager.request(urlRequest).responseJSON(completionHandler: { response in
+        manager.request(urlRequest)
+            .responseJSON { response in
             
-            let header: [AnyHashable: Any]? = response.response?.allHeaderFields
-            let token: String? = header?["x-auth-token"] as? String
-            
-            if response.response?.statusCode != 201 {
+                let header: [AnyHashable: Any]? = response.response?.allHeaderFields
+                let token: String? = header?["x-auth-token"] as? String
                 
-                errorCallback(.generalError("An error occured", 400, nil))
-            } else {
-                
-                let array: Any = response.result.value as Any
-                let json: JSON = JSON(array)
-                successCallback([json], token)
+                if response.response?.statusCode != 201 {
+                    
+                    errorCallback(.generalError("An error occured", 400, nil))
+                } else {
+                    
+                    let array: Any = response.result.value as Any
+                    let json: JSON = JSON(array)
+                    successCallback([json], token)
+                }
             }
-        }).session.finishTasksAndInvalidate()
+            .session.finishTasksAndInvalidate()
     }
     
     // MARK: - Trigger an update
@@ -250,10 +269,17 @@ public struct HATAccountService {
         let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
         
         // make the request
-        manager.request(url, method: .get, parameters: ["phata": userDomain], encoding: Alamofire.URLEncoding.default, headers: nil).responseString { _ in
+        manager.request(
+            url,
+            method: .get,
+            parameters: ["phata": userDomain],
+            encoding: Alamofire.URLEncoding.default,
+            headers: nil)
+            .responseString { _ in
             
-            completion()
-        }.session.finishTasksAndInvalidate()
+                completion()
+            }
+            .session.finishTasksAndInvalidate()
     }
     
     // MARK: - Get public key
@@ -294,28 +320,34 @@ public struct HATAccountService {
         let parameters: Dictionary<String, Any> = ["password": oldPassword, "newPassword": newPassword]
         let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]
         
-        HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: parameters, headers: headers, completion: {(response: HATNetworkHelper.ResultType) -> Void in
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .post,
+            encoding: Alamofire.JSONEncoding.default,
+            contentType: ContentType.json,
+            parameters: parameters,
+            headers: headers) { (response: HATNetworkHelper.ResultType) -> Void in
             
-            switch response {
-                
-            case .error(let error, let statusCode, _):
-                
-                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                switch response {
                     
-                    failCallback(.noInternetConnection)
-                } else {
+                case .error(let error, let statusCode, _):
                     
-                    let message: String = NSLocalizedString("Server responded with error", comment: "")
-                    failCallback(.generalError(message, statusCode, error))
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        failCallback(.noInternetConnection)
+                    } else {
+                        
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        failCallback(.generalError(message, statusCode, error))
+                    }
+                case .isSuccess(let isSuccess, _, let result, let token):
+                    
+                    if isSuccess, let message: String = result.dictionaryValue["message"]?.stringValue {
+                        
+                        successCallback(message, token)
+                    }
                 }
-            case .isSuccess(let isSuccess, _, let result, let token):
-                
-                if isSuccess, let message: String = result.dictionaryValue["message"]?.stringValue {
-                    
-                    successCallback(message, token)
-                }
-            }
-        })
+        }
     }
     
     // MARK: - Reset Password
@@ -336,28 +368,34 @@ public struct HATAccountService {
         let parameters: Dictionary<String, Any> = ["email": email]
         let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]
         
-        HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: parameters, headers: headers, completion: {(response: HATNetworkHelper.ResultType) -> Void in
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .post,
+            encoding: Alamofire.JSONEncoding.default,
+            contentType: ContentType.json,
+            parameters: parameters,
+            headers: headers) {(response: HATNetworkHelper.ResultType) -> Void in
             
-            switch response {
-                
-            case .error(let error, let statusCode, _):
-                
-                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                switch response {
                     
-                    failCallback(.noInternetConnection)
-                } else {
+                case .error(let error, let statusCode, _):
                     
-                    let message: String = NSLocalizedString("Server responded with error", comment: "")
-                    failCallback(.generalError(message, statusCode, error))
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        failCallback(.noInternetConnection)
+                    } else {
+                        
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        failCallback(.generalError(message, statusCode, error))
+                    }
+                case .isSuccess(let isSuccess, _, let result, let token):
+                    
+                    if isSuccess, let message: String = result.dictionaryValue["message"]?.stringValue {
+                        
+                        successCallback(message, token)
+                    }
                 }
-            case .isSuccess(let isSuccess, _, let result, let token):
-                
-                if isSuccess, let message: String = result.dictionaryValue["message"]?.stringValue {
-                    
-                    successCallback(message, token)
-                }
-            }
-        })
+        }
     }
     
     // MARK: - Create Combinator
@@ -403,25 +441,27 @@ public struct HATAccountService {
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
         
-        manager.request(urlRequest).responseJSON(completionHandler: { response in
+        manager.request(urlRequest)
+            .responseJSON { response in
             
-            switch response.result {
-            case .success:
-                
-                if response.response?.statusCode == 401 || response.response?.statusCode == 403 {
+                switch response.result {
+                case .success:
                     
-                    let message: String = NSLocalizedString("Token expired", comment: "")
-                    failCallback(.generalError(message, response.response?.statusCode, nil))
-                } else {
+                    if response.response?.statusCode == 401 || response.response?.statusCode == 403 {
+                        
+                        let message: String = NSLocalizedString("Token expired", comment: "")
+                        failCallback(.generalError(message, response.response?.statusCode, nil))
+                    } else {
+                        
+                        successCallback(true, nil)
+                    }
+                // in case of failure return the error but check for internet connection or unauthorised status and let the user know
+                case .failure(let error):
                     
-                    successCallback(true, nil)
+                    failCallback(HATError.generalError("", nil, error))
                 }
-            // in case of failure return the error but check for internet connection or unauthorised status and let the user know
-            case .failure(let error):
-                
-                failCallback(HATError.generalError("", nil, error))
             }
-        }).session.finishTasksAndInvalidate()
+            .session.finishTasksAndInvalidate()
     }
     
     /**
@@ -445,8 +485,7 @@ public struct HATAccountService {
             encoding: Alamofire.JSONEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: headers,
-            completion: {(response: HATNetworkHelper.ResultType) -> Void in
+            headers: headers) { (response: HATNetworkHelper.ResultType) -> Void in
                 
                 switch response {
                     
@@ -471,8 +510,7 @@ public struct HATAccountService {
                         failCallback(.generalError(message, statusCode, nil))
                     }
                 }
-            }
-        )
+        }
     }
 }
 

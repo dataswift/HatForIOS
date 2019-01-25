@@ -97,7 +97,7 @@ internal class LocationServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
         
-        func completion(locations: [HATLocationsObject], newToken: String?) {
+        func completion(locations: [HATLocations], newToken: String?) {
             
             XCTAssert(!locations.isEmpty)
             expectationTest.fulfill()
@@ -171,8 +171,8 @@ internal class LocationServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        var locations: [HATLocationsDataObject] = []
-        var location: HATLocationsDataObject = HATLocationsDataObject()
+        var locations: [HATLocationsData] = []
+        var location: HATLocationsData = HATLocationsData()
         location.latitude = 1
         location.longitude = 1
         location.horizontalAccuracy = 5
@@ -241,8 +241,8 @@ internal class LocationServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        var locations: [HATLocationsDataObject] = []
-        var location: HATLocationsDataObject = HATLocationsDataObject()
+        var locations: [HATLocationsData] = []
+        var location: HATLocationsData = HATLocationsData()
         location.latitude = 1
         location.longitude = 1
         location.horizontalAccuracy = 5
@@ -296,7 +296,7 @@ internal class LocationServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: everything, builder: json(body))
         
-        func completion(locations: [HATLocationsObject], newToken: String?) {
+        func completion(locations: [HATLocations], newToken: String?) {
             
             XCTAssert(!locations.isEmpty)
             expectationTest.fulfill()

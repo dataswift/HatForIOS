@@ -70,15 +70,15 @@ public struct HATTwitterService {
      - parameter success: An @escaping (_ array: [JSON], String?) -> Void) method executed on a successful response
      - parameter errorCallback: An @escaping (HATTableError) -> Void) method executed on a failed response
      */
-    public static func fetchTweets(authToken: String, userDomain: String, parameters: Dictionary<String, String>, successCallback: @escaping (_ array: [HATTwitterSocialFeedObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func fetchTweets(authToken: String, userDomain: String, parameters: Dictionary<String, String>, successCallback: @escaping (_ array: [HATTwitter], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         func sendObjectBack(jsonArray: [JSON], token: String?) {
             
-            var array: [HATTwitterSocialFeedObject] = []
+            var array: [HATTwitter] = []
             
             for object: JSON in jsonArray {
                 
-                array.append(HATTwitterSocialFeedObject(fromV2: object.dictionaryValue))
+                array.append(HATTwitter(fromV2: object.dictionaryValue))
             }
             
             successCallback(array, token)
@@ -125,16 +125,16 @@ public struct HATTwitterService {
      
      - returns: An array of HATTwitterSocialFeedObject
      */
-    public static func removeDuplicatesFrom(array: [HATTwitterSocialFeedObject]) -> [HATTwitterSocialFeedObject] {
+    public static func removeDuplicatesFrom(array: [HATTwitter]) -> [HATTwitter] {
         
         // the array to return
-        var arrayToReturn: [HATTwitterSocialFeedObject] = []
+        var arrayToReturn: [HATTwitter] = []
         
         // go through each tweet object in the array
-        for tweet: HATTwitterSocialFeedObject in array where array.count > 1 {
+        for tweet: HATTwitter in array where array.count > 1 {
             
             // check if the arrayToReturn it contains that value and if not add it
-            let result: Bool = arrayToReturn.contains(where: {(tweeter: HATTwitterSocialFeedObject) -> Bool in
+            let result: Bool = arrayToReturn.contains(where: {(tweeter: HATTwitter) -> Bool in
                 
                 if tweet.data.tweets.tweetID == tweeter.data.tweets.tweetID {
                     

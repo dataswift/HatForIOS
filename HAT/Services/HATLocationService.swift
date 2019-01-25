@@ -109,18 +109,18 @@ public struct HATLocationService {
      - parameter successCallback: A ([HATLocationsV2Object], String?) -> Void function executed on success
      - parameter errorCallback: A (JSONParsingError) -> Void function executed on failure
      */
-    public static func getLocations(userDomain: String, userToken: String, fromDate: Date, toDate: Date, successCallback: @escaping ([HATLocationsObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void ) {
+    public static func getLocations(userDomain: String, userToken: String, fromDate: Date, toDate: Date, successCallback: @escaping ([HATLocations], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void ) {
         
         func receivedLocations(json: [JSON], newUserToken: String?) {
             
             // if we have values return them
             if !json.isEmpty {
                 
-                var arrayToReturn: [HATLocationsObject] = []
+                var arrayToReturn: [HATLocations] = []
                 
                 for item: JSON in json {
                     
-                    if let object: HATLocationsObject = HATLocationsObject.decode(from: item.dictionaryValue) {
+                    if let object: HATLocations = HATLocations.decode(from: item.dictionaryValue) {
                         
                         arrayToReturn.append(object)
                     } else {
@@ -161,15 +161,15 @@ public struct HATLocationService {
      - parameter locations: The locations to sync to the hat
      - parameter completion: A ([HATLocationsV2Object], String?) -> Void function executed on success
      */
-    public static func syncLocationsToHAT(userDomain: String, userToken: String, locations: [HATLocationsDataObject], completion: ((Bool, String?) -> Void)? = nil) {
+    public static func syncLocationsToHAT(userDomain: String, userToken: String, locations: [HATLocationsData], completion: ((Bool, String?) -> Void)? = nil) {
         
-        var tempLocations: [HATLocationsDataObject] = locations
+        var tempLocations: [HATLocationsData] = locations
         if locations.count > 100 {
             
             tempLocations = Array(locations.prefix(100))
         }
         
-        let encoded: Data? = HATLocationsDataObject.encode(from: tempLocations)
+        let encoded: Data? = HATLocationsData.encode(from: tempLocations)
         
         var urlRequest: URLRequest = URLRequest.init(url: URL(string: "https://\(userDomain)/api/v2.6/data/rumpel/locations/ios?skipErrors=true")!)
         urlRequest.httpMethod = HTTPMethod.post.rawValue
@@ -191,7 +191,7 @@ public struct HATLocationService {
             let header: [AnyHashable: Any]? = response.response?.allHeaderFields
             let token: String? = header?["x-auth-token"] as? String
             
-            var tempLocations: [HATLocationsDataObject] = locations
+            var tempLocations: [HATLocationsData] = locations
             if locations.count > 100 {
                 
                 tempLocations = Array(locations.prefix(100))
@@ -216,7 +216,7 @@ public struct HATLocationService {
      - parameter userToken: The user's token
      - parameter completion: A ([HATLocationsV2Object], String?) -> Void function executed on success
      */
-    static func failbackDuplicateSyncing(dbLocations: [HATLocationsDataObject], userDomain: String, userToken: String, completion: ((Bool, String?) -> Void)?) {
+    static func failbackDuplicateSyncing(dbLocations: [HATLocationsData], userDomain: String, userToken: String, completion: ((Bool, String?) -> Void)?) {
         
         guard dbLocations.count > 2 else {
             
@@ -226,8 +226,8 @@ public struct HATLocationService {
         
         let midPoint: Int = (dbLocations.count - 1) / 2
         let midPointNext: Int = midPoint + 1
-        let splitArray1: [HATLocationsDataObject] = Array(dbLocations[...midPoint])
-        let splitArray2: [HATLocationsDataObject] = Array(dbLocations[midPointNext...])
+        let splitArray1: [HATLocationsData] = Array(dbLocations[...midPoint])
+        let splitArray2: [HATLocationsData] = Array(dbLocations[midPointNext...])
         
         var urlRequest: URLRequest = URLRequest.init(url: URL(string: "https://\(userDomain)/api/v2.6/data/rumpel/locations/ios?skipErrors=true")!)
         urlRequest.httpMethod = HTTPMethod.post.rawValue
@@ -238,10 +238,10 @@ public struct HATLocationService {
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         
-        func reccuring(array: [HATLocationsDataObject], urlRequest: URLRequest, userDomain: String, userToken: String ) {
+        func reccuring(array: [HATLocationsData], urlRequest: URLRequest, userDomain: String, userToken: String ) {
             
             var urlRequest: URLRequest = urlRequest
-            let encoded: Data? = HATLocationsDataObject.encode(from: array)
+            let encoded: Data? = HATLocationsData.encode(from: array)
             urlRequest.httpBody = encoded
             
             let configuration: URLSessionConfiguration = URLSessionConfiguration.default
@@ -284,7 +284,7 @@ public struct HATLocationService {
      - parameter successCallback: A function of type ([HATLocationsV2Object], String?) to call on success
      - parameter failCallback: A fuction of type (HATError) to call on fail
      */
-    public static func getLocationCombinator(userDomain: String, userToken: String, successCallback: @escaping ([HATLocationsObject], String?) -> Void, failCallback: @escaping (HATError) -> Void) {
+    public static func getLocationCombinator(userDomain: String, userToken: String, successCallback: @escaping ([HATLocations], String?) -> Void, failCallback: @escaping (HATError) -> Void) {
         
         HATAccountService.getCombinator(
             userDomain: userDomain,
@@ -292,10 +292,10 @@ public struct HATLocationService {
             combinatorName: "locationsfilter",
             successCallback: { array, newToken in
                 
-                var arrayToReturn: [HATLocationsObject] = []
+                var arrayToReturn: [HATLocations] = []
                 for item: JSON in array {
                     
-                    if let object: HATLocationsObject = HATLocationsObject.decode(from: item.dictionaryValue) {
+                    if let object: HATLocations = HATLocations.decode(from: item.dictionaryValue) {
                         
                         arrayToReturn.append(object)
                     }

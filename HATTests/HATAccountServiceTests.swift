@@ -201,7 +201,7 @@ internal class HATAccountServiceTests: XCTestCase {
     
     func testUpdateValueOnHAT() {
         
-        let note: HATNotesObject = HATNotesObject()
+        let note: HATNotes = HATNotes()
         let userDomain: String = "mariostsekis.hubofallthings.net"
         let urlToConnect: String = "https://\(userDomain)/api/v2.6/data"
         let expectationTest: XCTestExpectation = expectation(description: "Update record on hat...")

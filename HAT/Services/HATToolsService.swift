@@ -16,7 +16,7 @@ import SwiftyJSON
 
 public struct HATToolsService {
 
-    public static func getAvailableTools(userDomain: String, userToken: String, completion: @escaping (([HATToolsObject], String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
+    public static func getAvailableTools(userDomain: String, userToken: String, completion: @escaping (([HATTools], String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
         
         let url: String = "https://\(userDomain)/api/v2.6/she/function"
         let headers: [String: String] = ["x-auth-token": userToken]
@@ -48,13 +48,13 @@ public struct HATToolsService {
                     
                     if isSuccess && statusCode != 401 {
                         
-                        var arrayToReturn: [HATToolsObject] = []
+                        var arrayToReturn: [HATTools] = []
                         
                         if let array: [JSON] = result.array {
                             
                             for item: JSON in array {
                                 
-                                if let object: HATToolsObject = HATToolsObject.decode(from: item.dictionaryValue) {
+                                if let object: HATTools = HATTools.decode(from: item.dictionaryValue) {
                                     
                                     arrayToReturn.append(object)
                                 }
@@ -71,7 +71,7 @@ public struct HATToolsService {
             })
     }
     
-    public static func getTool(toolName: String, userDomain: String, userToken: String, completion: @escaping ((HATToolsObject, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
+    public static func getTool(toolName: String, userDomain: String, userToken: String, completion: @escaping ((HATTools, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
         
         let url: String = "https://\(userDomain)/api/v2.6/she/function/\(toolName)"
         let headers: [String: String] = ["x-auth-token": userToken]
@@ -105,7 +105,7 @@ public struct HATToolsService {
                         
                         let dict: [String: JSON] = result.dictionaryValue
                             
-                        if let object: HATToolsObject = HATToolsObject.decode(from: dict) {
+                        if let object: HATTools = HATTools.decode(from: dict) {
                             
                             completion(object, token)
                         } else {
@@ -122,7 +122,7 @@ public struct HATToolsService {
             })
     }
     
-    public static func enableTool(toolName: String, userDomain: String, userToken: String, completion: @escaping ((HATToolsObject, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
+    public static func enableTool(toolName: String, userDomain: String, userToken: String, completion: @escaping ((HATTools, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
         
         let url: String = "https://\(userDomain)/api/v2.6/she/function/\(toolName)/enable"
         let headers: [String: String] = ["x-auth-token": userToken]
@@ -156,7 +156,7 @@ public struct HATToolsService {
                         
                         let dict: [String: JSON] = result.dictionaryValue
                         
-                        if let object: HATToolsObject = HATToolsObject.decode(from: dict) {
+                        if let object: HATTools = HATTools.decode(from: dict) {
                             
                             completion(object, token)
                         } else {
@@ -173,7 +173,7 @@ public struct HATToolsService {
             })
     }
     
-    public static func disableTool(toolName: String, userDomain: String, userToken: String, completion: @escaping ((HATToolsObject, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
+    public static func disableTool(toolName: String, userDomain: String, userToken: String, completion: @escaping ((HATTools, String?) -> Void), failCallBack: @escaping ((HATTableError) -> Void)) {
         
         let url: String = "https://\(userDomain)/api/v2.6/she/function/\(toolName)/disable"
         let headers: [String: String] = ["x-auth-token": userToken]
@@ -207,7 +207,7 @@ public struct HATToolsService {
                         
                         let dict: [String: JSON] = result.dictionaryValue
                         
-                        if let object: HATToolsObject = HATToolsObject.decode(from: dict) {
+                        if let object: HATTools = HATTools.decode(from: dict) {
                             
                             completion(object, token)
                         } else {

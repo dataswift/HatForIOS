@@ -13,36 +13,25 @@
 import Alamofire
 import SwiftyJSON
 
-// MARK: Class
+// MARK: struct
 
 /// All network related methods
-public class HATNetworkHelper: NSObject {
+public struct HATNetworkHelper {
     
     // MARK: - Enums
     
     /**
-     Network result type from `HTTP` requests. It can be a success or a failure which resulted in some sort of `Error`
+    A Result type to use with network requests
+     
+     - IsSuccess: A tuple containing: isSuccess: Bool, statusCode: Int?, result: T, token: String?
+     - Error: A tuple containing: error: Error, statusCode: Int?, result: T?
      */
-    public enum ResultType {
+    public enum ResultType<T> {
         
         /// Result is success. A tuple containing: isSuccess: Bool, statusCode: Int?, result: JSON
-        case isSuccess(isSuccess: Bool, statusCode: Int?, result: JSON, token: String?)
+        case isSuccess(isSuccess: Bool, statusCode: Int?, result: T, token: String?)
         /// Result is error. A tuple containing: error: Error, statusCode: Int?, result: JSON
-        case error(error: Error, statusCode: Int?, result: JSON?)
-    }
-    
-    /**
-     String Result from HTTP requests
-     
-     - IsSuccess: A tuple containing: isSuccess: Bool, statusCode: Int?, result: String, token: String?
-     - Error: A tuple containing: error: Error, statusCode: Int?
-     */
-    public enum ResultTypeString {
-        
-        /// when the result is success. A tuple containing: isSuccess: Bool, statusCode: Int?, result: String
-        case isSuccess(isSuccess: Bool, statusCode: Int?, result: String, token: String?)
-        /// when the result is error. A tuple containing: error: Error, statusCode: Int?
-        case error(error: Error, statusCode: Int?)
+        case error(error: Error, statusCode: Int?, result: T?)
     }
     
     // MARK: - Request methods
@@ -59,7 +48,7 @@ public class HATNetworkHelper: NSObject {
      - parameter headers: The headers in the request
      - parameter completion: The completion handler to execute upon completing the request
      */
-    public class func asynchronousRequest( _ url: String, method: HTTPMethod, encoding: ParameterEncoding, contentType: String, parameters: Dictionary<String, Any>, headers: Dictionary<String, String>, completion: @escaping (_ r: HATNetworkHelper.ResultType) -> Void) {
+    public static func asynchronousRequest( _ url: String, method: HTTPMethod, encoding: ParameterEncoding, contentType: String, parameters: Dictionary<String, Any>, headers: Dictionary<String, String>, completion: @escaping (_ r: HATNetworkHelper.ResultType<JSON>) -> Void) {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
@@ -79,7 +68,6 @@ public class HATNetworkHelper: NSObject {
                 case .success:
                     
                     let header: [AnyHashable: Any]? = response.response?.allHeaderFields
-                    
                     if let stringHeaders: [String: String] = header as? [String: String], let url: URL = (response.response?.url!) {
                         
                         let cookies: [HTTPCookie] = HTTPCookie.cookies(withResponseHeaderFields: stringHeaders, for: url)
@@ -132,7 +120,7 @@ public class HATNetworkHelper: NSObject {
      - parameter headers: The headers in the request
      - parameter completion: The completion handler to execute upon completing the request
      */
-    public class func asynchronousStringRequest(_ url: String, method: HTTPMethod, encoding: ParameterEncoding, contentType: String, parameters: Dictionary<String, Any>, headers: Dictionary<String, String>, completion: @escaping (_ r: HATNetworkHelper.ResultTypeString) -> Void) {
+    public static func asynchronousStringRequest(_ url: String, method: HTTPMethod, encoding: ParameterEncoding, contentType: String, parameters: Dictionary<String, Any>, headers: Dictionary<String, String>, completion: @escaping (_ r: HATNetworkHelper.ResultType<String>) -> Void) {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
@@ -157,18 +145,17 @@ public class HATNetworkHelper: NSObject {
                     let token: String? = header?[RequestHeaders.xAuthToken] as? String
                     
                     // check if we have a value and return it
-                    if let value: String = response.result.value {
+                    guard let value: String = response.result.value else {
                         
-                        completion(HATNetworkHelper.ResultTypeString.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: value, token: token))
-                    // else return isSuccess: false and nil for value
-                    } else {
-                        
-                        completion(HATNetworkHelper.ResultTypeString.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: token))
+                        completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: token))
+                        return
                     }
+                    
+                    completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: value, token: token))
                 // return the error
                 case .failure(let error):
                     
-                    completion(HATNetworkHelper.ResultTypeString.error(error: error, statusCode: response.response?.statusCode))
+                    completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: nil))
                 }
             }
             .session.finishTasksAndInvalidate()
@@ -179,11 +166,12 @@ public class HATNetworkHelper: NSObject {
     /**
      Uploads a specified file to the url provided
      
-     - parameter filePath: A String representing the file path
+     - parameter image: A `Data` type representation of the image in order to upload it
      - parameter url: The url to upload the file to
+     - parameter progressUpdateHandler: A function to execute in order to get the percentage of the upload completed so far
      - parameter completion: A function to execute if everything is ok
      */
-    public class func uploadFile(image: Data, url: String, progressUpdateHandler: ((Double) -> Void)?, completion: @escaping (_ r: HATNetworkHelper.ResultType) -> Void) {
+    public static func uploadFile(image: Data, url: String, progressUpdateHandler: ((Double) -> Void)?, completion: @escaping (_ r: HATNetworkHelper.ResultType<JSON>) -> Void) {
         
         let headers: [String: String] = [RequestHeaders.serverEncryption: RequestHeaders.serverEncryptionAES256]
         
@@ -197,10 +185,7 @@ public class HATNetworkHelper: NSObject {
             headers: headers)
             .uploadProgress { progress -> Void in
             
-                if let updateFunc: ((Double) -> Void) = progressUpdateHandler {
-                    
-                    updateFunc(progress.fractionCompleted)
-                }
+                progressUpdateHandler?(progress.fractionCompleted)
             }
             .responseString { response in
                 
@@ -243,12 +228,11 @@ public class HATNetworkHelper: NSObject {
      
      - returns: String or nil if not found
      */
-    public class func getQueryStringParameter(url: String?, param: String) -> String? {
+    public static func getQueryStringParameter(url: String?, param: String) -> String? {
         
         if let url: String = url, let urlComponents: NSURLComponents = NSURLComponents(string: url), let queryItems: [URLQueryItem] = (urlComponents.queryItems) {
             
             let parameter: URLQueryItem? = queryItems.first { item in item.name == param }
-        
             return parameter?.value
         }
         

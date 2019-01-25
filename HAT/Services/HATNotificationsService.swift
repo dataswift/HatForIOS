@@ -26,7 +26,7 @@ public struct HATNotificationsService {
      - parameter successCallback: A callback called when successful of type @escaping ([NotificationObject]) -> Void
      - parameter errorCallback: A callback called when failed of type @escaping (Void) -> Void)
      */
-    public static func getHATNotifications(appToken: String, successCallback: @escaping ([NotificationObject], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func getHATNotifications(appToken: String, successCallback: @escaping ([HATNotification], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // form the url
         let url: String = "https://dex.hubofallthings.com/api/notices"
@@ -62,10 +62,10 @@ public struct HATNotificationsService {
                         
                         if let array: [JSON] = result.array {
                             
-                            var arrayToReturn: [NotificationObject] = []
+                            var arrayToReturn: [HATNotification] = []
                             for notification: JSON in array {
                                 
-                                arrayToReturn.append(NotificationObject(dictionary: notification.dictionaryValue))
+                                arrayToReturn.append(HATNotification(dictionary: notification.dictionaryValue))
                             }
                             successCallback(arrayToReturn, token)
                         } else {
