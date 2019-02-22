@@ -11,14 +11,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/
  */
 
-//MARK: Struct
+// MARK: Struct
 
-struct HATLogEvent: HATObject {
+public struct HATLogEvent: HATObject {
     
     // MARK: - Variables
     
     /// The message we want to attach. Optional
-    var message: String? = nil
+    var message: String?
     /// The action that occured and we want to log
     var action: String = ""
 }

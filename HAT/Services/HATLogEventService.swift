@@ -15,7 +15,7 @@ import Alamofire
 
 // MARK: Struct
 
-struct HATLogEventService {
+public struct HATLogEventService {
     
     // MARK: - Log event
 
@@ -26,7 +26,7 @@ struct HATLogEventService {
      - parameter userToken: User's token
      - parameter logEvent: The even we want to log
      */
-    static func logEvent(userDomain: String, userToken: String, logEvent: HATLogEvent) {
+    public static func logEvent(userDomain: String, userToken: String, logEvent: HATLogEvent) {
         
         guard let url: URL = URL(string: "https://\(userDomain)/log") else { return }
         
