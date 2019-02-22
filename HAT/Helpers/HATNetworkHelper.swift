@@ -74,17 +74,20 @@ public struct HATNetworkHelper {
                         manager.session.configuration.httpCookieStorage?.setCookies(cookies, for: url, mainDocumentURL: nil)
                     }
                     
-                    let token: String? = header?[RequestHeaders.xAuthToken] as? String
-                    
                     if response.response?.statusCode == 401 {
                         
                         completion(HATNetworkHelper.ResultType.error(error: AuthenicationError.tokenValidationFailed("expired"), statusCode: response.response?.statusCode, result: nil))
-                    } else if token != nil || 200 ... 299 ~= response.response!.statusCode {
+                    } else if response.response?.statusCode == 403 {
                         
+                        completion(HATNetworkHelper.ResultType.error(error: AuthenicationError.tokenValidationFailed("forbidden"), statusCode: response.response?.statusCode, result: nil))
+                    } else if 200 ... 299 ~= response.response!.statusCode {
+                        
+                        let token: String? = header?[RequestHeaders.xAuthToken] as? String
+
                         // check if we have a value and return it
                         guard let value: Any = response.result.value else {
                             
-                            completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: token))
+                            completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode, result: nil))
                             return
                         }
                         
@@ -147,7 +150,7 @@ public struct HATNetworkHelper {
                     // check if we have a value and return it
                     guard let value: String = response.result.value else {
                         
-                        completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: token))
+                        completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode, result: nil))
                         return
                     }
                     
@@ -198,7 +201,7 @@ public struct HATNetworkHelper {
                     // check if we have a value and return it
                     guard let value: String = response.result.value else {
                         
-                        completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: false, statusCode: response.response?.statusCode, result: "", token: token))
+                        completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode, result: nil))
                         return
                     }
                     

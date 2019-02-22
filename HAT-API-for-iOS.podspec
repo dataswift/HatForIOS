@@ -138,7 +138,7 @@ Pod::Spec.new do |spec|
   spec.test_spec do |test_spec|
 
     test_spec.requires_app_host = false
-    test_spec.source_files = 'HATTests/*.{swift}' 'HAT/**/*.{swift}'
+    test_spec.source_files = 'HATTests/**/*.{swift}', 'HATTests/*.{swift}', 'HAT/**/*.{swift}'
 
     test_spec.frameworks = 'HAT'
     test_spec.dependency 'SwiftyJSON'

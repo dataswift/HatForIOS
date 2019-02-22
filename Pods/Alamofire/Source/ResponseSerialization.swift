@@ -1,7 +1,7 @@
 //
 //  ResponseSerialization.swift
 //
-//  Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/)
+//  Copyright (c) 2014 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -276,7 +276,7 @@ extension DataRequest {
     /// - returns: A data response serializer.
     public static func dataResponseSerializer() -> DataResponseSerializer<Data> {
         return DataResponseSerializer { _, response, data, error in
-            Request.serializeResponseData(response: response, data: data, error: error)
+            return Request.serializeResponseData(response: response, data: data, error: error)
         }
     }
 
@@ -394,7 +394,7 @@ extension DataRequest {
     /// - returns: A string response serializer.
     public static func stringResponseSerializer(encoding: String.Encoding? = nil) -> DataResponseSerializer<String> {
         return DataResponseSerializer { _, response, data, error in
-            Request.serializeResponseString(encoding: encoding, response: response, data: data, error: error)
+            return Request.serializeResponseString(encoding: encoding, response: response, data: data, error: error)
         }
     }
 
@@ -517,7 +517,7 @@ extension DataRequest {
         -> DataResponseSerializer<Any>
     {
         return DataResponseSerializer { _, response, data, error in
-            Request.serializeResponseJSON(options: options, response: response, data: data, error: error)
+            return Request.serializeResponseJSON(options: options, response: response, data: data, error: error)
         }
     }
 
@@ -638,7 +638,7 @@ extension DataRequest {
         -> DataResponseSerializer<Any>
     {
         return DataResponseSerializer { _, response, data, error in
-            Request.serializeResponsePropertyList(options: options, response: response, data: data, error: error)
+            return Request.serializeResponsePropertyList(options: options, response: response, data: data, error: error)
         }
     }
 

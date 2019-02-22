@@ -1,7 +1,7 @@
 //
 //  Validation.swift
 //
-//  Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/)
+//  Copyright (c) 2014 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -193,7 +193,7 @@ extension DataRequest {
     @discardableResult
     public func validate<S: Sequence>(statusCode acceptableStatusCodes: S) -> Self where S.Iterator.Element == Int {
         return validate { [unowned self] _, response, _ in
-            self.validate(statusCode: acceptableStatusCodes, response: response)
+            return self.validate(statusCode: acceptableStatusCodes, response: response)
         }
     }
 
@@ -207,7 +207,7 @@ extension DataRequest {
     @discardableResult
     public func validate<S: Sequence>(contentType acceptableContentTypes: S) -> Self where S.Iterator.Element == String {
         return validate { [unowned self] _, response, data in
-            self.validate(contentType: acceptableContentTypes, response: response, data: data)
+            return self.validate(contentType: acceptableContentTypes, response: response, data: data)
         }
     }
 
@@ -273,7 +273,7 @@ extension DownloadRequest {
     @discardableResult
     public func validate<S: Sequence>(statusCode acceptableStatusCodes: S) -> Self where S.Iterator.Element == Int {
         return validate { [unowned self] _, response, _, _ in
-            self.validate(statusCode: acceptableStatusCodes, response: response)
+            return self.validate(statusCode: acceptableStatusCodes, response: response)
         }
     }
 

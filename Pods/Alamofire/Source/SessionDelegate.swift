@@ -1,7 +1,7 @@
 //
 //  SessionDelegate.swift
 //
-//  Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/)
+//  Copyright (c) 2014 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -223,7 +223,7 @@ open class SessionDelegate: NSObject {
         case #selector(URLSessionDelegate.urlSession(_:didBecomeInvalidWithError:)):
             return sessionDidBecomeInvalidWithError != nil
         case #selector(URLSessionDelegate.urlSession(_:didReceive:completionHandler:)):
-            return (sessionDidReceiveChallenge != nil || sessionDidReceiveChallengeWithCompletion != nil)
+            return (sessionDidReceiveChallenge != nil  || sessionDidReceiveChallengeWithCompletion != nil)
         case #selector(URLSessionTaskDelegate.urlSession(_:task:willPerformHTTPRedirection:newRequest:completionHandler:)):
             return (taskWillPerformHTTPRedirection != nil || taskWillPerformHTTPRedirectionWithCompletion != nil)
         case #selector(URLSessionDataDelegate.urlSession(_:dataTask:didReceive:completionHandler:)):

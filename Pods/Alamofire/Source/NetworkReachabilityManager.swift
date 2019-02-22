@@ -1,7 +1,7 @@
 //
 //  NetworkReachabilityManager.swift
 //
-//  Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/)
+//  Copyright (c) 2014 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -118,8 +118,8 @@ open class NetworkReachabilityManager {
         address.sin_family = sa_family_t(AF_INET)
 
         guard let reachability = withUnsafePointer(to: &address, { pointer in
-            pointer.withMemoryRebound(to: sockaddr.self, capacity: MemoryLayout<sockaddr>.size) {
-                SCNetworkReachabilityCreateWithAddress(nil, $0)
+            return pointer.withMemoryRebound(to: sockaddr.self, capacity: MemoryLayout<sockaddr>.size) {
+                return SCNetworkReachabilityCreateWithAddress(nil, $0)
             }
         }) else { return nil }
 
@@ -128,7 +128,9 @@ open class NetworkReachabilityManager {
 
     private init(reachability: SCNetworkReachability) {
         self.reachability = reachability
-        self.previousFlags = SCNetworkReachabilityFlags()
+
+        // Set the previous flags to an unreserved value to represent unknown status
+        self.previousFlags = SCNetworkReachabilityFlags(rawValue: 1 << 30)
     }
 
     deinit {
@@ -147,7 +149,7 @@ open class NetworkReachabilityManager {
 
         let callbackEnabled = SCNetworkReachabilitySetCallback(
             reachability,
-            { _, flags, info in
+            { (_, flags, info) in
                 let reachability = Unmanaged<NetworkReachabilityManager>.fromOpaque(info!).takeUnretainedValue()
                 reachability.notifyListener(flags)
             },
@@ -157,8 +159,8 @@ open class NetworkReachabilityManager {
         let queueEnabled = SCNetworkReachabilitySetDispatchQueue(reachability, listenerQueue)
 
         listenerQueue.async {
-            self.previousFlags = SCNetworkReachabilityFlags()
-            self.notifyListener(self.flags ?? SCNetworkReachabilityFlags())
+            guard let flags = self.flags else { return }
+            self.notifyListener(flags)
         }
 
         return callbackEnabled && queueEnabled
