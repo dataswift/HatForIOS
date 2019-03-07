@@ -21,21 +21,21 @@ public struct HATApplicationsKind: HATObject {
      The JSON fields used by the hat
      
      The Fields are the following:
-     * `appStoreURL` in JSON is `url`
+     * `webURL` in JSON is `url`
      * `iosUrl` in JSON is `iosUrl`
      * `kind` in JSON is `kind`
      */
     private enum CodingKeys: String, CodingKey {
         
-        case appStoreURL = "url"
+        case webURL = "url"
         case iosUrl = "iosUrl"
         case kind = "kind"
     }
-
+    
     // MARK: - Variables
     
-    /// The App Store url for the app
-    public var appStoreURL: String = ""
+    /// The web url for the app
+    public var webURL: String = ""
     /// The iOS url to launch the app. Optional
     public var iosUrl: String?
     /// The kind of the app, Internal or External app.

@@ -15,10 +15,41 @@
 
 public struct HATLogEvent: HATObject {
     
+    // MARK: - Coding Keys
+    
+    /**
+     The JSON fields used by the hat
+     
+     The Fields are the following:
+     * `message` in JSON is `message`
+     * `actionCode` in JSON is `actionCode`
+     */
+    private enum CodingKeys: String, CodingKey {
+        
+        case message
+        case actionCode
+    }
+    
     // MARK: - Variables
     
     /// The message we want to attach. Optional
     var message: String?
     /// The action that occured and we want to log
-    var action: String = ""
+    var actionCode: String = ""
+    
+    // MARK: - Init
+    
+    /**
+     Creates a `HATLogEvent` object based on the values passed as parameters
+     
+     - parameter message: An optional message to log
+     - parameter actionCode: The actionCode occured
+     
+     - returns: A `HATLogEvent` already setup with the values passes as parameters
+     */
+    public init(message: String?, actionCode: String) {
+        
+        self.message = message
+        self.actionCode = actionCode
+    }
 }

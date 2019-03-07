@@ -44,6 +44,15 @@ public protocol HATObject: Codable {
     static func encode<T: HATObject>(from: [T]) -> Data?
     
     /**
+     Encodes a HATObject to a JSON file
+     
+     - parameter from: A HATObject to encode
+     
+     - returns: An optional Data object encoded from the HATObject passed in as a parameter
+     */
+    static func encodeSingleObject<T: HATObject>(from: T) -> Data?
+    
+    /**
      Extracts the dictionary out of a JSON Object
      
      - parameter from: A JSON object to extract the dictionary from
@@ -94,6 +103,20 @@ extension HATObject {
     }
     
     static public func encode<T: HATObject>(from: [T]) -> Data? {
+        
+        let encoder: JSONEncoder = JSONEncoder()
+        
+        do {
+            
+            return try encoder.encode(from)
+        } catch {
+            
+            print("error encoding")
+            return nil
+        }
+    }
+    
+    static public func encodeSingleObject<T: HATObject>(from: T) -> Data? {
         
         let encoder: JSONEncoder = JSONEncoder()
         

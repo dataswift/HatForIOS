@@ -119,4 +119,63 @@ public struct HATFeedService {
             failCallback: failCallback
         )
     }
+    
+    public static func loadStaticData(userDomain: String, userToken: String, plugName: String, successCallback: @escaping ([StaticDataValues], String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+        
+        // form the url
+        let url: String = "https://\(userDomain)/api/v2.6/she/static/\(plugName)/profile"
+        
+        // create parameters and headers
+        let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]
+        
+        // make the request
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .get,
+            encoding: Alamofire.URLEncoding.default,
+            contentType: ContentType.json,
+            parameters: [:],
+            headers: headers) { (response: HATNetworkHelper.ResultType) -> Void in
+                
+                switch response {
+                    
+                case .error(let error, let statusCode, _):
+                    
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        errorCallback(.noInternetConnection)
+                    } else {
+                        
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        errorCallback(.generalError(message, statusCode, error))
+                    }
+                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                    
+                    if statusCode != nil && (statusCode! == 401 || statusCode! == 403) {
+                        
+                        let message: String = NSLocalizedString("Token expired", comment: "")
+                        errorCallback(.generalError(message, statusCode, nil))
+                    }
+                    if isSuccess {
+                        
+                        if let array: [JSON] = result.array {
+                            
+                            var arrayToReturn: [StaticDataValues] = []
+                            
+                            for item: JSON in array {
+                                
+                                let itemAsString: [String: String] = item["values"].dictionaryValue.filter({key in key.value != "languages"}).mapValues({temp in temp.stringValue})
+                                let staticData = StaticDataValues(name: item["name"].stringValue, values: itemAsString)
+                                arrayToReturn.append(staticData)
+                            }
+                            
+                            successCallback(arrayToReturn, token)
+                        } else {
+                            
+                            errorCallback(.noValuesFound)
+                        }
+                    }
+                }
+        }
+    }
 }

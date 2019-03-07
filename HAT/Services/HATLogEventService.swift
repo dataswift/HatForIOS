@@ -28,7 +28,7 @@ public struct HATLogEventService {
      */
     public static func logEvent(userDomain: String, userToken: String, logEvent: HATLogEvent) {
         
-        guard let url: URL = URL(string: "https://\(userDomain)/log") else { return }
+        guard let url: URL = URL(string: "https://\(userDomain)/api/v2.6/report-frontend-action") else { return }
         
         do {
             
