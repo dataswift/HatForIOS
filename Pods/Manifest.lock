@@ -8,7 +8,7 @@ PODS:
     - URITemplate (~> 2.0)
   - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
-  - SwiftLint (0.30.1)
+  - SwiftLint (0.31.0)
   - SwiftyJSON (4.2.0)
   - SwiftyRSA (1.5.0):
     - SwiftyRSA/ObjC (= 1.5.0)
@@ -37,11 +37,11 @@ SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   JWTDecode: 85a405ab16d5473e99bd89ded1d535090ebd6a0e
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
-  SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
+  SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   SwiftyRSA: 6e528fb1b1a87d5111c48081083b141d6d65f1cf
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
 PODFILE CHECKSUM: db96445470e42a45d2ac283299288067f8b58084
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.6.0.beta.2
