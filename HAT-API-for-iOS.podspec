@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = 'HAT-API-for-iOS'
-  spec.version      = '0.0.8'
+  spec.version      = '0.1.1'
   spec.summary      = 'The API to connect & exchange data with the HAT'
 
   # This description is used to generate tags and improve search results.
@@ -78,7 +78,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source = { :git => 'https://github.com/Hub-of-all-Things/HatForIOS.git', :tag => '0.0.8' }
+  spec.source = { :git => 'https://github.com/Hub-of-all-Things/HatForIOS.git', :tag => 'v0.1.1' }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -133,7 +133,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'Alamofire'
   spec.dependency 'JWTDecode'
   spec.dependency 'SwiftyRSA'
-  spec.dependency 'SwiftLint', '0.21.0'
+  spec.dependency 'SwiftLint'
 
   spec.test_spec do |test_spec|
 
@@ -145,7 +145,7 @@ Pod::Spec.new do |spec|
     test_spec.dependency 'Alamofire'
     test_spec.dependency 'JWTDecode'
     test_spec.dependency 'SwiftyRSA'
-    test_spec.dependency 'SwiftLint', '0.21.0'
+    test_spec.dependency 'SwiftLint'
     test_spec.dependency 'Mockingjay'
     test_spec.dependency 'URITemplate'
 
