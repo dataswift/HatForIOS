@@ -31,6 +31,7 @@ public struct HATApplicationsInfo: HATObject {
      * `description` in JSON is `description`
      * `dataPreview` in JSON is `dataPreview`
      * `graphics` in JSON is `graphics`
+     * `primaryColor` in JSON is `primaryColor`
      */
     private enum CodingKeys: String, CodingKey {
         
@@ -44,6 +45,7 @@ public struct HATApplicationsInfo: HATObject {
         case description = "description"
         case dataPreview = "dataPreview"
         case graphics = "graphics"
+        case primaryColor = "primaryColor"
     }
     
     // MARK: - Variables
@@ -77,4 +79,7 @@ public struct HATApplicationsInfo: HATObject {
     
     /// The graphics, images, needed for this app (logo, banner and screenshots)
     public var graphics: HATApplicationsGraphics = HATApplicationsGraphics()
+    
+    /// Some apps/data plugs have a background color attached to them. This usually matched the main color from their logo
+    public var primaryColor: String?
 }

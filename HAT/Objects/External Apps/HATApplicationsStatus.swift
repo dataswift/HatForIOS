@@ -28,6 +28,7 @@ public struct HATApplicationsStatus: HATObject {
      * `versionReleaseDate` in JSON is `versionReleaseDate`
      * `expectedStatus` in JSON is `expectedStatus`
      * `dataPreviewEndpoint` in JSON is `dataPreviewEndpoint`
+     * `staticDataPreviewEndpoint` in JSON is `staticDataPreviewEndpoint`
      */
     private enum CodingKeys: String, CodingKey {
         
@@ -38,6 +39,7 @@ public struct HATApplicationsStatus: HATObject {
         case versionReleaseDate = "versionReleaseDate"
         case expectedStatus = "expectedStatus"
         case dataPreviewEndpoint = "dataPreviewEndpoint"
+        case staticDataPreviewEndpoint = "staticDataPreviewEndpoint"
     }
     
     // MARK: - Variables
@@ -56,4 +58,6 @@ public struct HATApplicationsStatus: HATObject {
     public var expectedStatus: Int?
     /// A URL that has some preview data, usually in the form of a feed item, for this application. Optional
     public var dataPreviewEndpoint: String?
+    /// A URL that is used to fetch the static data for this application. Optional
+    public var staticDataPreviewEndpoint: String?
 }

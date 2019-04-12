@@ -41,7 +41,8 @@ internal class HATExternalAppsServiceTests: XCTestCase {
                     "dataUsePurpose": "The HAT App only uses your data to display it back to you. It does not share your data with any third-parties or store it outside of your personal HAT.",
                     "supportContact": "contact@hatdex.org",
                     "rating": [
-                        "score": "Z***"
+                        "score": "Z***",
+                        "points": 99
                     ],
                     "dataPreview": [
                         [

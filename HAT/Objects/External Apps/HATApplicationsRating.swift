@@ -22,14 +22,18 @@ public struct HATApplicationsRating: HATObject {
      
      The Fields are the following:
      * `score` in JSON is `score`
+     * `points` in JSON is `points`
      */
     private enum CodingKeys: String, CodingKey {
         
         case score
+        case points
     }
     
     // MARK: - Variables
     
     /// The rating of the app, determined during app review by the HAT team. You can learn more about rating [here.](https://www.hatcommunity.org/hat-dex-rating)
     public var score: String = ""
+    /// According to the rating of each application this number will be from 0-99
+    public var points: Int = 0
 }
