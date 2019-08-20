@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -24,37 +24,6 @@ internal class LocationServiceTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
-    }
-
-    func testEnableLocationDataPlug() {
-
-        let body: [String: String] = ["message": ""]
-        let urlToConnect: String = "https://dex.hubofallthings.com/api/dataplugs/c532e122-db4a-44b8-9eaf-18989f214262/connect?hat=mariostsekis.hubofallthings.net"
-        let userDomain: String = "mariostsekis.hubofallthings.net"
-        let expectationTest: XCTestExpectation = expectation(description: "Enabling location data plug...")
-
-        MockingjayProtocol.addStub(matcher: http(.get, uri: urlToConnect), builder: json(body))
-
-        func completion(result: Bool) {
-
-            XCTAssert(result)
-            expectationTest.fulfill()
-        }
-
-        func failed(error: JSONParsingError) {
-
-            XCTFail()
-            expectationTest.fulfill()
-        }
-
-        HATLocationService.enableLocationDataPlug(userDomain, userDomain, success: completion, failed: failed)
-
-        waitForExpectations(timeout: 10) { error in
-
-            if let error: Error = error {
-                print("Error: \(error.localizedDescription)")
-            }
-        }
     }
     
     func testGetLocationData() {
@@ -105,7 +74,7 @@ internal class LocationServiceTests: XCTestCase {
         
         func failed(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed fetching location data")
             expectationTest.fulfill()
         }
         
@@ -167,7 +136,7 @@ internal class LocationServiceTests: XCTestCase {
         
         func failed(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed syncing locations")
             expectationTest.fulfill()
         }
         
@@ -237,7 +206,7 @@ internal class LocationServiceTests: XCTestCase {
         
         func failed(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed failback syncing locations")
             expectationTest.fulfill()
         }
         
@@ -304,7 +273,7 @@ internal class LocationServiceTests: XCTestCase {
         
         func failed(error: HATError) {
             
-            XCTFail()
+            XCTFail("Failed fetching location combinator")
             expectationTest.fulfill()
         }
         
@@ -316,16 +285,6 @@ internal class LocationServiceTests: XCTestCase {
                 print("Error: \(error.localizedDescription)")
             }
         }
-    }
-
-    func testFormatOfURLDuringRegistration() {
-
-        let url: String = "https://dex.hubofallthings.com/api/dataplugs/c532e122-db4a-44b8-9eaf-18989f214262/connect?hat=mariostsekis.hubofallthings.net"
-        let userDomain: String = "mariostsekis.hubofallthings.net"
-
-        let formattedURL: String = HATLocationService.locationDataPlugURL(userDomain, dataPlugID: HATDataPlugCredentials.dataPlugID)
-
-        XCTAssert(url == formattedURL)
     }
 
     func testPerformanceExample() {

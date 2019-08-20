@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -52,39 +52,37 @@ public struct HATFeedService {
         let headers: [String: String] = [RequestHeaders.xAuthToken: userToken]
         
         // make the request
-        HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: parameters, headers: headers, completion: { (response: HATNetworkHelper.ResultType) -> Void in
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .get,
+            encoding: Alamofire.URLEncoding.default,
+            contentType: ContentType.json,
+            parameters: parameters,
+            headers: headers) { (response: Result<(JSON, String?)>) -> Void in
             
-            switch response {
-                
-            case .error(let error, let statusCode, _):
-                
-                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                switch response {
                     
-                    failed(.noInternetConnection)
-                } else {
+                case .failure(let error):
                     
-                    let message: String = NSLocalizedString("Server responded with error", comment: "")
-                    failed(.generalError(message, statusCode, error))
-                }
-            case .isSuccess(let isSuccess, let statusCode, let result, let token):
-                
-                if statusCode != nil && statusCode! == 401 {
-                    
-                    let message: String = NSLocalizedString("Token expired", comment: "")
-                    failed(.generalError(message, statusCode, nil))
-                }
-                if isSuccess {
-                    
-                    if let array: [JSON] = result.array {
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
-                        success(values: array, newToken: token)
+                        failed(.noInternetConnection)
+                    } else {
+                        
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        failed(.generalError(message, nil, error, nil))
+                    }
+                case .success(let result):
+                    
+                    if let array: [JSON] = result.0.array {
+                        
+                        success(values: array, newToken: result.1)
                     } else {
                         
                         failed(.noValuesFound)
                     }
                 }
-            }
-        })
+        }
     }
     
     // MARK: - Get she combinator
@@ -116,7 +114,10 @@ public struct HATFeedService {
                 
                 successCallback(arrayToReturn, newToken)
             },
-            failCallback: failCallback
+            failCallback: { error in
+                
+                failCallback(.generalError("", nil, error, nil))
+            }
         )
     }
     
@@ -135,11 +136,11 @@ public struct HATFeedService {
             encoding: Alamofire.URLEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: headers) { (response: HATNetworkHelper.ResultType) -> Void in
+            headers: headers) { (response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
@@ -147,33 +148,25 @@ public struct HATFeedService {
                     } else {
                         
                         let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        errorCallback(.generalError(message, statusCode, error))
+                        errorCallback(.generalError(message, nil, error, nil))
                     }
-                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                case .success(let result):
                     
-                    if statusCode != nil && (statusCode! == 401 || statusCode! == 403) {
+                    if let array: [JSON] = result.0.array {
                         
-                        let message: String = NSLocalizedString("Token expired", comment: "")
-                        errorCallback(.generalError(message, statusCode, nil))
-                    }
-                    if isSuccess {
+                        var arrayToReturn: [StaticDataValues] = []
                         
-                        if let array: [JSON] = result.array {
+                        for item: JSON in array {
                             
-                            var arrayToReturn: [StaticDataValues] = []
-                            
-                            for item: JSON in array {
-                                
-                                let itemAsString: [String: String] = item["values"].dictionaryValue.filter({key in key.value != "languages"}).mapValues({temp in temp.stringValue})
-                                let staticData = StaticDataValues(name: item["name"].stringValue, values: itemAsString)
-                                arrayToReturn.append(staticData)
-                            }
-                            
-                            successCallback(arrayToReturn, token)
-                        } else {
-                            
-                            errorCallback(.noValuesFound)
+                            let itemAsString: [String: String] = item["values"].dictionaryValue.filter({key in key.value != "languages"}).mapValues { temp in temp.stringValue }
+                            let staticData = StaticDataValues(name: item["name"].stringValue, values: itemAsString)
+                            arrayToReturn.append(staticData)
                         }
+                        
+                        successCallback(arrayToReturn, result.1)
+                    } else {
+                        
+                        errorCallback(.noValuesFound)
                     }
                 }
         }

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -59,13 +59,20 @@ internal class NotableServiceTests: XCTestCase {
         
         func success(notes: [HATNotes], newToken: String?) {
             
+            guard !notes.isEmpty else {
+                
+                XCTFail("Failed fetching notes. Empty array")
+                expectationTest.fulfill()
+                return
+            }
+            
             XCTAssertTrue(notes[0].data.kind == "note")
             expectationTest.fulfill()
         }
         
         func fail(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed fetching notes")
             expectationTest.fulfill()
         }
         
@@ -95,13 +102,13 @@ internal class NotableServiceTests: XCTestCase {
         
         func success(token: String) {
             
-            XCTAssertTrue(token == "")
+            XCTAssertTrue(!token.isEmpty)
             expectationTest.fulfill()
         }
         
         func fail(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed deleting note")
             expectationTest.fulfill()
         }
         
@@ -110,7 +117,7 @@ internal class NotableServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.delete, uri: urlToConnect), builder: json(body))
         
-        HATNotablesService.deleteNotes(noteIDs: ["123"], userToken: "", userDomain: userDomain, success: success, failed: fail)
+        HATNotablesService.deleteNotes(noteIDs: ["123"], userToken: userToken, userDomain: userDomain, success: success, failed: fail)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -123,7 +130,7 @@ internal class NotableServiceTests: XCTestCase {
     func testUpdateNotes() {
         
         let expectationTest: XCTestExpectation = expectation(description: "Update note data from hat...")
-
+        let body: [String: String] = ["message": "All records updated!"]
         func success(updatedNote: HATNotes, token: String?) {
             
             expectationTest.fulfill()
@@ -131,7 +138,7 @@ internal class NotableServiceTests: XCTestCase {
         
         func fail(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed updating note")
             expectationTest.fulfill()
         }
         
@@ -139,9 +146,9 @@ internal class NotableServiceTests: XCTestCase {
         let urlToConnect: String = "https://testing.hubat.net/api/v2.6/data"
         var note: HATNotes = HATNotes()
         note.data.message = "test updated"
-        MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: http(201))
+        MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: json(body))
         
-        HATNotablesService.updateNote(note: note, userToken: "", userDomain: userDomain, success: success, failed: fail)
+        HATNotablesService.updateNote(note: note, userToken: userToken, userDomain: userDomain, success: success, failed: fail)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -189,7 +196,7 @@ internal class NotableServiceTests: XCTestCase {
         
         func fail(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed posting a note")
             expectationTest.fulfill()
         }
         
@@ -201,7 +208,7 @@ internal class NotableServiceTests: XCTestCase {
         
         MockingjayProtocol.addStub(matcher: http(.post, uri: urlToConnect), builder: json(body))
         
-        HATNotablesService.postNote(userDomain: userDomain, userToken: "", note: note, successCallBack: success, errorCallback: fail)
+        HATNotablesService.postNote(userDomain: userDomain, userToken: userToken, note: note, successCallBack: success, errorCallback: fail)
         waitForExpectations(timeout: 10) { error in
             
             if let error: Error = error {

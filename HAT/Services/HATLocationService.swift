@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -17,85 +17,6 @@ import SwiftyJSON
 
 /// The location data plug service class
 public struct HATLocationService {
-    
-    // MARK: - Create location plug URL
-    
-    /**
-     Register with HAT url
-     
-     - parameter userHATDomain: The user's hat domain
-     - returns: HATRegistrationURLAlias, can return empty string
-     */
-    public static func locationDataPlugURL(_ userHATDomain: String, dataPlugID: String) -> String {
-        
-        if let escapedUserHATDomain: String = userHATDomain.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
-            
-            return "https://dex.hubofallthings.com/api/dataplugs/\(dataPlugID)/connect?hat=\(escapedUserHATDomain)"
-        }
-        
-        return ""
-    }
-    
-    // MARK: - Enable locations
-    
-    /**
-     Enables the location data plug
-     
-     - parameter userDomain: The user's domain
-     - parameter HATDomainFromToken: The HAT domain from token
-     - parameter successCallback: A (Bool) -> Void function executed on success
-     - parameter errorCallback: A (JSONParsingError) -> Void function executed on failure
-     */
-    public static func enableLocationDataPlug(_ userDomain: String, _ HATDomainFromToken: String, success: @escaping (Bool) -> Void, failed: @escaping (JSONParsingError) -> Void) {
-        
-        // parameters..
-        let parameters: Dictionary<String, String> = [:]
-        
-        // auth header
-        let headers: [String: String] = ["Accept": ContentType.json,
-                                          "Content-Type": ContentType.json,
-                                          RequestHeaders.xAuthToken: HATDataPlugCredentials.locationDataPlugToken]
-        // construct url
-        let url: String = HATLocationService.locationDataPlugURL(userDomain, dataPlugID: HATDataPlugCredentials.dataPlugID)
-        
-        // make asynchronous call
-        HATNetworkHelper.asynchronousRequest(url, method: HTTPMethod.get, encoding: Alamofire.URLEncoding.default, contentType: "application/json", parameters: parameters, headers: headers) { (response: HATNetworkHelper.ResultType) -> Void in
-            
-            switch response {
-            case .isSuccess(let isSuccess, let statusCode, let result, _):
-                
-                if isSuccess {
-                    
-                    // belt and braces.. check we have a message in the returned JSON
-                    if result["message"].exists() {
-                        
-                        // save the hatdomain from the token to the device Keychain
-                        success(true)
-                        // No message field in JSON file
-                    } else {
-                        
-                        failed(.expectedFieldNotFound)
-                    }
-                    // general error
-                } else {
-                    
-                    failed(.generalError(isSuccess.description, statusCode, nil))
-                }
-                
-            case .error(let error, let statusCode, _):
-                
-                //show error
-                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
-                    
-                    failed(.noInternetConnection)
-                } else {
-                    
-                    let message: String = NSLocalizedString("Server responded with error", comment: "")
-                    failed(.generalError(message, statusCode, error))
-                }
-            }
-        }
-    }
     
     // MARK: - Get Locations
     
@@ -147,8 +68,10 @@ public struct HATLocationService {
             namespace: "rumpel",
             scope: "locations/ios",
             parameters: [:],
-            successCallback: receivedLocations,
-            errorCallback: locationsReceived)
+            successCallback: receivedLocations) { error in
+                
+                errorCallback(.generalError("", nil, error, nil))
+        }
     }
     
     // MARK: - Upload locations
@@ -186,26 +109,29 @@ public struct HATLocationService {
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
         
-        manager.request(urlRequest).responseJSON(completionHandler: { response in
-            
-            let header: [AnyHashable: Any]? = response.response?.allHeaderFields
-            let token: String? = header?["x-auth-token"] as? String
-            
-            var tempLocations: [HATLocationsData] = locations
-            if locations.count > 100 {
+        manager
+            .request(urlRequest)
+            .responseJSON { response in
                 
-                tempLocations = Array(locations.prefix(100))
+                let header: [AnyHashable: Any]? = response.response?.allHeaderFields
+                let token: String? = header?["x-auth-token"] as? String
+                
+                var tempLocations: [HATLocationsData] = locations
+                if locations.count > 100 {
+                    
+                    tempLocations = Array(locations.prefix(100))
+                }
+                
+                if response.response?.statusCode == 400 && tempLocations.count > 10 {
+                    
+                    // if failed syncing, duplicate files found, try failback method
+                    HATLocationService.failbackDuplicateSyncing(dbLocations: tempLocations, userDomain: userDomain, userToken: userToken, completion: completion)
+                } else if response.response?.statusCode == 201 {
+                    
+                    completion?(true, token)
+                }
             }
-            
-            if response.response?.statusCode == 400 && tempLocations.count > 10 {
-                
-                // if failed syncing, duplicate files found, try failback method
-                HATLocationService.failbackDuplicateSyncing(dbLocations: tempLocations, userDomain: userDomain, userToken: userToken, completion: completion)
-            } else if response.response?.statusCode == 201 {
-                
-                completion?(true, token)
-            }
-        }).session.finishTasksAndInvalidate()
+            .session.finishTasksAndInvalidate()
     }
     
     /**
@@ -248,19 +174,22 @@ public struct HATLocationService {
             configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
             let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
             
-            manager.request(urlRequest).responseJSON(completionHandler: { response in
+            manager
+                .request(urlRequest)
+                .responseJSON { response in
                 
-                let header: [AnyHashable: Any]? = response.response?.allHeaderFields
-                let token: String? = header?["x-auth-token"] as? String
-                
-                if response.response?.statusCode == 400 && array.count > 1 {
+                    let header: [AnyHashable: Any]? = response.response?.allHeaderFields
+                    let token: String? = header?["x-auth-token"] as? String
                     
-                    HATLocationService.failbackDuplicateSyncing(dbLocations: array, userDomain: userDomain, userToken: userToken, completion: completion)
-                } else {
-                    
-                    completion?(true, token)
+                    if response.response?.statusCode == 400 && array.count > 1 {
+                        
+                        HATLocationService.failbackDuplicateSyncing(dbLocations: array, userDomain: userDomain, userToken: userToken, completion: completion)
+                    } else {
+                        
+                        completion?(true, token)
+                    }
                 }
-            }).session.finishTasksAndInvalidate()
+                .session.finishTasksAndInvalidate()
         }
         
         if !splitArray1.isEmpty {
@@ -303,7 +232,10 @@ public struct HATLocationService {
                 
                 successCallback(arrayToReturn, newToken)
             },
-            failCallback: failCallback
+            failCallback: { error in
+                
+                failCallback(.generalError("", nil, error, nil))
+            }
         )
     }
 }

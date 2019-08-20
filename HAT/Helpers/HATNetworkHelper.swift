@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -18,22 +18,6 @@ import SwiftyJSON
 /// All network related methods
 public struct HATNetworkHelper {
     
-    // MARK: - Enums
-    
-    /**
-    A Result type to use with network requests
-     
-     - IsSuccess: A tuple containing: isSuccess: Bool, statusCode: Int?, result: T, token: String?
-     - Error: A tuple containing: error: Error, statusCode: Int?, result: T?
-     */
-    public enum ResultType<T> {
-        
-        /// Result is success. A tuple containing: isSuccess: Bool, statusCode: Int?, result: JSON
-        case isSuccess(isSuccess: Bool, statusCode: Int?, result: T, token: String?)
-        /// Result is error. A tuple containing: error: Error, statusCode: Int?, result: JSON
-        case error(error: Error, statusCode: Int?, result: T?)
-    }
-    
     // MARK: - Request methods
     
     /**
@@ -48,12 +32,11 @@ public struct HATNetworkHelper {
      - parameter headers: The headers in the request
      - parameter completion: The completion handler to execute upon completing the request
      */
-    public static func asynchronousRequest( _ url: String, method: HTTPMethod, encoding: ParameterEncoding, contentType: String, parameters: Dictionary<String, Any>, headers: Dictionary<String, String>, completion: @escaping (_ r: HATNetworkHelper.ResultType<JSON>) -> Void) {
+    public static func asynchronousRequest( _ url: String, method: HTTPMethod, encoding: ParameterEncoding, contentType: String, parameters: Dictionary<String, Any>, headers: Dictionary<String, String>, completion: @escaping (Result<(JSON, String?)>) -> Void) {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
-        
         // do a post
         manager.request(
             url, /* request url */
@@ -64,51 +47,62 @@ public struct HATNetworkHelper {
             )
             .responseJSON { response in
                 
-                switch response.result {
+                let maybeErrors = HATNetworkHelper.checkForErrors(response: response)
+                
+                switch maybeErrors {
+                    
                 case .success:
                     
                     let header: [AnyHashable: Any]? = response.response?.allHeaderFields
-                    if let stringHeaders: [String: String] = header as? [String: String], let url: URL = (response.response?.url!) {
-                        
-                        let cookies: [HTTPCookie] = HTTPCookie.cookies(withResponseHeaderFields: stringHeaders, for: url)
-                        manager.session.configuration.httpCookieStorage?.setCookies(cookies, for: url, mainDocumentURL: nil)
-                    }
+                    let token: String? = header?[RequestHeaders.xAuthToken] as? String
                     
-                    if response.response?.statusCode == 401 {
-                        
-                        completion(HATNetworkHelper.ResultType.error(error: AuthenicationError.tokenValidationFailed("expired"), statusCode: response.response?.statusCode, result: nil))
-                    } else if response.response?.statusCode == 403 {
-                        
-                        completion(HATNetworkHelper.ResultType.error(error: AuthenicationError.tokenValidationFailed("forbidden"), statusCode: response.response?.statusCode, result: nil))
-                    } else if 200 ... 299 ~= response.response!.statusCode {
-                        
-                        let token: String? = header?[RequestHeaders.xAuthToken] as? String
-
-                        // check if we have a value and return it
-                        guard let value: Any = response.result.value else {
-                            
-                            completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode, result: nil))
-                            return
-                        }
-                        
-                        completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: JSON(value), token: token))
-                    } else {
-                        
-                        completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode, result: nil))
-                    }
-                // in case of failure return the error but check for internet connection or unauthorised status and let the user know
-                case .failure(let error):
-                    
+                    // check if we have a value and return it
                     guard let value: Any = response.result.value else {
                         
-                        completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: nil))
+                        completion(.failure(HATTableError.noValuesFound))
                         return
                     }
                     
-                    completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: JSON(value)))
+                    completion(.success((JSON(value), token)))
+                case .failure(let error):
+                    
+                    completion(.failure(error))
                 }
             }
             .session.finishTasksAndInvalidate()
+    }
+    
+    static func checkForErrors(response: DataResponse<Any>) -> Result<Bool> {
+        
+        let value = response.result.value as? [String: String]
+        switch response.result {
+        case .success:
+            
+            if response.response?.statusCode == 401 {
+                
+                return .failure(AuthenicationError.tokenValidationFailed("expired"))
+            } else if response.response?.statusCode == 403 {
+                
+                return .failure(AuthenicationError.tokenValidationFailed("forbidden"))
+            } else if 200 ... 299 ~= response.response!.statusCode {
+                
+                return .success(true)
+            } else {
+                
+                return .failure(HATError.generalError("Unexpected Error", response.response?.statusCode, nil, value))
+            }
+        // in case of failure return the error but check for internet connection or unauthorised status and let the user know
+        case .failure(let error):
+            
+            if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                
+                return .failure(HATError.noInternetConnection)
+            } else {
+                
+                let message: String = NSLocalizedString("Server responded with error", comment: "")
+                return .failure(HATError.generalError(message, response.response?.statusCode, error, value))
+            }
+        }
     }
     
     /**
@@ -123,7 +117,7 @@ public struct HATNetworkHelper {
      - parameter headers: The headers in the request
      - parameter completion: The completion handler to execute upon completing the request
      */
-    public static func asynchronousStringRequest(_ url: String, method: HTTPMethod, encoding: ParameterEncoding, contentType: String, parameters: Dictionary<String, Any>, headers: Dictionary<String, String>, completion: @escaping (_ r: HATNetworkHelper.ResultType<String>) -> Void) {
+    public static func asynchronousStringRequest(_ url: String, method: HTTPMethod, encoding: ParameterEncoding, contentType: String, parameters: Dictionary<String, Any>, headers: Dictionary<String, String>, completion: @escaping (Result<(String, String?)>) -> Void) {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
@@ -150,15 +144,23 @@ public struct HATNetworkHelper {
                     // check if we have a value and return it
                     guard let value: String = response.result.value else {
                         
-                        completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode, result: nil))
+                        completion(.failure(HATError.generalError("Unexpected Error", response.response?.statusCode, nil, nil)))
                         return
                     }
                     
-                    completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: value, token: token))
+                    completion(.success((value, token)))
                 // return the error
                 case .failure(let error):
                     
-                    completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: nil))
+                    let valueToReturn: [String: String]
+                    if response.result.value != nil {
+                        
+                        valueToReturn = ["description": response.result.value!]
+                    } else {
+                        
+                        valueToReturn = [:]
+                    }
+                    completion(.failure(HATError.generalError("Unexpected Error", response.response?.statusCode, error, valueToReturn)))
                 }
             }
             .session.finishTasksAndInvalidate()
@@ -171,12 +173,13 @@ public struct HATNetworkHelper {
      
      - parameter image: A `Data` type representation of the image in order to upload it
      - parameter url: The url to upload the file to
+     - parameter contentType: The content type of the file to upload
      - parameter progressUpdateHandler: A function to execute in order to get the percentage of the upload completed so far
      - parameter completion: A function to execute if everything is ok
      */
-    public static func uploadFile(image: Data, url: String, progressUpdateHandler: ((Double) -> Void)?, completion: @escaping (_ r: HATNetworkHelper.ResultType<JSON>) -> Void) {
+    public static func uploadFile(image: Data, url: String, contentType: String, progressUpdateHandler: ((Double) -> Void)?, completion: @escaping (_ r: Result<(JSON, String?)>) -> Void) {
         
-        let headers: [String: String] = [RequestHeaders.serverEncryption: RequestHeaders.serverEncryptionAES256]
+        let headers: [String: String] = [RequestHeaders.serverEncryption: RequestHeaders.serverEncryptionAES256, "Content-type": contentType]
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)
@@ -187,7 +190,7 @@ public struct HATNetworkHelper {
             method: .put,
             headers: headers)
             .uploadProgress { progress -> Void in
-            
+                
                 progressUpdateHandler?(progress.fractionCompleted)
             }
             .responseString { response in
@@ -201,21 +204,16 @@ public struct HATNetworkHelper {
                     // check if we have a value and return it
                     guard let value: String = response.result.value else {
                         
-                        completion(HATNetworkHelper.ResultType.error(error: HATError.generalError("Unexpected Error", response.response?.statusCode, nil), statusCode: response.response?.statusCode, result: nil))
+                        completion(.failure(HATError.generalError("Unexpected Error", response.response?.statusCode, nil, nil)))
                         return
                     }
                     
-                    completion(HATNetworkHelper.ResultType.isSuccess(isSuccess: true, statusCode: response.response?.statusCode, result: JSON(value), token: token))
+                    let json = JSON(value)
+                    completion(.success((json, token)))
                 // return the error
                 case .failure(let error):
                     
-                    guard let value: Any = response.result.value else {
-                        
-                        completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: nil))
-                        return
-                    }
-
-                    completion(HATNetworkHelper.ResultType.error(error: error, statusCode: response.response?.statusCode, result: JSON(value)))
+                    completion(.failure(HATError.generalError("Unexpected Error", response.response?.statusCode, error, nil)))
                 }
             }
             .session.finishTasksAndInvalidate()

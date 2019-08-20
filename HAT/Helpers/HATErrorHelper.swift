@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -27,7 +27,7 @@ public enum AuthenicationError: Error {
     
     case noTokenDetectedError
     case noIssuerDetectedError(String)
-    case generalError(String, Int?, Error?)
+    case generalError(String, Int?, Error?, [String: String]?)
     case cannotDecodeToken(String)
     case cannotSplitToken([String])
     case tokenValidationFailed(String)
@@ -44,7 +44,7 @@ public enum AuthenicationError: Error {
 public enum JSONParsingError: Error {
     
     case expectedFieldNotFound
-    case generalError(String, Int?, Error?)
+    case generalError(String, Int?, Error?, [String: String]?)
     case noInternetConnection
 }
 
@@ -62,7 +62,7 @@ public enum HATTableError: Error {
     case noValuesFound
     case tableDoesNotExist
     case noTableIDFound
-    case generalError(String, Int?, Error?)
+    case generalError(String, Int?, Error?, [String: String]?)
     case noInternetConnection
 }
 
@@ -74,7 +74,7 @@ public enum HATTableError: Error {
  */
 public enum HATError: Error {
     
-    case generalError(String, Int?, Error?)
+    case generalError(String, Int?, Error?, [String: String]?)
     case noInternetConnection
 }
 
@@ -88,7 +88,7 @@ public enum HATError: Error {
  */
 public enum DataPlugError: Error {
     
-    case generalError(String, Int?, Error?)
+    case generalError(String, Int?, Error?, [String: String]?)
     case offerClaimed
     case noValueFound
     case noInternetConnection

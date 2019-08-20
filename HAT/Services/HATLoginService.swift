@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -63,21 +63,11 @@ public struct HATLoginService {
             encoding: Alamofire.JSONEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: [:],
-            completion: {response in
+            headers: [:]) { response in
                 
                 switch response {
-                case .isSuccess(let isSuccess, let statusCode, let result, _):
                     
-                    if isSuccess && statusCode == 200 {
-                        
-                        completion(result)
-                    } else {
-                        
-                        let message: String = "Error"
-                        failed(.generalError(message, statusCode, nil))
-                    }
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
@@ -85,10 +75,13 @@ public struct HATLoginService {
                     } else {
                         
                         let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        failed(.generalError(message, statusCode, error))
+                        failed(.generalError(message, nil, error, nil))
                     }
+                case .success(let result):
+                    
+                    completion(result.0)
                 }
-            })
+        }
     }
     
     /**
@@ -115,92 +108,11 @@ public struct HATLoginService {
             if let url: String = HATAccountService.theUserHATDomainPublicKeyURL(userDomain!) {
                 
                 //. application/json
-                HATNetworkHelper.asynchronousStringRequest(url, method: HTTPMethod.get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.text, parameters: parameters as Dictionary<String, AnyObject>, headers: headers) { (response: HATNetworkHelper.ResultType) -> Void in
+                HATNetworkHelper.asynchronousStringRequest(url, method: HTTPMethod.get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.text, parameters: parameters as Dictionary<String, AnyObject>, headers: headers) { (response: Result<(String, String?)>) -> Void in
                     
                     switch response {
-                    case .isSuccess(let isSuccess, let statusCode, let result, _):
                         
-                        if isSuccess {
-                            
-                            // decode the token and get the iss out
-                            guard let jwt: JWT = try? decode(jwt: token) else {
-                                
-                                failed?(.cannotDecodeToken(token))
-                                return
-                            }
-                            
-                            // guard for the issuer check, “iss” (Issuer)
-                            guard jwt.issuer != nil else {
-                                
-                                failed?(.noIssuerDetectedError(jwt.string))
-                                return
-                            }
-                            
-                            let appName: String? = jwt.claim(name: "application").string
-                            let scope: String? = jwt.claim(name: "accessScope").string
-                            
-                            if appName != applicationName && scope == nil {
-                                
-                                failed?(.cannotDecodeToken(token))
-                                return
-                            } else if scope != "owner" && appName == nil {
-                                
-                                failed?(.cannotDecodeToken(token))
-                                return
-                            }
-                            
-                            /*
-                             The token will consist of header.payload.signature
-                             To verify the token we use header.payload hashed with signature in base64 format
-                             The public PEM string is used to verify also
-                             */
-                            let tokenAttr: [String] = token.components(separatedBy: ".")
-                            
-                            // guard for the attr length. Should be 3 [header, payload, signature]
-                            guard tokenAttr.count == 3 else {
-                                
-                                failed?(.cannotSplitToken(tokenAttr))
-                                return
-                            }
-                            
-                            // And then to access the individual parts of token
-                            let header: String = tokenAttr[0]
-                            let payload: String = tokenAttr[1]
-                            let signature: String = tokenAttr[2]
-                            
-                            // decode signature from baseUrl64 to base64
-                            let decodedSig: String = HATFormatterHelper.fromBase64URLToBase64(stringToConvert: signature)
-                            
-                            // data to be verified header.payload
-                            let headerAndPayload: String = "\(header).\(payload)"
-                            
-                            do {
-                                
-                                let signature: Signature = try Signature(base64Encoded: decodedSig)
-                                let privateKey: PublicKey = try PublicKey(pemEncoded: result)
-                                let clear: ClearMessage = try ClearMessage(string: headerAndPayload, using: .utf8)
-                                let isSuccessful: Bool = try clear.verify(with: privateKey, signature: signature, digestType: .sha256)
-                                
-                                if isSuccessful {
-                                    
-                                    success?(userDomain, token)
-                                } else {
-                                    
-                                    failed?(.tokenValidationFailed(isSuccessful.description))
-                                }
-                                
-                            } catch {
-                                
-                                let message: String = NSLocalizedString("Proccessing of token failed", comment: "")
-                                failed?(.tokenValidationFailed(message))
-                            }
-                            
-                        } else {
-                            
-                            failed?(.generalError(isSuccess.description, statusCode, nil))
-                        }
-                        
-                    case .error(let error, let statusCode, _):
+                    case .failure(let error):
                         
                         if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                             
@@ -208,7 +120,81 @@ public struct HATLoginService {
                         } else {
                             
                             let message: String = NSLocalizedString("Server responded with error", comment: "")
-                            failed?(.generalError(message, statusCode, error))
+                            failed?(.generalError(message, nil, error, nil))
+                        }
+                    case .success(let result):
+                        
+                        // decode the token and get the iss out
+                        guard let jwt: JWT = try? decode(jwt: token) else {
+                            
+                            failed?(.cannotDecodeToken(token))
+                            return
+                        }
+                        
+                        // guard for the issuer check, “iss” (Issuer)
+                        guard jwt.issuer != nil else {
+                            
+                            failed?(.noIssuerDetectedError(jwt.string))
+                            return
+                        }
+                        
+                        let appName: String? = jwt.claim(name: "application").string
+                        let scope: String? = jwt.claim(name: "accessScope").string
+                        
+                        if appName != applicationName && scope == nil {
+                            
+                            failed?(.cannotDecodeToken(token))
+                            return
+                        } else if scope != "owner" && appName == nil {
+                            
+                            failed?(.cannotDecodeToken(token))
+                            return
+                        }
+                        
+                        /*
+                         The token will consist of header.payload.signature
+                         To verify the token we use header.payload hashed with signature in base64 format
+                         The public PEM string is used to verify also
+                         */
+                        let tokenAttr: [String] = token.components(separatedBy: ".")
+                        
+                        // guard for the attr length. Should be 3 [header, payload, signature]
+                        guard tokenAttr.count == 3 else {
+                            
+                            failed?(.cannotSplitToken(tokenAttr))
+                            return
+                        }
+                        
+                        // And then to access the individual parts of token
+                        let header: String = tokenAttr[0]
+                        let payload: String = tokenAttr[1]
+                        let signature: String = tokenAttr[2]
+                        
+                        // decode signature from baseUrl64 to base64
+                        let decodedSig: String = HATFormatterHelper.fromBase64URLToBase64(stringToConvert: signature)
+                        
+                        // data to be verified header.payload
+                        let headerAndPayload: String = "\(header).\(payload)"
+                        
+                        do {
+                            
+                            let signature: Signature = try Signature(base64Encoded: decodedSig)
+                            let privateKey: PublicKey = try PublicKey(pemEncoded: result.0)
+                            let clear: ClearMessage = try ClearMessage(string: headerAndPayload, using: .utf8)
+                            let isSuccessful: Bool = try clear.verify(with: privateKey, signature: signature, digestType: .sha256)
+                            
+                            if isSuccessful {
+                                
+                                success?(userDomain, token)
+                            } else {
+                                
+                                failed?(.tokenValidationFailed(isSuccessful.description))
+                            }
+                            
+                        } catch {
+                            
+                            let message: String = NSLocalizedString("Proccessing of token failed", comment: "")
+                            failed?(.tokenValidationFailed(message))
                         }
                     }
                 }

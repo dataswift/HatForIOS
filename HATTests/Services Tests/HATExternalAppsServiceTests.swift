@@ -1,6 +1,6 @@
 //
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -197,7 +197,7 @@ internal class HATExternalAppsServiceTests: XCTestCase {
         
         func failed(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed fetching apps")
             expectationTest.fulfill()
         }
         
@@ -229,7 +229,7 @@ internal class HATExternalAppsServiceTests: XCTestCase {
         
         func failed(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed setting up app")
             expectationTest.fulfill()
         }
         

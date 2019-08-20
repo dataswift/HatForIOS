@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -54,40 +54,38 @@ public struct HATFileService {
             ]
         }
         
-        HATNetworkHelper.asynchronousRequest(url, method: .post, encoding: Alamofire.JSONEncoding.default, contentType: ContentType.json, parameters: parameters, headers: headers, completion: { response -> Void in
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .post,
+            encoding: Alamofire.JSONEncoding.default,
+            contentType: ContentType.json,
+            parameters: parameters,
+            headers: headers) { response -> Void in
             
-            switch response {
-                
-            case .isSuccess(let isSuccess, let statusCode, let result, let token):
-                
-                if isSuccess {
+                switch response {
+                    
+                case .failure(let error):
+                    
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
+                        
+                        errorCallBack(.noInternetConnection)
+                    } else {
+                        
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        errorCallBack(.generalError(message, nil, error, nil))
+                    }
+                case .success(let result):
                     
                     var images: [HATFileUpload] = []
                     // reload table
-                    for image: JSON in result.arrayValue {
+                    for image: JSON in result.0.arrayValue {
                         
                         images.append(HATFileUpload(from: image.dictionaryValue))
                     }
                     
                     successCallback(images, token)
-                } else {
-                    
-                    let message: String = "Server returned unexpected respone"
-                    errorCallBack(.generalError(message, statusCode, nil))
                 }
-                
-            case .error(let error, let statusCode, _):
-                
-                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
-                    
-                    errorCallBack(.noInternetConnection)
-                } else {
-                    
-                    let message: String = NSLocalizedString("Server responded with error", comment: "")
-                    errorCallBack(.generalError(message, statusCode, error))
-                }
-            }
-        })
+        }
     }
     
     // MARK: - Delete File
@@ -106,40 +104,31 @@ public struct HATFileService {
         let url: String = "https://\(userDomain)/api/v2.6/files/file/\(fileID)"
         let headers: [String: String] = ["X-Auth-Token": token]
         
-        HATNetworkHelper.asynchronousRequest(url, method: .delete, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: [:], headers: headers, completion: { response -> Void in
-            // handle result
-            switch response {
-                
-            case .isSuccess(let isSuccess, let statusCode, _, let token):
-                
-                if isSuccess {
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .delete,
+            encoding: Alamofire.URLEncoding.default,
+            contentType: ContentType.json,
+            parameters: [:],
+            headers: headers) { response -> Void in
+
+                switch response {
                     
-                    if statusCode == 200 {
+                case .failure(let error):
+                    
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
-                        successCallback(true, token)
+                        errorCallBack(.noInternetConnection)
                     } else {
                         
-                        let message: String = "Server returned unexpected respone"
-                        errorCallBack(.generalError(message, statusCode, nil))
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        errorCallBack(.generalError(message, nil, error, nil))
                     }
-                } else {
+                case .success(let result):
                     
-                    let message: String = "Server returned unexpected respone"
-                    errorCallBack(.generalError(message, statusCode, nil))
+                    successCallback(true, result.1)
                 }
-                
-            case .error(let error, let statusCode, _):
-                
-                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
-                    
-                    errorCallBack(.noInternetConnection)
-                } else {
-                    
-                    let message: String = NSLocalizedString("Server responded with error", comment: "")
-                    errorCallBack(.generalError(message, statusCode, error))
-                }
-            }
-        })
+        }
     }
     
     // MARK: - Change File to Public or Private
@@ -158,40 +147,31 @@ public struct HATFileService {
         let url: String = "https://\(userDomain)/api/v2.6/files/allowAccessPublic/\(fileID)"
         let headers: [String: String] = ["X-Auth-Token": token]
         
-        HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: [:], headers: headers, completion: { response -> Void in
-            // handle result
-            switch response {
-                
-            case .isSuccess(let isSuccess, let statusCode, _, _):
-                
-                if isSuccess {
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .get,
+            encoding: Alamofire.URLEncoding.default,
+            contentType: ContentType.json,
+            parameters: [:],
+            headers: headers) { response -> Void in
+
+                switch response {
                     
-                    if statusCode == 200 {
+                case .failure(let error):
+                    
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
-                        successCallback(true)
+                        errorCallBack(.noInternetConnection)
                     } else {
                         
-                        let message: String = "Server returned unexpected respone"
-                        errorCallBack(.generalError(message, statusCode, nil))
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        errorCallBack(.generalError(message, nil, error, nil))
                     }
-                } else {
+                case .success:
                     
-                    let message: String = "Server returned unexpected respone"
-                    errorCallBack(.generalError(message, statusCode, nil))
+                    successCallback(true)
                 }
-                
-            case .error(let error, let statusCode, _):
-                
-                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
-                    
-                    errorCallBack(.noInternetConnection)
-                } else {
-                    
-                    let message: String = NSLocalizedString("Server responded with error", comment: "")
-                    errorCallBack(.generalError(message, statusCode, error))
-                }
-            }
-        })
+        }
     }
     
     /**
@@ -208,40 +188,31 @@ public struct HATFileService {
         let url: String = "https://\(userDomain)/api/v2.6/files/restrictAccessPublic/\(fileID)"
         let headers: [String: String] = ["X-Auth-Token": token]
         
-        HATNetworkHelper.asynchronousRequest(url, method: .get, encoding: Alamofire.URLEncoding.default, contentType: ContentType.json, parameters: [:], headers: headers, completion: { response -> Void in
-            // handle result
-            switch response {
-                
-            case .isSuccess(let isSuccess, let statusCode, _, _):
-                
-                if isSuccess {
+        HATNetworkHelper.asynchronousRequest(
+            url,
+            method: .get,
+            encoding: Alamofire.URLEncoding.default,
+            contentType: ContentType.json,
+            parameters: [:],
+            headers: headers) { response -> Void in
+
+                switch response {
                     
-                    if statusCode == 200 {
+                case .failure(let error):
+                    
+                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
-                        successCallback(true)
+                        errorCallBack(.noInternetConnection)
                     } else {
                         
-                        let message: String = "Server returned unexpected respone"
-                        errorCallBack(.generalError(message, statusCode, nil))
+                        let message: String = NSLocalizedString("Server responded with error", comment: "")
+                        errorCallBack(.generalError(message, nil, error, nil))
                     }
-                } else {
+                case .success:
                     
-                    let message: String = "Server returned unexpected respone"
-                    errorCallBack(.generalError(message, statusCode, nil))
+                    successCallback(true)
                 }
-                
-            case .error(let error, let statusCode, _):
-                
-                if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
-                    
-                    errorCallBack(.noInternetConnection)
-                } else {
-                    
-                    let message: String = NSLocalizedString("Server responded with error", comment: "")
-                    errorCallBack(.generalError(message, statusCode, error))
-                }
-            }
-        })
+        }
     }
     
     // MARK: - Complete Upload File to hat
@@ -253,16 +224,17 @@ public struct HATFileService {
      - parameter token: The owner's token
      - parameter tags: An array of strings having the tags to add to the file
      - parameter userDomain: The user hat domain
+     - parameter contentType: The user content type of the file to upload
      - parameter completion: A function to execute on success, returning the object returned from the server
      - parameter errorCallback: A function to execute on failure, returning an error
      */
-    public static func completeUploadFileToHAT(fileID: String, token: String, tags: [String], userDomain: String, completion: @escaping (HATFileUpload, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func completeUploadFileToHAT(fileID: String, token: String, tags: [String], userDomain: String, contentType: String, completion: @escaping (HATFileUpload, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let uploadURL: String = "https://\(userDomain)/api/v2.6/files/file/\(fileID)/complete"
         
         // create parameters and headers
-        let header: [String: String] = ["X-Auth-Token": token]
+        let header: [String: String] = ["X-Auth-Token": token, "Content-type": contentType]
         
         // make async request
         HATNetworkHelper.asynchronousRequest(
@@ -271,12 +243,11 @@ public struct HATFileService {
             encoding: Alamofire.JSONEncoding.default,
             contentType: "application/json",
             parameters: [:],
-            headers: header,
-            completion: {(response: HATNetworkHelper.ResultType) -> Void in
+            headers: header) {(response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
@@ -284,28 +255,15 @@ public struct HATFileService {
                     } else {
                         
                         let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        errorCallback(.generalError(message, statusCode, error))
+                        errorCallback(.generalError(message, nil, error, nil))
                     }
-                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                case .success(let result):
                     
-                    if isSuccess {
-                        
-                        var fileUploadJSON: HATFileUpload = HATFileUpload(from: result.dictionaryValue)
-                        fileUploadJSON.tags = tags
-                        
-                        //table found
-                        if statusCode == 200 {
-                            
-                            completion(fileUploadJSON, token)
-                        } else {
-                            
-                            let message: String = NSLocalizedString("Server responded with error", comment: "")
-                            errorCallback(.generalError(message, statusCode, nil))
-                        }
-                    }
+                    var fileUploadJSON: HATFileUpload = HATFileUpload(from: result.0.dictionaryValue)
+                    fileUploadJSON.tags = tags
+                    completion(fileUploadJSON, result.1)
                 }
-            }
-        )
+        }
     }
     
     // MARK: - Upload File to hat
@@ -316,17 +274,19 @@ public struct HATFileService {
      - parameter fileName: The file name of the file to be uploaded
      - parameter token: The owner's token
      - parameter userDomain: The user hat domain
+     - parameter tags: The tags to attach to the file
+     - parameter contentTypeHeader: The content type of the file to upload
      - parameter completion: A function to execute on success, returning the object returned from the server
      - parameter errorCallback: A function to execute on failure, returning an error
      */
-    public static func uploadFileToHAT(fileName: String, token: String, userDomain: String, tags: [String], completion: @escaping (HATFileUpload, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func uploadFileToHAT(fileName: String, token: String, userDomain: String, tags: [String], contentTypeHeader: String, completion: @escaping (HATFileUpload, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let uploadURL: String = "https://\(userDomain)/api/v2.6/files/upload"
         
         // create parameters and headers
         let parameters: Dictionary<String, Any> = HATJSONHelper.createFileUploadingJSONFrom(fileName: fileName, tags: tags)
-        let header: [String: String] = ["X-Auth-Token": token]
+        let header: [String: String] = ["X-Auth-Token": token, "Content-type": contentTypeHeader]
         
         // make async request
         HATNetworkHelper.asynchronousRequest(
@@ -335,12 +295,11 @@ public struct HATFileService {
             encoding: Alamofire.JSONEncoding.default,
             contentType: "application/json",
             parameters: parameters,
-            headers: header,
-            completion: {(response: HATNetworkHelper.ResultType) -> Void in
+            headers: header) {(response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
@@ -348,27 +307,14 @@ public struct HATFileService {
                     } else {
                         
                         let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        errorCallback(.generalError(message, statusCode, error))
+                        errorCallback(.generalError(message, nil, error, nil))
                     }
-                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                case .success(let result):
                     
-                    if isSuccess {
-                        
-                        let fileUploadJSON: HATFileUpload = HATFileUpload(from: result.dictionaryValue)
-                        
-                        //table found
-                        if statusCode == 200 {
-                            
-                            completion(fileUploadJSON, token)
-                        } else {
-                            
-                            let message: String = NSLocalizedString("Server responded with error", comment: "")
-                            errorCallback(.generalError(message, statusCode, nil))
-                        }
-                    }
+                    let fileUploadJSON: HATFileUpload = HATFileUpload(from: result.0.dictionaryValue)
+                    completion(fileUploadJSON, result.1)
                 }
-            }
-        )
+        }
     }
     
     // MARK: - Update Tags
@@ -400,12 +346,11 @@ public struct HATFileService {
             encoding: Alamofire.JSONEncoding.default,
             contentType: "application/json",
             parameters: parameters,
-            headers: header,
-            completion: {(response: HATNetworkHelper.ResultType) -> Void in
+            headers: header) {(response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
@@ -413,28 +358,16 @@ public struct HATFileService {
                     } else {
                         
                         let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        errorCallback(.generalError(message, statusCode, error))
+                        errorCallback(.generalError(message, nil, error, nil))
                     }
-                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                case .success(let result):
                     
-                    if isSuccess {
-                        
-                        let fileUploadJSON: HATFileUpload = HATFileUpload(from: result.dictionaryValue)
-                        
-                        //table found
-                        if statusCode == 200 {
-                            
-                            completion(fileUploadJSON, token)
-                        } else {
-                            
-                            let message: String = NSLocalizedString("Server responded with error", comment: "")
-                            errorCallback(.generalError(message, statusCode, nil))
-                        }
-                    }
+                    let fileUploadJSON: HATFileUpload = HATFileUpload(from: result.0.dictionaryValue)
+                    completion(fileUploadJSON, result.1)
                 }
-            }
-        )
+        }
     }
+    
     // MARK: - Upload file to hat wrapper
     
     /**
@@ -451,16 +384,20 @@ public struct HATFileService {
      */
     public static func uploadFileToHATWrapper(token: String, userDomain: String, fileToUpload: UIImage, tags: [String], name: String = "rumpelPhoto", progressUpdater: ((Double) -> Void)?, completion: ((HATFileUpload, String?) -> Void)?, errorCallBack: ((HATTableError) -> Void)?) {
         
+        let data: Data? = fileToUpload.jpegData(compressionQuality: 1.0)
+        let contentType = "image/jpeg"
         HATFileService.uploadFileToHAT(
             fileName: name,
             token: token,
-            userDomain: userDomain, tags: tags,
+            userDomain: userDomain,
+            tags: tags,
+            contentTypeHeader: contentType,
             completion: {fileObject, renewedUserToken -> Void in
                 
-                let data: Data? = fileToUpload.jpegData(compressionQuality: 1.0)
                 HATNetworkHelper.uploadFile(
                     image: data!,
                     url: fileObject.contentURL,
+                    contentType: contentType,
                     progressUpdateHandler: {progress -> Void in
                         
                         progressUpdater?(progress)
@@ -472,6 +409,7 @@ public struct HATFileService {
                             token: token,
                             tags: tags,
                             userDomain: userDomain,
+                            contentType: contentType,
                             completion: {uploadedFile, renewedUserToken -> Void in
                                 
                                 var tempFile: HATFileUpload = fileObject
@@ -483,8 +421,7 @@ public struct HATFileService {
                                 errorCallBack?(error)
                             }
                         )
-                    }
-                )
+                    })
             },
             errorCallback: {error -> Void in
                 
@@ -492,5 +429,4 @@ public struct HATFileService {
             }
         )
     }
-    
 }

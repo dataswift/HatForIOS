@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -65,7 +65,7 @@ internal class HATAccountServiceTests: XCTestCase {
 
         func failed(error: HATTableError) {
 
-            XCTFail()
+            XCTFail("Failed tickling HAT")
             expectationTest.fulfill()
         }
 
@@ -108,9 +108,9 @@ internal class HATAccountServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: HATTableError) {
+        func failed(error: Error) {
             
-            XCTFail()
+            XCTFail("Failed creating a record on HAT")
             expectationTest.fulfill()
         }
         
@@ -151,9 +151,9 @@ internal class HATAccountServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: HATTableError) {
+        func failed(error: Error) {
             
-            XCTFail()
+            XCTFail("Failed fetching value from HAT")
             expectationTest.fulfill()
         }
         
@@ -170,22 +170,22 @@ internal class HATAccountServiceTests: XCTestCase {
     func testDeleteValueOnHAT() {
         
         let parameters: [String: String] = ["records": "123-123"]
-        let body: String = "All records Deleted!"
+        let body: [String: String] = ["message": "All records Deleted!"]
         let userDomain: String = "mariostsekis.hubofallthings.net"
         let urlToConnect: String = "https://\(userDomain)/api/v2.6/data"
         let expectationTest: XCTestExpectation = expectation(description: "Delete record from hat...")
         
-        MockingjayProtocol.addStub(matcher: http(.delete, uri: urlToConnect), builder: json(body))
-        
+        MockingjayProtocol.addStub(matcher: everything, builder: json(body))
+
         func completion(response: String) {
             
             XCTAssert(response == "token")
             expectationTest.fulfill()
         }
         
-        func failed(error: HATTableError) {
+        func failed(error: Error) {
             
-            XCTFail()
+            XCTFail("Failed deleting value from HAT")
             expectationTest.fulfill()
         }
         
@@ -205,56 +205,22 @@ internal class HATAccountServiceTests: XCTestCase {
         let userDomain: String = "mariostsekis.hubofallthings.net"
         let urlToConnect: String = "https://\(userDomain)/api/v2.6/data"
         let expectationTest: XCTestExpectation = expectation(description: "Update record on hat...")
+        let body: [String: String] = ["message": "All records updated!"]
         
-        MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: http(201))
+        MockingjayProtocol.addStub(matcher: http(.put, uri: urlToConnect), builder: json(body))
         
-        func completion(json: [JSON], newToken: String?) {
+        func completion(json: JSON, newToken: String?) {
             
             expectationTest.fulfill()
         }
         
-        func failed(error: HATTableError) {
+        func failed(error: Error) {
             
-            XCTFail()
+            XCTFail("Failed Updating value on HAT")
             expectationTest.fulfill()
         }
         
         HATAccountService.updateHatRecord(userDomain: userDomain, userToken: "", notes: [note], successCallback: completion, errorCallback: failed)
-        
-        waitForExpectations(timeout: 10) { error in
-            
-            if let error: Error = error {
-                print("Error: \(error.localizedDescription)")
-            }
-        }
-    }
-
-    func testChangePassword() {
-        
-        let body: [String: Any] = [
-            
-            "message": "Password changed"
-        ]
-        let parameters: [String: String] = ["oldpassword": "123", "newpassword": "321"]
-        let userDomain: String = "mariostsekis.hubofallthings.net"
-        let urlToConnect: String = "https://\(userDomain)/control/v2/auth/password"
-        let expectationTest: XCTestExpectation = expectation(description: "Changing password...")
-        
-        MockingjayProtocol.addStub(matcher: everything, builder: json(body))
-        
-        func completion(response: String, newToken: String?) {
-            
-            XCTAssert(response == "Password changed")
-            expectationTest.fulfill()
-        }
-        
-        func failed(error: HATError) {
-            
-            XCTFail()
-            expectationTest.fulfill()
-        }
-        
-        HATAccountService.changePassword(userDomain: userDomain, userToken: "", oldPassword: "123", newPassword: "321", successCallback: completion, failCallback: failed)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -283,9 +249,9 @@ internal class HATAccountServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: HATError) {
+        func failed(error: Error) {
             
-            XCTFail()
+            XCTFail("Failed resetting password")
             expectationTest.fulfill()
         }
         
@@ -318,9 +284,9 @@ internal class HATAccountServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: HATError) {
+        func failed(error: Error) {
             
-            XCTFail()
+            XCTFail("Failed creating combinator")
             expectationTest.fulfill()
         }
         
@@ -353,9 +319,9 @@ internal class HATAccountServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: HATError) {
+        func failed(error: Error) {
             
-            XCTFail()
+            XCTFail("Failed fetching combinator")
             expectationTest.fulfill()
         }
         

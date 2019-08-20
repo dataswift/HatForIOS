@@ -1,6 +1,6 @@
 //
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -348,9 +348,9 @@ internal class HATDataOffersTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: DataPlugError) {
+        func failed(error: Error) {
             
-            XCTFail()
+            XCTFail("Failed fetchind data offers")
             expectationTest.fulfill()
         }
         
@@ -382,9 +382,9 @@ internal class HATDataOffersTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: DataPlugError) {
+        func failed(error: Error) {
             
-            XCTFail()
+            XCTFail("Failed claiming data Offer")
             expectationTest.fulfill()
         }
         
@@ -415,9 +415,9 @@ internal class HATDataOffersTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: DataPlugError) {
+        func failed(error: Error) {
             
-            XCTFail()
+            XCTFail("Failed redeeming data offer")
             expectationTest.fulfill()
         }
         
@@ -455,9 +455,9 @@ internal class HATDataOffersTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: DataPlugError) {
+        func failed(error: Error) {
             
-            XCTFail()
+            XCTFail("Failed fetching merchants")
             expectationTest.fulfill()
         }
         
@@ -852,9 +852,9 @@ internal class HATDataOffersTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: DataPlugError) {
+        func failed(error: Error) {
             
-            XCTFail()
+            XCTFail("Failed claiming and enabling offer")
             expectationTest.fulfill()
         }
         

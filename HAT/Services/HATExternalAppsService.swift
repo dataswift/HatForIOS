@@ -1,6 +1,5 @@
-//
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -39,13 +38,11 @@ public struct HATExternalAppsService {
             encoding: Alamofire.JSONEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: headers,
-            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+            headers: headers) { (response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                // in case of error call the failCallBack
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
@@ -53,35 +50,26 @@ public struct HATExternalAppsService {
                     } else {
                         
                         let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        failCallBack(.generalError(message, statusCode, error))
+                        failCallBack(.generalError(message, nil, error, nil))
                     }
-                // in case of success call succesfulCallBack
-                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                case .success(let result):
                     
-                    if isSuccess && statusCode != 401 {
+                    if let array: [JSON] = result.0.array {
                         
-                        if let array: [JSON] = result.array {
+                        var arrayToReturn: [HATExternalApplications] = []
+                        
+                        for item: JSON in array {
                             
-                            var arrayToReturn: [HATExternalApplications] = []
-                            
-                            for item: JSON in array {
+                            if let object: HATExternalApplications = HATExternalApplications.decode(from: item.dictionaryValue) {
                                 
-                                if let object: HATExternalApplications = HATExternalApplications.decode(from: item.dictionaryValue) {
-                                    
-                                    arrayToReturn.append(object)
-                                }
+                                arrayToReturn.append(object)
                             }
-                            
-                            completion(arrayToReturn, token)
                         }
-                    } else {
                         
-                        let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                        failCallBack(.generalError(message, statusCode, nil))
+                        completion(arrayToReturn, result.1)
                     }
                 }
-            }
-        )
+        }
     }
     
     // MARK: - Get external apps
@@ -105,13 +93,11 @@ public struct HATExternalAppsService {
             encoding: Alamofire.JSONEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: headers,
-            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+            headers: headers) { (response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                // in case of error call the failCallBack
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
@@ -119,28 +105,19 @@ public struct HATExternalAppsService {
                     } else {
                         
                         let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        failCallBack(.generalError(message, statusCode, error))
+                        failCallBack(.generalError(message, nil, error, nil))
                     }
-                // in case of success call succesfulCallBack
-                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                case .success(let result):
                     
-                    if isSuccess && statusCode != 401 {
+                    if let item: [String: JSON] = result.0.dictionary {
                         
-                        if let item: [String: JSON] = result.dictionary {
+                        if let object: HATExternalApplications = HATExternalApplications.decode(from: item) {
                             
-                            if let object: HATExternalApplications = HATExternalApplications.decode(from: item) {
-                                
-                                completion(object, token)
-                            }
+                            completion(object, result.1)
                         }
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                        failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
-            }
-        )
+        }
     }
     
     // MARK: - Setup external apps
@@ -165,13 +142,11 @@ public struct HATExternalAppsService {
             encoding: Alamofire.JSONEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: headers,
-            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+            headers: headers) { (response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                // in case of error call the failCallBack
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
@@ -179,32 +154,19 @@ public struct HATExternalAppsService {
                     } else {
                         
                         let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        failCallBack(.generalError(message, statusCode, error))
+                        failCallBack(.generalError(message, nil, error, nil))
                     }
-                // in case of success call succesfulCallBack
-                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                case .success(let result):
                     
-                    if isSuccess && statusCode != 401 {
+                    if let item: [String: JSON] = result.0.dictionary {
                         
-                        if let dict: [String: JSON] = result.dictionary {
+                        if let object: HATExternalApplications = HATExternalApplications.decode(from: item) {
                             
-                            if let object: HATExternalApplications = HATExternalApplications.decode(from: dict) {
-                                
-                                completion(object, token)
-                            } else {
-                                
-                                let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                                failCallBack(.generalError(message, statusCode, nil))
-                            }
+                            completion(object, result.1)
                         }
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                        failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
-            }
-        )
+        }
     }
     
     // MARK: - Disable app
@@ -229,13 +191,11 @@ public struct HATExternalAppsService {
             encoding: Alamofire.JSONEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: headers,
-            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+            headers: headers) { (response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                // in case of error call the failCallBack
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
@@ -243,31 +203,18 @@ public struct HATExternalAppsService {
                     } else {
                         
                         let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        failCallBack(.generalError(message, statusCode, error))
+                        failCallBack(.generalError(message, nil, error, nil))
                     }
-                // in case of success call succesfulCallBack
-                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                case .success(let result):
                     
-                    if isSuccess && statusCode != 401 {
+                    if let item: [String: JSON] = result.0.dictionary {
                         
-                        if let dict: [String: JSON] = result.dictionary {
+                        if let object: HATExternalApplications = HATExternalApplications.decode(from: item) {
                             
-                            if let object: HATExternalApplications = HATExternalApplications.decode(from: dict) {
-                                
-                                completion(object, token)
-                            } else {
-                                
-                                let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                                failCallBack(.generalError(message, statusCode, nil))
-                            }
+                            completion(object, result.1)
                         }
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                        failCallBack(.generalError(message, statusCode, nil))
                     }
                 }
-            }
-        )
+        }
     }
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -67,7 +67,7 @@ internal class HATFeedServiceTests: XCTestCase {
         
         func fail(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed fetching feed")
             expectationTest.fulfill()
         }
         

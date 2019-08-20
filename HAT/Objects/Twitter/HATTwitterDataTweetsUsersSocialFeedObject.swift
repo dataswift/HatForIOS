@@ -15,7 +15,7 @@ import SwiftyJSON
 // MARK: Struct
 
 /// A class representing the user's info of a tweet
-public struct HATTwitterDataTweetsUsersSocialFeedObject: HatApiType, Comparable {
+public struct HATTwitterUsersSocialFeedObject: HatApiType, Comparable {
     
     // MARK: - Fields
     

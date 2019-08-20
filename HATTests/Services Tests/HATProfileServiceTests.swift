@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -114,7 +114,7 @@ internal class HATProfileServiceTests: XCTestCase {
         
         func fail(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed fetching profile")
             expectationTest.fulfill()
         }
         
@@ -148,7 +148,7 @@ internal class HATProfileServiceTests: XCTestCase {
         
         func fail(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed fetching nationallity")
             expectationTest.fulfill()
         }
         
@@ -178,7 +178,7 @@ internal class HATProfileServiceTests: XCTestCase {
         
         func fail(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed posting nationallity")
             expectationTest.fulfill()
         }
         

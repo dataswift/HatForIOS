@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -55,8 +55,10 @@ public struct HATNotablesService {
             namespace: "rumpel",
             scope: "notablesv1",
             parameters: parameters,
-            successCallback: gotNotes,
-            errorCallback: failed)
+            successCallback: gotNotes) { error in
+                
+                failed(.generalError("", nil, error, nil))
+        }
     }
     
     // MARK: - Delete notes
@@ -78,10 +80,14 @@ public struct HATNotablesService {
             recordIds: noteIDs,
             success: { string in
                 
-                HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () })
+                HATAccountService.triggerHatUpdate(userDomain: userDomain) { () }
                 success(string)
             },
-            failed: failed)
+            failed: { error in
+                
+                failed(.generalError("", nil, error, nil))
+            }
+        )
     }
     
     // MARK: - Update note
@@ -103,12 +109,16 @@ public struct HATNotablesService {
             notes: [note],
             successCallback: { jsonArray, newToken in
                 
-                HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () })
+                HATAccountService.triggerHatUpdate(userDomain: userDomain) { () }
                 
                 let note: HATNotes = HATNotes(dict: jsonArray[0].dictionaryValue)
                 success(note, newToken)
             },
-            errorCallback: failed)
+            errorCallback: { error in
+                
+                failed(.generalError("", nil, error, nil))
+            }
+        )
     }
     
     // MARK: - Post note
@@ -145,12 +155,16 @@ public struct HATNotablesService {
             parameters: hatData,
             successCallback: { notes, newToken in
                 
-                HATAccountService.triggerHatUpdate(userDomain: userDomain, completion: { () })
+                HATAccountService.triggerHatUpdate(userDomain: userDomain) { () }
                 
                 let note: HATNotes = HATNotes(dict: notes[0].dictionaryValue)
                 successCallBack(note, newToken)
             },
-            errorCallback: errorCallback)
+            errorCallback: { error in
+                
+                errorCallback(.generalError("", nil, error, nil))
+            }
+        )
     }
     
     // MARK: - Remove duplicates
@@ -171,10 +185,10 @@ public struct HATNotablesService {
         for note: HATNotes in array {
             
             // check if the arrayToReturn it contains that value and if not add it
-            let result: Bool = arrayToReturn.contains(where: {(note2: HATNotes) -> Bool in
+            let result: Bool = arrayToReturn.contains {(note2: HATNotes) -> Bool in
                 
                 return note.recordID == note2.recordID
-            })
+            }
             
             if !result {
                 

@@ -1,6 +1,6 @@
 //
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -69,7 +69,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         func failed(error: HATError) {
             
-            XCTFail()
+            XCTFail("Failed searching for file")
             expectationTest.fulfill()
         }
         
@@ -101,7 +101,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         func failed(error: HATError) {
             
-            XCTFail()
+            XCTFail("Failed deleting a file")
             expectationTest.fulfill()
         }
         
@@ -133,7 +133,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         func failed(error: HATError) {
             
-            XCTFail()
+            XCTFail("Failed making file public")
             expectationTest.fulfill()
         }
         
@@ -165,7 +165,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         func failed(error: HATError) {
             
-            XCTFail()
+            XCTFail("Failed making file private")
             expectationTest.fulfill()
         }
         
@@ -220,11 +220,11 @@ internal class HATFileServiceTests: XCTestCase {
         
         func failed(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed marking file as completed")
             expectationTest.fulfill()
         }
         
-        HATFileService.completeUploadFileToHAT(fileID: "1", token: "", tags: [], userDomain: userDomain, completion: completion, errorCallback: failed)
+        HATFileService.completeUploadFileToHAT(fileID: "1", token: "", tags: [], userDomain: userDomain, contentType: "image/jpeg", completion: completion, errorCallback: failed)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -275,11 +275,11 @@ internal class HATFileServiceTests: XCTestCase {
         
         func failed(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed uploading a file")
             expectationTest.fulfill()
         }
         
-        HATFileService.uploadFileToHAT(fileName: "test", token: "", userDomain: userDomain, tags: [], completion: completion, errorCallback: failed)
+        HATFileService.uploadFileToHAT(fileName: "test", token: "", userDomain: userDomain, tags: [], contentTypeHeader: "image/jpeg", completion: completion, errorCallback: failed)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -330,7 +330,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         func failed(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed updating parameters")
             expectationTest.fulfill()
         }
         
@@ -344,7 +344,6 @@ internal class HATFileServiceTests: XCTestCase {
         }
     }
     
-    @available(iOS 10.0, *)
     func testUploadToHATWrapper() {
         
         let body: Dictionary<String, Any> = [
@@ -385,7 +384,7 @@ internal class HATFileServiceTests: XCTestCase {
         
         func failed(error: HATTableError) {
             
-            XCTFail()
+            XCTFail("Failed uploading using the HAT wrapper")
             expectationTest.fulfill()
         }
         

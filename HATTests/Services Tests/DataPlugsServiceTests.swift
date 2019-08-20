@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -63,9 +63,9 @@ internal class DataPlugsServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
 
-        func fail(error: DataPlugError) {
+        func fail(error: Error) {
 
-            XCTFail()
+            XCTFail("Failed fetching available plugs")
             expectationTest.fulfill()
         }
 
@@ -101,9 +101,9 @@ internal class DataPlugsServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
 
-        func fail(error: DataPlugError) {
+        func fail(error: Error) {
 
-            XCTFail()
+            XCTFail("Failed checking if offer is claimed")
             expectationTest.fulfill()
         }
 
@@ -139,9 +139,9 @@ internal class DataPlugsServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
 
-        func fail(error: DataPlugError) {
+        func fail(error: Error) {
 
-            XCTFail()
+            XCTFail("Failed claiming offer")
             expectationTest.fulfill()
         }
 
@@ -174,13 +174,13 @@ internal class DataPlugsServiceTests: XCTestCase {
 
         func success(result: String) {
 
-            XCTAssertTrue(result == "enabled")
+            XCTAssertTrue(result == "1234567")
             expectationTest.fulfill()
         }
 
-        func fail(error: DataPlugError) {
+        func fail(error: Error) {
 
-            XCTFail()
+            XCTFail("Failed approving data Debit")
             expectationTest.fulfill()
         }
 
@@ -310,9 +310,9 @@ internal class DataPlugsServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
 
-        func fail(error: DataPlugError) {
+        func fail(error: Error) {
 
-            XCTFail()
+            XCTFail("Failed checking data debit")
             expectationTest.fulfill()
         }
 

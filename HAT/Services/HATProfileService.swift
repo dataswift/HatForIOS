@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -51,8 +51,10 @@ public struct HATProfileService {
             namespace: nameSpace,
             scope: scope,
             parameters: parameters,
-            successCallback: profileEntries,
-            errorCallback: failCallback)
+            successCallback: profileEntries) { error in
+                
+                failCallback(.generalError("", nil, error, nil))
+        }
     }
     
     /**
@@ -80,7 +82,11 @@ public struct HATProfileService {
                 
                 successCallback(T(fromCache: json.dictionaryValue))
             },
-            errorCallback: failCallback)
+            errorCallback: { error in
+                
+                failCallback(.generalError("", nil, error, nil))
+            }
+        )
     }
     
     // MARK: - Get profile nationality
@@ -252,8 +258,10 @@ public struct HATProfileService {
             namespace: "rumpel",
             scope: "profile",
             parameters: ["ordering": "descending", "orderBy": "dateCreated", "take": "1"],
-            successCallback: profileEntries,
-            errorCallback: failCallback)
+            successCallback: profileEntries) { error in
+                
+                failCallback(.generalError("", nil, error, nil))
+        }
     }
     
     // MARK: - Post Profile
@@ -291,7 +299,11 @@ public struct HATProfileService {
                 
                 successCallback(profile, newToken)
             },
-            errorCallback: failCallback)
+            errorCallback: { error in
+                
+                failCallback(.generalError("", nil, error, nil))
+            }
+        )
     }
     
     // MARK: - Get Profile Image
@@ -375,8 +387,10 @@ public struct HATProfileService {
             namespace: "rumpel",
             scope: "stufftoremember",
             parameters: ["starttime": "0"],
-            successCallback: stuffToRemember,
-            errorCallback: failCallback)
+            successCallback: stuffToRemember) { error in
+                
+                failCallback(.generalError("", nil, error, nil))
+        }
     }
     
     // MARK: - Post Stuff To Remember
@@ -426,7 +440,8 @@ public struct HATProfileService {
                 method: .get,
                 parameters: parameters,
                 encoding: Alamofire.JSONEncoding.default,
-                headers: ["x-auth-token": userToken]).responseJSON(completionHandler: { response in
+                headers: ["x-auth-token": userToken])
+                .responseJSON { response in
                     
                     switch response.result {
                     case .success:
@@ -440,7 +455,7 @@ public struct HATProfileService {
                                 
                                 if message != "Bundle Not Found" {
                                     
-                                    fail(HATTableError.generalError("json creation failed", nil, nil))
+                                    fail(HATTableError.generalError("json creation failed", nil, nil, nil))
                                 }
                             }
                         } else if response.response?.statusCode == 200 {
@@ -454,10 +469,10 @@ public struct HATProfileService {
                         }
                     case .failure(let error):
                         
-                        fail(HATTableError.generalError("", nil, error))
+                        fail(HATTableError.generalError("", nil, error, nil))
                     }
                 }
-            ).session.finishTasksAndInvalidate()
+            .session.finishTasksAndInvalidate()
         }
     }
     
@@ -593,7 +608,8 @@ public struct HATProfileService {
                 method: .post,
                 parameters: parametersToSend,
                 encoding: Alamofire.JSONEncoding.default,
-                headers: ["x-auth-token": userToken]).responseJSON(completionHandler: { response in
+                headers: ["x-auth-token": userToken])
+                .responseJSON { response in
                     
                     switch response.result {
                     case .success:
@@ -607,10 +623,10 @@ public struct HATProfileService {
                         }
                     case .failure(let error):
                         
-                        fail(HATTableError.generalError("", nil, error))
+                        fail(HATTableError.generalError("", nil, error, nil))
                     }
                 }
-            ).session.finishTasksAndInvalidate()
+            .session.finishTasksAndInvalidate()
         }
     }
     

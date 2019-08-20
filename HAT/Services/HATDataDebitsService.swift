@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -24,14 +24,14 @@ public struct HATDataDebitsService {
      
      - parameter userToken: A String representing the user's token
      - parameter userDomain: A String representing the user's domain
-     - parameter succesfulCallBack: A function of type ([DataDebitObject]) -> Void, executed on a successful result
-     - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
+     - parameter succesfulCallBack: A function of type ([HATDataDebit], String?) -> Void, executed on a successful result
+     - parameter failCallBack: A function of type (Error) -> Void, executed on an unsuccessful result
      */
-    public static func getAvailableDataDebits(userToken: String, userDomain: String, succesfulCallBack: @escaping ([HATDataDebit], String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func getAvailableDataDebits(userToken: String, userDomain: String, succesfulCallBack: @escaping ([HATDataDebit], String?) -> Void, failCallBack: @escaping (Error) -> Void) {
         
         let url: String = "https://\(userDomain)/api/v2.6/data-debit"
         
-        let headers: Dictionary<String, String> = ["X-Auth-Token": userToken]
+        let headers: Dictionary<String, String> = [RequestHeaders.xAuthToken: userToken]
         
         HATNetworkHelper.asynchronousRequest(
             url,
@@ -39,55 +39,26 @@ public struct HATDataDebitsService {
             encoding: Alamofire.URLEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: headers,
-            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+            headers: headers) { (response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                // in case of error call the failCallBack
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
-                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
-                        
-                        failCallBack(.noInternetConnection)
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        failCallBack(.generalError(message, statusCode, error))
-                    }
-                // in case of success call the succesfulCallBack
-                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                    failCallBack(error)
+                case .success(let result):
                     
-                    if isSuccess {
+                    var arrayToReturn: [HATDataDebit] = []
+                    for item: JSON in result.0.arrayValue {
                         
-                        if statusCode == 200 {
-                            
-                            var arrayToReturn: [HATDataDebit] = []
-                            for item: JSON in result.arrayValue {
-                                
-                                guard let dataDebit: HATDataDebit = HATDataDebit.decode(from: item.dictionaryValue) else {
-                                    
-                                    continue
-                                }
-                                
-                                arrayToReturn.append(dataDebit)
-                            }
-                            
-                            succesfulCallBack(arrayToReturn, token)
-                        } else {
-                            
-                            let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                            failCallBack(.generalError(message, statusCode, nil))
-                        }
+                        guard let dataDebit: HATDataDebit = HATDataDebit.decode(from: item.dictionaryValue) else { continue }
                         
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                        failCallBack(.generalError(message, statusCode, nil))
+                        arrayToReturn.append(dataDebit)
                     }
+                    
+                    succesfulCallBack(arrayToReturn, result.1)
                 }
-            }
-        )
+        }
     }
     
     /**
@@ -95,20 +66,20 @@ public struct HATDataDebitsService {
      
      - parameter userToken: A String representing the user's token
      - parameter userDomain: A String representing the user's domain
-     - parameter succesfulCallBack: A function of type ([DataDebitObject]) -> Void, executed on a successful result
-     - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
+     - parameter succesfulCallBack: A function of type (HATDataDebit, String?) -> Void, executed on a successful result
+     - parameter failCallBack: A function of type (Error) -> Void, executed on an unsuccessful result
      */
-    public static func getDataDebit(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (HATDataDebit, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func getDataDebit(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (HATDataDebit, String?) -> Void, failCallBack: @escaping (Error) -> Void) {
         
-        guard dataDebitID != "" else {
+        guard !dataDebitID.isEmpty else {
             
-            failCallBack(.generalError("Data debit empy", nil, nil))
+            failCallBack(HATError.generalError("Data debit empy", nil, nil, nil))
             return
         }
         
         let url: String = "https://\(userDomain)/api/v2.6/data-debit/\(dataDebitID)"
         
-        let headers: Dictionary<String, String> = ["X-Auth-Token": userToken]
+        let headers: Dictionary<String, String> = [RequestHeaders.xAuthToken: userToken]
         
         HATNetworkHelper.asynchronousRequest(
             url,
@@ -116,50 +87,24 @@ public struct HATDataDebitsService {
             encoding: Alamofire.URLEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: headers,
-            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+            headers: headers) { (response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                // in case of error call the failCallBack
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
-                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
-                        
-                        failCallBack(.noInternetConnection)
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        failCallBack(.generalError(message, statusCode, error))
-                    }
-                // in case of success call the succesfulCallBack
-                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                    failCallBack(error)
+                case .success(let result):
                     
-                    if isSuccess {
+                    let item = result.0.dictionaryValue
+                    guard let dataDebit: HATDataDebit = HATDataDebit.decode(from: item) else {
                         
-                        if statusCode == 200 {
-                            
-                            guard let dataDebit: HATDataDebit = HATDataDebit.decode(from: result.dictionaryValue) else {
-                                
-                                failCallBack(.generalError("Error decoding", statusCode!, nil))
-                                return
-                            }
-                            
-                            succesfulCallBack(dataDebit, token)
-                        } else {
-                            
-                            let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                            failCallBack(.generalError(message, statusCode, nil))
-                        }
-                        
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                        failCallBack(.generalError(message, statusCode, nil))
+                        failCallBack(JSONParsingError.generalError("Couldn't parse JSON for data debit", nil, nil, nil))
+                        return
                     }
+                    succesfulCallBack(dataDebit, result.1)
                 }
-            }
-        )
+        }
     }
     
     /**
@@ -168,14 +113,14 @@ public struct HATDataDebitsService {
      - parameter dataDebitID: A String representing the dataDebitID
      - parameter userToken: A String representing the user's token
      - parameter userDomain: A String representing the user's domain
-     - parameter succesfulCallBack: A function of type (DataDebitValuesObject) -> Void, executed on a successful result
-     - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
+     - parameter succesfulCallBack: A function of type (HATDataDebitValues, String) -> Void, executed on a successful result
+     - parameter failCallBack: A function of type (Error) -> Void, executed on an unsuccessful result
      */
-    public static func getDataDebitValues(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (HATDataDebitValues, String?) -> Void, failCallBack: @escaping (DataPlugError, String) -> Void) {
+    public static func getDataDebitValues(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (HATDataDebitValues, String?) -> Void, failCallBack: @escaping (Error, String) -> Void) {
         
         let url: String = "https://\(userDomain)/api/v2.6/data-debit/\(dataDebitID)/values"
         
-        let headers: Dictionary<String, String> = ["X-Auth-Token": userToken]
+        let headers: Dictionary<String, String> = [RequestHeaders.xAuthToken: userToken]
         
         HATNetworkHelper.asynchronousRequest(
             url,
@@ -183,50 +128,24 @@ public struct HATDataDebitsService {
             encoding: Alamofire.URLEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: headers,
-            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+            headers: headers) { (response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                // in case of error call the failCallBack
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
-                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
-                        
-                        failCallBack(.noInternetConnection, dataDebitID)
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        failCallBack(.generalError(message, statusCode, error), dataDebitID)
-                    }
-                // in case of success call the succesfulCallBack
-                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                    failCallBack(error, dataDebitID)
+                case .success(let result):
                     
-                    if isSuccess {
+                    let item = result.0.dictionaryValue
+                    guard let dataDebitValues: HATDataDebitValues = HATDataDebitValues.decode(from: item) else {
                         
-                        if statusCode == 200 {
-                            
-                            guard let dataDebit: HATDataDebitValues = HATDataDebitValues.decode(from: result.dictionaryValue) else {
-                                
-                                failCallBack(.generalError("Error decoding", statusCode!, nil), dataDebitID)
-                                return
-                            }
-                            
-                            succesfulCallBack(dataDebit, token)
-                        } else {
-                            
-                            let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                            failCallBack(.generalError(message, statusCode, nil), dataDebitID)
-                        }
-                        
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                        failCallBack(.generalError(message, statusCode, nil), dataDebitID)
+                        failCallBack(JSONParsingError.generalError("Couldn't parse JSON for data debit", nil, nil, nil), dataDebitID)
+                        return
                     }
+                    succesfulCallBack(dataDebitValues, result.1)
                 }
-            }
-        )
+        }
     }
     
     // MARK: - Disable data debit
@@ -237,14 +156,14 @@ public struct HATDataDebitsService {
      - parameter dataDebitID: A String representing the data debit id to disable
      - parameter userToken: A String representing the user's token
      - parameter userDomain: A String representing the user's domain
-     - parameter succesfulCallBack: A function of type ([DataDebitObject]) -> Void, executed on a successful result
-     - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
+     - parameter succesfulCallBack: A function of type (HATDataDebit, String?) -> Void, executed on a successful result
+     - parameter failCallBack: A function of type (Error) -> Void, executed on an unsuccessful result
      */
-    public static func disableDataDebit(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (HATDataDebit, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func disableDataDebit(dataDebitID: String, userToken: String, userDomain: String, succesfulCallBack: @escaping (HATDataDebit, String?) -> Void, failCallBack: @escaping (Error) -> Void) {
         
         let url: String = "https://\(userDomain)/api/v2.6/data-debit/\(dataDebitID)/disable?atPeriodEnd=true"
         
-        let headers: Dictionary<String, String> = ["X-Auth-Token": userToken]
+        let headers: Dictionary<String, String> = [RequestHeaders.xAuthToken: userToken]
         
         HATNetworkHelper.asynchronousRequest(
             url,
@@ -252,51 +171,24 @@ public struct HATDataDebitsService {
             encoding: Alamofire.URLEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: headers,
-            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+            headers: headers) { (response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                // in case of error call the failCallBack
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
-                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
-                        
-                        failCallBack(.noInternetConnection)
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        failCallBack(.generalError(message, statusCode, error))
-                    }
-                // in case of success call the succesfulCallBack
-                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                    failCallBack(error)
+                case .success(let result):
                     
-                    if isSuccess {
+                    let item = result.0.dictionaryValue
+                    guard let dataDebit: HATDataDebit = HATDataDebit.decode(from: item) else {
                         
-                        if statusCode == 200 {
-                            
-                            let dictionary: [String: JSON] = result.dictionaryValue
-                            if let dataDebit: HATDataDebit = HATDataDebit.decode(from: dictionary) {
-                                
-                                succesfulCallBack(dataDebit, token)
-                            } else {
-                                
-                                let message: String = NSLocalizedString("Could not decode response", comment: "")
-                                failCallBack(.generalError(message, statusCode, nil))
-                            }
-                        } else {
-                            
-                            let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                            failCallBack(.generalError(message, statusCode, nil))
-                        }
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                        failCallBack(.generalError(message, statusCode, nil))
+                        failCallBack(JSONParsingError.generalError("Couldn't parse JSON for data debit", nil, nil, nil))
+                        return
                     }
+                    succesfulCallBack(dataDebit, result.1)
                 }
-            }
-        )
+        }
     }
     
     // MARK: - Create data debit
@@ -308,23 +200,23 @@ public struct HATDataDebitsService {
      - parameter bundle: The bundle structure for the data debit
      - parameter userToken: A String representing the user's token
      - parameter userDomain: A String representing the user's domain
-     - parameter succesfulCallBack: A function of type (DataDebitObject) -> Void, executed on a successful result
-     - parameter failCallBack: A function of type (DataPlugError) -> Void, executed on an unsuccessful result
+     - parameter succesfulCallBack: A function of type (HATDataDebit, String?) -> Void, executed on a successful result
+     - parameter failCallBack: A function of type (Error) -> Void, executed on an unsuccessful result
      */
-    public static func createDataDebit(dataDebitID: String, bundle: HATDataDebitCreation, userToken: String, userDomain: String, succesfulCallBack: @escaping (HATDataDebit, String?) -> Void, failCallBack: @escaping (DataPlugError) -> Void) {
+    public static func createDataDebit(dataDebitID: String, bundle: HATDataDebitCreation, userToken: String, userDomain: String, succesfulCallBack: @escaping (HATDataDebit, String?) -> Void, failCallBack: @escaping (Error) -> Void) {
         
-        guard dataDebitID != "" else {
+        guard !dataDebitID.isEmpty else {
             
-            failCallBack(.generalError("Data debit empy", nil, nil))
+            failCallBack(HATError.generalError("Data debit empy", nil, nil, nil))
             return
         }
         
         let url: String = "https://\(userDomain)/api/v2.6/data-debit/\(dataDebitID)"
         
-        let headers: Dictionary<String, String> = ["X-Auth-Token": userToken]
+        let headers: Dictionary<String, String> = [RequestHeaders.xAuthToken: userToken]
         
         let temp = HATDataDebitCreation.encode(from: bundle)!
-        let data = temp.compactMapValues({ $0 })
+        let data = temp.compactMapValues { $0 }
         
         HATNetworkHelper.asynchronousRequest(
             url,
@@ -332,50 +224,24 @@ public struct HATDataDebitsService {
             encoding: Alamofire.JSONEncoding.default,
             contentType: ContentType.json,
             parameters: data,
-            headers: headers,
-            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+            headers: headers) { (response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                // in case of error call the failCallBack
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
-                    if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
-                        
-                        failCallBack(.noInternetConnection)
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        failCallBack(.generalError(message, statusCode, error))
-                    }
-                // in case of success call the succesfulCallBack
-                case .isSuccess(let isSuccess, let statusCode, let result, let token):
+                    failCallBack(error)
+                case .success(let result):
                     
-                    if isSuccess {
+                    let item = result.0.dictionaryValue
+                    guard let dataDebit: HATDataDebit = HATDataDebit.decode(from: item) else {
                         
-                        if statusCode == 201 {
-                            
-                            guard let dataDebit: HATDataDebit = HATDataDebit.decode(from: result.dictionaryValue) else {
-
-                                failCallBack(.generalError("Error decoding", statusCode!, nil))
-                                return
-                            }
-                            
-                            succesfulCallBack(dataDebit, token)
-                        } else {
-                            
-                            let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                            failCallBack(.generalError(message, statusCode, nil))
-                        }
-                        
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server response was unexpected", comment: "")
-                        failCallBack(.generalError(message, statusCode, nil))
+                        failCallBack(JSONParsingError.generalError("Couldn't parse JSON for data debit", nil, nil, nil))
+                        return
                     }
+                    succesfulCallBack(dataDebit, result.1)
                 }
-            }
-        )
+        }
     }
 }
 

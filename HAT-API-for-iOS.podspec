@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = 'HAT-API-for-iOS'
-  spec.version      = '0.1.2'
+  spec.version      = '0.1.3'
   spec.summary      = 'The API to connect & exchange data with the HAT'
 
   # This description is used to generate tags and improve search results.
@@ -78,7 +78,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source = { :git => 'https://github.com/Hub-of-all-Things/HatForIOS.git', :tag => '0.1.2' }
+  spec.source = { :git => 'https://github.com/Hub-of-all-Things/HatForIOS.git', :tag => 'v0.1.3' }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

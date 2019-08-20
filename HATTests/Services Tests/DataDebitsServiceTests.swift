@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -144,9 +144,9 @@ internal class DataDebitsServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: DataPlugError) {
+        func failed(error: Error) {
             
-            XCTFail()
+            XCTFail("Failed fetching data debit")
             expectationTest.fulfill()
         }
         
@@ -215,9 +215,9 @@ internal class DataDebitsServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        func failed(error: DataPlugError, dataDebitID: String) {
+        func failed(error: Error, dataDebitID: String) {
             
-            XCTFail()
+            XCTFail("Failed fetching data debit values")
             expectationTest.fulfill()
         }
         

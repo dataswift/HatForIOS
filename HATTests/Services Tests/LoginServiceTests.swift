@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -97,7 +97,7 @@ internal class LoginServiceTests: XCTestCase {
 
             func failed(error: AuthenicationError) {
 
-                XCTFail()
+                XCTFail("Failed authorizing user")
                 expectationTest.fulfill()
             }
 

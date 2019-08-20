@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -41,12 +41,11 @@ public struct HATNotificationsService {
             encoding: Alamofire.URLEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: headers,
-            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+            headers: headers) { (response: Result<(JSON, String?)>) -> Void in
             
                 switch response {
                     
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
@@ -54,28 +53,24 @@ public struct HATNotificationsService {
                     } else {
                         
                         let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        errorCallback(.generalError(message, statusCode, error))
+                        errorCallback(.generalError(message, nil, error, nil))
                     }
-                case .isSuccess(let isSuccess, _, let result, let token):
+                case .success(let result):
                     
-                    if isSuccess {
+                    if let array: [JSON] = result.0.array {
                         
-                        if let array: [JSON] = result.array {
+                        var arrayToReturn: [HATNotification] = []
+                        for notification: JSON in array {
                             
-                            var arrayToReturn: [HATNotification] = []
-                            for notification: JSON in array {
-                                
-                                arrayToReturn.append(HATNotification(dictionary: notification.dictionaryValue))
-                            }
-                            successCallback(arrayToReturn, token)
-                        } else {
-                            
-                            errorCallback(.noValuesFound)
+                            arrayToReturn.append(HATNotification(dictionary: notification.dictionaryValue))
                         }
+                        successCallback(arrayToReturn, result.1)
+                    } else {
+                        
+                        errorCallback(.noValuesFound)
                     }
                 }
-            }
-        )
+        }
     }
     
     // MARK: - Mark notification as read
@@ -103,12 +98,11 @@ public struct HATNotificationsService {
             encoding: Alamofire.URLEncoding.default,
             contentType: ContentType.json,
             parameters: [:],
-            headers: headers,
-            completion: { (response: HATNetworkHelper.ResultType) -> Void in
+            headers: headers) { (response: Result<(JSON, String?)>) -> Void in
                 
                 switch response {
                     
-                case .error(let error, let statusCode, _):
+                case .failure(let error):
                     
                     if error.localizedDescription == "The request timed out." || error.localizedDescription == "The Internet connection appears to be offline." {
                         
@@ -116,20 +110,12 @@ public struct HATNotificationsService {
                     } else {
                         
                         let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        errorCallback(.generalError(message, statusCode, error))
+                        errorCallback(.generalError(message, nil, error, nil))
                     }
-                case .isSuccess(let isSuccess, let statusCode, _, let token):
+                case .success(let result):
                     
-                    if isSuccess {
-                        
-                        successCallback(true, token)
-                    } else {
-                        
-                        let message: String = NSLocalizedString("Server responded with error", comment: "")
-                        errorCallback(.generalError(message, statusCode, nil))
-                    }
+                    successCallback(true, result.1)
                 }
-            }
-        )
+        }
     }
 }

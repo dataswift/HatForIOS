@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 HAT Data Exchange Ltd
+ * Copyright (C) 2019 HAT Data Exchange Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -29,9 +29,9 @@ public struct HATFacebook: HatApiType, HATSocialFeedObject, Comparable, HATObjec
      */
     private enum CodingKeys: String, CodingKey {
         
-        case name = "name"
-        case lastUpdated = "lastUpdated"
-        case data = "data"
+        case name
+        case lastUpdated
+        case data
     }
     
     // MARK: - Comparable protocol
