@@ -1,6 +1,6 @@
 //
 /**
- * Copyright (C) 2019 HAT Data Exchange Ltd
+ * Copyright (C) 2016-2019 Dataswift Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -73,7 +73,7 @@ internal class HATFileServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        HATFileService.searchFiles(userDomain: userDomain, token: "", successCallback: completion, errorCallBack: failed)
+        HATFileService.searchFiles(userDomain: userDomain, token: "", source: "rumpel", successCallback: completion, errorCallBack: failed)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -224,7 +224,7 @@ internal class HATFileServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        HATFileService.completeUploadFileToHAT(fileID: "1", token: "", tags: [], userDomain: userDomain, contentType: "image/jpeg", completion: completion, errorCallback: failed)
+        HATFileService.completeUploadFileToHAT(fileID: "1", token: "", tags: [], userDomain: userDomain, completion: completion, errorCallback: failed)
         
         waitForExpectations(timeout: 10) { error in
             
@@ -279,7 +279,7 @@ internal class HATFileServiceTests: XCTestCase {
             expectationTest.fulfill()
         }
         
-        HATFileService.uploadFileToHAT(fileName: "test", token: "", userDomain: userDomain, tags: [], contentTypeHeader: "image/jpeg", completion: completion, errorCallback: failed)
+        HATFileService.uploadFileToHAT(fileName: "test", token: "", userDomain: userDomain, tags: [], completion: completion, errorCallback: failed)
         
         waitForExpectations(timeout: 10) { error in
             

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2019 HAT Data Exchange Ltd
+ * Copyright (C) 2016-2019 Dataswift Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -24,34 +24,31 @@ public struct HATFileService {
      
      - parameter token: The authorisation token to authenticate with the hat
      - parameter userDomain: The user's HAT domain
+     - parameter source: The source of the file. Usually the application name that uploaded the file
      - parameter status: The status of the file, Completed or Deleted. Default value is Completed
      - parameter name: The name of the file, default is ""
      - parameter tags: The tags of the files, default is [""]
      - parameter successCallback: An @escaping ([FileUploadObject]) -> Void function to execute when the server has returned the files we were looking for
      - parameter errorCallBack: An @escaping (HATError) -> Void to execute when something went wrong
      */
-    public static func searchFiles(userDomain: String, token: String, status: String? = "Completed", name: String = "", tags: [String]? = [""], successCallback: @escaping ([HATFileUpload], String?) -> Void, errorCallBack: @escaping (HATError) -> Void) {
+    public static func searchFiles(userDomain: String, token: String, source: String, status: String? = "Completed", name: String = "", tags: [String]? = [""], successCallback: @escaping ([HATFileUpload], String?) -> Void, errorCallBack: @escaping (HATError) -> Void) {
         
         let url: String = "https://\(userDomain)/api/v2.6/files/search"
         let headers: [String: String] = ["X-Auth-Token": token]
         
-        var parameters: Dictionary <String, Any> = ["source": "iPhone",
+        var parameters: Dictionary <String, Any> = ["source": source,
                                                     "name": name,
                                                     "status": [
-                                                        
                                                         "status": status!,
-                                                        "size": 0]
-        ]
+                                                        "size": 0]]
         if tags! != [""] {
             
-            parameters = ["source": "iPhone",
+            parameters = ["source": source,
                           "name": "",
                           "tags": tags!,
                           "status": [
-                            
                             "status": status!,
-                            "size": 0]
-            ]
+                            "size": 0]]
         }
         
         HATNetworkHelper.asynchronousRequest(
@@ -224,17 +221,16 @@ public struct HATFileService {
      - parameter token: The owner's token
      - parameter tags: An array of strings having the tags to add to the file
      - parameter userDomain: The user hat domain
-     - parameter contentType: The user content type of the file to upload
      - parameter completion: A function to execute on success, returning the object returned from the server
      - parameter errorCallback: A function to execute on failure, returning an error
      */
-    public static func completeUploadFileToHAT(fileID: String, token: String, tags: [String], userDomain: String, contentType: String, completion: @escaping (HATFileUpload, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func completeUploadFileToHAT(fileID: String, token: String, tags: [String], userDomain: String, completion: @escaping (HATFileUpload, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let uploadURL: String = "https://\(userDomain)/api/v2.6/files/file/\(fileID)/complete"
         
         // create parameters and headers
-        let header: [String: String] = ["X-Auth-Token": token, "Content-type": contentType]
+        let header: [String: String] = ["X-Auth-Token": token]
         
         // make async request
         HATNetworkHelper.asynchronousRequest(
@@ -275,18 +271,17 @@ public struct HATFileService {
      - parameter token: The owner's token
      - parameter userDomain: The user hat domain
      - parameter tags: The tags to attach to the file
-     - parameter contentTypeHeader: The content type of the file to upload
      - parameter completion: A function to execute on success, returning the object returned from the server
      - parameter errorCallback: A function to execute on failure, returning an error
      */
-    public static func uploadFileToHAT(fileName: String, token: String, userDomain: String, tags: [String], contentTypeHeader: String, completion: @escaping (HATFileUpload, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
+    public static func uploadFileToHAT(fileName: String, token: String, userDomain: String, tags: [String], completion: @escaping (HATFileUpload, String?) -> Void, errorCallback: @escaping (HATTableError) -> Void) {
         
         // create the url
         let uploadURL: String = "https://\(userDomain)/api/v2.6/files/upload"
         
         // create parameters and headers
         let parameters: Dictionary<String, Any> = HATJSONHelper.createFileUploadingJSONFrom(fileName: fileName, tags: tags)
-        let header: [String: String] = ["X-Auth-Token": token, "Content-type": contentTypeHeader]
+        let header: [String: String] = ["X-Auth-Token": token]
         
         // make async request
         HATNetworkHelper.asynchronousRequest(
@@ -384,16 +379,15 @@ public struct HATFileService {
      */
     public static func uploadFileToHATWrapper(token: String, userDomain: String, fileToUpload: UIImage, tags: [String], name: String = "rumpelPhoto", progressUpdater: ((Double) -> Void)?, completion: ((HATFileUpload, String?) -> Void)?, errorCallBack: ((HATTableError) -> Void)?) {
         
-        let data: Data? = fileToUpload.jpegData(compressionQuality: 1.0)
-        let contentType = "image/jpeg"
         HATFileService.uploadFileToHAT(
             fileName: name,
             token: token,
             userDomain: userDomain,
             tags: tags,
-            contentTypeHeader: contentType,
             completion: {fileObject, renewedUserToken -> Void in
                 
+                let data: Data? = fileToUpload.jpegData(compressionQuality: 1.0)
+                let contentType = "image/jpeg"
                 HATNetworkHelper.uploadFile(
                     image: data!,
                     url: fileObject.contentURL,
@@ -409,7 +403,6 @@ public struct HATFileService {
                             token: token,
                             tags: tags,
                             userDomain: userDomain,
-                            contentType: contentType,
                             completion: {uploadedFile, renewedUserToken -> Void in
                                 
                                 var tempFile: HATFileUpload = fileObject

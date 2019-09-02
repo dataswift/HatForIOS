@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2019 HAT Data Exchange Ltd
+ * Copyright (C) 2016-2019 Dataswift Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -127,78 +127,6 @@ internal class HATProfileServiceTests: XCTestCase {
                                      userToken: userToken,
                                      successCallback: success,
                                      failCallback: fail)
-        
-        waitForExpectations(timeout: 10) { error in
-            
-            if let error: Error = error {
-                print("Error: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    func testGetNationality() {
-        
-        let expectationTest: XCTestExpectation = expectation(description: "Get nationality from hat...")
-        
-        func success(nationality: HATNationality) {
-            
-            XCTAssertTrue(nationality.nationality == "Greek")
-            expectationTest.fulfill()
-        }
-        
-        func fail(error: HATTableError) {
-            
-            XCTFail("Failed fetching nationallity")
-            expectationTest.fulfill()
-        }
-        
-        let userDomain: String = "testing.hubat.net"
-        
-        MockingjayProtocol.addStub(matcher: everything, builder: json(Bodies.nationality))
-        
-        HATProfileService.getNationalityFromHAT(userDomain: userDomain, userToken: "", successCallback: success, failCallback: fail)
-        
-        waitForExpectations(timeout: 10) { error in
-            
-            if let error: Error = error {
-                print("Error: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    func testPostNationality() {
-        
-        let expectationTest: XCTestExpectation = expectation(description: "Get nationality from hat...")
-        
-        func success(nationality: HATNationality) {
-            
-            XCTAssertTrue(nationality.nationality == "Greek")
-            expectationTest.fulfill()
-        }
-        
-        func fail(error: HATTableError) {
-            
-            XCTFail("Failed posting nationallity")
-            expectationTest.fulfill()
-        }
-        
-        let userDomain: String = "testing.hubat.net"
-        
-        var nationality: HATNationality = HATNationality()
-        nationality.nationality = "Greek"
-        nationality.passportHeld = "123"
-        nationality.passportNumber = "123"
-        nationality.placeOfBirth = "Greece"
-        nationality.language = "Greek"
-        
-        MockingjayProtocol.addStub(matcher: everything, builder: json(Bodies.postNationality))
-        
-        HATProfileService.postNationalityToHAT(
-            userDomain: userDomain,
-            userToken: "",
-            nationality: nationality,
-            successCallback: success,
-            failCallback: fail)
         
         waitForExpectations(timeout: 10) { error in
             

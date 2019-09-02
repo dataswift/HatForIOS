@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2019 HAT Data Exchange Ltd
+ * Copyright (C) 2016-2019 Dataswift Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -21,35 +21,18 @@ public enum HATJSONHelper {
      
      - parameter fileName: The file name of the file
      - parameter tags: The tags attached to the photo
+     - parameter source: The source of the file usually the application uploadding the file
      
      - returns: A `Dictionary <String, Any>` with the name, source and tags
      */
-    static func createFileUploadingJSONFrom(fileName: String, tags: [String]) -> [String: Any] {
+    static func createFileUploadingJSONFrom(fileName: String, tags: [String], source: String = "rumpel") -> [String: Any] {
         
         // the final JSON file to be returned
-        return [ "name": fileName,
-                 "source": "rumpel",
-                 "tags": tags
-        ]
-    }
-    
-    // MARK: - Create JSON for nationality uploading
-    
-    /**
-     Creates the json file to upload the nationality to  HAT
-     
-     - parameter nationality: The `HATNationalityObject` with all the necessary values
-     
-     - returns: A `Dictionary <String, String>` with nationality, passportHeld, passportNumber, placeOfBirth and language
-     */
-    static func createFileUploadingJSONFrom(nationality: HATNationality) -> [String: String] {
-        
-        // the final JSON file to be returned
-        return [ "nationality": nationality.nationality,
-                 "passportHeld": nationality.passportHeld,
-                 "passportNumber": nationality.passportNumber,
-                 "placeOfBirth": nationality.placeOfBirth,
-                 "language": nationality.language
+        return [
+            
+            "name": fileName,
+            "source": source,
+            "tags": tags
         ]
     }
 }

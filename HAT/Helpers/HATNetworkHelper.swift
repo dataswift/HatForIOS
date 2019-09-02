@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2019 HAT Data Exchange Ltd
+ * Copyright (C) 2016-2019 Dataswift Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -179,7 +179,7 @@ public struct HATNetworkHelper {
      */
     public static func uploadFile(image: Data, url: String, contentType: String, progressUpdateHandler: ((Double) -> Void)?, completion: @escaping (_ r: Result<(JSON, String?)>) -> Void) {
         
-        let headers: [String: String] = [RequestHeaders.serverEncryption: RequestHeaders.serverEncryptionAES256, "Content-type": contentType]
+        let headers: [String: String] = [RequestHeaders.serverEncryption: RequestHeaders.serverEncryptionAES256, "Content-Type": contentType]
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         let manager: SessionManager = Alamofire.SessionManager(configuration: configuration)

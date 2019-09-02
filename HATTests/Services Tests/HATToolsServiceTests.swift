@@ -1,6 +1,6 @@
 //
 /**
- * Copyright (C) 2019 HAT Data Exchange Ltd
+ * Copyright (C) 2016-2019 Dataswift Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -51,7 +51,7 @@ internal class HATToolsServiceTests: XCTestCase {
             ],
             "developer": [
                 "id": "hatdex",
-                "name": "HAT Data Exchange Ltd",
+                "name": "Dataswift Ltd",
                 "url": "https://hatdex.org",
                 "country": "United Kingdom"
             ],

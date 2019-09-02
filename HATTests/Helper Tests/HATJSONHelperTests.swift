@@ -1,6 +1,6 @@
 //
 /**
- * Copyright (C) 2019 HAT Data Exchange Ltd
+ * Copyright (C) 2016-2019 Dataswift Ltd
  *
  * SPDX-License-Identifier: MPL2
  *
@@ -22,18 +22,4 @@ class HATJSONHelperTests: XCTestCase {
         XCTAssert(result["source"] as? String == "rumpel")
         XCTAssert(result["tags"] as? [String] == ["testTag"])
     }
-    
-    func testCreateFileUploadingJSONFrom2() {
-        
-        var nationality: HATNationality = HATNationality()
-        nationality.nationality = "Greek"
-        nationality.language = "Greek"
-        nationality.placeOfBirth = "Alexandroupolis"
-        let result: [String: String] = HATJSONHelper.createFileUploadingJSONFrom(nationality: nationality)
-        XCTAssert(result["nationality"] == "Greek")
-        XCTAssert(result["language"] == "Greek")
-        XCTAssert(result["placeOfBirth"] == "Alexandroupolis")
-        XCTAssert(result["nationality"] == "Greek")
-    }
-    
 }
