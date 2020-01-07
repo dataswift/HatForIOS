@@ -9,7 +9,7 @@
 import Foundation
 import Security
 
-public protocol Key: AnyObject {
+public protocol Key: class {
     
     var reference: SecKey { get }
     var originalData: Data? { get }

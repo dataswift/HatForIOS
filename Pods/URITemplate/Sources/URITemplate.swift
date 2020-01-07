@@ -294,7 +294,7 @@ extension NSRegularExpression {
     let results = self.matches(in: string, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: range)
 
     return results.map { result -> String in
-      input.substring(with: result.range)
+      return input.substring(with: result.range)
     }
   }
 }
@@ -618,11 +618,11 @@ private extension CharacterSet {
     static let unreservedSymbols = CharacterSet(charactersIn: "-._~")
 
     static let unreserved = {
-      alpha.union(digits).union(unreservedSymbols)
+      return alpha.union(digits).union(unreservedSymbols)
     }()
 
     static let reserved = {
-      genDelims.union(subDelims)
+      return genDelims.union(subDelims)
     }()
 
     static let alpha = { () -> CharacterSet in
@@ -633,6 +633,6 @@ private extension CharacterSet {
   }
 
   static let uriTemplateReservedAllowed = {
-    URITemplate.unreserved.union(URITemplate.reserved)
+    return URITemplate.unreserved.union(URITemplate.reserved)
   }()
 }

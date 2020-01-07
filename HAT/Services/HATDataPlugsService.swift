@@ -46,40 +46,29 @@ public struct HATDataPlugsService {
             contentType: ContentType.json,
             parameters: parameters,
             headers: headers) { (response: Result<(JSON, String?)>) -> Void in
-            
                 switch response {
-                    
                 case .failure(let error):
-                    
                     switch error {
                     case is HATError:
-                        
                         guard let hatError = error as? HATError else { return }
                         switch hatError {
                         case .generalError(_, let statusCode, _, _):
-                            
                             guard statusCode != 400 else {
-                                
                                 failCallBack(DataPlugError.offerClaimed)
                                 succesfulCallBack("enabled")
                                 return
                             }
                             failCallBack(error)
                         default:
-                            
                             failCallBack(error)
                         }
                     default:
-                        
                         failCallBack(error)
                     }
                 case .success(let result):
-                    
                     if !result.0["confirmed"].boolValue {
-                        
                         succesfulCallBack(result.0["dataDebitId"].stringValue)
                     } else {
-                        
                         failCallBack(DataPlugError.generalError(NSLocalizedString("Couldn't find dataDebitId value", comment: ""), nil, nil, nil))
                     }
                 }

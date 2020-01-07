@@ -43,7 +43,7 @@ public class EncryptedMessage: Message {
             var decryptedDataBuffer = [UInt8](repeating: 0, count: blockSize)
             var decryptedDataLength = blockSize
             
-            let status = SecKeyDecrypt(key.reference, padding, chunkData, idxEnd - idx, &decryptedDataBuffer, &decryptedDataLength)
+            let status = SecKeyDecrypt(key.reference, padding, chunkData, idxEnd-idx, &decryptedDataBuffer, &decryptedDataLength)
             guard status == noErr else {
                 throw SwiftyRSAError.chunkDecryptFailed(index: idx)
             }

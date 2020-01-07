@@ -141,11 +141,7 @@ public struct HATLoginService {
                         let appName: String? = jwt.claim(name: "application").string
                         let scope: String? = jwt.claim(name: "accessScope").string
                         
-                        if appName != applicationName && scope == nil {
-                            
-                            failed?(.cannotDecodeToken(token))
-                            return
-                        } else if scope != "owner" && appName == nil {
+                        if (appName != applicationName && scope == nil) || (scope != "owner" && appName == nil) {
                             
                             failed?(.cannotDecodeToken(token))
                             return

@@ -1,4 +1,4 @@
-enabled_rules:
+opt_in_rules:
     - anyobject_protocol
     - array_init
     - attributes
@@ -159,5 +159,7 @@ disabled_rules:
     - vertical_whitespace_between_cases
 trailing_whitespace:
     ignores_empty_lines: true
+closure_body_length:
+    warning: 50
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods

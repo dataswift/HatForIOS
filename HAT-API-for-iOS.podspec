@@ -15,9 +15,10 @@ Pod::Spec.new do |spec|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  spec.name         = 'HAT-API-for-iOS'
-  spec.version      = '0.1.4'
-  spec.summary      = 'The API to connect & exchange data with the HAT'
+  spec.name          = 'HAT-API-for-iOS'
+  spec.version       = '0.1.4'
+  spec.summary       = 'The API to connect & exchange data with the HAT'
+  spec.swift_version = '4.2'
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -78,7 +79,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source = { :git => 'https://github.com/Hub-of-all-Things/HatForIOS.git', :tag => 'v0.1.4' }
+  spec.source = { :git => 'https://github.com/Hub-of-all-Things/HatForIOS.git', :branch => 'github-actions' }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -128,7 +129,7 @@ Pod::Spec.new do |spec|
 
   # spec.requires_arc = true
 
-  # spec.xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(PODS_ROOT)' }
+  spec.xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(PODS_ROOT)' }
   spec.dependency 'SwiftyJSON'
   spec.dependency 'Alamofire'
   spec.dependency 'JWTDecode'

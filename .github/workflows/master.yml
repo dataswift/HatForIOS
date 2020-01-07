@@ -14,6 +14,8 @@ jobs:
         run: bundle install
       - name: Build and test
         run: bundle exec fastlane test
+      - name: Lint CocoaPod file
+        run: pod lib lint --skip-tests --allow-warnings
       # - name: Publish to CocoaPod register
       #   env:
       #     COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}

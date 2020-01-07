@@ -15,14 +15,14 @@ public enum SwiftyRSA {
     
     static func base64String(pemEncoded pemString: String) throws -> String {
         let lines = pemString.components(separatedBy: "\n").filter { line in
-            !line.hasPrefix("-----BEGIN") && !line.hasPrefix("-----END")
+            return !line.hasPrefix("-----BEGIN") && !line.hasPrefix("-----END")
         }
         
         guard lines.count != 0 else {
             throw SwiftyRSAError.pemDoesNotContainKey
         }
         
-        return lines.joined()
+        return lines.joined(separator: "")
     }
     
     static func isValidKeyReference(_ reference: SecKey, forClass requiredClass: CFString) -> Bool {
