@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1CA48836B2181376FD1BA33A /* Pods_HAT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A941716525836DE60DB2E996 /* Pods_HAT.framework */; };
+		0089A46A2C6C1D01CC2716AE /* Pods_HAT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C4DA70D6961C785C9647B1 /* Pods_HAT.framework */; };
+		2B785215A576C82055CCE8E3 /* Pods_HATTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67EFE5D6DD2913A4F401B0A6 /* Pods_HATTests.framework */; };
 		60019C5B2034A4C400AABE8A /* HATProfileBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60019C5A2034A4C400AABE8A /* HATProfileBundle.swift */; };
 		60019C5D2034A4FF00AABE8A /* HATProfileBundleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60019C5C2034A4FF00AABE8A /* HATProfileBundleData.swift */; };
 		60019C5F2034A5AD00AABE8A /* HATProfileBundleEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60019C5E2034A5AD00AABE8A /* HATProfileBundleEndpoints.swift */; };
@@ -206,7 +207,6 @@
 		60F51C491F8B63C500F99C47 /* HATObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F51C471F8B63C500F99C47 /* HATObject.swift */; };
 		60F6FF421FB79361000B8A2E /* HATFeedDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F6FF411FB79361000B8A2E /* HATFeedDate.swift */; };
 		60F6FF431FB79361000B8A2E /* HATFeedDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F6FF411FB79361000B8A2E /* HATFeedDate.swift */; };
-		C6275798E26DF164AA94125B /* Pods_HATTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D69C2E34D9D1E159D83BD1 /* Pods_HATTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,8 +220,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		010099915723491E37A85142 /* Pods-HATTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HATTests.release.xcconfig"; path = "Target Support Files/Pods-HATTests/Pods-HATTests.release.xcconfig"; sourceTree = "<group>"; };
-		3D95481EA7079A9F7726E8A7 /* Pods-HATTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HATTests.debug.xcconfig"; path = "Target Support Files/Pods-HATTests/Pods-HATTests.debug.xcconfig"; sourceTree = "<group>"; };
+		07F6AC3D323B3EC1B64BE528 /* Pods-HATTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HATTests.debug.xcconfig"; path = "Target Support Files/Pods-HATTests/Pods-HATTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0E88BFB1324E041BB86B9E7F /* Pods-HAT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HAT.debug.xcconfig"; path = "Target Support Files/Pods-HAT/Pods-HAT.debug.xcconfig"; sourceTree = "<group>"; };
 		60019C5A2034A4C400AABE8A /* HATProfileBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileBundle.swift; sourceTree = "<group>"; };
 		60019C5C2034A4FF00AABE8A /* HATProfileBundleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileBundleData.swift; sourceTree = "<group>"; };
 		60019C5E2034A5AD00AABE8A /* HATProfileBundleEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATProfileBundleEndpoints.swift; sourceTree = "<group>"; };
@@ -334,10 +334,10 @@
 		60EDD01F1F98DC9000BE24B3 /* DataDebitsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDebitsServiceTests.swift; sourceTree = "<group>"; };
 		60F51C471F8B63C500F99C47 /* HATObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HATObject.swift; path = Protocols/HATObject.swift; sourceTree = "<group>"; };
 		60F6FF411FB79361000B8A2E /* HATFeedDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HATFeedDate.swift; sourceTree = "<group>"; };
-		65D69C2E34D9D1E159D83BD1 /* Pods_HATTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HATTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A941716525836DE60DB2E996 /* Pods_HAT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HAT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B69C53E636335EB825FD2B74 /* Pods-HAT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HAT.debug.xcconfig"; path = "Target Support Files/Pods-HAT/Pods-HAT.debug.xcconfig"; sourceTree = "<group>"; };
-		B73F2870663BB52046B5236F /* Pods-HAT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HAT.release.xcconfig"; path = "Target Support Files/Pods-HAT/Pods-HAT.release.xcconfig"; sourceTree = "<group>"; };
+		67EFE5D6DD2913A4F401B0A6 /* Pods_HATTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HATTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DB6AF5B083E0C502C175D8F /* Pods-HATTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HATTests.release.xcconfig"; path = "Target Support Files/Pods-HATTests/Pods-HATTests.release.xcconfig"; sourceTree = "<group>"; };
+		A7C4DA70D6961C785C9647B1 /* Pods_HAT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HAT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D54D524E3CA110A1E3634F45 /* Pods-HAT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HAT.release.xcconfig"; path = "Target Support Files/Pods-HAT/Pods-HAT.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,7 +345,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CA48836B2181376FD1BA33A /* Pods_HAT.framework in Frameworks */,
+				0089A46A2C6C1D01CC2716AE /* Pods_HAT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,32 +354,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				60444EE71E4B27C5005E4433 /* HAT.framework in Frameworks */,
-				C6275798E26DF164AA94125B /* Pods_HATTests.framework in Frameworks */,
+				2B785215A576C82055CCE8E3 /* Pods_HATTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C78DF0C54DB1686DC62B3CD /* Frameworks */ = {
+		20235DC53F2DDE0939E221A3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A941716525836DE60DB2E996 /* Pods_HAT.framework */,
-				65D69C2E34D9D1E159D83BD1 /* Pods_HATTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2CDCD1095A4216B2ACDB23CA /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B69C53E636335EB825FD2B74 /* Pods-HAT.debug.xcconfig */,
-				B73F2870663BB52046B5236F /* Pods-HAT.release.xcconfig */,
-				3D95481EA7079A9F7726E8A7 /* Pods-HATTests.debug.xcconfig */,
-				010099915723491E37A85142 /* Pods-HATTests.release.xcconfig */,
+				0E88BFB1324E041BB86B9E7F /* Pods-HAT.debug.xcconfig */,
+				D54D524E3CA110A1E3634F45 /* Pods-HAT.release.xcconfig */,
+				07F6AC3D323B3EC1B64BE528 /* Pods-HATTests.debug.xcconfig */,
+				9DB6AF5B083E0C502C175D8F /* Pods-HATTests.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		385B07C76234B8C4401AA946 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7C4DA70D6961C785C9647B1 /* Pods_HAT.framework */,
+				67EFE5D6DD2913A4F401B0A6 /* Pods_HATTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		601691081E4B4B7C00505E8D /* Services */ = {
@@ -481,8 +481,8 @@
 				60444EDF1E4B27C4005E4433 /* HAT */,
 				60444EEA1E4B27C5005E4433 /* HATTests */,
 				60444EDE1E4B27C4005E4433 /* Products */,
-				2CDCD1095A4216B2ACDB23CA /* Pods */,
-				0C78DF0C54DB1686DC62B3CD /* Frameworks */,
+				20235DC53F2DDE0939E221A3 /* Pods */,
+				385B07C76234B8C4401AA946 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -697,7 +697,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60444EF11E4B27C5005E4433 /* Build configuration list for PBXNativeTarget "HAT" */;
 			buildPhases = (
-				50EFB3D055F8A5B4EEE06B74 /* [CP] Check Pods Manifest.lock */,
+				E471942316065034BB01369C /* [CP] Check Pods Manifest.lock */,
 				60444ED81E4B27C4005E4433 /* Sources */,
 				60444ED91E4B27C4005E4433 /* Frameworks */,
 				60444EDA1E4B27C4005E4433 /* Headers */,
@@ -717,11 +717,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60444EF41E4B27C5005E4433 /* Build configuration list for PBXNativeTarget "HATTests" */;
 			buildPhases = (
-				1610481FC3AB077E59867989 /* [CP] Check Pods Manifest.lock */,
+				F5D61680F47A1FD331160647 /* [CP] Check Pods Manifest.lock */,
 				60444EE21E4B27C5005E4433 /* Sources */,
 				60444EE31E4B27C5005E4433 /* Frameworks */,
 				60444EE41E4B27C5005E4433 /* Resources */,
-				573187BE7F28E050C8981D26 /* [CP] Embed Pods Frameworks */,
+				EFFCEE77F046BED5E9BAC2BC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -795,29 +795,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1610481FC3AB077E59867989 /* [CP] Check Pods Manifest.lock */ = {
+		604E45FD1EFACAF10071347E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-HATTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
-		50EFB3D055F8A5B4EEE06B74 /* [CP] Check Pods Manifest.lock */ = {
+		E471942316065034BB01369C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -839,7 +830,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		573187BE7F28E050C8981D26 /* [CP] Embed Pods Frameworks */ = {
+		EFFCEE77F046BED5E9BAC2BC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -867,18 +858,27 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HATTests/Pods-HATTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		604E45FD1EFACAF10071347E /* ShellScript */ = {
+		F5D61680F47A1FD331160647 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HATTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1227,7 +1227,7 @@
 		};
 		60444EF21E4B27C5005E4433 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B69C53E636335EB825FD2B74 /* Pods-HAT.debug.xcconfig */;
+			baseConfigurationReference = 0E88BFB1324E041BB86B9E7F /* Pods-HAT.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -1251,7 +1251,7 @@
 		};
 		60444EF31E4B27C5005E4433 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B73F2870663BB52046B5236F /* Pods-HAT.release.xcconfig */;
+			baseConfigurationReference = D54D524E3CA110A1E3634F45 /* Pods-HAT.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -1274,7 +1274,7 @@
 		};
 		60444EF51E4B27C5005E4433 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D95481EA7079A9F7726E8A7 /* Pods-HATTests.debug.xcconfig */;
+			baseConfigurationReference = 07F6AC3D323B3EC1B64BE528 /* Pods-HATTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = FG275HQ3SR;
@@ -1289,7 +1289,7 @@
 		};
 		60444EF61E4B27C5005E4433 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 010099915723491E37A85142 /* Pods-HATTests.release.xcconfig */;
+			baseConfigurationReference = 9DB6AF5B083E0C502C175D8F /* Pods-HATTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = FG275HQ3SR;
