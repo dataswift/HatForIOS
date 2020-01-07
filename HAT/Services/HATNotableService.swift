@@ -185,9 +185,9 @@ public struct HATNotablesService {
         for note: HATNotes in array {
             
             // check if the arrayToReturn it contains that value and if not add it
-            let result: Bool = arrayToReturn.contains {(note2: HATNotes) -> Bool in
+            let result: Bool = arrayToReturn.contains { (note2: HATNotes) -> Bool in
                 
-                return note.recordID == note2.recordID
+                note.recordID == note2.recordID
             }
             
             if !result {

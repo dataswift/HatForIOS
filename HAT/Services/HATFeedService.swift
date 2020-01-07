@@ -158,7 +158,7 @@ public struct HATFeedService {
                         
                         for item: JSON in array {
                             
-                            let itemAsString: [String: String] = item["values"].dictionaryValue.filter({key in key.value != "languages"}).mapValues { temp in temp.stringValue }
+                            let itemAsString: [String: String] = item["values"].dictionaryValue.filter({ key in key.value != "languages" }).mapValues { temp in temp.stringValue }
                             let staticData = StaticDataValues(name: item["name"].stringValue, values: itemAsString)
                             arrayToReturn.append(staticData)
                         }

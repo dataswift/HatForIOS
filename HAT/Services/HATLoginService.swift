@@ -60,8 +60,8 @@ public struct HATLoginService {
         HATNetworkHelper.asynchronousStringRequest(
             url!,
             method: .get,
-            encoding: Alamofire.JSONEncoding.default,
-            contentType: ContentType.json,
+            encoding: Alamofire.URLEncoding.default,
+            contentType: ContentType.text,
             parameters: [:],
             headers: [:]) { response in
                 

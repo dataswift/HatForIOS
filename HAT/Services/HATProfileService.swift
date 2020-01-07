@@ -240,7 +240,7 @@ public struct HATProfileService {
                 url,
                 method: .get,
                 parameters: parameters,
-                encoding: Alamofire.JSONEncoding.default,
+                encoding: Alamofire.URLEncoding.default,
                 headers: ["x-auth-token": userToken])
                 .responseJSON { response in
                     

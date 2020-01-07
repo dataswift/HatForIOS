@@ -1,0 +1,22 @@
+name: Release HAT API iOS
+
+on:
+  push:
+    branches:
+      - github-actions
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Bundle Install
+        run: bundle install
+      - name: Install Cocoapods
+        run: bundle exec pod install
+      - name: Build and test
+        run: bundle exec fastlane test
+      # - name: Publish to CocoaPod register
+      #   env:
+      #     COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+      #   run: pod trunk push HAT-API-for-iOS.podspec

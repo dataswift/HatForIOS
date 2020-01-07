@@ -24,8 +24,8 @@ public struct HATToolsService {
         HATNetworkHelper.asynchronousRequest(
             url,
             method: .get,
-            encoding: Alamofire.JSONEncoding.default,
-            contentType: ContentType.json,
+            encoding: Alamofire.URLEncoding.default,
+            contentType: ContentType.text,
             parameters: [:],
             headers: headers) { response in
                 
@@ -69,8 +69,8 @@ public struct HATToolsService {
         HATNetworkHelper.asynchronousRequest(
             url,
             method: .get,
-            encoding: Alamofire.JSONEncoding.default,
-            contentType: ContentType.json,
+            encoding: Alamofire.URLEncoding.default,
+            contentType: ContentType.text,
             parameters: [:],
             headers: headers) {response in
                 
@@ -110,8 +110,8 @@ public struct HATToolsService {
         HATNetworkHelper.asynchronousRequest(
             url,
             method: .get,
-            encoding: Alamofire.JSONEncoding.default,
-            contentType: ContentType.json,
+            encoding: Alamofire.URLEncoding.default,
+            contentType: ContentType.text,
             parameters: [:],
             headers: headers) {response in
                 
@@ -192,8 +192,8 @@ public struct HATToolsService {
         HATNetworkHelper.asynchronousRequest(
             url,
             method: .get,
-            encoding: Alamofire.JSONEncoding.default,
-            contentType: ContentType.json,
+            encoding: Alamofire.URLEncoding.default,
+            contentType: ContentType.text,
             parameters: [:],
             headers: headers) {response in
                 

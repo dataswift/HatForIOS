@@ -160,7 +160,7 @@ public struct HATAccountService {
         HATNetworkHelper.asynchronousRequest(
             url,
             method: .delete,
-            encoding: Alamofire.JSONEncoding.default,
+            encoding: Alamofire.URLEncoding.default,
             contentType: ContentType.text,
             parameters: [:],
             headers: headers) { (response: Result<(JSON, String?)>) -> Void in
@@ -368,8 +368,8 @@ public struct HATAccountService {
         HATNetworkHelper.asynchronousRequest(
             url,
             method: .get,
-            encoding: Alamofire.JSONEncoding.default,
-            contentType: ContentType.json,
+            encoding: Alamofire.URLEncoding.default,
+            contentType: ContentType.text,
             parameters: [:],
             headers: headers) { (response: Result<(JSON, String?)>) -> Void in
                 
