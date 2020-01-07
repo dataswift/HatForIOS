@@ -1,9 +1,10 @@
 name: Release HAT API iOS
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
-      - github-actions
+      - master
 
 jobs:
   build:
@@ -16,7 +17,7 @@ jobs:
         run: bundle exec fastlane test
       - name: Lint CocoaPod file
         run: pod lib lint --skip-tests --allow-warnings
-      # - name: Publish to CocoaPod register
-      #   env:
-      #     COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
-      #   run: pod trunk push HAT-API-for-iOS.podspec
+      - name: Publish to CocoaPod register
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+        run: pod trunk push HAT-API-for-iOS.podspec
